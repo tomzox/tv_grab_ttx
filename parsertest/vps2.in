@@ -1,0 +1,35 @@
+#!/usr/bin/perl -w
+#
+# $Id: vps2.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+$VbiCaptureTime = 1146300143;
+$PgCnt{0x303} = 2;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03ZDFtext\x02Sa\x0229.04.06\x0310:41:11",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Samstag, 29.April         ",
+  "                       \x05\x181D102\x18290406\x18AE",
+  "\x0720.45\x05\x182045\x07\x07heute-journal\x03UT\x07.....\x07315",
+  "\x0620.55\x05\x182055\x06\x06Wetter\x03UT                 ",
+  "\x0721.00\x05\x051925\x07\x07DFB-Pokal, Finale         ",
+  "              2.Halbzeit ...........\x07320",
+  "\x0622.15\x05\x182215\x06\x06das aktuelle              ",
+  "            \x06\x06sportstudio ..........\x06321",
+  "\x0722.45\x05\x182245\x07\x07Boxen live im Zweiten     ",
+  "              Luan Krasniqi - Davic     ",
+  "              Bostice ..............\x07322",
+  "\x05\x05300406\x07                               ",
+  "\x0601.00\x05\x180100\x06\x06Disappearance - Spurlos   ",
+  "            \x06\x06verschwunden              ",
+  "            \x06\x06Psychothriller USA/2002   ",
+  "            \x03\x03UT\x06...................\x06323",
+  undef,
+  undef,
+  undef,
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0702.25\x07Uhr -> 304\x07 ",
+];

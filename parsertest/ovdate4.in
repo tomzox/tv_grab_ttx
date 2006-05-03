@@ -1,0 +1,68 @@
+#!/usr/bin/perl -w
+#
+# Missing date on the 2nd page, starting on another date.
+#
+# $Id: ovdate4.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+$VbiCaptureTime = 1146397673;
+$PgCnt{0x303} = 6;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03  SAT.1  \x0730.04.06 \x0313:47:44",
+  undef,
+  undef,
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  undef,
+  "\x07\x1D\x0419.15  Nur die Liebe z{hlt      >383 ",
+  "\x07\x1D\x0120.15  Das Wunder von Bern      >311 ",
+  "\x07\x1D\x0422.30  Sechserpack: Essen &          ",
+  "\x07\x1D\x04       Trinken                       ",
+  "\x07\x1D\x0122.55  PLANETOPIA               >331 ",
+  "\x07\x1D\x0423.45  News & Stories: Vom La-       ",
+  "\x07\x1D\x04       chen und dem aufrechten       ",
+  "\x07\x1D\x04       Gang - ]ber die Evoluti-      ",
+  "\x07\x1D\x04       on von Affen und Men-         ",
+  "\x07\x1D\x04       schen                    >330 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x304} = 5;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x03  SAT.1  \x0730.04.06 \x0313:47:44",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x07\x1D\x0400.34  So gesehen                    ",
+  "\x07\x1D\x0100.35  Sat.1 Music Special           ",
+  "\x07\x1D\x0402.20  QUIZ NIGHT               >375 ",
+  "\x07\x1D\x0103.30  K 11 - Kommissare im          ",
+  "\x07\x1D\x01       Einsatz: T|dliche Fes-        ",
+  "\x07\x1D\x01       selspiele                >374 ",
+  "\x07\x1D\x0403.55  J.A.G. - Im Auftrag der       ",
+  "\x07\x1D\x04       Ehre: Der Falke          >359 ",
+  "\x07\x1D\x0104.40  Casanova - Ich liebe          ",
+  "\x07\x1D\x01       alle Frauen, Teil 2      >312 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+

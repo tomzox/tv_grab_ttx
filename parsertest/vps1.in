@@ -1,0 +1,69 @@
+#!/usr/bin/perl -w
+#
+# VPS test: a programme was inserted at 23:00, shifting the following
+# programmes by 15 minutes; one programme's start is shifted to the
+# following day (i.e. from 23:45 to 00:00)
+#
+# $Id: vps1.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+$VbiCaptureTime = 1146397378;
+$PgCnt{0x303} = 6;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x06ARDtext\x07So 30.04.06\x0713:42:58",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      So 30.04.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  18.49  Ein Platz an der Sonne        ",
+  "\x07 \x0618.50  Lindenstra~e: \x03UT\x06........ 319",
+  "\x07        \x06Anteile (D, 2006)             ",
+  "\x07  19.20  Weltspiegel .............. 322",
+  "\x07 \x0620.00  Tagesschau \x03UT\x06........... 310",
+  "\x03!\x0720.15  Polizeiruf 110:\x03UT\x07....... 324",
+  "\x07         Matrosenbraut (D, 2006)       ",
+  "\x03!\x0621.45  Sabine Christiansen ...... 326",
+  "\x07  22.45  Tagesthemen .............. 311",
+  "\x07         mit Sport                     ",
+  "\x07 \x0622.58  Das Wetter im Ersten          ",
+  "\x07  23.00  Sondersendung zum Tod         ",
+  "\x07  \x052259\x07 von Paul Spiegel              ",
+  "\x03!\x0623.15  ttt - titel thesen            ",
+  "\x07  \x052300\x07\x06temperamente ............. 328",
+  "\x07   \x05VPS\x07\x06bis 23.45 Uhr                 ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Nacht >\x06304",
+];
+$PgCnt{0x304} = 6;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x06ARDtext\x07So 30.04.06\x0713:42:58",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      So 30.04.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  23.45  Bericht vom Parteitag         ",
+  "\x07  \x052330\x07 Die Linkspartei.PDS           ",
+  "\x05300406                                 ",
+  "\x07 \x0600.00  Das Fest ................. 329",
+  "\x07  \x052345\x07\x06Spielfilm, DK 1997            ",
+  "\x07  01.40  Tagesschau\x050125               ",
+  "\x07 \x0601.50  Fr}hling f}r Hitler ...... 331",
+  "\x07  \x050135\x07\x06Spielfilm, USA 1967           ",
+  "\x07  03.15  Presseclub\x050300               ",
+  "\x07 \x0604.00  ttt - titel thesen            ",
+  "\x07  \x050345\x07\x06temperamente                  ",
+  "\x07  04.30  Die sch|nsten Bahnstrecken    ",
+  "\x07  \x050415\x07 Deutschlands                  ",
+  "\x07         ICE: Bonn - Berlin            ",
+  "\x07 \x0604.45  Tagesschau                    ",
+  "\x07  04.50  Weltspiegel                   ",
+  "\x07   \x05VPS\x07 bis 05.30 Uhr                 ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                     Montag >\x06305",
+];

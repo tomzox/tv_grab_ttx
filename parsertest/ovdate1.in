@@ -1,0 +1,71 @@
+#!/usr/bin/perl -w
+#
+# This test checks if a wrong date in the header is handled correctly:
+# The header date stays unchanged on a new page which has programmes
+# starting 02:35, i.e. on a new day. (Note VPS labels have been
+# removed for this test)
+#
+# $Id: ovdate1.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+$VbiCaptureTime = 1146300143;
+$PgCnt{0x303} = 2;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03ZDFtext\x02Sa\x0229.04.06\x0310:41:11",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Samstag, 29.April         ",
+  undef,
+  "\x0720.45\x05\x182045\x07\x07heute-journal\x03UT\x07.....\x07315",
+  "\x0620.55\x05\x182055\x06\x06Wetter\x03UT                 ",
+  "\x0721.00\x05\x051925\x07\x07DFB-Pokal, Finale         ",
+  "              2.Halbzeit ...........\x07320",
+  "\x0622.15\x05\x182215\x06\x06das aktuelle              ",
+  "            \x06\x06sportstudio ..........\x06321",
+  "\x0722.45\x05\x182245\x07\x07Boxen live im Zweiten     ",
+  "              Luan Krasniqi - Davic     ",
+  "              Bostice ..............\x07322",
+  undef,
+  "\x0601.00\x05\x180100\x06\x06Disappearance - Spurlos   ",
+  "            \x06\x06verschwunden              ",
+  "            \x06\x06Psychothriller USA/2002   ",
+  "            \x03\x03UT\x06...................\x06323",
+  undef,
+  undef,
+  undef,
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0702.25\x07Uhr -> 304\x07 ",
+];
+$PgCnt{0x304} = 2;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x03ZDFtext\x02Sa\x0229.04.06\x0310:42:06",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Samstag, 29.April         ",
+  undef,
+  "\x0702.25\x05\x180225\x07\x07heute ................\x07111",
+  "\x0602.30\x05\x180230\x06\x06Runaway Heart             ",
+  "            \x06\x06Gangsterkom|die USA/1990  ",
+  "            \x03\x03Wdh.\x06.................\x06324",
+  "\x0704.00\x05\x180400\x07\x07heute ................\x07111",
+  "\x0604.05\x05\x180405\x06\x06Blond am Freitag\x03Wdh. \x06325",
+  "\x0704.50\x05\x180450\x07\x07citydreams                ",
+  "\x0605.10\x05\x180510\x06\x06Tauchfahrt in die         ",
+  "            \x06\x06Vergangenheit             ",
+  "            \x06\x06Sir Henry Morgan\x03UT\x06..\x06326",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "      \x05\x18VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0705.55\x07Uhr -> 305\x07 ",
+];
+

@@ -1,0 +1,69 @@
+#!/usr/bin/perl -w
+#
+# Check removal of VPS tags and concealed text from description page
+# Note there's a "00" on the description page which is conceled by
+# setting foreground to background (i.e. \x04\x1D...\x04...invisible)
+#
+# $Id: vps4.in,v 1.1 2006/05/01 19:59:10 tom Exp $
+#
+$VbiCaptureTime = 1146302512;
+$PgCnt{0x305} = 6;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "s\x15\x15\x15\x15\x15\x15G305\x01MDR    \x07Sa.29.04.06 11:21:26",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06        Sonntag, 30.04.06  ",
+  "\x17 \x16!!!#!!                               ",
+  "      \x05\x05VPS\x05\x05          \x05\x181D162\x18300406\x18ss",
+  "\x0300.25\x05\x050030\x03\x03K 2\x06(``)\x06(UT)        \x06>317",
+  "             \x03Das letzte Abenteuer      ",
+  "             \x03Spielfilm (GBR 1990)      ",
+  "                                        ",
+  "\x0702.10\x05\x050215\x07\x07Sagarmatha -         \x06>320",
+  "             \x07Wagnis im ewigen Eis      ",
+  "             \x07Spielfilm (CSSR/NEP 1988) ",
+  "                                        ",
+  "\x0303.35\x05\x050340\x03\x03Tagesthemen\x06(``)          ",
+  "\x0703.50\x05\x050355\x07\x07SACHSENSPIEGEL            ",
+  "\x0304.20\x05\x050425\x03\x03SACHSEN-ANHALT HEUTE      ",
+  "                                        ",
+  "\x0704.50\x05\x050455\x07\x07TH]RINGEN JOURNAL         ",
+  "\x0305.20\x05\x180520\x03\x03Rundflug Th}ringen\x06(``)   ",
+  "            \x03\x03bis\x0305.55\x03Uhr\x03\x03           ",
+  "                                        ",
+  "                                        ",
+  "\x06Legende >368                           ",
+  "\x04\x1D\x06 Die Woche 360 \x06  \x1C            \x06>306 ",
+];
+$PgCnt{0x317} = 5;
+$PgSub{0x317} = 0;
+$PgLang{0x317} = 1;
+$Pkg{0x317|(0x0000<<12)} =
+[
+  "s\x02\x15\x15\x15\x15\x15G317\x01MDR    \x07Sa.29.04.06 11:21:27",
+  "\x07 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06        Sonntag, 30.04.06  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0600.25 - 02.10 Uhr           \x05VPS 0030  ",
+  "                   \x06Stereo, Untertitel  ",
+  "\x03K2 - Das letzte Abenteuer              ",
+  "\x06Spielfilm (GBR 1990)                   ",
+  "\x06Regie:\x07Franc Roddam                    ",
+  "                                        ",
+  " Der K2 ist mit }ber 8.600 Metern H|he  ",
+  " einer der h|chsten Berge der Welt. Der ",
+  " Versuch ihn zu besteigen, endete f}r   ",
+  " zahllose Kletterer t|dlich.            ",
+  "                                        ",
+  " Der ehrgeizige Taylor und der introver-",
+  " tierte Harold bekommen die Chance, an  ",
+  " einer Expedition auf den K2 teilzuneh- ",
+  " men. Der Preis ist h|her, als sie      ",
+  " denken: Ihre Freundschaft wird auf eine",
+  " harte Probe gestellt und pl|tzlich geht",
+  " es nur noch ums ]berleben.             ",
+  "\x06Mit Michael Biehn, Matt Craven u.a.    ",
+  "\x04\x1D\x06Jetzt im MDR 333  \x1C            \x06>318 ",
+];

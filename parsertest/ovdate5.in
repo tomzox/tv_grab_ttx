@@ -1,0 +1,38 @@
+#!/usr/bin/perl -w
+#
+# Artificial example: several consecutive pages with programmes
+# referring to the same day, divided by category.  In this case
+# the header date must not be overridden
+#
+# $Id: ovdate5.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+$VbiCaptureTime = 1146397673;
+$PgCnt{0x303} = 6;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303   TEST    30.04.06  13:47:44",
+  undef,
+  " HEUTE                                  ",
+  " SERIEN                                 ",
+  undef,
+  " 10:00   Serie 1                        ",
+  " 15:00   Serie 2                        ",
+  " 18:00   Serie 3                        ",
+  " 19:00   Serie 4                        ",
+];
+$PgCnt{0x304} = 5;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "        304   TEST    30.04.06  13:47:44",
+  undef,
+  " HEUTE                                  ",
+  " SPIELFILME                             ",
+  undef,
+  " 11:00   Film 1                         ",
+  " 20:00   Film 2                         ",
+];
+

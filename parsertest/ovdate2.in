@@ -1,0 +1,100 @@
+#!/usr/bin/perl -w
+#
+# Missing date on an intermediate page (date replaced with advertisment)
+# Also the following page still claims to list today's programme, but
+# actually starts past midnight.
+#
+# $Id: ovdate2.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+$VbiCaptureTime = 1146300690;
+$PgCnt{0x302} = 5;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302 ProSieben  29.04.06 10:51:23",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Heute           1/1 ",
+  "\x11.//\%             ######################",
+  "\x0110.33 keine ahnung?                >334",
+  "\x0711.03 Die ProSieben M{rchenstunde      ",
+  "\x07      Hoeckers buntes M{rchen-Al-      ",
+  "\x07      lerlei                       >382",
+  "\x0612.03 Pochers WM-Countdown         >336",
+  "\x0713.06 Die Simpsons                 >345",
+  "\x0613.34 Two and a Half Men               ",
+  "\x0714.01 What's up, Dad?                  ",
+  "\x0614.28 Meine wilden T|chter             ",
+  "\x0714.57 Malcolm mittendrin               ",
+  "\x0615.25 O.C., California                 ",
+  "\x06      Irrungen und Wirrungen       >355",
+  "\x0716.21 O.C., California                 ",
+  "\x07      Abschied                     >355",
+  "\x0617.13 Grey's Anatomy - Die jungen      ",
+  "\x06      [rzte                            ",
+  "\x06      Der Selbstzerst|rungsknopf   >357",
+  undef,
+  "\x01\x1D\x07Premiere 1 Monat gratis!........ 267 ",
+  "\x01\x1D                                      ",
+];
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303 ProSieben  29.04.06 10:51:23",
+  "\x11|||4            \x06\x1D\x04DSL\x04flat+Tel flat   ",
+  "\x11 p|4            \x06\x1D\x01nur 44,85 EUR!> 557 ",
+  "\x11.//\%            \x16######################",
+  "\x0618.05 Relic Hunter - Die Schatzj{-     ",
+  "\x06      gerin                            ",
+  "\x06      Der Ring des K|nigs          >351",
+  "\x0719.00 talk talk talk               >400",
+  "\x0619.59 NEWSTIME                         ",
+  "\x0720.15 Eiskalte Engel               >311",
+  "\x0622.03 Wrong Turn                   >312",
+  "\x0723.37 Chucky und seine Braut       >313",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "                                        ",
+  undef,
+  "\x01\x1D\x07Premiere 1 Monat gratis!........ 267 ",
+  "\x01\x1D                                      ",
+];
+$PgCnt{0x304} = 6;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304 ProSieben  29.04.06 10:50:59",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Heute           1/1 ",
+  "\x11.//\%             ######################",
+  "\x0601.11 Circus                       >314",
+  "\x0702.45 Diary of a Mad Old Man       >315",
+  "\x0604.12 CineTipp: \"Die B{ren sind        ",
+  "\x06      los\"                             ",
+  "\x0704.21 O.C., California                 ",
+  "\x07      Abschied                     >355",
+  "\x0605.03 Pretty in Pink               >316",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x01\x1D                                      ",
+];
+

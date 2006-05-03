@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: ttxacq.pl,v 1.1 2006/04/23 17:39:56 tom Exp tom $
+#  $Id: ttxacq.pl,v 1.3 2006/05/03 19:55:32 tom Exp tom $
 #
 
 use POSIX;
@@ -27,6 +27,8 @@ my %Pkg;
 my %PgCnt;
 my %PgSub;
 my %PgLang;
+my %PageCtrl;
+my %PageText;
 my $VbiCaptureTime;
 
 my $opt_infile;
@@ -43,7 +45,7 @@ my $opt_tv_end = 0x399;
 #
 sub ParseArgv {
    my $usage = "Usage: $0 [-page <NNN>-<MMM>] [-chn_name <name>] [-chn_id <ID>] <file>\n".
-               "Additional debug options: -debug -dump -dumpraw -test <file>\n";
+               "Additional debug options: -debug -dump -dumpraw <page_range> -test <file>\n";
 
    while ($_ = shift @ARGV) {
       # -chn_name: display name in XMLTV <channel> tag
@@ -67,7 +69,7 @@ sub ParseArgv {
             die "-page: not a valid end page number: $opt_tv_end" if (($opt_tv_end < 0x100) || ($opt_tv_end > 0x899));
             die "-page: start page must be <= end page" if ($opt_tv_end < $opt_tv_start);
          } else {
-            die "-page: invalid parameter: $_, expecting two 3-digit ttx page numbers\n";
+            die "-page: invalid parameter: \"$_\", expecting two 3-digit ttx page numbers\n";
          }
 
       # -debug: enable debug output
@@ -80,7 +82,15 @@ sub ParseArgv {
 
       # -dumpraw: write teletext pages in binary, suitable for verification
       } elsif (/^-dumpraw$/) {
+         die "Missing argument for $_\n$usage" unless $#ARGV>=0;
          $opt_dump = 2;
+         $_ = shift @ARGV;
+         if (m#^([0-9]{3})\-([0-9]{3})$#) {
+            $opt_tv_start = hex($1);
+            $opt_tv_end = hex($2);
+         } else {
+            die "-dumpraw: invalid parameter: \"$_\", expecting two 3-digit ttx page numbers\n";
+         }
 
       # -test: read pre-processed teletext from file (for verification only)
       } elsif (/^-verify$/) {
@@ -216,7 +226,6 @@ sub VbiPageErase {
    my ($page) = @_;
    my $sub;
    my $pkg;
-   my $handle;
 
    if (defined($PgSub{$page})) {
       for ($sub = 0; $sub <= $PgSub{$page}; $sub++) {
@@ -236,9 +245,9 @@ sub DumpAllPages {
    my $page;
 
    foreach $page (sort {$a<=>$b} keys(%PgCnt)) {
-      my $pkg;
+      my $line;
       my ($sub, $sub1, $sub2);
-      my $handle;
+      my $pgtext;
 
       if ($PgSub{$page} == 0) {
          $sub1 = $sub2 = 0;
@@ -247,14 +256,13 @@ sub DumpAllPages {
          $sub2 = $PgSub{$page};
       }
       for ($sub = $sub1; $sub <= $sub2; $sub++) {
-         $handle = $page | ($sub << 12);
          printf "PAGE %03X.%04X\n", $page, $sub;
-         for ($pkg = 1; $pkg <= 23; $pkg++) {
-            if (defined($Pkg{$handle}->[$pkg])) {
-               print TtxToLatin1($Pkg{$handle}->[$pkg], $PgLang{$page}) . "\n";
-            } else {
-               print "\n";
-            }
+
+         PageToLatin($page, $sub);
+         $pgtext = $PageText{$page | ($sub << 12)};
+
+         for ($line = 1; $line <= 23; $line++) {
+            print $pgtext->[$line] . "\n";
          }
          print "\n";
       }
@@ -276,6 +284,8 @@ sub DumpRawTeletext {
       my ($sub, $sub1, $sub2);
       my $handle;
 
+      next unless (($page >= $opt_tv_start) && ($page <= $opt_tv_end));
+
       if ($PgSub{$page} == 0) {
          $sub1 = $sub2 = 0;
       } else {
@@ -291,7 +301,7 @@ sub DumpRawTeletext {
 
          printf("\$Pkg{0x%03X|(0x%04X<<12)} =\n\[\n", $page, $sub);
 
-         for ($pkg = 1; $pkg <= 23; $pkg++) {
+         for ($pkg = 0; $pkg <= 23; $pkg++) {
             $_ = $Pkg{$handle}->[$pkg];
             if (defined($_)) {
                # quote Perl special characters
@@ -395,6 +405,17 @@ my @NatOptMaps =
     '$@«½»¬#­¼¦¾÷'
 );
 
+my @DelSpcAttr = (
+    0,0,0,0,0,0,0,0,    # 0-7: alpha color
+    1,1,1,1,            # 8-B: flash, box
+    0,0,0,0,            # C-F: size
+    1,1,1,1,1,1,1,1,    # 10-17: mosaic color
+    0,                  # 18:  conceal
+    1,1,                # 19-1A: continguous mosaic
+    0,0,0,              # 1B-1D: charset, bg color
+    1,1                 # 1E-1F: hold mosaic
+);
+
 # TODO: evaluate packet 26 and 28
 sub TtxToLatin1 {
    my($line, $g0_set) = @_;
@@ -408,7 +429,7 @@ sub TtxToLatin1 {
       # alpha color code
       if ($val <= 0x07) {
          $is_g1 = 0;
-         substr($line, $idx, 1) = ' ';
+         #substr($line, $idx, 1) = ' ';
 
       # mosaic color code
       } elsif (($val >= 0x10) && ($val <= 0x17)) {
@@ -416,7 +437,13 @@ sub TtxToLatin1 {
          substr($line, $idx, 1) = ' ';
 
       # other control character or mosaic character
-      } elsif (($val < 0x20) || ($val == 0x7f) || $is_g1) {
+      } elsif ($val < 0x20) {
+         if ($DelSpcAttr[$val]) {
+            substr($line, $idx, 1) = ' ';
+         }
+
+      # mosaic charset
+      } elsif ($is_g1) {
          substr($line, $idx, 1) = ' ';
 
       } elsif ( ($val < 0x80) && ($NationalOptionsMatrix[$val] >= 0) ) {
@@ -433,20 +460,30 @@ sub TtxToLatin1 {
 
 sub PageToLatin {
    my ($page, $sub) = @_;
-   my $pkg;
-   my $handle;
-   my @PgText = ("");
+   my $handle = $page | ($sub << 12);
 
-   $handle = sprintf("%03X.%04X.0", $page, $sub);
-   for ($pkg = 1; $pkg <= 23; $pkg++) {
-      $handle = $page | ($sub << 12);
-      if (defined($Pkg{$handle}->[$pkg])) {
-         push @PgText, TtxToLatin1($Pkg{$handle}->[$pkg], $PgLang{$page});
-      } else {
-         push @PgText, " " x 40;
+   if (!defined($PageText{$handle})) {
+      my @PgText = ("");
+      my @PgCtrl = ("");
+      my $lang = $PgLang{$page};
+      my $pkgs = $Pkg{$handle};
+      my $idx;
+
+      for ($idx = 1; $idx <= 23; $idx++) {
+         if (defined($pkgs->[$idx])) {
+            $_ = TtxToLatin1($pkgs->[$idx], $lang);
+            push @PgCtrl, $_;
+            s#[\x00-\x1F\x7F]# #g;
+            push @PgText, $_;
+         } else {
+            $_ = " " x 40;
+            push @PgCtrl, $_;
+            push @PgText, $_;
+         }
       }
+      $PageCtrl{$handle} = \@PgCtrl;
+      $PageText{$handle} = \@PgText;
    }
-   return @PgText;
 }
 
 # ------------------------------------------------------------------------------
@@ -492,9 +529,9 @@ my %WDayNames =
    "saturday" => [(1<<0),6,1], "sunday" => [(1<<0),0,1], "monday" => [(1<<0),1,1], "tuesday" => [(1<<0),2,1],
    "wednesday" => [(1<<0),3,1], "thursday" => [(1<<0),4,1], "friday" => [(1<<0),5,1],
    # German
-   "sa" => [(1<<1),6,2], "so" => [(1<<1),1,2], "mo" => [(1<<1),1,2], "di" => [(1<<1),2,2],
+   "sa" => [(1<<1),6,2], "so" => [(1<<1),0,2], "mo" => [(1<<1),1,2], "di" => [(1<<1),2,2],
    "mi" => [(1<<1),3,2], "do" => [(1<<1),4,2], "fr" => [(1<<1),5,2],
-   "samstag" => [(1<<1),6,1], "sonnabend" => [(1<<1),6,1], "sonntag" => [(1<<1),1,1],
+   "samstag" => [(1<<1),6,1], "sonnabend" => [(1<<1),6,1], "sonntag" => [(1<<1),0,1],
    "montag" => [(1<<1),1,1], "dienstag" => [(1<<1),2,1], "mittwoch" => [(1<<1),3,1],
    "donnerstag" => [(1<<1),4,1], "freitag" => [(1<<1),5,1],
    # French
@@ -540,7 +577,6 @@ sub DetectOvFormat {
    my ($sub, $sub1, $sub2);
    my %FmtStat = ();
    my %SubtStat = ();
-   my @Page;
 
    # look at the first 5 pages (default start at page 301)
    my @Pages = grep {($_ >= $opt_tv_start)&&($_ <= $opt_tv_end)} keys(%PgCnt);
@@ -555,19 +591,24 @@ sub DetectOvFormat {
          $sub2 = $PgSub{$page};
       }
       for ($sub = $sub1; $sub <= $sub2; $sub++) {
-         @Page = PageToLatin($page, $sub);
+         PageToLatin($page, $sub);
 
-         #DetectOvVPS($page, $sub, @Page);
-         DetectOvFormatParse(\%FmtStat, \%SubtStat, @Page);
+         DetectOvFormatParse(\%FmtStat, \%SubtStat, $page, $sub);
       }
    }
 
    my @FmtSort = sort { $FmtStat{$b} <=> $FmtStat{$a} } keys %FmtStat;
-   my @SubtSort = sort { $SubtStat{$b} <=> $SubtStat{$a} } keys %SubtStat;
    my $fmt;
    if (defined($FmtSort[0])) {
       $fmt = $FmtSort[0];
-      $fmt .= ",". (defined($SubtSort[0]) ? $SubtSort[0] : 40);
+      my @SubtSort = grep(substr($_, length($_)-length($fmt)) eq $fmt, keys(%SubtStat));
+      @SubtSort = sort { $SubtStat{$b} <=> $SubtStat{$a} } @SubtSort;
+      if ($#SubtSort >= 0) {
+         $fmt .= ",". (split(/,/, $SubtSort[0]))[0];
+      } else {
+         # fall back to title offset
+         $fmt .= ",". (split(/,/, $fmt))[0];
+      }
       print "auto-detected overview format: $fmt\n" if $opt_debug;
    } else {
       $fmt = undef;
@@ -584,29 +625,31 @@ sub DetectOvFormat {
 # 20.15        Zwei gegen Zwei           
 #              Fernsehfilm D/2005 UT  318
 #
-# 10:00 WORLD NEWS                              CNNi
+# 10:00 WORLD NEWS                              CNNi (week overview)
 # News bulletins on the hour (...)
 # 10:30 WORLD SPORT                      
 #
 sub DetectOvFormatParse {
-   my ($fmt, $subt, @Page) = @_;
+   my ($fmt, $subt, $page, $sub) = @_;
    my ($off, $time_off, $vps_off, $title_off, $subt_off);
-   my ($line, $handle);
+   my $line;
+   my $handle;
+   my $pgtext = $PageText{$page | ($sub << 12)};
 
-   for ($line = 7; $line <= 20; $line++) {
-      $_ = $Page[$line];
+   for ($line = 5; $line <= 21; $line++) {
+      $_ = $pgtext->[$line];
       # look for a line containing a start time
-      # TODO allow start-stop times "10:00-11:00"
-      if ( (m#^( *| *\! +)(\d\d)[\.\:](\d\d) +#) &&
-           ($2 < 24) && ($3 < 60) ) {
+      # TODO allow start-stop times "10:00-11:00"?
+      if ( (m#^(( *| *\! +)(\d\d)[\.\:](\d\d) +)#) &&
+           ($3 < 24) && ($4 < 60) ) {
 
-         $off = length $&;
-         $time_off = length $1;
+         $off = length $1;
+         $time_off = length $2;
 
          # TODO VPS must be magenta or concealed
-         if (substr($_, $off) =~ m#^(\d{4}) +#) {
+         if (substr($_, $off) =~ m#^(\d{4} +)#) {
             $vps_off = $off;
-            $off += length $&;
+            $off += length $1;
             $title_off = $off;
          } else {
             $vps_off = -1;
@@ -619,12 +662,16 @@ sub DetectOvFormatParse {
             $fmt->{$handle} = 1;
          }
 
-         if ($Page[$line + 1] =~ m#^( *| *\d{4} +)[[:alpha:]]#) {
+         if ( ($vps_off == -1) ?
+              ($pgtext->[$line + 1] =~ m#^( *| *\d{4} +)[[:alpha:]]#) :
+              ($pgtext->[$line + 1] =~ m#^( *)[[:alpha:]]#) ) {
+
             $subt_off = length($1);
-            if (defined ($subt->{$subt_off})) {
-               $subt->{$subt_off} += 1;
+            $handle = "$subt_off,$time_off,$vps_off,$title_off";
+            if (defined ($subt->{$handle})) {
+               $subt->{$handle} += 1;
             } else {
-               $subt->{$subt_off} = 1;
+               $subt->{$handle} = 1;
             }
          }
       }
@@ -632,122 +679,88 @@ sub DetectOvFormatParse {
 }
 
 # ------------------------------------------------------------------------------
-# Search a page for the "VPS" identifier (i.e. the string "VPS)
-# - the label marks the position of VPS times in an overview table
+# Parse date in an overview page
+# - similar to dates on description pages
 #
-sub DetectOvVPS {
-   my ($page, $sub, @Page) = @_;
-   my ($line, $handle);
-   my $vps_off = -1;
-
-   for ($line = 1; $line <= 23; $line++) {
-      $handle = $page | ($sub << 12);
-      if (defined($Pkg{$handle}->[$line])) {
-         # "VPS" is always in magenta (color code 5)
-         if ($Pkg{$handle}->[$line] =~ m#^([ \x00-\x1F]*\x05[ \x08-\x0f\x18-\x1C]*)VPS#) {
-            $vps_off += length($1);
-            last;
-         }
-      }
-   }
-   return $vps_off;
-}
-
-# ------------------------------------------------------------------------------
-# Chop header & parse date
-#
-# Mi 05.04.06
-# Mittwoch, 5. April 2006
-# TODO: use m##g (also for desc page parsing)
-#
-sub ParseOvHeader {
-   my ($page, $sub, $pgfmt, @Page) = @_;
-   my $head;
+sub ParseOvHeaderDate {
+   my ($page, $sub, $pgdate) = @_;
    my $reldate;
    my ($day_of_month, $month, $year);
-   my ($time_off, $vps_off, $title_off, $subt_off) = split(",", $pgfmt);
 
+   my $pgtext = $PageText{$page | ($sub << 12)};
    my $lang = $PgLang{$page};
    my $wday_match = GetDateNameRegExp(\%WDayNames, $lang, 1);
    my $wday_abbrv_match = GetDateNameRegExp(\%WDayNames, $lang, 2);
    my $mname_match = GetDateNameRegExp(\%MonthNames, $lang, undef);
    my $relday_match = GetDateNameRegExp(\%RelDateNames, $lang, undef);
 
-   for ($head = 1; $head <= $#Page; $head++) {
-      $_ = $Page[$head];
+   PAGE_LOOP:
+   for (my $line = 1; $line < $pgdate->{head_end}; $line++) {
+      $_ = $pgtext->[$line];
 
-      # TODO dont use if/else, try multiple matches per line
-      # stop parsing before first programme list entry
-      if ($vps_off >= 0) {
-         if ( (substr($_, 0, $time_off) =~ m#^ *([\*\!] +)?$#) &&
-              (substr($_, $time_off, $vps_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) &&
-              (substr($_, $vps_off, $title_off - $vps_off) =~ m#^(\d{4})? +$#) ) {
-            last;
+      PARSE_DATE: {
+         # [Mo.]13.04.2006
+         if (m#(^| |($wday_abbrv_match)\.)(\d{1,2})\.(\d{1,2})\.(\d{2}|\d{4})?([ ,:]|$)#i) {
+            my @NewDate = CheckDate($3, $4, $5, undef, undef);
+            if (@NewDate) {
+               ($day_of_month, $month, $year) = @NewDate;
+               last PARSE_DATE;
+            }
          }
-      } else {
-         if ( (substr($_, 0, $time_off) =~ m#^ *([\*\!] +)?$#) &&
-              (substr($_, $time_off, $title_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) ) {
-            last;
+         # 13.April [2006]
+         if (m#(^| )(\d{1,2})\. ?($mname_match)( (\d{2}|\d{4}))?([ ,:]|$)#i) {
+            my @NewDate = CheckDate($2, undef, $5, undef, $3);
+            if (@NewDate) {
+               ($day_of_month, $month, $year) = @NewDate;
+               last PARSE_DATE;
+            }
          }
-      }
-
-      # VPS label "1D102 120406 F9"
-      #           "1D133 170406 C3"
-      if (m#^ +[0-9A-F]{2}\d{3} (\d{2})(\d{2})(\d{2}) [0-9A-F]{2} *$#) {
-         ($day_of_month, $month, $year) = ($1, $2, $3 + 2000);
-         $head += 1;
-         last;
-
-      # [Mo.]13.04.2006
-      } elsif (m#(^| |($wday_abbrv_match)\.)(\d{1,2})\.(\d{1,2})\.(\d{2}|\d{4})?([ ,:]|$)#i) {
-         my @NewDate = CheckDate($3, $4, $5, undef, undef);
-         if (@NewDate) {
-            ($day_of_month, $month, $year) = @NewDate;
+         # Sunday 22 April (i.e. no dot after month)
+         if ( m#(^| )($wday_match)(, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|$)#i ||
+              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|$)#i) {
+            my @NewDate = CheckDate($4, undef, $7, $2, $5);
+            if (@NewDate) {
+               ($day_of_month, $month, $year) = @NewDate;
+               last PARSE_DATE;
+            }
          }
-
-      # 13.April [2006]
-      } elsif (m#(^| )(\d{1,2})\. ?($mname_match)( (\d{2}|\d{4}))?([ ,:]|$)#i) {
-         my @NewDate = CheckDate($2, undef, $5, undef, $3);
-         if (@NewDate) {
-            ($day_of_month, $month, $year) = @NewDate;
+         # today, tomorrow, ...
+         if (m#(^| )($relday_match)([ ,:]|$)#i) {
+            my $rel_name = lc($2);
+            $reldate = $RelDateNames{$rel_name}->[1] if defined($RelDateNames{$rel_name});
+            last PARSE_DATE;
          }
-
-      # Sunday 22 April (i.e. no dot after month)
-      } elsif ( m#(^| )($wday_match)(, ?| )(\d{2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|$)#i ||
-           m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|$)#i) {
-         my @NewDate = CheckDate($4, undef, $7, $2, $5);
-         if (@NewDate) {
-            ($day_of_month, $month, $year) = @NewDate;
+         # monday, tuesday, ... (non-abbreviated only)
+         if (m#(^| )($wday_match)([ ,:]|$)#i) {
+            my $off = GetWeekDayOffset($2);
+            $reldate = $off if $off >= 0;
+            last PARSE_DATE;
          }
-
-      # today, tomorrow, ...
-      } elsif (m#(^| )($relday_match)([ ,:]|$)#i) {
-         my $rel_name = lc($2);
-         $reldate = $RelDateNames{$rel_name}->[1] if defined($RelDateNames{$rel_name});
-
-      # monday, tuesday, ... (non-abbreviated only)
-      } elsif (m#(^| )($wday_match)([ ,:]|$)#i) {
-         my $off = GetWeekDayOffset($2);
-         $reldate = $off if $off >= 0;
-
-      # "Do. 21-22 Uhr" (e.g. on VIVA)
-      # TODO translate "Uhr"
-      } elsif (m#(^| )(($wday_abbrv_match)\.?|($wday_match)) \d{2}([\.\:]\d{2})?(\-| \- )\d{2}([\.\:]\d{2})?( +Uhr| ?h( |$))#i) {
-         my $wday_name = $2;
-         $wday_name = $3 if !defined($2);
-         my $off = GetWeekDayOffset($wday_name);
-         $reldate = $off if $off >= 0;
+         # "Do. 21-22 Uhr" (e.g. on VIVA)
+         # TODO internationalize "Uhr"
+         if (m#(^| )(($wday_abbrv_match)\.?|($wday_match)) \d{1,2}([\.\:]\d{2})?(\-| \- )\d{1,2}([\.\:]\d{2})?( +Uhr| ?h( |$))#i) {
+            my $wday_name = $2;
+            $wday_name = $3 if !defined($2);
+            my $off = GetWeekDayOffset($wday_name);
+            $reldate = $off if $off >= 0;
+            last PARSE_DATE;
+         }
       }
    }
    if (!defined($day_of_month) && defined($reldate)) {
-      ($day_of_month, $month, $year) = (localtime(time + $reldate*24*60*60))[3,4,5];
+      ($day_of_month, $month, $year) = (localtime($VbiCaptureTime + $reldate*24*60*60))[3,4,5];
       $month += 1;
       $year += 1900;
    } elsif (defined($year) && ($year < 100)) {
-      my $cur_year = (localtime(time))[5] + 1900;
+      my $cur_year = (localtime($VbiCaptureTime))[5] + 1900;
       $year = ($cur_year - $cur_year%100);
    }
-   return ($head, $day_of_month, $month, $year);
+
+   # return results via the struct
+   $pgdate->{day_of_month} = $day_of_month;
+   $pgdate->{month} = $month;
+   $pgdate->{year} = $year;
+   $pgdate->{date_off} = 0;
 }
 
 # ------------------------------------------------------------------------------
@@ -755,36 +768,51 @@ sub ParseOvHeader {
 # - footers usually contain advertisments (or more precisely: references
 #   to teletext pages with ads) and can simply be discarded
 
-# Example: some references may be relevant to the programme:
-# ARD-Themenwoche Krebs >> 850       
-# #######################################
-# 300 <<                 Tagesschau > 310
+#   Schule. Dazu Arbeitslosigkeit von    
+#   bis zu 30 Prozent. Wir berichten ü-  
+#   ber Menschen in Ostdeutschland.  318>
+#    Ab in die Sonne!................500 
 
-# Example: some channels don't have a gap inbetween content and footer
-# 17.13 Star Trek - Das nächste          
-#       Jahrhundert                      
-#       Die jungen Greise            >366
-#   301<06-10 Uhr         18-24 Uhr>303  
-#    Premiere 1 Monat gratis........ 707 
+#   Teilnahmebedingungen: Seite 881      
+#     Türkei-Urlaub jetzt buchen! ...504 
 
-# note: possible TTX ref's above the footer are not skipped
+
 sub ParseFooter {
-   my ($head, @Page) = @_;
+   my ($page, $sub, $head) = @_;
    my $foot;
 
-   # TODO detect double-height (usually followed by empty/missing line)
+   my $pgtext = $PageText{$page | ($sub << 12)};
+   my $pgctrl = $PageCtrl{$page | ($sub << 12)};
 
-   for ($foot = $#Page ; $foot > $head; $foot--) {
+   for ($foot = $#{$pgtext} ; $foot > $head; $foot--) {
       # note missing lines are treated as empty lines
-      $_ = $Page[$foot];
-      if (!m#\S# || m#^ *\-{10,} *$#) {
+      $_ = $pgtext->[$foot];
+
+      # stop at lines which look like separators
+      if (m#^ *\-{10,} *$#) {
          $foot -= 1;
          last;
       }
+      if (!m#\S#) {
+         if ($pgctrl->[$foot - 1] !~ m#[\x0D\x0F][^\x0C]*[^ ]#) {
+            $foot -= 1;
+            last;
+         }
+         # ignore this empty line since there's double-height chars above
+         next;
+      }
+      # check for a teletext reference
+      # TODO internationalize
+      if ( m#^ *(seite |page |\<+ *)?[1-8][0-9][0-9][^\d]#i ||
+           m#[^d][1-8][0-9][0-9]([\.\!\?\:\,]|\>+)? *$# ) {
+           #|| (($sub != 0) && m#(^ *<|> *$)#) ) {
+      } else {
+         last;
+      }
    }
-   # if no separator found in 5 lines, skip just one line (FIXME only if ttx ref)
-   if ($foot < $#Page - 5) {
-      $foot = $#Page - 1;
+   # plausibility check (i.e. don't discard the entire page)
+   if ($foot < $#{$pgtext} - 5) {
+      $foot = $#{$pgtext};
    }
    return $foot;
 }
@@ -793,7 +821,7 @@ sub ParseFooter {
 # - bg color is changed by first changing the fg color (codes 0x0-0x7),
 #   then switching copying fg over bg color (code 0x1D)
 sub ParseFooterByColor {
-   my ($page, $sub, @Page) = @_;
+   my ($page, $sub) = @_;
    my $handle;
    my $line;
    my @ColCount = (0, 0, 0, 0, 0, 0, 0, 0);
@@ -845,6 +873,8 @@ sub ParseFooterByColor {
       }
    }
 
+   # TODO: merge with other footer function: require TTX ref in every skipped segment with the same bg color
+
    if ($max_count >= 8) {
       # skip footer until normal color is reached
       for ($line = 23; $line >= 0; $line--) {
@@ -861,39 +891,36 @@ sub ParseFooterByColor {
 
 # ------------------------------------------------------------------------------
 # Retrieve programme entries from an overview page
-# - the layout has already been determined in advance
-# - TODO: if same date, but start time jumps to 00:00-06:00, assume date++
+# - the layout has already been determined in advance, i.e. we assume that we
+#   have a tables with strict columns for times and titles; rows that don't
+#   have the expected format are skipped (normally only header & footer)
 #
 sub ParseOvList {
-   my ($pgfmt, $head, $foot, $day_of_month, $month, $year, @Page) = @_;
-   my ($line);
-   my ($hour, $min, $title, $vps, $is_tip, $new_title);
-   my $date_off = 0;
+   my ($page, $sub, $pgfmt, $pgdate) = @_;
+   my ($hour, $min, $title, $is_tip);
+   my $line;
+   my $new_title;
    my $in_title = 0;
-   my $vps_mark = 0;
-   my $slot_ref = {};
+   my $slot = {};
+   my $vps_data = {};
    my @Slots = ();
 
-   my @Date = ('day_of_month', $day_of_month,'month', $month,'year', $year);
    my ($time_off, $vps_off, $title_off, $subt_off) = split(",", $pgfmt);
+   my $pgtext = $PageText{$page | ($sub << 12)};
+   my $pgctrl = $PageCtrl{$page | ($sub << 12)};
 
-   for ($line = $head; $line <= $foot; $line++) {
-      $_ = $Page[$line];
-      $_ = "" unless defined $_;
+   for ($line = 1; $line <= 23; $line++) {
+      $_ = $pgtext->[$line];
 
-      # VPS date label
-      if ( m#^ +(\d{2})(\d{2})(\d{2}) *$# ) {
-         if ( ($1 <= 31) && ($1 > 0) && ($2 <= 12) && ($2 > 0) ) {
-            ($day_of_month, $month, $year) = ($1, $2, $3 + 2000);
-            @Date = ('day_of_month', $day_of_month,'month', $month,'year', $year);
-            $vps_mark = 1;
-            $date_off = 0;
-         }
+      # extract and remove VPS labels
+      # (labels not asigned here since we don't know yet if a new title starts in this line)
+      $vps_data->{new_vps_time} = 0;
+      if ($pgctrl->[$line] =~ m#[\x05\x18]+ *[A-Fa-f0-9]#) {
+         ParseVpsLabel($_, $pgctrl->[$line], $vps_data, 0);
       }
 
       $new_title = 0;
       if ($vps_off >= 0) {
-         # ZDF + Phoenix format: MM.HH VPS TITLE
          # TODO: Phoenix wraps titles into 2nd line, appends subtitle with "-"
          # m#^ {0,2}(\d\d)[\.\:](\d\d)( {1,3}(\d{4}))? +#
          if (substr($_, 0, $time_off) =~ m#^ *([\*\!] +)?$#) {
@@ -901,8 +928,8 @@ sub ParseOvList {
             if (substr($_, $time_off, $vps_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) {
                $hour = $1;
                $min = $2;
-               if (substr($_, $vps_off, $title_off - $vps_off) =~ m#^(\d{4})? +$#) {
-                  $vps = $1;
+               # VPS time has already been extractied above
+               if (substr($_, $vps_off, $title_off - $vps_off) =~ m#^ +$#) {
                   $title = substr($_, $title_off);
                   $new_title = 1;
                }
@@ -915,7 +942,6 @@ sub ParseOvList {
             if (substr($_, $time_off, $title_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) {
                $hour = $1;
                $min = $2;
-               $vps = undef;
                $title = substr($_, $title_off);
                $new_title = 1;
             }
@@ -923,95 +949,168 @@ sub ParseOvList {
       }
 
       if ($new_title) {
+         # remember end of page header for date parser
+         $pgdate->{head_end} = $line unless defined $pgdate->{head_end};
+
          # push previous title
-         push(@Slots, $slot_ref) if defined $slot_ref->{title};
-         $slot_ref = {@Date};
-
-         $slot_ref->{hour} = $hour;
-         $slot_ref->{min} = $min;
-         $slot_ref->{vps} = $vps if defined $vps;
-         $slot_ref->{is_tip} = $is_tip if defined $is_tip;
-
-         # detect date changes within a page
-         if (($#Slots >= 0) && ($Slots[$#Slots]->{hour} > $hour) && !$vps_mark) {
-            $date_off += 1;
+         if (defined $slot->{title}) {
+            push(@Slots, $slot);
+            if (($hour < $slot->{hour}) && !$vps_data->{new_vps_date}) {
+               $vps_data->{vps_date} = undef;
+            }
          }
-         $slot_ref->{date_off} = $date_off;
-         SetStartTime($slot_ref);
+         $vps_data->{new_vps_date} = 0;
+
+         $slot = {};
+         $slot->{hour} = $hour;
+         $slot->{min} = $min;
+         $slot->{is_tip} = $is_tip if defined $is_tip;
+         $slot->{vps_time} = $vps_data->{vps_time} if $vps_data->{new_vps_time};
+         $slot->{vps_date} = $vps_data->{vps_date};
+         $slot->{vps_cni} = $vps_data->{vps_cni};
 
          $title =~ s#^ +##;
          $title =~ s# +$##;
          $title =~ s#  +# #g;
-         ParseTrailingFeat($title, $slot_ref);
+         ParseTrailingFeat($title, $slot);
+         print "OV TITLE: \"$title\", $slot->{hour}:$slot->{min}\n" if $opt_debug;
 
          # kika special: subtitle appended to title
          if ($title =~ m#(.*\(\d+( *[\&\-] *\d+)?\))\/ *(\S.*)#) {
             $title = $1;
-            $slot_ref->{subtitle} = $3;
-            $slot_ref->{subtitle} =~ s# +$# #;
+            $slot->{subtitle} = $3;
+            $slot->{subtitle} =~ s# +$# #;
          }
-         $slot_ref->{title} = $title;
+         $slot->{title} = $title;
          $in_title = 1;
-         #print "ADD  $slot_ref->{day_of_month}.$slot_ref->{month} $slot_ref->{hour}.$slot_ref->{min} $slot_ref->{title}\n";
+         #print "ADD  $slot->{day_of_month}.$slot->{month} $slot->{hour}.$slot->{min} $slot->{title}\n";
 
       } elsif ($in_title) {
 
+         $slot->{vps_time} = $vps_data->{vps_time} if $vps_data->{new_vps_time};
+
          # check if last line specifies and end time
          # (usually last line of page)
-         # TODO translate "bis", "Uhr"
-         if ( m#^ *(VPS +)?(\(bis |\- ?)(\d\d)[\.\:](\d\d)( Uhr| ?h)( |\)|$)# ||   # ARD,SWR()
-              m#^ *(\d\d)[\.\:](\d\d) *$# ) {                                      # arte
-            $slot_ref->{end_hour} = $3;
-            $slot_ref->{end_min} = $4;
+         # TODO internationalize "bis", "Uhr"
+         if ( m#^ *(\(bis |\- ?)(\d{1,2})[\.\:](\d{2})( Uhr| ?h)( |\)|$)# ||   # ARD,SWR()
+              m#^( *)(\d\d)[\.\:](\d\d) (oo)? *$# ) {                          # arte, RTL
+            $slot->{end_hour} = $2;
+            $slot->{end_min} = $3;
             $new_title = 1;
+            print "Overview end time: $slot->{end_hour}:$slot->{end_min}\n" if $opt_debug;
 
          # check if we're still in a continuation of the previous title
-         # time column must be empty, except for a possible VPS label
-         } elsif ($vps_off >= 0) {
+         # time column must be empty (possible VPS labels were already removed above)
+         } else {
             if ( (substr($_, 0, $subt_off) =~ m#[^ ]#) ||
                  (substr($_, $subt_off) =~ m#^ *$#) ) {
                $new_title = 1;
             }
-         } else {
-            # TODO VPS must be magenta or concealed
-            if (!defined $slot_ref->{vps} &&
-                (substr($_, 0, $subt_off) =~ m#^ *(\d{4}) +$#)) {
-               $slot_ref->{vps} = $1;
-            } elsif ( (substr($_, 0, $subt_off) =~ m#[^ ]#) ||
-                      (substr($_, $subt_off) =~ m#^ *$#) ) {
-               $new_title = 1;
-            }
          }
          if ($new_title == 0) {
-            ParseTrailingFeat($_, $slot_ref);
+            ParseTrailingFeat($_, $slot);
             s#^ +##;
             s# +$# #;
             s#  +# #;
             # combine words separated by line end with "-"
-            if ( !defined($slot_ref->{subtitle}) &&
-                 ($slot_ref->{title} =~ m#\S\-$#) && m#^[[:lower:]]#) {
-               $slot_ref->{title} =~ s#\-$##;
-               $slot_ref->{title} .= $_;
+            if ( !defined($slot->{subtitle}) &&
+                 ($slot->{title} =~ m#\S\-$#) && m#^[[:lower:]]#) {
+               $slot->{title} =~ s#\-$##;
+               $slot->{title} .= $_;
             } else {
-               if ( defined($slot_ref->{subtitle}) &&
-                    ($slot_ref->{subtitle} =~ m#\S\-$#) && m#^[[:lower:]]#) {
-                  $slot_ref->{subtitle} =~ s#\-$##;
-                  $slot_ref->{subtitle} .= $_;
-               } elsif (defined($slot_ref->{subtitle})) {
-                  $slot_ref->{subtitle} .= " " . $_;
+               if ( defined($slot->{subtitle}) &&
+                    ($slot->{subtitle} =~ m#\S\-$#) && m#^[[:lower:]]#) {
+                  $slot->{subtitle} =~ s#\-$##;
+                  $slot->{subtitle} .= $_;
+               } elsif (defined($slot->{subtitle})) {
+                  $slot->{subtitle} .= " " . $_;
                } else {
-                  $slot_ref->{subtitle} = $_;
+                  $slot->{subtitle} = $_;
                }
             }
          } else {
-            push(@Slots, $slot_ref) if defined $slot_ref->{title};
-            $slot_ref = {@Date};
+            push(@Slots, $slot) if defined $slot->{title};
+            $slot = {};
             $in_title = 0;
          }
       }
    }
-   push(@Slots, $slot_ref) if defined $slot_ref->{title};
+   push(@Slots, $slot) if defined $slot->{title};
+
    return @Slots;
+}
+
+# ------------------------------------------------------------------------------
+# Parse and remove VPS indicators
+# - format as defined in ETS 300 231, ch. 7.3.1.3
+# - for performance reasons the caller should check if there's a magenta
+#   or conceal character in the line before calling this function
+#
+sub ParseVpsLabel {
+   my ($foo, $pgctrl, $vps_data, $is_desc) = @_;
+
+   # time
+   # discard any concealed/magenta labels which follow
+   if ($pgctrl =~ m#^(.*)([\x05\x18]+(VPS[\x05\x18 ]+)?(\d{4})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
+      $vps_data->{vps_time} = $3;
+      $vps_data->{new_vps_time} = 1;
+      # blank out the same area in the text-only string
+      substr($_[0], length($1), length($2), " " x length($2));
+      print "VPS time found: $vps_data->{vps_time}\n" if $opt_debug
+
+   # CNI and date "1D102 120406 F9" (ignoring checksum)
+   } elsif ($pgctrl =~ m#^(.*)([\x05\x18]+([0-9A-F]{2}\d{3})[\x05\x18 ]+(\d{6})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
+      my $cni_str = $3;
+      $vps_data->{vps_date} = $4;
+      $vps_data->{new_vps_date} = 1;
+      substr($_[0], length($1), length($2), " " x length($2));
+      $vps_data->{vps_cni} = ConvertVpsCni($cni_str);
+      printf("VPS date and CNI: 0x%X, %d\n", $vps_data->{vps_cni}, $vps_data->{vps_date}) if $opt_debug
+
+   # date
+   } elsif ($pgctrl =~ m#^(.*)([\x05\x18]+(\d{6})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
+      $vps_data->{vps_date} = $3;
+      $vps_data->{new_vps_date} = 1;
+      substr($_[0], length($1), length($2), " " x length($2));
+      print "VPS date: $3\n" if $opt_debug
+
+   # end time (RTL special - not standardized)
+   } elsif (!$is_desc &&
+            $pgctrl =~ m#^(.*)([\x05\x18]+(\d{2}[.:]\d{2}) oo *([\x00-\x04\x06\x07]|$))#) {
+      # detected by the OV parser without evaluating the conceal code
+      #$vps_data->{page_end_time} = $3;
+      #print "VPS(pseudo) page end time: $vps_data->{page_end_time}\n" if $opt_debug
+
+   # "VPS" marker string
+   } elsif ($pgctrl =~ m#^(.*)([\x05\x18][\x05\x18 ]*VPS *([\x00-\x04\x06\x07]|$))#) {
+      substr($_[0], length($1), length($2), " " x length($2));
+
+   } else {
+      print "VPS label unrecognized in line \"$_[0]\"\n" if $opt_debug;
+
+      # on description page replacing all concealed text with blanks
+      # FIXME text can also be concealed by setting fg := bg (e.g. on desc pages of MDR)
+      if ($is_desc && $pgctrl =~ m#^(.*)(\x18[^\x00-\x07\x10-\x17]*)#) {
+         substr($_[0], length($1), length($2), " " x length($2));
+      }
+   }
+}
+
+# ------------------------------------------------------------------------------
+# Convert a "traditional" VPS CNI into a 16-bit PDC channel ID
+# - first two digits are the PDC country code in hex (e.g. 1D,1A,24 for D,A,CH)
+# - 3rd digit is an "address area", indicating network code tables 1 to 4
+# - the final 3 digits are decimal and the index into the network table
+#
+sub ConvertVpsCni {
+   my($cni_str) = @_;
+
+   if ($cni_str =~ m#([0-9A-F]{2})([1-4])(\d{2})#) {
+      return (hex($1)<<8) | ((4 - $2) << 6) | ($3 & 0x3F);
+   } else {
+      return undef;
+   }
+
 }
 
 # ------------------------------------------------------------------------------
@@ -1037,44 +1136,68 @@ sub ParseOvList {
 #              Buschmänner 16:9 oo       
 #
 # TODO: some tags need to be localized (i.e. same as month names etc.)
-my %FeatToFlagMap = ( "UT" => "has_subtitles",
-                      "OmU" => "is_omu",
-                      "s/w" => "is_bw",
-                      "16:9" => "is_aspect_16_9",
-                      "oo" => "is_stereo", "Stereo" => "is_stereo",
-                      "2K" => "is_2chan", "2K-Ton" => "is_2chan",
-                      "Dolby" => "is_dolby",
-                      "Mono" => "is_mono" );
+my %FeatToFlagMap =
+(
+   "untertitel" => "has_subtitles",
+   "ut" => "has_subtitles",
+   "omu" => "is_omu",
+   "s/w" => "is_bw",
+   "16:9" => "is_aspect_16_9",
+   "oo" => "is_stereo",
+   "stereo" => "is_stereo",
+   "2k" => "is_2chan",
+   "2k-ton" => "is_2chan",
+   "dolby" => "is_dolby",
+   "surround" => "is_dolby",
+   "stereo" => "is_stereo",
+   "mono" => "is_mono",
+   "tipp" => "is_top"
+);
+# note: must correct $n below if () are added to pattern
+my $FeatPat = "UT(( auf | )?[1-8][0-9][0-9])?|".
+              "[Uu]ntertitel|[Hh]örfilm|HF|".
+              "s\/w|S\/W|tlw. s\/w|AD|oo|°°|OmU|16:9|".
+              "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|".
+              "Wh\.|Wdh\.|Tipp!";
 
 sub ParseTrailingFeat {
-   my ($foo, $slot_ref) = @_;
+   my ($foo, $slot) = @_;
 
    # teletext reference
    # these are always right-most, so parse these first and outside of the loop
-   if ($_[0] =~ m#( \.+|\.* +|\.\.+|\.+\>|\>\>?|\-\-?\>)([1-8][0-9][0-9]) *$#) {
+   if ($_[0] =~ s#( \.+|\.* +|\.\.+|\.+\>|\>\>?|\-\-?\>)([1-8][0-9][0-9]) *$##) {
       my $ref = $2;
-      ($_[0] = $`) =~ s# +$##;
-      $slot_ref->{ttx_ref} = ((ord(substr($ref, 0, 1)) - 0x30)<<8) |
+      $_[0] =~ s# +$##;
+      $slot->{ttx_ref} = ((ord(substr($ref, 0, 1)) - 0x30)<<8) |
                              ((ord(substr($ref, 1, 1)) - 0x30)<<4) |
                              (ord(substr($ref, 2, 1)) - 0x30);
    }
    # features (e.g. WDR: "Stereo, UT")
-   # TODO: SWR: "(16:9/UT)", "UT 150", "UT auf 150"
    while (1) {
-      if ($_[0] =~ m# (UT|s\/w|HF|AD|oo|°°|OmU|16:9|Tipp!|Wh\.|Wdh\.) *$#) {
-         $_[0] = $`;
-         $_[0] =~ s#,$##;
-         my $feat = $FeatToFlagMap{$1};
-         if (defined($feat)) {
-            $slot_ref->{$feat} = 1;
+      if ($_[0] =~ s#,? +($FeatPat) *$##) {
+         my $feat = lc($1);
+         $feat =~ s#^ut.*#ut#;
+         my $flag = $FeatToFlagMap{$feat};
+         if (defined($flag)) {
+            print "FEAT \"$feat\" -> $flag on TITLE $_[0]\n" if $opt_debug;
+            $slot->{$flag} = 1;
+         } else {
+            print "FEAT dropping \"$feat\" on TITLE $_[0]\n" if $opt_debug;
          }
       }
       # ARTE: (oo) (2K) (Mono)
-      elsif ($_[0] =~ m# \((UT|s\/w|HF|AD|oo|°°|OmU|16:9|2K|2K-Ton|Mono|Dolby|Wh\.|Wdh\.)\) *$#) {
-         $_[0] = $`;
-         my $feat = $FeatToFlagMap{$1};
-         if (defined($feat)) {
-            $slot_ref->{$feat} = 1;
+      # SWR: "(16:9/UT)", "UT 150", "UT auf 150"
+      # (Note on 2nd match: using $6 due to two () inside feature pattern!)
+      elsif ( ($_[0] =~ s# +\(($FeatPat)\) *$##) ||
+              ($_[0] =~ s# +\(($FeatPat)((, ?|\/| )($FeatPat))*\) *$# ($6)#) ) { # $6: see note
+         my $feat = lc($1);
+         $feat =~ s#^ut.*#ut#;
+         my $flag = $FeatToFlagMap{$feat};
+         if (defined($flag)) {
+            print "FEAT \"$feat\" -> $flag on TITLE $_[0]\n" if $opt_debug;
+            $slot->{$flag} = 1;
+         } else {
+            print "FEAT dropping \"$feat\" on TITLE $_[0]\n" if $opt_debug;
          }
       } else {
          last;
@@ -1085,29 +1208,28 @@ sub ParseTrailingFeat {
 
 # ------------------------------------------------------------------------------
 # Parse programme overview table
-# - 1: retrieve start date from the page header
-# - 2: discard footer lines with non-programme related content
-# - 3: retrieve programme data from table
+# - 1: retrieve programme list (i.e. start times and titles)
+# - 2: retrieve date from the page header
+# - 3: determine dates
 # 
 sub ParseOv {
-   my($page, $sub, $fmt) = @_;
-   my @Page;
+   my($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot1, $prev_slot2) = @_;
    my ($head, $foot);
    my ($day_of_month, $month, $year);
+   my @Slots;
 
-   @Page = PageToLatin($page, $sub);
+   printf("OVERVIEW PAGE %03X.%04X\n", $page, $sub) if $opt_debug;
 
-   ($head, $day_of_month, $month, $year) = ParseOvHeader($page, $sub, $fmt, @Page);
-   if (defined($day_of_month)) {
-      $foot = ParseFooter($head, @Page);
+   PageToLatin($page, $sub);
 
-      printf("OVERVIEW PAGE %03X.%04X: DATE $day_of_month.$month.$year lines $head-$foot\n", $page, $sub) if $opt_debug;
-
-      return ParseOvList($fmt, $head, $foot, $day_of_month, $month, $year, @Page);
-   } else {
-      printf("OVERVIEW PAGE %03X.%04X: skipped - no date found in header\n", $page, $sub) if $opt_debug;
-      return ();
+   @Slots = ParseOvList($page, $sub, $fmt, $pgdate);
+   if ($#Slots >= 0) {
+      ParseOvHeaderDate($page, $sub, $pgdate);
+      if (CalculateDates($pgdate, $prev_pgdate, $prev_slot1, $prev_slot2, \@Slots) == 0) {
+         @Slots = ();
+      }
    }
+   return @Slots;
 }
 
 # ------------------------------------------------------------------------------
@@ -1118,8 +1240,11 @@ sub ParseOv {
 #
 sub ParseAllOvPages {
    my $page;
+   my ($sub, $sub1, $sub2);
+   my %PgDate;
+   my ($pgdate, $prev_pgdate, $prev_slot1, $prev_slot2);
    my @Slots = ();
-   my $slot_ref;
+   my $slot;
 
    my $fmt = DetectOvFormat();
    if ($fmt) {
@@ -1128,15 +1253,23 @@ sub ParseAllOvPages {
       @Pages = sort {$a<=>$b} @Pages;
 
       foreach $page (@Pages) {
-         my $pkg;
-         my $sub;
-
          if ($PgSub{$page} == 0) {
-            push @Slots, ParseOv($page, 0, $fmt);
-
+            $sub1 = $sub2 = 0;
          } else {
-            for ($sub = 1; $sub <= $PgSub{$page}; $sub++) {
-               push @Slots, ParseOv($page, $sub, $fmt);
+            $sub1 = 1;
+            $sub2 = $PgSub{$page};
+         }
+         for ($sub = $sub1; $sub <= $sub2; $sub++) {
+            $pgdate = {'page' => $page, 'sub_page' => $sub };
+            my @TmpSlots = ParseOv($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot1, $prev_slot2);
+            push @Slots, @TmpSlots;
+
+            if ($#TmpSlots >= 0) {
+               $prev_pgdate = $pgdate;
+               $prev_slot1 = $TmpSlots[0];
+               $prev_slot2 = $TmpSlots[$#TmpSlots];
+            } else {
+               $prev_pgdate = $prev_slot1 = $prev_slot2 = undef;
             }
          }
       }
@@ -1148,9 +1281,9 @@ sub ParseAllOvPages {
    CalculateStopTimes(\@Slots);
 
    # retrieve descriptions from references teletext pages
-   foreach $slot_ref (@Slots) {
-      if (defined($slot_ref->{ttx_ref})) {
-         $slot_ref->{desc} = ParseDescPage($slot_ref);
+   foreach $slot (@Slots) {
+      if (defined($slot->{ttx_ref})) {
+         $slot->{desc} = ParseDescPage($slot);
       }
    }
 
@@ -1166,10 +1299,160 @@ sub ParseAllOvPages {
    print "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n".
          "<!DOCTYPE tv SYSTEM \"xmltv.dtd\">\n".
          "<tv>\n<channel id=\"$ch_id\">\n\t<display-name>$ch_name</display-name>\n</channel>\n";
-   foreach $slot_ref (@Slots) {
-      ExportTitle($slot_ref, $ch_id);
+   foreach $slot (@Slots) {
+      ExportTitle($slot, $ch_id);
    }
    print "</tv>\n";
+}
+
+# ------------------------------------------------------------------------------
+# Determine dates of programmes on an overview page
+# - TODO: arte: remove overlapping: the first one encloses multiple following programmes; possibly recognizable by the VP label 2500
+#  "\x1814.40\x05\x182500\x07\x07THEMA: DAS \"NEUE GROSSE   ",
+#  "              SPIEL\"                    ",
+#  "\x0714.40\x05\x051445\x02\x02USBEKISTAN - ABWEHR DER   ",
+#  "            \x02\x02WAHABITEN  (2K)           ",
+#
+sub CalculateDates {
+   my ($pgdate, $prev_pgdate, $prev_slot1, $prev_slot2, $slot_list) = @_;
+   my $retval = 0;
+
+   my $date_off = 0;
+   if (defined($prev_pgdate)) {
+      # check if the page number of the previous page is adjacent
+      # and as consistency check require that the prev page covers less than a day
+      if ( ($prev_slot2->{start_t} - $prev_slot1->{start_t} < 22*60*60) &&
+           CheckIfPagesAdjacent($prev_pgdate->{page}, $prev_pgdate->{sub_page},
+                                 $pgdate->{page}, $pgdate->{sub_page}) ) {
+
+         my $prev_delta = 0;
+         # check if there's a date on the current page
+         # if yes, get the delta to the previous one in days (e.g. tomorrow - today = 1)
+         # if not, silently fall back to the previous page's date and assume date delta zero
+         if (defined($pgdate->{year})) {
+            $prev_delta = CalculateDateDelta($prev_pgdate, $pgdate);
+         }
+         if ($prev_delta == 0) {
+            # check if our start date should be different from the one of the previous page
+            # -> check if we're starting on a new date (smaller hour)
+            # (note: comparing with the 1st slot of the prev. page, not the last!)
+            if ($slot_list->[0]->{hour} < $prev_slot1->{hour}) {
+               # TODO: check continuity to slot2: gap may have 6h max.
+               # TODO: check end hour
+               $date_off = 1;
+            }
+            # else: same date as the last programme on the prev page
+            # may have been a date change inside the prev. page but our header date may still be unchanged
+            # historically this is only done up to 6 o'clock (i.e. 0:00 to 6:00 counts as the old day)
+            #} elsif ($slot_list->[0]->{hour} <= 6) {
+            #   # check continuity
+            #   if ( defined($prev_slot2->{end_hour}) ?
+            #          ( ($slot_list->[0]->{hour} >= $prev_slot2->{end_hour}) &&
+            #            ($slot_list->[0]->{hour} - $prev_slot2->{end_hour} <= 1) ) :
+            #          ( ($slot_list->[0]->{hour} >= $prev_slot2->{hour}) &&
+            #            ($slot_list->[0]->{hour} - $prev_slot2->{hour} <= 6) ) ) {
+            #      # OK
+            #   } else {
+            #      # 
+            #   }
+            #}
+            # TODO: check for date change within the previous page
+         } else {
+            $prev_pgdate = undef;
+         }
+         # TODO: date may also be wrong by +1 (e.g. when starting at 23:55 with date for 00:00)
+      } else {
+         # not adjacent -> disregard the info
+         printf("OV DATE: prev page %03X.%04X not adjacent - not used for date check\n", $prev_pgdate->{page}, $prev_pgdate->{sub_page}) if $opt_debug;
+         $prev_pgdate = undef;
+      }
+   }
+
+   my $day_of_month;
+   my $month;
+   my $year;
+
+   if (defined($pgdate->{year})) {
+      $day_of_month = $pgdate->{day_of_month};
+      $month = $pgdate->{month};
+      $year = $pgdate->{year};
+      # store date offset in page meta data (to calculate delta of subsequent pages)
+      $pgdate->{date_off} = $date_off;
+      print "OV DATE: using page header date $day_of_month.$month.$year, DELTA $date_off\n" if $opt_debug;
+
+   } elsif (defined($prev_pgdate)) {
+      # copy date from previous page
+      $pgdate->{day_of_month} = $day_of_month = $prev_pgdate->{day_of_month};
+      $pgdate->{month} = $month = $prev_pgdate->{month};
+      $pgdate->{year} = $year = $prev_pgdate->{year};
+      # add date offset if a date change was detected
+      $date_off += $prev_pgdate->{date_off};
+      $pgdate->{date_off} = $date_off;
+      print "OV DATE: using predecessor date $day_of_month.$month.$year, DELTA $date_off\n" if $opt_debug;
+   }
+
+   # finally assign the date to all programmes on this page (with auto-increment at hour wraps)
+   if (defined($year)) {
+      my $prev_hour;
+      for (my $idx = 0; $idx <= $#$slot_list; $idx++) {
+         my $slot = $slot_list->[$idx];
+
+         # detect date change (hour wrap at midnight)
+         if (defined($prev_hour) && ($prev_hour > $slot->{hour})) {
+            $date_off += 1;
+         }
+         $prev_hour = $slot->{hour};
+
+         $slot->{date_off} = $date_off;
+         $slot->{day_of_month} = $pgdate->{day_of_month};
+         $slot->{month} = $pgdate->{month};
+         $slot->{year} = $pgdate->{year};
+         $slot->{vps_date} = $pgdate->{vps_date};
+
+         $slot->{start_t} = ConvertStartTime($slot);
+      }
+      $retval = 1;
+   } else {
+      print "OV missing date - discarding programmes\n" if $opt_debug;
+   }
+   return $retval;
+}
+
+# ------------------------------------------------------------------------------
+# Check if two given teletext pages are adjacent
+# - both page numbers must have decimal digits only (i.e. match /[1-8][1-9][1-9]/)
+#
+sub CheckIfPagesAdjacent {
+   my ($prev_page, $prev_sub, $page, $sub) = @_;
+   my $result = 0;
+
+   if ( ($prev_page == $page) && ($prev_sub + 1 == $sub) ) {
+      # next sub-page on same page
+      $result = 1;
+
+   } else {
+      # check for jump from last sub-page of prev page to first of new page
+      my $next;
+
+      # calculate number of page following the previous one
+      # visible pages only use decimal numbers, so we jump from 9 to 16
+      if (($prev_page & 0xF) == 9) {
+         $next = $prev_page + (0x010 - 0x009);
+      } else {
+         $next = $prev_page + 1;
+      }
+      # same skip for the 2nd digit, if there was a wrap in the 3rd digit
+      if (($next & 0xF0) == 0x0A0) {
+         $next = $next + (0x100 - 0x0A0);
+      }
+
+      if ( ($page == $next) &&
+           ($prev_sub == $PgSub{$prev_page}) &&
+           ($sub <= 1) ) {
+         $result = 1;
+      } 
+   }
+   return $result;
 }
 
 # ------------------------------------------------------------------------------
@@ -1177,6 +1460,7 @@ sub ParseAllOvPages {
 # - assuming that in overview tables the stop time is equal to the start
 #   of the following programme & that this also holds true inbetween pages
 # - if in doubt, leave it undefined (this is allowed in XMLTV)
+# - TODO: restart at non-adjacent text pages
 # 
 sub CalculateStopTimes {
    my($arr_ref) = @_;
@@ -1191,7 +1475,12 @@ sub CalculateStopTimes {
          if (defined($slot->{end_min})) {
             # there was an end time in the overview or a description page -> use that
             my $date_off = $slot->{date_off};
-            $date_off += 1 if ($slot->{hour} > $slot->{end_hour});
+            # check for a day break between start and end
+            if ( ($slot->{end_hour} < $slot->{hour}) ||
+                 ( ($slot->{end_hour} == $slot->{hour}) &&
+                   ($slot->{end_min} < $slot->{min}) )) {
+               $date_off += 1;
+            }
 
             $slot->{stop_t} = POSIX::mktime(0, $slot->{end_min}, $slot->{end_hour},
                                                $slot->{day_of_month} + $date_off,
@@ -1211,18 +1500,42 @@ sub CalculateStopTimes {
    }
 }
 
-# convert discrete start times into UNIX epoch format
-# implies a conversion from local time zone into GMT
-sub SetStartTime {
+# ------------------------------------------------------------------------------
+# Convert discrete start times into UNIX epoch format
+# - implies a conversion from local time zone into GMT
+#
+sub ConvertStartTime {
    my ($slot) = @_;
 
-   $slot->{start_t} = POSIX::mktime(0, $slot->{min}, $slot->{hour},
-                                       $slot->{day_of_month} + $slot->{date_off},
-                                       $slot->{month} - 1,
-                                       $slot->{year} - 1900,
-                                       0, 0, -1);
+   return POSIX::mktime(0, $slot->{min}, $slot->{hour},
+                           $slot->{day_of_month} + $slot->{date_off},
+                           $slot->{month} - 1,
+                           $slot->{year} - 1900,
+                           0, 0, -1);
 }
 
+# ------------------------------------------------------------------------------
+# Calculate delta in days between the given programme slot and a discrete date
+# - works both on program "slot" and "pgdate" which have the same member names
+#   (since Perl doesn't have strict typechecking for structs)
+#
+sub CalculateDateDelta {
+   my ($slot1, $slot2) = @_;
+
+   my $date1 = POSIX::mktime(0, 0, 0, $slot1->{day_of_month} + $slot1->{date_off},
+                             $slot1->{month} - 1, $slot1->{year} - 1900, 0, 0, -1);
+
+   my $date2 = POSIX::mktime(0, 0, 0, $slot2->{day_of_month} + $slot2->{date_off},
+                             $slot2->{month} - 1, $slot2->{year} - 1900, 0, 0, -1);
+
+   # add 2 hours to allow for shorter days during daylight saving time change
+   return int(($date2 + 2*60*60 - $date1) / (24*60*60));
+}
+
+# ------------------------------------------------------------------------------
+# Determine LTO for a given time and date
+# - LTO depends on the local time zone and daylight saving time being in effect or not
+#
 sub DetermineLto {
    my ($time_t) = @_;
    my ($sec, $min, $hour, $mday, $mon, $year, @foo);
@@ -1263,7 +1576,7 @@ sub ExportTitle {
       } else {
          $stop_str = "";
       }
-      if (defined($slot_ref->{vps})) {
+      if (defined($slot_ref->{vps_time})) {
          $vps_str = " pdc-start=\"". GetXmlVpsTimestamp($slot_ref) ."\"";
       } else {
          $vps_str = "";
@@ -1316,7 +1629,7 @@ sub ExportTitle {
          print "\t<audio>\n\t\t<stereo>mono</stereo>\n\t</audio>\n";
       }
       # subtitles
-      if (defined($slot_ref->{has_subtitles})) {
+      if (defined($slot_ref->{is_omu})) {
          print "\t<subtitles type=\"onscreen\"/>\n";
       } elsif (defined($slot_ref->{has_subtitles})) {
          print "\t<subtitles type=\"teletext\"/>\n";
@@ -1356,12 +1669,13 @@ sub GetXmlVpsTimestamp {
    my $vps_str;
    my $lto = DetermineLto($slot->{start_t});
 
-   # TODO: parse VPS date from program overview
-   #       " 140406 " (line all blank, color magenta) (ARD)
-   #       " 1D102 130406 BE"  (ZDF)
-   $vps_str = "$slot->{year}$slot->{day_of_month}$slot->{month}".
-              "$slot->{vps}00".
-              sprintf(" %+03d%02d", $lto / (60*60), abs($lto / 60) % 60);
+   if (defined($slot->{vps_date})) {
+      $vps_str = $slot->{vps_date};
+   } else {
+      $vps_str = sprintf("%04d%02d%02d", $slot->{year}, $slot->{day_of_month}, $slot->{month});
+   }
+   $vps_str .= $slot->{vps_time} .
+               sprintf("00 %+03d%02d", $lto / (60*60), abs($lto / 60) % 60);
 }
 
 # ------------------------------------------------------------------------------
@@ -1427,15 +1741,18 @@ sub Latin1ToXml {
 # SWR:   14. April, 00.55 - 02.50 Uhr
 # WDR:   Freitag, 14.04.06   13.40-14.40
 # BR3:   Freitag, 14.04.06 // 13.30-15.05
+# HR3:   Montag 8.45-9.15 Uhr
+#        Montag // 9.15-9.45 (i.e. 2-line format)
 # Kabl1: Fr 14.04 20:15-21:11
 # Tele5: Fr 19:15-20:15
 
 sub ParseDescDate {
-   my ($slot, $page, $sub, @Page) = @_;
+   my ($page, $sub, $slot) = @_;
    my ($lmday, $lmonth, $lyear, $lhour, $lmin, $lend_hour, $lend_min);
    my ($new_date, $check_time);
    my $line;
 
+   my $pgtext = $PageText{$page | ($sub << 12)};
    my $lang = $PgLang{$page};
    my $wday_match = GetDateNameRegExp(\%WDayNames, $lang, 1);
    my $wday_abbrv_match = GetDateNameRegExp(\%WDayNames, $lang, 2);
@@ -1443,17 +1760,17 @@ sub ParseDescDate {
 
    # search date and time
    for ($line = 0; $line <= 23; $line++) {
-      $_ = $Page[$line];
+      $_ = $pgtext->[$line];
       $new_date = 0;
 
-      while (1) {
+      PARSE_DATE: {
          # [Fr] 14.04.[06]
          if (m#(^| )(\d{2})\.(\d{2})\.(\d{4}|\d{2})?( |,|\:|$)#) {
             my @NewDate = CheckDate($2, $3, $4, undef, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
                $new_date = 1;
-               last;
+               last PARSE_DATE;
             }
          }
          # Fr 14.04 (i.e. no dot after month)
@@ -1464,39 +1781,39 @@ sub ParseDescDate {
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
                $new_date = 1;
-               last;
+               last PARSE_DATE;
             }
          }
          # 14.[ ]April [2006]
-         if ( m#(^| )(\d{2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i) {
+         if ( m#(^| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i) {
             my @NewDate = CheckDate($2, undef, $5, undef, $3);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
                $new_date = 1;
-               last;
+               last PARSE_DATE;
             }
          }
-         # Sunday 22 April (i.e. no dot after month)
-         if ( m#(^| )($wday_match)(, ?| )(\d{2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i ||
-              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i) {
+         # Sunday 22 April (i.e. no dot after day)
+         if ( m#(^| )($wday_match)(, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i ||
+              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i) {
             my @NewDate = CheckDate($4, undef, $7, $2, $5);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
                $new_date = 1;
-               last;
+               last PARSE_DATE;
             }
          }
          # TODO: "So, 23." (n-tv)
 
          # Fr[,] 18:00 [-19:00] [Uhr|h]
          # TODO parse time (i.e. allow omission of "Uhr")
-         if (m#(^| )($wday_match)(, ?| )(\d{2}[\.\:]\d{2}((-| - )\d{2}[\.\:]\d{2})?(h| |,|\:|$))#i ||
-             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{2}[\.\:]\d{2}((-| - )\d{2}[\.\:]\d{2})?(h| |,|\:|$))#i) {
+         if (m#(^| )($wday_match)(, ?| )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|\:|$))#i ||
+             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|\:|$))#i) {
             my @NewDate = CheckDate(undef, undef, undef, $2, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
                $new_date = 1;
-               last;
+               last PARSE_DATE;
             }
          }
          # TODO: 21h (i.e. no minute value: TV5)
@@ -1506,15 +1823,14 @@ sub ParseDescDate {
          # VPS label "1D102 120406 F9"
          if (s#^ +[0-9A-F]{2}\d{3} (\d{2})(\d{2})(\d{2}) [0-9A-F]{2} *$##) {
             ($lmday, $lmonth, $lyear) = ($1, $2, $3 + 2000);
-            last;
+            last PARSE_DATE;
          }
-         last;
       }
 
       # TODO: time should be optional if only one subpage
       # 15.40 [VPS 1540] - 19.15 [Uhr|h]
       $check_time = 0;
-      if (m#(^| )(\d{2})[\.\:](\d{2})( +VPS +(\d{4}))?(-| - | bis )(\d{2})[\.\:](\d{2})(h| |,|\:|$)# ||
+      if (m#(^| )(\d{1,2})[\.\:](\d{1,2})( +VPS +(\d{4}))?(-| - | bis )(\d{1,2})[\.\:](\d{1,2})(h| |,|\:|$)# ||
           m#(^| )(\d{2})h(\d{2})( +VPS +(\d{4}))?(-| - )(\d{2})h(\d{2})( |,|\:|$)#) {
          my $hour = $2;
          my $min = $3;
@@ -1529,8 +1845,8 @@ sub ParseDescDate {
          }
 
       # 15.40 (Uhr|h)
-      } elsif (m#(^| )(\d{2})[\.\:](\d{2})( ?h| Uhr)( |,|\:|$)# ||
-               m#(^| )(\d{2})h(\d{2})( |,|\:|$)#) {
+      } elsif (m#(^| )(\d{1,2})[\.\:](\d{1,2})( ?h| Uhr)( |,|\:|$)# ||
+               m#(^| )(\d{1,2})h(\d{2})( |,|\:|$)#) {
          my $hour = $2;
          my $min = $3;
          print "DESC TIME $hour.$min\n" if $opt_debug;
@@ -1578,7 +1894,7 @@ sub CheckDate {
       # determine date from weekday name alone
       my $reldate = GetWeekDayOffset($wday_name);
       return () if $reldate < 0;
-      ($mday, $month, $year) = (localtime(time + $reldate*24*60*60))[3,4,5];
+      ($mday, $month, $year) = (localtime($VbiCaptureTime + $reldate*24*60*60))[3,4,5];
       $month += 1;
       $year += 1900;
       print "DESC DATE $wday_name $mday.$month.$year\n" if $opt_debug;
@@ -1596,9 +1912,9 @@ sub CheckDate {
          return ();
       }
       if (!defined($year)) {
-         $year = (localtime(time))[5] + 1900;
+         $year = (localtime($VbiCaptureTime))[5] + 1900;
       } elsif ($year < 100) {
-         my $cur_year = (localtime(time))[5] + 1900;
+         my $cur_year = (localtime($VbiCaptureTime))[5] + 1900;
          $year += $cur_year - ($cur_year % 100);
       }
       print "DESC DATE $mday.$month.$year\n" if $opt_debug;
@@ -1617,7 +1933,7 @@ sub GetWeekDayOffset {
    $wday_name = lc($wday_name);
    if (defined($wday_name) && defined($WDayNames{$wday_name})) {
       $wday_idx = $WDayNames{$wday_name}->[1];
-      my $cur_wday_idx = (localtime(time))[6];
+      my $cur_wday_idx = (localtime($VbiCaptureTime))[6];
       if ($wday_idx >= $cur_wday_idx) {
          $reldate = $wday_idx - $cur_wday_idx;
       } else {
@@ -1628,18 +1944,20 @@ sub GetWeekDayOffset {
 }
 
 sub ParseDescDateTitle {
-   my ($slot, @Page) = @_;
+   my ($page, $sub, $slot) = @_;
    my $title;
    my $line;
    my ($l, $l1, $l2);
 
+   my $pgtext = $PageText{$page | ($sub << 12)};
+
    $title = $slot->{title};
-   $l1 = $Page[0];
+   $l1 = $pgtext->[0];
    $l1 =~ s#(^ +| +$)##g;
    $l1 =~ s#  +##g;
 
    for ($line = 0; $line <= 23/2; $line++) {
-      $l2 = $Page[$line + 1];
+      $l2 = $pgtext->[$line + 1];
       $l2 =~ s#(^ +| +$)##g;
       $l2 =~ s#  +# #g;
       $l = $l1 ." ". $l2;
@@ -1660,16 +1978,26 @@ sub ParseDescDateTitle {
 }
 
 sub ParseDescContent {
-   my ($head, $foot, @Page) = @_;
+   my ($page, $sub, $head, $foot) = @_;
+   my $vps_data = {};
    my $line;
 
+   my $pgtext = $PageText{$page | ($sub << 12)};
+   my $pgctrl = $PageCtrl{$page | ($sub << 12)};
    my $is_nl = 0;
    my $desc = "";
+
    for ($line = $head; $line <= $foot; $line++) {
-      $_ = $Page[$line];
+      $_ = $pgtext->[$line];
+
+      # TODO parse features behind date, title or subtitle
+
+      # extract and remove VPS labels and all concealed text
+      if ($pgctrl->[$line] =~ m#[\x05\x18]#) {
+         ParseVpsLabel($_, $pgctrl->[$line], $vps_data, 1);
+      }
 
       # remove VPS time and date labels
-      # TODO parse features behind date, title or subtitle
       s#^ +[0-9A-F]{2}\d{3} (\d{2})(\d{2})(\d{2}) [0-9A-F]{2} *$##;
       s# +VPS \d{4} *$##;
 
@@ -1700,12 +2028,22 @@ sub ParseDescContent {
    return $desc;
 }
 
+# TODO: check for all referenced text pages where no match was found if they
+#       describe a yet unknown programme (e.g. next instance of a weekly series)
+
 sub ParseDescPage {
    my ($slot_ref) = @_;
    my ($sub, $sub1, $sub2);
    my $desc = "";
    my $found = 0;
    my $page = $slot_ref->{ttx_ref};
+
+   if ($opt_debug) {
+      my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday) = localtime($slot_ref->{start_t});
+      printf("DESC parse page %03X: search match for %s \"%s\"\n", $page,
+             POSIX::strftime("%d.%m.%Y %H:%M", 0, $min, $hour, $mday,$mon,$year,$wday,$yday,-1),
+             $slot_ref->{title});
+   }
 
    if (defined($PgCnt{$page})) {
       if ($PgSub{$page} == 0) {
@@ -1715,25 +2053,25 @@ sub ParseDescPage {
          $sub2 = $PgSub{$page};
       }
       for ($sub = $sub1; $sub <= $sub2; $sub++) {
-         my @Page = PageToLatin($page, $sub);
          my($head, $foot, $foot2);
 
+         PageToLatin($page, $sub);
          # TODO: multiple sub-pages may belong to same title, but have no date
-         # TODO: following page may belong to the same title (ARD: "Darsteller > 330")
 
-         if (ParseDescDate($slot_ref, $page, $sub, @Page)) {
-            $head = ParseDescDateTitle($slot_ref, @Page);
+         if (ParseDescDate($page, $sub, $slot_ref)) {
+            $head = ParseDescDateTitle($page, $sub, $slot_ref);
 
-            $foot = ParseFooterByColor($page, $sub, @Page);
-            $foot2 = ParseFooter($head, @Page);
+            $foot = ParseFooterByColor($page, $sub);
+            $foot2 = ParseFooter($page, $sub, $head);
             $foot = ($foot2 < $foot) ? $foot2 : $foot;
+            printf("DESC page %03X.%04X match found: lines $head-$foot\n", $page, $sub) if $opt_debug;
 
             $desc .= "\n" if $found;
-            $desc .= ParseDescContent($head, $foot, @Page);
+            $desc .= ParseDescContent($page, $sub, $head, $foot);
 
             $found = 1;
          } else {
-            printf("DESC page %03X.%04X no date found\n", $page, $sub) if $opt_debug;
+            printf("DESC page %03X.%04X no match found\n", $page, $sub) if $opt_debug;
             last if $found;
          }
       }

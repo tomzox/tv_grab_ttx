@@ -1,0 +1,36 @@
+#!/usr/bin/perl -w
+#
+# Test parsing various feature tags
+#
+# $Id: feat-ov1.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+$VbiCaptureTime = 1146299961;
+$PgCnt{0x303} = 5;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x06ARDtext\x07Sa 29.04.06\x0710:38:41",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06    Sa 29.04.2006\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  18.00  Tagesschau                    ",
+  "\x07 \x0618.10  Sportschau (16:9)          323",
+  "\x03!\x0718.45  Harald Schmidt (UT/oo) ... 324",
+  "\x07 \x0619.44  Das Wetter s/w mono           ",
+  "\x07  19.50  Lotto           s/w,mono      ",
+  "\x07 \x0620.00  Tagesschau\x03UT\x06............ 310",
+  "\x03!\x0720.15  Im Tal des Schweigens..... 324",
+  "\x07         Spielfilm, D 2004 \x03UT\x07        ",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Nacht >\x06304",
+];

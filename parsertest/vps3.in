@@ -1,0 +1,36 @@
+#!/usr/bin/perl -w
+#
+# $Id: vps3.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+$VbiCaptureTime = 1146344150;
+$PgCnt{0x343} = 9;
+$PgSub{0x343} = 0;
+$PgLang{0x343} = 1;
+$Pkg{0x343|(0x0000<<12)} =
+[
+  "^d\x15\x15\x15\x15\x15G343\x02hr-text\x07Sa 29.04.06\x0222:55:46",
+  "\x14|     \x16 p          0    \x03Tag der Arbeit",
+  "\x14\x7F|t x|\x16 =hlh\$<4<\$<4=4<4<4\x06 \x03    \x06Montag",
+  "\x14\x7F \x7F \x7F \x16 5jsj 55s5w155w155\x06       \x061.Mai",
+  "\x14/ / / \x05              \x05\x181D115\x18010506\x1892\x07",
+  undef,
+  "\x0717.05\x07\x07\x07Hessen a la carte              ",
+  "\x05\x181705\x07 \x07Aus dem Marburger Land..... 349",
+  "         \x09\x18Ra\x09                          ",
+  undef,
+  "\x0617.35\x06\x06\x06Herrliches Hessen              ",
+  "\x05\x181735\x06 \x06Unterwegs im Werratal...... 351",
+  "         \x09\x18Ra\x09                          ",
+  undef,
+  "\x0718.20\x07\x07\x07Alle Wetter! pr{sentiert       ",
+  "\x05\x181820\x07 \x07Dolles Dorf!............... 352",
+  "         \x09\x18Un\x09                          ",
+  undef,
+  "\x0619.00\x06\x06\x06Geheimnisvolles Hessen:        ",
+  "\x05\x181900\x06 \x06Frankenstein und Sonnenkult 354",
+  "        \x06(bis\x0619.30\x06Uhr) \x09\x18Ra\x09          ",
+  undef,
+  undef,
+  "\x17,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\x07>> 344",
+];
+

@@ -1,0 +1,67 @@
+#!/usr/bin/perl -w
+#
+# Yet another example with "today" for a page starting after midnight
+#
+# $Id: ovdate3.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+$VbiCaptureTime = 1146397673;
+$PgCnt{0x303} = 6;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03  SAT.1  \x0730.04.06 \x0313:47:44",
+  "\x17  ws17#5#7!k  \x04\x1D\x07DSL flat+Tel flat   \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x01nur 44,85EUR\x07>>> 626\x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18300406\x18ss\x04               1/1 ",
+  "\x07\x1D\x0419.15  Nur die Liebe z{hlt      >383 ",
+  "\x07\x1D\x0120.15  Das Wunder von Bern      >311 ",
+  "\x07\x1D\x0422.30  Sechserpack: Essen &          ",
+  "\x07\x1D\x04       Trinken                       ",
+  "\x07\x1D\x0122.55  PLANETOPIA               >331 ",
+  "\x07\x1D\x0423.45  News & Stories: Vom La-       ",
+  "\x07\x1D\x04       chen und dem aufrechten       ",
+  "\x07\x1D\x04       Gang - ]ber die Evoluti-      ",
+  "\x07\x1D\x04       on von Affen und Men-         ",
+  "\x07\x1D\x04       schen                    >330 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x07Gutes Geld verdienen in Europa...608 ",
+  "\x01\x1D\x07Testen Sie Ihr Europawissen......648 ",
+  "\x01\x1D\x07Ihr Urlaub - garantiert g}nstig..452 ",
+];
+$PgCnt{0x304} = 5;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x03  SAT.1  \x0730.04.06 \x0313:47:44",
+  "\x17  ws17#5#7!k  \x05\x1D\x07\"Verliebt in Berlin\"  ",
+  "\x17  ,,\%-\$- \%(*  \x05\x1D\x07Helfen Sie Lisa  640  ",
+  "\x01\x1D\x07   HEUTE    \x15####################### ",
+  "\x07\x1D\x00\x05\x181D257\x18010506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0400.34  So gesehen                    ",
+  "\x07\x1D\x0100.35  Sat.1 Music Special           ",
+  "\x07\x1D\x0402.20  QUIZ NIGHT               >375 ",
+  "\x07\x1D\x0103.30  K 11 - Kommissare im          ",
+  "\x07\x1D\x01       Einsatz: T|dliche Fes-        ",
+  "\x07\x1D\x01       selspiele                >374 ",
+  "\x07\x1D\x0403.55  J.A.G. - Im Auftrag der       ",
+  "\x07\x1D\x04       Ehre: Der Falke          >359 ",
+  "\x07\x1D\x0104.40  Casanova - Ich liebe          ",
+  "\x07\x1D\x01       alle Frauen, Teil 2      >312 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x07Nie wieder Single sein!..........850 ",
+  "\x01\x1D\x07Fernreisen, zu kleinen Preisen!  401 ",
+  "\x01\x1D\x07Hier k|nnte Ihre Werbung stehen! 879 ",
+];

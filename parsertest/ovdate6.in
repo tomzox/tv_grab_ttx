@@ -1,0 +1,103 @@
+#!/usr/bin/perl -w
+#
+# Test parsing the various date header formats
+#
+# $Id: ovdate6.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+#
+# 3sat.in  arte.in   bralpha.in  kabel1.in  mtv.in      rtl.in   sat1.out  tele5.in  wdr.in
+# ard.in   arte.out  dsf.in      kika.in    phoenix.in  rtl2.in  srtl.in   viva.in   zdf.in
+# ard.out  br3.in    hr.in       mdr.in     pro7.in     sat1.in  swr.in    vox.in    zdf.out
+
+$VbiCaptureTime = 1146311273;
+{ my $i=1; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute in 3sat    ",
+  "\x11\x7F\x7F5\x1D\x07Samstag, 29. April                ",
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 29.04.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x14\x7F|t x|\x16 =hlh\$<4<\$<4=4<4<4\x06      Samstag",
+  "\x14\x7F \x7F \x7F \x16 5jsj 55s5w155w155\x06     29.April",
+  "\x14/ / /                \x05\x181D115\x18290406\x189E\x07",
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x14|4|4|4                \x05\x181D111\x18290406\x18B7",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06BFS           Samstag, 29.04.06",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x12|4|4|4  \x07             \x05\x181D304\x18290406\x18CC",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha     Samstag, 29.04.06",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x04\x1D\x07DSF Programm     \x1C       Sa 12-18 Uhr",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x14\x7F|t x|\x16 =hlh\$<4<\$<4=4<4<4\x06      Samstag",
+  "\x14\x7F \x7F \x7F \x16 5jsj 55s5w155w155\x06     29.April",
+  "\x14/ / /                \x05\x181D115\x18290406\x18CF\x07",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x1374w5u5w1u w1555s5 \x1D\x04Sa 06-10 Uhr \x1D\x031/1\x15",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x04\x1D\x17\x7Fvg~ \x06Samstag, 29. April 2006        ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x04\x1D\x16555555\x0400\x06      Sonnabend, 29.04.06  ",
+  "\x17 \x16!!!#!!                               ",
+  "      \x05\x18VPS\x05\x05          \x05\x181D162\x18290406\x18ss",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x135   \"`<70\%>     \x01\x1D\x07     PROGRAMM       ",
+  "\x135  0  05kz!     \x01\x1D\x07                    ",
+  "\x135  7d&5\% 1                             ",
+  "\x13upp5  upp5\x1D\x04Sa 10-18 Uhr           1/1 ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x04\x1D\x03\x1D\x04Tages}bersicht\x0A                    ",
+  "\x04\x1D\x06\x1D\x04Samstag, 29. April 2006\x0A           ",
+  "                       \x05\x181D108\x18290406\x18B1",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x11 p|4             \x1D\x07Heute           1/1 ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x03\x1D\x04TV-PROGRAMM\x01           Sa.29.04.\x041/1 ",
+  "\x07\x1D                     \x05\x181D243 290406 ss",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x01\x1D\x07TV-PROGRAMM \x00MORGEN                 \x00",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18290406\x18ss\x04               1/1 ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x03\x1D\x01Programm               \x07\x1D\x01       :150",
+  "\x13|||||||||||||||||||||||||||||||||||||||",
+  "\x03\x1D\x04\x1D\x06HEUTE FR]H              29.04.2006 ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x07\x1D\x04SAMSTAG, 29. APRIL  \x05\x181D133\x18290406\x18D7",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x14\x1D\x11\x1D\x07Programm heute    \x07\x1D\x09   \x11   j5(,,~ ",
+  "\x07\x1D\x11\x1D\x07Sa 06:00-10:00    \x07\x1D\x09   \x11   *-,\x7F\$j ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x04\x1D\x03  PROGRAMM     \x1D\x04Sa 06-12 Uhr    1/1 ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Sa. 29.04.\x01\x1D\x071/1 ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "       \x03Samstag, 29.04.06\x05\x18290406\x03      ",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ]; $i++; $PgCnt{0x300+$i} = 1; $PgSub{0x300+$i} = 0; $PgLang{0x300+$i} = 1; $Pkg{0x300+$i} = [ "        ".sprintf("%03X",0x300+$i)."   TEST    29.04.06  13:47:44",undef,undef,undef,undef,
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute     \x07 1/2 ",
+  "\x04\x1D\x07 Programm  Samstag, 29.April         ",
+  "                       \x05\x181D102\x18290406\x1829",
+
+" 10:".sprintf("%02d",$i)."  Test Title                      ", ];
+}
