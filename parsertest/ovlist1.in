@@ -1,0 +1,32 @@
+#!/usr/bin/perl -w
+$VbiCaptureTime = 1146302512;
+$PgCnt{0x302} = 5;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x01MDR    \x07Sa.29.04.06 11:20:36",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06      Sonnabend, 29.04.06  ",
+  "\x17 \x16!!!#!!                               ",
+  "      \x05\x18VPS\x05\x05          \x05\x181D162\x18290406\x18ss",
+  "\x0312.30\x05\x181230\x03\x03Lindenstra~e\x06(``)\x06(UT)    ",
+  "             \x031064. Das Eheversprechen  ",
+  "             \x03Fernsehserie\x06(16:9)       ",
+  "\x0713.00\x05\x181300\x07\x07Die\x06(16:9)                ",
+  "             \x07Schokoladenk|nigin\x06(``)   ",
+  "             \x07Spielfilm (D 2005)\x06(UT)   ",
+  "\x0314.25\x05\x181425\x03\x03Schlager-Charts      \x06>395",
+  "                                        ",
+  "\x0714.30\x05\x181430\x07\x07Ausgetrickst -            ",
+  "             \x07Die unglaubliche Show     ",
+  "\x0316.00\x05\x181600\x03\x03CAFE TREND           \x06>306",
+  "             \x03Tipps & Talk              ",
+  "             \x03mit Katrin Hu~            ",
+  "\x0716.30\x05\x181630\x07\x07Sport im Osten       \x06>292",
+  "             \x07Aktueller Sport vom Tage  ",
+  "            \x07\x07bis\x0718.00\x07Uhr\x07\x07           ",
+  "                                        ",
+  "\x06Legende >368                           ",
+  "\x04\x1D\x06 Die Woche 360 \x06  \x1C            \x06>303 ",
+];

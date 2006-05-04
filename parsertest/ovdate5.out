@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="TEST">
+	<display-name>TEST</display-name>
+</channel>
+
+<programme start="20060430080000 +0000" stop="20060430130000 +0000" channel="TEST">
+	<title>Serie 1</title>
+</programme>
+
+<programme start="20060430130000 +0000" stop="20060430160000 +0000" channel="TEST">
+	<title>Serie 2</title>
+</programme>
+
+<programme start="20060430160000 +0000" stop="20060430170000 +0000" channel="TEST">
+	<title>Serie 3</title>
+</programme>
+
+<programme start="20060430170000 +0000" channel="TEST">
+	<title>Serie 4</title>
+</programme>
+
+<programme start="20060430090000 +0000" stop="20060430180000 +0000" channel="TEST">
+	<title>Film 1</title>
+</programme>
+
+<programme start="20060430180000 +0000" channel="TEST">
+	<title>Film 2</title>
+</programme>
+</tv>

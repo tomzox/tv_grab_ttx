@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="???">
+	<display-name>???</display-name>
+</channel>
+
+<programme start="20060429103000 +0000" stop="20060429110000 +0000" channel="???">
+	<title>Lindenstraße</title>
+	<sub-title>Lindenstraße 1064. Das Eheversprechen Fernsehserie</sub-title>
+	<video>
+		<aspect>16:9</aspect>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060429110000 +0000" stop="20060429122500 +0000" channel="???">
+	<title>Die</title>
+	<sub-title>Die Schokoladenkönigin Spielfilm (D 2005)</sub-title>
+	<video>
+		<aspect>16:9</aspect>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060429122500 +0000" stop="20060429123000 +0000" channel="???">
+	<title>Schlager-Charts</title>
+	<desc>(teletext 395)</desc>
+</programme>
+
+<programme start="20060429123000 +0000" stop="20060429140000 +0000" channel="???">
+	<title>Ausgetrickst -</title>
+	<sub-title>Ausgetrickst - Die unglaubliche Show</sub-title>
+</programme>
+
+<programme start="20060429140000 +0000" stop="20060429143000 +0000" channel="???">
+	<title>cafe trend</title>
+	<sub-title>CAFE TREND Tipps &amp; Talk mit Katrin Huß</sub-title>
+	<desc>(teletext 306)</desc>
+</programme>
+
+<programme start="20060429143000 +0000" channel="???">
+	<title>Sport im Osten</title>
+	<sub-title>Sport im Osten Aktueller Sport vom Tage bis 18.00 Uhr</sub-title>
+	<desc>(teletext 292)</desc>
+</programme>
+</tv>

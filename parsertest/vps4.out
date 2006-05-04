@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="???">
+	<display-name>???</display-name>
+</channel>
+
+<programme start="20060429222500 +0000" stop="20060430001000 +0000" channel="???">
+	<title>k 2</title>
+	<sub-title>K 2 Das letzte Abenteuer Spielfilm (GBR 1990)</sub-title>
+	<!-- TTX 317 -->
+	<desc>00 Sonntag, 30.04.06
+00.25 - 02.10 Uhr Stereo, Untertitel K2 - Das letzte Abenteuer Spielfilm (GBR 1990) Regie: Franc Roddam
+Der K2 ist mit über 8.600 Metern Höhe einer der höchsten Berge der Welt. Der Versuch ihn zu besteigen, endete für zahllose Kletterer tödlich.
+Der ehrgeizige Taylor und der introvertierte Harold bekommen die Chance, an einer Expedition auf den K2 teilzunehmen. Der Preis ist höher, als sie denken: Ihre Freundschaft wird auf eine harte Probe gestellt und plötzlich geht es nur noch ums Überleben. Mit Michael Biehn, Matt Craven u.a.</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060430001000 +0000" stop="20060430013500 +0000" channel="???">
+	<title>Sagarmatha -</title>
+	<sub-title>Sagarmatha - Wagnis im ewigen Eis Spielfilm (CSSR/NEP 1988)</sub-title>
+	<desc>(teletext 320)</desc>
+</programme>
+
+<programme start="20060430013500 +0000" stop="20060430015000 +0000" channel="???">
+	<title>Tagesthemen</title>
+</programme>
+
+<programme start="20060430015000 +0000" stop="20060430022000 +0000" channel="???">
+	<title>sachsenspiegel</title>
+</programme>
+
+<programme start="20060430022000 +0000" stop="20060430025000 +0000" channel="???">
+	<title>sachsen-anhalt heute</title>
+</programme>
+
+<programme start="20060430025000 +0000" stop="20060430032000 +0000" channel="???">
+	<title>thüringen journal</title>
+</programme>
+
+<programme start="20060430032000 +0000" channel="???">
+	<title>Rundflug Thüringen</title>
+	<sub-title>Rundflug Thüringen bis 05.55 Uhr</sub-title>
+</programme>
+</tv>

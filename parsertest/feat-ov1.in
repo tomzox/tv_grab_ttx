@@ -2,7 +2,7 @@
 #
 # Test parsing various feature tags
 #
-# $Id: feat-ov1.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+# $Id: feat-ov1.in,v 1.2 2006/05/04 20:25:19 tom Exp $
 $VbiCaptureTime = 1146299961;
 $PgCnt{0x303} = 5;
 $PgSub{0x303} = 0;
@@ -20,16 +20,16 @@ $Pkg{0x303|(0x0000<<12)} =
   "\x07  19.50  Lotto           s/w,mono      ",
   "\x07 \x0620.00  Tagesschau\x03UT\x06............ 310",
   "\x03!\x0720.15  Im Tal des Schweigens..... 324",
-  "\x07         Spielfilm, D 2004 \x03UT\x07        ",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
+  "\x07         Spielfilm, D 2004 \x03OmU\x07       ",
+  "\x07  22:00  Konzert in Stereo       oo    ",
+  "\x07  22:04  Konzert in 2 mal Mono   mono  ",
+  "\x07  22:10  Wiederholung            Wdh.  ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
   "\x03!\x07= TV-Tipps                           ",
   "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
   "\x06300\x07<<                      Nacht >\x06304",

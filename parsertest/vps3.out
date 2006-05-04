@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="???">
+	<display-name>???</display-name>
+</channel>
+
+<programme start="20060501150500 +0000" stop="20060501153500 +0000" pdc-start="20060105170500 +0200" channel="???">
+	<title>Hessen a la carte</title>
+	<sub-title>Hessen a la carte Aus dem Marburger Land Ra</sub-title>
+	<desc>(teletext 349)</desc>
+</programme>
+
+<programme start="20060501153500 +0000" stop="20060501162000 +0000" pdc-start="20060105173500 +0200" channel="???">
+	<title>Herrliches Hessen</title>
+	<sub-title>Herrliches Hessen Unterwegs im Werratal Ra</sub-title>
+	<desc>(teletext 351)</desc>
+</programme>
+
+<programme start="20060501162000 +0000" stop="20060501170000 +0000" pdc-start="20060105182000 +0200" channel="???">
+	<title>Alle Wetter! präsentiert</title>
+	<sub-title>Alle Wetter! präsentiert Dolles Dorf! Un</sub-title>
+	<desc>(teletext 352)</desc>
+</programme>
+
+<programme start="20060501170000 +0000" stop="20060501173000 +0000" pdc-start="20060105190000 +0200" channel="???">
+	<title>Geheimnisvolles Hessen:</title>
+	<sub-title>Geheimnisvolles Hessen: Frankenstein und Sonnenkult</sub-title>
+	<desc>(teletext 354)</desc>
+</programme>
+</tv>

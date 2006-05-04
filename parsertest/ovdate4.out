@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="???">
+	<display-name>???</display-name>
+</channel>
+
+<programme start="20060430171500 +0000" stop="20060430181500 +0000" channel="???">
+	<title>Nur die Liebe zählt</title>
+	<desc>(teletext 383)</desc>
+</programme>
+
+<programme start="20060430181500 +0000" stop="20060430203000 +0000" channel="???">
+	<title>Das Wunder von Bern</title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20060430203000 +0000" stop="20060430205500 +0000" channel="???">
+	<title>Sechserpack: Essen &amp;</title>
+	<sub-title>Sechserpack: Essen &amp; Trinken</sub-title>
+</programme>
+
+<programme start="20060430205500 +0000" stop="20060430214500 +0000" channel="???">
+	<title>planetopia</title>
+	<desc>(teletext 331)</desc>
+</programme>
+
+<programme start="20060430214500 +0000" stop="20060430223400 +0000" channel="???">
+	<title>News &amp; Stories: Vom Lachen und dem aufrechten</title>
+	<sub-title>News &amp; Stories: Vom Lachen und dem aufrechten Gang - Über die Evolution von Affen und Menschen</sub-title>
+	<desc>(teletext 330)</desc>
+</programme>
+
+<programme start="20060430223400 +0000" stop="20060430223500 +0000" channel="???">
+	<title>So gesehen</title>
+</programme>
+
+<programme start="20060430223500 +0000" stop="20060501002000 +0000" channel="???">
+	<title>Sat.1 Music Special</title>
+</programme>
+
+<programme start="20060501002000 +0000" stop="20060501013000 +0000" channel="???">
+	<title>quiz night</title>
+	<desc>(teletext 375)</desc>
+</programme>
+
+<programme start="20060501013000 +0000" stop="20060501015500 +0000" channel="???">
+	<title>K 11 - Kommissare im</title>
+	<sub-title>K 11 - Kommissare im Einsatz: Tödliche Fesselspiele</sub-title>
+	<desc>(teletext 374)</desc>
+</programme>
+
+<programme start="20060501015500 +0000" stop="20060501024000 +0000" channel="???">
+	<title>J.A.G. - Im Auftrag der</title>
+	<sub-title>J.A.G. - Im Auftrag der Ehre: Der Falke</sub-title>
+	<desc>(teletext 359)</desc>
+</programme>
+
+<programme start="20060501024000 +0000" channel="???">
+	<title>Casanova - Ich liebe</title>
+	<sub-title>Casanova - Ich liebe alle Frauen, Teil 2</sub-title>
+	<desc>(teletext 312)</desc>
+</programme>
+</tv>
