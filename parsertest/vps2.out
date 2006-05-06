@@ -5,36 +5,36 @@
 	<display-name>???</display-name>
 </channel>
 
-<programme start="20060429184500 +0000" stop="20060429185500 +0000" pdc-start="20062904205500 +0200" channel="???">
+<programme start="20060429184500 +0000" stop="20060429185500 +0000" pdc-start="20060429204500 +0200" channel="???">
 	<title>heute-journal</title>
 	<desc>(teletext 315)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
-<programme start="20060429185500 +0000" stop="20060429190000 +0000" pdc-start="20062904192500 +0200" channel="???">
+<programme start="20060429185500 +0000" stop="20060429190000 +0000" pdc-start="20060429205500 +0200" channel="???">
 	<title>Wetter</title>
 	<subtitles type="teletext"/>
 </programme>
 
-<programme start="20060429190000 +0000" stop="20060429201500 +0000" pdc-start="20062904221500 +0200" channel="???">
+<programme start="20060429190000 +0000" stop="20060429201500 +0000" pdc-start="20060429192500 +0200" channel="???">
 	<title>DFB-Pokal, Finale</title>
 	<sub-title>DFB-Pokal, Finale 2.Halbzeit</sub-title>
 	<desc>(teletext 320)</desc>
 </programme>
 
-<programme start="20060429201500 +0000" stop="20060429204500 +0000" pdc-start="20062904224500 +0200" channel="???">
+<programme start="20060429201500 +0000" stop="20060429204500 +0000" pdc-start="20060429221500 +0200" channel="???">
 	<title>das aktuelle</title>
 	<sub-title>das aktuelle sportstudio</sub-title>
 	<desc>(teletext 321)</desc>
 </programme>
 
-<programme start="20060429204500 +0000" stop="20060429230000 +0000" pdc-start="20062904224500 +0200" channel="???">
+<programme start="20060429204500 +0000" stop="20060429230000 +0000" pdc-start="20060429224500 +0200" channel="???">
 	<title>Boxen live im Zweiten</title>
 	<sub-title>Boxen live im Zweiten Luan Krasniqi - Davic Bostice</sub-title>
 	<desc>(teletext 322)</desc>
 </programme>
 
-<programme start="20060429230000 +0000" pdc-start="20063004010000 +0200" channel="???">
+<programme start="20060429230000 +0000" pdc-start="20060430010000 +0200" channel="???">
 	<title>Disappearance - Spurlos</title>
 	<sub-title>Disappearance - Spurlos verschwunden Psychothriller USA/2002 </sub-title>
 	<desc>(teletext 323)</desc>

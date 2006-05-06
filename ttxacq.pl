@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: ttxacq.pl,v 1.3 2006/05/03 19:55:32 tom Exp tom $
+#  $Id: tv_grab_ttx.pl,v 1.4 2006/05/06 16:45:27 tom Exp $
 #
 
 use POSIX;
@@ -736,9 +736,9 @@ sub ParseOvHeaderDate {
             $reldate = $off if $off >= 0;
             last PARSE_DATE;
          }
-         # "Do. 21-22 Uhr" (e.g. on VIVA)
-         # TODO internationalize "Uhr"
-         if (m#(^| )(($wday_abbrv_match)\.?|($wday_match)) \d{1,2}([\.\:]\d{2})?(\-| \- )\d{1,2}([\.\:]\d{2})?( +Uhr| ?h( |$))#i) {
+         # "Do. 21-22 Uhr" (e.g. on VIVA)  --  TODO internationalize "Uhr"
+         # "Do  21:00-22:00" (e.g. Tele-5)
+         if (m#(^| )(($wday_abbrv_match)\.?|($wday_match)) +((\d{1,2}(\-| \- )\d{1,2}( +Uhr| ?h))|(\d{1,2}[\.\:]\d{2}(\-| \- )\d{1,2}[\.\:]\d{2}))( |$)#i) {
             my $wday_name = $2;
             $wday_name = $3 if !defined($2);
             my $off = GetWeekDayOffset($wday_name);
@@ -915,7 +915,7 @@ sub ParseOvList {
       # extract and remove VPS labels
       # (labels not asigned here since we don't know yet if a new title starts in this line)
       $vps_data->{new_vps_time} = 0;
-      if ($pgctrl->[$line] =~ m#[\x05\x18]+ *[A-Fa-f0-9]#) {
+      if ($pgctrl->[$line] =~ m#[\x05\x18]+ *[^\x00-\x20]#) {
          ParseVpsLabel($_, $pgctrl->[$line], $vps_data, 0);
       }
 
@@ -953,26 +953,23 @@ sub ParseOvList {
          $pgdate->{head_end} = $line unless defined $pgdate->{head_end};
 
          # push previous title
-         if (defined $slot->{title}) {
-            push(@Slots, $slot);
-            if (($hour < $slot->{hour}) && !$vps_data->{new_vps_date}) {
-               $vps_data->{vps_date} = undef;
-            }
-         }
-         $vps_data->{new_vps_date} = 0;
-
+         push(@Slots, $slot) if defined $slot->{title};
          $slot = {};
+
          $slot->{hour} = $hour;
          $slot->{min} = $min;
          $slot->{is_tip} = $is_tip if defined $is_tip;
          $slot->{vps_time} = $vps_data->{vps_time} if $vps_data->{new_vps_time};
-         $slot->{vps_date} = $vps_data->{vps_date};
          $slot->{vps_cni} = $vps_data->{vps_cni};
+         if ($vps_data->{new_vps_date}) {
+            $slot->{vps_date} = $vps_data->{vps_date};
+            $vps_data->{new_vps_date} = 0;
+         }
 
+         ParseTrailingFeat($title, $slot);
          $title =~ s#^ +##;
          $title =~ s# +$##;
          $title =~ s#  +# #g;
-         ParseTrailingFeat($title, $slot);
          print "OV TITLE: \"$title\", $slot->{hour}:$slot->{min}\n" if $opt_debug;
 
          # kika special: subtitle appended to title
@@ -992,8 +989,8 @@ sub ParseOvList {
          # check if last line specifies and end time
          # (usually last line of page)
          # TODO internationalize "bis", "Uhr"
-         if ( m#^ *(\(bis |\- ?)(\d{1,2})[\.\:](\d{2})( Uhr| ?h)( |\)|$)# ||   # ARD,SWR()
-              m#^( *)(\d\d)[\.\:](\d\d) (oo)? *$# ) {                          # arte, RTL
+         if ( m#^ *(\(?bis |\- ?)(\d{1,2})[\.\:](\d{2})( Uhr| ?h)( |\)|$)# ||   # ARD,SWR()
+              m#^( *)(\d\d)[\.\:](\d\d) (oo)? *$# ) {                           # arte, RTL
             $slot->{end_hour} = $2;
             $slot->{end_min} = $3;
             $new_title = 1;
@@ -1028,6 +1025,10 @@ sub ParseOvList {
                   $slot->{subtitle} = $_;
                }
             }
+            if ($vps_data->{new_vps_date}) {
+               $slot->{vps_date} = $vps_data->{vps_date};
+               $vps_data->{new_vps_date} = 0;
+            }
          } else {
             push(@Slots, $slot) if defined $slot->{title};
             $slot = {};
@@ -1052,7 +1053,7 @@ sub ParseVpsLabel {
    # time
    # discard any concealed/magenta labels which follow
    if ($pgctrl =~ m#^(.*)([\x05\x18]+(VPS[\x05\x18 ]+)?(\d{4})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
-      $vps_data->{vps_time} = $3;
+      $vps_data->{vps_time} = $4;
       $vps_data->{new_vps_time} = 1;
       # blank out the same area in the text-only string
       substr($_[0], length($1), length($2), " " x length($2));
@@ -1088,9 +1089,9 @@ sub ParseVpsLabel {
    } else {
       print "VPS label unrecognized in line \"$_[0]\"\n" if $opt_debug;
 
-      # on description page replacing all concealed text with blanks
+      # replace all concealed text with blanks (may also be non-VPS related, e.g. HR3: "Un", "Ra" - who knows what this means to tell us)
       # FIXME text can also be concealed by setting fg := bg (e.g. on desc pages of MDR)
-      if ($is_desc && $pgctrl =~ m#^(.*)(\x18[^\x00-\x07\x10-\x17]*)#) {
+      if ($pgctrl =~ m#^(.*)(\x18[^\x00-\x07\x10-\x17]*)#) {
          substr($_[0], length($1), length($2), " " x length($2));
       }
    }
@@ -1158,7 +1159,7 @@ my $FeatPat = "UT(( auf | )?[1-8][0-9][0-9])?|".
               "[Uu]ntertitel|[Hh]örfilm|HF|".
               "s\/w|S\/W|tlw. s\/w|AD|oo|°°|OmU|16:9|".
               "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|".
-              "Wh\.|Wdh\.|Tipp!";
+              "Wh\.|Wdh\.|Whg\.|Tipp!";
 
 sub ParseTrailingFeat {
    my ($foo, $slot) = @_;
@@ -1167,15 +1168,18 @@ sub ParseTrailingFeat {
    # these are always right-most, so parse these first and outside of the loop
    if ($_[0] =~ s#( \.+|\.* +|\.\.+|\.+\>|\>\>?|\-\-?\>)([1-8][0-9][0-9]) *$##) {
       my $ref = $2;
-      $_[0] =~ s# +$##;
       $slot->{ttx_ref} = ((ord(substr($ref, 0, 1)) - 0x30)<<8) |
                              ((ord(substr($ref, 1, 1)) - 0x30)<<4) |
                              (ord(substr($ref, 2, 1)) - 0x30);
    }
+
+   # note: remove trailing space here, not in the loop to allow max. 1 space between features
+   $_[0] =~ s# +$##;
+
    # features (e.g. WDR: "Stereo, UT")
    while (1) {
-      if ($_[0] =~ s#,? +($FeatPat) *$##) {
-         my $feat = lc($1);
+      if ($_[0] =~ s#(, {0,2}| {1,2})($FeatPat)$##) {
+         my $feat = lc($2);
          $feat =~ s#^ut.*#ut#;
          my $flag = $FeatToFlagMap{$feat};
          if (defined($flag)) {
@@ -1188,8 +1192,8 @@ sub ParseTrailingFeat {
       # ARTE: (oo) (2K) (Mono)
       # SWR: "(16:9/UT)", "UT 150", "UT auf 150"
       # (Note on 2nd match: using $6 due to two () inside feature pattern!)
-      elsif ( ($_[0] =~ s# +\(($FeatPat)\) *$##) ||
-              ($_[0] =~ s# +\(($FeatPat)((, ?|\/| )($FeatPat))*\) *$# ($6)#) ) { # $6: see note
+      elsif ( ($_[0] =~ s# \(($FeatPat)\)$##) ||
+              ($_[0] =~ s# \(($FeatPat)((, ?|\/| )($FeatPat))*\)$# ($6)#) ) { # $6: see note
          my $feat = lc($1);
          $feat =~ s#^ut.*#ut#;
          my $flag = $FeatToFlagMap{$feat};
@@ -1407,7 +1411,6 @@ sub CalculateDates {
          $slot->{day_of_month} = $pgdate->{day_of_month};
          $slot->{month} = $pgdate->{month};
          $slot->{year} = $pgdate->{year};
-         $slot->{vps_date} = $pgdate->{vps_date};
 
          $slot->{start_t} = ConvertStartTime($slot);
       }
@@ -1583,7 +1586,9 @@ sub ExportTitle {
       }
       my $title = $slot_ref->{title};
       # convert all-upper-case titles to lower-case
-      if ($title !~ m#[[:lower:]]#) {
+      # (unless only one consecutive letter, e.g. movie "K2" or "W.I.T.C.H.")
+      # TODO move this into separate post-processing stage; make statistics for all titles first
+      if ( ($title !~ m#[[:lower:]]#) && ($title =~ m#[[:upper]]{2}#) ) {
          $title = lc($title);
       }
       Latin1ToXml($title);
@@ -1670,9 +1675,11 @@ sub GetXmlVpsTimestamp {
    my $lto = DetermineLto($slot->{start_t});
 
    if (defined($slot->{vps_date})) {
-      $vps_str = $slot->{vps_date};
+      $slot->{vps_date} =~ m#(\d{2})(\d{2})(\d{2})#;
+      $vps_str = sprintf("%04d%02d%02d", $3 + 2000, $2, $1);
    } else {
-      $vps_str = sprintf("%04d%02d%02d", $slot->{year}, $slot->{day_of_month}, $slot->{month});
+      my ($mday,$mon,$year) = (localtime($slot->{start_t}))[3,4,5];
+      $vps_str = sprintf("%04d%02d%02d", $year + 1900, $mon + 1, $mday);
    }
    $vps_str .= $slot->{vps_time} .
                sprintf("00 %+03d%02d", $lto / (60*60), abs($lto / 60) % 60);
@@ -1764,8 +1771,9 @@ sub ParseDescDate {
       $new_date = 0;
 
       PARSE_DATE: {
-         # [Fr] 14.04.[06]
-         if (m#(^| )(\d{2})\.(\d{2})\.(\d{4}|\d{2})?( |,|\:|$)#) {
+         # [Fr] 14.04.[06] (year not optional for single-digit day/month)
+         if ( m#(^| )(\d{2})\.(\d{2})\.(\d{4}|\d{2})?( |,|\:|$)# ||
+              m#(^| )(\d)\.(\d)\.(\d{4}|\d{2})( |,|\:|$)#) {
             my @NewDate = CheckDate($2, $3, $4, undef, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1775,8 +1783,8 @@ sub ParseDescDate {
          }
          # Fr 14.04 (i.e. no dot after month)
          # here's a risk to match on a time, so we must require a weekday name
-         if (m#(^| )($wday_match)(, ?| )(\d{2})\.(\d{2})( |,|$)#i ||
-             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{2})\.(\d{2})( |,|\:|$)#i) {
+         if (m#(^| )($wday_match)(, ?| | - )(\d{2})\.(\d{2})( |,|$)#i ||
+             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{2})\.(\d{2})( |,|\:|$)#i) {
             my @NewDate = CheckDate($4, $5, undef, $2, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1794,8 +1802,8 @@ sub ParseDescDate {
             }
          }
          # Sunday 22 April (i.e. no dot after day)
-         if ( m#(^| )($wday_match)(, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i ||
-              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i) {
+         if ( m#(^| )($wday_match)(, ?| - | )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i ||
+              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i) {
             my @NewDate = CheckDate($4, undef, $7, $2, $5);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1807,8 +1815,8 @@ sub ParseDescDate {
 
          # Fr[,] 18:00 [-19:00] [Uhr|h]
          # TODO parse time (i.e. allow omission of "Uhr")
-         if (m#(^| )($wday_match)(, ?| )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|\:|$))#i ||
-             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|\:|$))#i) {
+         if (m#(^| )($wday_match)(, ?| - | )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|\:|$))#i ||
+             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|\:|$))#i) {
             my @NewDate = CheckDate(undef, undef, undef, $2, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1943,7 +1951,7 @@ sub GetWeekDayOffset {
    return $reldate;
 }
 
-sub ParseDescDateTitle {
+sub ParseDescTitle {
    my ($page, $sub, $slot) = @_;
    my $title;
    my $line;
@@ -1956,7 +1964,7 @@ sub ParseDescDateTitle {
    $l1 =~ s#(^ +| +$)##g;
    $l1 =~ s#  +##g;
 
-   for ($line = 0; $line <= 23/2; $line++) {
+   for ($line = 1; $line <= 23/2; $line++) {
       $l2 = $pgtext->[$line + 1];
       $l2 =~ s#(^ +| +$)##g;
       $l2 =~ s#  +# #g;
@@ -2057,9 +2065,12 @@ sub ParseDescPage {
 
          PageToLatin($page, $sub);
          # TODO: multiple sub-pages may belong to same title, but have no date
+         #       caution: multiple pages may also have the same title, but describe different instances of a series
+
+         # TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
 
          if (ParseDescDate($page, $sub, $slot_ref)) {
-            $head = ParseDescDateTitle($page, $sub, $slot_ref);
+            $head = ParseDescTitle($page, $sub, $slot_ref);
 
             $foot = ParseFooterByColor($page, $sub);
             $foot2 = ParseFooter($page, $sub, $head);

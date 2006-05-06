@@ -5,7 +5,7 @@
 # starting 02:35, i.e. on a new day. (Note VPS labels have been
 # removed for this test)
 #
-# $Id: ovdate1.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+# $Id: ovdate1.in,v 1.2 2006/05/05 20:17:06 tom Exp $
 #
 $VbiCaptureTime = 1146300143;
 $PgCnt{0x303} = 2;
@@ -67,5 +67,35 @@ $Pkg{0x304|(0x0000<<12)} =
   undef,
   "      \x05\x18VPS\x07                            ",
   "\x04\x1D\x07300 <-          ab\x0705.55\x07Uhr -> 305\x07 ",
+];
+$PgCnt{0x310} = 5;
+$PgSub{0x310} = 0;
+$PgLang{0x310} = 1;
+$Pkg{0x310|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03ZDFtext\x02Mo\x0201.05.06\x0320:42:56",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07                        ",
+  "\x04\x1D\x07 Programm  Montag, 1.Mai             ",
+  "                       \x05\x181D102\x18010506\x18AF",
+  "\x0722.05\x05\x052145\x07\x07heute-journal\x03UT\x07.....\x07315",
+  "\x0622.18\x05\x052158\x06\x06Wetter\x03UT                 ",
+  "\x0722.20\x05\x052200\x07\x07Showtime                  ",
+  "              Actionkom|die USA/2002    ",
+  "            \x03\x03UT\x07...................\x07322",
+  "\x0623.50\x05\x052330\x06\x06heute                     ",
+  "\x0723.55\x05\x052335\x07\x07Eierdiebe                 ",
+  "              Schwarze Kom|die          ",
+  "              D/2002 ...............\x07323",
+  "\x05\x05020506\x07                               ",
+  "\x0601.15\x05\x050055\x06\x06heute ................\x06111",
+  "\x0701.20\x05\x050100\x07\x07neues                     ",
+  "              Sex und Spiele            ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0701.50\x07Uhr -> 304\x07 ",
 ];
 

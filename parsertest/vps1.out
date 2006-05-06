@@ -55,12 +55,12 @@
 	<title>Das Wetter im Ersten</title>
 </programme>
 
-<programme start="20060430210000 +0000" stop="20060430211500 +0000" channel="???">
+<programme start="20060430210000 +0000" stop="20060430211500 +0000" pdc-start="20060430225900 +0200" channel="???">
 	<title>Sondersendung zum Tod</title>
 	<sub-title>Sondersendung zum Tod von Paul Spiegel</sub-title>
 </programme>
 
-<programme start="20060430211500 +0000" stop="20060430214500 +0000" channel="???">
+<programme start="20060430211500 +0000" stop="20060430214500 +0000" pdc-start="20060430230000 +0200" channel="???">
 	<title>ttt - titel thesen</title>
 	<sub-title>ttt - titel thesen temperamente</sub-title>
 	<desc>(teletext 328)</desc>
@@ -69,37 +69,37 @@
 	</star-rating>
 </programme>
 
-<programme start="20060430214500 +0000" stop="20060430220000 +0000" channel="???">
+<programme start="20060430214500 +0000" stop="20060430220000 +0000" pdc-start="20060430233000 +0200" channel="???">
 	<title>Bericht vom Parteitag</title>
 	<sub-title>Bericht vom Parteitag Die Linkspartei.PDS</sub-title>
 </programme>
 
-<programme start="20060430220000 +0000" stop="20060430234000 +0000" channel="???">
+<programme start="20060430220000 +0000" stop="20060430234000 +0000" pdc-start="20060430234500 +0200" channel="???">
 	<title>Das Fest</title>
 	<sub-title>Das Fest Spielfilm, DK 1997</sub-title>
 	<desc>(teletext 329)</desc>
 </programme>
 
-<programme start="20060430234000 +0000" stop="20060430235000 +0000" channel="???">
+<programme start="20060430234000 +0000" stop="20060430235000 +0000" pdc-start="20060501012500 +0200" channel="???">
 	<title>Tagesschau</title>
 </programme>
 
-<programme start="20060430235000 +0000" stop="20060501011500 +0000" channel="???">
+<programme start="20060430235000 +0000" stop="20060501011500 +0000" pdc-start="20060501013500 +0200" channel="???">
 	<title>Frühling für Hitler</title>
 	<sub-title>Frühling für Hitler Spielfilm, USA 1967</sub-title>
 	<desc>(teletext 331)</desc>
 </programme>
 
-<programme start="20060501011500 +0000" stop="20060501020000 +0000" channel="???">
+<programme start="20060501011500 +0000" stop="20060501020000 +0000" pdc-start="20060501030000 +0200" channel="???">
 	<title>Presseclub</title>
 </programme>
 
-<programme start="20060501020000 +0000" stop="20060501023000 +0000" channel="???">
+<programme start="20060501020000 +0000" stop="20060501023000 +0000" pdc-start="20060501034500 +0200" channel="???">
 	<title>ttt - titel thesen</title>
 	<sub-title>ttt - titel thesen temperamente</sub-title>
 </programme>
 
-<programme start="20060501023000 +0000" stop="20060501024500 +0000" channel="???">
+<programme start="20060501023000 +0000" stop="20060501024500 +0000" pdc-start="20060501041500 +0200" channel="???">
 	<title>Die schönsten Bahnstrecken</title>
 	<sub-title>Die schönsten Bahnstrecken Deutschlands ICE: Bonn - Berlin</sub-title>
 </programme>
@@ -108,7 +108,7 @@
 	<title>Tagesschau</title>
 </programme>
 
-<programme start="20060501025000 +0000" channel="???">
+<programme start="20060501025000 +0000" stop="20060501033000 +0000" channel="???">
 	<title>Weltspiegel</title>
 </programme>
 </tv>
