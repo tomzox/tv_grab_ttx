@@ -1,0 +1,39 @@
+#!/usr/bin/perl -w
+#
+# Overview pages uses the full page, i.e. down to line 23. The last
+# line includes a reference to the following page appended to a title.
+#
+# $Id: ovlist2.in,v 1.1 2006/05/07 12:04:58 tom Exp $
+#
+$VbiCaptureTime = 1146914553;
+$PgCnt{0x319} = 7;
+$PgSub{0x319} = 0;
+$PgLang{0x319} = 1;
+$Pkg{0x319|(0x0000<<12)} =
+[
+  "G\x02\x15\x15\x15\x15\x15G319\x06KI.KA-Text\x0706.05.06\x0313:21:38",
+  "\x04\x1D\x17 `p0 \x17`  `       0                   ",
+  "\x04\x1D\x17hwog4\x17\"4 6p 88\$8\$u0`,04h\x03\x02DIENSTAG   ",
+  "\x04\x1D\x17*?y{\%\x12 i:j 55#45 5jh#55j\x03\x0209.05.2006 ",
+  "\x04\x1D\x17 \"#! \x12  \% # !# \"!!\" #!\"! \x01           ",
+  "                                        ",
+  "\x0706.00\x16/\x07Tolle Sachen                   ",
+  "\x0206.05\x16/\x02logo!                          ",
+  "\x0706.15\x16/\x07Scooby-Doo, wo bist du? (25)   ",
+  "\x0206.40\x16/\x02Landmaus und Stadtmaus (11)    ",
+  "\x0707.05\x13/\x07Pingu (76)                     ",
+  "\x0207.10\x13/\x02TROTRO (34 & 35 & 36)          ",
+  "\x0707.20\x13/\x07Angelina Ballerina (5)         ",
+  "\x0207.30\x13/\x02Clifford, der kleine rote Hund ",
+  "\x0707.55\x13/\x07Paradiso (3)                   ",
+  "\x0208.00\x13/\x02Sesamstra~e                    ",
+  "\x0708.30\x13/\x07Raumfahrer Jim (19)            ",
+  "\x0208.40\x13/\x02MUSIK BOXX                     ",
+  "\x0708.45\x13/\x07Kleiner Roter Traktor (8)      ",
+  "\x0208.55\x13/\x02Der Kleine B{r (78)            ",
+  "\x0709.00\x13/\x07Au Schwarte! (23)              ",
+  "\x0209.25\x13/\x02TANZALARM!                     ",
+  "\x0709.35\x13/\x07Franklin (46)                  ",
+  "\x0209.45\x13/\x02Dragon (7)     \x04\x1D\x07Weiter   >>> ",
+];
+

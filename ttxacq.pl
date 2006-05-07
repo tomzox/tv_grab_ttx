@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.4 2006/05/06 16:45:27 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.5 2006/05/07 15:47:31 tom Exp $
 #
 
 use POSIX;
@@ -820,6 +820,7 @@ sub ParseFooter {
 # Try to identify footer lines by a different background color
 # - bg color is changed by first changing the fg color (codes 0x0-0x7),
 #   then switching copying fg over bg color (code 0x1D)
+#
 sub ParseFooterByColor {
    my ($page, $sub) = @_;
    my $handle;
@@ -860,8 +861,7 @@ sub ParseFooterByColor {
    }
 
    # count how many consecutive lines have this color
-   # FIXME allow also use of two different colors in the middle and different ones for footer
-   # FIXME: skip only one color? (i.e. until first color change)
+   # FIXME allow also use of several different colors in the middle and different ones for footer
    my $max_count = 0;
    my $count = 0;
    for ($line = 4; $line <= 23; $line++) {
@@ -890,13 +890,66 @@ sub ParseFooterByColor {
 }
 
 # ------------------------------------------------------------------------------
+# Remove garbage from line end in overview title lines
+# - KiKa sometimes uses the complete page for the overview and includes
+#   the footer text at the right side on a line used for the overview,
+#   separated by using a different background color
+#   " 09.45 / Dragon (7)        Weiter   >>> " (line #23)
+# - note the cases with no text before the page ref is handled b the
+#   regular footer detection
+#
+sub RemoveTrailingPageFooter {
+   my ($foo, $title_off) = @_;
+
+   # look for a page reference or ">>" at line end
+   if ($_[0] =~ m#(.*[^[:alnum:]])([1-8][0-9][0-9]|\>{1,4})[^\x1D\x21-\xFF]*$#) {
+      my $ref_off = length($1);
+      # check if the background color is changed
+      if (substr($_[0], 0, $ref_off) =~ m#(.*)\x1D[^\x1D]+$#) {
+         $ref_off = length($1);
+         # determine the background color of the reference (i.e. last used FG color before 1D)
+         my $ref_col = 7;
+         if (substr($_[0], 0, $ref_off) =~ m#(.*)([\x00-\x07\x10-\x17])[^\x00-\x07\x10-\x17\x1D]*$#) {
+            $ref_col = ord($2);
+         }
+         #print "       REF OFF:$ref_off COL:$ref_col\n";
+         # determine the background before the reference
+         my $matched = 0;
+         my $txt_off = $ref_off;
+         if (substr($_[0], 0, $ref_off) =~ m#(.*)\x1D[^\x1D]+$#) {
+            my $tmp_off = length($1);
+            if (substr($_[0], 0, $tmp_off) =~ m#(.*)([\x00-\x07\x10-\x17])[^\x00-\x07\x10-\x17\x1D]*$#) {
+               my $txt_col = ord($2);
+               #print "       TXTCOL:$txt_col\n";
+               # check if there's any text with this color
+               if (substr($_[0], $tmp_off, $ref_off) =~ m#[\x21-\xff]#) {
+                  $matched = ($txt_col != $ref_col);
+                  $txt_off = $tmp_off;
+               }
+            }
+         }
+         # check for text at the default BG color (unless ref. has default too)
+         if ( !$matched && ($ref_col != 7) &&
+              (substr($_[0], 0, $txt_off) =~ m#[\x21-\xff]#) ) {
+            $matched = 1;
+            #print "       DEFAULT TXTCOL:7\n";
+         }
+         if ($matched) {
+            print "OV removing trailing page ref\n" if $opt_debug;
+            substr($_[0], $ref_off) = " " x (length($_[0]) - $ref_off);
+         }
+      }
+   }
+}
+
+# ------------------------------------------------------------------------------
 # Retrieve programme entries from an overview page
 # - the layout has already been determined in advance, i.e. we assume that we
 #   have a tables with strict columns for times and titles; rows that don't
 #   have the expected format are skipped (normally only header & footer)
 #
 sub ParseOvList {
-   my ($page, $sub, $pgfmt, $pgdate) = @_;
+   my ($page, $sub, $foot_line, $pgfmt, $pgdate) = @_;
    my ($hour, $min, $title, $is_tip);
    my $line;
    my $new_title;
@@ -906,18 +959,23 @@ sub ParseOvList {
    my @Slots = ();
 
    my ($time_off, $vps_off, $title_off, $subt_off) = split(",", $pgfmt);
-   my $pgtext = $PageText{$page | ($sub << 12)};
    my $pgctrl = $PageCtrl{$page | ($sub << 12)};
 
    for ($line = 1; $line <= 23; $line++) {
-      $_ = $pgtext->[$line];
+      # note: use text including control-characters, because the next 2 steps require these
+      $_ = $pgctrl->[$line];
 
+      if ($line >= 23) {
+         RemoveTrailingPageFooter($_);
+      }
       # extract and remove VPS labels
       # (labels not asigned here since we don't know yet if a new title starts in this line)
       $vps_data->{new_vps_time} = 0;
-      if ($pgctrl->[$line] =~ m#[\x05\x18]+ *[^\x00-\x20]#) {
-         ParseVpsLabel($_, $pgctrl->[$line], $vps_data, 0);
+      if (m#[\x05\x18]+ *[^\x00-\x20]#) {
+         ParseVpsLabel($_, $vps_data, 0);
       }
+      # remove remaining control characters
+      s#[\x00-\x1F\x7F]# #g;
 
       $new_title = 0;
       if ($vps_off >= 0) {
@@ -984,6 +1042,9 @@ sub ParseOvList {
 
       } elsif ($in_title) {
 
+         # stop appending subtitles before page footer ads
+         last if $line > $foot_line;
+
          $slot->{vps_time} = $vps_data->{vps_time} if $vps_data->{new_vps_time};
 
          # check if last line specifies and end time
@@ -1048,11 +1109,11 @@ sub ParseOvList {
 #   or conceal character in the line before calling this function
 #
 sub ParseVpsLabel {
-   my ($foo, $pgctrl, $vps_data, $is_desc) = @_;
+   my ($foo, $vps_data, $is_desc) = @_;
 
    # time
    # discard any concealed/magenta labels which follow
-   if ($pgctrl =~ m#^(.*)([\x05\x18]+(VPS[\x05\x18 ]+)?(\d{4})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
+   if ($_[0] =~ m#^(.*)([\x05\x18]+(VPS[\x05\x18 ]+)?(\d{4})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
       $vps_data->{vps_time} = $4;
       $vps_data->{new_vps_time} = 1;
       # blank out the same area in the text-only string
@@ -1060,7 +1121,7 @@ sub ParseVpsLabel {
       print "VPS time found: $vps_data->{vps_time}\n" if $opt_debug
 
    # CNI and date "1D102 120406 F9" (ignoring checksum)
-   } elsif ($pgctrl =~ m#^(.*)([\x05\x18]+([0-9A-F]{2}\d{3})[\x05\x18 ]+(\d{6})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
+   } elsif ($_[0] =~ m#^(.*)([\x05\x18]+([0-9A-F]{2}\d{3})[\x05\x18 ]+(\d{6})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
       my $cni_str = $3;
       $vps_data->{vps_date} = $4;
       $vps_data->{new_vps_date} = 1;
@@ -1069,7 +1130,7 @@ sub ParseVpsLabel {
       printf("VPS date and CNI: 0x%X, %d\n", $vps_data->{vps_cni}, $vps_data->{vps_date}) if $opt_debug
 
    # date
-   } elsif ($pgctrl =~ m#^(.*)([\x05\x18]+(\d{6})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
+   } elsif ($_[0] =~ m#^(.*)([\x05\x18]+(\d{6})([\x05\x18 ]+[\dA-Fs]*)*([\x00-\x04\x06\x07]|$))#) {
       $vps_data->{vps_date} = $3;
       $vps_data->{new_vps_date} = 1;
       substr($_[0], length($1), length($2), " " x length($2));
@@ -1077,13 +1138,13 @@ sub ParseVpsLabel {
 
    # end time (RTL special - not standardized)
    } elsif (!$is_desc &&
-            $pgctrl =~ m#^(.*)([\x05\x18]+(\d{2}[.:]\d{2}) oo *([\x00-\x04\x06\x07]|$))#) {
+            $_[0] =~ m#^(.*)([\x05\x18]+(\d{2}[.:]\d{2}) oo *([\x00-\x04\x06\x07]|$))#) {
       # detected by the OV parser without evaluating the conceal code
       #$vps_data->{page_end_time} = $3;
       #print "VPS(pseudo) page end time: $vps_data->{page_end_time}\n" if $opt_debug
 
    # "VPS" marker string
-   } elsif ($pgctrl =~ m#^(.*)([\x05\x18][\x05\x18 ]*VPS *([\x00-\x04\x06\x07]|$))#) {
+   } elsif ($_[0] =~ m#^(.*)([\x05\x18][\x05\x18 ]*VPS *([\x00-\x04\x06\x07]|$))#) {
       substr($_[0], length($1), length($2), " " x length($2));
 
    } else {
@@ -1091,7 +1152,7 @@ sub ParseVpsLabel {
 
       # replace all concealed text with blanks (may also be non-VPS related, e.g. HR3: "Un", "Ra" - who knows what this means to tell us)
       # FIXME text can also be concealed by setting fg := bg (e.g. on desc pages of MDR)
-      if ($pgctrl =~ m#^(.*)(\x18[^\x00-\x07\x10-\x17]*)#) {
+      if ($_[0] =~ m#^(.*)(\x18[^\x00-\x07\x10-\x17]*)#) {
          substr($_[0], length($1), length($2), " " x length($2));
       }
    }
@@ -1166,7 +1227,7 @@ sub ParseTrailingFeat {
 
    # teletext reference
    # these are always right-most, so parse these first and outside of the loop
-   if ($_[0] =~ s#( \.+|\.* +|\.\.+|\.+\>|\>\>?|\-\-?\>)([1-8][0-9][0-9]) *$##) {
+   if ($_[0] =~ s#( \.+|\.\.+|\.+\>|\>\>?|\-\-?\>|\>{0,4} +|\.* +)([1-8][0-9][0-9]) {0,3}$##) {
       my $ref = $2;
       $slot->{ttx_ref} = ((ord(substr($ref, 0, 1)) - 0x30)<<8) |
                              ((ord(substr($ref, 1, 1)) - 0x30)<<4) |
@@ -1218,7 +1279,6 @@ sub ParseTrailingFeat {
 # 
 sub ParseOv {
    my($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot1, $prev_slot2) = @_;
-   my ($head, $foot);
    my ($day_of_month, $month, $year);
    my @Slots;
 
@@ -1226,7 +1286,9 @@ sub ParseOv {
 
    PageToLatin($page, $sub);
 
-   @Slots = ParseOvList($page, $sub, $fmt, $pgdate);
+   my $foot = ParseFooterByColor($page, $sub);
+
+   @Slots = ParseOvList($page, $sub, $foot, $fmt, $pgdate);
    if ($#Slots >= 0) {
       ParseOvHeaderDate($page, $sub, $pgdate);
       if (CalculateDates($pgdate, $prev_pgdate, $prev_slot1, $prev_slot2, \@Slots) == 0) {
@@ -1588,7 +1650,7 @@ sub ExportTitle {
       # convert all-upper-case titles to lower-case
       # (unless only one consecutive letter, e.g. movie "K2" or "W.I.T.C.H.")
       # TODO move this into separate post-processing stage; make statistics for all titles first
-      if ( ($title !~ m#[[:lower:]]#) && ($title =~ m#[[:upper]]{2}#) ) {
+      if ( ($title !~ m#[[:lower:]]#) && ($title =~ m#[[:upper:]]{2}#) ) {
          $title = lc($title);
       }
       Latin1ToXml($title);
@@ -1990,20 +2052,20 @@ sub ParseDescContent {
    my $vps_data = {};
    my $line;
 
-   my $pgtext = $PageText{$page | ($sub << 12)};
    my $pgctrl = $PageCtrl{$page | ($sub << 12)};
    my $is_nl = 0;
    my $desc = "";
 
    for ($line = $head; $line <= $foot; $line++) {
-      $_ = $pgtext->[$line];
+      $_ = $pgctrl->[$line];
 
       # TODO parse features behind date, title or subtitle
 
       # extract and remove VPS labels and all concealed text
-      if ($pgctrl->[$line] =~ m#[\x05\x18]#) {
-         ParseVpsLabel($_, $pgctrl->[$line], $vps_data, 1);
+      if (m#[\x05\x18]#) {
+         ParseVpsLabel($_, $vps_data, 1);
       }
+      s#[\x00-\x1F\x7F]# #g;
 
       # remove VPS time and date labels
       s#^ +[0-9A-F]{2}\d{3} (\d{2})(\d{2})(\d{2}) [0-9A-F]{2} *$##;

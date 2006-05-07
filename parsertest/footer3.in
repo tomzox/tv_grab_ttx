@@ -1,0 +1,40 @@
+#!/usr/bin/perl -w
+#
+# Test footer detection in overview pages with double-height lines
+# Yet again, the content of the last line has been shifted so that
+# it's aligned with the title column.  Note the overview layout has
+# not been altered, i.e. the gap before the last title is original.
+#
+# $Id: footer3.in,v 1.1 2006/05/07 15:48:19 tom Exp $
+#
+$VbiCaptureTime = 1147008173;
+$PgCnt{0x304} = 2;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x01VOX-TEXT  \x07So 7 Mai\x0715:22:44",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Seitensprung-  \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Garantie....700\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        So. 07.05.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x01      Der erotische Film             ",
+  "\x07\x1D\x0100:10 Rendezvous der Sinne.......701 ",
+  "\x07\x1D\x01      (Erotik, F 2001)               ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0001:50 Mimic                          ",
+  "\x07\x1D\x00      Angriff der Killerinsekten.336 ",
+  "\x07\x1D\x00      (Horror-Thriller, USA 1997)    ",
+  "\x07\x1D\x0103:35 Kl. L}gen unter Freunden...337 ",
+  "\x07\x1D\x01      (Drama, USA 1997)              ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0005:05 VOXTOURS: Dom. Republik        ",
+  "\x07\x1D\x00      Das Reisemagazin...........338 ",
+  "\x07\x1D\x0105:25 WOLKENLOS: Sri Lanka           ",
+  "\x07\x1D\x01      Das Urlaubsmagazin.........339 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0005:50 Rave around the World......340 ",
+  "\x01\x1D\x07\x0D     Singles SMS-Kontakte    >597   ",
+  "                                        ",
+];

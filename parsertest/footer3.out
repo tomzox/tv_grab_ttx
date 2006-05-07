@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="???">
+	<display-name>???</display-name>
+</channel>
+
+<programme start="20060506221000 +0000" stop="20060506235000 +0000" channel="???">
+	<title>Rendezvous der Sinne</title>
+	<sub-title>Rendezvous der Sinne (Erotik, F 2001)</sub-title>
+	<desc>(teletext 701)</desc>
+</programme>
+
+<programme start="20060506235000 +0000" stop="20060507013500 +0000" channel="???">
+	<title>Mimic</title>
+	<sub-title>Mimic Angriff der Killerinsekten.336 (Horror-Thriller, USA 1997)</sub-title>
+</programme>
+
+<programme start="20060507013500 +0000" stop="20060507030500 +0000" channel="???">
+	<title>Kl. Lügen unter Freunden</title>
+	<sub-title>Kl. Lügen unter Freunden (Drama, USA 1997)</sub-title>
+	<desc>(teletext 337)</desc>
+</programme>
+
+<programme start="20060507030500 +0000" stop="20060507032500 +0000" channel="???">
+	<title>VOXTOURS: Dom. Republik</title>
+	<sub-title>VOXTOURS: Dom. Republik Das Reisemagazin</sub-title>
+	<desc>(teletext 338)</desc>
+</programme>
+
+<programme start="20060507032500 +0000" stop="20060507035000 +0000" channel="???">
+	<title>WOLKENLOS: Sri Lanka</title>
+	<sub-title>WOLKENLOS: Sri Lanka Das Urlaubsmagazin</sub-title>
+	<desc>(teletext 339)</desc>
+</programme>
+
+<programme start="20060507035000 +0000" channel="???">
+	<title>Rave around the World</title>
+	<desc>(teletext 340)</desc>
+</programme>
+</tv>

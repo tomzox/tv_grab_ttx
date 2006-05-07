@@ -1,0 +1,107 @@
+#!/usr/bin/perl -w
+#
+# Test footer detection in overview pages. Make sure footers are
+# not appended to titles or subtitles. This is never the case if
+# there's an empty line inbetween, so we don't test this here.
+# The 1st is a farily simple case since the footer lines start
+# inside the time column of the overview table, so they are
+# ignored by the overview parser anyways, even if not detected
+# as footer.  Hence there's a faked 2nd example where the start
+# of the footer text is shifted to the title column. The 3rd is
+# fake too, since the lines are not from an overview page. Note
+# in the 3rd example there's 2 different background colors and
+# different formats.
+#
+# $Id: footer2.in,v 1.1 2006/05/07 15:48:19 tom Exp $
+#
+$VbiCaptureTime = 1146685197;
+$PgCnt{0x302} = 7;
+$PgSub{0x302} = 2;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0001<<12)} =
+[
+  "I\x15\x02P\x15\x15IG302\x03  SAT.1  \x0703.05.06 \x0321:39:18",
+  "\x17  ws17#5#7!k  \x04\x1D\x07So telefonieren Sie \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x07immer g}nstig...620 \x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18030506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0412.00  Sat.1 am Mittag          >323 ",
+  "\x07\x1D\x0113.00  Britt: Britt deckt auf:       ",
+  "\x07\x1D\x01       Heimliche Sex-Abenteuer  >365 ",
+  "\x07\x1D\x0414.00  Zwei bei Kallwass        >367 ",
+  "\x07\x1D\x0115.00  Richterin Salesch        >368 ",
+  "\x07\x1D\x0416.00  Richter Hold             >369 ",
+  "\x07\x1D\x0116.58  Sat.1 NEWS                    ",
+  "\x07\x1D\x0417.00  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Das        ",
+  "\x07\x1D\x04       h{ssliche Entlein        >371 ",
+  "\x07\x1D\x0117.30  Sat.1 am Abend           >322 ",
+  "\x07\x1D\x0418.00  Len~en & Partner: Die         ",
+  "\x07\x1D\x04       s}ndhafte Sekret{rin     >372 ",
+  "\x07\x1D\x0118.30  Sat.1 NEWS                    ",
+  "\x07\x1D\x0418.47  SAT.1 Wetter             >150 ",
+  "\x07\x1D\x0118.50  Test programme 1         >324 ",
+  "\x01\x1D\x07Frisch verliebt mit SAT.1........850 ",
+  "\x01\x1D\x07ALG 2: Haus verkaufen? Klagen!...609 ",
+  "\x01\x1D\x07Behinderte: Rabatt dank Ausweis..607 ",
+];
+$PgCnt{0x303} = 7;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03  SAT.1  \x0703.05.06 \x0321 39:45",
+  "\x17  ws17#5#7!k  \x04\x1D\x07DSL flat+Tel flat   \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x01nur 44,85EUR\x07>>> 626\x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18030506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0419.15  Verliebt in Berlin:           ",
+  "\x07\x1D\x04       Folge 299                >590 ",
+  "\x07\x1D\x0119.45  K 11 - Kommissare im          ",
+  "\x07\x1D\x01       Einsatz: M|rderische          ",
+  "\x07\x1D\x01       Besessenheit             >374 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0420.15  Die Hit Giganten -            ",
+  "\x07\x1D\x04       Fu~ballhits              >334 ",
+  "\x07\x1D\x0122.15  Wolffs Revier: H{rtetest >346 ",
+  "\x07\x1D\x0423.15  Test program-                 ",
+  "\x07\x1D\x04       me 2                     >348 ",
+  "\x07\x1D\x01    \x01\x1D\x07Frisch verliebt ..........850 ",
+  "\x01\x1D\x07       ALG 2: Haus verkaufen? ...609 ",
+  "\x01\x1D\x07       Behinderte: Rabatt .......607 ",
+];
+$PgCnt{0x304} = 7;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x03  SAT.1  \x0703.05.06 \x0321 39:45",
+  "\x17  ws17#5#7!k  \x05\x1D\x07\"Verliebt in Berlin\"  ",
+  "\x17  ,,\%-\$- \%(*  \x05\x1D\x07Helfen Sie Lisa  640  ",
+  "\x01\x1D\x07   HEUTE    \x15####################### ",
+  "\x07\x1D\x00\x05\x181D257\x18040506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0400.15  Sat.1 NEWS - Die Nacht        ",
+  "\x07\x1D\x0100.45  QUIZ NIGHT               >375 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0402.05  Frag doch die Sterne          ",
+  "\x07\x1D\x0103.05  Richterin Salesch        >368 ",
+  "\x07\x1D\x0403.55  Richter Hold             >369 ",
+  "\x07\x1D\x0104.45  Test programme 3:             ",
+  "\x07\x1D\x01       Subtitle of Test 3            ",
+  "                         \x01\x1D\x07Movies >310 ",
+  "                         \x01\x1D\x07Serien >340 ",
+  "                         \x01\x1D\x07Shows  >360 ",
+  "\x04\x1D\x07Finden Sie Ihre bessere H{lfte...850 ",
+];

@@ -1,0 +1,40 @@
+#!/usr/bin/perl -w
+#
+# Test footer detection in overview pages which use different
+# background colors for different titles. The last title must
+# not be stripped as footer (esp. dangerous case since the line
+# contains a page reference)
+#
+# $Id: footer4.in,v 1.1 2006/05/07 15:48:19 tom Exp $
+#
+$VbiCaptureTime = 1147009167;
+$PgCnt{0x328} = 3;
+$PgSub{0x328} = 0;
+$PgLang{0x328} = 4;
+$Pkg{0x328|(0x0000<<12)} =
+[
+  "PI\x15\x15\x15\x15\x15I328\x03 TV5\x07Text\x07\x1C07.05.06 15:39:20",
+  "\x06\x1D\x14|4t`4<,h0x`,0thh,0<\$               \x0A ",
+  "\x06\x1D\x14j *? s9j+k*p\%5kjp\%w0  \x04  dimanche 07 ",
+  "\x16\x1D\x14                      \x04     mai 2006 ",
+  "\x16sss\x03AFRIQUE\x16sssssssssssssssssssssssssss",
+  "\x04\x1D\x06                                     ",
+  "\x06\x1D\x0404.30  5 SUR 5                       ",
+  "\x04\x1D\x0305.00  TV5MONDE LE JOURNAL           ",
+  "\x06\x1D\x0405.27  PALACES DU MONDE, LES GENS... ",
+  "\x06\x1D\x0405.55  LE NIDOUILLE                  ",
+  "\x07\x1D\x0406.02  BONJOUR MADAME CROQUE-CERISE  ",
+  "\x07\x1D\x04       Jeunesse                      ",
+  "\x07\x1D\x0406.28  BONJOUR MADAME CROQUE-CERISE  ",
+  "\x07\x1D\x04       Jeunesse                      ",
+  "\x06\x1D\x0406.57  PETIT VAMPIRE                 ",
+  "\x06\x1D\x0407.09  PETIT VAMPIRE                 ",
+  "\x04\x1D\x0307.30  JT RADIO CANADA               ",
+  "\x04\x1D\x0308.00  TV5MONDE L'INFO               ",
+  "\x07\x1D\x0408.02  LES AVENTURES DE WAMBI        ",
+  "\x07\x1D\x04       Fiction - #106                ",
+  "\x06\x1D\x0408.19  JOUONS                        ",
+  "\x06\x1D\x0408.33  C'EST PAS SORCIER             ",
+  "\x04\x1D\x0309.00  TV5MONDE LE JOURNAL           ",
+  "\x06\x1D\x0409.16  LA TERRE ET LE SACRE   \x01> 331 ",
+];
