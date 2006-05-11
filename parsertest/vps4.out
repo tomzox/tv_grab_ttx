@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
 <tv>
-<channel id="???">
-	<display-name>???</display-name>
+<channel id="MDR">
+	<display-name>MDR</display-name>
 </channel>
 
-<programme start="20060429222500 +0000" stop="20060430001000 +0000" pdc-start="20060430003000 +0200" channel="???">
+<programme start="20060429222500 +0000" stop="20060430001000 +0000" pdc-start="20060430003000 +0200" channel="MDR">
 	<title>K 2</title>
 	<sub-title>K 2 Das letzte Abenteuer Spielfilm (GBR 1990)</sub-title>
 	<!-- TTX 317 -->
@@ -16,29 +16,29 @@ Der ehrgeizige Taylor und der introvertierte Harold bekommen die Chance, an eine
 	<subtitles type="teletext"/>
 </programme>
 
-<programme start="20060430001000 +0000" stop="20060430013500 +0000" pdc-start="20060430021500 +0200" channel="???">
+<programme start="20060430001000 +0000" stop="20060430013500 +0000" pdc-start="20060430021500 +0200" channel="MDR">
 	<title>Sagarmatha -</title>
 	<sub-title>Sagarmatha - Wagnis im ewigen Eis Spielfilm (CSSR/NEP 1988)</sub-title>
 	<desc>(teletext 320)</desc>
 </programme>
 
-<programme start="20060430013500 +0000" stop="20060430015000 +0000" pdc-start="20060430034000 +0200" channel="???">
+<programme start="20060430013500 +0000" stop="20060430015000 +0000" pdc-start="20060430034000 +0200" channel="MDR">
 	<title>Tagesthemen</title>
 </programme>
 
-<programme start="20060430015000 +0000" stop="20060430022000 +0000" pdc-start="20060430035500 +0200" channel="???">
+<programme start="20060430015000 +0000" stop="20060430022000 +0000" pdc-start="20060430035500 +0200" channel="MDR">
 	<title>sachsenspiegel</title>
 </programme>
 
-<programme start="20060430022000 +0000" stop="20060430025000 +0000" pdc-start="20060430042500 +0200" channel="???">
+<programme start="20060430022000 +0000" stop="20060430025000 +0000" pdc-start="20060430042500 +0200" channel="MDR">
 	<title>sachsen-anhalt heute</title>
 </programme>
 
-<programme start="20060430025000 +0000" stop="20060430032000 +0000" pdc-start="20060430045500 +0200" channel="???">
+<programme start="20060430025000 +0000" stop="20060430032000 +0000" pdc-start="20060430045500 +0200" channel="MDR">
 	<title>thüringen journal</title>
 </programme>
 
-<programme start="20060430032000 +0000" stop="20060430035500 +0000" pdc-start="20060430052000 +0200" channel="???">
+<programme start="20060430032000 +0000" stop="20060430035500 +0000" pdc-start="20060430052000 +0200" channel="MDR">
 	<title>Rundflug Thüringen</title>
 </programme>
 </tv>

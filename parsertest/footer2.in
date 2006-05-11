@@ -12,13 +12,13 @@
 # in the 3rd example there's 2 different background colors and
 # different formats.
 #
-# $Id: footer2.in,v 1.1 2006/05/07 15:48:19 tom Exp $
+# $Id: footer2.in,v 1.2 2006/05/07 18:21:10 tom Exp $
 #
 $VbiCaptureTime = 1146685197;
 $PgCnt{0x302} = 7;
-$PgSub{0x302} = 2;
+$PgSub{0x302} = 0;
 $PgLang{0x302} = 1;
-$Pkg{0x302|(0x0001<<12)} =
+$Pkg{0x302|(0x0000<<12)} =
 [
   "I\x15\x02P\x15\x15IG302\x03  SAT.1  \x0703.05.06 \x0321:39:18",
   "\x17  ws17#5#7!k  \x04\x1D\x07So telefonieren Sie \x1C ",

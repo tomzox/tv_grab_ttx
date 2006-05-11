@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
 <tv>
-<channel id="???">
-	<display-name>???</display-name>
+<channel id="ARD">
+	<display-name>ARD</display-name>
 </channel>
 
-<programme start="20060429160000 +0000" stop="20060429161000 +0000" channel="???">
+<programme start="20060429160000 +0000" stop="20060429161000 +0000" channel="ARD">
 	<title>Tagesschau</title>
 </programme>
 
-<programme start="20060429161000 +0000" stop="20060429164500 +0000" channel="???">
+<programme start="20060429161000 +0000" stop="20060429164500 +0000" channel="ARD">
 	<title>Sportschau</title>
 	<desc>(teletext 323)</desc>
 	<video>
@@ -17,7 +17,7 @@
 	</video>
 </programme>
 
-<programme start="20060429164500 +0000" stop="20060429174400 +0000" channel="???">
+<programme start="20060429164500 +0000" stop="20060429174400 +0000" channel="ARD">
 	<title>Harald Schmidt</title>
 	<desc>(teletext 324)</desc>
 	<audio>
@@ -29,7 +29,7 @@
 	</star-rating>
 </programme>
 
-<programme start="20060429174400 +0000" stop="20060429175000 +0000" channel="???">
+<programme start="20060429174400 +0000" stop="20060429175000 +0000" channel="ARD">
 	<title>Das Wetter</title>
 	<video>
 		<colour>no</colour>
@@ -39,7 +39,7 @@
 	</audio>
 </programme>
 
-<programme start="20060429175000 +0000" stop="20060429180000 +0000" channel="???">
+<programme start="20060429175000 +0000" stop="20060429180000 +0000" channel="ARD">
 	<title>Lotto</title>
 	<video>
 		<colour>no</colour>
@@ -49,13 +49,13 @@
 	</audio>
 </programme>
 
-<programme start="20060429180000 +0000" stop="20060429181500 +0000" channel="???">
+<programme start="20060429180000 +0000" stop="20060429181500 +0000" channel="ARD">
 	<title>Tagesschau</title>
 	<desc>(teletext 310)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
-<programme start="20060429181500 +0000" stop="20060429200000 +0000" channel="???">
+<programme start="20060429181500 +0000" stop="20060429200000 +0000" channel="ARD">
 	<title>Im Tal des Schweigens</title>
 	<sub-title>Im Tal des Schweigens Spielfilm, D 2004</sub-title>
 	<desc>(teletext 324)</desc>
@@ -65,21 +65,21 @@
 	</star-rating>
 </programme>
 
-<programme start="20060429200000 +0000" stop="20060429200400 +0000" channel="???">
+<programme start="20060429200000 +0000" stop="20060429200400 +0000" channel="ARD">
 	<title>Konzert in Stereo</title>
 	<audio>
 		<stereo>stereo</stereo>
 	</audio>
 </programme>
 
-<programme start="20060429200400 +0000" stop="20060429201000 +0000" channel="???">
+<programme start="20060429200400 +0000" stop="20060429201000 +0000" channel="ARD">
 	<title>Konzert in 2 mal Mono</title>
 	<audio>
 		<stereo>mono</stereo>
 	</audio>
 </programme>
 
-<programme start="20060429201000 +0000" channel="???">
+<programme start="20060429201000 +0000" channel="ARD">
 	<title>Wiederholung</title>
 </programme>
 </tv>

@@ -4,7 +4,11 @@
 # referring to the same day, divided by category.  In this case
 # the header date must not be overridden
 #
-# $Id: ovdate5.in,v 1.1 2006/05/01 18:38:08 tom Exp $
+# [Note that we currently don't support parsing such pages properly
+# since we assume the end time of each slot is defined by the start
+# of the next (e.g. "Film 1" in the example below runs 15:40-20:15)]
+#
+# $Id: ovdate5.in,v 1.2 2006/05/07 18:20:07 tom Exp $
 #
 $VbiCaptureTime = 1146397673;
 $PgCnt{0x303} = 6;
@@ -32,7 +36,7 @@ $Pkg{0x304|(0x0000<<12)} =
   " HEUTE                                  ",
   " SPIELFILME                             ",
   undef,
-  " 11:00   Film 1                         ",
-  " 20:00   Film 2                         ",
+  " 15:40   Film 1                         ",
+  " 20:15   Film 2                         ",
 ];
 

@@ -1,0 +1,128 @@
+#!/usr/bin/perl -w
+#
+# Overview is on pages with multiple subpages which all have the same content.
+# Should not include the same programme twice in the output.
+#
+# $Id: ovlist3.in,v 1.1 2006/05/07 19:08:53 tom Exp $
+#
+$VbiCaptureTime = 1146685197;
+$PgCnt{0x301} = 7;
+$PgSub{0x301} = 2;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0001<<12)} =
+[
+  "\x02\x15\x02P\x15\x15IG301\x03  SAT.1  \x0703.05.06 \x0321:39:18",
+  "\x17  ws17#5#7!k  \x04\x1D\x07Raus aus der K{lte? \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x07Ab in den S}den 400 \x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18030506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0405.10  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Schi-      ",
+  "\x07\x1D\x04       cke Schnitten - scharfe       ",
+  "\x07\x1D\x04       Typen                         ",
+  "\x07\x1D\x0105.35  BLITZ                         ",
+  "\x07\x1D\x0405.55  Sat.1-Fr}hst}cksfernse-       ",
+  "\x07\x1D\x04       hen                           ",
+  "\x07\x1D\x0109.00  SHOP TV                       ",
+  "\x07\x1D\x0410.00  Verliebt in Berlin:           ",
+  "\x07\x1D\x04       Folge 298                     ",
+  "\x07\x1D\x0110.30  Roseanne: K{se aus der        ",
+  "\x07\x1D\x01       Dose                          ",
+  "\x07\x1D\x0411.00  Richter Hold                  ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x07Herzklopfen auf Sat.1............850 ",
+  "\x01\x1D\x07Lust auf Winterurlaub? ......... 560 ",
+  "\x01\x1D\x07Hier k|nnte Ihre Werbung stehen! 879 ",
+];
+$PgCnt{0x301} = 7;
+$PgSub{0x301} = 2;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0002<<12)} =
+[
+  "\x02\x15IP\x15\x15IG301\x03  SAT.1  \x0703.05.06 \x0321:39:44",
+  "\x17  ws17#5#7!k  \x04\x1D\x03Schnellkredite f}r  \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x03Jedermann >>>   399 \x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18030506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0405.10  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Schi-      ",
+  "\x07\x1D\x04       cke Schnitten - scharfe       ",
+  "\x07\x1D\x04       Typen                         ",
+  "\x07\x1D\x0105.35  BLITZ                         ",
+  "\x07\x1D\x0405.55  Sat.1-Fr}hst}cksfernse-       ",
+  "\x07\x1D\x04       hen                           ",
+  "\x07\x1D\x0109.00  SHOP TV                       ",
+  "\x07\x1D\x0410.00  Verliebt in Berlin:           ",
+  "\x07\x1D\x04       Folge 298                     ",
+  "\x07\x1D\x0110.30  Roseanne: K{se aus der        ",
+  "\x07\x1D\x01       Dose                          ",
+  "\x07\x1D\x0411.00  Richter Hold                  ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x07Herzklopfen auf Sat.1............850 ",
+  "\x01\x1D\x07Lust auf Winterurlaub? ......... 560 ",
+  "\x01\x1D\x07Hier k|nnte Ihre Werbung stehen! 879 ",
+];
+$PgCnt{0x302} = 7;
+$PgSub{0x302} = 2;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0001<<12)} =
+[
+  "I\x15\x02P\x15\x15IG302\x03  SAT.1  \x0703.05.06 \x0321:39:18",
+  "\x17  ws17#5#7!k  \x04\x1D\x07So telefonieren Sie \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x07immer g}nstig...620 \x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18030506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0412.00  Sat.1 am Mittag               ",
+  "\x07\x1D\x0113.00  Britt: Britt deckt auf:       ",
+  "\x07\x1D\x01       Heimliche Sex-Abenteuer       ",
+  "\x07\x1D\x0414.00  Zwei bei Kallwass             ",
+  "\x07\x1D\x0115.00  Richterin Salesch             ",
+  "\x07\x1D\x0416.00  Richter Hold                  ",
+  "\x07\x1D\x0116.58  Sat.1 NEWS                    ",
+  "\x07\x1D\x0417.00  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Das        ",
+  "\x07\x1D\x04       h{ssliche Entlein             ",
+  "\x07\x1D\x0117.30  Sat.1 am Abend                ",
+  "\x07\x1D\x0418.00  Len~en & Partner: Die         ",
+  "\x07\x1D\x04       s}ndhafte Sekret{rin          ",
+  "\x07\x1D\x0118.30  Sat.1 NEWS                    ",
+  "\x07\x1D\x0418.47  SAT.1 Wetter                  ",
+  "\x07\x1D\x0118.50  BLITZ                         ",
+  "\x01\x1D\x07Frisch verliebt mit SAT.1........850 ",
+  "\x01\x1D\x07ALG 2: Haus verkaufen? Klagen!...609 ",
+  "\x01\x1D\x07Behinderte: Rabatt dank Ausweis..607 ",
+];
+$PgCnt{0x302} = 7;
+$PgSub{0x302} = 2;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0002<<12)} =
+[
+  "I\x15IP\x15\x15IG302\x03  SAT.1  \x0703.05.06 \x0321:39:44",
+  "\x17  ws17#5#7!k  \x04\x1D\x03PREMIERE            \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x031 Monat gratis! 688 \x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18030506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0412.00  Sat.1 am Mittag               ",
+  "\x07\x1D\x0113.00  Britt: Britt deckt auf:       ",
+  "\x07\x1D\x01       Heimliche Sex-Abenteuer       ",
+  "\x07\x1D\x0414.00  Zwei bei Kallwass             ",
+  "\x07\x1D\x0115.00  Richterin Salesch             ",
+  "\x07\x1D\x0416.00  Richter Hold                  ",
+  "\x07\x1D\x0116.58  Sat.1 NEWS                    ",
+  "\x07\x1D\x0417.00  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Das        ",
+  "\x07\x1D\x04       h{ssliche Entlein             ",
+  "\x07\x1D\x0117.30  Sat.1 am Abend                ",
+  "\x07\x1D\x0418.00  Len~en & Partner: Die         ",
+  "\x07\x1D\x04       s}ndhafte Sekret{rin          ",
+  "\x07\x1D\x0118.30  Sat.1 NEWS                    ",
+  "\x07\x1D\x0418.47  SAT.1 Wetter                  ",
+  "\x07\x1D\x0118.50  BLITZ                         ",
+  "\x01\x1D\x07Frisch verliebt mit SAT.1........850 ",
+  "\x01\x1D\x07ALG 2: Haus verkaufen? Klagen!...609 ",
+  "\x01\x1D\x07Behinderte: Rabatt dank Ausweis..607 ",
+];

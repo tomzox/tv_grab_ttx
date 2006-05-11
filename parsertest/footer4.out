@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
 <tv>
-<channel id="???">
-	<display-name>???</display-name>
+<channel id="TV5">
+	<display-name>TV5</display-name>
 </channel>
 
-<programme start="20060507023000 +0000" stop="20060507030000 +0000" channel="???">
+<programme start="20060507023000 +0000" stop="20060507030000 +0000" channel="TV5">
 	<title>5 sur 5</title>
 </programme>
 
-<programme start="20060507030000 +0000" stop="20060507032700 +0000" channel="???">
+<programme start="20060507030000 +0000" stop="20060507032700 +0000" channel="TV5">
 	<title>tv5monde le journal</title>
 </programme>
 
-<programme start="20060507032700 +0000" stop="20060507035500 +0000" channel="???">
+<programme start="20060507032700 +0000" stop="20060507035500 +0000" channel="TV5">
 	<title>palaces du monde, les gens...</title>
 </programme>
 
-<programme start="20060507035500 +0000" stop="20060507040200 +0000" channel="???">
+<programme start="20060507035500 +0000" stop="20060507040200 +0000" channel="TV5">
 	<title>le nidouille</title>
 </programme>
 
-<programme start="20060507040200 +0000" stop="20060507042800 +0000" channel="???">
+<programme start="20060507040200 +0000" stop="20060507042800 +0000" channel="TV5">
 	<title>bonjour madame croque-cerise</title>
 	<sub-title>BONJOUR MADAME CROQUE-CERISE Jeunesse</sub-title>
 </programme>
 
-<programme start="20060507042800 +0000" stop="20060507045700 +0000" channel="???">
+<programme start="20060507042800 +0000" stop="20060507045700 +0000" channel="TV5">
 	<title>bonjour madame croque-cerise</title>
 	<sub-title>BONJOUR MADAME CROQUE-CERISE Jeunesse</sub-title>
 </programme>
 
-<programme start="20060507045700 +0000" stop="20060507050900 +0000" channel="???">
+<programme start="20060507045700 +0000" stop="20060507050900 +0000" channel="TV5">
 	<title>petit vampire</title>
 </programme>
 
-<programme start="20060507050900 +0000" stop="20060507053000 +0000" channel="???">
+<programme start="20060507050900 +0000" stop="20060507053000 +0000" channel="TV5">
 	<title>petit vampire</title>
 </programme>
 
-<programme start="20060507053000 +0000" stop="20060507060000 +0000" channel="???">
+<programme start="20060507053000 +0000" stop="20060507060000 +0000" channel="TV5">
 	<title>jt radio canada</title>
 </programme>
 
-<programme start="20060507060000 +0000" stop="20060507060200 +0000" channel="???">
+<programme start="20060507060000 +0000" stop="20060507060200 +0000" channel="TV5">
 	<title>tv5monde l'info</title>
 </programme>
 
-<programme start="20060507060200 +0000" stop="20060507061900 +0000" channel="???">
+<programme start="20060507060200 +0000" stop="20060507061900 +0000" channel="TV5">
 	<title>les aventures de wambi</title>
 	<sub-title>LES AVENTURES DE WAMBI Fiction - é106</sub-title>
 </programme>
 
-<programme start="20060507061900 +0000" stop="20060507063300 +0000" channel="???">
+<programme start="20060507061900 +0000" stop="20060507063300 +0000" channel="TV5">
 	<title>jouons</title>
 </programme>
 
-<programme start="20060507063300 +0000" stop="20060507070000 +0000" channel="???">
+<programme start="20060507063300 +0000" stop="20060507070000 +0000" channel="TV5">
 	<title>c'est pas sorcier</title>
 </programme>
 
-<programme start="20060507070000 +0000" stop="20060507071600 +0000" channel="???">
+<programme start="20060507070000 +0000" stop="20060507071600 +0000" channel="TV5">
 	<title>tv5monde le journal</title>
 </programme>
 
-<programme start="20060507071600 +0000" channel="???">
+<programme start="20060507071600 +0000" channel="TV5">
 	<title>la terre et le sacre</title>
 	<desc>(teletext 331)</desc>
 </programme>

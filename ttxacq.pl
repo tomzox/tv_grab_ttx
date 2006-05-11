@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.5 2006/05/07 15:47:31 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.6 2006/05/11 19:38:53 tom Exp $
 #
 
 use POSIX;
@@ -1050,8 +1050,8 @@ sub ParseOvList {
          # check if last line specifies and end time
          # (usually last line of page)
          # TODO internationalize "bis", "Uhr"
-         if ( m#^ *(\(?bis |\- ?)(\d{1,2})[\.\:](\d{2})( Uhr| ?h)( |\)|$)# ||   # ARD,SWR()
-              m#^( *)(\d\d)[\.\:](\d\d) (oo)? *$# ) {                           # arte, RTL
+         if ( m#^ *(\(?bis |ab |\- ?)(\d{1,2})[\.\:](\d{2})( Uhr| ?h)( |\)|$)# ||   # ARD,SWR,BR-alpha
+              m#^( *)(\d\d)[\.\:](\d\d) (oo)? *$# ) {                               # arte, RTL
             $slot->{end_hour} = $2;
             $slot->{end_min} = $3;
             $new_title = 1;
@@ -1220,7 +1220,7 @@ my $FeatPat = "UT(( auf | )?[1-8][0-9][0-9])?|".
               "[Uu]ntertitel|[Hh]örfilm|HF|".
               "s\/w|S\/W|tlw. s\/w|AD|oo|°°|OmU|16:9|".
               "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|".
-              "Wh\.|Wdh\.|Whg\.|Tipp!";
+              "Wh\.?|Wdh\.?|Whg\.?|Tipp\!?";
 
 sub ParseTrailingFeat {
    my ($foo, $slot) = @_;
@@ -1276,9 +1276,10 @@ sub ParseTrailingFeat {
 # - 1: retrieve programme list (i.e. start times and titles)
 # - 2: retrieve date from the page header
 # - 3: determine dates
+# - 4: determine stop times
 # 
 sub ParseOv {
-   my($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot1, $prev_slot2) = @_;
+   my($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot_idx, $PrevSlots) = @_;
    my ($day_of_month, $month, $year);
    my @Slots;
 
@@ -1291,7 +1292,30 @@ sub ParseOv {
    @Slots = ParseOvList($page, $sub, $foot, $fmt, $pgdate);
    if ($#Slots >= 0) {
       ParseOvHeaderDate($page, $sub, $pgdate);
-      if (CalculateDates($pgdate, $prev_pgdate, $prev_slot1, $prev_slot2, \@Slots) == 0) {
+      if (CalculateDates($pgdate, $prev_pgdate, $prev_slot_idx, $PrevSlots, \@Slots) > 0) {
+
+         # guess missing stop time for last slot of the previous page
+         if ( defined($prev_pgdate) &&
+              CheckIfPagesAdjacent($prev_pgdate, $pgdate) ) {
+            my @TmpList = ( $PrevSlots->[$#$PrevSlots], $Slots[0] );
+            CalculateStopTimes(\@TmpList);
+         }
+
+         # guess missing stop times for the current page
+         CalculateStopTimes(\@Slots);
+
+         # check if this subpage has any new content
+         # (some networks use subpages just to display different ads)
+         if ( ($sub > 1) && defined($prev_pgdate) &&
+              ($prev_pgdate->{page} == $page) &&
+              ($prev_pgdate->{sub_page} + $prev_pgdate->{sub_page_skip} + 1 == $sub) &&
+              CheckRedundantSubpage(\@Slots, $PrevSlots, $prev_slot_idx) ) {
+            # redundant -> discard content of this page
+            @Slots = ();
+            $prev_pgdate->{sub_page_skip} += 1;
+         }
+      } else {
+         # failed to determine the date
          @Slots = ();
       }
    }
@@ -1308,7 +1332,7 @@ sub ParseAllOvPages {
    my $page;
    my ($sub, $sub1, $sub2);
    my %PgDate;
-   my ($pgdate, $prev_pgdate, $prev_slot1, $prev_slot2);
+   my ($pgdate, $prev_pgdate, $prev_slot_idx);
    my @Slots = ();
    my $slot;
 
@@ -1326,25 +1350,24 @@ sub ParseAllOvPages {
             $sub2 = $PgSub{$page};
          }
          for ($sub = $sub1; $sub <= $sub2; $sub++) {
-            $pgdate = {'page' => $page, 'sub_page' => $sub };
-            my @TmpSlots = ParseOv($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot1, $prev_slot2);
-            push @Slots, @TmpSlots;
+            $pgdate = {'page' => $page, 'sub_page' => $sub, 'sub_page_skip' => 0 };
+            my @TmpSlots = ParseOv($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot_idx, \@Slots);
 
             if ($#TmpSlots >= 0) {
                $prev_pgdate = $pgdate;
-               $prev_slot1 = $TmpSlots[0];
-               $prev_slot2 = $TmpSlots[$#TmpSlots];
-            } else {
-               $prev_pgdate = $prev_slot1 = $prev_slot2 = undef;
+               $prev_slot_idx = $#Slots + 1;
+
+               push @Slots, @TmpSlots;
+
+            } elsif ( defined($prev_pgdate) &&
+                      ($prev_pgdate->{sub_page} + $prev_pgdate->{sub_page_skip} < $sub) ) {
+               $prev_pgdate = $prev_slot_idx = undef;
             }
          }
       }
    } else {
       print STDERR "No overview pages found\n";
    }
-
-   # guess missing stop times
-   CalculateStopTimes(\@Slots);
 
    # retrieve descriptions from references teletext pages
    foreach $slot (@Slots) {
@@ -1380,16 +1403,17 @@ sub ParseAllOvPages {
 #  "            \x02\x02WAHABITEN  (2K)           ",
 #
 sub CalculateDates {
-   my ($pgdate, $prev_pgdate, $prev_slot1, $prev_slot2, $slot_list) = @_;
+   my ($pgdate, $prev_pgdate, $prev_slot_idx, $PrevSlots, $Slots) = @_;
    my $retval = 0;
 
    my $date_off = 0;
    if (defined($prev_pgdate)) {
+      my $prev_slot1 = $PrevSlots->[$prev_slot_idx];
+      my $prev_slot2 = $PrevSlots->[$#$PrevSlots];
       # check if the page number of the previous page is adjacent
       # and as consistency check require that the prev page covers less than a day
       if ( ($prev_slot2->{start_t} - $prev_slot1->{start_t} < 22*60*60) &&
-           CheckIfPagesAdjacent($prev_pgdate->{page}, $prev_pgdate->{sub_page},
-                                 $pgdate->{page}, $pgdate->{sub_page}) ) {
+           CheckIfPagesAdjacent($prev_pgdate, $pgdate) ) {
 
          my $prev_delta = 0;
          # check if there's a date on the current page
@@ -1402,7 +1426,7 @@ sub CalculateDates {
             # check if our start date should be different from the one of the previous page
             # -> check if we're starting on a new date (smaller hour)
             # (note: comparing with the 1st slot of the prev. page, not the last!)
-            if ($slot_list->[0]->{hour} < $prev_slot1->{hour}) {
+            if ($Slots->[0]->{hour} < $prev_slot1->{hour}) {
                # TODO: check continuity to slot2: gap may have 6h max.
                # TODO: check end hour
                $date_off = 1;
@@ -1410,13 +1434,13 @@ sub CalculateDates {
             # else: same date as the last programme on the prev page
             # may have been a date change inside the prev. page but our header date may still be unchanged
             # historically this is only done up to 6 o'clock (i.e. 0:00 to 6:00 counts as the old day)
-            #} elsif ($slot_list->[0]->{hour} <= 6) {
+            #} elsif ($Slots->[0]->{hour} <= 6) {
             #   # check continuity
             #   if ( defined($prev_slot2->{end_hour}) ?
-            #          ( ($slot_list->[0]->{hour} >= $prev_slot2->{end_hour}) &&
-            #            ($slot_list->[0]->{hour} - $prev_slot2->{end_hour} <= 1) ) :
-            #          ( ($slot_list->[0]->{hour} >= $prev_slot2->{hour}) &&
-            #            ($slot_list->[0]->{hour} - $prev_slot2->{hour} <= 6) ) ) {
+            #          ( ($Slots->[0]->{hour} >= $prev_slot2->{end_hour}) &&
+            #            ($Slots->[0]->{hour} - $prev_slot2->{end_hour} <= 1) ) :
+            #          ( ($Slots->[0]->{hour} >= $prev_slot2->{hour}) &&
+            #            ($Slots->[0]->{hour} - $prev_slot2->{hour} <= 6) ) ) {
             #      # OK
             #   } else {
             #      # 
@@ -1460,8 +1484,8 @@ sub CalculateDates {
    # finally assign the date to all programmes on this page (with auto-increment at hour wraps)
    if (defined($year)) {
       my $prev_hour;
-      for (my $idx = 0; $idx <= $#$slot_list; $idx++) {
-         my $slot = $slot_list->[$idx];
+      for (my $idx = 0; $idx <= $#$Slots; $idx++) {
+         my $slot = $Slots->[$idx];
 
          # detect date change (hour wrap at midnight)
          if (defined($prev_hour) && ($prev_hour > $slot->{hour})) {
@@ -1488,32 +1512,21 @@ sub CalculateDates {
 # - both page numbers must have decimal digits only (i.e. match /[1-8][1-9][1-9]/)
 #
 sub CheckIfPagesAdjacent {
-   my ($prev_page, $prev_sub, $page, $sub) = @_;
+   my ($pg1, $pg2) = @_;
    my $result = 0;
 
-   if ( ($prev_page == $page) && ($prev_sub + 1 == $sub) ) {
+   if ( ($pg1->{page} == $pg2->{page}) &&
+        ($pg1->{sub_page} + $pg1->{sub_page_skip} + 1 == $pg2->{sub_page}) ) {
       # next sub-page on same page
       $result = 1;
 
    } else {
       # check for jump from last sub-page of prev page to first of new page
-      my $next;
+      my $next = GetNextPageNumber($pg1->{page});
 
-      # calculate number of page following the previous one
-      # visible pages only use decimal numbers, so we jump from 9 to 16
-      if (($prev_page & 0xF) == 9) {
-         $next = $prev_page + (0x010 - 0x009);
-      } else {
-         $next = $prev_page + 1;
-      }
-      # same skip for the 2nd digit, if there was a wrap in the 3rd digit
-      if (($next & 0xF0) == 0x0A0) {
-         $next = $next + (0x100 - 0x0A0);
-      }
-
-      if ( ($page == $next) &&
-           ($prev_sub == $PgSub{$prev_page}) &&
-           ($sub <= 1) ) {
+      if ( ($next == $pg2->{page}) &&
+           ($pg1->{sub_page} + $pg1->{sub_page_skip} == $PgSub{$pg1->{page}}) &&
+           ($pg2->{sub_page} <= 1) ) {
          $result = 1;
       } 
    }
@@ -1521,9 +1534,33 @@ sub CheckIfPagesAdjacent {
 }
 
 # ------------------------------------------------------------------------------
+# Calculate number of page following the previous one
+# - basically that's a trivial increment by 1, however page numbers are
+#   actually hexedecinal numbers, where the numbers with non-decimal digits
+#   are skipped (i.e. not intended for display)
+# - hence to get from 9 to 0 in the 2nd and 3rd digit we have to add 7
+#   instead of just 1.
+#
+sub GetNextPageNumber {
+   my ($page) = @_;
+   my $next;
+
+   if (($page & 0xF) == 9) {
+      $next = $page + (0x010 - 0x009);
+   } else {
+      $next = $page + 1;
+   }
+   # same skip for the 2nd digit, if there was a wrap in the 3rd digit
+   if (($next & 0xF0) == 0x0A0) {
+      $next = $next + (0x100 - 0x0A0);
+   }
+   return $next;
+}
+
+# ------------------------------------------------------------------------------
 # Determine stop times
-# - assuming that in overview tables the stop time is equal to the start
-#   of the following programme & that this also holds true inbetween pages
+# - assuming that in overview tables the stop time is equal to the start of the
+#   following programme & that this also holds true inbetween adjacent pages
 # - if in doubt, leave it undefined (this is allowed in XMLTV)
 # - TODO: restart at non-adjacent text pages
 # 
@@ -1533,10 +1570,10 @@ sub CalculateStopTimes {
    my ($next, $slot);
    my $idx;
 
-   if ($arr_len > 0) {
-      for ($idx = 0; $idx < $arr_len; $idx++) {
-         $slot = $arr_ref->[$idx];
+   for ($idx = 0; $idx < $arr_len; $idx++) {
+      $slot = $arr_ref->[$idx];
 
+      if (!defined($slot->{stop_t})) {
          if (defined($slot->{end_min})) {
             # there was an end time in the overview or a description page -> use that
             my $date_off = $slot->{date_off};
@@ -1553,10 +1590,10 @@ sub CalculateStopTimes {
                                                $slot->{year} - 1900,
                                                0, 0, -1);
          } elsif ($idx + 1 < $arr_len) {
-            # no end time: use start time of the following programme if less than 12h away
+            # no end time: use start time of the following programme if less than 9h away
             $next = $arr_ref->[$idx + 1];
             if ( ($next->{start_t} > $slot->{start_t}) &&
-                 ($next->{start_t} - $slot->{start_t} < 12*60*60) ) {
+                 ($next->{start_t} - $slot->{start_t} < 9*60*60) ) {
 
                $slot->{stop_t} = $next->{start_t};
             }
@@ -1618,6 +1655,25 @@ sub DetermineLto {
       $lto = 0;
    }
    return $lto;
+}
+
+# ------------------------------------------------------------------------------
+# Check if an overview page has exactly the same title list as the predecessor
+#
+sub CheckRedundantSubpage {
+   my ($Slots, $PrevSlots, $prev_slot_idx) = @_;
+   my $result = 1;
+
+   if ($#$PrevSlots + 1 - $prev_slot_idx == $#$Slots) {
+      for (my $idx = 0; $idx <= $#$Slots; $idx++) {
+         if ($PrevSlots->[$prev_slot_idx + $idx]->{start_t} != $Slots->[$idx]->{start_t}) {
+            # TODO compare title
+            $result = 0;
+            last;
+         }
+      }
+   }
+   return $result;
 }
 
 # ------------------------------------------------------------------------------
@@ -1834,8 +1890,9 @@ sub ParseDescDate {
 
       PARSE_DATE: {
          # [Fr] 14.04.[06] (year not optional for single-digit day/month)
-         if ( m#(^| )(\d{2})\.(\d{2})\.(\d{4}|\d{2})?( |,|\:|$)# ||
-              m#(^| )(\d)\.(\d)\.(\d{4}|\d{2})( |,|\:|$)#) {
+         if ( m#(^| )(\d{1,2})\.(\d{2})\.(\d{4}|\d{2})?( |,|\:|$)# ||
+              m#(^| )(\d)\.(\d)\.(\d{4}|\d{2})( |,|\:|$)# ||
+              m#(^| )(\d)\.(\d)\.?(\d{4}|\d{2})?(,| -)? +\d{1,2}[\.\:]\d{2}(h| |,|\:|$)#) {
             my @NewDate = CheckDate($2, $3, $4, undef, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1845,8 +1902,8 @@ sub ParseDescDate {
          }
          # Fr 14.04 (i.e. no dot after month)
          # here's a risk to match on a time, so we must require a weekday name
-         if (m#(^| )($wday_match)(, ?| | - )(\d{2})\.(\d{2})( |,|$)#i ||
-             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{2})\.(\d{2})( |,|\:|$)#i) {
+         if (m#(^| )($wday_match)(, ?| | - )(\d{1,2})\.(\d{1,2})( |,|$)#i ||
+             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.(\d{1,2})( |,|\:|$)#i) {
             my @NewDate = CheckDate($4, $5, undef, $2, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -2161,9 +2218,11 @@ sub ParseDescPage {
 sub ParseChannelName {
    my %ChName;
    my $page;
+   my ($sub, $sub1, $sub2);
    my $name;
    my $pgn;
    my $wday_match;
+   my $wday_abbrv_match;
    my $mname_match;
 
    my @Pages = grep {((($_>>4)&0xF)<=9) && (($_&0xF)<=9)} keys(%PgCnt);
@@ -2172,34 +2231,43 @@ sub ParseChannelName {
    my $lang = -1;
 
    foreach $page (@Pages) {
-      $_ = $Pkg{$page}->[0];
-      if (defined($_) && (length($_) > 0)) {
-         if ($PgLang{$page} != $lang) {
-            $lang = $PgLang{$page};
-            $wday_match = GetDateNameRegExp(\%WDayNames, $lang, undef);
-            $mname_match = GetDateNameRegExp(\%MonthNames, $lang, undef);
-         }
-         $_ = TtxToLatin1(substr($_, 8), $lang);
-         $pgn = sprintf("%03X", $page);
-         # remove page number
-         # remove date and time
-         if (s#(^| )\Q$pgn\E( |$)#$1$2# &&
-             s# \d{2}[\.\: ]?\d{2}([\.\: ]\d{2}) *$# #) {
+      if ($PgSub{$page} == 0) {
+         $sub1 = $sub2 = 0;
+      } else {
+         $sub1 = 1;
+         $sub2 = $PgSub{$page};
+      }
+      for ($sub = $sub1; $sub <= $sub2; $sub++) {
+         $_ = $Pkg{$page|($sub<<12)}->[0];
+         if (defined($_)) {
+            if ($PgLang{$page} != $lang) {
+               $lang = $PgLang{$page};
+               $wday_match = GetDateNameRegExp(\%WDayNames, $lang, 1);
+               $wday_abbrv_match = GetDateNameRegExp(\%WDayNames, $lang, 2);
+               $mname_match = GetDateNameRegExp(\%MonthNames, $lang, undef);
+            }
+            $_ = TtxToLatin1(substr($_, 8), $lang);
+            s#[\x00-\x1F\x7F]# #g;
+            $pgn = sprintf("%03X", $page);
+            # remove page number and time (both are required)
+            if (s#(^| )\Q$pgn\E( |$)#$1$2# &&
+                s# \d{2}[\.\: ]?\d{2}([\.\: ]\d{2}) *$# #) {
 
-            # remove date
-            s#($wday_match)?\.? ?\d{2}(\.\d{2}|[ \.]($mname_match))(\.|[ \.]\d{2,4})? *$##i;
-            # remove and compress whitespace
-            s#(^ +| +$)##g;
-            s#  +# #g;
-            # remove possible "text" postfix
-            s#[ \.\-]?text$##i;
+               # remove date
+               s#((($wday_abbrv_match)\.?|($wday_match))(, ?| - | )?)?\d{1,2}(\.\d{1,2}|[ \.]($mname_match))(\.|[ \.]\d{2,4})? *$##i;
+               # remove and compress whitespace
+               s#(^ +| +$)##g;
+               s#  +# #g;
+               # remove possible "text" postfix
+               s#[ \.\-]?text$##i;
 
-            if (defined($ChName{$_})) {
-               $ChName{$_} += 1;
-               last if $ChName{$_} >= 50;
-            } else {
-               $ChName{$_} = 1;
-               $found = 1;
+               if (defined($ChName{$_})) {
+                  $ChName{$_} += 1;
+                  last if $ChName{$_} >= 50;
+               } else {
+                  $ChName{$_} = 1;
+                  $found = 1;
+               }
             }
          }
       }

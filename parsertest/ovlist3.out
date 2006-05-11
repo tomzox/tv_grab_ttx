@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="SAT.1">
+	<display-name>SAT.1</display-name>
+</channel>
+
+<programme start="20060503031000 +0000" stop="20060503033500 +0000" channel="SAT.1">
+	<title>Niedrig und Kuhnt - Kommissare ermitteln: Schicke Schnitten - scharfe</title>
+	<sub-title>Niedrig und Kuhnt - Kommissare ermitteln: Schicke Schnitten - scharfe Typen</sub-title>
+</programme>
+
+<programme start="20060503033500 +0000" stop="20060503035500 +0000" channel="SAT.1">
+	<title>blitz</title>
+</programme>
+
+<programme start="20060503035500 +0000" stop="20060503070000 +0000" channel="SAT.1">
+	<title>Sat.1-Frühstücksfernsehen</title>
+</programme>
+
+<programme start="20060503070000 +0000" stop="20060503080000 +0000" channel="SAT.1">
+	<title>shop tv</title>
+</programme>
+
+<programme start="20060503080000 +0000" stop="20060503083000 +0000" channel="SAT.1">
+	<title>Verliebt in Berlin:</title>
+	<sub-title>Verliebt in Berlin: Folge 298</sub-title>
+</programme>
+
+<programme start="20060503083000 +0000" stop="20060503090000 +0000" channel="SAT.1">
+	<title>Roseanne: Käse aus der</title>
+	<sub-title>Roseanne: Käse aus der Dose</sub-title>
+</programme>
+
+<programme start="20060503090000 +0000" stop="20060503100000 +0000" channel="SAT.1">
+	<title>Richter Hold</title>
+</programme>
+
+<programme start="20060503100000 +0000" stop="20060503110000 +0000" channel="SAT.1">
+	<title>Sat.1 am Mittag</title>
+</programme>
+
+<programme start="20060503110000 +0000" stop="20060503120000 +0000" channel="SAT.1">
+	<title>Britt: Britt deckt auf:</title>
+	<sub-title>Britt: Britt deckt auf: Heimliche Sex-Abenteuer</sub-title>
+</programme>
+
+<programme start="20060503120000 +0000" stop="20060503130000 +0000" channel="SAT.1">
+	<title>Zwei bei Kallwass</title>
+</programme>
+
+<programme start="20060503130000 +0000" stop="20060503140000 +0000" channel="SAT.1">
+	<title>Richterin Salesch</title>
+</programme>
+
+<programme start="20060503140000 +0000" stop="20060503145800 +0000" channel="SAT.1">
+	<title>Richter Hold</title>
+</programme>
+
+<programme start="20060503145800 +0000" stop="20060503150000 +0000" channel="SAT.1">
+	<title>Sat.1 NEWS</title>
+</programme>
+
+<programme start="20060503150000 +0000" stop="20060503153000 +0000" channel="SAT.1">
+	<title>Niedrig und Kuhnt - Kommissare ermitteln: Das</title>
+	<sub-title>Niedrig und Kuhnt - Kommissare ermitteln: Das hässliche Entlein</sub-title>
+</programme>
+
+<programme start="20060503153000 +0000" stop="20060503160000 +0000" channel="SAT.1">
+	<title>Sat.1 am Abend</title>
+</programme>
+
+<programme start="20060503160000 +0000" stop="20060503163000 +0000" channel="SAT.1">
+	<title>Lenßen &amp; Partner: Die</title>
+	<sub-title>Lenßen &amp; Partner: Die sündhafte Sekretärin</sub-title>
+</programme>
+
+<programme start="20060503163000 +0000" stop="20060503164700 +0000" channel="SAT.1">
+	<title>Sat.1 NEWS</title>
+</programme>
+
+<programme start="20060503164700 +0000" stop="20060503165000 +0000" channel="SAT.1">
+	<title>SAT.1 Wetter</title>
+</programme>
+
+<programme start="20060503165000 +0000" channel="SAT.1">
+	<title>blitz</title>
+</programme>
+</tv>

@@ -21,11 +21,11 @@
 	<title>Serie 4</title>
 </programme>
 
-<programme start="20060430090000 +0000" stop="20060430180000 +0000" channel="TEST">
+<programme start="20060430134000 +0000" stop="20060430181500 +0000" channel="TEST">
 	<title>Film 1</title>
 </programme>
 
-<programme start="20060430180000 +0000" channel="TEST">
+<programme start="20060430181500 +0000" channel="TEST">
 	<title>Film 2</title>
 </programme>
 </tv>
