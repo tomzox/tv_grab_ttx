@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ZDF">
+	<display-name>ZDF</display-name>
+</channel>
+
+<programme start="20060612033000 +0000" stop="20060612070000 +0000" pdc-start="20060612053000 +0200" channel="ZDF">
+	<title>ARD-Morgenmagazin</title>
+</programme>
+
+<programme start="20060612070000 +0000" stop="20060612070500 +0000" pdc-start="20060612090000 +0200" channel="ZDF">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20060612070500 +0000" stop="20060612083000 +0000" pdc-start="20060612090500 +0200" channel="ZDF">
+	<title>Volle Kanne</title>
+	<sub-title>Volle Kanne Service täglich</sub-title>
+</programme>
+
+<programme start="20060612083000 +0000" stop="20060612091500 +0000" pdc-start="20060612103000 +0200" channel="ZDF">
+	<title>Julia - Wege zum Glück</title>
+	<sub-title>Julia - Wege zum Glück Kapitel 165</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612091500 +0000" stop="20060612093500 +0000" pdc-start="20060612111500 +0200" channel="ZDF">
+	<title>Reich und Schön</title>
+</programme>
+
+<programme start="20060612093500 +0000" stop="20060612100000 +0000" pdc-start="20060612113500 +0200" channel="ZDF">
+	<title>Reich und Schön</title>
+</programme>
+
+<programme start="20060612100000 +0000" stop="20060612100500 +0000" pdc-start="20060612120000 +0200" channel="ZDF">
+	<title>heute</title>
+</programme>
+
+<programme start="20060612100500 +0000" stop="20060612110000 +0000" pdc-start="20060612120500 +0200" channel="ZDF">
+	<title>drehscheibe Deutschland</title>
+	<sub-title>drehscheibe Deutschland WM extra</sub-title>
+</programme>
+
+<programme start="20060612110000 +0000" stop="20060612120000 +0000" pdc-start="20060612130000 +0200" channel="ZDF">
+	<title>ZDF-Mittagsmagazin</title>
+	<sub-title>ZDF-Mittagsmagazin WM-Tour aus Kaiserslautern</sub-title>
+</programme>
+
+<programme start="20060612120000 +0000" stop="20060612120500 +0000" pdc-start="20060612140000 +0200" channel="ZDF">
+	<title>heute</title>
+</programme>
+
+<programme start="20060612120500 +0000" stop="20060612130000 +0000" pdc-start="20060612140500 +0200" channel="ZDF">
+	<title>ZDF WM-Studio</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612130000 +0000" stop="20060612134500 +0000" pdc-start="20060612150000 +0200" channel="ZDF">
+	<title>Australien - Japan</title>
+	<sub-title>Australien - Japan Vorrunde Gruppe F</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612134500 +0000" stop="20060612135000 +0000" pdc-start="20060612154500 +0200" channel="ZDF">
+	<title>heute</title>
+</programme>
+
+<programme start="20060612135000 +0000" stop="20060612150000 +0000" pdc-start="20060612150000 +0200" channel="ZDF">
+	<title>Australien - Japan</title>
+	<sub-title>Australien - Japan 2.Halbzeit</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612150000 +0000" stop="20060612160000 +0000" pdc-start="20060612170000 +0200" channel="ZDF">
+	<title>ZDF WM-Studio</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612160000 +0000" stop="20060612164500 +0000" pdc-start="20060612180000 +0200" channel="ZDF">
+	<title>USA - Tschechien</title>
+	<sub-title>USA - Tschechien Vorrunde Gruppe E</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612164500 +0000" stop="20060612170000 +0000" pdc-start="20060612184500 +0200" channel="ZDF">
+	<title>heute</title>
+</programme>
+
+<programme start="20060612170000 +0000" stop="20060612181500 +0000" pdc-start="20060612180000 +0200" channel="ZDF">
+	<title>USA - Tschechien</title>
+	<sub-title>USA - Tschechien 2.Halbzeit</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612181500 +0000" stop="20060612190000 +0000" pdc-start="20060612201500 +0200" channel="ZDF">
+	<title>ZDF WM-Studio</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612190000 +0000" stop="20060612194500 +0000" pdc-start="20060612210000 +0200" channel="ZDF">
+	<title>Italien - Ghana</title>
+	<sub-title>Italien - Ghana Vorrunde Gruppe E</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612194500 +0000" stop="20060612200000 +0000" pdc-start="20060612214500 +0200" channel="ZDF">
+	<title>heute-journal</title>
+	<sub-title>heute-journal Wetter</sub-title>
+</programme>
+
+<programme start="20060612200000 +0000" stop="20060612210000 +0000" pdc-start="20060612210000 +0200" channel="ZDF">
+	<title>Italien - Ghana</title>
+	<sub-title>Italien - Ghana 2.Halbzeit</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612210000 +0000" stop="20060612213000 +0000" pdc-start="20060612230000 +0200" channel="ZDF">
+	<title>ZDF WM-Studio</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060612213000 +0000" stop="20060612221000 +0000" pdc-start="20060612233000 +0200" channel="ZDF">
+	<title>Nachgetreten!</title>
+	<sub-title>Nachgetreten! Die Comedy-Show zur WM</sub-title>
+</programme>
+
+<programme start="20060612221000 +0000" stop="20060612222500 +0000" pdc-start="20060613001000 +0200" channel="ZDF">
+	<title>heute nacht</title>
+</programme>
+
+<programme start="20060612222500 +0000" stop="20060612232500 +0000" pdc-start="20060613002500 +0200" channel="ZDF">
+	<title>Kleines Fernsehspiel</title>
+	<sub-title>Kleines Fernsehspiel Nach dem Spiel</sub-title>
+</programme>
+
+<programme start="20060612232500 +0000" stop="20060612235000 +0000" pdc-start="20060613012500 +0200" channel="ZDF">
+	<title>Global Player - Das</title>
+	<sub-title>Global Player - Das Webcamquiz</sub-title>
+</programme>
+
+<programme start="20060612235000 +0000" stop="20060612235500 +0000" pdc-start="20060613015000 +0200" channel="ZDF">
+	<title>heute</title>
+</programme>
+
+<programme start="20060612235500 +0000" stop="20060613002500 +0000" pdc-start="20060613015500 +0200" channel="ZDF">
+	<title>neues</title>
+	<sub-title>neues Würmer, Viren und Trojaner</sub-title>
+</programme>
+
+<programme start="20060613002500 +0000" stop="20060613005500 +0000" pdc-start="20060613022500 +0200" channel="ZDF">
+	<title>Vor 30 Jahren - Wer stirbt</title>
+	<sub-title>Vor 30 Jahren - Wer stirbt hat mehr vom Leben</sub-title>
+</programme>
+
+<programme start="20060613005500 +0000" stop="20060613023000 +0000" pdc-start="20060613025500 +0200" channel="ZDF">
+	<title>Russkies</title>
+	<sub-title>Russkies Familienfilm USA/1987</sub-title>
+</programme>
+
+<programme start="20060613023000 +0000" stop="20060613023500 +0000" pdc-start="20060613043000 +0200" channel="ZDF">
+	<title>heute</title>
+</programme>
+
+<programme start="20060613023500 +0000" stop="20060613030000 +0000" pdc-start="20060613043500 +0200" channel="ZDF">
+	<title>Global Vision</title>
+</programme>
+
+<programme start="20060613030000 +0000" pdc-start="20060613050000 +0200" channel="ZDF">
+	<title>nano</title>
+	<sub-title>nano Die Welt von morgen</sub-title>
+</programme>
+</tv>

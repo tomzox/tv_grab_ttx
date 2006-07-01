@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.6 2006/05/11 19:38:53 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.8 2006/07/01 20:01:32 tom Exp $
 #
 
 use POSIX;
@@ -24,6 +24,7 @@ use locale;
 use strict;
 
 my %Pkg;
+my %PkgCni;
 my %PgCnt;
 my %PgSub;
 my %PgLang;
@@ -117,7 +118,6 @@ sub ParseArgv {
 # - the data has already been pre-processed by cap.pl
 # - each record has a small header plus 40 bytes payload (see unpack below)
 # - TODO: use MIP to find TV overview pages
-# - TODO: read CNI from VPS/PDC to detect channel name and ID
 #
 sub ReadVbi {
    my @CurPage = (-1, -1, -1, -1, -1, -1, -1, -1);
@@ -148,7 +148,7 @@ sub ReadVbi {
       $sub = $ctl1 & 0x3f7f;
       #printf "%03X.%04X, %2d %.40s\n", $page, $sub, $pkg, $data;
 
-      if ($mag_serial && ($mag != $cur_mag)) {
+      if ($mag_serial && ($mag != $cur_mag) && ($pkg <= 31)) {
          $CurPage[$cur_mag] = -1;
       }
 
@@ -163,7 +163,7 @@ sub ReadVbi {
          #   next;
          #}
          if ($ctl2 & 0x01) {
-            $data = "";
+            $data = " " x 40;
          }
          if ( (($page & 0x0F) > 9) || ((($page >> 4) & 0x0f) > 9) ) {
             $page = $CurPage[$mag] = -1;
@@ -203,18 +203,23 @@ sub ReadVbi {
          $CurSub[$mag] = $sub;
          $CurPkg[$mag] = 0;
          $cur_mag = $mag;
-      } else {
+         $Pkg{$page|($sub<<12)}->[0] = $data;
+
+      } elsif ($pkg <= 27) {
          $page = $CurPage[$mag];
          $sub = $CurSub[$mag];
-         # page body packets are supposed to be in order
-         if (($page != -1) && ($pkg < $CurPkg[$mag])) {
-            $page = $CurPage[$mag] = -1;
+         if ($page != -1) {
+            # page body packets are supposed to be in order
+            if ($pkg < $CurPkg[$mag]) {
+               $page = $CurPage[$mag] = -1;
+            } else {
+               $CurPkg[$mag] = $pkg if $pkg < 26;
+               $Pkg{$page|($sub<<12)}->[$pkg] = $data;
+            }
          }
-         $CurPkg[$mag] = $pkg if $pkg < 26;
-      }
-      if (($pkg == 0) || ($page != -1))
-      {
-         $Pkg{$page|($sub<<12)}->[$pkg] = $data;
+      } elsif (($pkg == 30) || ($pkg == 32)) {
+         my ($cni, $foo) = unpack("Sx18a20", $data);
+         $PkgCni{$cni} += 1;
       }
    }
    close(TTX);
@@ -275,9 +280,14 @@ sub DumpAllPages {
 #
 sub DumpRawTeletext {
    my $page;
+   my $cni;
 
    print "#!/usr/bin/perl -w\n".
          "\$VbiCaptureTime = $VbiCaptureTime;\n";
+
+   foreach $cni (sort { $PkgCni{$b} <=> $PkgCni{$a} } keys %PkgCni) {
+      printf("\$PkgCni{0x%X} = %d;\n", $cni, $PkgCni{$cni});
+   }
 
    foreach $page (sort {$a<=>$b} keys(%PgCnt)) {
       my $pkg;
@@ -716,8 +726,8 @@ sub ParseOvHeaderDate {
             }
          }
          # Sunday 22 April (i.e. no dot after month)
-         if ( m#(^| )($wday_match)(, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|$)#i ||
-              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|$)#i) {
+         if ( m#(^| )($wday_match)(, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|;|$)#i ||
+              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|;|$)#i) {
             my @NewDate = CheckDate($4, undef, $7, $2, $5);
             if (@NewDate) {
                ($day_of_month, $month, $year) = @NewDate;
@@ -1203,6 +1213,7 @@ my %FeatToFlagMap =
    "untertitel" => "has_subtitles",
    "ut" => "has_subtitles",
    "omu" => "is_omu",
+   "sw" => "is_bw",
    "s/w" => "is_bw",
    "16:9" => "is_aspect_16_9",
    "oo" => "is_stereo",
@@ -1218,7 +1229,7 @@ my %FeatToFlagMap =
 # note: must correct $n below if () are added to pattern
 my $FeatPat = "UT(( auf | )?[1-8][0-9][0-9])?|".
               "[Uu]ntertitel|[Hh]örfilm|HF|".
-              "s\/w|S\/W|tlw. s\/w|AD|oo|°°|OmU|16:9|".
+              "s\/?w|S\/?W|tlw. s\/w|AD|oo|°°|OmU|16:9|".
               "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|".
               "Wh\.?|Wdh\.?|Whg\.?|Tipp\!?";
 
@@ -1662,9 +1673,10 @@ sub DetermineLto {
 #
 sub CheckRedundantSubpage {
    my ($Slots, $PrevSlots, $prev_slot_idx) = @_;
-   my $result = 1;
+   my $result = 0;
 
-   if ($#$PrevSlots + 1 - $prev_slot_idx == $#$Slots) {
+   if ($#$PrevSlots - $prev_slot_idx == $#$Slots) {
+      $result = 1;
       for (my $idx = 0; $idx <= $#$Slots; $idx++) {
          if ($PrevSlots->[$prev_slot_idx + $idx]->{start_t} != $Slots->[$idx]->{start_t}) {
             # TODO compare title
@@ -1890,9 +1902,9 @@ sub ParseDescDate {
 
       PARSE_DATE: {
          # [Fr] 14.04.[06] (year not optional for single-digit day/month)
-         if ( m#(^| )(\d{1,2})\.(\d{2})\.(\d{4}|\d{2})?( |,|\:|$)# ||
-              m#(^| )(\d)\.(\d)\.(\d{4}|\d{2})( |,|\:|$)# ||
-              m#(^| )(\d)\.(\d)\.?(\d{4}|\d{2})?(,| -)? +\d{1,2}[\.\:]\d{2}(h| |,|\:|$)#) {
+         if ( m#(^| )(\d{1,2})\.(\d{2})\.(\d{4}|\d{2})?( |,|;|\:|$)# ||
+              m#(^| )(\d)\.(\d)\.(\d{4}|\d{2})( |,|;|\:|$)# ||
+              m#(^| )(\d)\.(\d)\.?(\d{4}|\d{2})?(,|;| -)? +\d{1,2}[\.\:]\d{2}(h| |,|;|\:|$)#) {
             my @NewDate = CheckDate($2, $3, $4, undef, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1902,8 +1914,8 @@ sub ParseDescDate {
          }
          # Fr 14.04 (i.e. no dot after month)
          # here's a risk to match on a time, so we must require a weekday name
-         if (m#(^| )($wday_match)(, ?| | - )(\d{1,2})\.(\d{1,2})( |,|$)#i ||
-             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.(\d{1,2})( |,|\:|$)#i) {
+         if (m#(^| )($wday_match)(, ?| | - )(\d{1,2})\.(\d{1,2})( |,|;|$)#i ||
+             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.(\d{1,2})( |,|;|\:|$)#i) {
             my @NewDate = CheckDate($4, $5, undef, $2, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1912,7 +1924,7 @@ sub ParseDescDate {
             }
          }
          # 14.[ ]April [2006]
-         if ( m#(^| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i) {
+         if ( m#(^| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|;|\:|$)#i) {
             my @NewDate = CheckDate($2, undef, $5, undef, $3);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1921,8 +1933,8 @@ sub ParseDescDate {
             }
          }
          # Sunday 22 April (i.e. no dot after day)
-         if ( m#(^| )($wday_match)(, ?| - | )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i ||
-              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|\:|$)#i) {
+         if ( m#(^| )($wday_match)(, ?| - | )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|;|\:|$)#i ||
+              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|;|\:|$)#i) {
             my @NewDate = CheckDate($4, undef, $7, $2, $5);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1934,8 +1946,8 @@ sub ParseDescDate {
 
          # Fr[,] 18:00 [-19:00] [Uhr|h]
          # TODO parse time (i.e. allow omission of "Uhr")
-         if (m#(^| )($wday_match)(, ?| - | )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|\:|$))#i ||
-             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|\:|$))#i) {
+         if (m#(^| )($wday_match)(, ?| - | )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|;|\:|$))#i ||
+             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2}[\.\:]\d{2}((-| - )\d{1,2}[\.\:]\d{2})?(h| |,|;|\:|$))#i) {
             my @NewDate = CheckDate(undef, undef, undef, $2, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -1957,8 +1969,8 @@ sub ParseDescDate {
       # TODO: time should be optional if only one subpage
       # 15.40 [VPS 1540] - 19.15 [Uhr|h]
       $check_time = 0;
-      if (m#(^| )(\d{1,2})[\.\:](\d{1,2})( +VPS +(\d{4}))?(-| - | bis )(\d{1,2})[\.\:](\d{1,2})(h| |,|\:|$)# ||
-          m#(^| )(\d{2})h(\d{2})( +VPS +(\d{4}))?(-| - )(\d{2})h(\d{2})( |,|\:|$)#) {
+      if (m#(^| )(\d{1,2})[\.\:](\d{1,2})( +VPS +(\d{4}))?(-| - | bis )(\d{1,2})[\.\:](\d{1,2})(h| |,|;|\:|$)# ||
+          m#(^| )(\d{2})h(\d{2})( +VPS +(\d{4}))?(-| - )(\d{2})h(\d{2})( |,|;|\:|$)#) {
          my $hour = $2;
          my $min = $3;
          my $end_hour = $7;
@@ -1972,8 +1984,8 @@ sub ParseDescDate {
          }
 
       # 15.40 (Uhr|h)
-      } elsif (m#(^| )(\d{1,2})[\.\:](\d{1,2})( ?h| Uhr)( |,|\:|$)# ||
-               m#(^| )(\d{1,2})h(\d{2})( |,|\:|$)#) {
+      } elsif (m#(^| )(\d{1,2})[\.\:](\d{1,2})( ?h| Uhr)( |,|;|\:|$)# ||
+               m#(^| )(\d{1,2})h(\d{2})( |,|;|\:|$)#) {
          my $hour = $2;
          my $min = $3;
          print "DESC TIME $hour.$min\n" if $opt_debug;
@@ -2280,8 +2292,331 @@ sub ParseChannelName {
    return $name;
 }
 
+# ------------------------------------------------------------------------------
+# Determine channel ID from CNI
+#
+my %Cni2ChannelId = (
+  0x1AC1 => "1.orf.at",
+  0x24C2 => "1.tsr.ch",
+  0x1AC2 => "2.orf.at",
+  0x24C8 => "2.tsr.ch",
+  0x1DCB => "3.br-online.de",
+  0x1AC3 => "3.orf.at",
+  0x1DC7 => "3sat.de",
+  0x1D44 => "alpha.br-online.de",
+  0x1DC1 => "ard.de",
+  0x2C7F => "bbc1.bbc.co.uk",
+  0x2C40 => "bbc2.bbc.co.uk",
+  0x2C11 => "channel4.com",
+  0x1546 => "cnn.com",
+  0x5BF2 => "discoveryeurope.com",
+  0x1D8D => "dsf.com",
+  0x2FE1 => "euronews.net",
+  0x1D91 => "eurosport.de",
+  0x1DCF => "hr-online.de",
+  0x1D92 => "kabel1.de",
+  0x1DC9 => "kika.de",
+  0x1DFE => "mdr.de",
+  0x1D8C => "n-tv.de",
+  0x1D7A => "n24.de",
+  0x1DD4 => "ndr.de",
+  0x1DBA => "neunlive.de",
+  0x1DC8 => "phoenix.de",
+  0x2487 => "prosieben.ch",
+  0x1D94 => "prosieben.de",
+  0x1DAB => "rtl.de",
+  0x1D8F => "rtl2.de",
+  0x1DB9 => "sat1.de",
+  0x2C0D => "sky-news.sky.com",
+  0x2C0E => "sky-one.sky.com",
+  0x1D8A => "superrtl.de",
+  0x1DE0 => "swr.de",
+  0x1D78 => "tele5.de",
+  0x1D88 => "viva.tv",
+  0x1D8E => "vox.de",
+  0x1DE6 => "wdr.de",
+  0x1DC2 => "zdf.de",
+);
+my %NiToPdcCni =
+(
+   # Austria
+   0x4301, 0x1AC1,
+   0x4302, 0x1AC2,
+   # Belgium
+   0x0404, 0x1604,
+   0x3201, 0x1601,
+   0x3202, 0x1602,
+   0x3205, 0x1605,
+   0x3206, 0x1606,
+   # Croatia
+   # Czech Republic
+   0x4201, 0x32C1,
+   0x4202, 0x32C2,
+   0x4203, 0x32C3,
+   0x4211, 0x32D1,
+   0x4212, 0x32D2,
+   0x4221, 0x32E1,
+   0x4222, 0x32E2,
+   0x4231, 0x32F1,
+   0x4232, 0x32F2,
+   # Denmark
+   0x4502, 0x2902,
+   0x4503, 0x2904,
+   0x49CF, 0x2903,
+   0x7392, 0x2901,
+   # Finland
+   0x3581, 0x2601,
+   0x3582, 0x2602,
+   0x358F, 0x260F,
+   # France
+   0x330A, 0x2F0A,
+   0x3311, 0x2F11,
+   0x3312, 0x2F12,
+   0x3320, 0x2F20,
+   0x3321, 0x2F21,
+   0x3322, 0x2F22,
+   0x33C1, 0x2FC1,
+   0x33C2, 0x2FC2,
+   0x33C3, 0x2FC3,
+   0x33C4, 0x2FC4,
+   0x33C5, 0x2FC5,
+   0x33C6, 0x2FC6,
+   0x33C7, 0x2FC7,
+   0x33C8, 0x2FC8,
+   0x33C9, 0x2FC9,
+   0x33CA, 0x2FCA,
+   0x33CB, 0x2FCB,
+   0x33CC, 0x2FCC,
+   0x33F1, 0x2F01,
+   0x33F2, 0x2F02,
+   0x33F3, 0x2F03,
+   0x33F4, 0x2F04,
+   0x33F5, 0x2F05,
+   0x33F6, 0x2F06,
+   0xF101, 0x2FE2,
+   0xF500, 0x2FE5,
+   0xFE01, 0x2FE1,
+   # Germany
+   0x4901, 0x1DC1,
+   0x4902, 0x1DC2,
+   0x490A, 0x1D85,
+   0x490C, 0x1D8E,
+   0x4915, 0x1DCF,
+   0x4918, 0x1DC8,
+   0x4941, 0x1D41,
+   0x4942, 0x1D42,
+   0x4943, 0x1D43,
+   0x4944, 0x1D44,
+   0x4982, 0x1D82,
+   0x49BD, 0x1D77,
+   0x49BE, 0x1D7B,
+   0x49BF, 0x1D7F,
+   0x49C7, 0x1DC7,
+   0x49C9, 0x1DC9,
+   0x49CB, 0x1DCB,
+   0x49D4, 0x1DD4,
+   0x49D9, 0x1DD9,
+   0x49DC, 0x1DDC,
+   0x49DF, 0x1DDF,
+   0x49E1, 0x1DE1,
+   0x49E4, 0x1DE4,
+   0x49E6, 0x1DE6,
+   0x49FE, 0x1DFE,
+   0x49FF, 0x1DCE,
+   0x5C49, 0x1D7D,
+   # Greece
+   0x3001, 0x2101,
+   0x3002, 0x2102,
+   0x3003, 0x2103,
+   # Hungary
+   # Iceland
+   # Ireland
+   0x3531, 0x4201,
+   0x3532, 0x4202,
+   0x3533, 0x4203,
+   # Italy
+   0x3911, 0x1511,
+   0x3913, 0x1513,
+   0x3914, 0x1514,
+   0x3915, 0x1515,
+   0x3916, 0x1516,
+   0x3917, 0x1517,
+   0x3918, 0x1518,
+   0x3919, 0x1519,
+   0x3942, 0x1542,
+   0x3943, 0x1543,
+   0x3944, 0x1544,
+   0x3945, 0x1545,
+   0x3946, 0x1546,
+   0x3947, 0x1547,
+   0x3948, 0x1548,
+   0x3949, 0x1549,
+   0x3960, 0x1560,
+   0x3968, 0x1568,
+   0x3990, 0x1590,
+   0x3991, 0x1591,
+   0x3992, 0x1592,
+   0x3993, 0x1593,
+   0x3994, 0x1594,
+   0x3996, 0x1596,
+   0x39A0, 0x15A0,
+   0x39A1, 0x15A1,
+   0x39A2, 0x15A2,
+   0x39A3, 0x15A3,
+   0x39A4, 0x15A4,
+   0x39A5, 0x15A5,
+   0x39A6, 0x15A6,
+   0x39B0, 0x15B0,
+   0x39B2, 0x15B2,
+   0x39B3, 0x15B3,
+   0x39B4, 0x15B4,
+   0x39B5, 0x15B5,
+   0x39B6, 0x15B6,
+   0x39B7, 0x15B7,
+   0x39B9, 0x15B9,
+   0x39C7, 0x15C7,
+   # Luxembourg
+   # Netherlands
+   0x3101, 0x4801,
+   0x3102, 0x4802,
+   0x3103, 0x4803,
+   0x3104, 0x4804,
+   0x3105, 0x4805,
+   0x3106, 0x4806,
+   0x3120, 0x4820,
+   0x3122, 0x4822,
+   # Norway
+   # Poland
+   # Portugal
+   # San Marino
+   # Slovakia
+   0x42A1, 0x35A1,
+   0x42A2, 0x35A2,
+   0x42A3, 0x35A3,
+   0x42A4, 0x35A4,
+   0x42A5, 0x35A5,
+   0x42A6, 0x35A6,
+   # Slovenia
+   # Spain
+   # Sweden
+   0x4601, 0x4E01,
+   0x4602, 0x4E02,
+   0x4640, 0x4E40,
+   # Switzerland
+   0x4101, 0x24C1,
+   0x4102, 0x24C2,
+   0x4103, 0x24C3,
+   0x4107, 0x24C7,
+   0x4108, 0x24C8,
+   0x4109, 0x24C9,
+   0x410A, 0x24CA,
+   0x4121, 0x2421,
+   # Turkey
+   0x9001, 0x4301,
+   0x9002, 0x4302,
+   0x9003, 0x4303,
+   0x9004, 0x4304,
+   0x9005, 0x4305,
+   0x9006, 0x4306,
+   # UK
+   0x01F2, 0x5BF1,
+   0x10E4, 0x2C34,
+   0x1609, 0x2C09,
+   0x1984, 0x2C04,
+   0x200A, 0x2C0A,
+   0x25D0, 0x2C30,
+   0x28EB, 0x2C2B,
+   0x2F27, 0x2C37,
+   0x37E5, 0x2C25,
+   0x3F39, 0x2C39,
+   0x4401, 0x5BFA,
+   0x4402, 0x2C01,
+   0x4403, 0x2C3C,
+   0x4404, 0x5BF0,
+   0x4405, 0x5BEF,
+   0x4406, 0x5BF7,
+   0x4407, 0x5BF2,
+   0x4408, 0x5BF3,
+   0x4409, 0x5BF8,
+   0x4440, 0x2C40,
+   0x4441, 0x2C41,
+   0x4442, 0x2C42,
+   0x4444, 0x2C44,
+   0x4457, 0x2C57,
+   0x4468, 0x2C68,
+   0x4469, 0x2C69,
+   0x447B, 0x2C7B,
+   0x447D, 0x2C7D,
+   0x447E, 0x2C7E,
+   0x447F, 0x2C7F,
+   0x44D1, 0x5BCC,
+   0x4D54, 0x2C14,
+   0x4D58, 0x2C20,
+   0x4D59, 0x2C21,
+   0x4D5A, 0x5BF4,
+   0x4D5B, 0x5BF5,
+   0x5AAF, 0x2C3F,
+   0x82DD, 0x2C1D,
+   0x82E1, 0x2C05,
+   0x833B, 0x2C3D,
+   0x884B, 0x2C0B,
+   0x8E71, 0x2C31,
+   0x8E72, 0x2C35,
+   0x9602, 0x2C02,
+   0xA2FE, 0x2C3E,
+   0xA82C, 0x2C2C,
+   0xADD8, 0x2C18,
+   0xADDC, 0x5BD2,
+   0xB4C7, 0x2C07,
+   0xB7F7, 0x2C27,
+   0xC47B, 0x2C3B,
+   0xC8DE, 0x2C1E,
+   0xF33A, 0x2C3A,
+   0xF9D2, 0x2C12,
+   0xFA2C, 0x2C2D,
+   0xFA6F, 0x2C2F,
+   0xFB9C, 0x2C1C,
+   0xFCD1, 0x2C11,
+   0xFCE4, 0x2C24,
+   0xFCF3, 0x2C13,
+   0xFCF4, 0x5BF6,
+   0xFCF5, 0x2C15,
+   0xFCF6, 0x5BF9,
+   0xFCF7, 0x2C17,
+   0xFCF8, 0x2C08,
+   0xFCF9, 0x2C19,
+   0xFCFA, 0x2C1A,
+   0xFCFB, 0x2C1B,
+   0xFCFC, 0x2C0C,
+   0xFCFD, 0x2C0D,
+   0xFCFE, 0x2C0E,
+   0xFCFF, 0x2C0F,
+   # Ukraine
+   # USA
+);
+
 sub ParseChannelId {
-   return "";
+   my @Cnis = sort { $PkgCni{$b} <=> $PkgCni{$a} } keys %PkgCni;
+   if ($#Cnis >= 0) {
+      my $cni = $Cnis[0];
+      if (defined($NiToPdcCni{$cni})) {
+         $cni = $NiToPdcCni{$cni};
+      }
+      if (($cni >> 8) == 0x0D) {
+         $cni |= 0x1000;
+      } elsif (($cni >> 8) == 0x0A) {
+         $cni |= 0x1000;
+      } elsif (($cni >> 8) == 0x04) {
+         $cni |= 0x2000;
+      }
+      if (defined($Cni2ChannelId{$cni})) {
+         return $Cni2ChannelId{$cni};
+      } else {
+         return sprintf "CNI%04X", $Cnis[0];
+      }
+   } else {
+      return "";
+   }
 }
 
 # ------------------------------------------------------------------------------

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="3sat">
+	<display-name>3sat</display-name>
+</channel>
+
+<programme start="20060509180000 +0000" stop="20060509181500 +0000" pdc-start="20060509200000 +0200" channel="3sat">
+	<title>Tagesschau</title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20060509181500 +0000" stop="20060509194000 +0000" pdc-start="20060509201500 +0200" channel="3sat">
+	<title>Wer Kollegen hat, braucht</title>
+	<sub-title>Wer Kollegen hat, braucht keine Feinde Fernsehfilm, D 1995 </sub-title>
+	<desc>(teletext 324)</desc>
+	<video>
+		<aspect>16:9</aspect>
+	</video>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060509194000 +0000" stop="20060509200000 +0000" pdc-start="20060509214000 +0200" channel="3sat">
+	<title>Living a Beautiful Life</title>
+	<sub-title>Living a Beautiful Life (Kurzfilmtage Oberhausen) </sub-title>
+	<desc>(teletext 325)</desc>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
+	<subtitles type="onscreen"/>
+</programme>
+
+<programme start="20060509200000 +0000" stop="20060509202500 +0000" pdc-start="20060509220000 +0200" channel="3sat">
+	<title>Zeit im Bild 2</title>
+	<desc>(teletext 312)</desc>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
+</programme>
+
+<programme start="20060509202500 +0000" stop="20060509203000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
+	<title>Hallelujah!</title>
+	<desc>(teletext 326)</desc>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
+</programme>
+
+<programme start="20060509203000 +0000" stop="20060509204000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
+	<title>Motodrom DS</title>
+	<desc>(teletext 327)</desc>
+	<video>
+		<colour>no</colour>
+	</video>
+</programme>
+
+<programme start="20060509204000 +0000" stop="20060509205000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
+	<title>Ohne Titel</title>
+	<desc>(teletext 328)</desc>
+</programme>
+
+<programme start="20060509205000 +0000" stop="20060509211000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
+	<title>With You</title>
+	<desc>(teletext 329)</desc>
+	<subtitles type="onscreen"/>
+</programme>
+
+<programme start="20060509211000 +0000" stop="20060509213000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
+	<title>Cousin Cousine</title>
+	<desc>(teletext 330)</desc>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
+</programme>
+
+<programme start="20060509213000 +0000" stop="20060509214000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
+	<title>S</title>
+	<!-- TTX 331 -->
+	<desc>S Kurzfilm, D 2002
+In den dokumentarischen Porträts dreier in Los Angeles lebender Stars des schwulen Undergrounds zeichnet der Film ein ebenso radikales wie einfühlsames Bild subkulturellen Lebens im 21. Jahrhundert. Dabei inszenieren sich der durchtrainierte "Supermarky", eine Transsexuelle und der sadomasochistische Ron Athey als subversive Personifizierungen bekannter Klischees, die immer wieder mit dieser Szene in Zusammenhang gebracht werden. Bei den 48. Kurzfilmtagen Oberhausen 2002 erhielt "S" den 3sat-Förderpreis.</desc>
+</programme>
+
+<programme start="20060509214000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
+	<title>Das Leben einer</title>
+	<sub-title>Das Leben einer Schildkröte im Nahen Osten </sub-title>
+	<desc>(teletext 332)</desc>
+	<subtitles type="onscreen"/>
+</programme>
+</tv>

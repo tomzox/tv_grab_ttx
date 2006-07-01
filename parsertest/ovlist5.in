@@ -1,0 +1,67 @@
+#!/usr/bin/perl -w
+#
+# Test for a title consisting of only one character.
+#
+# $Id: ovlist5.in,v 1.1 2006/06/10 21:09:17 tom Exp $
+#
+$VbiCaptureTime = 1147205617;
+$PgCnt{0x303} = 6;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303 \x013satText \x0709.05.06\x0222:13:32",
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute in 3sat    ",
+  "\x11\x7F\x7F5\x1D\x07Dienstag, 9. Mai                  ",
+  "                       \x05\x181D107\x18090506\x18E5",
+  "\x0720.00\x05\x182000\x07\x07Tagesschau ...........\x07311",
+  "\x0620.15\x05\x182015\x06\x06Wer Kollegen hat, braucht ",
+  "            \x06\x06keine Feinde              ",
+  "            \x06\x06Fernsehfilm, D 1995\x0316:9  ",
+  "            \x03\x03oo UT\x06................\x06324",
+  "\x0721.40\x05\x182140\x07\x07Living a Beautiful Life   ",
+  "              (Kurzfilmtage Oberhausen) ",
+  "            \x03\x03OmU oo\x07...............\x07325",
+  "\x0122.00\x05\x182200\x01\x01Zeit im Bild 2\x03oo\x01....\x01312",
+  "\x0722.25\x05\x182225\x07\x07Hallelujah!\x03oo\x07.......\x07326",
+  "\x0622.30\x05\x052225\x06\x06Motodrom\x03DS s/w\x06......\x06327",
+  "\x0722.40\x05\x052225\x07\x07Ohne Titel ...........\x07328",
+  "\x0622.50\x05\x052225\x06\x06With You\x03OmU\x06.........\x06329",
+  "\x0723.10\x05\x052225\x07\x07Cousin Cousine\x03oo\x07....\x07330",
+  "\x0623.30\x05\x052225\x06\x06S ....................\x06331",
+  "\x0723.40\x05\x052225\x07\x07Das Leben einer           ",
+  "              Schildkr|te im Nahen Osten",
+  "            \x03\x03OmU\x07..................\x07332",
+  "      \x05\x05VPS\x07                            ",
+  "\x01\x1D\x07300 <-          ab\x0723.50\x07Uhr -> 304\x07 ",
+];
+$PgCnt{0x331} = 8;
+$PgSub{0x331} = 0;
+$PgLang{0x331} = 1;
+$Pkg{0x331|(0x0000<<12)} =
+[
+  "\x02^\x15\x15\x15\x15\x15G331 \x013satText \x0709.05.06\x0222:13 33",
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute            ",
+  "\x11\x7F\x7F5\x1D\x07Dienstag, 9. Mai                  ",
+  "                       \x05\x181D107\x18090506\x1846",
+  " \x0723.30\x07-\x0723.40\x07Uhr          \x05\x05VPS\x052225\x07",
+  "\x06\x06S                                     ",
+  "\x06\x06Kurzfilm, D 2002                      ",
+  undef,
+  " In den dokumentarischen Portr{ts dreier",
+  " in Los Angeles lebender Stars des      ",
+  " schwulen Undergrounds zeichnet der Film",
+  " ein ebenso radikales wie einf}hlsames  ",
+  " Bild subkulturellen Lebens im 21. Jahr-",
+  " hundert. Dabei inszenieren sich der    ",
+  " durchtrainierte \"Supermarky\", eine     ",
+  " Transsexuelle und der sadomasochisti-  ",
+  " sche Ron Athey als subversive Personi- ",
+  " fizierungen bekannter Klischees, die   ",
+  " immer wieder mit dieser Szene in Zusam-",
+  " menhang gebracht werden.               ",
+  "\x06Bei den 48. Kurzfilmtagen Oberhausen   ",
+  "\x062002 erhielt \"S\" den 3sat-F|rderpreis. ",
+  "   \x03Begleitinformation auf Seite 393    ",
+  "\x11\x1D\x07300 <-                           ->  ",
+];

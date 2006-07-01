@@ -1,0 +1,127 @@
+#!/usr/bin/perl -w
+#
+# Overview for a complete day on several subpages of one teletext page.
+#
+# $Id: ovlist4.in,v 1.1 2006/06/10 21:08:18 tom Exp $
+#
+$VbiCaptureTime = 1149969705;
+$PgCnt{0x350} = 8;
+$PgSub{0x350} = 0;
+$PgLang{0x350} = 1;
+$Pkg{0x350|(0x0000<<12)} =
+[
+  "\x15s\x15\x15\x15\x15\x15G350\x03ZDFtext\x02Sa\x0210.06.06\x0322:01:55",
+  "\x04\x1D\x07 ZDFtext  \x01\x1D\x07   Wochen}bersicht      ",
+  "\x04\x1D\x07 Programm                            ",
+  "\x14|                                      ",
+  "\x14\x7F\x07Montag .......................... 351",
+  "\x14\x7F                                      ",
+  "\x14\x7F\x07Dienstag ........................ 352",
+  "\x14\x7F                                      ",
+  "\x14\x7F\x07Mittwoch ........................ 353",
+  "\x14\x7F                                      ",
+  "\x14\x7F\x07Donnerstag ...................... 354",
+  "\x14\x7F                                      ",
+  "\x14\x7F\x07Freitag ......................... 355",
+  "\x14\x7F                                      ",
+  "\x14\x7F\x07Samstag ......................... 356",
+  "\x14\x7F                                      ",
+  "\x14\x7F\x07Sonntag ......................... 357",
+  "\x14/,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x04\x1D                                      ",
+  "\x04\x1D\x07ZDF-Magazine .................... 360",
+  "\x04\x1D\x07Programm{nderungen .............. 399",
+  "\x04\x1D\x07Einschaltquoten ................. 444",
+  "\x14///////////////////////////////////////",
+  "\x04\x1D\x07333 <- Jetzt im Programm     -> 351  ",
+];
+$PgCnt{0x351} = 8;
+$PgSub{0x351} = 3;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0001<<12)} =
+[
+  "\x02s\x02P\x15\x15IG351\x03ZDFtext\x02Sa\x0210.06.06\x0322:01:25",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07       Vorschau   \x07 1/3 ",
+  "\x04\x1D\x07 Programm  Montag, 12.Juni           ",
+  "                       \x05\x181D102\x18120606\x18FB",
+  "\x0705.30\x05\x180530\x07\x07ARD-Morgenmagazin         ",
+  "\x0609.00\x05\x180900\x06\x06Tagesschau                ",
+  "\x0709.05\x05\x180905\x07\x07Volle Kanne               ",
+  "              Service t{glich           ",
+  "\x0610.30\x05\x181030\x06\x06Julia - Wege zum Gl}ck    ",
+  "            \x06\x06Kapitel 165\x03UT Wdh.       ",
+  "\x0711.15\x05\x181115\x07\x07Reich und Sch|n           ",
+  "\x0611.35\x05\x181135\x06\x06Reich und Sch|n           ",
+  "\x0712.00\x05\x181200\x07\x07heute                     ",
+  "\x0612.05\x05\x181205\x06\x06drehscheibe Deutschland   ",
+  "            \x06\x06WM extra                  ",
+  "\x0713.00\x05\x181300\x07\x07ZDF-Mittagsmagazin        ",
+  "              WM-Tour aus Kaiserslautern",
+  "\x0614.00\x05\x181400\x06\x06heute                     ",
+  "\x0714.05\x05\x181405\x07\x07ZDF WM-Studio\x03UT          ",
+  "\x0615.00\x05\x181500\x06\x06Australien - Japan        ",
+  "            \x06\x06Vorrunde Gruppe F\x03UT      ",
+  "\x0715.45\x05\x181545\x07\x07heute                     ",
+  "      \x05\x18VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0715.50\x07Uhr -> 351/2",
+];
+$PgCnt{0x351} = 8;
+$PgSub{0x351} = 3;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0002<<12)} =
+[
+  "\x02sIP\x15\x15IG351\x03ZDFtext\x02Sa\x0210.06.06\x0322:01:55",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07       Vorschau   \x07 2/3 ",
+  "\x04\x1D\x07 Programm  Montag, 12.Juni           ",
+  "                       \x05\x181D102\x18120606\x18DA",
+  "\x0715.50\x05\x051500\x07\x07Australien - Japan        ",
+  "              2.Halbzeit\x03UT             ",
+  "\x0617.00\x05\x181700\x06\x06ZDF WM-Studio\x03UT          ",
+  "\x0718.00\x05\x181800\x07\x07USA - Tschechien          ",
+  "              Vorrunde Gruppe E\x03UT      ",
+  "\x0618.45\x05\x181845\x06\x06heute                     ",
+  "\x0719.00\x05\x051800\x07\x07USA - Tschechien          ",
+  "              2.Halbzeit\x03UT             ",
+  "\x0620.15\x05\x182015\x06\x06ZDF WM-Studio\x03UT          ",
+  "\x0721.00\x05\x182100\x07\x07Italien - Ghana           ",
+  "              Vorrunde Gruppe E\x03UT      ",
+  "\x0621.45\x05\x182145\x06\x06heute-journal             ",
+  "            \x06\x06Wetter                    ",
+  "\x0722.00\x05\x052100\x07\x07Italien - Ghana           ",
+  "              2.Halbzeit\x03UT             ",
+  "\x0623.00\x05\x182300\x06\x06ZDF WM-Studio\x03UT          ",
+  "\x0723.30\x05\x182330\x07\x07Nachgetreten!             ",
+  "              Die Comedy-Show zur WM    ",
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0700.10\x07Uhr -> 351/3",
+];
+$PgCnt{0x351} = 8;
+$PgSub{0x351} = 3;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0003<<12)} =
+[
+  "\x02s^P\x15\x15IG351\x03ZDFtext\x02Sa\x0210.06.06\x0322:00:55",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07       Vorschau   \x07 3/3 ",
+  "\x04\x1D\x07 Programm  Montag, 12.Juni           ",
+  "                       \x05\x181D102\x05130606\x18C5",
+  "\x0700.10\x05\x180010\x07\x07heute nacht               ",
+  "\x0600.25\x05\x180025\x06\x06Kleines Fernsehspiel      ",
+  "            \x06\x06Nach dem Spiel            ",
+  "\x0701.25\x05\x180125\x07\x07Global Player - Das       ",
+  "              Webcamquiz                ",
+  "\x0601.50\x05\x180150\x06\x06heute                     ",
+  "\x0701.55\x05\x180155\x07\x07neues                     ",
+  "              W}rmer, Viren und Trojaner",
+  "\x0602.25\x05\x180225\x06\x06Vor 30 Jahren - Wer stirbt",
+  "            \x06\x06hat mehr vom Leben        ",
+  "\x0702.55\x05\x180255\x07\x07Russkies                  ",
+  "              Familienfilm USA/1987     ",
+  "\x0604.30\x05\x180430\x06\x06heute                     ",
+  "\x0704.35\x05\x180435\x07\x07Global Vision             ",
+  "\x0605.00\x05\x180500\x06\x06nano                      ",
+  "            \x06\x06Die Welt von morgen       ",
+  undef,
+  undef,
+  "      \x05\x18VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0705.30\x07Uhr -> 351  ",
+];

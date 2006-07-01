@@ -19,69 +19,121 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: cap.pl,v 1.1 2006/04/23 17:39:56 tom Exp tom $
+#  $Id: cap.pl,v 1.2 2006/08/02 20:27:47 tom Exp $
 #
 
-use Video::Capture::V4l;
-use Video::Capture::VBI;
+#use blib;
+use Video::Capture::zvbi;
 
 $opt_duration = 0;
 $opt_device = "/dev/vbi0";
 
 ParseArgv();
 
-$vbi = new Video::Capture::V4l::VBI($opt_device) or die;
+my $err;
+my $srv = Video::Capture::zvbi::VBI_SLICED_TELETEXT_B |
+          Video::Capture::zvbi::VBI_SLICED_VPS;
+my $cap = Video::Capture::zvbi::capture::v4l2_new($opt_device, 6, $srv, 0, $err, 0);
 
-# the next line is optional (it enables buffering)
-$vbi->backlog(25); # max. 1 second backlog (~900kB)
+die unless $cap;
 
 $start_t = time;
-$vbi_fd = $vbi->fileno;
+$vbi_fd = $cap->fd();
 
 for(;;) {
-   my $r="";
-   vec($r,$vbi_fd,1)=1;
-   select $r,undef,undef,0.04;
+   my $rin="";
+   vec($rin, $vbi_fd, 1) = 1;
+   select($rin, undef, undef, 1);
 
-   while ($vbi->queued) {
-      $a = $vbi->field;
-      feed(decode_field($a, VBI_VT));
+   my ($buf, $lcount, $ts);
+   my $ret = $cap->pull_sliced($buf, $lcount, $ts, 0);
+   if (($ret > 0) && ($lcount > 0)) {
+      my $lines = $cap->unpack_sliced($buf, $lcount, Video::Capture::zvbi::VBI_SLICED_TELETEXT_B);
+      feed(@$lines);
+
+      $lines = $cap->unpack_sliced($buf, $lcount, Video::Capture::zvbi::VBI_SLICED_VPS);
+      if ($#$lines >= 0) {
+         feed_vps($lines->[0]);
+      }
 
       exit(0) if ($opt_duration != 0) && ((time - $start_t) > $opt_duration);
+   }
+}
+
+sub feed_vps {
+
+   my $cd_02 = ord(substr($_[0],  2, 1));
+   my $cd_08 = ord(substr($_[0],  8, 1));
+   my $cd_10 = ord(substr($_[0], 10, 1));
+   my $cd_11 = ord(substr($_[0], 11, 1));
+
+   my $cni = (($cd_10 & 0x3) << 10) | (($cd_11 & 0xc0) << 2) |
+             ($cd_08 & 0xc0) | ($cd_11 & 0x3f);
+
+   if ($cni == 0xDC3)
+   {  # special case: "ARD/ZDF Gemeinsames Vormittagsprogramm"
+      $cni = ($cd_02 & 0x20) ? 0xDC1 : 0xDC2;
+   }
+   if (($cni != 0) && ($cni != 0xfff))
+   {
+      my $buf = pack("SSCCSx18x20", 0, 0, 0, 32, $cni);
+      syswrite(STDOUT, $buf);
    }
 }
 
 sub feed {
    my $lpage = -1;
    for (@_) {
-      if ($_->[0] == VBI_VT) {
-         my $y = $_->[2];
+      my $mpag = Video::Capture::zvbi::unham16p($_);
+      my $mag = $mpag & 7;
+      my $y = ($mpag & 0xf8) >> 3;
+      {
          if ($y == 0) {
-            $page = $_->[4];
+            my $page = ($mag << 8) | Video::Capture::zvbi::unham16p($_, 2);
+            my $ctrl = (Video::Capture::zvbi::unham16p($_, 4)) |
+                       (Video::Capture::zvbi::unham16p($_, 6) << 8) |
+                       (Video::Capture::zvbi::unham16p($_, 8) << 16);
             # drop filler packets (xFF and repetition of identical pkg 0)
             if ( (($page & 0xFF) != 0xFF) && ($page != $lpage) ) {
-               my @c = split(//, $_->[3]);
-               my $idx;
-               for ($idx = 0; $idx <= $#c; $idx++) {
-                  $c[$idx] = ord($c[$idx]) & 0x7f;
-               }
+               Video::Capture::zvbi::unpar_str($_);
                $lpage = $page;
-               $sub = $_->[5] & 0xffff;
+               $sub = $ctrl & 0xffff;
                # format: pageno, ctrl bis, ctrl bits, pkgno
-               my $buf = pack("SSCCC40", $page, ($_->[5]) & 0xFFFF, ($_->[5])>>16, $_->[2], @c);
+               my $buf = pack("SSCCa40", $page, ($ctrl) & 0xFFFF, ($ctrl)>>16, $y, substr($_, 2, 40));
                syswrite(STDOUT, $buf);
-               print STDERR sprintf("%03X.%04X\n", $page, $_->[5] & 0x3f7f);
+               print STDERR sprintf("%03X.%04X\n", $page, $ctrl & 0x3f7f);
             }
 
          } elsif($y<=25) {
-            my @c = split(//, $_->[3]);
-            my $idx;
-            for ($idx = 0; $idx <= $#c; $idx++) {
-               $c[$idx] = ord($c[$idx]) & 0x7f;
-            }
-            my $buf = pack("SSCCC40", ($_->[1])<<8, 0, 0, $_->[2], @c);
+            Video::Capture::zvbi::unpar_str($_);
+            my $buf = pack("SSCCa40", $mag << 8, 0, 0, $y, substr($_, 2, 40));
             syswrite(STDOUT, $buf);
             $lpage = -1;
+         } elsif($y==30) {
+            my $dc = (Video::Capture::zvbi::unham16p($_, 2) & 0x0F) >> 1;
+            if ($dc == 0) {
+               my $cni = Video::Capture::zvbi::rev16p($_, 2+7);
+               if (($cni != 0) && ($cni != 0xffff)) {
+                  my $buf = pack("SSCCSx18a20", $mag << 8, 0, 0, $y, $cni, substr($_, 2+20, 20));
+                  syswrite(STDOUT, $buf);
+               }
+            } elsif ($dc == 1) {
+               my $c0 = Video::Capture::zvbi::rev8(Video::Capture::zvbi::unham16p($_, 2+9+0));
+               my $c6 = Video::Capture::zvbi::rev8(Video::Capture::zvbi::unham16p($_, 2+9+6));
+               my $c8 = Video::Capture::zvbi::rev8(Video::Capture::zvbi::unham16p($_, 2+9+8));
+
+               my $cni = (($c0 & 0xf0) << 8) |
+                         (($c0 & 0x0c) << 4) |
+                         (($c6 & 0x30) << 6) |
+                         (($c6 & 0x0c) << 6) |
+                         (($c6 & 0x03) << 4) |
+                         (($c8 & 0xf0) >> 4);
+               $cni &= 0x0FFF if (($cni & 0xF000) == 0xF000);
+               if (($cni != 0) && ($cni != 0xffff)) {
+                  my $buf = pack("SSCCSx18x20", $mag << 8, 0, 0, $y, $cni);
+                  syswrite(STDOUT, $buf);
+               }
+            }
          } else {
             $lpage = -1;
          }
@@ -104,8 +156,8 @@ sub ParseArgv {
     } elsif (/^-dev(ice)?$/) {
       die "Missing argument for $_\n$usage" unless $#ARGV>=0;
       $opt_device = shift @ARGV;
-      die "-dev $_: doesn't exist\n" unless -e $opt_device;
-      die "-dev $_: not a character device\n" unless -c $opt_device;
+      die "-dev $opt_device: doesn't exist\n" unless -e $opt_device;
+      die "-dev $opt_device: not a character device\n" unless -c $opt_device;
 
    } elsif (/^-(help|\?)$/) {
       print STDERR $usage;
