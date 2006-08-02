@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.8 2006/07/01 20:01:32 tom Exp $
+#  $Id: ttxacq.pl,v 1.9 2006/08/02 20:30:15 tom Exp tom $
 #
 
 use POSIX;
@@ -2259,14 +2259,14 @@ sub ParseChannelName {
                $mname_match = GetDateNameRegExp(\%MonthNames, $lang, undef);
             }
             $_ = TtxToLatin1(substr($_, 8), $lang);
-            s#[\x00-\x1F\x7F]# #g;
+            s#[\x00-\x1F\x7F]+# #g;
             $pgn = sprintf("%03X", $page);
             # remove page number and time (both are required)
             if (s#(^| )\Q$pgn\E( |$)#$1$2# &&
                 s# \d{2}[\.\: ]?\d{2}([\.\: ]\d{2}) *$# #) {
 
                # remove date
-               s#((($wday_abbrv_match)\.?|($wday_match))(, ?| - | )?)?\d{1,2}(\.\d{1,2}|[ \.]($mname_match))(\.|[ \.]\d{2,4})? *$##i;
+               s#((($wday_abbrv_match)\.?|($wday_match))(\, ?|  ?\-  ?|  ?)?)?\d{1,2}(\.\d{1,2}|[ \.]($mname_match))(\.|[ \.]\d{2,4})? *$##i;
                # remove and compress whitespace
                s#(^ +| +$)##g;
                s#  +# #g;
@@ -2275,7 +2275,7 @@ sub ParseChannelName {
 
                if (defined($ChName{$_})) {
                   $ChName{$_} += 1;
-                  last if $ChName{$_} >= 50;
+                  last if $ChName{$_} >= 100;
                } else {
                   $ChName{$_} = 1;
                   $found = 1;
@@ -2285,7 +2285,7 @@ sub ParseChannelName {
       }
    }
    if ($found) {
-      $name = (sort {$ChName{$a}<=>$ChName{$b}} keys(%ChName))[0];
+      $name = (sort {$ChName{$b}<=>$ChName{$a}} keys(%ChName))[0];
    } else {
       $name = "";
    }

@@ -19,7 +19,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: cap.pl,v 1.2 2006/08/02 20:27:47 tom Exp $
+#  $Id: cap.pl,v 1.3 2006/08/02 20:28:42 tom Exp tom $
 #
 
 #use blib;
@@ -27,15 +27,23 @@ use Video::Capture::zvbi;
 
 $opt_duration = 0;
 $opt_device = "/dev/vbi0";
+$opt_dvbpid = undef;
+$opt_debug = 0;
 
 ParseArgv();
 
 my $err;
 my $srv = Video::Capture::zvbi::VBI_SLICED_TELETEXT_B |
           Video::Capture::zvbi::VBI_SLICED_VPS;
-my $cap = Video::Capture::zvbi::capture::v4l2_new($opt_device, 6, $srv, 0, $err, 0);
+my $cap;
+if (defined($opt_dvbpid)) {
+   $cap = Video::Capture::zvbi::capture::dvb_new($opt_device, 0, $srv, 0, $err, $opt_debug);
+   $cap->dvb_filter($opt_dvbpid) 
+} else {
+   $cap = Video::Capture::zvbi::capture::v4l2_new($opt_device, 6, $srv, 0, $err, $opt_debug);
+}
 
-die unless $cap;
+die "Failed to open capture device: $err\n" unless $cap;
 
 $start_t = time;
 $vbi_fd = $cap->fd();
@@ -142,7 +150,8 @@ sub feed {
 }
 
 sub ParseArgv {
-   my $usage = "Usage: $0 [-duration <sec>] [-dev <path>] <file>\n";
+   my $usage = "Usage: $0 [-duration <sec>] [-dev <path>] [-dvbpid <PID>] [-debug]\n".
+               "Output is written to STDOUT\n";
 
   while ($_ = shift @ARGV) {
     # -duration <seconds>: terminate acquisition after the given time
@@ -158,6 +167,14 @@ sub ParseArgv {
       $opt_device = shift @ARGV;
       die "-dev $opt_device: doesn't exist\n" unless -e $opt_device;
       die "-dev $opt_device: not a character device\n" unless -c $opt_device;
+
+    } elsif (/^-dvbpid$/) {
+      die "Missing argument for $_\n$usage" unless $#ARGV>=0;
+      $opt_dvbpid = shift @ARGV;
+      die "$_ requires a numeric argument\n" if $opt_dvbpid !~ m#^[0-9]+$#;
+
+    } elsif (/^-debug$/) {
+      $opt_debug = 1;
 
    } elsif (/^-(help|\?)$/) {
       print STDERR $usage;
