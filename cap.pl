@@ -19,7 +19,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: cap.pl,v 1.3 2006/08/02 20:28:42 tom Exp tom $
+#  $Id: cap.pl,v 1.4 2006/10/15 19:55:47 tom Exp tom $
 #
 
 #use blib;
@@ -97,6 +97,7 @@ sub feed {
       my $y = ($mpag & 0xf8) >> 3;
       {
          if ($y == 0) {
+            # teletext page header (packet #0)
             my $page = ($mag << 8) | Video::Capture::zvbi::unham16p($_, 2);
             my $ctrl = (Video::Capture::zvbi::unham16p($_, 4)) |
                        (Video::Capture::zvbi::unham16p($_, 6) << 8) |
@@ -113,6 +114,7 @@ sub feed {
             }
 
          } elsif($y<=25) {
+            # regular teletext packet (lines 1-25)
             Video::Capture::zvbi::unpar_str($_);
             my $buf = pack("SSCCa40", $mag << 8, 0, 0, $y, substr($_, 2, 40));
             syswrite(STDOUT, $buf);
@@ -120,12 +122,14 @@ sub feed {
          } elsif($y==30) {
             my $dc = (Video::Capture::zvbi::unham16p($_, 2) & 0x0F) >> 1;
             if ($dc == 0) {
+               # packet 8/30/1
                my $cni = Video::Capture::zvbi::rev16p($_, 2+7);
                if (($cni != 0) && ($cni != 0xffff)) {
                   my $buf = pack("SSCCSx18a20", $mag << 8, 0, 0, $y, $cni, substr($_, 2+20, 20));
                   syswrite(STDOUT, $buf);
                }
             } elsif ($dc == 1) {
+               # packet 8/30/2
                my $c0 = Video::Capture::zvbi::rev8(Video::Capture::zvbi::unham16p($_, 2+9+0));
                my $c6 = Video::Capture::zvbi::rev8(Video::Capture::zvbi::unham16p($_, 2+9+6));
                my $c8 = Video::Capture::zvbi::rev8(Video::Capture::zvbi::unham16p($_, 2+9+8));
@@ -168,6 +172,7 @@ sub ParseArgv {
       die "-dev $opt_device: doesn't exist\n" unless -e $opt_device;
       die "-dev $opt_device: not a character device\n" unless -c $opt_device;
 
+    # -dvbpid <number>: capture from DVB device from a stream with the given PID
     } elsif (/^-dvbpid$/) {
       die "Missing argument for $_\n$usage" unless $#ARGV>=0;
       $opt_dvbpid = shift @ARGV;

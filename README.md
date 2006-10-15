@@ -61,6 +61,11 @@ Note capturing from DVB devices requires option "`-dvbpid`".
 For additional options invoke the scripts with command line option
 "`-help`".
 
+Using the above will produce a separate XMLTV file per channel, which is not
+practical for browsing. Use script `merge.pl` for merging XML files of all
+channels into a single XMLTV file. See script `capall.pl` for an example how to
+automate capturing and merging EPG data from multiple channels.
+
 # Copyright
 
 **Copyright 2006 - 2008 by T. Zoerner**
