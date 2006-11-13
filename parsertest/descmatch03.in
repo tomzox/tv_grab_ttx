@@ -1,0 +1,338 @@
+#!/usr/bin/perl -w
+#
+# Test of series description across 2 subpages,
+# 2nd page doesn't contain time and date.
+#
+# $Id$
+#
+$VbiCaptureTime = 1147371369;
+$PgCnt{0x302} = 8;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302 ProSieben  11.05.06 20:16:09",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Heute           1/1 ",
+  "\x11.//\%             ######################",
+  "\x0610.31 Lotta in Love                >360",
+  "\x0711.02 talk talk talk               >400",
+  "\x0611.57 AVENZIO - Sch|ner leben!         ",
+  "\x06      Thema u. a.: Familie B|rner      ",
+  "\x06      baut ein Blockhaus (Teil 4)  >417",
+  "\x0712.59 SAM                              ",
+  "\x07      Thema u. a.: \"Zukunft ge-        ",
+  "\x07      sucht\"                       >402",
+  "\x0614.00 We are Family! So lebt           ",
+  "\x06      Deutschland.                     ",
+  "\x06      Kai wohnt im Heim            >414",
+  "\x0715.00 Sabrina ... total verhext!   >342",
+  "\x0615.30 Sabrina ... total verhext!   >342",
+  "\x0715.59 Charmed - Zauberhafte Hexen      ",
+  "\x07      Verlorene Seelen             >341",
+  "\x0616.59 taff                         >405",
+  undef,
+  undef,
+  "\x01\x1D\x07WM f}r 49 Euro!................. 267 ",
+  "\x01\x1D                                      ",
+];
+$PgCnt{0x303} = 9;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303 ProSieben  11.05.06 20:16:09",
+  "\x11|||4            \x06\x1D\x04DSL\x04flat+Tel flat   ",
+  "\x11 p|4            \x06\x1D\x01nur 44,85 EUR!> 557 ",
+  "\x11.//\%            \x16######################",
+  "\x0617.58 Lotta in Love                    ",
+  "\x06      Folge 31                     >360",
+  "\x0718.29 Die Simpsons                     ",
+  "\x07      Filmstar wider Willen        >345",
+  "\x0618.59 Galileo                          ",
+  "\x06      Thema u. a.: Wie funktio-        ",
+  "\x06      niert ein Wikingerschiff     >408",
+  "\x0720.00 NEWSTIME                         ",
+  "\x0120.14 Das Blut der Templer, Teil 1 >311",
+  "\x0722.20 TV total                     >371",
+  "\x0623.19 Elton vs. Simon                  ",
+  "\x06      Wer kann l{nger nicht reden? >336",
+  "\x0723.51 talk talk talk - Die Late        ",
+  "\x07      Show                         >337",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x01\x1D\x07WM f}r 49 Euro!................. 267 ",
+  "\x01\x1D\x07Was gerade l{uft................ 334 ",
+];
+$PgCnt{0x307} = 8;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "/\x15\x15\x15\x15\x15\x15G307 ProSieben  11.05.06 20:16:09",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Morgen          1/1 ",
+  "\x11.//\%             ######################",
+  "\x0617.58 Lotta in Love                    ",
+  "\x06      Folge 32                     >360",
+  "\x0718.28 Die Simpsons                     ",
+  "\x07      Bei Simpsons stimmt was          ",
+  "\x07      nicht                        >345",
+  "\x0618.59 Galileo                          ",
+  "\x06      Thema u. a.: Weltrekord im       ",
+  "\x06      Cocktail-Mixen               >408",
+  "\x0719.59 NEWSTIME                         ",
+  "\x0620.15 Das Blut der Templer, Teil 2 >312",
+  "\x0722.26 FOCUS TV                         ",
+  "\x07      Thema u. a.: Das Sakrileg des    ",
+  "\x07      Leonardo da Vinci?               ",
+  "\x0623.25 Galileo-Spezial: Sakrileg -      ",
+  "\x06      Ein Code wird entschl}sselt      ",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x01\x1D                                      ",
+];
+$PgCnt{0x309} = 8;
+$PgSub{0x309} = 4;
+$PgLang{0x309} = 1;
+$Pkg{0x309|(0x0003<<12)} =
+[
+  "G\x15^P\x15\x15IG309 ProSieben  11.05.06 20:15:21",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07]bermorgen      3/4 ",
+  "\x11.//\%             ######################",
+  "\x0617.59 Relic Hunter - Die Schatzj{-     ",
+  "\x06      gerin                            ",
+  "\x06      Wettlauf mit dem Tod         >351",
+  "\x0718.59 talk talk talk               >400",
+  "\x0619.59 NEWSTIME                         ",
+  "\x0720.15 24 Stunden Angst             >318",
+  "\x0622.19 Identit{t                    >319",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x01\x1D\x07Was gleich anf{ngt 315 Filmtipps 320 ",
+];
+$PgCnt{0x309} = 8;
+$PgSub{0x309} = 4;
+$PgLang{0x309} = 1;
+$Pkg{0x309|(0x0004<<12)} =
+[
+  "G\x15dP\x15\x15IG309 ProSieben  11.05.06 20:15:45",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07]bermorgen      4/4 ",
+  "\x11.//\%             ######################",
+  "\x0600.01 Dark Species - Die Anderen   >319",
+  "\x0701.44 24 Stunden Angst             >318",
+  "\x0603.30 Identit{t                    >319",
+  "\x0705.07 O.C., California                 ",
+  "\x07      Die Verlobungsfeier          >355",
+  "\x0605.48 Fahrstuhl ins zweite Leben   >319",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x01\x1D\x07Was gleich anf{ngt 315 Filmtipps 320 ",
+];
+$PgCnt{0x311} = 7;
+$PgSub{0x311} = 2;
+$PgLang{0x311} = 1;
+$Pkg{0x311|(0x0001<<12)} =
+[
+  "\x02\x02\x02P\x15\x15IG311 ProSieben  11.05.06 20:16:09",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Spielfilm       1/2 ",
+  "\x11.//\%             ######################",
+  "\x06Das Blut der Templer, Teil 1           ",
+  "\x07Abenteuer D 2004                       ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Do 11.05 20:14-22:20                   ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x07David, der als Baby vor einem Kloster  ",
+  "\x07ausgesetzt und von M|nchen aufgezogen  ",
+  "\x07wurde, steht kurz vor seinem Abitur.   ",
+  "\x07Als er seine Klassenkameradin Stella zu",
+  "\x07einer Party begleitet, kommt es zu ei- ",
+  "\x07ner Auseinandersetzung mit ihrem Ex-   ",
+  "\x07Freund - die David zum allgemeinen Er- ",
+  "\x07staunen f}r sich entscheidet.          ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x1D\x1D\x01WE LOVE Dating:Singles f}r Jeden 520 ",
+];
+$PgCnt{0x311} = 7;
+$PgSub{0x311} = 2;
+$PgLang{0x311} = 1;
+$Pkg{0x311|(0x0002<<12)} =
+[
+  "\x02\x02IP\x15\x15IG311 ProSieben  11.05.06 20:15:45",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Spielfilm       2/2 ",
+  "\x11.//\%             ######################",
+  "\x06Das Blut der Templer, Teil 1           ",
+  "\x07Abenteuer D 2004                       ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Regie..............Florian Baxmeyer    ",
+  "\x07Produktion.........Christian Becker    ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Robert von Metz....Harald Krassnitzer  ",
+  "\x07David..............Mirko Lang          ",
+  "\x07Lucrezia Saintclai.Catherine Flemming  ",
+  "\x07Stella.............Alicja Bachleda-Cur ",
+  "\x07Quentin............Peter Franke        ",
+  "\x07Ares Saintclair....Oliver Masucci      ",
+  "\x07Cedric Charney.....Ralph Herforth      ",
+  "\x07Shareef............Rene Ifrah          ",
+  "\x07William Blanchefor.Mario Holetzeck     ",
+  "\x07Frank..............Nils-Bruno Schmidt  ",
+  undef,
+  undef,
+  undef,
+  "\x1D\x1D\x01WE LOVE Dating:Singles f}r Jeden 520 ",
+];
+$PgCnt{0x312} = 7;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0001<<12)} =
+[
+  "I\x02\x02P\x15\x15IG312 ProSieben  11.05.06 20:16:09",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Spielfilm       1/2 ",
+  "\x11.//\%             ######################",
+  "\x06Das Blut der Templer, Teil 2           ",
+  "\x07Abenteuer D 2004                       ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Fr 12.05 20:15-22:26                   ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Endlich begreift David, dass seine Mut-",
+  "\x07ter ihn nur benutzen wollte. Robert von",
+  "\x07Metz }berzeugt ihn, dass er als sein   ",
+  "\x07Erbe die Bestimmung habe, der n{chste  ",
+  "\x07Gro~meister der Templer zu werden. Sei-",
+  "\x07ne Aufgabe bestehe darin, um jeden     ",
+  "\x07Preis den heiligen Gral zu besch}tzen -",
+  "\x07auch wenn das f}r ihn ein Leben im Un- ",
+  "\x07tergrund und st{ndigen Kampf mit den   ",
+  "\x07Prieure de Sion bedeute. Aber David    ",
+  "\x07will den tausendj{hrigen Bruderzwist   ",
+  "\x07endg}ltig beenden ...                  ",
+  undef,
+  undef,
+  "\x01\x1D                                      ",
+];
+$PgCnt{0x312} = 7;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0002<<12)} =
+[
+  "I\x02IP\x15\x15IG312 ProSieben  11.05.06 20:15:45",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Spielfilm       2/2 ",
+  "\x11.//\%             ######################",
+  "\x06Das Blut der Templer, Teil 2           ",
+  "\x07Abenteuer D 2004                       ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Regie..............Florian Baxmeyer    ",
+  "\x07Produktion.........Christian Becker    ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Robert von Metz....Harald Krassnitzer  ",
+  "\x07David..............Mirko Lang          ",
+  "\x07Lucrezia Saintclai.Catherine Flemming  ",
+  "\x07Stella.............Alicja Bachleda-Cur ",
+  "\x07Quentin............Peter Franke        ",
+  "\x07Ares Saintclair....Oliver Masucci      ",
+  "\x07Cedric Charney.....Ralph Herforth      ",
+  "\x07Shareef............Rene Ifrah          ",
+  "\x07William Blanchefor.Mario Holetzeck     ",
+  "\x07Frank..............Nils-Bruno Schmidt  ",
+  undef,
+  undef,
+  undef,
+  "\x01\x1D                                      ",
+];
+$PgCnt{0x319} = 8;
+$PgSub{0x319} = 16;
+$PgLang{0x319} = 1;
+$Pkg{0x319|(0x0001<<12)} =
+[
+  "G\x02\x02P\x15\x15IG319 ProSieben  11.05.06 20:15:21",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Spielfilm       001 ",
+  "\x11.//\%             ######################",
+  "\x06Identit{t                              ",
+  "\x07Thriller USA 2003                      ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Sa 13.05 22:19-00:01                   ",
+  "\x07So 14.05 03:30-05:07                   ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Zehn Menschen, die sich nie zuvor gese-",
+  "\x07hen haben, suchen in einer st}rmischen ",
+  "\x07Nacht durch eine Verkettung merkw}r-   ",
+  "\x07digster Zuf{lle in demselben herunter- ",
+  "\x07gekommenen Motel mitten in der W}ste   ",
+  "\x07Zuflucht. Ein sintflutartiger Wolken-  ",
+  "\x07bruch und }berschwemmte Stra~en lassen ",
+  "\x07alle hoffnungslos festsitzen. Auf den  ",
+  "\x07ersten Blick haben sie nichts gemeinsam",
+  "\x07- abgesehen davon, dass das Schicksal  ",
+  "\x07sie hier zusammengef}hrt hat.          ",
+  undef,
+  undef,
+  "\x01\x1D                                      ",
+];
+$PgCnt{0x319} = 8;
+$PgSub{0x319} = 16;
+$PgLang{0x319} = 1;
+$Pkg{0x319|(0x0002<<12)} =
+[
+  "G\x02IP\x15\x15IG319 ProSieben  11.05.06 20:15:45",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Spielfilm       002 ",
+  "\x11.//\%             ######################",
+  "\x06Identit{t                              ",
+  "\x07Thriller USA 2003                      ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Regie..............James Mangold       ",
+  "\x07Produktion.........Cathy Konrad        ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Ed.................John Cusack         ",
+  "\x07Rhodes.............Ray Liotta          ",
+  "\x07Paris..............Amanda Peet         ",
+  "\x07Arzt...............Alfred Molina       ",
+  "\x07Ginny..............Clea DuVall         ",
+  "\x07Caroline Suzanne...Rebecca De Mornay   ",
+  "\x07George York........John C. McGinley    ",
+  "\x07Larry..............John Hawkes         ",
+  "\x07Lou................William Lee Scott   ",
+  "\x07Robert Maine.......Jake Busey          ",
+  "\x07Malcolm Rivers.....Pruitt Taylor Vince ",
+  undef,
+  undef,
+  "\x01\x1D                                      ",
+];

@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: ttxacq.pl,v 1.10 2006/10/15 19:55:41 tom Exp tom $
+#  $Id: ttxacq.pl,v 1.12 2006/11/13 21:21:18 tom Exp tom $
 #
 
 use POSIX;
@@ -24,7 +24,7 @@ use locale;
 use strict;
 use Time::Local;
 
-my $version = "Teletext EPG grabber, v0.5\nCopyright 2006 Tom Zoerner";
+my $version = "Teletext EPG grabber, v0.6\nCopyright 2006 Tom Zoerner";
 
 my %Pkg;
 my %PkgCni;
@@ -51,7 +51,7 @@ my $opt_expire = 1;
 # Command line argument parsing
 #
 sub ParseArgv {
-   my $usage = "Usage: $0 [-page <NNN>-<MMM>] [-chn_name <name>] [-chn_id <ID>] [-outfile <name>] <file>\n".
+   my $usage = "Usage: $0 [-page <NNN>-<MMM>] [-chn_name <name>] [-chn_id <ID>] [-outfile <name>] {<file>|-}\n".
                "Other options: -help -version -expire <minutes>\n".
                "Debug options: -debug -dump -dumpraw <page_range> -verify\n";
 
@@ -125,12 +125,12 @@ sub ParseArgv {
          print STDERR $version .
                       "\nThis is free software with ABSOLUTELY NO WARRANTY.\n" .
                       "Licensed under the GNU Public License version 2\n";
-         exit;
+         exit 0;
 
       # -help: print usage (i.e. command line syntax) and exit
       } elsif (/^-(help|h|\?)$/) {
          print STDERR $usage;
-         exit;
+         exit 0;
 
       # sole "-": read input data from STDIN
       } elsif (/^-$/) {
@@ -174,6 +174,8 @@ sub ReadVbi {
       open(TTX, "<$opt_infile") || die "Failed to open $opt_infile: $!\n";
       $VbiCaptureTime = (stat($opt_infile))[9];
    }
+   binmode(TTX);
+
    $intv = 0;
    while (1) {
       $line_off = 0;
@@ -283,17 +285,23 @@ sub VbiPageErase {
 }
 
 # ------------------------------------------------------------------------------
-# Dump all loaded teletext pages as text
+# Dump all loaded teletext pages as plain text
 # - teletext control characters and mosaic is replaced by space
 # - used for -dump option, intended for debugging only
 #
-sub DumpAllPages {
+sub DumpTextPages {
    my $page;
+
+   if (defined($opt_outfile)) {
+      close STDOUT;
+      open(STDOUT, ">$opt_outfile") || die "Failed to create $opt_outfile: $!\n";
+   }
 
    foreach $page (sort {$a<=>$b} keys(%PgCnt)) {
       my $line;
       my ($sub, $sub1, $sub2);
       my $pgtext;
+      my $handle;
 
       if ($PgSub{$page} == 0) {
          $sub1 = $sub2 = 0;
@@ -302,15 +310,18 @@ sub DumpAllPages {
          $sub2 = $PgSub{$page};
       }
       for ($sub = $sub1; $sub <= $sub2; $sub++) {
-         printf "PAGE %03X.%04X\n", $page, $sub;
+         $handle = $page | ($sub << 12);
+         if (defined($Pkg{$handle}->[0])) {
+            printf "PAGE %03X.%04X\n", $page, $sub;
 
-         PageToLatin($page, $sub);
-         $pgtext = $PageText{$page | ($sub << 12)};
+            PageToLatin($page, $sub);
+            $pgtext = $PageText{$handle};
 
-         for ($line = 1; $line <= 23; $line++) {
-            print $pgtext->[$line] . "\n";
+            for ($line = 1; $line <= 23; $line++) {
+               print $pgtext->[$line] . "\n";
+            }
+            print "\n";
          }
-         print "\n";
       }
    }
 }
@@ -322,6 +333,11 @@ sub DumpAllPages {
 sub DumpRawTeletext {
    my $page;
    my $cni;
+
+   if (defined($opt_outfile)) {
+      close STDOUT;
+      open(STDOUT, ">$opt_outfile") || die "Failed to create $opt_outfile: $!\n";
+   }
 
    print "#!/usr/bin/perl -w\n".
          "\$VbiCaptureTime = $VbiCaptureTime;\n";
@@ -346,25 +362,28 @@ sub DumpRawTeletext {
       for ($sub = $sub1; $sub <= $sub2; $sub++) {
          $handle = $page | ($sub << 12);
 
-         printf("\$PgCnt{0x%03X} = %d;\n", $page, $PgCnt{$page});
-         printf("\$PgSub{0x%03X} = %d;\n", $page, $PgSub{$page});
-         printf("\$PgLang{0x%03X} = %d;\n", $page, $PgLang{$page});
+         # skip missing sub-pages
+         if (defined($Pkg{$handle}->[0])) {
+            printf("\$PgCnt{0x%03X} = %d;\n", $page, $PgCnt{$page});
+            printf("\$PgSub{0x%03X} = %d;\n", $page, $PgSub{$page});
+            printf("\$PgLang{0x%03X} = %d;\n", $page, $PgLang{$page});
 
-         printf("\$Pkg{0x%03X|(0x%04X<<12)} =\n\[\n", $page, $sub);
+            printf("\$Pkg{0x%03X|(0x%04X<<12)} =\n\[\n", $page, $sub);
 
-         for ($pkg = 0; $pkg <= 23; $pkg++) {
-            $_ = $Pkg{$handle}->[$pkg];
-            if (defined($_)) {
-               # quote Perl special characters
-               s#([\"\$\@\%\\])#\\$1#g;
-               # quote binary characters
-               s#([\x00-\x1F\x7F])#"\\x".sprintf("%02X",ord($1))#eg;
-               print "  \"$_\",\n";
-            } else {
-               print "  undef,\n";
+            for ($pkg = 0; $pkg <= 23; $pkg++) {
+               $_ = $Pkg{$handle}->[$pkg];
+               if (defined($_)) {
+                  # quote Perl special characters
+                  s#([\"\$\@\%\\])#\\$1#g;
+                  # quote binary characters
+                  s#([\x00-\x1F\x7F])#"\\x".sprintf("%02X",ord($1))#eg;
+                  print "  \"$_\",\n";
+               } else {
+                  print "  undef,\n";
+               }
             }
+            print "\];\n";
          }
-         print "\];\n";
       }
    }
    # return TRUE to allow to "require" the file
@@ -1854,6 +1873,14 @@ sub Latin1ToXml {
    $_[0] =~ s#&#\&amp\;#g;
    $_[0] =~ s#<#\&lt\;#g;
    $_[0] =~ s#>#\&gt\;#g;
+   return $_[0];
+}
+
+sub XmlToLatin1 {
+   $_[0] =~ s#\&gt\;#>#g;
+   $_[0] =~ s#\&lt\;#<#g;
+   $_[0] =~ s#\&amp\;#\&#g;
+   return $_[0];
 }
 
 # ------------------------------------------------------------------------------
@@ -2760,29 +2787,35 @@ sub MergeNextSlot {
    my $old_start;
    my $old_stop;
 
+   # get the first (oldest) programme start/stop times from both sources
    if ($#{$Slots} >= 0) {
       $new_start = $Slots->[0]->{start_t};
+      $new_stop = $Slots->[0]->{stop_t};
+      $new_stop = $new_start + 1 if !defined $new_stop;  # FIXME
+
+      # remove overlapping (or repeated) programmes in the new data
+      while (($#{$Slots} >= 1) && ($Slots->[1]->{start_t} <= $new_stop)) {
+         print "MERGE DISCARD NEW $Slots->[1]->{start_t} ovl $new_start..$new_stop\n" if $opt_debug;
+         splice(@$Slots, 1, 1);
+      }
    }
    if ($#{$OldProgKeys} >= 0) {
       $old_start = $OldProgKeys->[0];
+      $old_stop = GetXmltvStopTime($OldProgHash->{$old_start}, $old_start);
    }
 
    if (defined($new_start) && defined($old_start)) {
-      $new_stop = $Slots->[0]->{stop_t};
-      $new_stop = $new_start + 1 if !defined $new_stop;  # FIXME
-      $old_stop = GetXmltvStopTime($OldProgHash->{$old_start}, $old_start);
-      $OldProgHash->{$OldProgKeys->[0]} =~ /<title>(.*)<\/title>/;
-      #print "CMP $Slots->[0]->{title} -- ".substr($1,0,30)."\n";
+      print "MERGE CMP $Slots->[0]->{title} -- ".substr(GetXmltvTitle($OldProgHash->{$OldProgKeys->[0]}),0,30)."\n" if $opt_debug;
       # discard old programmes which overlap the next new one
       # TODO: merge description from old to new if time and title are identical and new has no description
       while (($old_start < $new_stop) && ($old_stop > $new_start)) {
-         #print "DISCARD OLD $old_start...$old_stop  ovl $new_start..$new_stop\n";
+         print "MERGE DISCARD OLD $old_start...$old_stop  ovl $new_start..$new_stop\n" if $opt_debug;
+         MergeSlotDesc($Slots->[0], $OldProgHash->{$old_start}, $new_start, $new_stop, $old_start, $old_stop);
          shift @$OldProgKeys;
          if ($#{$OldProgKeys} >= 0) {
             $old_start = $OldProgKeys->[0];
             $old_stop = GetXmltvStopTime($OldProgHash->{$old_start}, $old_start);
-            $OldProgHash->{$OldProgKeys->[0]} =~ /<title>(.*)<\/title>/;
-            #print "CMP $Slots->[0]->{title} -- ".substr($1,0,30)."\n";
+            print "MERGE CMP $Slots->[0]->{title} -- ".substr(GetXmltvTitle($OldProgHash->{$OldProgKeys->[0]}),0,30)."\n" if $opt_debug;
          } else {
             undef $old_start;
             undef $old_stop;
@@ -2790,18 +2823,22 @@ sub MergeNextSlot {
          }
       }
       if (!defined($old_start) || ($new_start <= $old_start)) {
+         # new programme starts earlier -> choose data from new source
          # discard old programmes which are overlapped the next new one
          while (($#{$OldProgKeys} >= 0) && ($OldProgKeys->[0] < $new_stop)) {
-            #print "DISCARD2 OLD $OldProgKeys->[0]  ovl STOP $new_stop\n";
+            print "MERGE DISCARD2 OLD $OldProgKeys->[0]  ovl STOP $new_stop\n" if $opt_debug;
+            MergeSlotDesc($Slots->[0], $OldProgHash->{$old_start}, $new_start, $new_stop, $old_start, $old_stop);
             shift @$OldProgKeys;
          }
-         #print "CHOOSE NEW\n";
+         print "MERGE CHOOSE NEW\n" if $opt_debug;
          return shift @$Slots;
       } else {
-         #print "CHOOSE OLD\n";
+         # choose data from old source
+         print "MERGE CHOOSE OLD\n" if $opt_debug;
          return shift @$OldProgKeys;
       }
 
+   # special cases: only one source available anymore
    } elsif (defined($new_start)) {
       return shift @$Slots;
 
@@ -2821,8 +2858,52 @@ sub GetXmltvStopTime {
    }
 }
 
+sub GetXmltvTitle {
+   if ($_[0] =~ /<title>(.*)<\/title>/) {
+      return XmlToLatin1($_=$1);
+   } else {
+      return "";
+   }
+}
+
+sub GetXmltvDesc {
+   if ($_[0] =~ /<desc>(.*)<\/desc>/ms) {
+      return XmlToLatin1($_=$1);
+   } else {
+      return "";
+   }
+}
+
 # ------------------------------------------------------------------------------
-# Write grabbed data to XMLTV & merge old data
+# Merge description and other meta-data from old source, if missing in new source
+# - called before programmes in the old source are discarded
+#
+sub MergeSlotDesc {
+   my ($new_slot, $old_xml, $new_start, $new_stop, $old_start, $old_stop) = @_;
+
+   if (($old_start == $new_start) && ($old_stop == $new_stop)) {
+      my $old_title = GetXmltvTitle($old_xml);
+
+      # FIXME allow for parity errors (& use redundancy to correct them)
+      if ($new_slot->{title} eq $old_title) {
+
+         if ( !defined($new_slot->{desc}) || ($new_slot->{desc} eq "") ||
+              ($new_slot->{desc} =~ /^\(teletext [1-8][0-9][0-9]\)$/) ) {
+            my $old_desc = GetXmltvDesc($old_xml);
+
+            if ($old_desc && ($old_desc !~ /^\(teletext [1-8][0-9][0-9]\)$/)) {
+
+               # copy description
+               $new_slot->{desc} = $old_desc;
+            }
+         }
+      }
+   }
+}
+
+# ------------------------------------------------------------------------------
+# Write grabbed data to XMLTV
+# - merge with old data, if available
 #
 sub ExportXmltv {
    my ($ch_id, $ch_name, $NewSlots, $MergeProg, $MergeChn) = @_;
@@ -2863,10 +2944,12 @@ sub ExportXmltv {
       # sort old programmes by start time
       my @OldProgKeys = sort keys(%OldProgHash);
 
-      # sort new programmes by start time & apply expire time filter
+      # sort new programmes by start time
       my @NewSlotSorted = ();
       foreach (sort {$a->{start_t} <=> $b->{start_t}} @$NewSlots) {
-         if ($_->{start_t} >= $exp_thresh) {
+         # apply expire time filter
+         if ( (defined($_->{stop_t}) && ($_->{stop_t} >= $exp_thresh)) ||
+              ($_->{start_t} >= $exp_thresh) ) {
             push @NewSlotSorted, $_;
          }
       }
@@ -2888,7 +2971,7 @@ sub ExportXmltv {
       }
    }
 
-   # append data for all remaining old channels
+   # append data for all remaining old channels unchanged
    foreach (keys(%$MergeProg)) {
       print "\n";
       print $MergeProg->{$_};
@@ -2916,7 +2999,7 @@ if ($opt_verify == 0) {
 
 # debug only: dump teletext data into file
 if ($opt_dump == 1) {
-   DumpAllPages();
+   DumpTextPages();
 
 } elsif ($opt_dump == 2) {
    DumpRawTeletext();
@@ -2952,7 +3035,7 @@ if ($opt_dump == 1) {
 
    } else {
       # return error code to signal abormal termination
-      exit 1;
+      exit 100;
    }
 }
 

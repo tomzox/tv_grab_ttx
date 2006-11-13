@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# Test title parsing:
+# - 331 can be used to correct title/subtitle line break
+# - 316 contains unrelated page ref above page footer
+#
+# $Id$
+#
+$VbiCaptureTime = 1146919308;
+$PgCnt{0x307} = 4;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "/\x15\x15\x15\x15\x15\x15G307\x03 RTLtext  \x07Sa 6 Mai\x0314:41:18",
+  "\x11<,,,l\x13<,,,l\x14<,l|| \x1C  \x01\x1D\x07Telefonkontakt ",
+  "\x115 s n\x13\x7F5 j\x7F\x145 */o \x1C  \x01\x1D\x07 HOT & LIVE    ",
+  "\x11#####\x13#####\x14##### \x1C  \x01\x1D\x07   >>750<<     ",
+  "\x03\x1D\x04TV-PROGRAMM           \x01So.07.05.\x041/1 ",
+  "\x07\x1D\x01                    \x05\x181D243 070506 ss",
+  "\x07\x1D\x11\$\x0418.45 RTL Aktuell WEEKEND          ",
+  "\x07\x1D\x11\$\x0419.03 RTL Aktuell Das Wetter       ",
+  "\x07\x1D\x11\$\x0419.05 Umzug in ein neues Leben     ",
+  "\x07\x1D\x11 \x04                                   ",
+  "\x07\x1D\x11 \x04      Free TV-Premiere:            ",
+  "\x07\x1D\x11\$\x0420.15 American Pie 3               ",
+  "\x07\x1D\x11 \x04      Jetzt wird geheiratet        ",
+  "\x07\x1D\x11 \x04      (Kom|die, USA, 2003)....>331 ",
+  "\x07\x1D\x11\$\x0422.15 SPIEGEL TV Magazin......>316 ",
+  "\x07\x1D\x11 \x04                                   ",
+  "\x07\x1D\x11\$\x0423.00 Herzrasen                    ",
+  "\x07\x1D\x11 \x04      Die WM-Macher, Teil 1        ",
+  "\x07\x1D\$ \x05\x1800.00 oo                          ",
+  "\x07\x1D\x14ppppppppppppppppppppppppppppppppppp  ",
+  "\x07\x1D\x04\x1D\x03Alle Infos zu LET'S DANCE....850\x07\x1D\x03",
+  "\x07\x1D\x04\x1D\x03\"DEINE WELT\" - GZSZ & Co.....600\x07\x1D\x03",
+  "\x03\x1D\x04\x1D\x03Astro Experten helfen Ihnen..410\x03\x1D\x03",
+  "\x03\x1D\x04\x1D\x03Programm der anderen Sender..309\x03\x1D\x03",
+];
+$PgCnt{0x316} = 4;
+$PgSub{0x316} = 0;
+$PgLang{0x316} = 1;
+$Pkg{0x316|(0x0000<<12)} =
+[
+  "8\x02\x15\x15\x15\x15IG316\x03 RTLtext  \x07Sa 6 Mai\x0314:41:18",
+  "\x11<,,,l\x13<,,,l\x14<,l|| \x1C                    ",
+  "\x115 s n\x13\x7F5 j\x7F\x145 */o \x1C                    ",
+  "\x11#####\x13#####\x14##### \x1C                    ",
+  "\x04\x1D\x07SPIEGEL TV MAGAZIN               1/1 ",
+  "\x07\x1D\x04                 So 07.05.\x0122:15 Uhr ",
+  "\x07\x1D\x04Die geplanten Themen u.a.\x07           ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x01Der vergessene Streik:\x07              ",
+  "\x07\x1D\x04Die absurden Folgen von zw|lf Wochen\x07",
+  "\x07\x1D\x04Arbeitskampf\x01\x07                       ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x01Leichen im Rathaus:\x07                 ",
+  "\x07\x1D\x04Gunther von Hagens neuestes Projekt\x01\x07",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x01Der 30-fache Vater von Asuncion:\x07    ",
+  "\x07\x1D\x04Ein Deutscher und seine adoptierte\x07  ",
+  "\x07\x1D\x04Kinderschar\x01\x07                        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D                                      ",
+  "\x07\x1D                                      ",
+  "\x07\x1D                                 \x1C317>",
+  "\x04\x1D\x07\x0DDer ganze Text im ]berblick.....101 ",
+  undef,
+];
+$PgCnt{0x331} = 19;
+$PgSub{0x331} = 0;
+$PgLang{0x331} = 1;
+$Pkg{0x331|(0x0000<<12)} =
+[
+  "\x02^\x15\x15\x15\x15dG331\x03 RTLtext  \x07Sa 6 Mai\x0314:41:36",
+  "\x11<,,,l\x13<,,,l\x14<,l|| \x1C  \x03\x1D\x04   Urlaub      ",
+  "\x115 s n\x13\x7F5 j\x7F\x145 */o \x1C  \x03\x1D\x04jetzt buchen!  ",
+  "\x11#####\x13#####\x14##### \x1C  \x04\x1D\x03   >>500<<     ",
+  "\x03\x1D\x04FILM & KINO                      1/1 ",
+  "\x07\x1D\x01                \x04So 07.05.\x0120:15 Uhr ",
+  "\x07\x1D\x01American Pie - Jetzt wird geheiratet\x07",
+  "\x07\x1D\x04Mit: Jason Biggs, Thomas I. Nicholas\x07",
+  "\x07\x1D\x04Regie: Jesse Dylan\x07                  ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x04Die Jungs und M{dels aus 'American\x07  ",
+  "\x07\x1D\x04Pie' sind erwachsen und reifer ge-\x07  ",
+  "\x07\x1D\x04worden, das glauben sie zumindest:\x07  ",
+  "\x07\x1D\x04Jim zum Beispiel will nun endlich\x07   ",
+  "\x07\x1D\x04seine gro~e Liebe Michelle vor den\x07  ",
+  "\x07\x1D\x04Traualtar f}hren.\x07                   ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x04Es k|nnte ein wundersch|nes Fest\x07    ",
+  "\x07\x1D\x04werden. Doch Jims Kumpels haben ein\x07 ",
+  "\x07\x1D\x04paar sehr originelle Ideen, wie man\x07 ",
+  "\x07\x1D\x04den Tag zu einem wirklich unvergess-\x07",
+  "\x07\x1D\x04lichen Erlebnis machen kann.\x07        ",
+  "\x07\x1D\x04(Netto 87 min)\x07                      ",
+  "\x07\x1D\x04                                     ",
+];

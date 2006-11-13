@@ -1,0 +1,70 @@
+#!/usr/bin/perl -w
+#
+# Description page has no time or date and even the title is rendered
+# using mosaic graphics (only the episode number matches the title.)
+# The description should still be included since it's a single subpage
+# (also no mismatching date is found and page not claimed by other titles)
+#
+# $Id$
+#
+$VbiCaptureTime = 1146914553;
+$PgCnt{0x304} = 9;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x06KI.KA-Text\x0706.05.06\x0313:21:55",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~ \x06Samstag, 6. Mai 2006           ",
+  "\x04\x1D\x17+y}' \x05                               ",
+  "\x14#######################################",
+  "\x0716.25\x16/\x07KickerMania                    ",
+  "\x0216.50\x16/\x02L|wenzahn                      ",
+  "        \x02Peter f}ttert seinen Kaktus    ",
+  "\x0717.20\x16/\x07Schloss Einstein (398)    >306 ",
+  "\x0217.45\x16/\x02Rel{XX                         ",
+  "\x02       \x02Thema: Lamm, Pferd & Kuh       ",
+  "\x0718.00\x16/\x07Die Abenteuer von Paddington   ",
+  "\x07       \x07B{r (84 & 85)/P. und der ka-   ",
+  "\x07       \x07putte Fernseher/Wer zu sp{t    ",
+  "\x07       \x07kommt, den bestraft das Le-    ",
+  "         ben - P. beim Pferderennen     ",
+  "\x0218.15\x16/\x02Flipper & Lopaka (31)          ",
+  "        \x02Puffy, der Rattenf{nger        ",
+  "\x0718.40\x13/\x07Angelina Ballerina (3)         ",
+  "\x07       \x07Die Ballettkarten              ",
+  "\x0218.50\x13/\x02Unser Sandm{nnchen/Tobias      ",
+  "\x02     \x13 \x02Totz: Die Geschichte von Noah  ",
+  "                                        ",
+  "\x04\x1D\x07<<< Mittag      \x1C \x07\x1D\x04 Abend    >>>   ",
+];
+$PgCnt{0x306} = 9;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "8\x15\x15\x15\x15\x15\x15G306\x06KI.KA-Text\x0706.05.06\x0313:21:55",
+  "\x07\x1D\x10    h   `<                           ",
+  "\x07\x1D\x10##l0j0 x'   6\$6\$u55hih)h)            ",
+  "\x07\x1D\x10u  5 \%h! 8' 2450555jj`i`i            ",
+  "\x07\x1D\x10\"-      &`  \" \" !!# ! !0a 0 0`p 0` 0 ",
+  "\x07\x1D\x10,0 *  \% 8'            *2jjj*2 5*2jjj ",
+  "\x07\x1D\x10 j  pp  5             *8jjj(: 5*8jjj ",
+  "\x07\x1D\x10  e\x11j5\x10h!                            ",
+  "\x07\x1D\x10  \"dpp8! \x04\x0D  Folge 398               ",
+  "                                        ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x01Konny hat Anton beim romantischen    ",
+  "\x07\x1D\x01Ausflug zum See ihre Liebe gestanden ",
+  "\x07\x1D\x01und auch der smarte Skater ist ange- ",
+  "\x07\x1D\x01tan von der s}~en Hobby-Imkerin. Die ",
+  "\x07\x1D\x01beiden verstehen sich richtig gut    ",
+  "\x07\x1D\x01und k|nnten eigentlich ihr Gl}ck     ",
+  "\x07\x1D\x01genie~en,\x04wenn da nicht die beiden   ",
+  "\x07\x1D\x04eifers}chtigen Neider, Kai und       ",
+  "\x07\x1D\x04Sophie, w{ren... Die beiden lassen   ",
+  "\x07\x1D\x04einfach nicht locker und graben      ",
+  "\x07\x1D\x04weiter in Antons undurchsichtiger    ",
+  "\x07\x1D\x04Vergangenheit.                       ",
+  "\x04\x1D\x07<<<    Abend   \x06\x1D\x04  Sonntag    >>>   ",
+];

@@ -1,0 +1,189 @@
+#!/usr/bin/perl -w
+#
+# Description page has 5 subpages all belonging to the same title
+# (all subpages carry the same date and time)  All description pages
+# feature the identical first paragraph.
+#
+# $Id$
+#
+$VbiCaptureTime = 1146914553;
+$PgCnt{0x311} = 8;
+$PgSub{0x311} = 0;
+$PgLang{0x311} = 1;
+$Pkg{0x311|(0x0000<<12)} =
+[
+  "\x02\x02\x15\x15\x15\x15\x15G311\x06KI.KA-Text\x0706.05.06\x0313:21:55",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~ \x06Sonntag, 7. Mai 2006           ",
+  "\x04\x1D\x17+y}' \x05                               ",
+  "\x14#######################################",
+  "\x0219.00\x16/\x02Timm Thaler (11)               ",
+  "\x02       \x02Der Stein des B|sen            ",
+  "\x0719.25\x16/\x07TKKG - Der Club der Detektive  ",
+  "\x07       \x07Angriff aus dem Hinterhalt     ",
+  "\x0219.50\x15/\x02KI.KA Kummerkasten             ",
+  "        \x02Verliebt in den besten Freund  ",
+  "\x0720.00\x15/\x07quergelesen               >380 ",
+  "         Fu~ball in allen Lebenslagen   ",
+  "\x0220.15\x15/\x02Wie erziehe ich meine Eltern?  ",
+  "        \x0219. Unsere Freunde - eure      ",
+  "\x02       \x02Freunde!                       ",
+  "\x0720.40\x16/\x07Rel{XX                         ",
+  "\x07       \x07Thema: Lamm, Pferd & Kuh       ",
+  "                                        ",
+  "\x0220.55\x15/\x02BRAVO BERND                    ",
+  "                                        ",
+  "\x0721.00\x15/\x07Sendeschluss                   ",
+  "                                        ",
+  "\x04\x1D\x07<<< Nachmittag    \x1C\x1D\x04    PUR    >>>  ",
+];
+$PgCnt{0x380} = 8;
+$PgSub{0x380} = 5;
+$PgLang{0x380} = 1;
+$Pkg{0x380|(0x0001<<12)} =
+[
+  "\x15P\x02\x15\x15\x15IG380\x06KI.KA-Text\x0706.05.06\x0313:21:06",
+  "\x16 p             \x118dhhh,h\$         \x07 1/5 ",
+  "\x16b,\$x///////';5 \x115zjjj!j 8,h,h <\$80<\$<0 ",
+  "\x16h4j########605 \x11-w*.*,* 5lj!j 7 )07 55 ",
+  "\x16jkz        55u</m       *.*,*\$-\$)!-\$\%\% ",
+  "\x16jy\x7F        5{\x7F~mn\x03am 07.05.,\x0820.00 Uhr ",
+  "\x16 \x7Foji    5 5\x7F\x7F}>\x7F\x03Thema der Sendung:   ",
+  "\x16 +\x7Fjfhhh\$=05\x7F}~|\%\x03\"Fu~ball WM 2006\"    ",
+  "\x16  oj:*:*0555\x7F\x7F/! \x05Josi hat alle m|g-   ",
+  "\x16+\$j        575 ,a\x05lichen B}cher f}r    ",
+  "\x16  j        555 # \x05euch \"quergelesen\".  ",
+  "\x16  j        5=!\x07\x1D\x04Wir haben alle Tipps  ",
+  "\x16  *,,,,,,,,'  \x07\x1D\x04f}r dich aufgelistet: ",
+  "                                        ",
+  "                                        ",
+  "\x03Die kleine Fu~ballmannschaft -         ",
+  "\x03Der Schrecken der Kreisliga            ",
+  "\x05Jackie Niebisch, cbj M}nchen           ",
+  "\x03                                       ",
+  "\x03Das gro~e Fu~ballbuch f}r Kinder       ",
+  "\x05Birgit Brauburger, Compact Verlag      ",
+  "\x05                                       ",
+  "\x03                                       ",
+  "\x03                    \x02\x1D\x04   Weiter >>> \x1C ",
+];
+$PgCnt{0x380} = 8;
+$PgSub{0x380} = 5;
+$PgLang{0x380} = 1;
+$Pkg{0x380|(0x0002<<12)} =
+[
+  "\x15PI\x15\x15\x15IG380\x06KI.KA-Text\x0706.05.06\x0313:21:23",
+  "\x16    ppppppppp0 \x118dhhh,h\$         \x07 2/5 ",
+  "\x16`d`vsssssssq&5 \x115zjjj!j 8,h,h <\$80<\$<0 ",
+  "\x16  j        555 \x11-w*.*,* 5lj!j 7 )07 55 ",
+  "\x16jlj        55}?5        *.*,*\$-\$)!-\$\%\% ",
+  "\x16 y\x7Fji    5 5{\x7F~5 \x03am 07.05.,\x0820.00 Uhr ",
+  "\x16 jojfhhh\$=05\x7F\x7F}50\x03Thema der Sendung:   ",
+  "\x16j oj:*:*0555\x7F}6 \"\x03\"Fu~ball WM 2006\"    ",
+  "\x16\"!j        5\x7F= `8\x05Josi hat alle m|g-   ",
+  "\x16  j        574 p\%\x05lichen B}cher f}r    ",
+  "\x16  j        555  \x05\x05euch \"quergelesen\".  ",
+  "\x16  j        5=!\x07\x1D\x04Wir haben alle Tipps  ",
+  "\x16  *,,,,,,,,'  \x07\x1D\x04f}r dich aufgelistet: ",
+  "                                        ",
+  "                                        ",
+  "\x03Die Rivalen: Ein Zwilling kickt selten ",
+  "\x03allein                                 ",
+  "\x05Christian Thielmann, Carlsen Verlag    ",
+  "                                        ",
+  "\x03Die Fu~ball-Akademie mit J}rgen        ",
+  "\x03Klinsmann                              ",
+  "\x05Klaus-Peter Niem/Karin Helle, Loewe    ",
+  "\x05Verlag                                 ",
+  "                     \x02\x1D\x04   Weiter >>> \x1C ",
+];
+$PgCnt{0x380} = 8;
+$PgSub{0x380} = 5;
+$PgLang{0x380} = 1;
+$Pkg{0x380|(0x0003<<12)} =
+[
+  "\x15P^\x15\x15\x15IG380\x06KI.KA-Text\x0706.05.06\x0313:21:41",
+  "\x16 p             \x118dhhh,h\$         \x07 3/5 ",
+  "\x16b,\$x///////';5 \x115zjjj!j 8,h,h <\$80<\$<0 ",
+  "\x16h4j########605 \x11-w*.*,* 5lj!j 7 )07 55 ",
+  "\x16jkz        55u</m       *.*,*\$-\$)!-\$\%\% ",
+  "\x16jy\x7Fji    5 5{\x7F~mn\x03am 07.05.,\x0820.00 Uhr ",
+  "\x16 \x7Fojfhhh\$=05\x7F\x7F}>\x7F\x03Thema der Sendung:   ",
+  "\x16 +\x7Fj:*:*0555\x7F}~|\%\x03\"Fu~ball WM 2006\"    ",
+  "\x16  o        5\x7F\x7F/! \x05Josi hat alle m|g-   ",
+  "\x16+\$j        575 ,a\x05lichen B}cher f}r    ",
+  "\x16  j        555 # \x05euch \"quergelesen\".  ",
+  "\x16  j        5=!\x07\x1D\x04Wir haben alle Tipps  ",
+  "\x16  *,,,,,,,,'  \x07\x1D\x04f}r dich aufgelistet: ",
+  "\x03                                       ",
+  "                                        ",
+  "\x0311 Kicker & ein fieses Foul            ",
+  "\x05Barbara Zoschke, arsEdition            ",
+  "\x03                                       ",
+  "\x03Tor! Gol! Goal! - Die gro~e Welt des   ",
+  "\x03Fu~balls                               ",
+  "\x05Marcel Reif, moses Verlag              ",
+  "                                        ",
+  "                                        ",
+  "                     \x02\x1D\x04   Weiter >>> \x1C ",
+];
+$PgCnt{0x380} = 8;
+$PgSub{0x380} = 5;
+$PgLang{0x380} = 1;
+$Pkg{0x380|(0x0004<<12)} =
+[
+  "\x15Pd\x15\x15\x15IG380\x06KI.KA-Text\x0706.05.06\x0313:20:31",
+  "\x16    ppppppppp0 \x118dhhh,h\$         \x07 4/5 ",
+  "\x16`d`vsssssssq&5 \x115zjjj!j 8,h,h <\$80<\$<0 ",
+  "\x16  j        555 \x11-w*.*,* 5lj!j 7 )07 55 ",
+  "\x16jlj        55}?5        *.*,*\$-\$)!-\$\%\% ",
+  "\x16 y\x7Fji    5 5{\x7F~5 \x03am 07.05.,\x0820.00 Uhr ",
+  "\x16 jojfhhh\$=05\x7F\x7F}50\x03Thema der Sendung:   ",
+  "\x16j oj:*:*0555\x7F}6 \"\x03\"Fu~ball WM 2006\"    ",
+  "\x16\"!j        5\x7F= `8\x05Josi hat alle m|g-   ",
+  "\x16  j        574 p\%\x05lichen B}cher f}r    ",
+  "\x16  j        555  \x05\x05euch \"quergelesen\".  ",
+  "\x16  j        5=!\x07\x1D\x04Wir haben alle Tipps  ",
+  "\x16  *,,,,,,,,'  \x07\x1D\x04f}r dich aufgelistet: ",
+  "\x03                                       ",
+  "\x03Keeper                                 ",
+  "\x05Mal Peet, Carlsen Verlag               ",
+  "\x03                                       ",
+  "\x03Pele und ich                           ",
+  "\x05Martin Klein, Carlsen Verlag           ",
+  "\x05                                       ",
+  "\x03Wie Franz Kaiser den Fu~ball erfand    ",
+  "\x05Karsten Teich, Fischer Schatzinsel     ",
+  "                                        ",
+  "                     \x02\x1D\x04   Weiter >>> \x1C ",
+];
+$PgCnt{0x380} = 8;
+$PgSub{0x380} = 5;
+$PgLang{0x380} = 1;
+$Pkg{0x380|(0x0005<<12)} =
+[
+  "\x15Ps\x15\x15\x15IG380\x06KI.KA-Text\x0706.05.06\x0313:20:48",
+  "\x16 p             \x118dhhh,h\$         \x07 5/5 ",
+  "\x16b,\$x///////';5 \x115zjjj!j 8,h,h <\$80<\$<0 ",
+  "\x16h4j########605 \x11-w*.*,* 5lj!j 7 )07 55 ",
+  "\x16jkz        55u</m       *.*,*\$-\$)!-\$\%\% ",
+  "\x16jy\x7Fji    5 5{\x7F~mn\x03am 07.05.,\x0820.00 Uhr ",
+  "\x16 \x7Fojfhhh\$=05\x7F\x7F}>\x7F\x03Thema der Sendung:   ",
+  "\x16 +\x7Fj:*:*0555\x7F}~|\%\x03\"Fu~ball WM 2006\"    ",
+  "\x16  o        5\x7F\x7F/! \x05Josi hat alle m|g-   ",
+  "\x16+\$j        575 ,a\x05lichen B}cher f}r    ",
+  "\x16  j        555 # \x05euch \"quergelesen\".  ",
+  "\x16  j        5=!\x07\x1D\x04Wir haben alle Tipps  ",
+  "\x16  *,,,,,,,,'  \x07\x1D\x04f}r dich aufgelistet: ",
+  "\x03                                       ",
+  "\x01\x0DEule des Monats                       ",
+  "                                        ",
+  "                                        ",
+  "\x03Was ist das?                           ",
+  "\x05Antje Damm, Gerstenberg Verlag         ",
+  "                                        ",
+  "\x06Die n{chste Sendung\x03\"quergelesen\"\x06gibt ",
+  "\x06es\x03am 4. Juni 2006 um 20.00 Uhr.       ",
+  "                                        ",
+  " \x02\x1D \x04  KI.KA-Text-Buchtipps >>> 459   \x1C ",
+];

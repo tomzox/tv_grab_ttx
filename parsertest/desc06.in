@@ -1,0 +1,189 @@
+#!/usr/bin/perl -w
+#
+# Repetition of test #05: Description page has multiple subpages all
+# belonging to the same title. Title and date are repeated; the text
+# directly continues from the first to the following pages.
+#
+# $Id$
+#
+$VbiCaptureTime = 1149947756;
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303         Sa,10.06.06 15:55:55",
+  "\x13w155w5w!w5 w5k!5`27j3*:\"7\x07\x1D\x01 THEMA     ",
+  "\x13,\%-\%\% -\$'\$ '\$* -\$ \%*,() \%\x07\x1D\x01  DER      ",
+  "\x03\x1D\x01Programm               \x07\x1D\x01 WOCHE\x04 130",
+  "\x13|||||||||||||||||||||||||||||||||||||||",
+  "\x03\x1D\x04\x1D\x06HEUTE MITTAG            10.06.2006 ",
+  "\x03\x1D\x0511:05 Super Toy Club............ 322 ",
+  "\x03\x1D\x0411:45 TOGGO UNITED.............. 323 ",
+  "\x03\x1D\x04      Die Fu~ballshow                ",
+  "\x03\x1D\x0512:15 Die Superk|che............ 324 ",
+  "\x03\x1D\x0412:20 yoomiii: Das Star-Tagebuch     ",
+  "\x03\x1D\x0512:30 Chip und Chap                  ",
+  "\x03\x1D\x05      Die Ritter des Rechts          ",
+  "\x03\x1D\x0413:00 Disneys neue Micky Maus        ",
+  "\x03\x1D\x04      Geschichten                    ",
+  "\x03\x1D\x0513:30 Disneys Kim Possible           ",
+  "\x03\x1D\x0414:00 Power Rangers Space Patrol 325 ",
+  "\x03\x1D\x04      Delta                          ",
+  "\x03\x1D\x0514:25 Power Rangers Space Patrol 326 ",
+  "\x03\x1D\x05      Delta                          ",
+  "\x03\x1D                                      ",
+  "\x03\x1D                                      ",
+  "\x06\x1D\x01\x0DGewinne beim schnellen QUIZ    :550 ",
+  undef,
+];
+$PgCnt{0x304} = 4;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304         Sa,10.06.06 15:55:55",
+  "\x13w155w5w!w5 w5k!5`27j3*:\"7\x07\x1D\x01Teste Dich!",
+  "\x13,\%-\%\% -\$'\$ '\$* -\$ \%*,() \%\x07\x1D\x01Psychotests",
+  "\x03\x1D\x01Programm               \x07\x1D\x01 >> 505 << ",
+  "\x13|||||||||||||||||||||||||||||||||||||||",
+  "\x03\x1D\x04\x1D\x06HEUTE NACHMITTAG        10.06.2006 ",
+  "\x03\x1D\x0515:30 A.T.O.M................... 328 ",
+  "\x03\x1D\x05      Alpha Teens on Machines        ",
+  "\x03\x1D\x0416:10 Dragon Hunters............ 329 ",
+  "\x03\x1D\x04      Die Drachenj{ger               ",
+  "\x03\x1D\x0516:40 WOW Die Entdeckerzone..... 330 ",
+  "\x03\x1D\x0417:15 TOGGO UNITED.............. 331 ",
+  "\x03\x1D\x04      Die Fu~ballshow                ",
+  "\x03\x1D\x0517:45 Chip und Chap............. 332 ",
+  "\x03\x1D\x05      Die Ritter des Rechts          ",
+  "\x03\x1D\x0418:15 Disneys neue Micky Maus... 334 ",
+  "\x03\x1D\x04      Geschichten                    ",
+  "\x03\x1D\x0518:35 yoomiii: Das Star-Tagebuch 335 ",
+  "\x03\x1D\x0418:45 Disneys Kim Possible...... 336 ",
+  "\x03\x1D\x0519:20 Disneys Art Attack........ 337 ",
+  "\x03\x1D\x0419:45 Upps! Die Pannenshow...... 338 ",
+  "\x03\x1D                                      ",
+  "\x04\x1D\x03\x0DFinde raus wie verliebt Du bist>565 ",
+  undef,
+];
+$PgCnt{0x324} = 2;
+$PgSub{0x324} = 3;
+$PgLang{0x324} = 1;
+$Pkg{0x324|(0x0002<<12)} =
+[
+  "dIIP\x15\x15IG324         Sa,10.06.06 15:55:14",
+  "\x13w155w5w!w5 w5k!5`27j3*:\"7\x07\x1D\x01SMS-Chat\x04ab",
+  "\x13,\%-\%\% -\$'\$ '\$* -\$ \%*,() \%\x07\x1D\x0418:00 Uhr  ",
+  "\x03\x1D\x01Programm               \x07\x1D\x01        460",
+  "\x13|||||||||||||||||||||||||||||||||||||||",
+  "\x03\x1D\x05Die Superk|che                       ",
+  "\x03\x1D\x05'H}hnersuppe'                        ",
+  "\x03\x1D\x05                                     ",
+  "\x03\x1D\x04\x1D\x06HEUTE, 10.06.2006, 12:15 Uhr   2/4 ",
+  "\x03\x1D\x04Das brauchst du:                     ",
+  "\x03\x1D\x041 Suppenhuhn, 1 Zwiebel, 1           ",
+  "\x03\x1D\x04Knoblauchzehe, 1 Rosmarinzweig, 1    ",
+  "\x03\x1D\x04Packung TK M|hren und Erbsen, 2      ",
+  "\x03\x1D\x04Selleriestangen, 1 Scheibe Speck,    ",
+  "\x03\x1D\x04Oliven|l, Salz, Pfeffer und ein paar ",
+  "\x03\x1D\x04Pfefferk|rner, 1 Ciabatta oder ein   ",
+  "\x03\x1D\x04Stangenwei~brot, 100g Emmentaler     ",
+  "\x03\x1D\x04oder anderen K{se zum ]berbacken.    ",
+  "\x03\x1D\x04Das Huhn innen und au~en gr}ndlich   ",
+  "\x03\x1D\x04waschen und mit der halbierten       ",
+  "\x03\x1D\x04Zwiebel, dem Knoblauch, dem in       ",
+  "\x03\x1D                                      ",
+  "\x05\x1D\x07\x0DKomm'zum SMS-Chat ab 18:00 Uhr >>460",
+  undef,
+];
+$PgCnt{0x324} = 2;
+$PgSub{0x324} = 3;
+$PgLang{0x324} = 1;
+$Pkg{0x324|(0x0003<<12)} =
+[
+  "dI^P\x15\x158G324         Sa,10.06.06 15:55:40",
+  "\x13w155w5w!w5 w5k!5`27j3*:\"7\x07\x1D\x01Gewinne 557",
+  "\x13,\%-\%\% -\$'\$ '\$* -\$ \%*,() \%\x07\x1D\x04Tokio Hotel",
+  "\x03\x1D\x01Programm               \x07\x1D\x04 Fanpaket! ",
+  "\x13|||||||||||||||||||||||||||||||||||||||",
+  "\x03\x1D\x05Die Superk|che                       ",
+  "\x03\x1D\x05'H}hnersuppe'                        ",
+  "\x03\x1D\x05                                     ",
+  "\x03\x1D\x04\x1D\x06HEUTE, 10.06.2006, 12:15 Uhr   3/4 ",
+  "\x03\x1D\x04St}cke geschnittenen Sellerie und    ",
+  "\x03\x1D\x04der Scheibe Speck in einem Topf mit  ",
+  "\x03\x1D\x04Salzwasser zum Kochen bringen. Bei   ",
+  "\x03\x1D\x04schwacher Hitze ca. 1 Stunde k|cheln ",
+  "\x03\x1D\x04lassen. Am Anfang der Kochzeit       ",
+  "\x03\x1D\x04wiederholt den sich bildenden Schaum ",
+  "\x03\x1D\x04absch|pfen. Dann das TK Gem}se und   ",
+  "\x03\x1D\x04den Rosmarinzweig dazugeben. Das     ",
+  "\x03\x1D\x04gegarte Huhn aus der Br}he nehmen,   ",
+  "\x03\x1D\x04zerteilen. Vom Huhn die Haut         ",
+  "\x03\x1D\x04abziehen das Fleisch von den Knochen ",
+  "\x03\x1D\x04l|sen. Das Fleisch in mittelgro~e    ",
+  "\x03\x1D                                      ",
+  "\x05\x1D\x07\x0DGewinne:\x04TokioHotel Fanpaket!!\x07>557 ",
+  undef,
+];
+$PgCnt{0x335} = 2;
+$PgSub{0x335} = 2;
+$PgLang{0x335} = 1;
+$Pkg{0x335|(0x0001<<12)} =
+[
+  "s^\x02P\x15\x15IG335         Sa,10.06.06 15:55:27",
+  "\x13w155w5w!w5 w5k!5`27j3*:\"7\x07\x1D\x01SMS-Chat\x04ab",
+  "\x13,\%-\%\% -\$'\$ '\$* -\$ \%*,() \%\x07\x1D\x0418:00 Uhr  ",
+  "\x03\x1D\x01Programm               \x07\x1D\x01        460",
+  "\x13|||||||||||||||||||||||||||||||||||||||",
+  "\x03\x1D\x05yoomiii: Das Star-Tagebuch           ",
+  "\x03\x1D\x05                                     ",
+  "\x03\x1D\x05                                     ",
+  "\x03\x1D\x04\x1D\x06HEUTE, 10.06.2006, 18:35 Uhr   1/2 ",
+  "\x03\x1D\x04Ihr Ziel sind die Charts: Die drei   ",
+  "\x03\x1D\x04M{dchen von 'yoomiii' wollen         ",
+  "\x03\x1D\x04mitmischen im Musikgesch{ft. Das ist ",
+  "\x03\x1D\x04knochenharte Arbeit, setzt Flei~ und ",
+  "\x03\x1D\x04Disziplin voraus. Kristin, Nina und  ",
+  "\x03\x1D\x04Bouchra lassen sich nicht beirren.   ",
+  "\x03\x1D\x04Sie trainieren t{glich: Stimme,      ",
+  "\x03\x1D\x04Choreographie, B}hnenpr{senz und     ",
+  "\x03\x1D\x04Interviewtechnik. Super RTL ist      ",
+  "\x03\x1D\x04immer dabei, ob im Studio oder in    ",
+  "\x03\x1D\x04der K|lner WG, in der die M{dchen    ",
+  "\x03\x1D\x04zusammen wohnen. 'yoomiii: Das Star- ",
+  "\x03\x1D                                      ",
+  "\x05\x1D\x07\x0DLust auf einen Test?.........>> 505 ",
+  undef,
+];
+$PgCnt{0x335} = 2;
+$PgSub{0x335} = 2;
+$PgLang{0x335} = 1;
+$Pkg{0x335|(0x0002<<12)} =
+[
+  "s^IP\x15\x158G335         Sa,10.06.06 15:55:54",
+  "\x13w155w5w!w5 w5k!5`27j3*:\"7\x07\x1D\x04Bist Du ein",
+  "\x13,\%-\%\% -\$'\$ '\$* -\$ \%*,() \%\x07\x1D\x04Spa~vogel? ",
+  "\x03\x1D\x01Programm               \x07\x1D\x04Test!\x01>508 ",
+  "\x13|||||||||||||||||||||||||||||||||||||||",
+  "\x03\x1D\x05yoomiii: Das Star-Tagebuch           ",
+  "\x03\x1D\x05                                     ",
+  "\x03\x1D\x05                                     ",
+  "\x03\x1D\x04\x1D\x06HEUTE, 10.06.2006, 18:35 Uhr   2/2 ",
+  "\x03\x1D\x04Tagebuch? fasst zusammen, was die    ",
+  "\x03\x1D\x04drei S{ngerinnen von 'yoomiii' in    ",
+  "\x03\x1D\x04den vergangenen 24 Stunden erlebt    ",
+  "\x03\x1D\x04und gelernt haben und gibt einen     ",
+  "\x03\x1D\x04Einblick in den Alltag einer         ",
+  "\x03\x1D\x04aufstrebenden Band.                  ",
+  "\x03\x1D\x04                                     ",
+  "\x03\x1D\x04                                     ",
+  "\x03\x1D\x04                                     ",
+  "\x03\x1D\x04                                     ",
+  "\x03\x1D\x04                                     ",
+  "\x03\x1D\x04                                     ",
+  "\x03\x1D                                      ",
+  "\x05\x1D\x07\x0DNEU:   Karacho!2-Das Quiz      >550 ",
+  undef,
+];

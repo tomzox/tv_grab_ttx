@@ -1,0 +1,218 @@
+#!/usr/bin/perl -w
+#
+# One description page has multiple sub-pages with different episodes
+# of the same series.  Also each description page has two air times.
+#
+# $Id$
+#
+$VbiCaptureTime = 1146685197;
+$PgCnt{0x301} = 7;
+$PgSub{0x301} = 2;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x02P\x15\x15IG301\x03  SAT.1  \x0703.05.06 \x0321:39:18",
+  "\x17  ws17#5#7!k  \x04\x1D\x07Raus aus der K{lte? \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x07Ab in den S}den 400 \x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18030506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0405.10  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Schi-      ",
+  "\x07\x1D\x04       cke Schnitten - scharfe       ",
+  "\x07\x1D\x04       Typen                    >371 ",
+  "\x07\x1D\x0105.35  BLITZ                    >324 ",
+  "\x07\x1D\x0405.55  Sat.1-Fr}hst}cksfernse-       ",
+  "\x07\x1D\x04       hen                      >321 ",
+  "\x07\x1D\x0109.00  SHOP TV                  >892 ",
+  "\x07\x1D\x0410.00  Verliebt in Berlin:           ",
+  "\x07\x1D\x04       Folge 298                >590 ",
+  "\x07\x1D\x0110.30  Roseanne: K{se aus der        ",
+  "\x07\x1D\x01       Dose                          ",
+  "\x07\x1D\x0411.00  Richter Hold             >369 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x07Herzklopfen auf Sat.1............850 ",
+  "\x01\x1D\x07Lust auf Winterurlaub? ......... 560 ",
+  "\x01\x1D\x07Hier k|nnte Ihre Werbung stehen! 879 ",
+];
+$PgCnt{0x302} = 7;
+$PgSub{0x302} = 2;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x02P\x15\x15IG302\x03  SAT.1  \x0703.05.06 \x0321:39:18",
+  "\x17  ws17#5#7!k  \x04\x1D\x07So telefonieren Sie \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x07immer g}nstig...620 \x1C ",
+  "\x01\x1D\x07   HEUTE    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18030506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0412.00  Sat.1 am Mittag          >323 ",
+  "\x07\x1D\x0113.00  Britt: Britt deckt auf:       ",
+  "\x07\x1D\x01       Heimliche Sex-Abenteuer  >365 ",
+  "\x07\x1D\x0414.00  Zwei bei Kallwass        >367 ",
+  "\x07\x1D\x0115.00  Richterin Salesch        >368 ",
+  "\x07\x1D\x0416.00  Richter Hold             >369 ",
+  "\x07\x1D\x0116.58  Sat.1 NEWS                    ",
+  "\x07\x1D\x0417.00  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Das        ",
+  "\x07\x1D\x04       h{ssliche Entlein        >371 ",
+  "\x07\x1D\x0117.30  Sat.1 am Abend           >322 ",
+  "\x07\x1D\x0418.00  Len~en & Partner: Die         ",
+  "\x07\x1D\x04       s}ndhafte Sekret{rin     >372 ",
+  "\x07\x1D\x0118.30  Sat.1 NEWS                    ",
+  "\x07\x1D\x0418.47  SAT.1 Wetter             >150 ",
+  "\x07\x1D\x0118.50  BLITZ                    >324 ",
+  "\x01\x1D\x07Frisch verliebt mit SAT.1........850 ",
+  "\x01\x1D\x07ALG 2: Haus verkaufen? Klagen!...609 ",
+  "\x01\x1D\x07Behinderte: Rabatt dank Ausweis..607 ",
+];
+$PgCnt{0x305} = 7;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "s\x15\x15\x15\x15\x15\x15G305\x03  SAT.1  \x0703.05.06 \x0321 39:45",
+  "\x17  ws17#5#7!k  \x04\x1D\x07Die Topthemen       \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x07des Tages... ab 110 \x1C ",
+  "\x01\x1D\x07  MORGEN    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18040506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0405.10  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Das        ",
+  "\x07\x1D\x04       h{ssliche Entlein        >371 ",
+  "\x07\x1D\x0105.35  BLITZ                    >324 ",
+  "\x07\x1D\x0405.55  Sat.1-Fr}hst}cksfernse-       ",
+  "\x07\x1D\x04       hen                      >321 ",
+  "\x07\x1D\x0109.00  SHOP TV                  >892 ",
+  "\x07\x1D\x0410.00  Verliebt in Berlin:           ",
+  "\x07\x1D\x04       Folge 299                >590 ",
+  "\x07\x1D\x0110.30  Roseanne: Der beste Job       ",
+  "\x07\x1D\x01       aller Zeiten                  ",
+  "\x07\x1D\x0411.00  Richter Hold             >369 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x07Sat.1-Movies 310          Serien 340 ",
+  "\x01\x1D\x07Aktuell! Die Dating ]bersicht... 710 ",
+  "\x01\x1D\x07Lust auf Winterurlaub? ......... 560 ",
+];
+$PgCnt{0x306} = 7;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "8\x15\x15\x15\x15\x15\x15G306\x03  SAT.1  \x0703.05.06 \x0321 39:45",
+  "\x17  ws17#5#7!k  \x04\x1D\x07Was treiben die     \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x07Promis denn so? 130 \x1C ",
+  "\x01\x1D\x07  MORGEN    \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18040506\x18ss\x04               1/1 ",
+  "\x07\x1D\x0412.00  Sat.1 am Mittag          >323 ",
+  "\x07\x1D\x0113.00  Britt: Gef}hlschaos: H|r      ",
+  "\x07\x1D\x01       auf, mit mir zu spielen  >365 ",
+  "\x07\x1D\x0414.00  Zwei bei Kallwass        >367 ",
+  "\x07\x1D\x0115.00  Richterin Salesch        >368 ",
+  "\x07\x1D\x0416.00  Richter Hold             >369 ",
+  "\x07\x1D\x0116.58  Sat.1 NEWS                    ",
+  "\x07\x1D\x0417.00  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Das        ",
+  "\x07\x1D\x04       Geheimnis einer Toten    >371 ",
+  "\x07\x1D\x0117.30  Sat.1 am Abend           >322 ",
+  "\x07\x1D\x0418.00  Len~en & Partner:             ",
+  "\x07\x1D\x04       Selbstmord nach Zeitplan >372 ",
+  "\x07\x1D\x0118.30  Sat.1 NEWS                    ",
+  "\x07\x1D\x0418.47  SAT.1 Wetter             >150 ",
+  "\x07\x1D\x0118.50  BLITZ                    >324 ",
+  "\x01\x1D\x07Wetter aktuell!..................150 ",
+  "\x01\x1D\x07Mitspielen lohnt sich!...........630 ",
+  "\x01\x1D\x07]berliste die magischen Karten!..649 ",
+];
+$PgCnt{0x309} = 7;
+$PgSub{0x309} = 4;
+$PgLang{0x309} = 1;
+$Pkg{0x309|(0x0000<<12)} =
+[
+  "G\x15\x02P\x15\x15IG309\x03  SAT.1  \x0703.05.06 \x0321:38:24",
+  "\x17  ws17#5#7!k  \x04\x1D\x07Leute treffen im    \x1C ",
+  "\x17  ,,\%-\$- \%(*  \x04\x1D\x07Dating-Bereich  710 \x1C ",
+  "\x01\x1D\x07]BERMORGEN  \x14######################  ",
+  "\x07\x1D\x00\x05\x181D257\x18050506\x18ss\x04                   ",
+  "\x07\x1D\x0405.10  Niedrig und Kuhnt - Kom-      ",
+  "\x07\x1D\x04       missare ermitteln: Das        ",
+  "\x07\x1D\x04       Geheimnis einer Toten    >371 ",
+  "\x07\x1D\x0105.35  BLITZ                    >324 ",
+  "\x07\x1D\x0405.55  Sat.1-Fr}hst}cksfernse-       ",
+  "\x07\x1D\x04       hen                      >321 ",
+  "\x07\x1D\x0109.00  SHOP TV                  >892 ",
+  "\x07\x1D\x0410.00  Verliebt in Berlin:           ",
+  "\x07\x1D\x04       Folge 300                >590 ",
+  "\x07\x1D\x0110.30  Roseanne: Video f}r           ",
+  "\x07\x1D\x01       sp{ter                        ",
+  "\x07\x1D\x0411.00  Richter Hold             >369 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x07Tipp:Extrageld auch ohne Arbeit. 601 ",
+  "\x01\x1D\x07Alleinerziehend: Staat zahlt.... 605 ",
+  "\x01\x1D\x07Gute Jobs in EU-L{ndern finden...608 ",
+];
+$PgCnt{0x371} = 7;
+$PgSub{0x371} = 2;
+$PgLang{0x371} = 1;
+$Pkg{0x371|(0x0001<<12)} =
+[
+  "\x02/\x02P\x15\x15IG371\x03  SAT.1  \x0703.05.06 \x0321:39:20",
+  "\x17 ws17#5#7!\"5 \x1D\x11                  \x011/2  ",
+  "\x17 ,,\%-\$- \%( \% \x1D\x03\x1D\x04 Donnerstag 04.05. \x07\x1D ",
+  "\x01\x1D\x07  SERIE    \x1D\x03\x1D\x04    17:00-17:30    \x07\x1D ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Niedrig und Kuhnt - Kommissare       ",
+  "\x07\x1D\x01ermitteln                            ",
+  "\x07\x1D\x04Das Geheimnis einer Toten            ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x04Verwirrt, ver{ngstigt und verloren - ",
+  "\x07\x1D\x04eine unbekannte Frau fl}chtet blut-  ",
+  "\x07\x1D\x04}berstr|mt durch den Wald. V|llig    ",
+  "\x07\x1D\x04verst|rt erz{hlt sie von einer Toten ",
+  "\x07\x1D\x04Frau. Die Kommissare begeben sich    ",
+  "\x07\x1D\x04auf Spurensuche und sto~en dabei auf ",
+  "\x07\x1D\x04ein unglaubliches Verbrechen ...     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Whg. Fr 05.05. 05:10-05:35           ",
+  "\x01\x1D\x07Gewinnen Sie in Sat.1!...........630 ",
+];
+$PgCnt{0x371} = 7;
+$PgSub{0x371} = 2;
+$PgLang{0x371} = 1;
+$Pkg{0x371|(0x0002<<12)} =
+[
+  "\x02/IP\x15\x15IG371\x03  SAT.1  \x0703.05.06 \x0321 39:47",
+  "\x17 ws17#5#7!\"5 \x1D\x11                  \x012/2  ",
+  "\x17 ,,\%-\$- \%( \% \x1D\x03\x1D\x04  Freitag 05.05.   \x07\x1D ",
+  "\x01\x1D\x07  SERIE    \x1D\x03\x1D\x04    17:00-17:30    \x07\x1D ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Niedrig und Kuhnt - Kommissare       ",
+  "\x07\x1D\x01ermitteln                            ",
+  "\x07\x1D\x04Der Tote im K{fig                    ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x04Menschliche Versuchsratte! Marek     ",
+  "\x07\x1D\x04Jansen ist tot. Der Leiter eines     ",
+  "\x07\x1D\x04Versuchslabors wurde nackt in einen  ",
+  "\x07\x1D\x04Tierversuchsk{fig gequetscht und auf ",
+  "\x07\x1D\x04einem Parkplatz abgestellt. Die Kom- ",
+  "\x07\x1D\x04missare ermitteln zwischen radikalen ",
+  "\x07\x1D\x04Tiersch}tzern und fanatischen Wis-   ",
+  "\x07\x1D\x04senschaftlern ...                    ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Whg. Sa 06.05. 04:45-05:10           ",
+  "\x01\x1D\x07Gewinnen Sie in Sat.1!...........630 ",
+];

@@ -1,0 +1,127 @@
+#!/usr/bin/perl -w
+#
+# Test description page parsing
+#
+# $Id$
+#
+$VbiCaptureTime = 1146515528;
+$PgCnt{0x303} = 36;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15dG303  \x01ARTE \x07Mo 01.05.06\x0322 31 15",
+  "                                        ",
+  "\x01\x1D\x07\x07       MONTAG, 01. MAI              ",
+  "      \x05\x18VPS                             ",
+  "\x05\x182F410\x18010506\x07                         ",
+  undef,
+  "                                        ",
+  "\x0714.00\x05\x181400\x02\x02LOLA (oo) ............\x02309",
+  "                                        ",
+  "\x0714.30\x05\x181430\x02\x02KALEIDOSKOP (oo) .....\x02310",
+  "                                        ",
+  "\x0714.55\x05\x181455\x06\x06PL\\TZLICH IM LETZTEN      ",
+  "            \x06\x06SOMMER (2K) ..........\x06311",
+  "                                        ",
+  "\x0716.50\x05\x181650\x02\x02CHIC (oo) ............\x02312",
+  "                                        ",
+  "\x0717.15\x05\x181715\x06\x06EBEIL (oo)                ",
+  "                                        ",
+  "\x0717.20\x05\x181720\x02\x02RETTET DIE LIEBES[PFEL!   ",
+  "            \x02\x02(oo) .................\x02313",
+  "             \x1818.03                     ",
+  undef,
+  "                                        ",
+  "\x01\x1D\x07PROGRAMM]BERSICHT              ARTE  ",
+];
+$PgCnt{0x307} = 36;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15dG307  \x01ARTE \x07Mo 01.05.06\x0322 31 15",
+  "                                        ",
+  "\x01\x1D\x07\x07       MONTAG, 08. MAI              ",
+  "      \x05\x18VPS                             ",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x0713.05\x05\x181305\x02\x02WUNDERWELTEN (2K) ....\x02308",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x308} = 10;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "P\x15\x15\x15\x15\x15\x15G308  \x01ARTE \x07Mo 01.05.06\x0322 31 15",
+  undef,
+  "\x0D  Mo 01.05. 13.05\x05\x18VPS\x05\x181305\x07bis 13.58 ",
+  undef,
+  undef,
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\x01arte ",
+  "\x02WUNDERWELTEN                    53 MIN.",
+  " Dokumentation von Didier Fassio        ",
+  " Frankreich 2002, ARTE F                ",
+  "                            \x02Wh.: 08.05.",
+  " Meeresschildkr|ten in Mikronesien, Ho- ",
+  " nig im Himalaja, Awajun-Indianer im    ",
+  " Amazonas: ARTE geht auf Entdeckungsrei-",
+  " se. Die Dokumentationsreihe \"Wunder-   ",
+  " Welten\" erkundet montags bis freitags  ",
+  " um 13.05 Uhr die wenig erschlossenen   ",
+  " Regionen dieser Erde.                  ",
+  "                                        ",
+  "\x02Heute: Kirgisistan - Auf den Spuren    ",
+  "\x02       eines Reitervolks               ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x02\x1D\x04\x0D                       WunderWelten ",
+  "                                        ",
+  undef,
+];
+$PgCnt{0x311} = 10;
+$PgSub{0x311} = 0;
+$PgLang{0x311} = 1;
+$Pkg{0x311|(0x0000<<12)} =
+[
+  "\x02\x02\x15\x15\x15\x15\x15G311  \x01ARTE \x07Mo 01.05.06\x0322:31:14",
+  undef,
+  "\x0D  Mo 01.05. 14.55\x05\x18VPS\x05\x181455\x07bis 16.44 ",
+  undef,
+  undef,
+  "\x16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\x01arte ",
+  "\x06PL\\TZLICH IM LETZTEN SOMMER    109 MIN.",
+  " Spielfilm, USA 1959, s/w               ",
+  " Regie: Joseph L. Mankiewicz            ",
+  " Mit: Katharine Hepburn, Elizabeth      ",
+  "      Taylor, Montgomery Clift u.a.     ",
+  "                                        ",
+  " Um die homosexuelle Veranlagung ihres  ",
+  " grausam ermordeten Sohns zu vertuschen,",
+  " l{sst Mrs. Venable ihre Nichte, die    ",
+  " einzige Augenzeugin des Verbrechens, in",
+  " die Psychiatrie einweisen. Er soll     ",
+  " durch eine waghalsige Gehirnoperation  ",
+  " Catherines Erinnerungen ausl|schen ... ",
+  undef,
+  "\x16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06\x1D\x04\x0D      THEMA: Sigmund Freud          ",
+  undef,
+  undef,
+];

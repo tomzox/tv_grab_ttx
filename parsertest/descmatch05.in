@@ -1,0 +1,157 @@
+#!/usr/bin/perl -w
+#
+# Test for daily soap: date "Mo - Fr"
+#
+# $Id$
+#
+$VbiCaptureTime = 1147372267;
+$PgCnt{0x302} = 8;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302   VIVA       11.05.\x0320 30:35",
+  "\x13x||0`d x||0`t   \x01\x1D\x07Hier kannst Du      ",
+  "\x13k\x7F\x7Fa\% ek\x7F\x7Fa\x7F\x7Fu  \x01\x1D\x07Urlaub buchen \x03400  ",
+  "\x13 +!\",,& +!\"//'  \x11######################",
+  "\x04\x1D\x03  PROGRAMM     \x1D\x04Do 12-18 Uhr    1/1 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0412.30 Euro Top 100              >346 ",
+  "\x07\x1D\x0413.30 Clueless - Die Chaos-Cli- >341 ",
+  "\x07\x1D\x04      que                            ",
+  "\x07\x1D\x0414.00 Abschlussklasse 2005      >314 ",
+  "\x07\x1D\x0414.30 Freunde- Das Leben geht   >313 ",
+  "\x07\x1D\x04      weiter                         ",
+  "\x07\x1D\x0415.00 VIVA Live!                >312 ",
+  "\x07\x1D\x01      zu Gast: Chris Brown           ",
+  "\x07\x1D\x0416.00 All Access                >332 ",
+  "\x07\x1D\x0416.30 The Fabulous Life              ",
+  "\x07\x1D\x01      Christina Aguilera             ",
+  "\x07\x1D\x0417.00 Clueless - Die Chaos-Cli- >341 ",
+  "\x07\x1D\x04      que                            ",
+  "\x07\x1D\x01      Es geht wieder los             ",
+  "\x07\x1D\x0417.30 Planet VIVA Spezial            ",
+  "\x07\x1D\x01      Die sch|nsten Liebeslieder     ",
+  "\x07\x1D\x01      aller Zeiten                   ",
+  "\x03\x1D\x04                    18-24 Uhr >> 303 ",
+];
+$PgCnt{0x303} = 8;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303   VIVA       11.05.\x0320:30:36",
+  "\x13x||0`d x||0`t   \x01\x1D\x07Mach mit beim       ",
+  "\x13k\x7F\x7Fa\% ek\x7F\x7Fa\x7F\x7Fu  \x01\x1D\x07VIVA SMS-Chat \x03280  ",
+  "\x13 +!\",,& +!\"//'  \x11######################",
+  "\x04\x1D\x03  PROGRAMM     \x1D\x04Do 18-24 Uhr    1/1 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0418.00 Planet VIVA               >355 ",
+  "\x07\x1D\x0418.30 The Fabulous Life              ",
+  "\x07\x1D\x01      Fab 40                         ",
+  "\x07\x1D\x0419.00 VIVA Top 20               >347 ",
+  "\x07\x1D\x0420.00 Abschlussklasse 2005      >314 ",
+  "\x07\x1D\x0420.30 Freunde- Das Leben geht   >313 ",
+  "\x07\x1D\x04      weiter                         ",
+  "\x07\x1D\x0421.00 Shibuya                   >325 ",
+  "\x07\x1D\x0422.00 All Access                >332 ",
+  "\x07\x1D\x01      Show us your Tats              ",
+  "\x07\x1D\x0422.30 All Access                >332 ",
+  "\x07\x1D\x01      Beach Bodies                   ",
+  "\x07\x1D\x0423.00 VIVA Top 20               >347 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x03\x1D \x04            morgen 24-06 Uhr >> 304 ",
+];
+$PgCnt{0x306} = 8;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "8\x15\x15\x15\x15\x15\x15G306   VIVA       11.05.\x0320:30:36",
+  "\x13x||0`d x||0`t   \x11\x1D\x07                    ",
+  "\x13k\x7F\x7Fa\% ek\x7F\x7Fa\x7F\x7Fu  \x11\x1D\x07                    ",
+  "\x13 +!\",,& +!\"//'  \x11######################",
+  "\x04\x1D\x03  PROGRAMM     \x1D\x04Fr 12-18 Uhr    1/1 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0412.30 VIVA Top 20               >347 ",
+  "\x07\x1D\x0413.30 Clueless - Die Chaos-Cli- >341 ",
+  "\x07\x1D\x04      que                            ",
+  "\x07\x1D\x01      Es geht wieder los             ",
+  "\x07\x1D\x0414.00 Abschlussklasse 2005      >314 ",
+  "\x07\x1D\x0414.30 Freunde- Das Leben geht   >313 ",
+  "\x07\x1D\x04      weiter                         ",
+  "\x07\x1D\x0415.00 VIVA Live!                >312 ",
+  "\x07\x1D\x01      zu Gast: Sandy                 ",
+  "\x07\x1D\x0416.00 The Fabulous Life              ",
+  "\x07\x1D\x01      Most Expensive Houses          ",
+  "\x07\x1D\x0417.00 Shibuya                   >325 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x03\x1D  \x04                  18-24 Uhr >> 307 ",
+];
+$PgCnt{0x307} = 8;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "/\x15\x15\x15\x15\x15\x15G307   VIVA       11.05.\x0320:30:36",
+  "\x13x||0`d x||0`t   \x11\x1D\x07                    ",
+  "\x13k\x7F\x7Fa\% ek\x7F\x7Fa\x7F\x7Fu  \x11\x1D\x07                    ",
+  "\x13 +!\",,& +!\"//'  \x11######################",
+  "\x04\x1D\x03  PROGRAMM     \x1D\x04Fr 18-24 Uhr    1/1 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0418.00 VIVA Top 100              >348 ",
+  "\x07\x1D\x0420.00 Abschlussklasse 2005      >314 ",
+  "\x07\x1D\x0420.30 Freunde- Das Leben geht   >313 ",
+  "\x07\x1D\x04      weiter                         ",
+  "\x07\x1D\x0421.00 Style Star                >319 ",
+  "\x07\x1D\x01      Gwen Stefani                   ",
+  "\x07\x1D\x0421.30 All Access                >332 ",
+  "\x07\x1D\x01      Most wanted Bodies, 1          ",
+  "\x07\x1D\x0422.30 VIVA Neu                  >316 ",
+  "\x07\x1D\x0423.30 Planet VIVA               >355 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x03\x1D\x04             morgen 24-06 Uhr >> 308 ",
+];
+$PgCnt{0x313} = 8;
+$PgSub{0x313} = 0;
+$PgLang{0x313} = 1;
+$Pkg{0x313|(0x0000<<12)} =
+[
+  "^\x02\x15\x15\x15\x15\x15G313   VIVA       11.05.\x0320:30:36",
+  "\x13x||0`d x||0`t   \x01\x1D\x07Mach mit beim       ",
+  "\x13k\x7F\x7Fa\% ek\x7F\x7Fa\x7F\x7Fu  \x01\x1D\x07VIVA SMS-Chat \x03280  ",
+  "\x13 +!\",,& +!\"//'  \x11######################",
+  "\x04\x1D\x03 TV-SHOWS      \x1D\x04                1/1 ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Freunde, das Leben geht weiter\x04      ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Eine Clique, viele \"Freunde\". Sie    ",
+  " \x1D\x04teilen ihr Leben, machen Erfahrungen ",
+  " \x1D\x04und die Kamera ist stets dabei.      ",
+  " \x1D\x04Liebe, Streits, Freude und Leiden -  ",
+  " \x1D\x04bei den Freunden geht's zu wie bei   ",
+  " \x1D\x04euch im echten Leben. Auf VIVA be-   ",
+  " \x1D\x04kommt ihr die [ngste, Sorgen, Auf-   ",
+  " \x1D\x04regung, den Liebeskummer und den     ",
+  " \x1D\x04Stress der Freunde direkt mit.       ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Mo - Fr, 20:30 - 21:00 Uhr           ",
+  " \x1D\x01Mo - Fr, 14:30 - 15:00 Uhr (WH)\x04     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x03\x1D\x04            www.viva.tv              ",
+];

@@ -1,0 +1,250 @@
+#!/usr/bin/perl -w
+#
+# Don't believe everything they say: date jumps from 30.8 to 31.9
+# from one page to the next
+#
+# $Id: ovdate6.in,v 1.2 2006/05/07 18:33:06 tom Exp tom $
+#
+$VbiCaptureTime = 1156962922;
+$PkgCni{0xD8E} = 2256;
+$PgCnt{0x301} = 3;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x01VOX-TEXT \x07Mi 30 Aug\x0720:39:54",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Sch|ner        \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Leben.......600\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Mi. 30.08.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0106:00 Dauerwerbesendung              ",
+  "\x07\x1D\x0008:30 Titus......................320 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0109:00 NEU: Wissenshunger             ",
+  "\x07\x1D\x01      Das Wissens-Magazin........321 ",
+  "\x07\x1D\x0009:25 Menschen, Tiere & Doktoren     ",
+  "\x07\x1D\x00      NEUE Tierarzt-Doku.........322 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0110:25 Wohnen nach Wunsch             ",
+  "\x07\x1D\x01      Ein Duo f}r vier W{nde.....323 ",
+  "\x07\x1D\x0010:55 Schmeckt nicht, gibt's         ",
+  "\x07\x1D\x00      nicht Grill-Special!.......324 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0111:25 Das perfekte Dinner            ",
+  "\x07\x1D\x01      Koch-Doku..................325 ",
+  "\x07\x1D\x0012:10 Nachrichten................326 ",
+  "\x01\x1D\x07\x0D  Kartenleger beraten Sie! > 460    ",
+  "                                        ",
+];
+$PgCnt{0x302} = 3;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x01VOX-TEXT \x07Mi 30 Aug\x0720:39:54",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Reise-         \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Schn{ppchen.430\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Mi. 30.08.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0112:15 Eine himmlische Familie....327 ",
+  "\x07\x1D\x0013:10 F}r alle F{lle Amy.........328 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0114:05 Dr. Quinn                      ",
+  "\x07\x1D\x01      [rztin aus Leidenschaft....329 ",
+  "\x07\x1D\x0015:05 Eine himmlische Familie....330 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0116:00 F}r alle F{lle Amy.........331 ",
+  "\x07\x1D\x0017:00 Menschen, Tiere & Doktoren     ",
+  "\x07\x1D\x00      NEUE Tierarzt-Doku.........332 ",
+  "\x07\x1D\x0117:55 Nachrichten................334 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0018:00 NEU: Wissenshunger             ",
+  "\x07\x1D\x00      Das Wissens-Magazin........335 ",
+  "\x07\x1D\x0118:30 Schmeckt nicht, gibt's         ",
+  "\x07\x1D\x01      nicht Grill-Special!.......336 ",
+  "\x03\x1D\x01\x0D  Top Kartenleger + Hellseher 460   ",
+  "                                        ",
+];
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x01VOX-TEXT \x07Mi 30 Aug\x0720:39:54",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Neue Liebe     \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07per SMS.....550\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Mi. 30.08.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0119:00 Das perfekte Dinner            ",
+  "\x07\x1D\x01      Koch-Doku..................337 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0019:45 Wohnen nach Wunsch             ",
+  "\x07\x1D\x00      Ein Duo f}r vier W{nde.....338 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0120:15 CSI                            ",
+  "\x07\x1D\x01      Den T{tern auf der Spur....339 ",
+  "\x07\x1D\x0021:10 Criminal Intent............340 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0122:05 Profiler...................341 ",
+  "\x07\x1D\x0023:05 Profiler...................342 ",
+  "\x07\x1D\x0100:05 Sp{tnachrichten............343 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0000:15 CSI                            ",
+  "\x07\x1D\x00      Den T{tern auf der Spur....344 ",
+  "\x01\x1D\x07\x0DHEISS, G..L, ANONYM.........840     ",
+  "                                        ",
+];
+$PgCnt{0x304} = 3;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x01VOX-TEXT \x07Mi 30 Aug\x0720:39:54",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Seitensprung-  \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Garantie....700\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Mi. 30.08.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0101:15 Criminal Intent............345 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0002:00 Profiler...................346 ",
+  "\x07\x1D\x0102:50 Profiler...................347 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0003:35 WOLKENLOS: AIDA Mittelmeer     ",
+  "\x07\x1D\x00      Das Urlaubsmagazin.........348 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0104:00 VOXTOURS: Australien           ",
+  "\x07\x1D\x01      Das Reisemagazin...........349 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0004:20 Dr. Quinn                      ",
+  "\x07\x1D\x00      [rztin aus Leidenschaft....350 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0105:05 Rave around the World......351 ",
+  "\x07\x1D\x0005:30 VOX pr{sentiert RTL-Shop...352 ",
+  "\x01\x1D\x07\x0D780 <<  SM Live / Oma 60+   >> 788 \x07",
+  "                                        ",
+];
+$PgCnt{0x305} = 3;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "s\x15\x15\x15\x15\x15\x15G305\x01VOX-TEXT \x07Mi 30 Aug\x0720:39:54",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07NEU! Englischer\x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Chat........563\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Do. 31.09.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0106:05 Titus......................360 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0006:30 Dauerwerbesendung              ",
+  "\x07\x1D\x0108:30 Titus......................361 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0008:55 NEU: Wissenshunger             ",
+  "\x07\x1D\x00      Das Wissens-Magazin........362 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0109:25 Menschen, Tiere & Doktoren     ",
+  "\x07\x1D\x01      NEUE Tierarzt-Doku.........363 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0010:25 Wohnen nach Wunsch             ",
+  "\x07\x1D\x00      Ein Duo f}r vier W{nde.....364 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0110:55 Schmeckt nicht, gibt's         ",
+  "\x07\x1D\x01      nicht Grill-Special!.......365 ",
+  "\x07\x1D\x1Cauto motor und sport TV.........501\x07\x1D",
+  "\x01\x1D\x07<304                           306>  ",
+];
+$PgCnt{0x306} = 3;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "8\x15\x15\x15\x15\x15\x15G306\x01VOX-TEXT \x07Mi 30 Aug\x0720:39:54",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07TIERISCH gut    \x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07informiert..667\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Do. 31.09.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0111:25 Das perfekte Dinner            ",
+  "\x07\x1D\x01      Koch-Doku..................366 ",
+  "\x07\x1D\x0012:10 Nachrichten................367 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0112:15 Eine himmlische Familie....368 ",
+  "\x07\x1D\x0013:10 F}r alle F{lle Amy.........369 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0114:05 Dr. Quinn                      ",
+  "\x07\x1D\x01      [rztin aus Leidenschaft....370 ",
+  "\x07\x1D\x0015:05 Eine himmlische Familie....371 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0116:00 F}r alle F{lle Amy.........372 ",
+  "\x07\x1D\x0017:00 Menschen, Tiere & Doktoren     ",
+  "\x07\x1D\x00      NEUE Tierarzt-Doku.........373 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0117:55 Nachrichten................374 ",
+  "\x07\x1D\x1CSpielfilm-Highlights bei VOX....311\x07\x1D",
+  "\x01\x1D\x07<305                           307>  ",
+];
+$PgCnt{0x307} = 3;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "/\x15\x15\x15\x15\x15\x15G307\x01VOX-TEXT \x07Mi 30 Aug\x0720:39:54",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Neue Liebe     \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07per SMS.....550\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Do. 31.09.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0118:00 NEU: Wissenshunger             ",
+  "\x07\x1D\x01      Das Wissens-Magazin........375 ",
+  "\x07\x1D\x0018:25 Schmeckt nicht, gibt's         ",
+  "\x07\x1D\x00      nicht Grill-Special!.......376 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0118:55 Das perfekte Dinner            ",
+  "\x07\x1D\x01      Koch-Doku..................377 ",
+  "\x07\x1D\x0019:40 Wohnen nach Wunsch             ",
+  "\x07\x1D\x00      Ein Duo f}r vier W{nde.....378 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0120:15 Sechs Tage, sieben N{chte..379 ",
+  "\x07\x1D\x01      (Abenteuer-Kom|die, USA 1998)  ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0022:05 SPIEGEL TV Extra               ",
+  "\x07\x1D\x00      Nachtschicht im Casanova       ",
+  "\x07\x1D\x00      Bordell als Familienbetrieb380 ",
+  "\x07\x1D\x1CWir versch|nern IHR Zuhause.....637\x07\x1D",
+  "\x01\x1D\x07<306                           308>  ",
+];
+$PgCnt{0x308} = 3;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "P\x15\x15\x15\x15\x15\x15G308\x01VOX-TEXT \x07Mi 30 Aug\x0720:39:54",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Die besten XXX-\x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Hotlines....700\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Do. 31.09.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0123:00 BBC Exklusiv                   ",
+  "\x07\x1D\x01      Stra~e der [rzte - Alltag      ",
+  "\x07\x1D\x00     \x01in der Harley Street/2.....381 ",
+  "\x07\x1D\x0000:00 Sp{tnachrichten............382 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0100:20 Anna G|ldin - Letzte Hexe..383 ",
+  "\x07\x1D\x01      (Drama, D/CH 1991)             ",
+  "\x07\x1D\x0002:15 CSI                            ",
+  "\x07\x1D\x00      Den T{tern auf der Spur....384 ",
+  "\x07\x1D\x0103:05 CSI                            ",
+  "\x07\x1D\x01      Den T{tern auf der Spur....385 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0003:50 Showdown im Schnee.........386 ",
+  "\x07\x1D\x00      (Thriller, USA 2001)           ",
+  "\x07\x1D\x0105:15 Rave around the World......387 ",
+  "\x07\x1D\x0005:30 VOX pr{sentiert RTL-Shop...388 ",
+  "\x07\x1D\x1CSofortkontakte zu hei~en Frauen.700\x07\x1D",
+  "\x01\x1D\x07<307                           309>  ",
+];
+

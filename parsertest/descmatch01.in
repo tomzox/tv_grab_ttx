@@ -1,0 +1,309 @@
+#!/usr/bin/perl -w
+#
+# Test date format parsing on description page: BR-alpha
+# - single-digit date format
+# - two dates on the same line, 2nd is one used in reference here
+#
+# $Id$
+#
+$VbiCaptureTime = 1147032257;
+$PgCnt{0x311} = 7;
+$PgSub{0x311} = 0;
+$PgLang{0x311} = 1;
+$Pkg{0x311|(0x0000<<12)} =
+[
+  "\x02\x02\x15\x15\x15\x15\x15G311 \x06 BR-ALPHA\x07  07.05. 22:04:04",
+  "\x12|4|4|4  \x07             \x05\x181D304\x18080506\x18AD",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha      Montag, 08.05.06",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x0206.00\x02\x02\x02TELE-GYM                       ",
+  "\x05\x180600\x07\x02\x02Aktiv + gesund durch Aerobic   ",
+  "       \x02\x02(5/8) .....................\x02349",
+  "\x0706.15\x07\x07\x07Planet Wissen                  ",
+  "\x05\x180615\x07\x07\x07Die Beatles - Die Musik einer  ",
+  "         Generation ................\x07396",
+  "\x0207.15\x02\x02\x02Englisch f}r Anf{nger          ",
+  "\x05\x180715\x07\x02\x02A driving lesson (9/51) ...\x02350",
+  "\x0707.45\x07\x07\x07Russisch, bitte!               ",
+  "\x05\x180745\x07\x07\x07(10/30) ...................\x07351",
+  "\x0208.30\x02\x02\x02Schulfernsehen                 ",
+  "\x05\x180830\x07\x02\x02Die Passion                    ",
+  "       \x02\x02Eugen Biser und Reinhold       ",
+  "       \x02\x02Baumstark in der Alten         ",
+  "       \x02\x02Pinakothek                     ",
+  "       \x02\x02(\"Schauen und Glauben\" / 2005) ",
+  undef,
+  "\x05\x18VPS\x07            ab\x0708.45\x07Uhr >>> 312  ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x325} = 7;
+$PgSub{0x325} = 0;
+$PgLang{0x325} = 1;
+$Pkg{0x325|(0x0000<<12)} =
+[
+  "sI\x15\x15\x15\x15\x15G325 \x06 BR-ALPHA\x07  07.05. 22:04:05",
+  "\x12|4|4|4  \x07             \x05\x181D304\x18090506\x18F0",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha    Dienstag, 09.05.06",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x0217.15\x02\x02\x02Anschi und Karl-Heinz          ",
+  "\x05\x181715\x07\x02\x02Die Welt ..................\x02385",
+  "\x0717.30\x07\x07\x07Telekolleg Mathematik          ",
+  "\x05\x181730\x07\x07\x07Extremwertaufgaben (2/2) /     ",
+  "         Differentialrechnung (11/11)   ",
+  "\x0218.00\x02\x02\x02ALPHA-CAMPUS                   ",
+  "\x05\x181800\x07\x02\x02Schwere Stunde - Thomas Mann   ",
+  "       \x02\x02und Schiller ..............\x02362",
+  "\x0718.30\x07\x07\x07Die Abendschau                 ",
+  "\x05\x181830\x07\x07\x07Franken                        ",
+  "\x0218.43\x02\x02\x02Programmvorschau               ",
+  "\x05\x181843\x07                                 ",
+  "\x0718.45\x07\x07\x07Rundschau                      ",
+  "\x05\x181845\x07                                 ",
+  "\x0219.00\x02\x02\x02Das Lechrain                   ",
+  "\x05\x181900\x07\x02\x02Ein Film von Ludwig Ott (Doku /",
+  "       \x02\x022000)                          ",
+  "\x05\x18VPS\x07            ab\x0719.45\x07Uhr >>> 326  ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x385} = 7;
+$PgSub{0x385} = 3;
+$PgLang{0x385} = 1;
+$Pkg{0x385|(0x0001<<12)} =
+[
+  "sP\x02P\x15\x15IG385 \x06 BR-ALPHA\x07  07.05. 22:03:16",
+  "\x12|4|4|4  \x07             \x05\x18070201\x181D\x07 1/3 ",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha  ANSCHI UND KARLHEINZ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " 07. Mai, 11.00, 09. Mai, 17.15 Uhr     ",
+  " 13. Mai, 11.00, 14. Mai,  6.15 Uhr     ",
+  undef,
+  "\x02Die Welt                               ",
+  undef,
+  "\x02Wie entstand die Welt?\x07                ",
+  "\x07Julian und Clara sind auf dem Heimweg  ",
+  "\x07von der Schule und philosophieren da-  ",
+  "\x07r}ber, wie die Welt entstanden ist.    ",
+  "\x07W{hrend Clara glaubt, darauf in der    ",
+  "\x07Bibel eine Antwort zu finden, m|chte   ",
+  "\x07ihr Freund dazu lieber fundierte wis-  ",
+  "\x07senschaftliche Informationen. Im Deut- ",
+  "\x07schen Museum treffen die beiden Prof.  ",
+  "\x07Gerhard Hasinger, einen Astrophysiker. ",
+  "\x07Was Claras Bibel mit \"im Anfang schuf  ",
+  "\x07Gott den Himmel und die Erde ...\" be-  ",
+  "\x07schreibt, erkl{rt der Naturwissen-     ",
+  "\x07schaftler mit der Urknalltheorie.      ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x385} = 7;
+$PgSub{0x385} = 3;
+$PgLang{0x385} = 1;
+$Pkg{0x385|(0x0002<<12)} =
+[
+  "sPIP\x15\x15IG385 \x06 BR-ALPHA\x07  07.05. 22:03:41",
+  "\x12|4|4|4  \x07             \x05\x18070201\x181D\x07 2/3 ",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha  ANSCHI UND KARLHEINZ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " 07. Mai, 11.00, 09. Mai, 17.15 Uhr     ",
+  " 13. Mai, 11.00, 14. Mai,  6.15 Uhr     ",
+  undef,
+  "\x02Die Welt                               ",
+  undef,
+  "\x02Die Welt bewahren                      ",
+  "\x07Wir fahren nach Neuhaus an der Pegnitz ",
+  "\x07und treffen dort Lisa und Carina.      ",
+  "\x07Die beiden M{dchen sind Konfirmandinnen",
+  "\x07und machen mit bei einem Naturschutz-  ",
+  "\x07projekt, das eine endemische Pflanzen- ",
+  "\x07art sch}tzen will. Ihr wisst nicht, was",
+  "\x07endemisch hei~t? Macht nix. Lisa und   ",
+  "\x07Carina wussten es vorher auch nicht. Im",
+  "\x07Film erfahrt ihr mehr! Was dieses      ",
+  "\x07komische Wort bedeutet und dass sogar  ",
+  "\x07in der Bibel schon etwas }ber Natur-   ",
+  "\x07schutz steht.                          ",
+  undef,
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x385} = 7;
+$PgSub{0x385} = 3;
+$PgLang{0x385} = 1;
+$Pkg{0x385|(0x0003<<12)} =
+[
+  "sP^P\x15\x15IG385 \x06 BR-ALPHA\x07  07.05. 22:04:07",
+  "\x12|4|4|4  \x07             \x05\x18070201\x181D\x07 3/3 ",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha  ANSCHI UND KARLHEINZ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " 07. Mai, 11.00, 09. Mai, 17.15 Uhr     ",
+  " 13. Mai, 11.00, 14. Mai,  6.15 Uhr     ",
+  undef,
+  "\x02Die Welt                               ",
+  undef,
+  "\x02Der Baum                               ",
+  "\x07Christine will alles }ber B{ume er-    ",
+  "\x07fahren. Sie findet B{ume einfach toll. ",
+  "\x07Schade ist nur, dass so viele B{ume    ",
+  "\x07durch die ganzen Abgase und Umweltgifte",
+  "\x07kaputt gehen. Deshalb will sie jemanden",
+  "\x07finden, der auf B{ume aufpasst. Und das",
+  "\x07stellt sie ganz sch|n clever an. Daf}r ",
+  "\x07darf sie dann auch mal Kopf an Krone   ",
+  "\x07mit so einem hohen Baum stehen und mal ",
+  "\x07richtig von oben herabschauen auf die  ",
+  "\x07anderen auf dem Boden.                 ",
+  undef,
+  undef,
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x396} = 7;
+$PgSub{0x396} = 5;
+$PgLang{0x396} = 1;
+$Pkg{0x396|(0x0001<<12)} =
+[
+  "8G\x02P\x15\x15IG396 \x06 BR-ALPHA\x07  07.05. 22:03:16",
+  "\x12|4|4|4                           \x07 1/5 ",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha        PLANET WISSEN ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x075.5. 16.15 Uhr / 8.5. 6.15 Uhr         ",
+  undef,
+  "\x02Die Beatles -                          ",
+  "\x02Die Musik einer Generation             ",
+  undef,
+  "\x07Die vier Pilzk|pfe aus Liverpool gelten",
+  "\x07als die erste Boygroup der Musikge-    ",
+  "\x07schichte. Bereits in jungen Jahren     ",
+  "\x07setzen die Beatles nicht nur durch ihr ",
+  "\x07durchgestyltes Outfit neue Ma~st{be in ",
+  "\x07der Musikwelt. Es ist ihr \"Beat\", der  ",
+  "\x07Rhythmus ihrer Musik, der die Jugend   ",
+  "\x07weltweit in Ekstase versetzt. Planet   ",
+  "\x07Wissen diskutiert das Musikph{nomen    ",
+  "\x07\"Beatles\" mit dem Zeitzeugen Klaus     ",
+  "\x07Voormann. Der Grafiker und Musiker     ",
+  "\x07spielte f}r sie den Bass und entwarf   ",
+  "\x07auch einige Plattencover.              ",
+  undef,
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x396} = 7;
+$PgSub{0x396} = 5;
+$PgLang{0x396} = 1;
+$Pkg{0x396|(0x0002<<12)} =
+[
+  "8GIP\x15\x15IG396 \x06 BR-ALPHA\x07  07.05. 22:03:42",
+  "\x12|4|4|4                           \x07 2/5 ",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha        PLANET WISSEN ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x075.5. 16.15 Uhr / 8.5. 6.15 Uhr         ",
+  undef,
+  "\x02Die Beatles                            ",
+  "\x02Literatur:\x07                            ",
+  "\x07Klaus Voormann                         ",
+  "\x07\"Warum spielst du 'Imagine' nicht auf  ",
+  "\x07dem wei~en Klavier, John?\" -           ",
+  "\x07Erinnerungen an die Beatles und viele  ",
+  "\x07andere Freunde                         ",
+  "\x07Heyne Verlag, M}nchen 2003             ",
+  "\x07ISBN 3-453-87313-0, 327 S.; 24,00 Euro ",
+  undef,
+  "\x07Klaus Voormann                         ",
+  "\x07Four Track Stories                     ",
+  "\x07Voormann Eigenverlag, M}nchen 2005     ",
+  "\x0796 S.; 22,90 Euro                      ",
+  "\x07Nur zu bestellen unter: Klaus Voormann,",
+  "\x07Volkartstr. 32, 80634 M}nchen,         ",
+  "\x07Fax 0040 / 81586762                    ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x396} = 7;
+$PgSub{0x396} = 5;
+$PgLang{0x396} = 1;
+$Pkg{0x396|(0x0003<<12)} =
+[
+  "8G^P\x15\x15IG396 \x06 BR-ALPHA\x07  07.05. 22:04:07",
+  "\x12|4|4|4                           \x07 3/5 ",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha        PLANET WISSEN ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x075.5. 16.15 Uhr / 8.5. 6.15 Uhr         ",
+  undef,
+  "\x02Die Beatles                            ",
+  undef,
+  "\x02Literatur:\x07                            ",
+  "\x07Harold Kr{mer                          ",
+  "\x07Bitte eintreten!                       ",
+  "\x07Eigenverlag Harold Kr{mer, Siegen 2005 ",
+  "\x07127 S.; 7 Euro                         ",
+  "\x07Nur zu bestellen unter: Harold Kr{mer, ",
+  "\x07Sohlbacher Stra~e 24, 57078 Siegen,    ",
+  "\x07Fax 0271 / 89097-71                    ",
+  undef,
+  "\x07Steve Turner                           ",
+  "\x07A Hard Day's Write - The Beatles - Die ",
+  "\x07Geschichte zu jedem Song               ",
+  "\x07Rockbuch Verlag Buhmann und Haeseler,  ",
+  "\x07Schl}chtern 2002                       ",
+  "\x07ISBN 3-927638-10-2, 224 S.; 19,80 Euro ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x396} = 7;
+$PgSub{0x396} = 5;
+$PgLang{0x396} = 1;
+$Pkg{0x396|(0x0004<<12)} =
+[
+  "8GdP\x15\x15IG396 \x06 BR-ALPHA\x07  07.05. 22:02:26",
+  "\x12|4|4|4                           \x07 4/5 ",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha        PLANET WISSEN ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x075.5. 16.15 Uhr / 8.5. 6.15 Uhr         ",
+  undef,
+  "\x02Die Beatles                            ",
+  undef,
+  "\x02DVD                                    ",
+  undef,
+  "\x07The Beatles Anthology                  ",
+  "\x07EMI 2003                               ",
+  "\x0769,95 Euro                             ",
+  undef,
+  "\x02CD                                     ",
+  undef,
+  "\x07The Beatles                            ",
+  "\x07Let it be naked                        ",
+  "\x07EMI 2003                               ",
+  "\x0717,99 Euro                             ",
+  undef,
+  undef,
+  undef,
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x396} = 7;
+$PgSub{0x396} = 5;
+$PgLang{0x396} = 1;
+$Pkg{0x396|(0x0005<<12)} =
+[
+  "8GsP\x15\x15IG396 \x06 BR-ALPHA\x07  07.05. 22:02:51",
+  "\x12|4|4|4                           \x07 5/5 ",
+  "\x12\x7F5\x7F5\x7F5\x1D\x06\x04BR-alpha        PLANET WISSEN ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x075.5. 16.15 Uhr / 8.5. 6.15 Uhr         ",
+  undef,
+  "\x02Die Beatles                            ",
+  undef,
+  "\x02Adresse                                ",
+  undef,
+  "\x07Beatles-Museum Siegen                  ",
+  "\x07Harold Kr{mer                          ",
+  "\x07Sohlbacher Stra~e 24                   ",
+  "\x0757078 Siegen                           ",
+  "\x07Telefon 0271 / 89097-70                ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x02Informationen zu fr}heren Sendungen >>>",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];

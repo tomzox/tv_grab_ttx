@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# Description page has title only at top and date at bottom.
+# Test if advertisement at the top of the page is cut off.
+#
+# $Id$
+#
+$VbiCaptureTime = 1156962810;
+$PkgCni{0xD8F} = 2270;
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "^\x15\x02\x15\x15\x15IG303\x03RTL II   \x07Mi 30 Aug\x0320:37:57",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Esoterik      \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00LIVE!......700\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x01",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0117:00\x00Eine starke Familie........336 ",
+  "\x07\x1D\x0118:00\x00Still Standing.............337 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0119:00\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:00\x00RTL II News................114 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x18\x1D\x06\x1D\x01DSL-Flatrate nur 4,95 Euro\x01\x1D\x07168 \x1D ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Stargate Atlantis..........323 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0121:10\x00Stargate...................323 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0122:05\x00Dead Zone..................328 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D                                      ",
+  "\x01\x1D\x07814< Studentin / SM ohne Tabus >898  ",
+  "\x03\x1D\x01\x0DTelefonxxx f}r nur 9 ct/Min.....839 ",
+  "                                        ",
+];
+$PgCnt{0x328} = 3;
+$PgSub{0x328} = 2;
+$PgLang{0x328} = 1;
+$Pkg{0x328|(0x0001<<12)} =
+[
+  "PI\x02\x15\x15\x15IG328\x03RTL II   \x07Mi 30 Aug\x0320:37:29",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Reisen: Buchen\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Sie hier!..600\x18",
+  "\x01\x1D\x07DEAD ZONE                       \x001/2\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01H|llentrip                           ",
+  "\x07\x1D\x00Johnny hat Visionen von einer 16-j{h-",
+  "\x07\x1D\x00rigen Ausrei~erin namens Jill. Das   ",
+  "\x07\x1D\x00Gesehene l{sst ihn vermuten, dass    ",
+  "\x07\x1D\x00das M{dchen sich in einer alten La-  ",
+  "\x07\x1D\x00gerhalle in Portland befinden k|nnte.",
+  "\x07\x1D\x00Also macht er sich zusammen mit Walt ",
+  "\x07\x1D\x00und Officer Kohlan auf die Suche.    ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Tats{chlich trifft das Trio in der   ",
+  "\x07\x1D\x00abgelegenen Halle auf Jill, ihre     ",
+  "\x07\x1D\x00Freundin Tammy und Jills Freund      ",
+  "\x07\x1D\x00Scott, der gerade dabei ist, einen   ",
+  "\x07\x1D\x00starken Drogencocktail aus verschie- ",
+  "\x07\x1D\x00denen chemischen Zutaten zu mixen.   ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Mittwoch, 30.08.06; 22.05 Uhr \x01\x1D\x07\x07  ",
+  "\x01\x1D\x07\x0DS}~e Girls 19+.................>756 ",
+  "                                        ",
+];
+$PgCnt{0x328} = 3;
+$PgSub{0x328} = 2;
+$PgLang{0x328} = 1;
+$Pkg{0x328|(0x0002<<12)} =
+[
+  "PII\x15\x15\x15IG328\x03RTL II   \x07Mi 30 Aug\x0320:37:58",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Reisen: Buchen\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Sie hier!..600\x18",
+  "\x01\x1D\x07DEAD ZONE                       \x002/2\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Zwischen zwei Welten                 ",
+  "\x07\x1D\x00Johnny erwacht eines Morgens und fin-",
+  "\x07\x1D\x00det sich in einer v|llig ver{nderten ",
+  "\x07\x1D\x00Realit{t wieder: Sarah ruft ihn zum  ",
+  "\x07\x1D\x00Fr}hst}ck, zu dem ihn seine beiden   ",
+  "\x07\x1D\x00Kinder erwarten! Offensichtlich ist  ",
+  "\x07\x1D\x00er mit Sarah verheiratet, arbeitet   ",
+  "\x07\x1D\x00im Gemeinderat und ist mit Sheriff   ",
+  "\x07\x1D\x00Walt eng befreundet.                 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Seine Mutter lebt und er selbst hat  ",
+  "\x07\x1D\x00niemals einen Unfall gehabt, weswe-  ",
+  "\x07\x1D\x00gen Krankengymnast Bruce und die     ",
+  "\x07\x1D\x00Schwestern im Krankenhaus ihn nicht  ",
+  "\x07\x1D\x00erkennen...                          ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Mittwoch, 30.08.06; 22.05 Uhr \x01\x1D\x07\x07  ",
+  "\x01\x1D\x07\x0DS}~e Girls 19+.................>756 ",
+  "                                        ",
+];

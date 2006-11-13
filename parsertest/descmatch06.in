@@ -1,0 +1,70 @@
+#!/usr/bin/perl -w
+#
+# Test description page date match: date is at bottom of page and has
+# a different background color. Test that it's not chopped off (to
+# make the test harder the description subpage count has been changed
+# from 1 to 2.)
+#
+# $Id$
+#
+$VbiCaptureTime = 1147377524;
+$PgCnt{0x303} = 6;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03RTL II   \x07Do 11 Mai\x0321:58:41",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Esoterik      \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00LIVE!......700\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0117:00\x005 gegen 5..................371 ",
+  "\x07\x1D\x0117:30\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x0119:00\x00Wir ziehen um!                 ",
+  "\x07\x1D\x01     \x00Tutti & Rita packen's an...345 ",
+  "\x07\x1D\x0120:00\x00RTL II News................114 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x06\x1D\x01DSL-Flatrate nur 4,95 Euro\x01\x1D\x07168 \x1D ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Law & Order                    ",
+  "\x07\x1D\x01     \x00New York...................329 ",
+  "\x07\x1D\x0121:10\x00Frauentausch...............341 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D                                      ",
+  "\x01\x1D\x07                                     ",
+  "\x03\x1D\x01\x0D   WM F}r 49 Euro!   >>>309<<<      ",
+  "                                        ",
+];
+$PgCnt{0x335} = 5;
+$PgSub{0x335} = 2;
+$PgLang{0x335} = 1;
+$Pkg{0x335|(0x0001<<12)} =
+[
+  "s^\x15\x15\x15\x15\x15G335\x03RTL II   \x07Do 11 Mai\x0321:58:42",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Reisen: Buchen\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Sie hier!..600\x18",
+  "\x01\x1D\x07IMMER WIEDER JIM                \x001/1\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Oh, du Stressige                     ",
+  "\x07\x1D\x00Zu Weihnachten kommt Cheryls Mutter  ",
+  "\x07\x1D\x00Maggie auf Besuch. Diesmal }bernach- ",
+  "\x07\x1D\x00tet sie jedoch nicht im Hotel, son-  ",
+  "\x07\x1D\x00dern quartiert sich in Jims und Cher-",
+  "\x07\x1D\x00yls Schlafzimmer ein. Trotzdem setzt ",
+  "\x07\x1D\x00Cheryl alles daran, ihre Mutter bei  ",
+  "\x07\x1D\x00Laune zu halten: Sie hofft n{mlich,  ",
+  "\x07\x1D\x00von ihr in diesem Jahr die kostbare  ",
+  "\x07\x1D\x00Perlenkette ihrer Urgro~mutter ge-   ",
+  "\x07\x1D\x00schenkt zu bekommen...               ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Weitere Folgen heute: \"Fluchen will  ",
+  "\x07\x1D\x00gelernt sein\" und \"Hauptsache Spa~\". ",
+  "\x07\x1D\x00                                     ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Donnerstag, 11.05.06; 17.30 Uhr \x01\x1D\x07\x07",
+  "\x01\x1D\x07\x0DMehr Wissen mit RTL II!.........360 ",
+  "                                        ",
+];

@@ -1,0 +1,158 @@
+#!/usr/bin/perl -w
+#
+# Typical example of a description consisting of two subpages with a
+# 2nd page containing a cast table.
+#
+# $Id$
+#
+$VbiCaptureTime = 1146684365;
+$PgCnt{0x301} = 6;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x06ARDtext\x07Mi 03.05.06\x0721:25:50",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06    Mi 03.05.2006\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  05.30  ARD-Morgenmagazin             ",
+  "\x07\x06 09.00  Tagesschau                    ",
+  "\x07  09.05  Happy Birthday\x03UT             ",
+  "\x07         Die Leihmutter (D, 2001)      ",
+  "\x07\x06 09.55  ARD-Wetterschau               ",
+  "\x07  10.00  Tagesschau                    ",
+  "\x07\x06 10.03  Brisant                       ",
+  "\x07  10.25  Familie Dr. Kleist\x03UT\x07.... 314",
+  "\x07         Endstation Sehnsucht          ",
+  "\x07\x06 11.15  In aller Freundschaft\x03UT\x06. 332",
+  "\x07\x06        Falsches Spiel (D, 2006)      ",
+  "\x07  12.00  Tagesschau um zw|lf           ",
+  "\x07\x06 12.15  ARD-Buffet                    ",
+  "\x07\x06        mit Bernadette Schoog         ",
+  "\x07  13.00  ARD-Mittagsmagazin            ",
+  "\x07         mit Tagesschau                ",
+  "\x07         bis 14.00 Uhr                 ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Nachmittag >\x06302",
+];
+$PgCnt{0x314} = 6;
+$PgSub{0x314} = 2;
+$PgLang{0x314} = 1;
+$Pkg{0x314|(0x0001<<12)} =
+[
+  "d\x02\x02P\x15\x158G314\x06ARDtext\x07Mi 03.05.06\x0721:25:28",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mi 03.05.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0710.25 - 11.15 Uhr                      ",
+  "\x06Familie Dr. Kleist            \x07\x0316:9/UT",
+  "\x06Endstation Sehnsucht                   ",
+  "\x07                                       ",
+  "\x07Im Hause Kleist dreht sich alles um    ",
+  "\x07Clara: Lisa genie~t das erweiterte Fa- ",
+  "\x07milienleben und Piwi ist stolz auf sei-",
+  "\x07ne neue Rolle als \"gro~er Bruder\". Als ",
+  "\x07Ersatzvater und f}rsorglicher Arzt ist ",
+  "\x07Christian voll gefordert und Marlene   ",
+  "\x07ist mit ihrer zus{tzlichen Mutterrolle ",
+  "\x07mehr als ausgelastet.                  ",
+  "\x07                                       ",
+  "\x07So f{llt es keinem auf, dass Johannes  ",
+  "\x07sich zunehmend ausgeschlossen und }ber-",
+  "\x07fl}ssig f}hlt. In seinem Kummer fl}ch- ",
+  "\x07tet er zu Inge und bringt endlich den  ",
+  "\x07Mut auf, ihr seine Gef}hle zu gestehen.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           1/2       Darsteller >",
+];
+$PgCnt{0x314} = 6;
+$PgSub{0x314} = 2;
+$PgLang{0x314} = 1;
+$Pkg{0x314|(0x0002<<12)} =
+[
+  "d\x02IP\x15\x158G314\x06ARDtext\x07Mi 03.05.06\x0721:25:57",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mi 03.05.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0710.25 - 11.15 Uhr                      ",
+  "\x06Familie Dr. Kleist            \x07\x0316:9/UT",
+  "\x06Endstation Sehnsucht                   ",
+  "\x07                                       ",
+  "\x07Darsteller:                            ",
+  "\x07Dr. Kleist ....... Francis Fulton-Smith",
+  "\x07Marlene Holstein . Christina Plate     ",
+  "\x07Johannes Kleist .. Ulrich Pleitgen     ",
+  "\x07Inge M{rz ........ Uta Schorn          ",
+  "\x07Lisa Kleist ...... Marie Seiser        ",
+  "\x07Peter Kleist ..... David Bode          ",
+  "\x07Clara Hofer ...... Lisa-Marie Werner   ",
+  "\x07Dr. Klein ........ Simone von Zglinicki",
+  "\x07Nora Mann ........ Winnie B|we         ",
+  "\x07                                       ",
+  "\x07Regie: Hans Werner                     ",
+  "\x07Buch:  Katharina Hajos und             ",
+  "\x07       Constanze Fischer               ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           2/2           Inhalt >",
+];
+$PgCnt{0x332} = 6;
+$PgSub{0x332} = 2;
+$PgLang{0x332} = 1;
+$Pkg{0x332|(0x0001<<12)} =
+[
+  "I^\x02P\x15\x158G332\x06ARDtext\x07Mi 03.05.06\x0721:25:58",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mi 03.05.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0711.15 - 12.00 Uhr                      ",
+  "\x06In aller Freundschaft         \x07\x0316:9/UT",
+  "\x06Falsches Spiel (D, 2006)               ",
+  "\x07                                       ",
+  "\x07Rebecca Simoni bricht auf der Tanzfl{- ",
+  "\x07che eines Clubs zusammen. In der Sach- ",
+  "\x07senklinik wird eine gef{hrliche ]ber-  ",
+  "\x07zuckerung diagnostiziert: Rebecca hat  ",
+  "\x07Diabetes. Ihr behandelnder Arzt ist Dr.",
+  "\x07Martin Stein, auf den sie schon l{nger ",
+  "\x07ein Auge geworfen hat. Sie nutzt die   ",
+  "\x07Gelegenheit, ihm Avancen zu machen.    ",
+  "\x07                                       ",
+  "\x07Als Arzu ihrem Mann Phillip vorwirft,  ",
+  "\x07zu wenig Zeit f}r sie zu haben, schl{gt",
+  "\x07er ihr vor, sie solle sich etwas Eige- ",
+  "\x07nes schaffen. Sie geraten in einen     ",
+  "\x07heftigen Streit.                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           1/2       Darsteller >",
+];
+$PgCnt{0x332} = 6;
+$PgSub{0x332} = 2;
+$PgLang{0x332} = 1;
+$Pkg{0x332|(0x0002<<12)} =
+[
+  "I^IP\x15\x158G332\x06ARDtext\x07Mi 03.05.06\x0721:25:29",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mi 03.05.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0711.15 - 12.00 Uhr                      ",
+  "\x06In aller Freundschaft         \x07\x0316:9/UT",
+  "\x06Falsches Spiel (D, 2006)               ",
+  "\x07                                       ",
+  "\x07Darsteller:                            ",
+  "\x07Rebecca Simoni .... Alma Leiberg       ",
+  "\x07Ottmar Wolf ....... Tom Pauls          ",
+  "\x07Prof. Dr. Simoni .. Dieter Bellmann    ",
+  "\x07Dr. Heilmann ...... Thomas R}hmann     ",
+  "\x07Pia Heilmann ...... Hendrikje Fitz     ",
+  "\x07Dr. Martin Stein .. Bernhard Bettermann",
+  "\x07Charlotte Gauss ... Ursula Karusseit   ",
+  "\x07Otto Stein ........ Rolf Becker        ",
+  "\x07Dr.Brentano ....... Thomas Koch        ",
+  "\x07Dr. Eichhorn ...... Cheryl Shepard     ",
+  "\x07                                       ",
+  "\x07Buch: Stephan Wuschansky               ",
+  "\x07Regie: Mathias Luther                  ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           2/2           Inhalt >",
+];

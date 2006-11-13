@@ -1,0 +1,128 @@
+#!/usr/bin/perl -w
+#
+# Yet another multi-subpage description page for different episodes
+# of a series.
+#
+# $Id$
+#
+$VbiCaptureTime = 1147371369;
+$PgCnt{0x309} = 8;
+$PgSub{0x309} = 4;
+$PgLang{0x309} = 1;
+$Pkg{0x309|(0x0003<<12)} =
+[
+  "G\x15^P\x15\x15IG309 ProSieben  11.05.06 20:15:21",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07]bermorgen      3/4 ",
+  "\x11.//\%             ######################",
+  "\x0617.59 Relic Hunter - Die Schatzj{-     ",
+  "\x06      gerin                            ",
+  "\x06      Wettlauf mit dem Tod         >351",
+  "\x0718.59 talk talk talk                   ",
+  "\x0619.59 NEWSTIME                         ",
+  "\x0720.15 24 Stunden Angst                 ",
+  "\x0622.19 Identit{t                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x01\x1D\x07Was gleich anf{ngt 315 Filmtipps 320 ",
+];
+$PgCnt{0x351} = 8;
+$PgSub{0x351} = 3;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0001<<12)} =
+[
+  "\x02s\x02P\x15\x15IG351 ProSieben  11.05.06 20:16:11",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Serie           1/3 ",
+  "\x11.//\%             ######################",
+  "\x06Relic Hunter - Die Schatzj{gerin       ",
+  "\x07Der magische Handschuh                 ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Sa 06.05 18:01-18:59           (vorbei)",
+  "\x07So 07.05 05:10-05:57           (vorbei)",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x07Nigel reist zusammen mit Sydney nach   ",
+  "\x07Ungarn, um nach dem Schwert des legen- ",
+  "\x07d{ren Sankt Gabriel zu suchen. Mit die-",
+  "\x07sem soll der Heilige einst Belisle, den",
+  "\x07F}rsten der Finsternis, get|tet haben. ",
+  "\x07Eine Spur f}hrt die beiden in ein Klos-",
+  "\x07ter, wo das Schwert in einem Stein ste-",
+  "\x07cken soll und nur mit Hilfe eines magi-",
+  "\x07schen Handschuhs herausgezogen werden  ",
+  "\x07kann.                                  ",
+  undef,
+  undef,
+  "\x01\x1D\x07SMS Chat im Teletext!!! ...\x04ab 470   ",
+];
+$PgCnt{0x351} = 8;
+$PgSub{0x351} = 3;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0002<<12)} =
+[
+  "\x02sIP\x15\x15IG351 ProSieben  11.05.06 20:15:22",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Serie           2/3 ",
+  "\x11.//\%             ######################",
+  "\x06Relic Hunter - Die Schatzj{gerin       ",
+  "\x07Wettlauf mit dem Tod                   ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Sa 13.05 17:59-18:59                   ",
+  "\x07Mo 15.05 04:24-05:14                   ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Sydneys Freund Alan wurde von dem Er-  ",
+  "\x07presser Chabot mit einem t|dlichen Vi- ",
+  "\x07rus infiziert - das einzig wirksame Ge-",
+  "\x07genmittel befindet sich ebenfalls in   ",
+  "\x07Chabots Hand. Alan soll es bekommen,   ",
+  "\x07wenn er innerhalb von zw|lf Stunden das",
+  "\x07legend{re Tau-Kreuz, das {lteste       ",
+  "\x07christliche Kreuz, Chabot aush{ndigt.  ",
+  "\x07Zusammen mit Sydney und Nigel sucht    ",
+  "\x07Alan fieberhaft in Frankreich nach dem ",
+  "\x07Kreuz.                                 ",
+  undef,
+  undef,
+  "\x01\x1D\x07SMS Chat im Teletext!!! ...\x04ab 470   ",
+];
+$PgCnt{0x351} = 8;
+$PgSub{0x351} = 3;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0003<<12)} =
+[
+  "\x02s^P\x15\x15IG351 ProSieben  11.05.06 20:15:46",
+  "\x11|||4             \x1D\x07ProSieben           ",
+  "\x11 p|4             \x1D\x07Serie           3/3 ",
+  "\x11.//\%             ######################",
+  "\x06Relic Hunter - Die Schatzj{gerin       ",
+  "\x07Das Ei des Drachen                     ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x07Sa 20.05 17:59-18:59                   ",
+  "\x07So 21.05 04:27-05:07                   ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x07Sydney und Nigel sind auf der Suche    ",
+  "\x07nach einer Karte, auf der das Versteck ",
+  "\x07des \"Dracheneis von Quan Shu\" verzeich-",
+  "\x07net ist. Dieses Ei wurde mit Spreng-   ",
+  "\x07stoff gef}llt und den Feinden des Rei- ",
+  "\x07ches }bergeben. Doch bei ihrer Suche   ",
+  "\x07werden Sydney und Nigel von dem dubio- ",
+  "\x07sen Schatzsucher Kane ausgetrickst,    ",
+  "\x07woraufhin dieser in den Besitz der Kar-",
+  "\x07te kommt.                              ",
+  undef,
+  undef,
+  "\x01\x1D\x07SMS Chat im Teletext!!! ...\x04ab 470   ",
+];
