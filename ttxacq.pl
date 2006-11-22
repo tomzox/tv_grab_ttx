@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: ttxacq.pl,v 1.12 2006/11/13 21:21:18 tom Exp tom $
+#  $Id: ttxacq.pl,v 1.14 2006/11/22 20:22:25 tom Exp tom $
 #
 
 use POSIX;
@@ -282,6 +282,15 @@ sub VbiPageErase {
       delete $PgCnt{$page};
       delete $PgSub{$page};
    }
+}
+
+# Check if the given sub-page of the given page exists
+sub TtxSubPageDefined {
+   my ($page, $sub) = @_;
+   my $handle;
+
+   $handle = $page | ($sub << 12);
+   return defined $Pkg{$handle}->[0];
 }
 
 # ------------------------------------------------------------------------------
@@ -1221,6 +1230,8 @@ sub ParseVpsLabel {
    } elsif ($_[0] =~ m#^(.*)([\x05\x18][\x05\x18 ]*VPS *([\x00-\x04\x06\x07]|$))#) {
       substr($_[0], length($1), length($2), " " x length($2));
 
+   # TODO: KiKa special: "VPS 20.00" (magenta)
+
    } else {
       print "VPS label unrecognized in line \"$_[0]\"\n" if $opt_debug;
 
@@ -1408,6 +1419,7 @@ sub ParseAllOvPages {
    my %PgDate;
    my ($pgdate, $prev_pgdate, $prev_slot_idx);
    my @Slots = ();
+   my @TmpSlots;
    my $slot;
 
    my $fmt = DetectOvFormat();
@@ -1424,8 +1436,12 @@ sub ParseAllOvPages {
             $sub2 = $PgSub{$page};
          }
          for ($sub = $sub1; $sub <= $sub2; $sub++) {
-            $pgdate = {'page' => $page, 'sub_page' => $sub, 'sub_page_skip' => 0 };
-            my @TmpSlots = ParseOv($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot_idx, \@Slots);
+            if (TtxSubPageDefined($page, $sub)) {
+               $pgdate = {'page' => $page, 'sub_page' => $sub, 'sub_page_skip' => 0 };
+               @TmpSlots = ParseOv($page, $sub, $fmt, $pgdate, $prev_pgdate, $prev_slot_idx, \@Slots);
+            } else {
+               @TmpSlots = ();
+            }
 
             if ($#TmpSlots >= 0) {
                $prev_pgdate = $pgdate;
@@ -2794,8 +2810,8 @@ sub MergeNextSlot {
       $new_stop = $new_start + 1 if !defined $new_stop;  # FIXME
 
       # remove overlapping (or repeated) programmes in the new data
-      while (($#{$Slots} >= 1) && ($Slots->[1]->{start_t} <= $new_stop)) {
-         print "MERGE DISCARD NEW $Slots->[1]->{start_t} ovl $new_start..$new_stop\n" if $opt_debug;
+      while (($#{$Slots} >= 1) && ($Slots->[1]->{start_t} < $new_stop)) {
+         print "MERGE DISCARD NEW $Slots->[1]->{start_t} '$Slots->[1]->{title}' ovl $new_start..$new_stop\n" if $opt_debug;
          splice(@$Slots, 1, 1);
       }
    }

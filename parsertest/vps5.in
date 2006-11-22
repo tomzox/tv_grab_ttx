@@ -1,0 +1,39 @@
+#!/usr/bin/perl -w
+#
+# VPS test: Differing VPS start time is printed after the title.
+# Test that it's not included in the title string.
+#
+# $Id$
+#
+$VbiCaptureTime = 1163958730;
+$PkgCni{0xDC9} = 677;
+$PgCnt{0x305} = 2;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "s\x15\x15\x15\x15\x15\x15G305\x06KI.KA-Text\x0719.11.06\x0318:51:57",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~ \x06Sonntag, 19. November 2006     ",
+  "\x04\x1D\x17+y}' \x05Volkstrauertag                 ",
+  "\x14#######################################",
+  "\x0718.50\x13/\x07Unser Sandm{nnchen             ",
+  "\x07       \x07Pittiplatsch: Die Wolke an der ",
+  "\x07       \x07Leine                          ",
+  "\x0219.00\x16/\x02Little Amadeus (12)            ",
+  "\x02       \x02Stra~enmusikanten         >354 ",
+  "\x0719.25\x16/\x07Willi wills wissen             ",
+  "\x07       \x07Was ist ohne Obdach los?       ",
+  "\x0219.50\x15/\x02KI.KA Kummerkasten        >574 ",
+  "\x02       \x02Mister Perfect - Jungs und     ",
+  "\x02       \x02Sch|nheitswahn                 ",
+  "\x0720.05\x15/\x07quergelesen         \x05VPS 20.00 ",
+  "\x07       \x07EXTRA - Vorgelesen        >380 ",
+  "\x0220.15\x15/\x02Jesus & Josefine (3+4)         ",
+  "\x02       \x02Die Flucht nach [gypten   >354 ",
+  "\x02       \x02Heim nach Nazareth             ",
+  "\x0720.50\x15/\x07Xmas Xpress (2)/Griechenland   ",
+  "\x0220.55\x15/\x02BRAVO BERND                    ",
+  "\x0721.00\x15/\x07Sendeschluss                   ",
+  "\x04\x1D\x07<<< Nachmittag    \x1C\x1D\x04    PUR    >>>  ",
+];
