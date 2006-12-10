@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: ttxacq.pl,v 1.14 2006/11/22 20:22:25 tom Exp tom $
+#  $Id: tv_grab_ttx.pl,v 1.15 2006/12/10 11:30:51 tom Exp $
 #
 
 use POSIX;
@@ -1733,6 +1733,27 @@ sub DetermineLto {
 }
 
 # ------------------------------------------------------------------------------
+# Filter out expired programmes
+# - the stop time is relevant for expiry (and this really makes a difference if
+#   the expiry time is low (e.g. 6 hours) since there may be programmes exceeding
+#   it and we certainly shouldn't descard programmes which are still running
+# - resulting problem: we don't always have the stop time
+#
+sub FilterExpiredSlots {
+   my($Slots) = @_;
+   my $exp_thresh = time - $opt_expire * 60;
+   my @NewSlots = ();
+
+   foreach (@$Slots) {
+      if ( (defined($_->{stop_t}) && ($_->{stop_t} >= $exp_thresh)) ||
+           ($_->{start_t} >= $exp_thresh) ) {
+         push @NewSlots, $_;
+      }
+   }
+   return \@NewSlots;
+}
+
+# ------------------------------------------------------------------------------
 # Check if an overview page has exactly the same title list as the predecessor
 #
 sub CheckRedundantSubpage {
@@ -2923,7 +2944,6 @@ sub MergeSlotDesc {
 #
 sub ExportXmltv {
    my ($ch_id, $ch_name, $NewSlots, $MergeProg, $MergeChn) = @_;
-   my $exp_thresh = time - $opt_expire * 60;
    my $id;
 
    if (defined($opt_outfile)) {
@@ -2961,14 +2981,7 @@ sub ExportXmltv {
       my @OldProgKeys = sort keys(%OldProgHash);
 
       # sort new programmes by start time
-      my @NewSlotSorted = ();
-      foreach (sort {$a->{start_t} <=> $b->{start_t}} @$NewSlots) {
-         # apply expire time filter
-         if ( (defined($_->{stop_t}) && ($_->{stop_t} >= $exp_thresh)) ||
-              ($_->{start_t} >= $exp_thresh) ) {
-            push @NewSlotSorted, $_;
-         }
-      }
+      my @NewSlotSorted = sort {$a->{start_t} <=> $b->{start_t}} @$NewSlots;
 
       # combine both sources (i.e. merge them)
       while ($_ = MergeNextSlot(\@NewSlotSorted, \%OldProgHash, \@OldProgKeys)) {
@@ -3028,24 +3041,29 @@ if ($opt_dump == 1) {
    my $ch_name;
    my $ch_id;
 
-   # read and merge old data from XMLTV file
-   if (defined($opt_mergefile)) {
-      ImportXmltvFile($opt_mergefile, \%MergeProg, \%MergeChn);
-   }
-
    # grab new XML data from teletext
    $NewSlots = ParseAllOvPages();
 
-   # get channel name from teletext header packets
-   $ch_name = $opt_chname;
-   $ch_name = ParseChannelName() if !defined $ch_name;
-   $ch_name = "???" if $ch_name eq "";
+   # remove programmes beyond the expiration threshold
+   $NewSlots = FilterExpiredSlots($NewSlots);
 
-   $ch_id = $opt_chid;
-   $ch_id = ParseChannelId() if !defined $ch_id;
-   $ch_id = $ch_name if $ch_id eq "";
-
+   # make sure to never write an empty file
    if ($#{$NewSlots} >= 0) {
+
+      # get channel name from teletext header packets
+      $ch_name = $opt_chname;
+      $ch_name = ParseChannelName() if !defined $ch_name;
+      $ch_name = "???" if $ch_name eq "";
+
+      $ch_id = $opt_chid;
+      $ch_id = ParseChannelId() if !defined $ch_id;
+      $ch_id = $ch_name if $ch_id eq "";
+
+      # read and merge old data from XMLTV file
+      if (defined($opt_mergefile)) {
+         ImportXmltvFile($opt_mergefile, \%MergeProg, \%MergeChn);
+      }
+
       ExportXmltv($ch_id, $ch_name, $NewSlots, \%MergeProg, \%MergeChn);
       exit 0;
 
