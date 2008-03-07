@@ -72,8 +72,19 @@
 	</audio>
 </programme>
 
-<programme start="20060429200400 +0000" stop="20060429201000 +0000" channel="ARD">
+<programme start="20060429200400 +0000" stop="20060429200600 +0000" channel="ARD">
 	<title>Konzert in 2 mal Mono</title>
+	<audio>
+		<stereo>mono</stereo>
+	</audio>
+</programme>
+
+<programme start="20060429200600 +0000" stop="20060429200800 +0000" channel="ARD">
+	<title>Konzert in einmal Mono</title>
+</programme>
+
+<programme start="20060429200800 +0000" stop="20060429201000 +0000" channel="ARD">
+	<title>Finalkonzert Test</title>
 	<audio>
 		<stereo>mono</stereo>
 	</audio>

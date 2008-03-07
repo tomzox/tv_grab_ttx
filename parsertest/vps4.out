@@ -13,6 +13,9 @@
 00.25 - 02.10 Uhr Stereo, Untertitel K2 - Das letzte Abenteuer Spielfilm (GBR 1990) Regie: Franc Roddam
 Der K2 ist mit über 8.600 Metern Höhe einer der höchsten Berge der Welt. Der Versuch ihn zu besteigen, endete für zahllose Kletterer tödlich.
 Der ehrgeizige Taylor und der introvertierte Harold bekommen die Chance, an einer Expedition auf den K2 teilzunehmen. Der Preis ist höher, als sie denken: Ihre Freundschaft wird auf eine harte Probe gestellt und plötzlich geht es nur noch ums Überleben. Mit Michael Biehn, Matt Craven u.a.</desc>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
 	<subtitles type="teletext"/>
 </programme>
 
@@ -24,6 +27,9 @@ Der ehrgeizige Taylor und der introvertierte Harold bekommen die Chance, an eine
 
 <programme start="20060430013500 +0000" stop="20060430015000 +0000" pdc-start="20060430034000 +0200" channel="MDR">
 	<title>Tagesthemen</title>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
 </programme>
 
 <programme start="20060430015000 +0000" stop="20060430022000 +0000" pdc-start="20060430035500 +0200" channel="MDR">
@@ -40,5 +46,8 @@ Der ehrgeizige Taylor und der introvertierte Harold bekommen die Chance, an eine
 
 <programme start="20060430032000 +0000" stop="20060430035500 +0000" pdc-start="20060430052000 +0200" channel="MDR">
 	<title>Rundflug Thüringen</title>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
 </programme>
 </tv>

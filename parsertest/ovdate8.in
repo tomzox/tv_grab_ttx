@@ -1,0 +1,221 @@
+#!/usr/bin/perl -w
+#
+# - single-digit month on description page on BR3 Jan/2008
+# - description page with two dates
+# - TODO: no date match on description page (subpage #0)
+#
+# $Id: ovdate8.in,v 1.1 2008/01/13 20:48:08 tom Exp $
+#
+$VbiCaptureTime = 1200242301;
+$PkgCni{0xDCB} = 2482;
+$PkgCni{0x49CB} = 91;
+$PgCnt{0x302} = 4;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x06BAYERNTEXT  \x0713.01. 17:38:15",
+  "\x14|4|4|4                \x05\x181D111\x18130108\x189D",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen So,13.01.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x0603.00\x06\x06\x06Space-Night                    ",
+  "\x05\x180300\x07\x06\x06D2 Mission                     ",
+  "       \x06\x06Space-Cowboys Apollo           ",
+  "       \x06\x06Earth-Views (7) ...........\x06371",
+  "\x0706.00\x07\x07\x07Querbeet durchs Gartenjahr     ",
+  "\x05\x180600\x07\x03\x03UT\x07........................\x07334",
+  "\x0606.45\x06\x06\x06Kunst & Krempel                ",
+  "\x05\x180645\x07\x06\x06Familiensch{tze neu            ",
+  "       \x06\x06entdecken .................\x06382",
+  "\x0707.15\x07\x07\x07Tele-Gym                       ",
+  "\x05\x180715\x07\x07\x07Nordic Walking (1/8) ......\x07374",
+  "\x0607.30\x06\x06\x06Panoramabilder / Bergwetter    ",
+  "\x05\x180730\x07                                 ",
+  "\x0709.00\x07\x07\x07Tele-Gym                       ",
+  "\x05\x180900\x07\x07\x07Wirbels{ulengymnastik (5/8)\x07374",
+  "                                        ",
+  "                                        ",
+  "\x05\x18VPS\x07            ab\x0709.15\x07Uhr >>> 303  ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x306} = 2;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "8\x15\x15\x15\x15\x15\x15G306\x06BAYERNTEXT  \x0713.01. 21:15:19",
+  "\x14|4|4|4                \x05\x181D111\x18130108\x18B5",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen So,13.01.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "                                        ",
+  "\x0319.45\x03\x03\x03Bei uns dahoam                 ",
+  "\x05\x181945\x07\x03\x03Volksmusik mit Wolfgang Binder ",
+  "       \x03\x03Rund um Reit im Winkl .....\x03344",
+  "\x0721.15\x07\x07\x07Rundschau-Magazin mit Sport\x07362",
+  "\x05\x182115\x07                                 ",
+  "\x0621.45\x06\x06\x06Boulevard Bayern               ",
+  "\x05\x182145\x07\x06\x06Das wei~-blaue                 ",
+  "       \x06\x06Gesellschaftsmagazin ......\x06345",
+  "\x0722.15\x07\x07\x07Die Hausmeisterin              ",
+  "\x05\x182215\x07\x07\x07Ja, so ist halt's Leben ...\x07346",
+  "\x0623.00\x06\x06\x06Sport in Bayern                ",
+  "\x05\x182300\x07\x06\x06Aus Studio Freimann .......\x06298",
+  "\x0723.00\x07\x07\x07Sport in Bayern                ",
+  "\x05\x182300\x07\x07\x07Aus Studio Franken ........\x07298",
+  "\x0623.15\x06\x06\x06Echt krass, wa?                ",
+  "\x05\x182315\x07\x06\x06Dokumentarfilm, D 2007         ",
+  "       \x06\x06Von Juliane Schuhler ......\x06347",
+  "\x05\x18VPS\x07            ab\x0700.45\x07Uhr >>> 307  ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x307} = 2;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "/\x15\x15\x15\x15\x15\x15G307\x06BAYERNTEXT  \x0713.01. 21:15:19",
+  "\x14|4|4|4                \x05\x181D111\x05140108\x1876",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen So,13.01.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x0600.45\x06\x06\x06Rock aus dem Alabama:          ",
+  "\x05\x050044\x07\x06\x06Everything but the Girl        ",
+  "       \x06\x06Aufzeichnung vom Mai 1985      ",
+  "\x0701.30\x07\x07\x07Planet Erde                    ",
+  "\x05\x180130\x07\x07\x07Alpenvorland: F}ssen           ",
+  "\x0601.35\x06\x06\x06Unter unserem Himmel\x03UT        ",
+  "\x05\x180135\x07\x06\x06Einmachen und konservieren     ",
+  "       \x06\x06Film von Paul Enghofer         ",
+  "\x0702.20\x07\x07\x07Boulevard Bayern               ",
+  "\x05\x180220\x07\x07\x07Das wei~-blaue                 ",
+  "         Gesellschaftsmagazin ......\x07396",
+  "\x0602.50\x06\x06\x06S}dwild                        ",
+  "\x05\x180250\x07                                 ",
+  "\x0703.50\x07\x07\x07Space-Night                    ",
+  "\x05\x180350\x07\x07\x07Earth Views (8)                ",
+  "         Jazz in Space .............\x07371",
+  undef,
+  "\x05\x05VPS\x07            ab\x0706.00\x07Uhr >>> 311  ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x334} = 4;
+$PgSub{0x334} = 0;
+$PgLang{0x334} = 1;
+$Pkg{0x334|(0x0000<<12)} =
+[
+  "d^\x15\x15\x15\x15\x15G334\x06BAYERNTEXT  \x0713.01. 17:38:17",
+  "\x14|4|4|4                \x05\x18130108\x181D111\x181E",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen So,13.01.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "   06.00-06.45\x05\x18VPS\x180600                ",
+  "   Querbeet durchs Gartenjahr\x03UT        ",
+  undef,
+  "\x06Themen u.a.:                           ",
+  undef,
+  "\x06- Usambaraveilchen und Gloxinien       ",
+  "\x06- G{rtnern im Zeichen des Klimawandels ",
+  "                                        ",
+  "\x06- Nutz- und Gourmetgarten              ",
+  "\x06- Beet- und Balkonblumenneuheiten      ",
+  "                                        ",
+  "\x06- Gartenscheren                        ",
+  "\x06- Bauen im Garten                      ",
+  undef,
+  "\x06- 850 Jahre Stadt M}nchen              ",
+  undef,
+  "                          \x06Mehr >>> 408 ",
+  undef,
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x374} = 4;
+$PgSub{0x374} = 5;
+$PgLang{0x374} = 1;
+$Pkg{0x374|(0x0001<<12)} =
+[
+  "d/\x02P\x15\x15IG374\x06BAYERNTEXT  \x0713.01. 17:37:28",
+  "\x16|4|4|4  \x07                        \x07 1/5 ",
+  "\x16\x7F5\x7F5\x7F5\x1D      \x04                Tele-Gym ",
+  "\x16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06Wochen}bersicht 7. Januar bis 16. M{rz ",
+  "\x067.15 bis 7.30 Uhr                      ",
+  undef,
+  "\x06Mo:\x07Aktiv und gesund bleiben           ",
+  "\x07    Mit Monika Mildenberger \x06 8 Folgen ",
+  undef,
+  undef,
+  "\x06Di:\x07Starker R}cken                     ",
+  "    \x07Mit Johanna Fellner      \x068 Folgen ",
+  undef,
+  undef,
+  "\x06Mi:\x07Schlank und Fit                    ",
+  "\x07    Mit Monika Mildenberger \x06 8 Folgen ",
+  undef,
+  undef,
+  "\x06Do:\x07Fit - auch ohne Sport              ",
+  "\x07    Mit Mia Schmidt         \x06 8 Folgen ",
+  undef,
+  "                                    \x06>>>",
+  "\x16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x382} = 4;
+$PgSub{0x382} = 2;
+$PgLang{0x382} = 1;
+$Pkg{0x382|(0x0001<<12)} =
+[
+  "IP\x02P\x15\x15IG382\x06BAYERNTEXT  \x0713.01. 17:38:19",
+  "\x16|4|4|4  \x07                        \x07 1/2 ",
+  "\x16\x7F5\x7F5\x7F5\x1D      \x04        \x04Kunst & Krempel ",
+  "\x16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "                           12.1., 19.45 ",
+  "                           13.1., 06.45 ",
+  "\x06Aus T}ssling                           ",
+  undef,
+  "\x06Themen:\x07Gem{lde / Keramik und Zinn     ",
+  undef,
+  undef,
+  "\x06Literatur:                             ",
+  undef,
+  " - \"Kunst & Krempel\" - Familiensch{tze  ",
+  " \x07\x07entdecken\x07        ISBN 3-422-06203-3 ",
+  " -\x07\"Kunst & Krempel II\" - Wie echt kann ",
+  " \x06\x07falsch sein?\x07     ISBN 3-422-06237-8 ",
+  " -\x07\"Kunst & Krempel\" - Die sch|nsten    ",
+  "  \x07Entdeckungen\x07     ISBN 3-422-06314-5 ",
+  undef,
+  " Deutscher Kunstverlag M}nchen Berlin   ",
+  " Nymphenburger Str. 84, 80603 M}nchen   ",
+  undef,
+  "\x16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x345} = 3;
+$PgSub{0x345} = 0;
+$PgLang{0x345} = 1;
+$Pkg{0x345|(0x0000<<12)} =
+[
+  "sd\x15\x15\x15\x15\x15G345\x06BAYERNTEXT  \x0713.01. 21:15:20",
+  "\x14|4|4|4                \x05\x18130108\x181D111\x181E",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen So,13.01.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "   21.45-22.15\x05\x18VPS\x182145                ",
+  "   Boulevard Bayern                     ",
+  "   Das wei~-blaue Gesellschaftsmagazin  ",
+  undef,
+  "\x06Die Themen:                            ",
+  undef,
+  "\x06- Polo World Cup in Kitzb}hel          ",
+  undef,
+  "\x06- Edel & Schick: Brautmoden            ",
+  undef,
+  "\x06- Prominente und ihre Hunde            ",
+  undef,
+  "\x06- Das Boulevard Bayern-Traumschiff     ",
+  "                                        ",
+  "\x06Moderation: Uschi D{mmrich von Luttitz ",
+  "                                        ",
+  "                          \x06Mehr >>> 396 ",
+  undef,
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];

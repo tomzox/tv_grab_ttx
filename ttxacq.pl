@@ -16,7 +16,7 @@
 #
 #  Author: Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.15 2006/12/10 11:30:51 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.17 2008/03/07 22:58:59 tom Exp $
 #
 
 use POSIX;
@@ -24,7 +24,9 @@ use locale;
 use strict;
 use Time::Local;
 
-my $version = "Teletext EPG grabber, v0.6\nCopyright 2006 Tom Zoerner";
+my $version = "Teletext EPG grabber, v0.8";
+my $copyright = "Copyright 2006-2008 Tom Zoerner";
+my $home_url = "http://nxtvepg.sourceforge.net/ttx_grab/";
 
 my %Pkg;
 my %PkgCni;
@@ -52,7 +54,7 @@ my $opt_expire = 1;
 #
 sub ParseArgv {
    my $usage = "Usage: $0 [-page <NNN>-<MMM>] [-chn_name <name>] [-chn_id <ID>] [-outfile <name>] {<file>|-}\n".
-               "Other options: -help -version -expire <minutes>\n".
+               "Other options: -help -version -expire <minutes> -merge <file>\n".
                "Debug options: -debug -dump -dumpraw <page_range> -verify\n";
 
    while ($_ = shift @ARGV) {
@@ -122,7 +124,7 @@ sub ParseArgv {
          $opt_verify = 1;
 
       } elsif (/^-version$/) {
-         print STDERR $version .
+         print STDERR "$version\n$copyright" .
                       "\nThis is free software with ABSOLUTELY NO WARRANTY.\n" .
                       "Licensed under the GNU Public License version 2\n";
          exit 0;
@@ -614,6 +616,8 @@ my %WDayNames =
    # German
    "sa" => [(1<<1),6,2], "so" => [(1<<1),0,2], "mo" => [(1<<1),1,2], "di" => [(1<<1),2,2],
    "mi" => [(1<<1),3,2], "do" => [(1<<1),4,2], "fr" => [(1<<1),5,2],
+   "sam" => [(1<<1),6,2], "son" => [(1<<1),0,2], "mon" => [(1<<1),1,2], "die" => [(1<<1),2,2],
+   "mit" => [(1<<1),3,2], "don" => [(1<<1),4,2], "fre" => [(1<<1),5,2],
    "samstag" => [(1<<1),6,1], "sonnabend" => [(1<<1),6,1], "sonntag" => [(1<<1),0,1],
    "montag" => [(1<<1),1,1], "dienstag" => [(1<<1),2,1], "mittwoch" => [(1<<1),3,1],
    "donnerstag" => [(1<<1),4,1], "freitag" => [(1<<1),5,1],
@@ -776,18 +780,21 @@ sub ParseOvHeaderDate {
    my $wday_abbrv_match = GetDateNameRegExp(\%WDayNames, $lang, 2);
    my $mname_match = GetDateNameRegExp(\%MonthNames, $lang, undef);
    my $relday_match = GetDateNameRegExp(\%RelDateNames, $lang, undef);
+   my $prio = -1;
 
    PAGE_LOOP:
    for (my $line = 1; $line < $pgdate->{head_end}; $line++) {
       $_ = $pgtext->[$line];
 
-      PARSE_DATE: {
-         # [Mo.]13.04.2006
-         if (m#(^| |($wday_abbrv_match)\.)(\d{1,2})\.(\d{1,2})\.(\d{2}|\d{4})?([ ,:]|$)#i) {
-            my @NewDate = CheckDate($3, $4, $5, undef, undef);
+      {
+         # [Mo.]13.04.[2006]
+         # So,06.01.
+         if (m#(^| |($wday_abbrv_match)(\.|\.,|,) ?)(\d{1,2})\.(\d{1,2})\.(\d{2}|\d{4})?([ ,:]|$)#i ||
+             m#(^| |($wday_match)(, ?| ))(\d{1,2})\.(\d{1,2})\.(\d{2}|\d{4})?([ ,:]|$)#i) {
+            my @NewDate = CheckDate($4, $5, $6, undef, undef);
             if (@NewDate) {
                ($day_of_month, $month, $year) = @NewDate;
-               last PARSE_DATE;
+               $prio = 3;
             }
          }
          # 13.April [2006]
@@ -795,7 +802,7 @@ sub ParseOvHeaderDate {
             my @NewDate = CheckDate($2, undef, $5, undef, $3);
             if (@NewDate) {
                ($day_of_month, $month, $year) = @NewDate;
-               last PARSE_DATE;
+               $prio = 3;
             }
          }
          # Sunday 22 April (i.e. no dot after month)
@@ -804,29 +811,32 @@ sub ParseOvHeaderDate {
             my @NewDate = CheckDate($4, undef, $7, $2, $5);
             if (@NewDate) {
                ($day_of_month, $month, $year) = @NewDate;
-               last PARSE_DATE;
+               $prio = 3;
             }
          }
-         # today, tomorrow, ...
-         if (m#(^| )($relday_match)([ ,:]|$)#i) {
-            my $rel_name = lc($2);
-            $reldate = $RelDateNames{$rel_name}->[1] if defined($RelDateNames{$rel_name});
-            last PARSE_DATE;
-         }
-         # monday, tuesday, ... (non-abbreviated only)
-         if (m#(^| )($wday_match)([ ,:]|$)#i) {
-            my $off = GetWeekDayOffset($2);
-            $reldate = $off if $off >= 0;
-            last PARSE_DATE;
-         }
+         next PAGE_LOOP if $prio >= 3;
          # "Do. 21-22 Uhr" (e.g. on VIVA)  --  TODO internationalize "Uhr"
          # "Do  21:00-22:00" (e.g. Tele-5)
-         if (m#(^| )(($wday_abbrv_match)\.?|($wday_match)) +((\d{1,2}(\-| \- )\d{1,2}( +Uhr| ?h))|(\d{1,2}[\.\:]\d{2}(\-| \- )\d{1,2}[\.\:]\d{2}))( |$)#i) {
+         if (m#(^| )(($wday_abbrv_match)\.?|($wday_match)) *((\d{1,2}(\-| \- )\d{1,2}( +Uhr| ?h|   ))|(\d{1,2}[\.\:]\d{2}(\-| \- )(\d{1,2}[\.\:]\d{2})?))( |$)#i) {
             my $wday_name = $2;
             $wday_name = $3 if !defined($2);
             my $off = GetWeekDayOffset($wday_name);
             $reldate = $off if $off >= 0;
-            last PARSE_DATE;
+            $prio = 2;
+         }
+         next PAGE_LOOP if $prio >= 2;
+         # monday, tuesday, ... (non-abbreviated only)
+         if (m#(^| )($wday_match)([ ,:]|$)#i) {
+            my $off = GetWeekDayOffset($2);
+            $reldate = $off if $off >= 0;
+            $prio = 1;
+         }
+         next PAGE_LOOP if $prio >= 1;
+         # today, tomorrow, ...
+         if (m#(^| )($relday_match)([ ,:]|$)#i) {
+            my $rel_name = lc($2);
+            $reldate = $RelDateNames{$rel_name}->[1] if defined($RelDateNames{$rel_name});
+            $prio = 0;
          }
       }
    }
@@ -1058,33 +1068,33 @@ sub ParseOvList {
          ParseVpsLabel($_, $vps_data, 0);
       }
       # remove remaining control characters
-      s#[\x00-\x1F\x7F]# #g;
+      (my $text = $_) =~ s#[\x00-\x1F\x7F]# #g;
 
       $new_title = 0;
       if ($vps_off >= 0) {
          # TODO: Phoenix wraps titles into 2nd line, appends subtitle with "-"
          # m#^ {0,2}(\d\d)[\.\:](\d\d)( {1,3}(\d{4}))? +#
-         if (substr($_, 0, $time_off) =~ m#^ *([\*\!] +)?$#) {
+         if (substr($text, 0, $time_off) =~ m#^ *([\*\!] +)?$#) {
             $is_tip = $1;
-            if (substr($_, $time_off, $vps_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) {
+            if (substr($text, $time_off, $vps_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) {
                $hour = $1;
                $min = $2;
                # VPS time has already been extractied above
-               if (substr($_, $vps_off, $title_off - $vps_off) =~ m#^ +$#) {
-                  $title = substr($_, $title_off);
+               if (substr($text, $vps_off, $title_off - $vps_off) =~ m#^ +$#) {
                   $new_title = 1;
+                  $title = substr($_, $title_off);
                }
             }
          }
       } else {
          # m#^( {0,5}| {0,3}\! {1,3})(\d\d)[\.\:](\d\d) +#
-         if (substr($_, 0, $time_off) =~ m#^ *([\*\!] +)?$#) {
+         if (substr($text, 0, $time_off) =~ m#^ *([\*\!] +)?$#) {
             $is_tip = $1;
-            if (substr($_, $time_off, $title_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) {
+            if (substr($text, $time_off, $title_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) {
                $hour = $1;
                $min = $2;
-               $title = substr($_, $title_off);
                $new_title = 1;
+               $title = substr($_, $title_off);
             }
          }
       }
@@ -1107,10 +1117,7 @@ sub ParseOvList {
             $vps_data->{new_vps_date} = 0;
          }
 
-         ParseTrailingFeat($title, $slot);
-         $title =~ s#^ +##;
-         $title =~ s# +$##;
-         $title =~ s#  +# #g;
+         $title = ParseTrailingFeat($title, $slot);
          print "OV TITLE: \"$title\", $slot->{hour}:$slot->{min}\n" if $opt_debug;
 
          # kika special: subtitle appended to title
@@ -1133,8 +1140,8 @@ sub ParseOvList {
          # check if last line specifies and end time
          # (usually last line of page)
          # TODO internationalize "bis", "Uhr"
-         if ( m#^ *(\(?bis |ab |\- ?)(\d{1,2})[\.\:](\d{2})( Uhr| ?h)( |\)|$)# ||   # ARD,SWR,BR-alpha
-              m#^( *)(\d\d)[\.\:](\d\d) (oo)? *$# ) {                               # arte, RTL
+         if ( $text =~ m#^ *(\(?bis |ab |\- ?)(\d{1,2})[\.\:](\d{2})( Uhr| ?h)( |\)|$)# ||   # ARD,SWR,BR-alpha
+              $text =~ m#^( *)(\d\d)[\.\:](\d\d) (oo)? *$# ) {                               # arte, RTL
             $slot->{end_hour} = $2;
             $slot->{end_min} = $3;
             $new_title = 1;
@@ -1143,16 +1150,13 @@ sub ParseOvList {
          # check if we're still in a continuation of the previous title
          # time column must be empty (possible VPS labels were already removed above)
          } else {
-            if ( (substr($_, 0, $subt_off) =~ m#[^ ]#) ||
-                 (substr($_, $subt_off) =~ m#^ *$#) ) {
+            if ( (substr($text, 0, $subt_off) =~ m#[^ \x00-\x07\x10-\x17]#) ||
+                 (substr($text, $subt_off) =~ m#^[ \x00-\x07\x10-\x17]*$#) ) {
                $new_title = 1;
             }
          }
          if ($new_title == 0) {
-            ParseTrailingFeat($_, $slot);
-            s#^ +##;
-            s# +$# #;
-            s#  +# #;
+            $_ = ParseTrailingFeat($_, $slot);
             # combine words separated by line end with "-"
             if ( !defined($slot->{subtitle}) &&
                  ($slot->{title} =~ m#\S\-$#) && m#^[[:lower:]]#) {
@@ -1299,62 +1303,85 @@ my %FeatToFlagMap =
    "surround" => "is_dolby",
    "stereo" => "is_stereo",
    "mono" => "is_mono",
-   "tipp" => "is_top"
+   "tipp" => "is_top",
+   # ORF
+   "°°" => "is_stereo",
+   "°*" => "is_2chan",
+   "ds" => "is_dolby",
+   "ss" => "is_dolby",
+   "dd" => "is_dolby",
+   "zs" => "is_2chan"
 );
 # note: must correct $n below if () are added to pattern
 my $FeatPat = "UT(( auf | )?[1-8][0-9][0-9])?|".
               "[Uu]ntertitel|[Hh]örfilm|HF|".
-              "s\/?w|S\/?W|tlw. s\/w|AD|oo|°°|OmU|16:9|".
+              "s\/?w|S\/?W|tlw. s\/w|AD|oo|°°|°\*|OmU|16:9|".
               "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|".
+              "DS|SS|DD|ZS|".
               "Wh\.?|Wdh\.?|Whg\.?|Tipp\!?";
 
-sub ParseTrailingFeat {
-   my ($foo, $slot) = @_;
+sub MapTrailingFeat {
+   my ($feat, $slot, $orig_title) = @_;
 
-   # teletext reference
-   # these are always right-most, so parse these first and outside of the loop
-   if ($_[0] =~ s#( \.+|\.\.+|\.+\>|\>\>?|\-\-?\>|\>{0,4} +|\.* +)([1-8][0-9][0-9]) {0,3}$##) {
+   $feat =~ s#^ut.*#ut#;
+   my $flag = $FeatToFlagMap{$feat};
+   if (defined($flag)) {
+      print "FEAT \"$feat\" -> $flag on TITLE $orig_title\n" if $opt_debug;
+      $slot->{$flag} = 1;
+   } else {
+      print "FEAT dropping \"$feat\" on TITLE $orig_title\n" if $opt_debug;
+   }
+}
+
+sub ParseTrailingFeat {
+   my ($title, $slot) = @_;
+   (my $orig_title = $title) =~ s#[\x00-\x1F\x7F]# #g;
+
+   # teletext reference (there's at most one at the very right, so parse this first)
+   if ($title =~ s#( \.+|\.\.+|\.+\>|\>\>?|\-\-?\>|\>{1,4} +|\.* +|[\.\>]*[\x00-\x07\x1D]+)([1-8][0-9][0-9]) {0,3}$##) {
       my $ref = $2;
       $slot->{ttx_ref} = ((ord(substr($ref, 0, 1)) - 0x30)<<8) |
                              ((ord(substr($ref, 1, 1)) - 0x30)<<4) |
                              (ord(substr($ref, 2, 1)) - 0x30);
+      print "FEAT TTX ref \"$ref\" on TITLE $orig_title\n" if $opt_debug;
    }
 
    # note: remove trailing space here, not in the loop to allow max. 1 space between features
-   $_[0] =~ s# +$##;
+   $title =~ s#[ \x00-\x1F\x7F]+$##;
 
-   # features (e.g. WDR: "Stereo, UT")
-   while (1) {
-      if ($_[0] =~ s#(, {0,2}| {1,2})($FeatPat)$##) {
-         my $feat = lc($2);
-         $feat =~ s#^ut.*#ut#;
-         my $flag = $FeatToFlagMap{$feat};
-         if (defined($flag)) {
-            print "FEAT \"$feat\" -> $flag on TITLE $_[0]\n" if $opt_debug;
-            $slot->{$flag} = 1;
-         } else {
-            print "FEAT dropping \"$feat\" on TITLE $_[0]\n" if $opt_debug;
-         }
-      }
-      # ARTE: (oo) (2K) (Mono)
-      # SWR: "(16:9/UT)", "UT 150", "UT auf 150"
-      # (Note on 2nd match: using $6 due to two () inside feature pattern!)
-      elsif ( ($_[0] =~ s# \(($FeatPat)\)$##) ||
-              ($_[0] =~ s# \(($FeatPat)((, ?|\/| )($FeatPat))*\)$# ($6)#) ) { # $6: see note
-         my $feat = lc($1);
-         $feat =~ s#^ut.*#ut#;
-         my $flag = $FeatToFlagMap{$feat};
-         if (defined($flag)) {
-            print "FEAT \"$feat\" -> $flag on TITLE $_[0]\n" if $opt_debug;
-            $slot->{$flag} = 1;
-         } else {
-            print "FEAT dropping \"$feat\" on TITLE $_[0]\n" if $opt_debug;
-         }
+   # ARTE: (oo) (2K) (Mono)
+   # SWR: "(16:9/UT)", "UT 150", "UT auf 150"
+   if ($title =~ m#^(.*)[ \x00-\x07\x1D]\((($FeatPat)(( ?\/ ?|, ?| )($FeatPat))*)\)$#) {
+      $title = $1;
+      my $feat_list = substr($2, length($3));
+
+      MapTrailingFeat(lc($3), $slot, $orig_title);
+
+      if (length $feat_list)  {
+         while ($feat_list =~ s#( ?\/ ?|, ?| )($FeatPat)$##) {
+            MapTrailingFeat(lc($2), $slot, $orig_title);
+         } 
       } else {
-         last;
+         while ($title =~ s#[ \x00-\x07\x1D]*\(($FeatPat)\)$##) {
+            MapTrailingFeat(lc($1), $slot, $orig_title);
+         }
       }
-   } 
-   $_[0] =~ s# +$##;
+
+   } elsif ($title =~ m#^(.*)(  +|[\x00-\x07\x1D]+)(($FeatPat)((, ?|\/ ?| |[,\/]?[\x00-\x07\x1D]+)($FeatPat))*)$#) {
+      $title = $1;
+      my $feat_list = substr($3, length($4));
+      MapTrailingFeat(lc($4), $slot, $orig_title);
+
+      while ($feat_list =~ s#(, ?|\/ ?| |[,\/]?[\x00-\x07\x1D]+)($FeatPat)$##) {
+         MapTrailingFeat(lc($2), $slot, $orig_title);
+      } 
+   } #else { print "NONE $orig_title\n"; }
+
+   $title =~ s#[\x00-\x1F\x7F]# #g;
+   $title =~ s#^ +##;
+   $title =~ s# +$##;
+   $title =~ s#  +# #g;
+   return $title;
 }
 
 # ------------------------------------------------------------------------------
@@ -1736,7 +1763,7 @@ sub DetermineLto {
 # Filter out expired programmes
 # - the stop time is relevant for expiry (and this really makes a difference if
 #   the expiry time is low (e.g. 6 hours) since there may be programmes exceeding
-#   it and we certainly shouldn't descard programmes which are still running
+#   it and we certainly shouldn't discard programmes which are still running
 # - resulting problem: we don't always have the stop time
 #
 sub FilterExpiredSlots {
@@ -1971,6 +1998,7 @@ sub XmlToLatin1 {
 # SWR:   14. April, 00.55 - 02.50 Uhr
 # WDR:   Freitag, 14.04.06   13.40-14.40
 # BR3:   Freitag, 14.04.06 // 13.30-15.05
+#        12.1., 19.45 
 # HR3:   Montag 8.45-9.15 Uhr
 #        Montag // 9.15-9.45 (i.e. 2-line format)
 # Kabl1: Fr 14.04 20:15-21:11
@@ -1995,9 +2023,9 @@ sub ParseDescDate {
 
       PARSE_DATE: {
          # [Fr] 14.04.[06] (year not optional for single-digit day/month)
-         if ( m#(^| )(\d{1,2})\.(\d{2})\.(\d{4}|\d{2})?( |,|;|\:|$)# ||
-              m#(^| )(\d)\.(\d)\.(\d{4}|\d{2})( |,|;|\:|$)# ||
-              m#(^| )(\d)\.(\d)\.?(\d{4}|\d{2})?(,|;| -)? +\d{1,2}[\.\:]\d{2}(h| |,|;|\:|$)#) {
+         if ( m#(^| )(\d{1,2})\.(\d{1,2})\.(\d{4}|\d{2})?( |,|;|\:|$)# ||
+              m#(^| )(\d{1,2})\.(\d)\.(\d{4}|\d{2})( |,|;|\:|$)# ||
+              m#(^| )(\d{1,2})\.(\d)\.?(\d{4}|\d{2})?(,|;| ?-)? +\d{1,2}[\.\:]\d{2}(h| |,|;|\:|$)#) {
             my @NewDate = CheckDate($2, $3, $4, undef, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -2007,8 +2035,8 @@ sub ParseDescDate {
          }
          # Fr 14.04 (i.e. no dot after month)
          # here's a risk to match on a time, so we must require a weekday name
-         if (m#(^| )($wday_match)(, ?| | - )(\d{1,2})\.(\d{1,2})( |,|;|$)#i ||
-             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.(\d{1,2})( |,|;|\:|$)#i) {
+         if (m#(^| )($wday_match)(, ?| | - )(\d{1,2})\.(\d{1,2})( |\.|,|;|$)#i ||
+             m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.(\d{1,2})( |\.|,|;|\:|$)#i) {
             my @NewDate = CheckDate($4, $5, undef, $2, undef);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -2027,7 +2055,7 @@ sub ParseDescDate {
          }
          # Sunday 22 April (i.e. no dot after day)
          if ( m#(^| )($wday_match)(, ?| - | )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|;|\:|$)#i ||
-              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| - | )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|;|\:|$)#i) {
+              m#(^| )($wday_abbrv_match)(\.,? ?|, ?| ?- ?| )(\d{1,2})\.? ?($mname_match)( (\d{4}|\d{2}))?( |,|;|\:|$)#i) {
             my @NewDate = CheckDate($4, undef, $7, $2, $5);
             if (@NewDate) {
                ($lmday, $lmonth, $lyear) = @NewDate;
@@ -2077,7 +2105,9 @@ sub ParseDescDate {
          }
 
       # 15.40 (Uhr|h)
-      } elsif (m#(^| )(\d{1,2})[\.\:](\d{1,2})( ?h| Uhr)( |,|;|\:|$)# ||
+      } elsif (($new_date && m#(^| )(\d{1,2})[\.\:](\d{1,2})( |,|;|\:|$)#) ||
+               m#(^| )(\d{1,2})[\.\:](\d{1,2}) *$# ||
+               m#(^| )(\d{1,2})[\.\:](\d{1,2})( ?h| Uhr)( |,|;|\:|$)# ||
                m#(^| )(\d{1,2})h(\d{2})( |,|;|\:|$)#) {
          my $hour = $2;
          my $min = $3;
@@ -2089,13 +2119,14 @@ sub ParseDescDate {
       }
 
       if ($check_time && defined($lyear)) {
-         # TODO: allow slight mismatch of <5min? (for TV5: list says 17:03, desc says 17:05)
+         # allow slight mismatch of <5min (for ORF2 or TV5: list says 17:03, desc says 17:05)
          my $start_t = POSIX::mktime(0, $lmin, $lhour, $lmday, $lmonth - 1, $lyear - 1900, 0, 0, -1);
-         if (defined($start_t) && ($start_t == $slot->{start_t})) {
+         if (defined($start_t) && (abs($start_t - $slot->{start_t}) < 5*60)) {
             # match found
             if (defined($lend_hour) && !defined($slot->{end_hour})) {
                # add end time to the slot data
                # TODO: also add VPS time
+               # XXX FIXME: these are never used because stop_t is already calculated!
                $slot->{end_hour} = $lend_hour;
                $slot->{end_min} = $lend_min;
             }
@@ -2358,13 +2389,14 @@ sub ParseChannelName {
             if (s#(^| )\Q$pgn\E( |$)#$1$2# &&
                 s# \d{2}[\.\: ]?\d{2}([\.\: ]\d{2}) *$# #) {
 
-               # remove date
-               s#((($wday_abbrv_match)\.?|($wday_match))(\, ?|  ?\-  ?|  ?)?)?\d{1,2}(\.\d{1,2}|[ \.]($mname_match))(\.|[ \.]\d{2,4})? *$##i;
+               # remove date: "Sam.12.Jan" OR "12 Sa Jan" (VOX)
+               s#((($wday_abbrv_match)|($wday_match))(\, ?|\. ?|  ?\-  ?|  ?)?)?\d{1,2}(\.\d{1,2}|[ \.]($mname_match))(\.|[ \.]\d{2,4}\.?)? *$##i ||
+                  s#\d{1,2}(\, ?|\. ?|  ?\-  ?|  ?)((($wday_abbrv_match)|($wday_match))(\, ?|\. ?|  ?\-  ?|  ?)?)?(\.\d{1,2}|[ \.]($mname_match))(\.|[ \.]\d{2,4}\.?)? *$##i;
                # remove and compress whitespace
                s#(^ +| +$)##g;
                s#  +# #g;
                # remove possible "text" postfix
-               s#[ \.\-]?text$##i;
+               s#[ \.\-]?text$##i; # || s#[ \.\-]?Text .*##;
 
                if (defined($ChName{$_})) {
                   $ChName{$_} += 1;
@@ -2731,7 +2763,7 @@ sub ImportXmltvFile {
       # handling XML header
       if ($state == 0) {
          if (/^\s*\<(\?xml|\!)[^>]*\>\s*$/i) {
-         } elsif (/^\s*\<tv>\s*$/i) {
+         } elsif (/^\s*\<tv([^>"=]+(="[^"]*")?)*>\s*$/i) {
             $state = 2;
          } elsif (/\S/) {
             chomp;
@@ -2952,8 +2984,13 @@ sub ExportXmltv {
    }
 
    print "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n".
-         "<!DOCTYPE tv SYSTEM \"xmltv.dtd\">\n".
-         "<tv>\n";
+         "<!DOCTYPE tv SYSTEM \"xmltv.dtd\">\n";
+   if ($opt_verify) {
+      print "<tv>\n";
+   } else {
+      print "<tv generator-info-name=\"$version\" generator-info-url=\"$home_url\" ".
+                "source-info-name=\"teletext\">\n";
+   }
 
    # print channel table
    if (!defined($MergeChn->{$ch_id})) {
@@ -3045,7 +3082,9 @@ if ($opt_dump == 1) {
    $NewSlots = ParseAllOvPages();
 
    # remove programmes beyond the expiration threshold
-   $NewSlots = FilterExpiredSlots($NewSlots);
+   if ($opt_verify == 0) {
+      $NewSlots = FilterExpiredSlots($NewSlots);
+   }
 
    # make sure to never write an empty file
    if ($#{$NewSlots} >= 0) {
@@ -3053,10 +3092,12 @@ if ($opt_dump == 1) {
       # get channel name from teletext header packets
       $ch_name = $opt_chname;
       $ch_name = ParseChannelName() if !defined $ch_name;
-      $ch_name = "???" if $ch_name eq "";
 
       $ch_id = $opt_chid;
       $ch_id = ParseChannelId() if !defined $ch_id;
+
+      $ch_name = $ch_id if $ch_name eq "";
+      $ch_name = "???" if $ch_name eq "";
       $ch_id = $ch_name if $ch_id eq "";
 
       # read and merge old data from XMLTV file

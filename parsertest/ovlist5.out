@@ -50,11 +50,14 @@
 </programme>
 
 <programme start="20060509203000 +0000" stop="20060509204000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
-	<title>Motodrom DS</title>
+	<title>Motodrom</title>
 	<desc>(teletext 327)</desc>
 	<video>
 		<colour>no</colour>
 	</video>
+	<audio>
+		<stereo>surround</stereo>
+	</audio>
 </programme>
 
 <programme start="20060509204000 +0000" stop="20060509205000 +0000" pdc-start="20060509222500 +0200" channel="3sat">

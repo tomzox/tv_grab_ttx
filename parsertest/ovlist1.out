@@ -11,6 +11,9 @@
 	<video>
 		<aspect>16:9</aspect>
 	</video>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
 	<subtitles type="teletext"/>
 </programme>
 
@@ -20,6 +23,9 @@
 	<video>
 		<aspect>16:9</aspect>
 	</video>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
 	<subtitles type="teletext"/>
 </programme>
 

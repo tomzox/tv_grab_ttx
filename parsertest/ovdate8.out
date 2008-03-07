@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="3.br-online.de">
+	<display-name>BAYERN</display-name>
+</channel>
+
+<programme start="20080113020000 +0000" stop="20080113050000 +0000" pdc-start="20080113030000 +0100" channel="3.br-online.de">
+	<title>Space-Night</title>
+	<sub-title>Space-Night D2 Mission Space-Cowboys Apollo Earth-Views (7)</sub-title>
+	<desc>(teletext 371)</desc>
+</programme>
+
+<programme start="20080113050000 +0000" stop="20080113054500 +0000" pdc-start="20080113060000 +0100" channel="3.br-online.de">
+	<title>Querbeet durchs Gartenjahr</title>
+	<sub-title>Querbeet durchs Gartenjahr </sub-title>
+	<!-- TTX 334 -->
+	<desc>Querbeet durchs Gartenjahr UT
+Themen u.a.:
+- Usambaraveilchen und Gloxinien - Gärtnern im Zeichen des Klimawandels
+- Nutz- und Gourmetgarten - Beet- und Balkonblumenneuheiten
+- Gartenscheren - Bauen im Garten
+- 850 Jahre Stadt München
+Mehr &gt;&gt;&gt; 408</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20080113054500 +0000" stop="20080113061500 +0000" pdc-start="20080113064500 +0100" channel="3.br-online.de">
+	<title>Kunst &amp; Krempel</title>
+	<sub-title>Kunst &amp; Krempel Familienschätze neu entdecken</sub-title>
+	<!-- TTX 382 -->
+	<desc>Kunst &amp; Krempel
+12.1., 19.45 13.1., 06.45 Aus Tüssling
+Themen: Gemälde / Keramik und Zinn
+Literatur:
+- "Kunst &amp; Krempel" - Familienschätze entdecken ISBN 3-422-06203-3 - "Kunst &amp; Krempel II" - Wie echt kann falsch sein? ISBN 3-422-06237-8 - "Kunst &amp; Krempel" - Die schönsten Entdeckungen ISBN 3-422-06314-5
+Deutscher Kunstverlag München Berlin Nymphenburger Str. 84, 80603 München</desc>
+</programme>
+
+<programme start="20080113061500 +0000" stop="20080113063000 +0000" pdc-start="20080113071500 +0100" channel="3.br-online.de">
+	<title>Tele-Gym</title>
+	<sub-title>Tele-Gym Nordic Walking (1/8)</sub-title>
+	<desc>(teletext 374)</desc>
+</programme>
+
+<programme start="20080113063000 +0000" stop="20080113080000 +0000" pdc-start="20080113073000 +0100" channel="3.br-online.de">
+	<title>Panoramabilder / Bergwetter</title>
+</programme>
+
+<programme start="20080113080000 +0000" pdc-start="20080113090000 +0100" channel="3.br-online.de">
+	<title>Tele-Gym</title>
+	<sub-title>Tele-Gym Wirbelsäulengymnastik (5/8)</sub-title>
+	<desc>(teletext 374)</desc>
+</programme>
+
+<programme start="20080113184500 +0000" stop="20080113201500 +0000" pdc-start="20080113194500 +0100" channel="3.br-online.de">
+	<title>Bei uns dahoam</title>
+	<sub-title>Bei uns dahoam Volksmusik mit Wolfgang Binder Rund um Reit im Winkl</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20080113201500 +0000" stop="20080113204500 +0000" pdc-start="20080113211500 +0100" channel="3.br-online.de">
+	<title>Rundschau-Magazin mit Sport</title>
+	<desc>(teletext 362)</desc>
+</programme>
+
+<programme start="20080113204500 +0000" stop="20080113211500 +0000" pdc-start="20080113214500 +0100" channel="3.br-online.de">
+	<title>Boulevard Bayern</title>
+	<sub-title>Boulevard Bayern Das weiß-blaue Gesellschaftsmagazin</sub-title>
+	<!-- TTX 345 -->
+	<desc>Boulevard Bayern Das weiß-blaue Gesellschaftsmagazin
+Die Themen:
+- Polo World Cup in Kitzbühel
+- Edel &amp; Schick: Brautmoden
+- Prominente und ihre Hunde
+- Das Boulevard Bayern-Traumschiff
+Moderation: Uschi Dämmrich von Luttitz
+Mehr &gt;&gt;&gt; 396</desc>
+</programme>
+
+<programme start="20080113211500 +0000" stop="20080113220000 +0000" pdc-start="20080113221500 +0100" channel="3.br-online.de">
+	<title>Die Hausmeisterin</title>
+	<sub-title>Die Hausmeisterin Ja, so ist halt's Leben</sub-title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20080113220000 +0000" pdc-start="20080113230000 +0100" channel="3.br-online.de">
+	<title>Sport in Bayern</title>
+	<sub-title>Sport in Bayern Aus Studio Freimann</sub-title>
+	<desc>(teletext 298)</desc>
+</programme>
+
+<programme start="20080113220000 +0000" stop="20080113221500 +0000" pdc-start="20080113230000 +0100" channel="3.br-online.de">
+	<title>Sport in Bayern</title>
+	<sub-title>Sport in Bayern Aus Studio Franken</sub-title>
+	<desc>(teletext 298)</desc>
+</programme>
+
+<programme start="20080113221500 +0000" stop="20080113234500 +0000" pdc-start="20080113231500 +0100" channel="3.br-online.de">
+	<title>Echt krass, wa?</title>
+	<sub-title>Echt krass, wa? Dokumentarfilm, D 2007 Von Juliane Schuhler</sub-title>
+	<desc>(teletext 347)</desc>
+</programme>
+
+<programme start="20080113234500 +0000" stop="20080114003000 +0000" pdc-start="20080114004400 +0100" channel="3.br-online.de">
+	<title>Rock aus dem Alabama:</title>
+	<sub-title>Rock aus dem Alabama: Everything but the Girl Aufzeichnung vom Mai 1985</sub-title>
+</programme>
+
+<programme start="20080114003000 +0000" stop="20080114003500 +0000" pdc-start="20080114013000 +0100" channel="3.br-online.de">
+	<title>Planet Erde</title>
+	<sub-title>Planet Erde Alpenvorland: Füssen</sub-title>
+</programme>
+
+<programme start="20080114003500 +0000" stop="20080114012000 +0000" pdc-start="20080114013500 +0100" channel="3.br-online.de">
+	<title>Unter unserem Himmel</title>
+	<sub-title>Unter unserem Himmel Einmachen und konservieren Film von Paul Enghofer</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20080114012000 +0000" stop="20080114015000 +0000" pdc-start="20080114022000 +0100" channel="3.br-online.de">
+	<title>Boulevard Bayern</title>
+	<sub-title>Boulevard Bayern Das weiß-blaue Gesellschaftsmagazin</sub-title>
+	<desc>(teletext 396)</desc>
+</programme>
+
+<programme start="20080114015000 +0000" stop="20080114025000 +0000" pdc-start="20080114025000 +0100" channel="3.br-online.de">
+	<title>Südwild</title>
+</programme>
+
+<programme start="20080114025000 +0000" pdc-start="20080114035000 +0100" channel="3.br-online.de">
+	<title>Space-Night</title>
+	<sub-title>Space-Night Earth Views (8) Jazz in Space</sub-title>
+	<desc>(teletext 371)</desc>
+</programme>
+</tv>
