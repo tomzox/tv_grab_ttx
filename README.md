@@ -29,7 +29,13 @@ every network formats tables, dates, times and descriptions slightly
 differently, so that the parser will have trouble locating the EPG data among
 all the advertisements and other content in teletext. 
 
-# Dependencies
+# Installation / Dependencies
+
+As of release 1.0, this software does not have scripts to support installation.
+If you want to have the script available in your regular path, just copy the
+script file `ttx_grab.pl` manually to the target directory. (You may have to
+adapt the first line of the script file, if your Perl interpreter is not at
+path `/usr/bin/perl`; also make sure to keep the file executable.)
 
 The grabber is implemented as Perl scripts. Hence you'll need to have a
 [Perl interpreter](http://cpan.org). On UNIX and Linux systems this

@@ -1,0 +1,102 @@
+#!/usr/bin/perl -w
+#
+# A description page follows the overview pages. The page carries
+# a date and has a time at the start of a line, in the same column
+# as the times on overview pages.  Test that the time is not
+# erronously appended to the overview.  This is esp. important as
+# this date is more than a month ahead of the rest pf the programmes.
+#
+# $Id$
+#
+$VbiCaptureTime = 1164400226;
+$PkgCni{0xD8E} = 90;
+$PgCnt{0x301} = 3;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x01VOX-TEXT \x07Fr 24 Nov\x0721:30:14",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Sch|ner        \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Leben.......600\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Fr. 24.11.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0105:50 Schmeckt nicht, gibt's         ",
+  "\x07\x1D\x01      nicht......................320 ",
+  "\x07\x1D\x0006:20 Dauerwerbesendung              ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0108:20 Everwood...................321 ",
+  "\x07\x1D\x0009:15 Die Nanny..................322 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0109:45 Die Nanny..................323 ",
+  "\x07\x1D\x0010:15 Gilmore Girls..............324 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0111:10 Das perfekte Dinner            ",
+  "\x07\x1D\x01      Koch-Doku..................325 ",
+  "\x07\x1D\x0011:55 Nachrichten................326 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0112:00 Der perfekte Urlaub            ",
+  "\x07\x1D\x01      Urlaubs-Doku...............327 ",
+  "\x01\x1D\x07\x0D  Kartenleger beraten Sie! > 460    ",
+  "                                        ",
+];
+$PgCnt{0x302} = 3;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x01VOX-TEXT \x07Fr 24 Nov\x0721:30:14",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Reise-         \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Schn{ppchen.430\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x01\x1D\x1C\x07TV-PROGRAMM        Fr. 24.11.\x01\x1D\x071/1 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0112:35 Wissenshunger                  ",
+  "\x07\x1D\x01      Das Wissens-Magazin........328 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0013:05 Menschen, Tiere & Doktoren     ",
+  "\x07\x1D\x00      Tierarzt-Doku..............329 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0114:05 Dr. Quinn                      ",
+  "\x07\x1D\x01      [rztin aus Leidenschaft....330 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0015:05 Everwood...................331 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0116:00 Gilmore Girls..............332 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0016:55 Menschen, Tiere & Doktoren     ",
+  "\x07\x1D\x00      Tierarzt-Doku..............334 ",
+  "\x07\x1D\x01                                     ",
+  "\x03\x1D\x01\x0D  Top Kartenleger + Hellseher 460   ",
+  "                                        ",
+];
+$PgCnt{0x303} = 2;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x02^\x15\x15\x15IG313\x01VOX-TEXT \x07Fr 24 Nov\x0721:29:11",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|<                     ",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw                      ",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/-                     ",
+  "\x01\x1D\x1C\x07VOX INTERN / HIGHLIGHTS      \x01\x1D\x073/3\x01",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x01\"SCHMECKT NICHT, GIBT'S NICHT\"\x07      ",
+  "\x07\x1D\x01DAS SCHWEIZ-SPECIAL MIT TIM M[LZER\x07  ",
+  "\x07\x1D\x00In der Fachschule Richemont erfahren\x07",
+  "\x07\x1D\x00der \"Backmuffel\" Tim M{lzer und sei-\x07",
+  "\x07\x1D\x00ne Zuschauer viel Wissenswertes }ber\x07",
+  "\x07\x1D\x00Kuchen, Pl{tzchen und andere s}~e\x01   ",
+  "\x07\x1D\x00Raffinessen.\x07                        ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Vom 18. bis zum 22. Dezember um\x07     ",
+  "\x07\x1D\x0018:30 Uhr schaut Tim M{lzer seinen\x07  ",
+  "\x07\x1D\x00Eidgenossen in der Schweiz in die\x07   ",
+  "\x07\x1D\x00T|pfe.\x07                              ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x1CSchulden? Antrag statt Pf{ndung.169\x07\x1D",
+  "\x01\x1D\x07<312                           315>  ",
+];

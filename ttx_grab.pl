@@ -4,19 +4,22 @@
 #  in XMLTV format (DTD version 0.5)  Input is a file with pre-processed
 #  VBI data captured from a TV card.
 #
-#  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License Version 2 as
-#  published by the Free Software Foundation. You find the full text here:
-#  http://www.fsf.org/copyleft/gpl.html
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
 #
-#  THIS PROGRAM IS DISTRIBUTED IN THE HOPE THAT IT WILL BE USEFUL,
-#  BUT WITHOUT ANY WARRANTY; WITHOUT EVEN THE IMPLIED WARRANTY OF
-#  MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
 #
-#  Author: Tom Zoerner (tomzo at users.sf.net)
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  $Id: tv_grab_ttx.pl,v 1.17 2008/03/07 22:58:59 tom Exp $
+#  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
+#
+#  $Id: ttx_grab.pl,v 1.19 2008/03/08 19:22:43 tom Exp tom $
 #
 
 use POSIX;
@@ -24,7 +27,7 @@ use locale;
 use strict;
 use Time::Local;
 
-my $version = "Teletext EPG grabber, v0.8";
+my $version = "Teletext EPG grabber, v1.0";
 my $copyright = "Copyright 2006-2008 Tom Zoerner";
 my $home_url = "http://nxtvepg.sourceforge.net/ttx_grab/";
 
@@ -593,7 +596,8 @@ my %MonthNames =
    "april" => [(1<<1)|(1<<0),4,1], "mai" => [(1<<4)|(1<<1),5,3], "juni" => [(1<<1),6,1],
    "juli" => [(1<<1),7,1], "august" => [(1<<1)|(1<<0),8,1], "september" => [(1<<1)|(1<<0),9,1],
    "oktober" => [(1<<1),10,1], "november" => [(1<<1)|(1<<0),11,1], "dezember" => [(1<<1),12,1],
-   "jan" => [(1<<1)|(1<<0),1,2], "feb" => [(1<<1)|(1<<0),2,2], "mär" => [(1<<1),3,2],
+   "jan" => [(1<<1)|(1<<0),1,2], "feb" => [(1<<1)|(1<<0),2,2],
+   "mär" => [(1<<1),3,2], "mar" => [(1<<1),3,2],
    "apr" => [(1<<1)|(1<<0),4,2], "jun" => [(1<<1)|(1<<0),6,2], "jul" => [(1<<1)|(1<<0),7,2],
    "aug" => [(1<<1)|(1<<0),8,2], "sep" => [(1<<1)|(1<<0),9,2], "okt" => [(1<<1),10,2],
    "nov" => [(1<<1)|(1<<0),11,2], "dez" => [(1<<1),12,2],
