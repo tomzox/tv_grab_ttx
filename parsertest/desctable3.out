@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="tele5.de">
+	<display-name>Tele 5</display-name>
+</channel>
+
+<programme start="20081003040000 +0000" stop="20081003042100 +0000" channel="tele5.de">
+	<title>Making-of</title>
+</programme>
+
+<programme start="20081003042100 +0000" stop="20081003051100 +0000" channel="tele5.de">
+	<title>Earth: Final Conflict</title>
+	<sub-title>Earth: Final Conflict Gefühlstransfer</sub-title>
+	<desc>(teletext 343)</desc>
+</programme>
+
+<programme start="20081003051100 +0000" stop="20081003053300 +0000" channel="tele5.de">
+	<title>Digimon</title>
+</programme>
+
+<programme start="20081003053300 +0000" stop="20081003055500 +0000" channel="tele5.de">
+	<title>One Piece</title>
+</programme>
+
+<programme start="20081003055500 +0000" stop="20081003061800 +0000" channel="tele5.de">
+	<title>One Piece</title>
+	<sub-title>One Piece Die Teufelsfrucht</sub-title>
+</programme>
+
+<programme start="20081003061800 +0000" stop="20081003064200 +0000" channel="tele5.de">
+	<title>One Piece</title>
+	<sub-title>One Piece Lügenpirat Lysop</sub-title>
+</programme>
+
+<programme start="20081003064200 +0000" stop="20081003071000 +0000" channel="tele5.de">
+	<title>One Piece</title>
+	<sub-title>One Piece Die macht der Hypnose</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20081003071000 +0000" stop="20081003085500 +0000" channel="tele5.de">
+	<title>... und Hoffnung auf</title>
+	<sub-title>... und Hoffnung auf Liebe Melodram USA 1994</sub-title>
+	<desc>(teletext 323)</desc>
+</programme>
+
+<programme start="20081003085500 +0000" stop="20081003104000 +0000" channel="tele5.de">
+	<title>König Wenceslas</title>
+	<sub-title>König Wenceslas Fantasy USA 1994</sub-title>
+</programme>
+
+<programme start="20081003104000 +0000" stop="20081003111500 +0000" channel="tele5.de">
+	<title>Dauerwerbesendung</title>
+	<sub-title>Dauerwerbesendung Sonstige</sub-title>
+</programme>
+
+<programme start="20081003111500 +0000" stop="20081003130500 +0000" channel="tele5.de">
+	<title>Zwei irre Spaßvögel</title>
+	<sub-title>Zwei irre Spaßvögel Komödie F 1983</sub-title>
+	<!-- TTX 312 -->
+	<desc>Zwei irre Spaßvögel Fr 13:15-15:05 auf Sendung Komödie F 1983
+Als der Teenager Tristan zu Hause ausbüchst, fackelt seine Mutter Christine nicht lange. Sie bittet ihre zwei Exfreunde um Hilfe. Um ihnen auf die Sprünge zu helfen, erzählt sie jedem der Beiden, er sei der Vater. Pflichtbewusst machen sich Francois und Jean auf die Suche. Es dauert nicht lange, bis sich die falschen "Väter" über den Weg laufen.
+Raffiniertes Täuschungsmanöver mit brillanter Komik.
+Zwei irre Spaßvögel (Les comperes) Fr 13:15-15:05 auf Sendung Komödie F 1983
+Regie: Francis Veber, Buch: Francis Veber, Musik: Vladimir Cosma
+Francois Pigno: Pierre Richard, Jean Lucas: Gerard Depardieu, Christine Mart: Anny Duperey, Tristan Martin: Stephane Bierry, Paul Martin: Michel Aumont, Ralph: Jean-Jacques Scheffer</desc>
+</programme>
+
+<programme start="20081003130500 +0000" stop="20081003152500 +0000" channel="tele5.de">
+	<title>City Slickers - Die Großstadthelden</title>
+	<sub-title>City Slickers - Die Großstadthelden Komödie USA 1991</sub-title>
+	<desc>(teletext 313)</desc>
+</programme>
+
+<programme start="20081003152500 +0000" stop="20081003181500 +0000" channel="tele5.de">
+	<title>sonnenklar TV</title>
+	<sub-title>sonnenklar TV Sonstige</sub-title>
+	<desc>(teletext 490)</desc>
+</programme>
+
+<programme start="20081003181500 +0000" stop="20081003202000 +0000" channel="tele5.de">
+	<title>Die Rückkehr des Sandokan</title>
+	<sub-title>Die Rückkehr des Sandokan Mini-Serie I/BRD 1996</sub-title>
+	<desc>(teletext 314)</desc>
+</programme>
+
+<programme start="20081003202000 +0000" channel="tele5.de">
+	<title>Die Rückkehr des Sandokan</title>
+	<sub-title>Die Rückkehr des Sandokan Mini-Serie I/BRD 1996</sub-title>
+	<desc>(teletext 315)</desc>
+</programme>
+</tv>

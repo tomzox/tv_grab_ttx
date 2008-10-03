@@ -20,7 +20,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: pg_stat.pl,v 1.1 2008/03/08 17:10:16 tom Exp tom $
+#  $Id: pg_stat.pl,v 1.2 2008/10/03 17:14:33 tom Exp $
 #
 
 use Video::ZVBI qw(/^VBI_/);
@@ -70,6 +70,7 @@ sub cap_chan {
    my $lines;
    my $start_t = time;
    my $vbi_fd = $cap->fd();
+   my $last_pg = -1;
 
    for(;;) {
       $rin="";
@@ -81,7 +82,7 @@ sub cap_chan {
          for (my $idx = 0; $idx < $lcount; $idx++) {
             my @tmpl = Video::ZVBI::get_sliced_line($buf, $idx);
             if ($tmpl[1] & VBI_SLICED_TELETEXT_B) {
-               feed_ttx($tmpl[0]);
+               feed_ttx(\$last_pg, $tmpl[0]);
             } elsif ($tmpl[1] & VBI_SLICED_VPS) {
                feed_vps($tmpl[0]);
             }
@@ -112,7 +113,7 @@ sub feed_vps {
 }
 
 sub feed_ttx {
-   my ($data) = @_;
+   my ($last_pg, $data) = @_;
    my $lpage = -1;
    {
       my $mpag = Video::ZVBI::unham16p($data);
@@ -135,7 +136,10 @@ sub feed_ttx {
                syswrite(STDOUT, $buf);
 
                if (($page>=0x300) && ($page <=0x399)) {
-                  print STDERR sprintf("%03X.%04X\n", $page, $ctrl & 0x3f7f);
+                  if ($$last_pg != $page) {
+                     print STDERR sprintf("%03X.%04X\n", $page, $ctrl & 0x3f7f);
+                     $$last_pg = $page;
+                  }
                }
             }
 

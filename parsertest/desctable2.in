@@ -1,0 +1,462 @@
+#!/usr/bin/perl -w
+#
+# Test for reformatting cast tables on description pages, especially:
+# - very short table (311)
+# - second column spanning multiple lines (312)
+# - dots inside of column (313)
+#
+# $Id: desctable2.in,v 1.1 2008/10/03 11:59:02 tom Exp $
+#
+$VbiCaptureTime = 1223032709;
+$PkgCni{0xDB9} = 6469;
+$PgCnt{0x301} = 10;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%     \x06\x1D\x04Inhalt A-Z...... 104 \x1C",
+  "\x17    \% \"&      \x06\x1D\x04Wetter.......... 150 \x1C",
+  "\x01\x1D\x07   HEUTE    \x16####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0405:00 Man liebt sich immer           ",
+  " \x1D\x04      zweimal                        ",
+  " \x1D\x0106:40 Ein Himmelhund von einem       ",
+  " \x1D\x01      Schn}ffler                     ",
+  " \x1D\x0408:30 Das Making of: WALL E -        ",
+  " \x1D\x04      Der Letzte r{umt die Erde      ",
+  " \x1D\x04      auf                            ",
+  " \x1D\x0109:00 Familie auf Umwegen            ",
+  " \x1D\x0410:40 Lost In Space                  ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x05\x1D\x07T{glich aktuelle Umfragen im TED 180 ",
+];
+$PgCnt{0x302} = 10;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%     \x04\x1D\x03Jetzt PREMIERE HD    \x1C",
+  "\x17    \% \"&      \x04\x1D\x03sichern......... 688 \x1C",
+  "\x01\x1D\x07   HEUTE    \x14####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0413:00 Britt: Beziehungsflop -        ",
+  " \x1D\x04      Wenn aus Liebe Hass wird! >365 ",
+  " \x1D\x0114:00 Zwei bei Kallwass         >367 ",
+  " \x1D\x0415:00 Richterin Salesch         >368 ",
+  " \x1D\x0116:00 Richter Hold              >369 ",
+  " \x1D\x0417:00 Niedrig und Kuhnt - Kom-       ",
+  " \x1D\x04      missare ermitteln: Ver-        ",
+  " \x1D\x04      pufft                     >371 ",
+  " \x1D\x0117:30 Niedrig und Kuhnt - Kom-       ",
+  " \x1D\x01      missare ermitteln: Bitte       ",
+  " \x1D\x01      nicht st|ren!             >371 ",
+  " \x1D\x0418:00 Len~en & Partner: Terror       ",
+  " \x1D\x04      im Mietshaus              >372 ",
+  " \x1D\x0118:30 Mensch Markus SPEZIAL:         ",
+  " \x1D\x01      Episode                        ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x02\x1D\x04Spielergebnisse im LIVE-Ticker.. 266 ",
+];
+$PgCnt{0x303} = 10;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%     \x04\x1D\x071.000 mit einer      \x1C",
+  "\x17    \% \"&      \x04\x1D\x07SMS absahnen.... 631 \x1C",
+  "\x01\x1D\x07   HEUTE    \x14####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0419:30 Das Sat.1-Magazin: Episo-      ",
+  " \x1D\x04      de                        >324 ",
+  " \x1D\x0120:00 Sat.1 Nachrichten: Episo-      ",
+  " \x1D\x01      de                        >110 ",
+  " \x1D\x0420:15 Findet Nemo               >311 ",
+  " \x1D\x0122:15 Der Soldat James Ryan     >312 ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x03\x1D\x04Diese Filme sind neu im Kino.... 650 ",
+];
+$PgCnt{0x304} = 10;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%     \x06\x1D\x04Reise 400 News.. 480 \x1C",
+  "\x17    \% \"&      \x06\x1D\x04Ziele 401 Hotels 560 \x1C",
+  "\x01\x1D\x07   HEUTE    \x16####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0401:20 Der Soldat James Ryan     >312 ",
+  " \x1D\x0104:10 Ed: Zwei Tage Freiheit         ",
+  " \x1D\x0404:50 Alles dreht sich um Bon-       ",
+  " \x1D\x04      nie: Bin ich sch|n?            ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x04\x1D\x07Aktuelle Angebot im Reisekatalog 421 ",
+];
+$PgCnt{0x305} = 10;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "s\x15\x15\x15\x15\x15\x15G305\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%     \x02\x1D\x04SMS-Marktplatz.. 490 \x1C",
+  "\x17    \% \"&      \x02\x1D\x04SMS-Singletreff. 850 \x1C",
+  "\x01\x1D\x07  MORGEN    \x12####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0405:15 That's Life: Lydia und         ",
+  " \x1D\x04      der Professor                  ",
+  " \x1D\x0106:00 F}r alle F{lle Stefanie:       ",
+  " \x1D\x01      Zwei sind einer zu viel   >354 ",
+  " \x1D\x0407:00 alphateam: Gl}ck im            ",
+  " \x1D\x04      Ungl}ck                        ",
+  " \x1D\x0108:00 Deal or no Deal           >343 ",
+  " \x1D\x0409:00 Sat.1-Fr}hst}cksfernsehen >321 ",
+  " \x1D\x0111:00 Anna und die Liebe: Folge      ",
+  " \x1D\x01      24                        >585 ",
+  " \x1D\x0411:30 Anna und die Liebe: Folge      ",
+  " \x1D\x04      25                        >585 ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x01\x1D\x07Der SAT.1 SMS-Chat im Teletext.. 800 ",
+];
+$PgCnt{0x306} = 10;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "8\x15\x15\x15\x15\x15\x15G306\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%     \x04\x1D\x07Was startet diese    \x1C",
+  "\x17    \% \"&      \x04\x1D\x07Woche im Kino?   650 \x1C",
+  "\x01\x1D\x07  MORGEN    \x14####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0412:00 Anna und die Liebe        >585 ",
+  " \x1D\x0112:30 Anna und die Liebe        >585 ",
+  " \x1D\x0413:00 Anna und die Liebe: Folge      ",
+  " \x1D\x04      28                        >585 ",
+  " \x1D\x0113:30 Anna und die Liebe: Folge      ",
+  " \x1D\x01      29                        >585 ",
+  " \x1D\x0414:00 Zwei bei Kallwass         >367 ",
+  " \x1D\x0115:00 Findet Nemo               >311 ",
+  " \x1D\x0416:59 So gesehen: Episode            ",
+  " \x1D\x0117:00 das sat.1 automagazin     >331 ",
+  " \x1D\x0417:30 Len~en & Partner: Das          ",
+  " \x1D\x04      entstellte Topmodel       >372 ",
+  " \x1D\x0118:00 AllesTester im Einsatz:        ",
+  " \x1D\x01      Ein Fall f}r Yvonne -          ",
+  " \x1D\x01      Der Familien-Check             ",
+  " \x1D\x0418:30 Sat.1 Nachrichten: Episo-      ",
+  " \x1D\x04      de                        >110 ",
+  " \x1D\x0118:40 Das Sat.1-Magazin: Episo-      ",
+  "\x03\x1D\x042.000,- verdienen mit Heimarbeit 540 ",
+];
+$PgCnt{0x307} = 10;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "/\x15\x15\x15\x15\x15\x15G307\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%     \x03\x1D\x041.000,- mit einer    \x1C",
+  "\x17    \% \"&      \x03\x1D\x04SMS absahnen.... 631 \x1C",
+  "\x01\x1D\x07  MORGEN    \x13####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0419:15 Deal or no Deal           >343 ",
+  " \x1D\x0120:15 Doppelmord                >313 ",
+  " \x1D\x0422:25 Mensch Markus             >361 ",
+  " \x1D\x0122:55 Genial daneben - Die Co-       ",
+  " \x1D\x01      medy Arena                >387 ",
+  " \x1D\x0423:55 Die Wochenshow: Episode   >362 ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x02\x1D\x04Schn{ppchen im Shopping-Bereich. 680 ",
+];
+$PgCnt{0x308} = 10;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "P\x15\x15\x15\x15\x15\x15G308\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%     \x06\x1D\x04Dating und Chat. 700 \x1C",
+  "\x17    \% \"&      \x06\x1D\x04Dating und Chat. 701 \x1C",
+  "\x01\x1D\x07  MORGEN    \x16####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0400:55 Die Niels Ruf Show: Epi-       ",
+  " \x1D\x04      sode                      >375 ",
+  " \x1D\x0101:50 Doppelmord                >313 ",
+  " \x1D\x0403:35 Heart of Stone            >314 ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x01\x1D\x07Dating und Chat................. 705 ",
+];
+$PgCnt{0x311} = 10;
+$PgSub{0x311} = 2;
+$PgLang{0x311} = 1;
+$Pkg{0x311|(0x0001<<12)} =
+[
+  "\x02\x02\x02\x15\x15\x15IG311\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%   \x07\x1D\x01                   1/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Freitag 03.10.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  20:15-22:15      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Findet Nemo                          ",
+  " \x1D\x04Animation USA 2003                   ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Clownfisch Marlin macht sich gro~e   ",
+  " \x1D\x04Sorgen um seinen Spr|ssling, denn    ",
+  " \x1D\x04der kleine Nemo ist in ein Fischer-  ",
+  " \x1D\x04netz geraten. Marlin und die verge-  ",
+  " \x1D\x04ssliche Dory machen sich auf die Su- ",
+  " \x1D\x04che nach dem verlorenen Sohn. Eine   ",
+  " \x1D\x04abenteuerliche Reise quer durch den  ",
+  " \x1D\x04Ozean beginnt f}r die beiden kleinen ",
+  " \x1D\x04Fische. Doch letztendlich ist die    ",
+  " \x1D\x04schwierige Suche von Erfolg gekr|nt  ",
+  " \x1D\x04...                                  ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Wdh. 04.10. 15:00 - 16:59            ",
+  "\x02\x1D\x04Bundesliga-SMS-Tippspiel........ 297 ",
+];
+$PgCnt{0x311} = 10;
+$PgSub{0x311} = 2;
+$PgLang{0x311} = 1;
+$Pkg{0x311|(0x0002<<12)} =
+[
+  "\x02\x02I\x15\x15\x15IG311\x07   SAT.1  \x0703.10.08\x0313:16:20",
+  "\x17   #7!e`\%   \x07\x1D\x01                   2/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Freitag 03.10.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  20:15-22:15      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Findet Nemo                          ",
+  " \x1D\x04(Finding Nemo)                       ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Regie..............Andrew Stanton    ",
+  " \x1D\x04Produktion.........Graham Walters    ",
+  " \x1D\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Wdh. 04.10. 15:00 - 16:59            ",
+  "\x05\x1D\x071.000,- mit einer SMS abr{umen! 631  ",
+];
+$PgCnt{0x312} = 10;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0001<<12)} =
+[
+  "I\x02\x02\x15\x15\x15IG312\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%   \x07\x1D\x01                   1/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Freitag 03.10.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  22:15-01:20      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Der Soldat James Ryan                ",
+  " \x1D\x04Antikrieg USA 1998                   ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Zweiter Weltkrieg, 1944: Die Alli-   ",
+  " \x1D\x04ierten bereiten ihre Landung an der  ",
+  " \x1D\x04K}ste der Normandie vor. Dabei er-   ",
+  " \x1D\x04h{lt der englische Captain John Mil- ",
+  " \x1D\x04ler einen h|chst gef{hrlichen Auf-   ",
+  " \x1D\x04trag: Er soll sich mit seiner Ein-   ",
+  " \x1D\x04heit hinter die feindlichen Linien   ",
+  " \x1D\x04durchschlagen, um dort den Soldaten  ",
+  " \x1D\x04James Ryan - letzter ]berlebender    ",
+  " \x1D\x04von vier Br}dern - herauszuholen...  ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Wdh. 04.10. 01:20 - 04:10            ",
+  "\x03\x1D\x04Diese Filme sind neu im Kino.... 650 ",
+];
+$PgCnt{0x312} = 10;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0002<<12)} =
+[
+  "I\x02I\x15\x15\x15IG312\x07   SAT.1  \x0703.10.08\x0313:16:20",
+  "\x17   #7!e`\%   \x07\x1D\x01                   2/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Freitag 03.10.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  22:15-01:20      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Der Soldat James Ryan                ",
+  " \x1D\x04(Saving Private Ryan)                ",
+  " \x1D\x04Regie..............Steven Spielberg  ",
+  " \x1D\x04Produktion.........Steven Spielberg, ",
+  " \x1D\x04                   Mark Gordon, Ian  ",
+  " \x1D\x04                   Bryce, Gary Le-   ",
+  " \x1D\x04                   vinsohn           ",
+  " \x1D\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  " \x1D\x04Capt. John Miller..Tom Hanks         ",
+  " \x1D\x04Soldat Reiben......Edward Burns      ",
+  " \x1D\x04Sgt. Horvath.......Tom Sizemore      ",
+  " \x1D\x04Corp. Upham........Jeremy Davies     ",
+  " \x1D\x04Soldat James Ryan..Matt Damon        ",
+  " \x1D\x04Soldat Caparzo.....Vin Diesel        ",
+  " \x1D\x04Soldat Mellish.....Adam Goldberg     ",
+  " \x1D\x04Soldat Jackson.....Barry Pepper      ",
+  " \x1D\x04Sanit{ter Wade.....Giovanni Ribisi   ",
+  " \x1D\x01Wdh. 04.10. 01:20 - 04:10            ",
+  "\x04\x1D\x07Urlaubsreif? Jetzt Reise buchen! 400 ",
+];
+$PgCnt{0x313} = 10;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$Pkg{0x313|(0x0001<<12)} =
+[
+  "^\x02\x02\x15\x15\x15IG313\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%   \x07\x1D\x01                   1/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Samstag 04.10.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  20:15-22:25      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Doppelmord                           ",
+  " \x1D\x04Thriller USA 1999                    ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Libby Parsons' Leben {ndert sich     ",
+  " \x1D\x04g{nzlich, als ihr Mann Nick bei ei-  ",
+  " \x1D\x04nem Segelt|rn }ber Bord geht und sie ",
+  " \x1D\x04wegen Mordes ins Gef{ngnis kommt.    ",
+  " \x1D\x04Ihren Sohn Matty }berl{sst sie der   ",
+  " \x1D\x04Obhut ihrer besten Freundin Angie.   ",
+  " \x1D\x04Doch nach ihrer Entlassung kommt sie ",
+  " \x1D\x04einem Komplott auf die Spur: Nick    ",
+  " \x1D\x04hat seinen Tod vorget{uscht und lebt ",
+  " \x1D\x04zusammen mit Angie und Matty. Obwohl ",
+  " \x1D\x04Bew{hrungshelfer Lehman nicht von    ",
+  " \x1D\x04ihrer Seite weicht, schw|rt Libby    ",
+  " \x1D\x04Rache ...                            ",
+  " \x1D                                      ",
+  " \x1D\x01Wdh. 05.10. 01:50 - 03:35            ",
+  "\x01\x1D\x07Der SAT.1 SMS-Chat im Teletext.. 800 ",
+];
+$PgCnt{0x313} = 10;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$Pkg{0x313|(0x0002<<12)} =
+[
+  "^\x02I\x15\x15\x15IG313\x07   SAT.1  \x0703.10.08\x0313:16:20",
+  "\x17   #7!e`\%   \x07\x1D\x01                   2/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Samstag 04.10.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  20:15-22:25      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Doppelmord                           ",
+  " \x1D\x04(Double Jeopardy)                    ",
+  " \x1D\x04Regie..............Bruce Beresford   ",
+  " \x1D\x04Produktion.........Leonard Goldberg  ",
+  " \x1D\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  " \x1D\x04Travis Lehman......Tommy Lee Jones   ",
+  " \x1D\x04Libby Parsons......Ashley Judd       ",
+  " \x1D\x04Nick Parsons.......Bruce Greenwood   ",
+  " \x1D\x04Angie..............Annabeth Gish     ",
+  " \x1D\x04M. Skolowski.......Roma Maffia       ",
+  " \x1D\x04Evelyn Lake........Davenia McFadden  ",
+  " \x1D\x04Karl Carruthers....Ben Bode          ",
+  " \x1D\x04Georgia............Gabrielle Rose    ",
+  " \x1D\x04Ruby...............Babs Chula        ",
+  " \x1D\x04Mrs. Kritch........Pamela Perry      ",
+  " \x1D\x04M. P. m. v. Jahren.Benjamin Weir     ",
+  " \x1D\x04Bobby Long.........Jay Brazeau       ",
+  " \x1D\x01Wdh. 05.10. 01:50 - 03:35            ",
+  "\x03\x1D\x042.000,- verdienen mit Heimarbeit 540 ",
+];
+$PgCnt{0x314} = 10;
+$PgSub{0x314} = 2;
+$PgLang{0x314} = 1;
+$Pkg{0x314|(0x0001<<12)} =
+[
+  "d\x02\x02\x15\x15\x15IG314\x07   SAT.1  \x0703.10.08\x0313:16:46",
+  "\x17   #7!e`\%   \x07\x1D\x01                   1/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Sonntag 05.10.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  03:35-05:10      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Heart of Stone                       ",
+  " \x1D\x04Actionfilm USA 1997                  ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Schleifen, schrauben, \\l wechseln,   ",
+  " \x1D\x04Ersatzteile besorgen - mit diesen    ",
+  " \x1D\x04Dingen muss sich Automechaniker Joe  ",
+  " \x1D\x04besch{ftigen. Doch das war nicht im- ",
+  " \x1D\x04mer so, noch vor ein paar Jahren war ",
+  " \x1D\x04er ein erfolgreicher Polizist. Als   ",
+  " \x1D\x04er jedoch hinter die finsteren Ma-   ",
+  " \x1D\x04chenschaften seines korrupten Vorge- ",
+  " \x1D\x04setzten kam, wurde er unehrenhaft    ",
+  " \x1D\x04entlassen...                         ",
+  " \x1D                                      ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Wdh. 06.10. 02:05 - 03:45            ",
+  "\x02\x1D\x04Schn{ppchen im Shopping-Bereich. 680 ",
+];
+1;

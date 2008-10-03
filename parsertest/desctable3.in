@@ -1,0 +1,160 @@
+#!/usr/bin/perl -w
+#
+# Test for reformatting cast tables on description pages.
+#
+# $Id: desctable3.in,v 1.1 2008/10/03 11:59:02 tom Exp $
+#
+$VbiCaptureTime = 1223033342;
+$PkgCni{0xD78} = 6499;
+$PkgCni{0x49BE} = 260;
+$PgCnt{0x301} = 7;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x02P\x15\x15IG301\x01\x03Tele 5\x06\x06\x07Fr\x0703.10.\x0313:28:08",
+  "\x11\x1D\x07PROGRAMM HEUTE       \x09\x1C\x11      ||||   ",
+  "\x11\x1D\x17,\x07Fr 06:00-12:00 \x00    \x1C \x11      j5(,,~",
+  "\x11sssssssssssssssssssssssspppppppp *-,\x7F\$j",
+  "\x115                                  ,,,/",
+  "\x115\x0706:00 Making-of                      ",
+  "\x115\x0706:21 Earth: Final Conflict     >343 ",
+  "\x115\x03      Gef}hlstransfer                ",
+  "\x115\x0707:11 Digimon                        ",
+  "\x115\x0707:33 One Piece                      ",
+  "\x115\x0707:55 One Piece                      ",
+  "\x115\x03      Die Teufelsfrucht              ",
+  "\x115\x0708:18 One Piece                      ",
+  "\x115\x03      L}genpirat Lysop               ",
+  "\x115\x0708:42 One Piece                \x07>344 ",
+  "\x115\x03      Die macht der Hypnose          ",
+  "\x115\x0709:10 ... und Hoffnung auf      >323 ",
+  "\x115\x07      Liebe                          ",
+  "\x115\x03      Melodram USA 1994              ",
+  "\x115\x0710:55 K|nig Wenceslas                ",
+  "\x115\x03      Fantasy USA 1994               ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 302  ",
+  "\x03\x1D\x04\x0DIhre Zukunft >>\x01LIVE\x04<< ..... 768   ",
+  undef,
+];
+$PgCnt{0x302} = 7;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x02P\x15\x15IG302\x01\x03Tele 5\x06\x06\x07Fr\x0703.10.\x0313:28:08",
+  "\x11\x1D\x07PROGRAMM HEUTE       \x09\x1C\x11      ||||   ",
+  "\x11\x1D\x17,\x07Fr 12:00-18:00 \x00    \x1C \x11      j5(,,~",
+  "\x11sssssssssssssssssssssssspppppppp *-,\x7F\$j",
+  "\x115                                  ,,,/",
+  "\x115\x0712:40 Dauerwerbesendung              ",
+  "\x115\x03      Sonstige                       ",
+  "\x115\x0713:15 Zwei irre Spa~v|gel       >312 ",
+  "\x115\x03      Kom|die F 1983                 ",
+  "\x115\x0715:05 City Slickers - Die Gro~-\x07>313 ",
+  "\x115\x07      stadthelden                    ",
+  "\x115\x03      Kom|die USA 1991               ",
+  "\x115\x0717:25 sonnenklar TV             >490 ",
+  "\x115\x03      Sonstige                       ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 303  ",
+  "\x13\x1D\x01\x0DTOP-AKTUELLE KLINGELT\\NE......747   ",
+  undef,
+];
+$PgCnt{0x303} = 7;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x02P\x15\x15IG303\x01\x03Tele 5\x06\x06\x07Fr\x0703.10.\x0313:28:08",
+  "\x11\x1D\x07PROGRAMM HEUTE       \x09\x1C\x11      ||||   ",
+  "\x11\x1D\x17,\x07Fr 20:00-24:00 \x00    \x1C \x11      j5(,,~",
+  "\x11sssssssssssssssssssssssspppppppp *-,\x7F\$j",
+  "\x115                                  ,,,/",
+  "\x115\x0720:15 Die R}ckkehr des Sandokan\x07>314 ",
+  "\x115\x03      Mini-Serie I/BRD 1996          ",
+  "\x115\x0722:20 Die R}ckkehr des Sandokan >315 ",
+  "\x115\x03      Mini-Serie I/BRD 1996          ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  "\x115\x03Ab 0,9 Cent/Minute telefonieren >385 ",
+  "\x115\x03                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 304  ",
+  "\x03\x1D\x01\x0D  Flirt per SMS ............ 849    ",
+  undef,
+];
+$PgCnt{0x312} = 7;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0001<<12)} =
+[
+  "I\x02\x02P\x15\x15IG312\x01\x03Tele 5\x06\x06\x07Fr\x0703.10.\x0313:28:08",
+  "\x11\x1D\x07PROGRAMM             \x09\x1C\x11      ||||   ",
+  "\x11\x1D\x17,\x07Spielfilm      \x001/2 \x1C \x11      j5(,,~",
+  "\x11sssssssssssssssssssssssspppppppp *-,\x7F\$j",
+  "\x115                                  ,,,/",
+  "\x115\x03Zwei irre Spa~v|gel                  ",
+  "\x115\x01\x1D\x07Fr 13:15-15:05       auf Sendung  \x1C",
+  "\x115\x07Kom|die F 1983                       ",
+  "\x115\x00                                     ",
+  "\x115\x07Als der Teenager Tristan zu Hause    ",
+  "\x115\x07ausb}chst, fackelt seine Mutter      ",
+  "\x115\x07Christine nicht lange. Sie bittet    ",
+  "\x115\x07ihre zwei Exfreunde um Hilfe. Um ih- ",
+  "\x115\x07nen auf die Spr}nge zu helfen, er-   ",
+  "\x115\x07z{hlt sie jedem der Beiden, er sei   ",
+  "\x115\x07der Vater. Pflichtbewusst machen     ",
+  "\x115\x07sich Francois und Jean auf die Su-   ",
+  "\x115\x07che. Es dauert nicht lange, bis sich ",
+  "\x115\x07die falschen \"V{ter\" }ber den Weg    ",
+  "\x115\x07laufen.                              ",
+  "\x115\x00                                     ",
+  "\x115\x06Raffiniertes T{uschungsman|ver mit   ",
+  "\x115\x06brillanter Komik.                    ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 313  ",
+];
+$PgCnt{0x312} = 7;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0002<<12)} =
+[
+  "I\x02IP\x15\x15IG312\x01\x03Tele 5\x06\x06\x07Fr\x0703.10.\x0313:28:48",
+  "\x11\x1D\x07PROGRAMM             \x09\x1C\x11      ||||   ",
+  "\x11\x1D\x17,\x07Spielfilm      \x002/2 \x1C \x11      j5(,,~",
+  "\x11sssssssssssssssssssssssspppppppp *-,\x7F\$j",
+  "\x115                                  ,,,/",
+  "\x115\x03Zwei irre Spa~v|gel                  ",
+  "\x115\x03(Les comperes)                       ",
+  "\x115\x01\x1D\x07Fr 13:15-15:05       auf Sendung  \x1C",
+  "\x115\x07Kom|die F 1983                       ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Francis Veber       ",
+  "\x115\x07Buch.............Francis Veber       ",
+  "\x115\x07Musik............Vladimir Cosma      ",
+  "\x115\x00                                     ",
+  "\x115\x07Francois Pigno...Pierre Richard      ",
+  "\x115\x07Jean Lucas.......Gerard Depardieu    ",
+  "\x115\x07Christine Mart...Anny Duperey        ",
+  "\x115\x07Tristan Martin...Stephane Bierry     ",
+  "\x115\x07Paul Martin......Michel Aumont       ",
+  "\x115\x07Ralph............Jean-Jacques        ",
+  "\x115\x07                 Scheffer            ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 313  ",
+];
+1;

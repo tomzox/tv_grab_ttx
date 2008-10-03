@@ -4,7 +4,7 @@
 # Note there's a "00" on the description page which is conceled by
 # setting foreground to background (i.e. \x04\x1D...\x04...invisible)
 #
-# $Id: vps4.in,v 1.1 2006/05/01 19:59:10 tom Exp $
+# $Id: vps4.in,v 1.2 2008/09/29 20:33:27 tom Exp $
 #
 $VbiCaptureTime = 1146302512;
 $PgCnt{0x305} = 6;
@@ -29,7 +29,7 @@ $Pkg{0x305|(0x0000<<12)} =
   "\x0703.50\x05\x050355\x07\x07SACHSENSPIEGEL            ",
   "\x0304.20\x05\x050425\x03\x03SACHSEN-ANHALT HEUTE      ",
   "                                        ",
-  "\x0704.50\x05\x050455\x07\x07TH]RINGEN JOURNAL         ",
+  "\x0704.50\x05\x050455\x07\x07Th}ringen Journal         ",
   "\x0305.20\x05\x180520\x03\x03Rundflug Th}ringen\x06(``)   ",
   "            \x03\x03bis\x0305.55\x03Uhr\x03\x03           ",
   "                                        ",

@@ -1,0 +1,403 @@
+#!/usr/bin/perl -w
+#
+# Test for reformatting cast tables on description pages.
+# - including irregularities: no dots between some table columns or
+#   first column flows into second column
+# - second table beneath in different format: columns separated by ":"
+#
+# $Id: desctable1.in,v 1.1 2008/10/03 11:59:02 tom Exp $
+#
+$VbiCaptureTime = 1223032188;
+$PkgCni{0xDC2} = 2374;
+$PkgCni{0x4902} = 95;
+$PgCnt{0x301} = 3;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:35",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x18D0",
+  "\x0705.05\x05\x180505\x07\x07hallo deutschland\x03Wdh.\x07365",
+  "\x0605.35\x05\x180535\x06\x06Henry der Schreckliche\x06309",
+  "\x0706.05\x05\x180605\x07\x07Pippi in der S}dsee ..\x07311",
+  "\x0607.20\x05\x180720\x06\x06Wickie ...............\x06312",
+  "\x0708.40\x05\x180840\x07\x07Rotk{ppchen               ",
+  "              M{rchenfilm D/2005 ...\x07313",
+  "\x0610.00\x05\x181000\x06\x06\\kum. Gottesdienst ...\x06550",
+  "\x0711.00\x05\x181100\x07\x07heute                     ",
+  "\x0611.05\x05\x181105\x06\x06Liebe, Jazz und ]bermut   ",
+  "            \x06\x06Kom|die D/1957 .......\x06314",
+  "\x0312.45\x05\x051244\x03\x03So isst Berlin            ",
+  "            \x03\x03Kulinarische \"Esskapaden\" ",
+  "            \x03\x03am Einheitstag .......\x03316",
+  "\x0613.15\x05\x181315\x06\x06heute                     ",
+  undef,
+  undef,
+  undef,
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0713.20\x07Uhr -> 302\x07 ",
+];
+$PgCnt{0x302} = 3;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:36",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x18D5",
+  "\x0713.20\x05\x181320\x07\x07Salto Speziale            ",
+  "              Wiedersehen ..........\x07317",
+  "\x0613.50\x05\x181350\x06\x06Das Schwalbennest         ",
+  "            \x06\x06Kom|die D/2005\x03UT\x06....\x06318",
+  "\x0715.20\x05\x181520\x07\x07Der brave Soldat Schwejk  ",
+  "              Satire D/1960\x03UT s/w  \x07319",
+  "\x0616.55\x05\x181655\x06\x06heute\x03UT                  ",
+  "\x0717.00\x05\x181700\x07\x07Das Berliner Schloss      ",
+  "              Eine deutsche             ",
+  "              Geschichte ...........\x07320",
+  "\x0617.30\x05\x181730\x06\x06Ein Fall f}r zwei         ",
+  "            \x06\x06Blutige Liebesgr}~e\x03UT\x06321",
+  "\x0719.00\x05\x181900\x07\x07heute\x03UT\x07.............\x07310",
+  "\x0619.14\x05\x181914\x06\x06Wetter\x03UT                 ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  undef,
+  "      \x05\x18VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0719.15\x07Uhr -> 303\x07 ",
+];
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:36",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x18D1",
+  "\x0719.15\x05\x051245\x07\x07Geboren am 3.Oktober      ",
+  "              Kinder der Einheit ...\x07322",
+  "\x0619.30\x05\x181930\x06\x06Lafer!Lichter!Lecker! \x06323",
+  "\x0720.15\x05\x182015\x07\x07Der Kommissar und das Meer",
+  "              An einem einsamen Ort     ",
+  "            \x03\x03UT\x07...................\x07324",
+  "\x0621.45\x05\x182145\x06\x06heute-journal\x03UT\x06.....\x06315",
+  "\x0721.58\x05\x182158\x07\x07Wetter\x03UT                 ",
+  "\x0622.00\x05\x182200\x06\x06SOKO Leipzig              ",
+  "            \x06\x06Istanbul Connection\x03UT\x06325",
+  "\x0723.30\x05\x182330\x07\x07Arsene Lupin              ",
+  "              Abenteuerkom|die          ",
+  "              F/E/GB/I/2004\x03UT\x07.....\x07326",
+  "\x05\x05041008\x07                               ",
+  "\x0601.30\x05\x180130\x06\x06heute ................\x06111",
+  "                                        ",
+  "                                        ",
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0701.35\x07Uhr -> 304\x07 ",
+];
+$PgCnt{0x313} = 3;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$Pkg{0x313|(0x0001<<12)} =
+[
+  "^\x02\x02P\x15\x15IG313\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:36",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 1/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x1836",
+  " \x0708.40\x07-\x0710.00\x07Uhr          \x05\x18VPS\x180840\x07",
+  "\x06\x06Rotk{ppchen                           ",
+  "\x06\x06M{rchenfilm D/2005\x0316:9               ",
+  undef,
+  " Die elfj{hrige Leonie f{hrt nur wider- ",
+  " willig mit ihren Eltern und dem kleinen",
+  " Bruder Simon }bers Wochenende zur Gro~-",
+  " mutter. Auf der Fahrt nervt Simon sie  ",
+  " mit seinem M{rchenbuch. Er will, dass  ",
+  " sie ihm \"Rotk{ppchen\" vorliest.        ",
+  undef,
+  "\x06Auf einer gottverlassenen Landstra~e   ",
+  "\x06haben sie pl|tzlich eine Autopanne. Der",
+  "\x06Vater macht sich zu Fu~ auf den Weg, um",
+  "\x06Hilfe zu holen. Pl|tzlich wird Leonies ",
+  "\x06Aufmerksamkeit von einem \"roten Etwas\" ",
+  "\x06in Anspruch genommen. Leonie geht dem  ",
+  "\x06\"Rot\" entgegen und kommt zu einem H|h- ",
+  "\x06leneingang.                            ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x313} = 3;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$Pkg{0x313|(0x0002<<12)} =
+[
+  "^\x02IP\x15\x15IG313\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:05",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 2/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x1836",
+  " \x0708.40\x07-\x0710.00\x07Uhr          \x05\x18VPS\x180840\x07",
+  "\x06\x06Rotk{ppchen                           ",
+  "\x06\x06M{rchenfilm D/2005\x0316:9               ",
+  undef,
+  " Darsteller:                            ",
+  undef,
+  " Leonie Flatow ..... Kathleen Frontzek  ",
+  " Konrad ............ Max von der Groeben",
+  " Elsa/Ingrid Flatow  Rebecca Immanuel   ",
+  " J{ger Alfons/Arno Flato . Frank Stieren",
+  " Simon Flatow ...... Bruno Schubert     ",
+  " Vater von Konrad .. Martin May         ",
+  " R{uber 1 .......... Wolfgang Winkler   ",
+  " R{uber 2 .......... Jaecki Schwarz     ",
+  " u.a.                                   ",
+  undef,
+  " Regie: Klaus Gietinger                 ",
+  " Drehbuch: Ralph Martin, Armin Toerkell ",
+  undef,
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x314} = 3;
+$PgSub{0x314} = 2;
+$PgLang{0x314} = 1;
+$Pkg{0x314|(0x0001<<12)} =
+[
+  "d\x02\x02P\x15\x15IG314\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:36",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 1/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x1837",
+  " \x0711.05\x07-\x0712.45\x07Uhr          \x05\x18VPS\x181105\x07",
+  "\x06\x06Liebe, Jazz und ]bermut               ",
+  "\x06\x06Kom|die D/1957                        ",
+  undef,
+  " Das Barockschloss Tiefenstein ist dank ",
+  " der gro~herzigen Stiftung eines Ame-   ",
+  " rikaners ein Internat f}r musikbegabte ",
+  " Waisenkinder geworden. Als Dr.Parker,  ",
+  " einer der Treuh{nder der Stiftung, in  ",
+  " einem Telegramm seinen Besuch ank}n-   ",
+  " digt, versetzt dies die gewitzte Leite-",
+  " rin des Internats, Clothilde Himmel-   ",
+  " reich, in Panik, denn sie hat ihr Lehr-",
+  " personal aus Sparsamkeitsgr}nden redu- ",
+  " ziert.                                 ",
+  undef,
+  "\x06In diesem Musikfilm spielen die Orches-",
+  "\x06ter Kurt Edelhagen und Erwin Lehn Lie- ",
+  "\x06der von Heinz Gietz.                   ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x314} = 3;
+$PgSub{0x314} = 2;
+$PgLang{0x314} = 1;
+$Pkg{0x314|(0x0002<<12)} =
+[
+  "d\x02IP\x15\x15IG314\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:05",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 2/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x1837",
+  " \x0711.05\x07-\x0712.45\x07Uhr          \x05\x18VPS\x181105\x07",
+  "\x06\x06Liebe, Jazz und ]bermut               ",
+  "\x06\x06Kom|die D/1957                        ",
+  undef,
+  " Darsteller:                            ",
+  undef,
+  " Peter Hagen ........... Peter Alexander",
+  " Britta Johnsen ........ Bibi Johns     ",
+  " Clothilde Himmelreich . Grethe Weiser  ",
+  " Professor Haberland ... Rudolf Platte  ",
+  " S{ngerin Jane Richards  June Richmond  ",
+  " Anwalt Dr.Parker ...... Hans Olden     ",
+  " M{ckie ................ Roland Kaiser  ",
+  " u.a.                                   ",
+  undef,
+  " Regie: Erik Ode                        ",
+  " Buch/Autor: Bobby E.L}thge,  Rudolf    ",
+  " Dortenwald                             ",
+  " Musik: Heinz Gietz                     ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x317} = 3;
+$PgSub{0x317} = 2;
+$PgLang{0x317} = 1;
+$Pkg{0x317|(0x0001<<12)} =
+[
+  "/\x02\x02P\x15\x15IG317\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:05",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 1/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x1832",
+  " \x0713.20\x07-\x0713.50\x07Uhr          \x05\x18VPS\x181320\x07",
+  "\x06\x06Salto Speziale                        ",
+  "\x06\x06Wiedersehen                           ",
+  undef,
+  " Zehn Jahre nach Schlie~ung des Postam- ",
+  " tes in Potsdam-Niederb|rnicke inspizie-",
+  " ren Stankoweit und Reschke die herun-  ",
+  " tergekommene Immobilie, weil sie f}r   ",
+  " einen Euro zum Verkauf steht. W{hrend  ",
+  " beide noch }ber ihre zur}ckliegenden   ",
+  " Erlebnisse philosophieren, hat ihr ehe-",
+  " maliger Chef M{~ig das Haus gekauft. Er",
+  " will hier eine Arbeitsagentur aufbauen.",
+  undef,
+  "\x06Als sich seine fr}heren Mitarbeiter    ",
+  "\x06schweren Herzens bei ihm bewerben, bie-",
+  "\x06tet M{~ig ihnen v|llig unterbezahlte   ",
+  "\x06Jobs an. Damit sind die alten Fronten  ",
+  "\x06neu er|ffnet. (Erstsendung: 05.02.2006)",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x317} = 3;
+$PgSub{0x317} = 2;
+$PgLang{0x317} = 1;
+$Pkg{0x317|(0x0002<<12)} =
+[
+  "/\x02IP\x15\x15IG317\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:36",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 2/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x1832",
+  " \x0713.20\x07-\x0713.50\x07Uhr          \x05\x18VPS\x181320\x07",
+  "\x06\x06Salto Speziale                        ",
+  "\x06\x06Wiedersehen                           ",
+  undef,
+  " Darsteller:                            ",
+  undef,
+  " Wolfgang Stankoweit  Wolfgang Stumph   ",
+  " Maximilian M{~ig ... Hans-J}rgen Schatz",
+  " Rudi Reschke ....... Achim Wolff       ",
+  " Frau Kaiser ........ Christel Peters   ",
+  " u.a.                                   ",
+  undef,
+  " Regie: Ralf Gregan                     ",
+  " Buch/Autor: Gunter Antrak              ",
+  " Musik: Detlef Rothe                    ",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x318} = 3;
+$PgSub{0x318} = 2;
+$PgLang{0x318} = 1;
+$Pkg{0x318|(0x0001<<12)} =
+[
+  "P\x02\x02P\x15\x15IG318\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:36",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 1/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x1837",
+  " \x0713.50\x07-\x0715.20\x07Uhr          \x05\x18VPS\x181350\x07",
+  "\x06\x06Das Schwalbennest                     ",
+  "\x06\x06Kom|die D/2005\x0316:9 UT                ",
+  undef,
+  " Eisenh}ttenstadt: Stahlwerker Armin    ",
+  " St}tzler ist neuerdings ohne Job. Sein ",
+  " Kumpel Harry und der Lehrling Ronny le-",
+  " ben ebenfalls von der St}tze. Durch ei-",
+  " nen Zufall entsteht die Idee, eine     ",
+  " \"Erotikbar mit Niveau\" zu er|ffnen. Den",
+  " n|tigen Kredit und unternehmerische    ",
+  " Tipps erhalten sie von dem windigen    ",
+  " Bordellk|nig Nestor.                   ",
+  undef,
+  "\x06Schnell wird klar, dass Nestor nicht   ",
+  "\x06uneigenn}tzig handelt. Die Puffidee en-",
+  "\x06det in einer handfesten Auseinander-   ",
+  "\x06setzung, zugleich aber auch wie ein    ",
+  "\x06M{rchen.                               ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x318} = 3;
+$PgSub{0x318} = 2;
+$PgLang{0x318} = 1;
+$Pkg{0x318|(0x0002<<12)} =
+[
+  "P\x02IP\x15\x15IG318\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:05",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 2/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x1837",
+  " \x0713.50\x07-\x0715.20\x07Uhr          \x05\x18VPS\x181350\x07",
+  "\x06\x06Das Schwalbennest                     ",
+  "\x06\x06Kom|die D/2005\x0316:9 UT                ",
+  undef,
+  " Darsteller:                            ",
+  undef,
+  " Armin St}tzler ... Wolfgang Stumph     ",
+  " Bomber ........... J|rg Sch}ttauf      ",
+  " Rita St}tzler .... Ulrike Krumbiegel   ",
+  " Ronny H|pfner .... Antonio Wannek      ",
+  " Vera ............. Janina Lissovskaia  ",
+  " Ljuba ............ Malina Ebert        ",
+  " u.a.                                   ",
+  undef,
+  " Regie: Maris Pfeiffer                  ",
+  " Buch/Autor: Michael Illner             ",
+  " Buch/Autor: Alfred Roesler-Kleint      ",
+  " Kamera: Klaus Merkel                   ",
+  " Musik: Franco Tortora                  ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x319} = 3;
+$PgSub{0x319} = 2;
+$PgLang{0x319} = 1;
+$Pkg{0x319|(0x0001<<12)} =
+[
+  "G\x02\x02P\x15\x15IG319\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:36",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 1/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x183E",
+  " \x0715.20\x07-\x0716.55\x07Uhr          \x05\x18VPS\x181520\x07",
+  "\x06\x06Der brave Soldat Schwejk              ",
+  "\x06\x06Satire D/1960\x03UT s/w                  ",
+  undef,
+  " Der ebenso gutm}tige wie naive, jedoch ",
+  " mit einer gesunden Portion Bauern-     ",
+  " schl{ue gesegnete Prager Hundeh{ndler  ",
+  " Josef Schwejk wird - obwohl amtlich f}r",
+  " schwachsinnig erkl{rt - zu Beginn des  ",
+  " Ersten Weltkriegs in die |sterreichi-  ",
+  " sche Armee einberufen.                 ",
+  undef,
+  "\x06Als Bursche des im Umgang mit Frauen   ",
+  "\x06wie Geld leichtsinnigen Oberleutnants  ",
+  "\x06Lukasch muss Schwejk eine Reihe haar-  ",
+  "\x06str{ubend absurder Situationen meis-   ",
+  "\x06tern.                                  ",
+  undef,
+  undef,
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x319} = 3;
+$PgSub{0x319} = 2;
+$PgLang{0x319} = 1;
+$Pkg{0x319|(0x0002<<12)} =
+[
+  "G\x02IP\x15\x15IG319\x03ZDFtext\x02Fr\x0203.10.08\x0313:09:05",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 2/2 ",
+  "\x04\x1D\x07 Programm  Freitag, 3.Oktober        ",
+  "                       \x05\x181D102\x18031008\x183E",
+  " \x0715.20\x07-\x0716.55\x07Uhr          \x05\x18VPS\x181520\x07",
+  "\x06\x06Der brave Soldat Schwejk              ",
+  "\x06\x06Satire D/1960\x03UT s/w                  ",
+  undef,
+  " Darsteller:                            ",
+  undef,
+  " Josef Schwejk ....... Heinz R}hmann    ",
+  " Gretl................ Senta Berger     ",
+  " Kathi ............... Ursula Borsodi   ",
+  " Woditschka .......... Franz Muxeneder  ",
+  " Oberleutnant Lukasch  Ernst Stankovski ",
+  " Baronin ............. Erika v.Thellmann",
+  " Wachtmeister ........ Hugo Gottschlich ",
+  " u.a.                                   ",
+  undef,
+  " Regie: Axel von Ambesser               ",
+  " Buch/Autor: Hans Jacoby                ",
+  " Musik: Bernhard Eichhorn               ",
+  undef,
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+1;

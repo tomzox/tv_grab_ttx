@@ -26,7 +26,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: verify.sh,v 1.2 2008/09/22 14:49:20 tom Exp $
+# $Id: verify.sh,v 1.3 2008/10/03 17:15:15 tom Exp $
 #
 
 DIR=parsertest
@@ -34,7 +34,7 @@ DIR=parsertest
 for v in $DIR/*.in ; do
    name=`echo $v | sed -e 's#\.in$##g'|sed -e "s#$DIR/##"`
    if [ -e $DIR/$name.out ] ; then
-      ./ttx_grab.pl -verify $v > out.verify
+      ./tv_grab_ttx.pl -verify $v > out.verify
       cmp -s $DIR/$name.out out.verify
       if [ $? == 0 ] ; then
          echo "OK:   $v"

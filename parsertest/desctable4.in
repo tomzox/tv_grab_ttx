@@ -1,0 +1,220 @@
+#!/usr/bin/perl -w
+#
+# Test for reformatting cast tables on description pages.
+# Table format: first column left aligned, second one right-aligned
+#
+# $Id: desctable4.in,v 1.1 2008/10/03 11:59:02 tom Exp $
+#
+$VbiCaptureTime = 1223033062;
+$PkgCni{0xD8E} = 6967;
+$PgCnt{0x301} = 9;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x01VOX-TEXT  \x07Fr 3 Okt\x0713:23:11",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Traumstr{nde & \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Traumurlaub>430\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x11\x7F\x07TV-PROGRAMM         Fr. 03.10.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0105:55 McLeods T|chter............320 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0006:45 Pleasentville..............321 ",
+  "\x07\x1D\x00      (Kom|die, USA 1998)            ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0109:05 An deiner Seite............322 ",
+  "\x07\x1D\x01      (Drama, USA 1999)              ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0011:00 Ein hei~er Coup............323 ",
+  "\x07\x1D\x00      (Thriller, USA 2000)           ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x03\x0DKartenlegen f}r 69 ct/min.... 483   ",
+  "\x01\x1D\x07<300                           302>  ",
+];
+$PgCnt{0x302} = 9;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x01VOX-TEXT  \x07Fr 3 Okt\x0713:23:11",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Reise-         \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Schn{ppchen.430\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x11\x7F\x07TV-PROGRAMM         Fr. 03.10.\x01\x1D\x071/1 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0112:35 Ed.........................324 ",
+  "\x07\x1D\x01      Die affenstarke Sportskanone   ",
+  "\x07\x1D\x01      (Kom|die, USA 1996)            ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0014:25 Space Jam..................325 ",
+  "\x07\x1D\x00      (Kom|die, USA 1996)            ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0115:55 Garfield...................326 ",
+  "\x07\x1D\x01      (Kom|die, USA 2004)            ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0017:15 Familie Drews                  ",
+  "\x07\x1D\x00      Der verungl}ckte Urlaub        ",
+  "\x07\x1D\x00      Doku.......................327 ",
+  "\x01\x1D\x03\x0DKartenlegen f}r 69 ct/min.... 483   ",
+  "\x01\x1D\x07<301                           303>  ",
+];
+$PgCnt{0x303} = 9;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x01VOX-TEXT  \x07Fr 3 Okt\x0713:23:11",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Jetzt g}nstig  \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07in Urlaub!  430\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x11\x7F\x07TV-PROGRAMM         Fr. 03.10.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0119:00 Das perfekte Dinner            ",
+  "\x07\x1D\x01      Koch-Doku..................328 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0019:50 Unter Volldampf                ",
+  "\x07\x1D\x00      Kochshow...................329 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0120:15 Kocharena                      ",
+  "\x07\x1D\x01      Kochshow, Folge 4..........330 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0022:10 SPIEGEL TV Thema               ",
+  "\x07\x1D\x00      Chaos im Kopf - Wenn das       ",
+  "\x07\x1D\x00      Gehirn au~er Kontrolle         ",
+  "\x07\x1D\x00      ger{t......................331 ",
+  "\x01\x1D\x07\x0DNEU: 100\% Wahrsagen per SMS! 494    ",
+  "\x01\x1D\x07<302                           304>  ",
+];
+$PgCnt{0x321} = 9;
+$PgSub{0x321} = 2;
+$PgLang{0x321} = 1;
+$Pkg{0x321|(0x0001<<12)} =
+[
+  "\x02I\x02\x15\x15\x15IG321\x01VOX-TEXT  \x07Fr 3 Okt\x0713:23:12",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|<                     ",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw                      ",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/-                     ",
+  "\x11\x7F\x07VOX-STARKINO                  \x01\x1D\x071/2 ",
+  "\x07\x1D\x00                        Fr 06:45 Uhr ",
+  "\x07\x1D\x01Pleasantville\x07                       ",
+  "\x07\x1D\x00Kom|die, USA 1998\x07                   ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Die Teenager David und Jennifer wer-\x07",
+  "\x07\x1D\x00den aus den 90er-Jahren in die 50er-\x07",
+  "\x07\x1D\x00Jahre-Serie Pleasantville versetzt,\x07 ",
+  "\x07\x1D\x00in der es weder Gewalt noch Sex gibt\x07",
+  "\x07\x1D\x00und alle ungemein nett zueinander\x07   ",
+  "\x07\x1D\x00sind.\x07                               ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00David und Jennifer tragen jedoch die\x07",
+  "\x07\x1D\x00Freiheiten der 1990er in die heile\x07  ",
+  "\x07\x1D\x00Serienwelt - und damit auch den Ver-\x07",
+  "\x07\x1D\x00lust der Unschuld...\x07                ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x1CNews:CSI:NY, Gilmore Girls & Co.380\x07\x1D",
+  "\x01\x1D\x07<320                           322>  ",
+];
+$PgCnt{0x321} = 9;
+$PgSub{0x321} = 2;
+$PgLang{0x321} = 1;
+$Pkg{0x321|(0x0002<<12)} =
+[
+  "\x02II\x15\x15\x15IG321\x01VOX-TEXT  \x07Fr 3 Okt\x0713:22:42",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|<                     ",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw                      ",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/-                     ",
+  "\x11\x7F\x07VOX-STARKINO                  \x01\x1D\x072/2 ",
+  "\x07\x1D\x00                        Fr 06:45 Uhr ",
+  "\x07\x1D\x01Pleasantville\x07                       ",
+  "\x07\x1D\x00Kom|die, USA 1998\x07                   ",
+  "\x07\x1D\x00ca. 110 Minuten\x07                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00David..................Tobey Maguire\x07",
+  "\x07\x1D\x00Jennifer...........Reese Witherspoon\x07",
+  "\x07\x1D\x00George Parker........William H. Macy\x07",
+  "\x07\x1D\x00Betty Parker..............Joan Allen\x07",
+  "\x07\x1D\x00Mr. Johnson.............Jeff Daniels\x07",
+  "\x07\x1D\x00Big Bob...................J.T. Walsh\x07",
+  "\x07\x1D\x00Margaret..............Marley Shelton\x07",
+  "\x07\x1D\x00Davids Mutter.........Jane Kaczmarek\x07",
+  "\x07\x1D\x00Fernsehtechniker..........Don Knotts\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Regie: Gary Ross\x07                    ",
+  "\x07\x1D\x00                              \x01      ",
+  "\x07\x1D Verweis 1..........................\x07\x1D",
+  "\x01\x1D\x07<320                           322>  ",
+];
+$PgCnt{0x322} = 9;
+$PgSub{0x322} = 2;
+$PgLang{0x322} = 1;
+$Pkg{0x322|(0x0001<<12)} =
+[
+  "II\x02\x15\x15\x15IG322\x01VOX-TEXT  \x07Fr 3 Okt\x0713:23:12",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|<                     ",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw                      ",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/-                     ",
+  "\x11\x7F\x07VOX-STARKINO                  \x01\x1D\x071/2 ",
+  "\x07\x1D\x00                        Fr 09:05 Uhr ",
+  "\x07\x1D\x01An deiner Seite\x07                     ",
+  "\x07\x1D\x00Drama, USA 1999\x07                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0015 Jahre verheiratet, ein Haus, zwei\x07",
+  "\x07\x1D\x00wohlgeratene Kinder: Die Ehe von Ben\x07",
+  "\x07\x1D\x00und Katie Jordan wirkt nach au~en\x07   ",
+  "\x07\x1D\x00hin perfekt. Doch der sch|ne Schein\x07 ",
+  "\x07\x1D\x00tr}gt: Der Alltag ist zur Belastung\x07 ",
+  "\x07\x1D\x00geworden, Auseinandersetzungen wegen\x07",
+  "\x07\x1D\x00nichtiger Kleinigkeiten, man hat\x07    ",
+  "\x07\x1D\x00sich auseinander gelebt.\x07            ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Als ihre Kinder ins Sommerlager fah-\x07",
+  "\x07\x1D\x00ren, wagen Ben und Katie den ersten\x07 ",
+  "\x07\x1D\x00Schritt zur Trennung. Endg}ltig?\x07    ",
+  "\x07\x1D\x00(Wh. Mo 06.10. 05:55)\x07        \x01      ",
+  "\x07\x1D Verweis 1..........................\x07\x1D",
+  "\x01\x1D\x07<321                           323>  ",
+];
+$PgCnt{0x322} = 9;
+$PgSub{0x322} = 2;
+$PgLang{0x322} = 1;
+$Pkg{0x322|(0x0002<<12)} =
+[
+  "III\x15\x15\x15IG322\x01VOX-TEXT  \x07Fr 3 Okt\x0713:22:42",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|<                     ",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw                      ",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/-                     ",
+  "\x11\x7F\x07VOX-STARKINO                  \x01\x1D\x072/2 ",
+  "\x07\x1D\x00                        Fr 09:05 Uhr ",
+  "\x07\x1D\x01An deiner Seite\x07                     ",
+  "\x07\x1D\x00Drama, USA 1999, ca. 90 Minuten\x07     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Ben Jordan..............Bruce Willis\x07",
+  "\x07\x1D\x00Katie Jordan.......Michelle Pfeiffer\x07",
+  "\x07\x1D\x00Erin Jordan.........Colleen Rennison\x07",
+  "\x07\x1D\x00Josh Jordan.............Jake Sandvig\x07",
+  "\x07\x1D\x00Marty...................Tim Matheson\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Regie: Rob Reiner\x07                   ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Rob Reiner nimmt die H|hen und Tie-\x07 ",
+  "\x07\x1D\x00fen einer langj{hrigen Beziehung hu-\x07",
+  "\x07\x1D\x00morvoll unter die Lupe - und h{lt\x07   ",
+  "\x07\x1D\x00den Ausgang bis zum }berraschenden\x07  ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x1CNewsroom:Ern{hrung & Gesundheit.600\x07\x1D",
+  "\x01\x1D\x07<321                           323>  ",
+];
+1;
