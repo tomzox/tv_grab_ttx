@@ -1,127 +1,70 @@
 #!/usr/bin/perl -w
 #
-# Test date match on description page
+# Test description page date match: date is at bottom of page and has
+# a different background color. Test that it's not chopped off (to
+# make the test harder the description subpage count has been changed
+# from 1 to 2.)
 #
 # $Id$
 #
-$VbiCaptureTime = 1150362522;
-$PgCnt{0x302} = 5;
-$PgSub{0x302} = 0;
-$PgLang{0x302} = 1;
-$Pkg{0x302|(0x0000<<12)} =
-[
-  "I\x15\x15\x15\x15\x15\x15G302\x02hr-text\x07Do 15.06.06\x0211:07:53",
-  "\x14|     \x16 p          0      \x03Fronleichnam",
-  "\x14\x7F|t x|\x16 =hlh\$<4<\$<4=4<4<4\x06   Donnerstag",
-  "\x14\x7F \x7F \x7F \x16 5jsj 55s5w155w155\x06      15.Juni",
-  "\x14/ / /                \x05\x181D115\x18150606\x1860\x07",
-  undef,
-  undef,
-  "\x0708.15\x07\x07\x07Ivanhoe, der schwarze Ritter   ",
-  "\x05\x180815\x07 \x07Spielfilm, USA 1952            ",
-  "         \x09\x18Fi\x09                          ",
-  undef,
-  "\x0610.00\x06\x06\x06Fronleichnam - Worum geht's    ",
-  "\x05\x181000\x06 \x06hier eigentlich?........... 308",
-  "         \x09\x18Ku\x09                          ",
-  undef,
-  "\x0710.30\x07\x07\x07Petrus und die P{pste          ",
-  "\x05\x181030\x07  \x09\x18Ku\x09                          ",
-  undef,
-  "\x0611.15\x06\x06\x06Geht hin zu den Inseln         ",
-  "\x05\x181115\x06 \x06Chiemsee-Kl|ster und ihre Musik",
-  "        \x06(bis\x0612.00\x06Uhr) \x09\x18Ku\x09          ",
-  undef,
-  undef,
-  "\x17,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\x07>> 303",
-];
-$PgCnt{0x303} = 5;
+$VbiCaptureTime = 1147377524;
+$PgCnt{0x303} = 6;
 $PgSub{0x303} = 0;
 $PgLang{0x303} = 1;
 $Pkg{0x303|(0x0000<<12)} =
 [
-  "^\x15\x15\x15\x15\x15\x15G303\x02hr-text\x07Do 15.06.06\x0211:07:53",
-  "\x14|     \x16 p          0      \x03Fronleichnam",
-  "\x14\x7F|t x|\x16 =hlh\$<4<\$<4=4<4<4\x06   Donnerstag",
-  "\x14\x7F \x7F \x7F \x16 5jsj 55s5w155w155\x06      15.Juni",
-  "\x14/ / /                \x05\x181D115\x18150606\x1871\x07",
-  undef,
-  "\x0712.00\x07\x07\x07Die Insel{rztin von Baltrum    ",
-  "\x05\x181200\x07  \x09\x18In\x09                          ",
-  undef,
-  "\x0613.00\x06\x06\x06Musketier mit Hieb und Stich   ",
-  "\x05\x181300\x06 \x06Spielfilm, F/RO/I 1970\x03UT\x06. 309",
-  "         \x09\x18Fi\x09                          ",
-  undef,
-  "\x0714.35\x07\x07\x07Wundersch|nes Kreta            ",
-  "\x05\x181435\x07 \x07Mit Tamina Kallert             ",
-  "         \x09\x18Un\x09                          ",
-  undef,
-  "\x0616.05\x06\x06\x06Auf dem Nockherberg            ",
-  "\x05\x181605\x06 \x06Die Starkbierprobe 2006        ",
-  "        \x06(bis\x0617.20\x06Uhr) \x09\x18Fi\x09          ",
-  undef,
-  undef,
-  undef,
-  "\x17,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\x07>> 304",
+  "^\x15\x15\x15\x15\x15\x15G303\x03RTL II   \x07Do 11 Mai\x0321:58:41",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Esoterik      \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00LIVE!......700\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0117:00\x005 gegen 5..................371 ",
+  "\x07\x1D\x0117:30\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x0119:00\x00Wir ziehen um!                 ",
+  "\x07\x1D\x01     \x00Tutti & Rita packen's an...345 ",
+  "\x07\x1D\x0120:00\x00RTL II News................114 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x06\x1D\x01DSL-Flatrate nur 4,95 Euro\x01\x1D\x07168 \x1D ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Law & Order                    ",
+  "\x07\x1D\x01     \x00New York...................329 ",
+  "\x07\x1D\x0121:10\x00Frauentausch...............341 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D                                      ",
+  "\x01\x1D\x07                                     ",
+  "\x03\x1D\x01\x0D   WM F}r 49 Euro!   >>>309<<<      ",
+  "                                        ",
 ];
-$PgCnt{0x308} = 5;
-$PgSub{0x308} = 0;
-$PgLang{0x308} = 1;
-$Pkg{0x308|(0x0000<<12)} =
+$PgCnt{0x335} = 5;
+$PgSub{0x335} = 2;
+$PgLang{0x335} = 1;
+$Pkg{0x335|(0x0001<<12)} =
 [
-  "P\x15\x15\x15\x15\x15\x15G308\x02hr-text\x07Do 15.06.06\x0211:07:54",
-  "\x14|||||||||||||||||||||||||||||||||||||||",
-  "\x04\x1D\x13| |     (\$         |    \x03Donnerstag  ",
-  "\x04\x1D\x13\x7F,\x7Fj7kj7j5c\x7F\%\x7F#5\x7F#5\x7F!\x7Fs5\x0310.00-10.30 ",
-  "\x06\x1D\x13/ /*-.*\%*\%/-\$/,\%/ \%/ /,\$\x04            ",
-  "\x17|||||||||||||||||||||||||||||||||||||||",
-  " \x1D\x01FRONLEICHNAM - WORUM GEHT'S HIER     ",
-  " \x1D\x01EIGENTLICH                           ",
-  " \x1D\x01                                     ",
-  " \x1D\x04Am heutigen Tag wird von der katholi-",
-  " \x1D\x04schen Kirche das Fest Fronleichnam   ",
-  " \x1D\x04gefeiert. Seit dem Mittelalter gilt  ",
-  " \x1D\x04dieser Festtag der Verehrung der Eu- ",
-  "\x07\x1D\x04charistie.                           ",
-  "\x07\x1D\x04                                     ",
-  "\x07\x1D\x04Welche Bedeutung hat dieses Fest in  ",
-  "\x07\x1D\x04der heutigen Zeit? Zu dieser und wei-",
-  "\x07\x1D\x04teren Fragen sendet das hr-Fernsehen ",
-  " \x1D\x04ein Gespr{ch mit Meinhard Schmidt-   ",
-  " \x1D\x04Degenhard und dem im August 2001 ver-",
-  " \x1D\x04storbenen Theologen und Bibelwissen- ",
-  "\x07\x1D\x04schaftler Herbert Haag.              ",
-  "\x07\x1D\x04                                     ",
+  "s^\x15\x15\x15\x15\x15G335\x03RTL II   \x07Do 11 Mai\x0321:58:42",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Reisen: Buchen\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Sie hier!..600\x18",
+  "\x01\x1D\x07IMMER WIEDER JIM                \x001/1\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Oh, du Stressige                     ",
+  "\x07\x1D\x00Zu Weihnachten kommt Cheryls Mutter  ",
+  "\x07\x1D\x00Maggie auf Besuch. Diesmal }bernach- ",
+  "\x07\x1D\x00tet sie jedoch nicht im Hotel, son-  ",
+  "\x07\x1D\x00dern quartiert sich in Jims und Cher-",
+  "\x07\x1D\x00yls Schlafzimmer ein. Trotzdem setzt ",
+  "\x07\x1D\x00Cheryl alles daran, ihre Mutter bei  ",
+  "\x07\x1D\x00Laune zu halten: Sie hofft n{mlich,  ",
+  "\x07\x1D\x00von ihr in diesem Jahr die kostbare  ",
+  "\x07\x1D\x00Perlenkette ihrer Urgro~mutter ge-   ",
+  "\x07\x1D\x00schenkt zu bekommen...               ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Weitere Folgen heute: \"Fluchen will  ",
+  "\x07\x1D\x00gelernt sein\" und \"Hauptsache Spa~\". ",
+  "\x07\x1D\x00                                     ",
   "\x17///////////////////////////////////////",
-];
-$PgCnt{0x309} = 5;
-$PgSub{0x309} = 0;
-$PgLang{0x309} = 1;
-$Pkg{0x309|(0x0000<<12)} =
-[
-  "G\x15\x15\x15\x15\x15\x15G309\x02hr-text\x07Do 15.06.06\x0211:07:54",
-  "\x17///////////////////////////////////////",
-  "\x17!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
-  "\x06\x06Musketier mit Hieb        \x07Donnerstag ",
-  " \x06Stich\x03UT             \x0713.00-14.35 Uhr ",
-  " \x06Spielfilm, F/RO/I 1970                ",
-  "\x17000000000000000000000000000000000000000",
-  "\x17|||||||||||||||||||||||||||||||||||||||",
-  " \x1D\x04Der junge Franzose Nicolas Philibert ",
-  " \x1D\x04kehrt im Jahre 1793 aus Amerika nach ",
-  "\x07\x1D\x04Frankreich zur}ck, um sich scheiden  ",
-  "\x07\x1D\x04zu lassen. Er m|chte die reichste    ",
-  "\x07\x1D\x04Erbin von South Carolina heiraten.   ",
-  "\x07\x1D\x04                                     ",
-  "\x07\x1D\x04In seiner alten Heimat ger{t er in   ",
-  " \x1D\x04die Wirren der Revolutionszeit und   ",
-  " \x1D\x04zwischen alle Fronten. Vor allem mit ",
-  " \x1D\x04seiner aufregenden Frau Charlotte hat",
-  "\x07\x1D\x04er seine liebe Not. Nach wie vor ist ",
-  "\x07\x1D\x04er sehr von ihren Reizen beindruckt. ",
-  " \x1D\x16ppppppppppppppppppppppppppppppppppp  ",
-  " \x1D\x06\x1D\x04D: J.P.Belmondo, Marlene Jobert \x07\x1D\x1D",
-  " \x1D\x06\x1D\x04R: Jean-Paul Rappeneau          \x07\x1D ",
-  " \x1D\x16###################################  ",
+  "\x01\x1D\x1C\x07Donnerstag, 11.05.06; 17.30 Uhr \x01\x1D\x07\x07",
+  "\x01\x1D\x07\x0DMehr Wissen mit RTL II!.........360 ",
+  "                                        ",
 ];

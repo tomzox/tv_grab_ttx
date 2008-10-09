@@ -1,0 +1,19 @@
+libxmltv-ttx (1.1) unstable; urgency=low
+
+  * Added documentation inside of tv_grab_ttx.pl (man page in POD format)
+  * Included functionality of previous "cap.pl" into tv_grab_ttx.pl
+  * Renamed grabber script from ttx_grab.pl into tv_grab_ttx.pl
+  * Added script to generate Debian package for installation
+
+  * Grabber parses and reformats "cast" tables on description tables
+
+ -- maintainer Tom Zoerner <tomzo@users.sourceforge.net>  Sun, 05 Oct 2008 21:35:00 +0200
+
+libxmltv-ttx (1.0) unstable; urgency=low
+
+  * Adapted date parsing for changes in BR3 and others
+  * Improved & extended attribute parsing on overview pages
+  * Improved channel display name parsing;
+    fall back to using channel name on failure instead of "???"
+
+ -- maintainer Tom Zoerner <tomzo@users.sourceforge.net>  Sat, 08 Mar 2008 00:00:00 +0200

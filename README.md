@@ -29,13 +29,25 @@ every network formats tables, dates, times and descriptions slightly
 differently, so that the parser will have trouble locating the EPG data among
 all the advertisements and other content in teletext. 
 
-# Installation / Dependencies
+# Installation
 
-As of release 1.0, this software does not have scripts to support installation.
-If you want to have the script available in your regular path, just copy the
-script file `ttx_grab.pl` manually to the target directory. (You may have to
-adapt the first line of the script file, if your Perl interpreter is not at
-path `/usr/bin/perl`; also make sure to keep the file executable.)
+If you got the Debian package (or created one yourself using shell script
+`mkdebian.pl`), you can install the executable and manual page by typing:
+
+```console
+    dpkg -i PACKAGE
+```
+
+Alternatively, you can also trivially install the program manually simply by
+copying `tv_grab_ttx.pl` to `/usr/bin` (note normally the ".pl" appendix is
+stripped when installing.) The manual page can be extracted from the Perl
+script and copied to `/usr/share/man/man1`:
+
+```console
+    pod2man -section 1 tv_grab_ttx.pl > /usr/share/man/man1/tv_grab_ttx.1
+```
+
+# Dependencies
 
 The grabber is implemented as Perl scripts. Hence you'll need to have a
 [Perl interpreter](http://cpan.org). On UNIX and Linux systems this

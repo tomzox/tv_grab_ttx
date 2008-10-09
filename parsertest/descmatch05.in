@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 #
-# Test for daily soap: date "Mo - Fr"
+# Test #1 for daily soap: date "Mo - Fr" (page 313)
 #
 # $Id$
 #

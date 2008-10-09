@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 #
-#  This script grabs TV schedules from teletext pages and exports them
-#  in XMLTV format (DTD version 0.5)  Input is a file with pre-processed
-#  VBI data captured from a TV card.
+#  This script captures teletext from a VBI device, scrapes TV programme
+#  schedules and descriptions from teletext pages and exports them in
+#  XMLTV format (DTD version 0.5)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.21 2008/10/03 17:11:33 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.22 2008/10/05 18:33:19 tom Exp $
 #
 
 use POSIX;
@@ -40,13 +40,20 @@ my %PageCtrl;
 my %PageText;
 my $VbiCaptureTime;
 
+# command line options for capturing from device
+my $opt_duration = 0;
+my $opt_device = "/dev/vbi0";
+my $opt_dvbpid = undef;
+my $opt_verbose = 0;
+my $opt_debug = 0;
+
+# command line options for grabbing
 my $opt_infile;
 my $opt_outfile;
 my $opt_mergefile;
 my $opt_chname;
 my $opt_chid;
 my $opt_dump = 0;
-my $opt_debug = 0;
 my $opt_verify = 0;
 my $opt_tv_start = 0x301;
 my $opt_tv_end = 0x399;
@@ -56,9 +63,24 @@ my $opt_expire = 120;
 # Command line argument parsing
 #
 sub ParseArgv {
-   my $usage = "Usage: $0 [-page <NNN>-<MMM>] [-chn_name <name>] [-chn_id <ID>] [-outfile <name>] {<file>|-}\n".
-               "Other options: -help -version -expire <minutes> -merge <file>\n".
-               "Debug options: -debug -dump -dumpraw <page_range> -verify\n";
+   my $usage = "Usage: $0 [OPTIONS] [<file>]\n".
+               "  -device <path>\t: VBI device used for input (when no file given)\n".
+               "  -dvbpid <PID>\t\t: Use DVB stream with given PID\n".
+               "  -page <NNN>-<MMM>\t: Page range for TV schedules\n".
+               "  -chn_name <name>\t: display name for XMLTV \"<channel>\" tag\n".
+               "  -chn_id <name>\t: channel ID for XMLTV \"<channel>\" tag\n".
+               "  -outfile <path>\t: Redirect XMLTV or dump output into the given file\n".
+               "  -merge <path>\t\t: Merge output with programmes from file\n".
+               "  -expire <N>\t\t: Omit programmes which ended X minutes ago\n".
+               "  -dumpvbi\t\t: Dump captured VBI data; no grabbing\n".
+               "  -dump\t\t\t: Dump teletext pages as clear text; no grabbing\n".
+               "  -dumpraw <NNN>-<MMM>\t: Dump teletext packets in given range; no grabbing\n".
+               "  -verify\t\t: Load previously dumped \"raw\" teletext packets\n".
+               "  -verbose\t\t: Print teletext page numbers during capturing\n".
+               "  -debug\t\t: Emit debug messages during grabbing and device open\n".
+               "  -version\t\t: Print version number only, then exit\n".
+               "  -help\t\t\t: Print this text, then exit\n".
+               "  file or \"-\"\t\t: Read VBI input from file instead of device\n";
 
    while ($_ = shift @ARGV) {
       # -chn_name: display name in XMLTV <channel> tag
@@ -122,9 +144,37 @@ sub ParseArgv {
             die "-dumpraw: invalid parameter: \"$_\", expecting two 3-digit ttx page numbers\n";
          }
 
+      # -dump: write all teletext and VPS packets to file
+      } elsif (/^-dumpvbi$/) {
+         $opt_dump = 3;
+
       # -verify: read pre-processed teletext from file (for verification only)
       } elsif (/^-verify$/) {
          $opt_verify = 1;
+
+      # -duration <seconds|"auto">: stop capturing from VBI device after the given time
+      } elsif (/^-duration$/) {
+         die "$0: missing argument for $_\n$usage" unless $#ARGV>=0;
+         $opt_duration = shift @ARGV;
+         die "$0: $_ requires a numeric argument\n" unless $opt_duration =~ m#^[0-9]+$#;
+         die "$0: Invalid -duration value: $opt_duration\n" unless $opt_duration > 0;
+
+      # -dev <device>: specify VBI device
+      } elsif (/^-dev(ice)?$/) {
+         die "$0: missing argument for $_\n$usage" unless $#ARGV>=0;
+         $opt_device = shift @ARGV;
+         die "$0: -dev $opt_device: doesn't exist\n" unless -e $opt_device;
+         die "$0: -dev $opt_device: not a character device\n" unless -c $opt_device;
+
+      # -dvbpid <number>: capture from DVB device from a stream with the given PID
+      } elsif (/^-dvbpid$/) {
+         die "$0: missing argument for $_\n$usage" unless $#ARGV>=0;
+         $opt_dvbpid = shift @ARGV;
+         die "$_ requires a numeric argument\n" if $opt_dvbpid !~ m#^[0-9]+$#;
+
+      # -verbose: print page numbers during capturing, progress info during grabbing
+      } elsif (/^-verbose$/) {
+         $opt_verbose = 1;
 
       } elsif (/^-version$/) {
          print STDERR "$version\n$copyright" .
@@ -144,48 +194,49 @@ sub ParseArgv {
          last;
 
       } elsif (/^-/) {
-         die "$_: unknown argument\n";
+         die "$_: unknown argument \"$_\"\n$usage";
 
       } else {
          $opt_infile = $_;
-         last;
+         die "$0: no more than one input file expected.\n" .
+             "Error after '$opt_infile'\n$usage" unless $#ARGV <= 0;
       }
    }
-
-   die $usage unless defined($opt_infile) && $#ARGV<0;
 }
 
 =head1 NAME
 
-tv_grab_ttx - grab TV listings from teletext through a TV card
+tv_grab_ttx - Grab TV listings from teletext through a TV card
 
 =head1 SYNOPSIS
 
-tv_grab_ttx -page I<range> [options] file
+tv_grab_ttx [options] [file]
 
 =head1 DESCRIPTION
 
 This EPG grabber allows to extract TV programme listings in XMLTV
 format from teletext pages as broadcast by most European TV networks.
-The grabber works by collecting teletext pages through a TV card, then
-locating pages holding programme schedule tables and scraping
+The grabber works by collecting teletext pages through a TV card,
+locating pages holding programme schedule tables and then scraping
 starting times, titles and attributes from those. Additionally,
 the grabber follows references to further teletext pages in the
 overviews to extract description texts. The grabber needs to be
 started separately for each TV channel from which EPG data shall be
 collected.
 
-As input, the grabber expects a stream of pre-processed VBI packets
-as generated by B<tv_grab_ttx_cap> (included in the same package
-as B<tv_grab_ttx>.)  In normal operation you'll just connect the
-two programs through a pipe and specify parameter I<file> as C<->.
+Teletext data is captured directly from I</dev/vbi0> or the device
+given by the I<-dev> command line parameter, unless an input I<file>
+is named on the command line. In case of the latter, the grabber expects
+a stream of pre-processed VBI packets as generated when using
+option I<-dumpvbi>.  Use file name C<-> to read from standard input
+(i.e. from a pipe.)
 
 The XMLTV output is written to standard out unless redirected to a
-file by use of the I<-outfile> option. There are also debug options
-which allow to write the original (i.e. unparsed) teletext input pages
-in different formats. See L<"OPTIONS"> for details.
+file by use of the I<-outfile> option. There are also "dump" options
+which allow to write each VBI packet or assembled teletext input
+pages in raw or clear text format. See L<"OPTIONS"> for details.
 
-The output generated by this grabber is compatible to all EPG
+The EPG output generated by this grabber is compatible to all
 applications which can process XML files which adhere to XMLTV
 DTD version 0.5. See L<http://xmltv.org/> for a list of applications
 and a copy of the DTD specification. In particular, the output can
@@ -199,9 +250,8 @@ be imported into L<nxtvepg(1)> and merged with I<Nextview EPG>.
 
 This limits the range of the teletext page numbers which are extracted
 from the input stream. At the same time this defines the range of pages
-which are scanned for programme schedule tables.
-
-This option is mandatory.
+which are scanned for programme schedule tables. The default page range
+is 300 to 399.
 
 =item B<-outfile> path
 
@@ -245,6 +295,29 @@ is used. By default the expire time is 120 minutes.
 This option is particularily intended for use together with
 the I<-merge> option.
 
+=item B<-dumpvbi>
+
+This option can be used to omit almost all processing after
+digitization ("slicing") of VBI data and write incoming teletext and
+VPS packets to the output. The output can later be read by the grabber
+as input file.
+
+In the output, each data record consists of 46 bytes of which the first
+two contain the magazine and page number (0x000..0x7FF), the next three
+the header control bits including sub-page number, the next byte the
+packet number (0 for page header, 1..29 for teletext packets, 30 for
+PDC/NI packets, 32 for VPS) and finally the last 40 bytes the payload
+data (only 16-bit CNI value in case of VPS/PDC/NI) Note the byte-order
+of 16-bit values is platform-dependent.
+
+=item B<-dump>
+
+This option can be used to omit grabbing and instead print all
+teletext pages received in the input stream as text
+in Latin-1 encoding. Note control characters and characters which
+cannot be represented in Latin-1 are replaced with spaces. This
+option is intended for debugging purposes only.
+
 =item B<-dumpraw> NNN-MMM
 
 This option can be used to disable grabbing and instead write all
@@ -263,20 +336,41 @@ As the name indicates, this mode is used in regression testing to
 compare the grabber output for pre-defined input page sequences with
 stored output files.
 
-=item B<-dump>
+=item B<-dev> I<path>
 
-This option can be used to disable grabbing and instead dump all
-teletext pages received in the input stream in a free text format
-in Latin-1 encoding. Note control characters and characters which
-cannot be represented in Latin-1 are replaced with spaces. This
-option is intended for debugging purposes only.
+This option can be used to specify the VBI device from which teletext
+is captured. By default F</dev/vbi0> is used.
+
+=item B<-dvbpid> I<PID>
+
+This option enables data acquisition from a DVB device and specifies
+the PID which is the identifier of the data stream which contains
+teletext data. The PID must be determined by external means. Likewise
+to analog sources, the TV channel also must be tuned with an external
+application.
+
+=item B<-duration> I<seconds>
+
+This option can be used to limit capturing from the VBI device to the
+given number of seconds. EPG grabbing will start afterwards.
+If this option is not present, capturing stops automatically after a
+sufficient number of pages have been read.  
+This option has no effect when reading VBI data from a file.
+
+=item B<-verbose>
+
+This option can be used to enable output of the number of each
+teletext page when capturing from a VBI device. This allows monitoring
+the capture progress.
 
 =item B<-debug>
 
 This option can be used to enable output of debugging information
-to standard output. This option is intended for developers only.
-Note since the output will be mixed with XMLTV the output is not
-a usable XMLTV file.
+to standard output. You can use this to get additional diagnostic
+messages in case of trouble with the capture device. (Note most of
+these messages originate directly from the "ZVBI" library I<libzvbi>.)
+Additionally this option enables messages during parsing teletext
+pages; these are probably only helpful for developers.
 
 =item B<-version>
 
@@ -378,12 +472,37 @@ The data collected in all the above steps is then formatted in XMLTV,
 optionally merged with an input XMLTV file, and printed to the output
 file.
 
+=head1 FILES
+
+=over 4
+
+=item B</dev/vbi0>, B</dev/v4l/vbi0>
+
+Device files from which teletext data is being read during acquisition
+when using an analog TV card on Linux.  Different paths can be selected
+with the B<-dev> command line option.  Depending on your Linux version,
+the device files may be located directly beneath C</dev> or inside
+C</dev/v4l>. Other operating systems may use different names.
+
+=item B</dev/dvb/adapter0/demux0>
+
+Device files from which teletext data is being read during acquisition
+when using a DVB device, i.e. when the B<-dvbpid> option is present.
+Different paths can be selected with the B<-dev> command line option.
+(If you have multiple DVB cards, increment the device index after
+I<adapter> to get the second card etc.)
+
+=back
+
 =head1 SEE ALSO
 
-L<tv_grab_ttx_cap(1)>,
 L<xmltv(5)>,
 L<tv_cat(1)>,
 L<nxtvepg(1)>,
+L<v4lctl(1)>,
+L<zvbid(1)>,
+L<alevt(1)>,
+L<Video::ZVBI(3pm)>,
 L<perl(1)>
 
 =head1 AUTHOR
@@ -405,9 +524,176 @@ There is B<no warranty>, to the extent permitted by law.
 =cut
 
 # ------------------------------------------------------------------------------
-# Read VBI data from a file
-# - the data has already been pre-processed by cap.pl
-# - each record has a small header plus 40 bytes payload (see unpack below)
+# Decoding of teletext packets (esp. hamming decoding)
+# - for page header (packet 0) the page number is derived
+# - for teletext packets (packet 1..25) the payload data is just copied
+# - for PDC and NI (packet 30) the CNI is derived
+# - returns a list with 5 elements: page/16, ctrl/16, ctrl/8, pkg/8, data/40*8
+# 
+sub FeedTtxPkg {
+   my ($last_pg, $data) = @_;
+   my @ret_buf;
+
+   my $mpag = Video::ZVBI::unham16p($data);
+   my $mag = $mpag & 7;
+   my $y = ($mpag & 0xf8) >> 3;
+
+   if ($y == 0) {
+      # teletext page header (packet #0)
+      my $page = ($mag << 8) | Video::ZVBI::unham16p($data, 2);
+      my $ctrl = (Video::ZVBI::unham16p($data, 4)) |
+                 (Video::ZVBI::unham16p($data, 6) << 8) |
+                 (Video::ZVBI::unham16p($data, 8) << 16);
+      # drop filler packets
+      if (($page & 0xFF) != 0xFF) {
+         Video::ZVBI::unpar_str($data);
+         #$sub = $ctrl & 0xffff;
+         # format: pageno, ctrl bis, ctrl bits, pkgno
+         @ret_buf = ($page, ($ctrl & 0xFFFF), ($ctrl >> 16), $y, substr($data, 2, 40));
+         if ($opt_dump == 3) {
+            syswrite(STDOUT, pack("SSCCa40", @ret_buf));
+         }
+         my $spg = ($page << 16) | ($ctrl & 0x3f7f);
+         if ($spg != $$last_pg) {
+            print STDERR sprintf("%03X.%04X\n", $page, $ctrl & 0x3f7f) if $opt_verbose;
+            $$last_pg = $spg;
+         }
+      }
+
+   } elsif ($y<=25) {
+      # regular teletext packet (lines 1-25)
+      Video::ZVBI::unpar_str($data);
+      @ret_buf = (($mag << 8), 0, 0, $y, substr($data, 2, 40));
+      if ($opt_dump == 3) {
+         syswrite(STDOUT, pack("SSCCa40", @ret_buf));
+      }
+   } elsif ($y == 30) {
+      my $dc = (Video::ZVBI::unham16p($data, 2) & 0x0F) >> 1;
+      if ($dc == 0) {
+         # packet 8/30/1
+         my $cni = Video::ZVBI::rev16p($data, 2+7);
+         if (($cni != 0) && ($cni != 0xffff)) {
+            @ret_buf = (($mag << 8), 0, 0, $y, $cni);
+            if ($opt_dump == 3) {
+               syswrite(STDOUT, pack("SSCCSx18x20", @ret_buf));
+            }
+         }
+      } elsif ($dc == 1) {
+         # packet 8/30/2
+         my $c0 = Video::ZVBI::rev8(Video::ZVBI::unham16p($data, 2+9+0));
+         my $c6 = Video::ZVBI::rev8(Video::ZVBI::unham16p($data, 2+9+6));
+         my $c8 = Video::ZVBI::rev8(Video::ZVBI::unham16p($data, 2+9+8));
+
+         my $cni = (($c0 & 0xf0) << 8) |
+                   (($c0 & 0x0c) << 4) |
+                   (($c6 & 0x30) << 6) |
+                   (($c6 & 0x0c) << 6) |
+                   (($c6 & 0x03) << 4) |
+                   (($c8 & 0xf0) >> 4);
+         $cni &= 0x0FFF if (($cni & 0xF000) == 0xF000);
+         if (($cni != 0) && ($cni != 0xffff)) {
+            @ret_buf = (($mag << 8), 0, 0, $y, $cni);
+            if ($opt_dump == 3) {
+               syswrite(STDOUT, pack("SSCCSx18x20", @ret_buf));
+            }
+         }
+      }
+   }
+   return @ret_buf;
+}
+
+# ------------------------------------------------------------------------------
+# Decoding of VPS packets
+# - returns a list of 5 elements (see TTX decoder), but data contains only 16-bit CNI
+#
+sub FeedVps {
+   my @ret_buf;
+   #my $cni = Video::ZVBI::decode_vps_cni($_[0]); # only since libzvbi 0.2.22
+
+   my $cd_02 = ord(substr($_[0],  2, 1));
+   my $cd_08 = ord(substr($_[0],  8, 1));
+   my $cd_10 = ord(substr($_[0], 10, 1));
+   my $cd_11 = ord(substr($_[0], 11, 1));
+
+   my $cni = (($cd_10 & 0x3) << 10) | (($cd_11 & 0xc0) << 2) |
+             ($cd_08 & 0xc0) | ($cd_11 & 0x3f);
+
+   if ($cni == 0xDC3) {
+      # special case: "ARD/ZDF Gemeinsames Vormittagsprogramm"
+      $cni = ($cd_02 & 0x20) ? 0xDC1 : 0xDC2;
+   }
+   if (($cni != 0) && ($cni != 0xfff)) {
+      @ret_buf = (0, 0, 0, 32, $cni);
+      if ($opt_dump == 3) {
+         syswrite(STDOUT, pack("SSCCSx18x20", @ret_buf));
+      }
+   }
+   return @ret_buf;
+}
+
+# ------------------------------------------------------------------------------
+# Open the VBI device for capturing, using the ZVBI library
+# - require is done here (and not via "use") to avoid dependency
+#
+sub DeviceOpen {
+   require Video::ZVBI;
+
+   my $srv = &Video::ZVBI::VBI_SLICED_VPS |
+             &Video::ZVBI::VBI_SLICED_TELETEXT_B |
+             &Video::ZVBI::VBI_SLICED_TELETEXT_B_525;
+   my $err;
+   my $cap;
+
+   if (defined($opt_dvbpid)) {
+      $cap = Video::ZVBI::capture::dvb_new($opt_device, 0, $srv, 0, $err, $opt_debug);
+      $cap->dvb_filter($opt_dvbpid) 
+   } else {
+      $cap = Video::ZVBI::capture::v4l2_new($opt_device, 6, $srv, 0, $err, $opt_debug);
+   }
+
+   die "$0: failed to open capture device $opt_device: $err\n" unless $cap;
+   return $cap;
+}
+
+# ------------------------------------------------------------------------------
+# Read one frame's worth of teletext and VPS packets
+# - blocks until the device delivers the next packet
+# - returns a flat list; 5 elements in list for each teletext packet
+#
+sub DeviceRead {
+   my ($cap, $last_pg) = @_;
+   my @ret_buf = ();
+
+   my $rin = "";
+   vec($rin, $cap->fd(), 1) = 1;
+   select($rin, undef, undef, undef);
+
+   my $buf;
+   my $lcount;
+   my $ts;
+   my $ret = $cap->pull_sliced($buf, $lcount, $ts, 0);
+   if (($ret > 0) && ($lcount > 0)) {
+      for (my $idx = 0; $idx < $lcount; $idx++) {
+         my @tmpl = Video::ZVBI::get_sliced_line($buf, $idx);
+         if ($tmpl[1] & (&Video::ZVBI::VBI_SLICED_TELETEXT_B |
+                         &Video::ZVBI::VBI_SLICED_TELETEXT_B_525)) {
+            push @ret_buf, FeedTtxPkg($last_pg, $tmpl[0]);
+
+         } elsif ($tmpl[1] & &Video::ZVBI::VBI_SLICED_VPS) {
+            push @ret_buf, FeedVps($tmpl[0]);
+         }
+      }
+
+   } elsif ($ret < 0) {
+      die "$0: capture device error: $opt_device: $!\n";
+   }
+
+   return @ret_buf;
+}
+
+# ------------------------------------------------------------------------------
+# Read VBI data from a device or file
+# - when reading from a file, each record has a small header plus 40 bytes payload
 # - TODO: use MIP to find TV overview pages
 #
 sub ReadVbi {
@@ -415,32 +701,62 @@ sub ReadVbi {
    my @CurSub = (0,0,0,0,0,0,0,0,0);
    my @CurPkg = (0,0,0,0,0,0,0,0,0);
    my $cur_mag = 0;
-   my $buf;
    my $intv;
-   my $line_off;
-   my $rstat;
+   my $last_pg = -1;
+   my $cap;
+   my @CapPkgs;
    my $mag_serial = 0;
    my ($mag, $page, $sub, $ctl1, $ctl2, $pkg, $data);
 
-   if ($opt_infile eq "") {
-      open(TTX, "<&0") || die "Failed to dup STDIN: $!\n";
-      $VbiCaptureTime = time;
+   if (defined $opt_infile) {
+      # read VBI input data from a stream or file
+      if ($opt_infile eq "") {
+         open(TTX, "<&0") || die "Failed to dup STDIN: $!\n";
+         $VbiCaptureTime = time;
+      } else {
+         open(TTX, "<$opt_infile") || die "Failed to open $opt_infile: $!\n";
+         $VbiCaptureTime = (stat($opt_infile))[9];
+      }
+      binmode(TTX);
    } else {
-      open(TTX, "<$opt_infile") || die "Failed to open $opt_infile: $!\n";
-      $VbiCaptureTime = (stat($opt_infile))[9];
+      # capture input data from a VBI device
+      $VbiCaptureTime = time;
+      $cap = DeviceOpen();
+      @CapPkgs = ();
+      if (defined($opt_outfile)) {
+         close STDOUT;
+         open(STDOUT, ">$opt_outfile") || die "Failed to create $opt_outfile: $!\n";
+      }
    }
-   binmode(TTX);
 
    $intv = 0;
+   FRAMELOOP:
    while (1) {
-      $line_off = 0;
-      while (($rstat = sysread(TTX, $buf, 46 - $line_off, $line_off)) > 0) {
-         $line_off += $rstat;
-         last if $line_off >= 46;
+      if (defined $opt_infile) {
+         my $line_off = 0;
+         my $rstat;
+         my $buf;
+         while (($rstat = sysread(TTX, $buf, 46 - $line_off, $line_off)) > 0) {
+            $line_off += $rstat;
+            last if $line_off >= 46;
+         }
+         last FRAMELOOP if $rstat <= 0;
+         ($page, $ctl1, $ctl2, $pkg, $data) = unpack("SSCCa40", $buf);
+         if (($pkg == 30) || ($pkg == 32)) {
+            # extract CNI value
+            $data = (unpack("Sx18a20", $data))[0];
+         }
+      } else {
+         while ($#CapPkgs < 0) {
+            if (($opt_duration > 0) && ((time - $VbiCaptureTime) > $opt_duration)) {
+               # capture duration limit reached -> terminate loop
+               last FRAMELOOP;
+            }
+            push @CapPkgs, DeviceRead($cap, \$last_pg);
+         }
+         ($page, $ctl1, $ctl2, $pkg, $data) = splice(@CapPkgs, 0, 5, ());
       }
-      last if $rstat <= 0;
 
-      ($page, $ctl1, $ctl2, $pkg, $data) = unpack("SSCCa40", $buf);
       $page += 0x800 if $page < 0x100;
       $mag = ($page >> 8) & 7;
       $sub = $ctl1 & 0x3f7f;
@@ -483,18 +799,20 @@ sub ReadVbi {
             $PgSub{$page} = $sub if $sub >= $PgSub{$page};
          }
 
-         # check if every page was received twice in average
+         # check if every page (NOT sub-page) was received N times in average
          # (only do the check every 50th page to save CPU)
-         $intv += 1;
-         if ($intv >= 50) {
-            my $page_cnt = 0;
-            my $page_rep = 0;
-            foreach (keys %PgCnt) {
-               $page_cnt += 1;
-               $page_rep += $PgCnt{$_};
+         if ($opt_duration == 0) {
+            $intv += 1;
+            if ($intv >= 50) {
+               my $page_cnt = 0;
+               my $page_rep = 0;
+               foreach (keys %PgCnt) {
+                  $page_cnt += 1;
+                  $page_rep += $PgCnt{$_};
+               }
+               last FRAMELOOP if ($page_cnt > 0) && (($page_rep / $page_cnt) >= 10);
+               $intv = 0;
             }
-            last if ($page_cnt > 0) && (($page_rep / $page_cnt) >= 10);
-            $intv = 0;
          }
 
          $CurPage[$mag] = $page;
@@ -516,11 +834,12 @@ sub ReadVbi {
             }
          }
       } elsif (($pkg == 30) || ($pkg == 32)) {
-         my ($cni, $foo) = unpack("Sx18a20", $data);
-         $PkgCni{$cni} += 1;
+         $PkgCni{$data} += 1;
       }
    }
-   close(TTX);
+   if (defined $opt_infile) {
+      close(TTX);
+   }
 }
 
 # Erase the page with the given number from memory
@@ -3411,6 +3730,9 @@ if ($opt_dump == 1) {
 
 } elsif ($opt_dump == 2) {
    DumpRawTeletext();
+
+} elsif ($opt_dump == 3) {
+   # dump already done while capturing
 
 # parse and export programme data
 } else {

@@ -1,11 +1,13 @@
 #!/usr/bin/perl -w
 #
-# Test for reformatting cast tables on description pages.
-# - including irregularities: no dots between some table columns or
-#   first column flows into second column
-# - second table beneath in different format: columns separated by ":"
+# Test for reformatting cast tables on description pages, especially:
+# - no dots between some table columns (314, 319)
+# - first column flows into second column (313)
+# - error: missing space before dots (319)
 #
-# $Id: desctable1.in,v 1.1 2008/10/03 11:59:02 tom Exp $
+# Second table beneath in different format: columns separated by ":"
+#
+# $Id: desctable1.in,v 1.1 2008/10/03 11:59:02 tom Exp tom $
 #
 $VbiCaptureTime = 1223032188;
 $PkgCni{0xDC2} = 2374;

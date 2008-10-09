@@ -19,10 +19,12 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: capall.pl,v 1.1 2008/03/08 17:11:08 tom Exp tom $
+#  $Id: capall.pl,v 1.2 2008/10/05 19:13:18 tom Exp tom $
 #
 
-@Nets = (
+use strict;
+
+my @Nets = (
    ["arte", "arte"],
    ["KiKa", "kika"],
    ["3sat", "3sat"],
@@ -53,23 +55,32 @@
    ["9live", "9live"],
 );
 
-$device = "/dev/vbi0";
-$duration = 90;
+my $device = "/dev/vbi0";
+my $duration = 90;
 
-for ($idx = 0; $idx < $#Nets; $idx++) {
+for (my $idx = 0; $idx < $#Nets; $idx++) {
+   # get parameters from the list above
    my ($chan, $fname, $pages) = @{$Nets[$idx]};
    $pages = "300-399" if !defined $pages;
    print "Capturing $chan\n";
+   # tune the channel
    system "v4lctl -c $device setstation \"$chan\"";
-   $start = time;
-   system "./cap.pl -dev $device -duration $duration > raw.ttx.tmp";
-   if (time - $start >= $duration-10) {
-      system "mv raw.ttx.tmp raw/$fname.ttx";
-      system "./ttxacq.pl -dumpraw $pages raw/$fname.ttx > test/$fname.in";
-      system "./ttxacq.pl -verify test/$fname.in > test/$fname.xml";
-      #system "./ttxacq.pl -page $pages raw/$fname.ttx > test/$fname.xml";
+   # build the grabber command line
+   # - capture into temporary file
+   # - merge output with previous XML file of same name, if one exists
+   my $out_file = "ttx-$fname.xml";
+   my $cmd  = "./tv_grab_ttx.pl -dev $device -duration $duration";
+   $cmd .= " -merge $out_file" if -e $out_file && !-z $out_file;
+   $cmd .= " > ${out_file}.tmp && mv ${out_file}.tmp ${out_file}";
+   system $cmd;
+   my $stat = $?;
+   unlink "${out_file}.tmp";
+   # check grabber result status: if interrupted (CTRL-C), stop this script also
+   if ($stat & 127) {
+      print "Interrupted with signal ".($stat&127)." - exiting\n";
+      exit 1;
    }
 }
 
-system "./merge.pl test/*.xml > tv.xml";
+system "./merge.pl ttx-*.xml > tv.xml";
 

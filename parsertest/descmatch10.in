@@ -1,0 +1,313 @@
+#!/usr/bin/perl -w
+#
+# Test #2 of match on description page (351, ref'ed by 304) with wrong dates,
+# i.e. date of the previous day.  Note the same date offset is present in the
+# overview pages.
+#
+# Also note page 303 is a duplicate with the same programmes, just different
+# ads.
+#
+# $Id$
+#
+$VbiCaptureTime = 1222090547;
+$PkgCni{0xD8F} = 90;
+$PgCnt{0x301} = 3;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x03RTL II   \x07Mo 22 Sep\x0315:35:44",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00DIREKTKONTAKT  ",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00ZU SINGLES 650 ",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x01",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0105:10\x00Still Standing.............337 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0105:50\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0106:45\x00Infomercial                    ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0109:00\x00Frauentausch...............312 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0111:00\x00Zuhause im Gl}ck               ",
+  "\x07\x1D\x01     \x00Unser Einzug in ein            ",
+  "\x07\x1D\x01     \x00neues Zuhause..............317 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D                                      ",
+  "\x04\x1D\x07Dein pers|nliches Horoskop......700  ",
+  "\x01\x1D\x07\x0D   Ab in den Urlaub!.........600    ",
+  "                                        ",
+];
+$PgCnt{0x302} = 3;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x03RTL II   \x07Mo 22 Sep\x0315:35:44",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Individuelle  \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Hellseher..700\x18",
+  "\x01\x1D\x07            \x00HEUTE                  \x00",
+  "\x07\x1D\x04      POKITO TV                      ",
+  "\x07\x1D\x0113:00\x00Magi-Nation................373 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0113:25\x00Pokemon....................373 ",
+  "\x07\x1D\x0113:50\x00Pokemon....................373 ",
+  "\x07\x1D\x0114:15\x00Pokemon....................373 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x01                               ",
+  "\x07\x1D\x0114:45\x00Storm Hawks................373 ",
+  "\x07\x1D\x0115:10\x00Dinosaur King..............373 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x01                               ",
+  "\x07\x1D\x0115:30\x00My Pokito..................373 ",
+  "\x07\x1D\x0115:40\x00Naruto.....................373 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0116:10\x00Tom und Jerry..............372 ",
+  "\x07\x1D                                      ",
+  "\x03\x1D\x01 Die FLIRT-LINE im TELETEXT.....665  ",
+  "\x01\x1D\x07\x0DSOFORTKONTAKT ZU SINGLEFRAUEN >650  ",
+  "                                        ",
+];
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "^\x15\x02\x15\x15\x15IG303\x03RTL II   \x07Mo 22 Sep\x0315:35:10",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00G}nstiger     \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Urlaub >>> 600\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0116:30\x00Full House.................332 ",
+  "\x07\x1D\x0117:00\x00Still Standing.............337 ",
+  "\x07\x1D\x0118:00\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0119:00\x00H|r' mal, wer da h{mmert!..336 ",
+  "\x07\x1D\x0120:00\x00RTL II News................110 ",
+  "\x07\x1D\x01     \x00                               ",
+  " \x1D\x06\x1D\x01 Entdecke ferne L{nder >>> 600  \x07\x1D ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Die Kochprofis                 ",
+  "\x07\x1D\x01     \x00Einsatz am Herd............316 ",
+  "\x07\x1D\x0121:15\x00Frauentausch                   ",
+  "\x07\x1D\x01     \x00Das Aschenputtel-Experiment313 ",
+  "\x07\x1D\x0123:15\x00Cheaters                       ",
+  "\x07\x1D\x01     \x00Beim Fremdgehen erwischt!..319 ",
+  "\x07\x1D                                      ",
+  "\x01\x1D\x07  814 < Single-Flirt-Party > 898     ",
+  "\x04\x1D\x03\x0D   Singles aus Deiner N{he...801    ",
+  "\x01\x1D\x07                                     ",
+];
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0002<<12)} =
+[
+  "^\x15I\x15\x15\x15IG303\x03RTL II   \x07Mo 22 Sep\x0315:35:44",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Esoterik      \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00LIVE !  >> 700\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0116:30\x00Full House.................332 ",
+  "\x07\x1D\x0117:00\x00Still Standing.............337 ",
+  "\x07\x1D\x0118:00\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x0119:00\x00H|r' mal, wer da h{mmert!..336 ",
+  "\x07\x1D\x0120:00\x00RTL II News................110 ",
+  "\x07\x1D\x01     \x00                               ",
+  " \x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Die Kochprofis                 ",
+  "\x07\x1D\x01     \x00Einsatz am Herd............316 ",
+  "\x07\x1D\x0121:15\x00Frauentausch                   ",
+  "\x07\x1D\x01     \x00Das Aschenputtel-Experiment313 ",
+  "\x07\x1D\x0123:15\x00Cheaters                       ",
+  "\x07\x1D\x01     \x00Beim Fremdgehen erwischt!..319 ",
+  "\x07\x1D                                      ",
+  "\x03\x1D\x00   814 < Single-Flirt-Party > 898    ",
+  "\x01\x1D\x03\x0D     Premiere testen! >>> 309       ",
+  "                                        ",
+];
+$PgCnt{0x304} = 3;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x03RTL II   \x07Mo 22 Sep\x0315:35:44",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Tolle Flirts!  ",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00812,820,835,838",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0100:10\x00RTL II News................110 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0100:25\x00Akte Mord                      ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0101:25\x00Autopsie                       ",
+  "\x07\x1D\x01     \x00Mysteri|se Todesf{lle......338 ",
+  "\x07\x1D\x01     \x00                               ",
+  " \x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0102:30\x00Blood & Wine                   ",
+  "\x07\x1D\x01     \x00Ein t|dlicher Cocktail.....351 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0104:15\x00Killer Instinct                ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x1C\x07Esoterische Lebensberatung >>> 700\x1D ",
+  "\x04\x1D\x03\x0D814 < ]30 Single-Flirtparty > 894   ",
+  "\x01\x1D\x07                                     ",
+];
+$PgCnt{0x305} = 3;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "s\x15\x15\x15\x15\x15\x15G305\x03RTL II   \x07Mo 22 Sep\x0315:35:44",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Esoterik      \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00LIVE!......700\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00MORGEN                  ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0105:10\x00Still Standing.............337 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0105:50\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0106:45\x00Infomercial                    ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0109:00\x00Frauentausch...............312 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0111:00\x00Zuhause im Gl}ck               ",
+  "\x07\x1D\x01     \x00Unser Einzug in                ",
+  "\x07\x1D\x01     \x00ein neues Leben............317 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D                                      ",
+  "\x01\x1D\x07                                     ",
+  "\x05\x1D\x03\x0D   Dates schon ab 0 cent... 801     ",
+  "\x01\x1D\x07                                     ",
+];
+$PgCnt{0x351} = 9;
+$PgSub{0x351} = 4;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0001<<12)} =
+[
+  "\x02s\x02\x15\x15\x158G351\x03RTL II   \x07Mo 22 Sep\x0315:35:47",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHAT & DATING \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00    730       \x18",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x001/4\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Blood & Wine: Ein t|dlicher Cocktail ",
+  "\x07\x1D\x00Krimi, GB 1996\x01                      ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Mit Hilfe seiner Geliebten Gabriella ",
+  "\x07\x1D\x00und des englischen Safeknackers Vic- ",
+  "\x07\x1D\x00tor Spansky raubt Weinh{ndler Alex   ",
+  "\x07\x1D\x00Gates ein millionenschweres Diamant- ",
+  "\x07\x1D\x00kollier.                             ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Aber auch seine verbitterte Frau Su- ",
+  "\x07\x1D\x00zanne und sein erwachsener Stiefsohn ",
+  "\x07\x1D\x00Jason sind pl|tzlich hinter dem      ",
+  "\x07\x1D\x00Schmuckst}ck her. Es beginnt eine    ",
+  "\x07\x1D\x00m|rderische Hatz...                  ",
+  "\x07\x1D\x00                                     ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Montag, 22.09.08; 02.30 Uhr \x01\x1D\x07\x07    ",
+  "\x01\x1D\x07\x0D                                    ",
+  "                                        ",
+];
+$PgCnt{0x351} = 9;
+$PgSub{0x351} = 4;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0002<<12)} =
+[
+  "\x02sI\x15\x15\x15\x15G351\x03RTL II   \x07Mo 22 Sep\x0315:35:12",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHAT & DATING \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00 >>> 850 <<<  \x18",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x002/4\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Blood & Wine: Ein t|dlicher Cocktail ",
+  "\x07\x1D\x00Krimi, GB 1996\x01                      ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Regie......... Bob Rafelson          ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Alex Gate..... Jack Nicholson        ",
+  "\x07\x1D\x00Jason Gates... Stephen Dorff         ",
+  "\x07\x1D\x00Gabriella..... Jennifer Lopez        ",
+  "\x07\x1D\x00Suzanne Gates. Judy Davis            ",
+  "\x07\x1D\x00Victor Spansky Michael Caine         ",
+  "\x07\x1D\x00Henry......... Harrold Perrineau Jr. ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Die skurrilen Charaktere und ihre    ",
+  "\x07\x1D\x00spritzigen Dialoge kommen in der     ",
+  "\x07\x1D\x00Star-Besetzung voll zur Entfaltung.  ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Montag, 22.09.08; 02.30 Uhr \x01\x1D\x07\x07    ",
+  "\x01\x1D\x07\x0D                                    ",
+  "                                        ",
+];
+$PgCnt{0x351} = 9;
+$PgSub{0x351} = 4;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0003<<12)} =
+[
+  "\x02s^\x15\x15\x158G351\x03RTL II   \x07Mo 22 Sep\x0315:35:17",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Flirt & Dating\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00.....800......\x18",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x003/4\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Ein Direktor r{umt auf               ",
+  "\x07\x1D\x00Turbulente Kom|die, USA 1998\x01        ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Damit er sein letztes Jahr auf der   ",
+  "\x07\x1D\x00High School ohne Verweis }bersteht,  ",
+  "\x07\x1D\x00stellen die Eltern eines notorischen ",
+  "\x07\x1D\x00Spa~vogels einen }ppigen Scheck aus. ",
+  "\x07\x1D\x00Doch der Chaot hat bereits seinen    ",
+  "\x07\x1D\x00ersten Streich in die Wege geleitet: ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Er plant, dass der ungeliebte Direk- ",
+  "\x07\x1D\x00tor eine rote Farbdusche nimmt. Ge-  ",
+  "\x07\x1D\x00meinsam mit dem Mitsch}ler will er   ",
+  "\x07\x1D\x00ins Computersystem der Schule ein-   ",
+  "\x07\x1D\x00drigen, um den Eintrag zu l|schen... ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Samstag, 27.09.08; 12.35 Uhr \x01\x1D\x07\x07   ",
+  "\x01\x1D\x07\x0D                                    ",
+  "                                        ",
+];
+$PgCnt{0x351} = 9;
+$PgSub{0x351} = 4;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0004<<12)} =
+[
+  "\x02sd\x15\x15\x15\x15G351\x03RTL II   \x07Mo 22 Sep\x0315:35:46",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Esoterik      \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00LIVE!......700\x18",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x004/4\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Ein Direktor r{umt auf               ",
+  "\x07\x1D\x00Turbulente Kom|die, USA 1998\x01        ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Regie.............. Robert King      ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Franklin Fitz...... Kevin Nealon     ",
+  "\x07\x1D\x00John Scaduto....... Zachery Ty Bryan ",
+  "\x07\x1D\x00Peter Heath........ Rashaan Nall     ",
+  "\x07\x1D\x00Celia Shine........ Jessica Steen    ",
+  "\x07\x1D\x00Frank Hockenberry.. Kurt Fuller      ",
+  "\x07\x1D\x00Miss Fassle........ Ellie Harvie     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Bekannt wurde Zachery Ty Bryan durch ",
+  "\x07\x1D\x00die RTL II-Erfolgs-Sitcom \"H|r' mal, ",
+  "\x07\x1D\x00wer da h{mmert\".                     ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Samstag, 27.09.08; 12.35 Uhr \x01\x1D\x07\x07   ",
+  "\x01\x1D\x07\x0D                                    ",
+  "                                        ",
+];

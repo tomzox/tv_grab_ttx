@@ -1,0 +1,158 @@
+#!/usr/bin/perl -w
+#
+# Test #1 of match on description pages with wrong dates, i.e. date of the
+# previous day.  Note the same date offset is present in the overview pages.
+#
+# $Id$
+#
+$VbiCaptureTime = 1149946245;
+$PgCnt{0x302} = 2;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x06ARDtext\x07Sa 10.06.06\x0715:30:32",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 10.06.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  11.15  ARD-Buffet ............... 315",
+  "\x07         mit Evelin K|nig              ",
+  "\x07\x06 12.00  Tagesschau                    ",
+  "\x07  12.15  FIFA WM 2006 live:            ",
+  "\x07         DFB-Pressekonferenz           ",
+  "\x07\x06 13.00  ARD-Mittagsmagazin ....... 312",
+  "\x07\x06        mit WM-Tour                   ",
+  "\x07  14.00  Tagesschau                    ",
+  "\x03!\x0614.03  FIFA WM 2006 live:\x03UT\x06.... 316",
+  "\x07\x06        Aktuelle Berichte             ",
+  "\x03! 15.00  FIFA WM 2006 live: UT .... 317",
+  "\x07\x03        England - Paraguay            ",
+  "\x07\x03        Vorrunde Gruppe B             ",
+  "\x07 \x0617.05  Tagesschau                    ",
+  "\x03!\x0717.08  FIFA WM 2006 live\x03UT\x051500     ",
+  "\x07   \x05VPS\x07 bis 18.00 Uhr                 ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Abend >\x06303",
+];
+$PgCnt{0x303} = 2;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x06ARDtext\x07Sa 10.06.06\x0715:30:33",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 10.06.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x03!\x0618.00  FIFA WM 2006 live:\x03UT\x06.... 318",
+  "\x07        \x06Trinidad&Tobago - Schweden    ",
+  "\x07        \x06Vorrunde Gruppe B             ",
+  "\x07  20.00  Tagesschau\x03UT\x07............ 310",
+  "\x07 \x0620.15  Ziehung der Lottozahlen .. 581",
+  "\x03!\x0720.22  FIFA WM 2006 live:\x03UT\x07.... 324",
+  "\x07         Aktuelle Berichte             ",
+  "\x03!\x0621.00  FIFA WM 2006 live:\x03UT\x06.... 326",
+  "\x07        \x06Argentinien - Elfenbeink}ste  ",
+  "\x07        \x06Vorrunde Gruppe C             ",
+  "\x07  21.50  Tagesthemen .............. 311",
+  "\x03!\x0621.57  FIFA WM 2006 live:\x03UT         ",
+  "\x07  \x052100\x07\x06Argentinien - Elfenbeink}ste  ",
+  "\x03!\x0723.30  FIFA WM 2006 live: ....... 327",
+  "\x07         Waldis WM-Club                ",
+  "\x07   \x05VPS\x07 bis 00.00 Uhr                 ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Nacht >\x06304",
+];
+$PgCnt{0x304} = 2;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x06ARDtext\x07Sa 10.06.06\x0715:30:33",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 10.06.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x05110606                                 ",
+  "\x07 \x0600.00  Tagesschau                    ",
+  "\x07  00.08  Das Wetter im Ersten          ",
+  "\x07 \x0600.10  Das Wort zum Sonntag\x03UT       ",
+  "\x07  00.15  Payoff - Die Abrechnung .. 328",
+  "\x07         Spielfilm, F 2003             ",
+  "\x07 \x0602.00  Tagesschau                    ",
+  "\x07  02.05  Ein dreckiger Haufen ..... 330",
+  "\x07         Spielfilm, GB 1969            ",
+  "\x07 \x0604.00  Steckbrief 7-73 .......... 332",
+  "\x07        \x06Spielfilm, USA 1951           ",
+  "\x07  05.15  Tagesschau                    ",
+  "\x07 \x0605.20  Die sch|nsten Bahnstrecken    ",
+  "\x07        \x06Deutschlands                  ",
+  "\x07        \x06Eifelbahn: Trier - K|ln       ",
+  "\x07        \x06bis 05.30 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                    Sonntag >\x06305",
+];
+$PgCnt{0x328} = 2;
+$PgSub{0x328} = 0;
+$PgLang{0x328} = 1;
+$Pkg{0x328|(0x0000<<12)} =
+[
+  "PI\x15\x15\x15\x15\x15G328\x06ARDtext\x07Sa 10.06.06\x0715:30:34",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 10.06.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0700.15 - 02.00 Uhr                      ",
+  "\x06Payoff - Die Abrechnung                ",
+  "\x06Spielfilm, F 2003                      ",
+  "\x07                                       ",
+  "\x07Max Tavares ist ein korrupter Polizist.",
+  "\x07Er sieht bei kleinen Betr}gereien auch ",
+  "\x07mal weg, wenn die Kasse stimmt. Als ihm",
+  "\x07der unbestechliche Carlos Gomez zuge-  ",
+  "\x07teilt wird, ist Tavares genervt. Auf   ",
+  "\x07der Suche nach der verschwundenen      ",
+  "\x07Strip-T{nzerin Paulina, Tochter eines  ",
+  "\x07ermordeten Mafia-Buchhalters, }ber-    ",
+  "\x07schlagen sich dann die Ereignisse.     ",
+  "\x07                                       ",
+  "\x07Mediterran-beschwingte, actiongeladene ",
+  "\x07Gangsterkom|die, die US-Genrevorbilder ",
+  "\x07parodiert und sich weder um politische ",
+  "\x07Korrektheit, noch um Tabus schert.     ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Darsteller >\x06329",
+];
+$PgCnt{0x330} = 2;
+$PgSub{0x330} = 0;
+$PgLang{0x330} = 1;
+$Pkg{0x330|(0x0000<<12)} =
+[
+  "\x15^\x15\x15\x15\x15\x15G330\x06ARDtext\x07Sa 10.06.06\x0715:30:34",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 10.06.06\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0702.05 - 04.00 Uhr                      ",
+  "\x06Ein dreckiger Haufen                   ",
+  "\x06Spielfilm, GB 1969                     ",
+  "\x07                                       ",
+  "\x07Nordafrika, 1942. W{hrend des Afrika-  ",
+  "\x07feldzugs soll eine britische Spezial-  ",
+  "\x07einheit hinter den deutschen Linien    ",
+  "\x07Rommels wichtigstes Treibstofflager    ",
+  "\x07zerst|ren. Captain Douglas }bernimmt   ",
+  "\x07das Kommando. Die sieben M{nner, die   ",
+  "\x07ihn begleiten, sind verwegene S|ldner- ",
+  "\x07naturen. Doch schon bald erweist sich  ",
+  "\x07das abenteuerliche Unternehmen als Him-",
+  "\x07melfahrtskommando.                     ",
+  "\x07                                       ",
+  "\x07Spannender Actionfilm mit Michael Caine",
+  "\x07und Nigel Davenport. Das Drehbuch      ",
+  "\x07schrieben Melvyn Bragg und Lotte Colin.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Darsteller >\x06331",
+];
