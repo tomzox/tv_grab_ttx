@@ -12,7 +12,7 @@
 
 <programme start="20060509181500 +0000" stop="20060509194000 +0000" pdc-start="20060509201500 +0200" channel="3sat">
 	<title>Wer Kollegen hat, braucht</title>
-	<sub-title>Wer Kollegen hat, braucht keine Feinde Fernsehfilm, D 1995 </sub-title>
+	<sub-title>Wer Kollegen hat, braucht keine Feinde Fernsehfilm, D 1995</sub-title>
 	<desc>(teletext 324)</desc>
 	<video>
 		<aspect>16:9</aspect>
@@ -25,7 +25,7 @@
 
 <programme start="20060509194000 +0000" stop="20060509200000 +0000" pdc-start="20060509214000 +0200" channel="3sat">
 	<title>Living a Beautiful Life</title>
-	<sub-title>Living a Beautiful Life (Kurzfilmtage Oberhausen) </sub-title>
+	<sub-title>Living a Beautiful Life (Kurzfilmtage Oberhausen)</sub-title>
 	<desc>(teletext 325)</desc>
 	<audio>
 		<stereo>stereo</stereo>
@@ -88,7 +88,7 @@ In den dokumentarischen Porträts dreier in Los Angeles lebender Stars des schwul
 
 <programme start="20060509214000 +0000" pdc-start="20060509222500 +0200" channel="3sat">
 	<title>Das Leben einer</title>
-	<sub-title>Das Leben einer Schildkröte im Nahen Osten </sub-title>
+	<sub-title>Das Leben einer Schildkröte im Nahen Osten</sub-title>
 	<desc>(teletext 332)</desc>
 	<subtitles type="onscreen"/>
 </programme>

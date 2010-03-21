@@ -19,7 +19,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.23 2009/05/03 16:25:39 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.24 2010/03/21 18:50:41 tom Exp $
 #
 
 use POSIX;
@@ -66,6 +66,7 @@ sub ParseArgv {
    my $usage = "Usage: $0 [OPTIONS] [<file>]\n".
                "  -device <path>\t: VBI device used for input (when no file given)\n".
                "  -dvbpid <PID>\t\t: Use DVB stream with given PID\n".
+               "  -duration <secs>\t\t: Capture duration in seconds\n".
                "  -page <NNN>-<MMM>\t: Page range for TV schedules\n".
                "  -chn_name <name>\t: display name for XMLTV \"<channel>\" tag\n".
                "  -chn_id <name>\t: channel ID for XMLTV \"<channel>\" tag\n".
@@ -1469,8 +1470,8 @@ sub ParseFooter {
       }
       # check for a teletext reference
       # TODO internationalize
-      if ( m#^ *(seite |page |\<+ *)?[1-8][0-9][0-9][^\d]#i ||
-           m#[^d][1-8][0-9][0-9]([\.\!\?\:\,]|\>+)? *$# ) {
+      if ( m#^ *(seite |page |\<+ *)?[1-8][0-9][0-9]([^\d]|$)#i ||
+           m#[^\d][1-8][0-9][0-9]([\.\!\?\:\,]|\>+)? *$# ) {
            #|| (($sub != 0) && m#(^ *<|> *$)#) ) {
       } else {
          last;
@@ -1499,7 +1500,7 @@ sub ParseFooterByColor {
    # - ignore missing lines (although they would display black (except for
    #   double-height) but we don't know if they're intentionally missing)
    $handle = $page | ($sub << 12);
-   for ($line = 4; $line <= 22; $line++) {
+   for ($line = 4; $line <= 23; $line++) {
       if (defined($Pkg{$handle}->[$line])) {
          # get first non-blank char; skip non-color control chars
          if ($Pkg{$handle}->[$line] =~ m#^[ \x00-\x1F]*([\x00-\x07\x10-\x17])\x1D#) {
@@ -1652,7 +1653,7 @@ sub ParseOvList {
             if (substr($text, $time_off, $vps_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) {
                $hour = $1;
                $min = $2;
-               # VPS time has already been extractied above
+               # VPS time has already been extracted above
                if (substr($text, $vps_off, $title_off - $vps_off) =~ m#^ +$#) {
                   $new_title = 1;
                   $title = substr($_, $title_off);
@@ -1697,7 +1698,7 @@ sub ParseOvList {
          if ($title =~ m#(.*\(\d+( *[\&\-] *\d+)?\))\/ *(\S.*)#) {
             $title = $1;
             $slot->{subtitle} = $3;
-            $slot->{subtitle} =~ s# +$# #;
+            $slot->{subtitle} =~ s# +$##;
          }
          $slot->{title} = $title;
          $in_title = 1;
@@ -1730,20 +1731,22 @@ sub ParseOvList {
          }
          if ($new_title == 0) {
             $_ = ParseTrailingFeat($_, $slot);
-            # combine words separated by line end with "-"
-            if ( !defined($slot->{subtitle}) &&
-                 ($slot->{title} =~ m#\S\-$#) && m#^[[:lower:]]#) {
-               $slot->{title} =~ s#\-$##;
-               $slot->{title} .= $_;
-            } else {
-               if ( defined($slot->{subtitle}) &&
-                    ($slot->{subtitle} =~ m#\S\-$#) && m#^[[:lower:]]#) {
-                  $slot->{subtitle} =~ s#\-$##;
-                  $slot->{subtitle} .= $_;
-               } elsif (defined($slot->{subtitle})) {
-                  $slot->{subtitle} .= " " . $_;
+            if (length($_) > 0) {
+               # combine words separated by line end with "-"
+               if ( !defined($slot->{subtitle}) &&
+                    ($slot->{title} =~ m#\S\-$#) && m#^[[:lower:]]#) {
+                  $slot->{title} =~ s#\-$##;
+                  $slot->{title} .= $_;
                } else {
-                  $slot->{subtitle} = $_;
+                  if ( defined($slot->{subtitle}) &&
+                       ($slot->{subtitle} =~ m#\S\-$#) && m#^[[:lower:]]#) {
+                     $slot->{subtitle} =~ s#\-$##;
+                     $slot->{subtitle} .= $_;
+                  } elsif (defined($slot->{subtitle})) {
+                     $slot->{subtitle} .= " " . $_;
+                  } else {
+                     $slot->{subtitle} = $_;
+                  }
                }
             }
             if ($vps_data->{new_vps_date}) {
@@ -1888,7 +1891,7 @@ my %FeatToFlagMap =
 # note: must correct $n below if () are added to pattern
 my $FeatPat = "UT(( auf | )?[1-8][0-9][0-9])?|".
               "[Uu]ntertitel|[Hh]örfilm|HF|".
-              "s\/?w|S\/?W|tlw. s\/w|AD|oo|°°|°\*|OmU|16:9|".
+              "s\/?w|S\/?W|tlw. s\/w|AD|oo|°°|°\*|OmU|16:9|HD|".
               "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|".
               "DS|SS|DD|ZS|".
               "Wh\.?|Wdh\.?|Whg\.?|Tipp\!?";
@@ -2783,12 +2786,12 @@ sub ParseDescTitle {
    my ($page, $sub, $slot) = @_;
    my $title;
    my $line;
-   my ($l, $l1, $l2);
+   my ($l1, $l2);
 
    my $pgtext = $PageText{$page | ($sub << 12)};
 
    $title = $slot->{title};
-   $l1 = $pgtext->[0];
+   $l1 = $pgtext->[1];
    $l1 =~ s#(^ +| +$)##g;
    $l1 =~ s#  +##g;
 
@@ -2796,7 +2799,7 @@ sub ParseDescTitle {
       $l2 = $pgtext->[$line + 1];
       $l2 =~ s#(^ +| +$)##g;
       $l2 =~ s#  +# #g;
-      $l = $l1 ." ". $l2;
+      #my $l = $l1 ." ". $l2;
       #TODO: join lines if l1 ends with "-" ?
       #TODO: correct title/subtitle separation of overview
 

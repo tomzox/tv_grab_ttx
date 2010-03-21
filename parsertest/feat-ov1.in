@@ -2,7 +2,7 @@
 #
 # Test parsing various feature tags
 #
-# $Id: feat-ov1.in,v 1.3 2008/03/03 22:02:42 tom Exp $
+# $Id: feat-ov1.in,v 1.4 2010/03/21 18:53:54 tom Exp $
 $VbiCaptureTime = 1146299961;
 $PgCnt{0x303} = 5;
 $PgSub{0x303} = 0;
@@ -16,7 +16,7 @@ $Pkg{0x303|(0x0000<<12)} =
   "\x07  18.00  Tagesschau                    ",
   "\x07 \x0618.10  Sportschau (16:9)          323",
   "\x03!\x0718.45  Harald Schmidt (UT/oo) ... 324",
-  "\x07 \x0619.44  Das Wetter\03s/w mono           ",
+  "\x07 \x0619.44  Das Wetter\x03s/w mono           ",
   "\x07  19.50  Lotto           s/w,mono      ",
   "\x07 \x0620.00  Tagesschau\x03UT\x06............ 310",
   "\x03!\x0720.15  Im Tal des Schweigens..... 324",

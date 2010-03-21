@@ -7,7 +7,7 @@
 #
 # Second table beneath in different format: columns separated by ":"
 #
-# $Id: desctable1.in,v 1.1 2008/10/03 11:59:02 tom Exp tom $
+# $Id: desctable1.in,v 1.2 2010/03/21 18:56:56 tom Exp $
 #
 $VbiCaptureTime = 1223032188;
 $PkgCni{0xDC2} = 2374;

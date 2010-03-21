@@ -26,7 +26,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: verify.sh,v 1.3 2008/10/03 17:15:15 tom Exp $
+# $Id: verify.sh,v 1.4 2010/03/21 18:49:45 tom Exp $
 #
 
 DIR=parsertest
@@ -35,11 +35,15 @@ for v in $DIR/*.in ; do
    name=`echo $v | sed -e 's#\.in$##g'|sed -e "s#$DIR/##"`
    if [ -e $DIR/$name.out ] ; then
       ./tv_grab_ttx.pl -verify $v > out.verify
-      cmp -s $DIR/$name.out out.verify
       if [ $? == 0 ] ; then
-         echo "OK:   $v"
+         cmp -s $DIR/$name.out out.verify
+         if [ $? == 0 ] ; then
+            echo "OK:   $v"
+         else
+            echo "FAIL: $v"
+         fi
       else
-         echo "FAIL: $v"
+         echo "INCONC: $v (exit status $?)"
       fi
       rm -f out.verify
    else
