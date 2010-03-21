@@ -1,6 +1,6 @@
 /**
- * This script captures teletext from a VBI device, scrapes TV programme
- * schedules and descriptions from teletext pages and exports them in
+ * This program captures teletext from a VBI device, scrapes TV programme
+ * schedules and descriptions from captured pages and exports them in
  * XMLTV format (DTD version 0.5)
  *
  *   This program is free software: you can redistribute it and/or modify
@@ -1778,7 +1778,6 @@ const T_DATE_NAME RelDateNames[] =
 };
 
 // return a reg.exp. pattern which matches all names of a given language
-// FIXME was sorted - needed?
 string GetDateNameRegExp(const T_DATE_NAME * p_list, int lang, int abbrv)
 {
    string pat;
@@ -1794,7 +1793,7 @@ string GetDateNameRegExp(const T_DATE_NAME * p_list, int lang, int abbrv)
    return pat;
 }
 
-const T_DATE_NAME * MapDateName(const char * p_name, const T_DATE_NAME * p_list) //, int lang, int abbrv)
+const T_DATE_NAME * MapDateName(const char * p_name, const T_DATE_NAME * p_list)
 {
    for (const T_DATE_NAME * p = p_list; p->p_name != NULL; p++) {
       if (strcasecmp(p->p_name, p_name) == 0)
@@ -3409,7 +3408,7 @@ void XmlToLatin1(string& title)
 /* ------------------------------------------------------------------------------
  * Export programme data into XMLTV format
  */
-void ExportTitle(FILE * fp, const TV_SLOT& slot, string& ch_id)
+void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
 {
    if ((slot.m_title.length() > 0) &&
        (slot.m_mday != -1) &&
@@ -4545,6 +4544,41 @@ time_t ParseTimestamp(const char * ts)
    }
 }
 
+string GetXmltvTitle(const string& xml)
+{
+   smatch whats;
+   string title;
+
+   static const regex expr1("<title>(.*)</title>");
+   if (regex_search(xml, whats, expr1)) {
+      title = string(whats[1]);
+      XmlToLatin1(title);
+   }
+   return title;
+}
+
+time_t GetXmltvStopTime(const string& xml, time_t old_ts)
+{
+   smatch whats;
+   static const regex expr1("stop=\"([^\"]*)\"");
+
+   if (regex_search(xml, whats, expr1)) {
+      return ParseTimestamp(&*whats[1].first);
+   }
+   else {
+      return old_ts;
+   }
+}
+
+class TV_SLOT_cmp_start
+{
+public:
+  int operator() (const TV_SLOT * a, const TV_SLOT * b) const {
+     return a->m_start_t < b->m_start_t;
+  }
+};
+
+
 /* ------------------------------------------------------------------------------
  * Read an XMLTV input file
  * - note this is NOT a full XML parser (not by far)
@@ -4639,6 +4673,7 @@ void ImportXmltvFile(const char * fname,
             tag_data += buf;
             static const regex expr7("^\\s*</channel>\\s*$", regex::icase);
             if (regex_search(buf, what, expr7)) {
+               if (opt_debug) printf("XMLTV import channel '%s'\n", chn_id.c_str());
                MergeChn[chn_id] = tag_data;
                state = STATE_TV;
             }
@@ -4648,10 +4683,13 @@ void ImportXmltvFile(const char * fname,
             tag_data += buf;
             static const regex expr8("^\\s*</programme>\\s*$", regex::icase);
             if (regex_search(buf, what, expr8)) {
-               if ((start_t >= exp_thresh) && (chn_id.length() > 0)) {
+               if (   ((start_t >= exp_thresh) || opt_verify)
+                   && (chn_id.length() > 0)) {
                   char buf[20];
                   sprintf(buf, "%ld;", (long)start_t);
                   MergeProg[string(buf) + chn_id] = tag_data;
+                  if (opt_debug) printf("XMLTV import programme '%s' start:%ld %s\n",
+                                        GetXmltvTitle(tag_data).c_str(), (long)start_t, chn_id.c_str());
                   // remember that there's at least one programme for this channel
                   ChnProgDef[chn_id] = 1;
                }
@@ -4676,19 +4714,6 @@ void ImportXmltvFile(const char * fname,
    }
 }
 
-string GetXmltvTitle(const string& xml)
-{
-   smatch whats;
-   string title;
-
-   static const regex expr1("<title>(.*)</title>");
-   if (regex_search(xml, whats, expr1)) {
-      title = string(whats[1]);
-      XmlToLatin1(title);
-   }
-   return title;
-}
-
 /* ------------------------------------------------------------------------------
  * Merge description and other meta-data from old source, if missing in new source
  * - called before programmes in the old source are discarded
@@ -4708,16 +4733,14 @@ void MergeSlotDesc(TV_SLOT * p_slot, const string& old_xml,
          smatch whats;
 
          if (   (p_slot->m_desc.length() == 0)
-             || (p_slot->m_desc.length() == 0)
              || regex_search(p_slot->m_desc, whats, expr1) )
          {
             string old_desc;
-            smatch whats;
-
             static const regex expr2("<desc>(.*)</desc>");
+
             if (regex_search(old_xml, whats, expr2))
             {
-               string old_desc = string(whats[1]);
+               old_desc = string(whats[1]);
                XmlToLatin1(old_desc);
             }
 
@@ -4731,28 +4754,6 @@ void MergeSlotDesc(TV_SLOT * p_slot, const string& old_xml,
       }
    }
 }
-
-time_t GetXmltvStopTime(const string& xml, time_t old_ts)
-{
-   smatch whats;
-   static const regex expr1("stop=\"([^\"]*)\"");
-
-   if (regex_search(xml, whats, expr1)) {
-      return ParseTimestamp(&*whats[1].first);
-   }
-   else {
-      return old_ts;
-   }
-}
-
-class TV_SLOT_cmp_start
-{
-public:
-  int operator() (const TV_SLOT * a, const TV_SLOT * b) const {
-     return a->m_start_t > b->m_start_t;
-  }
-};
-
 
 /* ------------------------------------------------------------------------------
  * Merge old and new programmes
@@ -4848,7 +4849,7 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
  * Write grabbed data to XMLTV
  * - merge with old data, if available
  */
-void ExportXmltv(string ch_id, string ch_name,
+void ExportXmltv(const string& ch_id, string ch_name,
                  vector<TV_SLOT>& NewSlots,
                  map<string,string>& MergeProg,
                  map<string,string>& MergeChn)
@@ -4861,7 +4862,8 @@ void ExportXmltv(string ch_id, string ch_name,
          fprintf(stderr, "Failed to create %s: %s\n", opt_outfile, strerror(errno));
          exit(1);
       }
-   } else {
+   }
+   else {
       fp = stdout;
    }
 
@@ -4869,7 +4871,8 @@ void ExportXmltv(string ch_id, string ch_name,
                "<!DOCTYPE tv SYSTEM \"xmltv.dtd\">\n");
    if (opt_verify) {
       fprintf(fp, "<tv>\n");
-   } else {
+   }
+   else {
       fprintf(fp, "<tv generator-info-name=\"%s\" generator-info-url=\"%s\" "
                   "source-info-name=\"teletext\">\n",
                   version, home_url);
@@ -4888,22 +4891,24 @@ void ExportXmltv(string ch_id, string ch_name,
          fprintf(fp, "<channel id=\"%s\">\n"
                      "\t<display-name>%s</display-name>\n"
                      "</channel>\n", ch_id.c_str(), ch_name.c_str());
-      } else {
+      }
+      else {
          fprintf(fp, "%s", p->second.c_str());
       }
    }
 
    if (MergeChn.find(ch_id) != MergeChn.end()) {
       // extract respective channel's data from merge input
-      map<time_t,string> OldProgHash; // FIXME string* avoid copy
+      map<time_t,string> OldProgHash;
       for (map<string,string>::iterator p = MergeProg.begin(); p != MergeProg.end(); ) {
          long start_ts;
          int slen;
-         if (   (sscanf(p->first.c_str(), "%ld;%n", &start_ts, &slen)>= 1)
-             && (strcmp(ch_id.c_str(), p->first.c_str() + slen)) ) {
+         if (   (sscanf(p->first.c_str(), "%ld;%n", &start_ts, &slen) >= 1)
+             && (p->first.compare(slen, p->first.length() - slen, ch_id) == 0) ) {
             OldProgHash[start_ts] = p->second;
             MergeProg.erase(p++);
-         } else {
+         }
+         else {
             p++;
          }
       }
@@ -4919,10 +4924,8 @@ void ExportXmltv(string ch_id, string ch_name,
          OldSlotList.push_back(p->first);
 
       // combine both sources (i.e. merge them)
-      while (!NewSlotList.empty() || !OldSlotList.empty())
-      {
-         switch (MergeNextSlot(NewSlotList, OldSlotList, OldProgHash))
-         {
+      while (!NewSlotList.empty() || !OldSlotList.empty()) {
+         switch (MergeNextSlot(NewSlotList, OldSlotList, OldProgHash)) {
             case 1:
                assert(!NewSlotList.empty());
                ExportTitle(fp, *NewSlotList.front(), ch_id);
@@ -4938,8 +4941,7 @@ void ExportXmltv(string ch_id, string ch_name,
          }
       }
    }
-   else
-   {
+   else {
       // no merge required -> simply print all new
       for (uint idx = 0; idx < NewSlots.size(); idx++) {
          ExportTitle(fp, NewSlots[idx], ch_id);

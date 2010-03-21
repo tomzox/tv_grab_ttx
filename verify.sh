@@ -26,16 +26,22 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: verify.sh,v 1.4 2010/03/21 18:49:45 tom Exp $
+# $Id: verify.sh,v 1.5 2010/03/21 20:51:13 tom Exp $
 #
 
 DIR=parsertest
+EXE=./tv_grab_ttx.pl
 
 for v in $DIR/*.in ; do
    name=`echo $v | sed -e 's#\.in$##g'|sed -e "s#$DIR/##"`
    if [ -e $DIR/$name.out ] ; then
-      ./tv_grab_ttx.pl -verify $v > out.verify
+      $EXE -verify $v > out.verify
       if [ $? == 0 ] ; then
+         if [ -e $DIR/$name.in2 ] ; then
+            mv out.verify out.verify1
+            $EXE -merge out.verify1 -verify $DIR/$name.in2 > out.verify
+            rm -f out.verify1
+         fi
          cmp -s $DIR/$name.out out.verify
          if [ $? == 0 ] ; then
             echo "OK:   $v"

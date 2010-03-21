@@ -19,7 +19,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.24 2010/03/21 18:50:41 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.25 2010/03/21 20:50:05 tom Exp $
 #
 
 use POSIX;
@@ -3503,7 +3503,7 @@ sub ImportXmltvFile {
       } elsif ($state == 4) {
          $tag_data .= $_;
          if (/^\s*\<\/programme>\s*$/i) {
-            if (($start_t >= $exp_thresh) && defined($chn_id)) {
+            if ((($start_t >= $exp_thresh) || $opt_verify) && defined($chn_id)) {
                $$MergeProgRef{"$start_t;$chn_id"} = $tag_data;
                # remember that there's at least one programme for this channel
                $ChnProgDef{$chn_id} = 1;

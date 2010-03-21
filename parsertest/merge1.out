@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ard.de">
+	<display-name>ARD</display-name>
+</channel>
+
+<programme start="20100320175400 +0000" stop="20100320175500 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100320175500 +0000" stop="20100320185700 +0000" channel="ard.de">
+	<title>Sportschau</title>
+	<sub-title>Sportschau Fußball-Bundesliga</sub-title>
+	<!-- TTX 323 -->
+	<desc>Sportschau HD/UT Tipp! - Fußball-Bundesliga, 27.Spieltag SC Freiburg - Mainz 05 VfB Stuttgart - Hannover 96 1.FC Nürnberg - 1899 Hoffenheim Werder Bremen - VfL Bochum Eintr.Frankfurt - FC Bayern München Rückblick 1.FC Köln - Bor. M'gladbach - Historie: Frankfurt FCB 14.10.1972
+Moderation: Reinhold Beckmann
+Aktuelle Sportmeldungen &gt;&gt; ab 200 Internet: www.sportschau.de</desc>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100320185700 +0000" stop="20100320190000 +0000" channel="ard.de">
+	<title>Glücksspirale</title>
+	<desc>(teletext 587)</desc>
+</programme>
+
+<programme start="20100320190000 +0000" stop="20100320191500 +0000" channel="ard.de">
+	<title>Tagesschau UT</title>
+	<desc>(teletext 310)</desc>
+</programme>
+
+<programme start="20100320191500 +0000" stop="20100320214500 +0000" channel="ard.de">
+	<title>Das Frühlingsfest</title>
+	<sub-title>Das Frühlingsfest der Volksmusik mit Florian Silbereisen</sub-title>
+	<!-- TTX 324 -->
+	<desc>Das Frühlingsfest 16:9/UT der Volksmusik Tipp!
+Pünktlich zum kalendarischen Frühlingsanfang lädt Florian Silbereisen zum "Frühlingsfest". Die Show kommt heute aus der Erdgas Arena in Riesa an der Elbe. Mehr als 600 Quadratmeter Bühnenfläche lassen den Frühling erwachen.
+Gäste: Brunner &amp; Brunner, Michael Hirte und Pfarrer Franz Brei, Francine Jordi, Stefanie Hertel, Hansi Hinterseer, die Kastelruther Spatzen, die Volksmusikspatzen, Louis Traber, Quirin Weber, die Amigos, die Cappucinos, Karel Gott und DJ Ötzi, Mary Roos und viele mehr.</desc>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100320214500 +0000" stop="20100320215000 +0000" channel="ard.de">
+	<title>Ziehung der Lottozahlen</title>
+	<desc>(teletext 581)</desc>
+</programme>
+
+<programme start="20100320215000 +0000" stop="20100320220800 +0000" channel="ard.de">
+	<title>Tagesthemen</title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20100320220800 +0000" stop="20100320221000 +0000" channel="ard.de">
+	<title>Das Wetter im Ersten</title>
+</programme>
+
+<programme start="20100320221000 +0000" stop="20100320221500 +0000" channel="ard.de">
+	<title>Das Wort zum Sonntag</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100320221500 +0000" stop="20100321002500 +0000" channel="ard.de">
+	<title>Cimarron</title>
+	<sub-title>Cimarron Spielfilm, USA 1960</sub-title>
+	<!-- TTX 326 -->
+	<desc>Cimarron 16:9/UT Spielfilm, USA 1960
+22.April 1889: Punkt zwölf Uhr mittags werden weite Gebiete des Indianer-Territoriums Oklahoma zur Besiedlung freigegeben. Mit dabei sind Yancey Cravat und seine Frau Sabra. Anstatt eine Farm aufzubauen, wie er es vorhatte, führt der unstete Abenteurer dann jedoch eine Zeitung und tritt mutig für Recht, Wahrheit und Menschlichkeit ein.
+Nach einigen Jahren treibt ihn seine innere Unruhe weiter in die Welt hinaus und er verlässt Frau und Kinder ...</desc>
+	<subtitles type="teletext"/>
+</programme>
+</tv>

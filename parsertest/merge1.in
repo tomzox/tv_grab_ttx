@@ -1,0 +1,133 @@
+#!/usr/bin/perl -w
+#
+# Merge verification: Both TTX input files are the same datam but modified:
+# - removed description page 326-327 in input #1
+# - removed description page 324 in input #2
+# - removed programme "19.58-20:00" in input #2
+# - removed programme "23:08-23:10" in input #1
+#
+# $Id: merge1.in,v 1.1 2010/03/21 20:48:21 tom Exp $
+#
+$VbiCaptureTime = 1269111999;
+$PkgCni{0xDC1} = 4501;
+$PkgCni{0x4901} = 180;
+$PgCnt{0x303} = 6;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x07ARDtext\x07Sa 20.03.10\x0720:06:31",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07\x06 18.54  Tagesschau                    ",
+  "\x03!\x0718.55  Sportschau\x03HD/UT\x07......... 323",
+  "\x07         Fu~ball-Bundesliga            ",
+  "\x07 \x0619.57  Gl}cksspirale ............ 587",
+  "\x07 \x0619.58  Gl}cksspirale DUMMY....... 587",
+  "\x07\x03 20.00  Tagesschau UT ............ 310",
+  "\x03!\x0620.15  Das Fr}hlingsfest\x03UT\x06..... 324",
+  "\x07        \x06der Volksmusik                ",
+  "\x07        \x06mit Florian Silbereisen       ",
+  "\x07  22.45  Ziehung der Lottozahlen .. 581",
+  "\x07 \x0622.50  Tagesthemen .............. 311",
+  undef,
+  "\x07 \x0623.10  Das Wort zum Sonntag\x03UT       ",
+  "\x07  23.15  Cimarron\x03UT\x07.............. 326",
+  "\x07         Spielfilm, USA 1960           ",
+  "\x07         bis 01.25 Uhr                 ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Nacht >\x06304",
+];
+$PgCnt{0x323} = 6;
+$PgSub{0x323} = 0;
+$PgLang{0x323} = 1;
+$Pkg{0x323|(0x0000<<12)} =
+[
+  "^I\x15\x15\x15\x15\x15G323\x07ARDtext\x07Sa 20.03.10\x0720:06:32",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0718.30 - 18.54 Uhr                      ",
+  "\x0718.55 - 19.57 Uhr                      ",
+  "\x06Sportschau                    \x07\x03  HD/UT",
+  "\x07                               \x03  Tipp!",
+  "\x06- Fu~ball-Bundesliga, 27.Spieltag      ",
+  "\x07  SC Freiburg - Mainz 05               ",
+  "\x07  VfB Stuttgart - Hannover 96          ",
+  "\x07  1.FC N}rnberg - 1899 Hoffenheim      ",
+  "\x07  Werder Bremen - VfL Bochum           ",
+  "\x07  Eintr.Frankfurt - FC Bayern M}nchen  ",
+  "\x07  R}ckblick 1.FC K|ln - Bor. M'gladbach",
+  "\x06- Historie:\x07Frankfurt FCB 14.10.1972   ",
+  "\x07                                       ",
+  "\x06Moderation: Reinhold Beckmann          ",
+  "\x07                                       ",
+  "\x07Aktuelle Sportmeldungen >>\x06ab 200      ",
+  "\x06Internet: www.sportschau.de            ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<      Das Fr}hlingsfest ... >\x06324",
+];
+$PgCnt{0x324} = 6;
+$PgSub{0x324} = 0;
+$PgLang{0x324} = 1;
+$Pkg{0x324|(0x0000<<12)} =
+[
+  "dI\x15\x15\x15\x15\x15G324\x07ARDtext\x07Sa 20.03.10\x0720:06:32",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0720.15 - 22.45 Uhr                      ",
+  "\x06Das Fr}hlingsfest             \x07\x0316:9/UT",
+  "\x06der Volksmusik                \x07\x03  Tipp!",
+  "\x07                                       ",
+  "\x07P}nktlich zum kalendarischen Fr}hlings-",
+  "\x07anfang l{dt Florian Silbereisen zum    ",
+  "\x07\"Fr}hlingsfest\". Die Show kommt heute  ",
+  "\x07aus der Erdgas Arena in Riesa an der   ",
+  "\x07Elbe. Mehr als 600 Quadratmeter B}hnen-",
+  "\x07fl{che lassen den Fr}hling erwachen.   ",
+  "\x07                                       ",
+  "\x06G{ste:\x07Brunner & Brunner, Michael Hirte",
+  "\x07und Pfarrer Franz Brei, Francine Jordi,",
+  "\x07Stefanie Hertel, Hansi Hinterseer, die ",
+  "\x07Kastelruther Spatzen, die Volksmusik-  ",
+  "\x07spatzen, Louis Traber, Quirin Weber,   ",
+  "\x07die Amigos, die Cappucinos, Karel Gott ",
+  "\x07und DJ \\tzi, Mary Roos und viele mehr. ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                       mehr >\x06325",
+];
+$PgCnt{0x325} = 6;
+$PgSub{0x325} = 0;
+$PgLang{0x325} = 1;
+$Pkg{0x325|(0x0000<<12)} =
+[
+  "sI\x15\x15\x15\x15\x15G325\x07ARDtext\x07Sa 20.03.10\x0720:06:32",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0720.15 - 22.45 Uhr                      ",
+  "\x06Das Fr}hlingsfest             \x07\x0316:9/UT",
+  "\x06der Volksmusik                \x07\x03  Tipp!",
+  "\x07                                       ",
+  "\x07Seit sechs Jahren pr{sentiert Florian  ",
+  "\x07Silbereisen die Musikunterhaltungsshow.",
+  "\x07Als Moderator und Showmaster sorgt er  ",
+  "\x07auch selbst f}r Unterhaltung: Er singt,",
+  "\x07tanzt, spielt Sketche und die unter-   ",
+  "\x07schiedlichsten Instrumente. Er paro-   ",
+  "\x07diert, wagt spektakul{re Stunts und    ",
+  "\x07stellt Rekorde auf.                    ",
+  "\x07                                       ",
+  "\x07Millionen Zuschauer k|nnen in seinen   ",
+  "\x07Shows Stars in ungew|hnlichen Rollen   ",
+  "\x07sehen oder erleben, wie sie sich unge- ",
+  "\x07w|hnlichen Herausforderungen stellen.  ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                   Cimarron >\x06326",
+];
