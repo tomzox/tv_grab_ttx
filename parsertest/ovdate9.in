@@ -1,0 +1,194 @@
+#!/usr/bin/perl -w
+#
+# Yet another example with "today" for a page starting after midnight
+# Test if the last entry on page 304 gets a stop time, derived from
+# the first starting time on page 305 of the next day.
+#
+# Additionally this checks if the redundant sub-page 303.2 is dropped
+# and that the nasty ads in page footers are cut off.
+#
+# $Id: ovdate9.in,v 1.1 2010/03/22 16:05:53 tom Exp $
+#
+$VbiCaptureTime = 1269268658;
+$PkgCni{0xD8F} = 90;
+$PgCnt{0x302} = 3;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x03RTL II   \x07Mo 22 Mar\x0315:26:13",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Chat und Flirt\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00 >>> 666 <<<  \x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x01",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x01     \x04RTL II Kinderprogramm          ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0113:00\x00Dinosaur King..............379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0113:25\x00Pokemon....................379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0113:50\x00Pokemon....................379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0114:15\x00Pokemon....................379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0114:45\x00Digimon Data Squad.........379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0115:10\x00One Piece..................379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0115:40\x00One Piece..................379 ",
+  "\x07\x1D                                      ",
+  "\x03\x1D\x01      Fragen an das Universum! >698  ",
+  "\x01\x1D\x07\x0DAstro-Beratung & Karten legen > 600 ",
+  "                                        ",
+];
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "^\x15\x02\x15\x15\x15IG303\x03RTL II   \x07Mo 22 Mar\x0315:25:38",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Liebeskummer? \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Wir helfen 600\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0116:00\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x0117:00\x00Still Standing.............337 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0118:00\x00Der Tr|deltrupp............313 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0119:00\x00Big Brother Spezial........630 ",
+  "\x07\x1D\x04     \x04                               ",
+  " \x1D\x01\x1D\x07Fr}hbucher Rabatte sichern! >380\x07\x1D ",
+  "\x07\x1D\x04     \x04                               ",
+  "\x07\x1D\x0120:00\x00RTL II News................110 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Die M{dchen-Gang...........318 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0121:15\x00Big Brother                    ",
+  "\x07\x1D\x01     \x00Die Entscheidung...........630 ",
+  "\x07\x1D                                      ",
+  "\x03\x1D\x00814 < Dr.M}ller / Fetischdamen > 841 ",
+  "\x04\x1D\x07\x0DDSL+200EUR / Handy schufafrei..162  ",
+  "\x01\x1D\x07                                     ",
+];
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0002<<12)} =
+[
+  "^\x15I\x15\x15\x15IG303\x03RTL II   \x07Mo 22 Mar\x0315:26:13",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Experten deuten",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Zukunft! > 600 ",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0116:00\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x0117:00\x00Still Standing.............337 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0118:00\x00Der Tr|deltrupp............313 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0119:00\x00Big Brother Spezial........630 ",
+  "\x07\x1D\x04     \x04                               ",
+  " \x1D\x04\x1D\x07  Passen wir zusammen?  >698     \x1D ",
+  "\x07\x1D\x04     \x04                               ",
+  "\x07\x1D\x0120:00\x00RTL II News................110 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Die M{dchen-Gang...........318 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0121:15\x00Big Brother                    ",
+  "\x07\x1D\x01     \x00Die Entscheidung...........630 ",
+  "\x07\x1D                                      ",
+  "\x03\x1D\x00   814 < Single- Flirt-Party > 898   ",
+  "\x01\x1D\x07\x0D Sexy Handyvideos..............763  ",
+  "                                        ",
+];
+$PgCnt{0x304} = 3;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x03RTL II   \x07Mo 22 Mar\x0315:26:13",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Heisse Frauen! ",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00735,739,807-813",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0123:15\x00Fun Club: Comedystars live.390 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0100:20\x00RTL II-Late News...........110 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0100:25\x00Grip - Das Motormagazin....362 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x04     \x04                               ",
+  " \x1D \x01\x1D\x07]ber 5.000 Singles warten! >666 \x1D ",
+  "\x07\x1D\x04     \x04                               ",
+  "\x07\x1D\x0101:15\x00[rger im Revier                ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0102:05\x00Dog - Der Kopfgeldj{ger....317 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0102:50\x00Jungfernfahrt in den Tod...348 ",
+  "\x07\x1D\x0104:15\x00MythBusters                    ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x1C\x07Esoterische Lebensberatung >>> 600\x1D ",
+  "\x01\x1D\x03\x0DNette Singles kennenlernen.....666 \x07",
+  "\x01\x1D\x07                                     ",
+];
+$PgCnt{0x305} = 3;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "s\x15\x15\x15\x15\x15\x15G305\x03RTL II   \x07Mo 22 Mar\x0315:26:13",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHATS, DATES &\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00FLIRTS!....666\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00MORGEN                  ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0105:20\x00Immer wieder Jim               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0106:00\x00Still Standing                 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0107:00\x00Infomercial                    ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0109:00\x00Frauentausch...............311 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0111:00\x00Big Brother Spezial........660 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0112:00\x00Der Tr|deltrupp............313 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x1C\x07Chat & Flirt im Teletext.......666\x1D ",
+  "\x05\x1D\x03\x0DHEISSE EROTIK, KOMM & LAUSCHE > 800 ",
+  "\x01\x1D\x07                                     ",
+];
+$PgCnt{0x306} = 3;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "8\x15\x15\x15\x15\x15\x15G306\x03RTL II   \x07Mo 22 Mar\x0315:26:13",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHATS, DATES &\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00FLIRTS!....666\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00MORGEN                  ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x01     \x04RTL II Kinderprogramm          ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0113:00\x00Dinosaur King..............379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0113:25\x00Pokemon....................379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0113:50\x00Pokemon....................379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0114:15\x00Pokemon....................379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0114:45\x00Digimon Data Squad.........379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0115:10\x00One Piece..................379 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0115:40\x00One Piece..................379 ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x1CRund um die Uhr flirten ab S. 666  \x07\x1D",
+  "\x04\x1D\x03\x0D  Die besten Kartenleger!   > 600   ",
+  "\x01\x1D\x07                                     ",
+];
+1;

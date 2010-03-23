@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# Test footer detection in description pages with double-height
+# text in footer. Make sure footers are not appended.
+#
+# $Id: footer5.in,v 1.1 2010/03/22 14:35:33 tom Exp $
+#
+$VbiCaptureTime = 1269266550;
+$PgCnt{0x301} = 1;
+$PgSub{0x301} = 2;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0002<<12)} =
+[
+  "\x02\x15I\x15\x15\x15IG301\x07 ProSieben\x0722.03.10\x0715:01:13",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07heute           1/1 ",
+  "\x11.//\%             ######################",
+  "\x0606:00 Malcolm mittendrin           >344",
+  " 06:28 Scrubs - Die Anf{nger            ",
+  "       Meine Bef|rderung            >345",
+  "\x0606:55 Scrubs - Die Anf{nger            ",
+  "\x06      Meine Schmach                >345",
+  " 07:21 Alle hassen Chris                ",
+  "       Chris hasst Krach mit Mom    >343",
+  "\x0607:49 Alle hassen Chris                ",
+  "\x06      Chris hasst das M{dchen von      ",
+  "\x06      nebenan                      >343",
+  " 08:15 How I Met Your Mother            ",
+  "       Die Kette des Anbr}llens     >346",
+  "\x0608:45 How I Met Your Mother            ",
+  "\x06      Jugendliebe                  >346",
+  " 09:13 Malcolm mittendrin               ",
+  "       Das Experiment               >344",
+  "\x0609:38 Malcolm mittendrin               ",
+  "\x06      Victors zweite Familie       >344",
+  "\x06                                       ",
+  "\x05\x1D\x07Private Krankenversicherung..... 279 ",
+];
+$PgCnt{0x302} = 1;
+$PgSub{0x302} = 2;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0002<<12)} =
+[
+  "I\x15I\x15\x15\x15IG302\x07 ProSieben\x0722.03.10\x0715:01:13",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07heute           1/1 ",
+  "\x11.//\%             ######################",
+  "\x0610:07 Scrubs - Die Anf{nger        >345",
+  " 10:33 Scrubs - Die Anf{nger        >345",
+  "\x0611:02 \"Drachenz{hmen leicht ge-        ",
+  "\x06      macht\" - Das gro~e ProSieben     ",
+  "\x06      TV-Special zum Film              ",
+  " 11:12 Shrek 2 - Der tollk}hne Held     ",
+  "       kehrt zur}ck                     ",
+  "\x0613:00 It's My Life                     ",
+  "\x06      Ich werde die beste Friseu-      ",
+  "\x06      rin der Welt                 >417",
+  "\x0113:59 We are Family! So lebt           ",
+  "\x01      Deutschland.                     ",
+  "\x01      Money Trap 8                 >414",
+  "\x0616:00 Die Jobretter                    ",
+  "\x06      W + S Moden                  >335",
+  " 16:59 taff                             ",
+  "       Thema u. a.: Projekt Para-       ",
+  "       dies                         >405",
+  "\x06                                       ",
+  "\x06\x1D\x04VERSAND-APOTHEKE: Gut + g}nstig! 275 ",
+];
+$PgCnt{0x335} = 1;
+$PgSub{0x335} = 2;
+$PgLang{0x335} = 1;
+$Pkg{0x335|(0x0002<<12)} =
+[
+  "s^I\x15\x15\x15IG335\x07 ProSieben\x0722.03.10\x0715:01:14",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07Serie           1/1 ",
+  "\x11.//\%             ######################",
+  "\x06Die Jobretter                          ",
+  " W + S Moden                            ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " Mo 22.03. 16:00-16:59                  ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06                                       ",
+  " Viele Experten - eine Mission! Nicole  ",
+  " Br}ckner, Bernd Stumm, die Drillinge   ",
+  " Thomas, Christian, Michael, Genevieve  ",
+  " Rousseau, Andreas Wendt, und und und   ",
+  " ...: Das sind \"Die Jobretter\". Sie wol-",
+  " len Unternehmen vor der gro~en Pleite  ",
+  " retten und den Inhabern mit Rat und Tat",
+  " zur Seite stehen.                      ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "\x03\x1D\x04\x0DStrom wechseln - Geld sparen!!! 294 ",
+  "                                        ",
+];
+1;

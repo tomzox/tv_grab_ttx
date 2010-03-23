@@ -1,0 +1,189 @@
+#!/usr/bin/perl -w
+#
+# Test of feature flag "°°": redefined from "stereo" to "2-channel" 2010
+#
+# $Id: ovlist9.in,v 1.1 2010/03/22 20:07:40 tom Exp $
+#
+$VbiCaptureTime = 1269273322;
+$PkgCni{0xDE1} = 90;
+$PgCnt{0x301} = 4;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x02SWR Text\x03Mon.22.M{r\x0716:55:05",
+  "\x01\x1D                                      ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04MONTAG, 22. M[RZ    \x05\x181D133\x18220310\x182F",
+  "\x0706.00\x05\x180600\x07\x07Jacob 2/2                 ",
+  "\x0606.20\x05\x180620\x06\x06Jacob 2/2                 ",
+  "\x0706.45\x05\x180645\x07\x07Tracey McBean             ",
+  "\x0606.55\x05\x180655\x06\x06Minitz.................792",
+  "\x0707.00\x05\x180700\x07\x07nano (Wh)..............376",
+  "\x0607.30\x05\x180730\x06\x06Reports in English\x03``\x06.390",
+  "\x0707.45\x05\x050730\x07\x07Reports in English\x03``\x07.390",
+  "\x0608.00\x05\x180800\x06\x06Fahr mal hin (Wh)         ",
+  "\x06           \x06\x06...Fr}hling im Elsass     ",
+  "\x0708.30\x05\x180830\x07\x07LS unterwegs (Wh):Dt.-t}r-",
+  "\x07           \x07\x07kische Partner beim Lernen",
+  "\x0609.00\x05\x180900\x06\x06ARD-Buffet (ARD-Wh)       ",
+  "\x0709.45\x05\x180945\x07\x07Brisant (ARD-Wh)\x03UT 150   ",
+  "\x0610.15\x05\x181015\x06\x06In aller Freundschaft\x03UT  ",
+  "\x06           \x06\x06Rhapsodie in moll         ",
+  "\x0711.00\x05\x181100\x07\x07Sturm der Liebe (ARD-Wh)  ",
+  "\x0611.50\x05\x181150\x06\x06Elefant, Tiger & Co.      ",
+  "\x06     \x05\x05VPS \x06\x06(bis\x0612.40\x06Uhr)           ",
+  "\x07\x1D\x04                       weiter auf\x01302",
+];
+$PgCnt{0x302} = 4;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x02SWR Text\x03Mon.22.M{r\x0716:55:05",
+  "\x01\x1D                                      ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04MONTAG, 22. M[RZ    \x05\x181D133\x18220310\x18A6",
+  "\x07                                       ",
+  "\x0712.40\x05\x181240\x07\x07Rote Rosen                ",
+  "\x07           \x07\x07Fernsehserie (ARD-Wh)     ",
+  "\x0613.30\x05\x181330\x06\x06K|nigswalzer (Wh)         ",
+  "\x06           \x06\x06Spielfilm D 1955.......305",
+  "\x0715.00\x05\x181500\x07\x07Planet Wissen             ",
+  "\x06           \x07\x07Wunderstoff Glas.......396",
+  "\x0616.00\x05\x181600\x06\x06Baden-W}rttemberg         ",
+  "\x07           \x06\x06aktuell                   ",
+  "\x0716.05\x05\x181605\x07\x07Kaffee oder Tee?.......361",
+  "\x07                                       ",
+  "\x0617.00\x05\x181700\x06\x06Baden-W}rttemberg         ",
+  "\x07           \x06\x06aktuell                   ",
+  "\x0717.05\x05\x051605\x07\x07Kaffee oder Tee?.......361",
+  "\x07                                       ",
+  "\x0618.00\x05\x181800\x06\x06Baden-W}rttemberg aktuell ",
+  "\x07                                       ",
+  "\x07     \x05\x05VPS \x06\x06(bis\x0618.09\x06Uhr)           ",
+  "\x07\x1D\x04                       weiter auf\x01303",
+];
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x02SWR Text\x03Mon.22.M{r\x0716:55:05",
+  "\x01\x1D                                      ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04MONTAG, 22. M[RZ    \x05\x181D133\x18220310\x1843",
+  "\x0718.09\x05\x181809\x07\x07Wirtschaftsinformationen  ",
+  "\x07           \x07\x07von der Stuttgarter B|rse ",
+  "\x0618.12\x05\x181812\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x0718.15\x05\x181815\x07\x07Nahaufnahme: Die SWR4 -   ",
+  "\x07           \x07\x07Superwunschmelodie.....306",
+  "\x0618.45\x05\x181845\x06\x06Landesschau BW.........310",
+  "\x0719.45\x05\x181945\x07\x07Baden-W}rttemberg         ",
+  "\x06           \x07\x07aktuell................311",
+  "\x0619.58\x05\x181958\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x0720.00\x05\x182000\x07\x07Tagesschau\x03(UT 150)       ",
+  "\x0620.15\x05\x182015\x06\x06Mord in bester Gesell-    ",
+  "\x06           \x06\x06schaft/Spielf. '09\x03UT\x06.314",
+  "\x0721.45\x05\x182145\x07\x07Baden-W}rttemberg         ",
+  "\x07           \x07\x07aktuell................311",
+  "\x0621.58\x05\x182158\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x0722.00\x05\x182200\x07\x07Sag die Wahrheit-Ratespiel",
+  "\x06           \x07\x07mit Spa~ und Schwindel.355",
+  "\x07     \x05\x05VPS \x07\x07(bis\x0722.30\x07Uhr)           ",
+  "\x07\x1D\x04                       weiter auf\x01304",
+];
+$PgCnt{0x304} = 4;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x02SWR Text\x03Mon.22.M{r\x0716:55:05",
+  "\x01\x1D                                      ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04MONTAG, 22. M[RZ    \x05\x181D133\x18220310\x18C4",
+  "\x0722.30\x05\x052229\x07\x07Alarm hinter der Theke    ",
+  "\x0623.00\x05\x052230\x06\x062+Leif.................366",
+  "\x0723.30\x05\x052300\x07\x07Monogamie f}r Anf{nger    ",
+  "\x07           \x07\x07Spielf.D '07\x03H|rfilm``\x06315",
+  "\x05\x05230310\x06                               ",
+  "\x0600.55\x05\x050025\x06\x06Report Mainz...........316",
+  "\x0701.25\x05\x180125\x07\x07Zum Tode von Erwin Lehn   ",
+  "\x06           \x07\x07Markus Brock bei E. Lehn  ",
+  "\x0601.55\x05\x050140\x06\x06Sag die Wahrheit (Wh)..355",
+  "\x0702.25\x05\x050210\x07\x07Landesschau               ",
+  "\x06           \x07\x07Baden-W}rttemberg (Wh).310",
+  "\x0603.25\x05\x050310\x06\x06SWR1 Leute night.......394",
+  "\x0703.50\x05\x050310\x07\x07SWR1 Leute night.......394",
+  "\x0604.30\x05\x180430\x06\x06nano -                    ",
+  "\x06           \x06\x06Die Welt von morgen....376",
+  "\x0705.00\x05\x180500\x07\x07Planet Wissen (Wh)        ",
+  "\x07           \x07\x07Wunderstoff Glas.......396",
+  "\x07     \x05\x18VPS \x07\x07(bis\x0706.00\x07Uhr)           ",
+  "\x07\x1D\x04                         Dienstag\x01321",
+];
+$PgCnt{0x315} = 4;
+$PgSub{0x315} = 2;
+$PgLang{0x315} = 1;
+$Pkg{0x315|(0x0001<<12)} =
+[
+  "s\x02\x02P\x15\x15IG315\x02SWR Text\x03Mon.22.M{r\x0716:54:45",
+  "\x01\x1D\x07                                 \x071/2",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x0422. M{rz, 23.30 - 00.55 Uhr          ",
+  "\x07                                       ",
+  "\x06\x0DMONOGAMIE F]R ANF[NGER\x03``             ",
+  "\x06                                       ",
+  "\x06 Spielfilm D 2007                      ",
+  "\x07                                       ",
+  "\x07 W{hrend eines romantischen Paris-Trips",
+  "\x07 macht Felix seiner Fabienne einen     ",
+  "\x07 Hochzeitsantrag. Doch mit Beginn der  ",
+  "\x07 Hochzeitsvorbereitungen kommen Zweifel",
+  "\x07 in ihm auf. Ist er }berhaupt reif f}r ",
+  "\x07 die lebenslange Monogamie? Wird er    ",
+  "\x07 weiblichen Versuchungen dauerhaft     ",
+  "\x07 widerstehen k|nnen?                   ",
+  "\x07                                       ",
+  "\x07 Als er der Versuchung in Person der   ",
+  "\x07 attraktiven Johanna erliegt, ist die  ",
+  "\x07 Hochzeitsmaschinerie bereits nicht    ",
+  "\x07 mehr aufzuhalten.                     ",
+  "\x07\x1D\x04H|rfilm                 Darsteller >>",
+];
+$PgCnt{0x315} = 4;
+$PgSub{0x315} = 2;
+$PgLang{0x315} = 1;
+$Pkg{0x315|(0x0002<<12)} =
+[
+  "s\x02IP\x15\x15IG315\x02SWR Text\x03Mon.22.M{r\x0716:55:06",
+  "\x01\x1D\x07                                  2/2",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x0422. M{rz, 23.00 - 00.25 Uhr          ",
+  "\x07                                       ",
+  "\x06\x0DMONOGAMIE F]R ANF[NGER\x03``             ",
+  "\x06                                       ",
+  "\x06 Spielfilm D 2007                      ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x06 Darsteller u.a.:                      ",
+  "\x07                                       ",
+  "\x07 Felix             Martin Glade        ",
+  "\x07 Fabienne          Heike Warmuth       ",
+  "\x07 Nicki             Josef Heynert       ",
+  "\x07 Johanna           Lavinia Wilson      ",
+  "\x07 Angela            Heike Jonca         ",
+  "\x07 Eddie             Andreas R}diger     ",
+  "\x07 Elke              Verena Peter        ",
+  "\x07                                       ",
+  "\x06 Regie:\x07Marc Malze                     ",
+  "\x07                                       ",
+  "\x07\x1D\x04H|rfilm                       \x04    >>",
+];
+1;

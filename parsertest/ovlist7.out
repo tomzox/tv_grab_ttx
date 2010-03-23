@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ard.de">
+	<display-name>ARD</display-name>
+</channel>
+
+<programme start="20100320043000 +0000" stop="20100320045500 +0000" channel="ard.de">
+	<title>Felix und die wilden Tiere</title>
+</programme>
+
+<programme start="20100320045500 +0000" stop="20100320052000 +0000" channel="ard.de">
+	<title>Karen in Action</title>
+</programme>
+
+<programme start="20100320052000 +0000" stop="20100320061000 +0000" channel="ard.de">
+	<title>Die wunderbare Reise des</title>
+	<sub-title>Die wunderbare Reise des kleinen Nils Holgersson (1+2)</sub-title>
+</programme>
+
+<programme start="20100320061000 +0000" stop="20100320063500 +0000" channel="ard.de">
+	<title>Shaun, das Schaf</title>
+</programme>
+
+<programme start="20100320063500 +0000" stop="20100320070500 +0000" channel="ard.de">
+	<title>Willi wills wissen</title>
+	<desc>(teletext 312)</desc>
+</programme>
+
+<programme start="20100320070500 +0000" stop="20100320073000 +0000" channel="ard.de">
+	<title>Wissen macht Ah!</title>
+	<desc>(teletext 313)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100320073000 +0000" stop="20100320074000 +0000" channel="ard.de">
+	<title>neuneinhalb</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100320074000 +0000" stop="20100320081000 +0000" channel="ard.de">
+	<title>Tiere bis unters</title>
+	<sub-title>Tiere bis unters Dach (9/13)</sub-title>
+	<!-- TTX 314 -->
+	<desc>Tiere bis unters HD Dach (9/13)
+Waldläufer Im Wald unterwegs, treffen Jonas und seine Freunde scheinbar auf seltsame Fabelwesen. Sie gehen mit ihren Zwillen auf die Jagd, und dabei erwischt ein Stein von Jonas ein krankes Reh am Kopf.
+Als Greta und Jonas das verletzte Tier im Wald finden, wird ihre Freundschaft auf eine Zerreißprobe gestellt, denn verletzte Wildtiere müssen eigentlich erschossen werden. Doch Jonas fühlt sich schuldig ...</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+</programme>
+
+<programme start="20100320081000 +0000" stop="20100320083500 +0000" channel="ard.de">
+	<title>Ein Fall für B.A.R.Z.</title>
+	<desc>(teletext 315)</desc>
+</programme>
+
+<programme start="20100320083500 +0000" stop="20100320090000 +0000" channel="ard.de">
+	<title>Ein Fall für B.A.R.Z.</title>
+	<desc>(teletext 316)</desc>
+</programme>
+
+<programme start="20100320090000 +0000" stop="20100320090500 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100320090500 +0000" stop="20100320100000 +0000" channel="ard.de">
+	<title>Sportschau live:</title>
+	<sub-title>Sportschau live: WM Skifliegen</sub-title>
+	<!-- TTX 390 -->
+	<desc>Sa 20.03.10 Das Erste
+Wintersport live HD/UT 10.05 - 17.30 Uhr Ticker &gt;&gt; 666
+- ca. 15.05 Uhr aus Falun (S): Langlauf-Weltcup Doppelverfolgung Herren Reporter: Jens-Jörg Rieck
+- ca. 15.55 Uhr aus Oslo (NOR): Biathlon-Weltcup, Verfolgung Herren Reporter: Wilfried Hark
+- ca. 16.50 Uhr aus Herrenveen (NL): Eisschnelllauf-WM Zusammenfassung von Ralf Scholt
+Aktuelle Sportmeldungen &gt;&gt; ab 200 Paralympics im ARD-Text &gt;&gt; ab 800</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100320100000 +0000" stop="20100320100500 +0000" pdc-start="20100320111000 +0100" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100320100500 +0000" stop="20100320140000 +0000" pdc-start="20100320100500 +0100" channel="ard.de">
+	<title>Sportschau live:</title>
+	<sub-title>Sportschau live: WM Skifliegen, Snowboard- Weltcup, Paralympics, Langlauf-Weltcup, Shorttrack- WM, Biathlon-Weltcup</sub-title>
+	<desc>(teletext 390)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100320140000 +0000" stop="20100320140500 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100320140500 +0000" stop="20100320163000 +0000" pdc-start="20100320100500 +0100" channel="ard.de">
+	<title>Sportschau live:</title>
+	<sub-title>Sportschau live: Langlauf-Weltcup, Biathlon- Weltcup, Eisschnelllauf-WM</sub-title>
+	<!-- TTX 390 -->
+	<desc>Sa 20.03.10 Das Erste
+Wintersport live HD/UT 10.05 - 17.30 Uhr Ticker &gt;&gt; 666
+- ca. 15.05 Uhr aus Falun (S): Langlauf-Weltcup Doppelverfolgung Herren Reporter: Jens-Jörg Rieck
+- ca. 15.55 Uhr aus Oslo (NOR): Biathlon-Weltcup, Verfolgung Herren Reporter: Wilfried Hark
+- ca. 16.50 Uhr aus Herrenveen (NL): Eisschnelllauf-WM Zusammenfassung von Ralf Scholt
+Aktuelle Sportmeldungen &gt;&gt; ab 200 Paralympics im ARD-Text &gt;&gt; ab 800</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100320163000 +0000" stop="20100320164700 +0000" channel="ard.de">
+	<title>Brisant</title>
+	<desc>(teletext 319)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100320164700 +0000" stop="20100320165000 +0000" channel="ard.de">
+	<title>Das Wetter im Ersten</title>
+</programme>
+
+<programme start="20100320165000 +0000" stop="20100320170000 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100320170000 +0000" stop="20100320173000 +0000" channel="ard.de">
+	<title>Sportschau:</title>
+	<sub-title>Sportschau: 3.Liga</sub-title>
+	<!-- TTX 322 -->
+	<desc>Sportschau: HD/UT
+- 2.Bundesliga: FC Augsburg - RW Ahlen Arminia Bielefeld - SC Paderborn
+- Fußball, 3.Liga 1.FC Heidenheim - Holstein Kiel FC Ingolstadt - Kickers Offenbach Dynamo Dresden - Wacker Burghausen
+Moderation: Reinhold Beckmann
+Aktuelle Sportmeldungen &gt;&gt; ab 200 Internet: www.sportschau.de</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100320173000 +0000" stop="20100320175400 +0000" channel="ard.de">
+	<title>Sportschau</title>
+	<sub-title>Sportschau Fußball-Bundesliga</sub-title>
+	<!-- TTX 323 -->
+	<desc>Sportschau HD/UT Tipp! - Fußball-Bundesliga, 27.Spieltag SC Freiburg - Mainz 05 VfB Stuttgart - Hannover 96 1.FC Nürnberg - 1899 Hoffenheim Werder Bremen - VfL Bochum Eintr.Frankfurt - FC Bayern München Rückblick 1.FC Köln - Bor. M'gladbach - Historie: Frankfurt FCB 14.10.1972
+Moderation: Reinhold Beckmann
+Aktuelle Sportmeldungen &gt;&gt; ab 200 Internet: www.sportschau.de</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+</tv>

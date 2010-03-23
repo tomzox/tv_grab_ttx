@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="rtl2.de">
+	<display-name>RTL II</display-name>
+</channel>
+
+<programme start="20100322120000 +0000" stop="20100322122500 +0000" channel="rtl2.de">
+	<title>Dinosaur King</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100322122500 +0000" stop="20100322125000 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100322125000 +0000" stop="20100322131500 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100322131500 +0000" stop="20100322134500 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100322134500 +0000" stop="20100322141000 +0000" channel="rtl2.de">
+	<title>Digimon Data Squad</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100322141000 +0000" stop="20100322144000 +0000" channel="rtl2.de">
+	<title>One Piece</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100322144000 +0000" stop="20100322150000 +0000" channel="rtl2.de">
+	<title>One Piece</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100322150000 +0000" stop="20100322160000 +0000" channel="rtl2.de">
+	<title>Immer wieder Jim</title>
+	<desc>(teletext 335)</desc>
+</programme>
+
+<programme start="20100322160000 +0000" stop="20100322170000 +0000" channel="rtl2.de">
+	<title>Still Standing</title>
+	<desc>(teletext 337)</desc>
+</programme>
+
+<programme start="20100322170000 +0000" stop="20100322180000 +0000" channel="rtl2.de">
+	<title>Der Trödeltrupp</title>
+	<desc>(teletext 313)</desc>
+</programme>
+
+<programme start="20100322180000 +0000" stop="20100322190000 +0000" channel="rtl2.de">
+	<title>Big Brother Spezial</title>
+	<desc>(teletext 630)</desc>
+</programme>
+
+<programme start="20100322190000 +0000" stop="20100322191500 +0000" channel="rtl2.de">
+	<title>RTL II News</title>
+	<desc>(teletext 110)</desc>
+</programme>
+
+<programme start="20100322191500 +0000" stop="20100322201500 +0000" channel="rtl2.de">
+	<title>Die Mädchen-Gang</title>
+	<desc>(teletext 318)</desc>
+</programme>
+
+<programme start="20100322201500 +0000" stop="20100322221500 +0000" channel="rtl2.de">
+	<title>Big Brother</title>
+	<sub-title>Big Brother Die Entscheidung</sub-title>
+	<desc>(teletext 630)</desc>
+</programme>
+
+<programme start="20100322221500 +0000" stop="20100322232000 +0000" channel="rtl2.de">
+	<title>Fun Club: Comedystars live.390</title>
+</programme>
+
+<programme start="20100322232000 +0000" stop="20100322232500 +0000" channel="rtl2.de">
+	<title>RTL II-Late News</title>
+	<desc>(teletext 110)</desc>
+</programme>
+
+<programme start="20100322232500 +0000" stop="20100323001500 +0000" channel="rtl2.de">
+	<title>Grip - Das Motormagazin</title>
+	<desc>(teletext 362)</desc>
+</programme>
+
+<programme start="20100323001500 +0000" stop="20100323010500 +0000" channel="rtl2.de">
+	<title>Ärger im Revier</title>
+</programme>
+
+<programme start="20100323010500 +0000" stop="20100323015000 +0000" channel="rtl2.de">
+	<title>Dog - Der Kopfgeldjäger</title>
+	<desc>(teletext 317)</desc>
+</programme>
+
+<programme start="20100323015000 +0000" stop="20100323031500 +0000" channel="rtl2.de">
+	<title>Jungfernfahrt in den Tod</title>
+	<desc>(teletext 348)</desc>
+</programme>
+
+<programme start="20100323031500 +0000" stop="20100323042000 +0000" channel="rtl2.de">
+	<title>MythBusters</title>
+</programme>
+
+<programme start="20100323042000 +0000" stop="20100323050000 +0000" channel="rtl2.de">
+	<title>Immer wieder Jim</title>
+</programme>
+
+<programme start="20100323050000 +0000" stop="20100323060000 +0000" channel="rtl2.de">
+	<title>Still Standing</title>
+</programme>
+
+<programme start="20100323060000 +0000" stop="20100323080000 +0000" channel="rtl2.de">
+	<title>Infomercial</title>
+</programme>
+
+<programme start="20100323080000 +0000" stop="20100323100000 +0000" channel="rtl2.de">
+	<title>Frauentausch</title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20100323100000 +0000" stop="20100323110000 +0000" channel="rtl2.de">
+	<title>Big Brother Spezial</title>
+	<desc>(teletext 660)</desc>
+</programme>
+
+<programme start="20100323110000 +0000" stop="20100323120000 +0000" channel="rtl2.de">
+	<title>Der Trödeltrupp</title>
+	<desc>(teletext 313)</desc>
+</programme>
+
+<programme start="20100323120000 +0000" stop="20100323122500 +0000" channel="rtl2.de">
+	<title>Dinosaur King</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100323122500 +0000" stop="20100323125000 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100323125000 +0000" stop="20100323131500 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100323131500 +0000" stop="20100323134500 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100323134500 +0000" stop="20100323141000 +0000" channel="rtl2.de">
+	<title>Digimon Data Squad</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100323141000 +0000" stop="20100323144000 +0000" channel="rtl2.de">
+	<title>One Piece</title>
+	<desc>(teletext 379)</desc>
+</programme>
+
+<programme start="20100323144000 +0000" channel="rtl2.de">
+	<title>One Piece</title>
+	<desc>(teletext 379)</desc>
+</programme>
+</tv>

@@ -19,7 +19,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.25 2010/03/21 20:50:05 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.26 2010/03/23 19:15:03 tom Exp $
 #
 
 use POSIX;
@@ -27,8 +27,8 @@ use locale;
 use Time::Local;
 use strict;
 
-my $version = 'Teletext EPG grabber, v1.1';
-my $copyright = 'Copyright 2006-2008 Tom Zoerner';
+my $version = 'Teletext EPG grabber, v1.2';
+my $copyright = 'Copyright 2006-2010 Tom Zoerner';
 my $home_url = 'http://nxtvepg.sourceforge.net/tv_grab_ttx';
 
 my %Pkg;
@@ -515,7 +515,7 @@ The official homepage is L<http://nxtvepg.sourceforge.net/tv_grab_ttx>
 
 =head1 COPYRIGHT
 
-Copyright 2006-2008 Tom Zoerner.
+Copyright 2006-2010 Tom Zoerner.
 
 This is free software. You may redistribute copies of it under the terms
 of the GNU General Public License version 3 or later
@@ -1252,9 +1252,11 @@ sub DetectOvFormat {
          $sub2 = $PgSub{$page};
       }
       for ($sub = $sub1; $sub <= $sub2; $sub++) {
-         PageToLatin($page, $sub);
+         if (TtxSubPageDefined($page, $sub)) {
+            PageToLatin($page, $sub);
 
-         DetectOvFormatParse(\%FmtStat, \%SubtStat, $page, $sub);
+            DetectOvFormatParse(\%FmtStat, \%SubtStat, $page, $sub);
+         }
       }
    }
 
@@ -1868,11 +1870,17 @@ my %FeatToFlagMap =
    "untertitel" => "has_subtitles",
    "ut" => "has_subtitles",
    "omu" => "is_omu",
-   "sw" => "is_bw",
-   "s/w" => "is_bw",
+   "sw" => "is_video_bw",
+   "s/w" => "is_video_bw",
    "16:9" => "is_aspect_16_9",
+   "hd" => "is_video_hd",
    "oo" => "is_stereo",
    "stereo" => "is_stereo",
+   "ad" => "is_2chan", # accoustic description
+   "hf" => "is_2chan",
+   "hörfilm" => "is_2chan",
+   "hörfilm°°" => "is_2chan",
+   "°°" => "is_2chan", # redefined from Stereo to 2-chan 2010 (see page 395)
    "2k" => "is_2chan",
    "2k-ton" => "is_2chan",
    "dolby" => "is_dolby",
@@ -1881,7 +1889,7 @@ my %FeatToFlagMap =
    "mono" => "is_mono",
    "tipp" => "is_top",
    # ORF
-   "°°" => "is_stereo",
+   #"°°" => "is_stereo",
    "°*" => "is_2chan",
    "ds" => "is_dolby",
    "ss" => "is_dolby",
@@ -1890,8 +1898,8 @@ my %FeatToFlagMap =
 );
 # note: must correct $n below if () are added to pattern
 my $FeatPat = "UT(( auf | )?[1-8][0-9][0-9])?|".
-              "[Uu]ntertitel|[Hh]örfilm|HF|".
-              "s\/?w|S\/?W|tlw. s\/w|AD|oo|°°|°\*|OmU|16:9|HD|".
+              "[Uu]ntertitel|[Hh]örfilm(°°)?|HF|AD|".
+              "s\/?w|S\/?W|tlw. s\/w|oo|°°|°\*|OmU|16:9|HD|".
               "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|".
               "DS|SS|DD|ZS|".
               "Wh\.?|Wdh\.?|Whg\.?|Tipp\!?";
@@ -1914,7 +1922,7 @@ sub ParseTrailingFeat {
    (my $orig_title = $title) =~ s#[\x00-\x1F\x7F]# #g;
 
    # teletext reference (there's at most one at the very right, so parse this first)
-   if ($title =~ s#( \.+|\.\.+|\.+\>|\>\>?|\-\-?\>|\>{1,4} +|\.* +|[\.\>]*[\x00-\x07\x1D]+)([1-8][0-9][0-9]) {0,3}$##) {
+   if ($title =~ s#([ \x00-\x07\x1D]\.+|\.\.+|\.+\>|\>\>?|\-\-?\>|\>{1,4} +|\.* +|[\.\>]*[\x00-\x07\x1D]+)([1-8][0-9][0-9]) {0,3}$##) {
       my $ref = $2;
       $slot->{ttx_ref} = ((ord(substr($ref, 0, 1)) - 0x30)<<8) |
                              ((ord(substr($ref, 1, 1)) - 0x30)<<4) |
@@ -2433,13 +2441,18 @@ sub ExportTitle {
          }
       }
       # video
-      if (defined($slot_ref->{is_bw})||defined($slot_ref->{is_aspect_16_9})) {
+      if (   defined($slot_ref->{is_video_bw})
+          || defined($slot_ref->{is_video_hd})
+          || defined($slot_ref->{is_aspect_16_9})) {
          print "\t<video>\n";
-         if (defined($slot_ref->{is_bw})) {
+         if (defined($slot_ref->{is_video_bw})) {
             print "\t\t<colour>no</colour>\n";
          }
          if (defined($slot_ref->{is_aspect_16_9})) {
             print "\t\t<aspect>16:9</aspect>\n";
+         }
+         if (defined($slot_ref->{is_video_hd})) {
+            print "\t\t<quality>HDTV</quality>\n";
          }
          print "\t</video>\n";
       }
@@ -2450,6 +2463,8 @@ sub ExportTitle {
          print "\t<audio>\n\t\t<stereo>stereo</stereo>\n\t</audio>\n";
       } elsif (defined($slot_ref->{is_mono})) {
          print "\t<audio>\n\t\t<stereo>mono</stereo>\n\t</audio>\n";
+      } elsif (defined($slot_ref->{is_2chan})) {
+         print "\t<audio>\n\t\t<stereo>bilingual</stereo>\n\t</audio>\n";
       }
       # subtitles
       if (defined($slot_ref->{is_omu})) {
@@ -2980,29 +2995,31 @@ sub ParseDescPage {
          $sub2 = $PgSub{$page};
       }
       for ($sub = $sub1; $sub <= $sub2; $sub++) {
-         my($head, $foot, $foot2);
+         if (TtxSubPageDefined($page, $sub)) {
+            my($head, $foot, $foot2);
 
-         PageToLatin($page, $sub);
-         # TODO: multiple sub-pages may belong to same title, but have no date
-         #       caution: multiple pages may also have the same title, but describe different instances of a series
+            PageToLatin($page, $sub);
+            # TODO: multiple sub-pages may belong to same title, but have no date
+            #       caution: multiple pages may also have the same title, but describe different instances of a series
 
-         # TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
+            # TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
 
-         if (ParseDescDate($page, $sub, $slot_ref)) {
-            $head = ParseDescTitle($page, $sub, $slot_ref);
+            if (ParseDescDate($page, $sub, $slot_ref)) {
+               $head = ParseDescTitle($page, $sub, $slot_ref);
 
-            $foot = ParseFooterByColor($page, $sub);
-            $foot2 = ParseFooter($page, $sub, $head);
-            $foot = ($foot2 < $foot) ? $foot2 : $foot;
-            printf("DESC page %03X.%04X match found: lines $head-$foot\n", $page, $sub) if $opt_debug;
+               $foot = ParseFooterByColor($page, $sub);
+               $foot2 = ParseFooter($page, $sub, $head);
+               $foot = ($foot2 < $foot) ? $foot2 : $foot;
+               printf("DESC page %03X.%04X match found: lines $head-$foot\n", $page, $sub) if $opt_debug;
 
-            $desc .= "\n" if $found;
-            $desc .= ParseDescContent($page, $sub, $head, $foot);
+               $desc .= "\n" if $found;
+               $desc .= ParseDescContent($page, $sub, $head, $foot);
 
-            $found = 1;
-         } else {
-            printf("DESC page %03X.%04X no match found\n", $page, $sub) if $opt_debug;
-            last if $found;
+               $found = 1;
+            } else {
+               printf("DESC page %03X.%04X no match found\n", $page, $sub) if $opt_debug;
+               last if $found;
+            }
          }
       }
    } else {

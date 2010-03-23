@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# Test of the new "HD" feature flag on ZDF introduced apx. March/2010
+# both in overview pages and descriptions.
+#
+# $Id: ovlist8.in,v 1.1 2010/03/22 20:07:40 tom Exp $
+#
+$VbiCaptureTime = 1269111809;
+$PgCnt{0x303} = 5;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x03ZDFtext\x02Sa\x0220.03.10\x0320:03:11",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Samstag, 20. M{rz         ",
+  "                       \x05\x181D102\x18200310\x180C",
+  "\x0717.45\x05\x181745\x07\x07Menschen - das Magazin    ",
+  "              H|hepunkte der Paralympics",
+  "              2010\x03UT\x07..............\x07328",
+  "\x0618.00\x05\x181800\x06\x06hallo deutschland ....\x06365",
+  "\x0718.30\x05\x181830\x07\x07Leute heute\x03UT\x07.......\x07366",
+  "\x0619.00\x05\x181900\x06\x06heute\x03UT\x06.............\x06310",
+  "\x0719.20\x05\x181920\x07\x07Wetter\x03UT                 ",
+  "\x0319.25\x05\x181925\x03\x03Unser Charly              ",
+  "            \x03\x03Es spukt HD ..........\x03329",
+  "\x0720.15\x05\x182015\x07\x07Wilsberg                  ",
+  "              Gefahr im Verzug\x03HD UT\x07330",
+  "\x0621.45\x05\x182145\x06\x06heute-journal\x03UT\x06.....\x06315",
+  "\x0721.58\x05\x182158\x07\x07Wetter\x03UT                 ",
+  "\x0622.00\x05\x182200\x06\x06das aktuelle              ",
+  "            \x06\x06sportstudio ..........\x06331",
+  undef,
+  undef,
+  undef,
+  "      \x05\x18VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0723.15\x07Uhr -> 304\x07 ",
+];
+$PgCnt{0x329} = 6;
+$PgSub{0x329} = 2;
+$PgLang{0x329} = 1;
+$Pkg{0x329|(0x0001<<12)} =
+[
+  "GI\x02P\x15\x15IG329\x03ZDFtext\x02Sa\x0220.03.10\x0320:03:12",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 1/2 ",
+  "\x04\x1D\x07 Programm  Samstag, 20. M{rz         ",
+  "                       \x05\x181D102\x18200310\x1841",
+  " \x0719.25\x07-\x0720.15\x07Uhr          \x05\x18VPS\x181925\x07",
+  "\x06\x06Unser Charly                          ",
+  "\x06\x06Es spukt\x0316:9 HD                      ",
+  undef,
+  " W{hrend eines Spaziergangs mit Katha-  ",
+  " rina und Max findet Charly bunte Glas- ",
+  " perlen im Garten der Tierklinik. Einige",
+  " Meter weiter steht ein pr{chtiger      ",
+  " Schimmel einsam auf der Koppel der Kli-",
+  " nik. Katharina findet einen Zettel am  ",
+  " Zaumzeug, auf dem steht: \"Habe mir den ",
+  " Fu~ verstaucht, bitte helft mir!\"      ",
+  undef,
+  "\x06Erfreuliche Nachrichten gibt es f}r    ",
+  "\x06Katharinas Kinder Lilly und Jonas: Ihr ",
+  "\x06Vater Thomas will ihnen n{her sein und ",
+  "\x06hat einen Job an der Musikhochschule in",
+  "\x06Berlin angenommen.                     ",
+  undef,
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x329} = 6;
+$PgSub{0x329} = 2;
+$PgLang{0x329} = 1;
+$Pkg{0x329|(0x0002<<12)} =
+[
+  "GIIP\x15\x15IG329\x03ZDFtext\x02Sa\x0220.03.10\x0320:02:40",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 2/2 ",
+  "\x04\x1D\x07 Programm  Samstag, 20. M{rz         ",
+  "                       \x05\x181D102\x18200310\x1841",
+  " \x0719.25\x07-\x0720.15\x07Uhr          \x05\x18VPS\x181925\x07",
+  "\x06\x06Unser Charly                          ",
+  "\x06\x06Es spukt\x0316:9 HD                      ",
+  undef,
+  " Darsteller:                            ",
+  undef,
+  " Max Henning ......... Ralf Lindermann  ",
+  " Katharina Hauser .... Ursula Buschhorn ",
+  " Lilly Hauser ........ Lea Wolfram      ",
+  " Jonas Hauser ........ Connor A. Mills  ",
+  " Ch. Roesner-Lombardi  Regina Lemnitz   ",
+  " Frau Hoppe .......... Brigitte B|ttrich",
+  " u.a.                                   ",
+  undef,
+  " Regie: Carl Lang                       ",
+  " Buch/Autor: Stefan Kuhlmann,           ",
+  " Martin Maurer                          ",
+  " Kamera: Claus Deubel                   ",
+  undef,
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+1;

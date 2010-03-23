@@ -16,7 +16,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
  * Id: tv_grab_ttx.pl,v 1.23 2009/05/03 16:25:39 tom Exp tom 
  */
@@ -130,8 +130,8 @@ public:
       m_has_subtitles = false;
       m_is_2chan = false;
       m_is_aspect_16_9 = false;
-      m_is_hd = false;
-      m_is_bw = false;
+      m_is_video_hd = false;
+      m_is_video_bw = false;
       m_is_dolby = false;
       m_is_mono = false;
       m_is_omu = false;
@@ -158,8 +158,8 @@ public:
    bool         m_has_subtitles;
    bool         m_is_2chan;
    bool         m_is_aspect_16_9;
-   bool         m_is_hd;
-   bool         m_is_bw;
+   bool         m_is_video_hd;
+   bool         m_is_video_bw;
    bool         m_is_dolby;
    bool         m_is_mono;
    bool         m_is_omu;
@@ -791,7 +791,7 @@ The official homepage is http://nxtvepg.sourceforge.net/tv_grab_ttx
 
 @par COPYRIGHT
 
-Copyright 2006-2008 Tom Zoerner.
+Copyright 2006-2010 Tom Zoerner.
 
 This is free software. You may redistribute copies of it under the terms
 of the GNU General Public License version 3 or later
@@ -822,6 +822,23 @@ bool TtxSubPageDefined(int page, int sub)
 bool map_defined(map<int,int>& m, int page)
 {
    return (m.find(page) != m.end());
+}
+
+template<class IT>
+int atoi_substr(const IT& first, const IT& second)
+{
+   IT p = first;
+   int val = 0;
+   while (p != second) {
+      val = (val * 10) + (*(p++) - '0');
+   }
+   return val;
+}
+
+template<class MATCH>
+int atoi_substr(const MATCH& match)
+{
+   return match.matched ? atoi_substr(match.first, match.second) : -1;
 }
 
 /* ------------------------------------------------------------------------------
@@ -1326,8 +1343,9 @@ void DumpRawTeletext()
                      fprintf(fp, "  \"");
                      for (uint cidx = 0; cidx < VT_PKG_RAW_LEN; cidx++) {
                         // quote binary characters
-                        if ((line[cidx] < 0x20) || (line[cidx] == 0x7F)) {
-                           fprintf(fp, "\\x%02X", line[cidx]);
+                        unsigned char c = line[cidx];
+                        if ((c < 0x20) || (c == 0x7F)) {
+                           fprintf(fp, "\\x%02X", c);
                         }
                         // backwards compatibility: quote C and Perl special characters
                         else if (   (line[cidx] == '@')
@@ -1403,19 +1421,19 @@ void ImportRawDump()
       }
       else if (regex_match(buf, what, expr3)) {
          long page = strtol(string(what[1]).c_str(), NULL, 16);
-         PkgCni[page] = atoi(string(what[2]).c_str());
+         PkgCni[page] = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr4)) {
          long page = strtol(string(what[1]).c_str(), NULL, 16);
-         PgCnt[page] = atoi(string(what[2]).c_str());
+         PgCnt[page] = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr5)) {
          long page = strtol(string(what[1]).c_str(), NULL, 16);
-         PgSub[page] = atoi(string(what[2]).c_str());
+         PgSub[page] = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr6)) {
          long page = strtol(string(what[1]).c_str(), NULL, 16);
-         PgLang[page] = atoi(string(what[2]).c_str());
+         PgLang[page] = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr7)) {
          long page = strtol(string(what[1]).c_str(), NULL, 16);
@@ -1824,21 +1842,10 @@ int GetWeekDayOffset(string wday_name)
    return reldate;
 }
 
-bool CheckDate(string mday_str, string month_str, string year_str,
+bool CheckDate(int mday, int month, int year,
                string wday_name, string month_name,
                int * ret_mday, int * ret_mon, int * ret_year)
 {
-   int mday = -1;
-   int month = -1;
-   int year = -1;
-
-   if (mday_str.length() > 0)
-      mday = atoi(mday_str.c_str());
-   if (month_str.length() > 0)
-      month = atoi(month_str.c_str());
-   if (year_str.length() > 0)
-      year = atoi(year_str.c_str());
-
    // first check all provided values
    if (   ((mday != -1) && !((mday <= 31) && (mday > 0)))
        || ((month != -1) && !((month <= 12) && (month > 0)))
@@ -2006,9 +2013,11 @@ T_OV_FMT_STAT DetectOvFormat()
             sub2 = max_sub;
          }
          for (int sub = sub1; sub <= sub2; sub++) {
-            PageToLatin(page, sub);
+            if (TtxSubPageDefined(page, sub)) {
+               PageToLatin(page, sub);
 
-            DetectOvFormatParse(fmt_list, page, sub);
+               DetectOvFormatParse(fmt_list, page, sub);
+            }
          }
          cnt++;
       }
@@ -2104,7 +2113,8 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       if (   regex_search(pgtext.m_line[line], what, expr1[lang])
           || regex_search(pgtext.m_line[line], what, expr2[lang]) )
       {
-         if (CheckDate(string(what[4]), string(what[5]), string(what[6]), "", "", &mday, &month, &year)) {
+         if (CheckDate(atoi_substr(what[4]), atoi_substr(what[5]), atoi_substr(what[6]),
+                       "", "", &mday, &month, &year)) {
             prio = 3;
          }
       }
@@ -2114,7 +2124,8 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
          expr3[lang].assign(string("(^| )(\\d{1,2})\\. ?(") + mname_match + ")( (\\d{2}|\\d{4}))?([ ,:]|$)", regex::icase);
       }
       if (regex_search(pgtext.m_line[line], what, expr3[lang])) {
-         if (CheckDate(string(what[2]), "", string(what[5]), "", string(what[3]), &mday, &month, &year)) {
+         if (CheckDate(atoi_substr(what[2]), -1, atoi_substr(what[5]),
+                       "", string(what[3]), &mday, &month, &year)) {
             prio = 3;
          }
       }
@@ -2127,7 +2138,8 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       }
       if (   regex_search(pgtext.m_line[line], what, expr4[lang])
           || regex_search(pgtext.m_line[line], what, expr5[lang])) {
-         if (CheckDate(string(what[4]), "", string(what[7]), string(what[2]), string(what[5]), &mday, &month, &year)) {
+         if (CheckDate(atoi_substr(what[4]), -1, atoi_substr(what[7]),
+                       string(what[2]), string(what[5]), &mday, &month, &year)) {
             prio = 3;
          }
       }
@@ -2225,6 +2237,7 @@ enum TV_FEAT_TYPE
    TV_FEAT_SUBTITLES,
    TV_FEAT_2CHAN,
    TV_FEAT_ASPECT_16_9,
+   TV_FEAT_HDTV,
    TV_FEAT_BW,
    TV_FEAT_HD,
    TV_FEAT_DOLBY,
@@ -2249,8 +2262,14 @@ const TV_FEAT_STR FeatToFlagMap[] =
    { "s/w", TV_FEAT_BW },
    { "hd", TV_FEAT_HD },
    { "16:9", TV_FEAT_ASPECT_16_9 },
+   { "hd", TV_FEAT_HDTV },
+   { "°°", TV_FEAT_2CHAN }, // according to ARD page 395
    { "oo", TV_FEAT_STEREO },
    { "stereo", TV_FEAT_STEREO },
+   { "ad", TV_FEAT_2CHAN }, // accoustic description
+   { "hörfilm", TV_FEAT_2CHAN },
+   { "hörfilm°°", TV_FEAT_2CHAN },
+   { "hf", TV_FEAT_2CHAN },
    { "2k", TV_FEAT_2CHAN },
    { "2k-ton", TV_FEAT_2CHAN },
    { "dolby", TV_FEAT_DOLBY },
@@ -2259,7 +2278,7 @@ const TV_FEAT_STR FeatToFlagMap[] =
    { "mono", TV_FEAT_MONO },
    { "tipp", TV_FEAT_TIP },
    // ORF
-   { "°°", TV_FEAT_STEREO },
+   //{ "°°", TV_FEAT_STEREO }, // conflicts with ARD
    { "°*", TV_FEAT_2CHAN },
    { "ds", TV_FEAT_DOLBY },
    { "ss", TV_FEAT_DOLBY },
@@ -2286,8 +2305,8 @@ void MapTrailingFeat(const char * feat, int len, TV_SLOT& slot, const string& ti
             case TV_FEAT_SUBTITLES:     slot.m_has_subtitles = true; break;
             case TV_FEAT_2CHAN:         slot.m_is_2chan = true; break;
             case TV_FEAT_ASPECT_16_9:   slot.m_is_aspect_16_9 = true; break;
-            case TV_FEAT_HD:            slot.m_is_hd = true; break;
-            case TV_FEAT_BW:            slot.m_is_bw = true; break;
+            case TV_FEAT_HD:            slot.m_is_video_hd = true; break;
+            case TV_FEAT_BW:            slot.m_is_video_bw = true; break;
             case TV_FEAT_DOLBY:         slot.m_is_dolby = true; break;
             case TV_FEAT_MONO:          slot.m_is_mono = true; break;
             case TV_FEAT_OMU:           slot.m_is_omu = true; break;
@@ -2304,8 +2323,8 @@ void MapTrailingFeat(const char * feat, int len, TV_SLOT& slot, const string& ti
 
 // note: must correct $n below if () are added to pattern
 #define FEAT_PAT_STR "UT(( auf | )?[1-8][0-9][0-9])?|" \
-                     "[Uu]ntertitel|[Hh]örfilm|HF|" \
-                     "s/?w|S/?W|tlw. s/w|AD|oo|°°|°\\*|OmU|16:9|HD|" \
+                     "[Uu]ntertitel|[Hh]örfilm(°°)?|HF|AD|" \
+                     "s/?w|S/?W|tlw. s/w|oo|°°|°\\*|OmU|16:9|HD|" \
                      "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|" \
                      "DS|SS|DD|ZS|" \
                      "Wh\\.?|Wdh\\.?|Whg\\.?|Tipp!?"
@@ -2316,7 +2335,7 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
    smatch whats;
 
    // teletext reference (there's at most one at the very right, so parse this first)
-   static const regex expr1("( \\.+|\\.\\.+|\\.+>|>>?|--?>|>{1,4} +|\\.* +"
+   static const regex expr1("([ \\x00-\\x07\\x1D]\\.+|\\.\\.+|\\.+>|>>?|--?>|>{1,4} +|\\.* +"
                             "|[\\.>]*[\\x00-\\x07\\x1D]+)"
                             "([1-8][0-9][0-9]) {0,3}$");
    if (regex_search(title, whats, expr1)) {
@@ -2408,6 +2427,7 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
 int ParseFooter(int page, int sub, int head)
 {
    const vt_page& pgtext = PageText[page | (sub << 12)];
+   const vt_page& pgctrl = PageCtrl[page | (sub << 12)];
    cmatch what;
    int foot;
 
@@ -2424,7 +2444,9 @@ int ParseFooter(int page, int sub, int head)
       static const regex expr2("\\S");
       if (!regex_search(text, what, expr2)) {
          static const regex expr3("[\\x0D\\x0F][^\\x0C]*[^ ]");
-         if (!regex_search(pgtext.m_line[foot - 1], what, expr3)) {
+         string prev_ctrl = string(pgctrl.m_line[foot - 1], VT_PKG_RAW_LEN);
+         smatch whats;
+         if (!regex_search(prev_ctrl, whats, expr3)) {
             foot -= 1;
             break;
          }
@@ -2459,7 +2481,7 @@ int ParseFooterByColor(int page, int sub)
 {
    int ColCount[8] = {0};
    int LineCol[24] = {0};
-   cmatch what;
+   smatch whats;
 
    // check which color is used for the main part of the page
    // - ignore top-most header and one footer line
@@ -2471,8 +2493,9 @@ int ParseFooterByColor(int page, int sub)
       if (pg_pkg.m_defined & (1 << line)) {
          // get first non-blank char; skip non-color control chars
          static const regex expr1("^[ \\x00-\\x1F]*([\\x00-\\x07\\x10-\\x17])\\x1D");
-         if (regex_search(pg_pkg.m_line[line], what, expr1)) {
-            unsigned char c = *what[1].first;
+         string text(pg_pkg.m_line[line], VT_PKG_RAW_LEN);
+         if (regex_search(text, whats, expr1)) {
+            unsigned char c = *whats[1].first;
             if (c <= 0x07) {
                ColCount[c] += 1;
             }
@@ -2717,7 +2740,8 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
       // remove remaining control characters
       string text(ctrl, 0, VT_PKG_RAW_LEN);
       for (int idx = 0; idx < VT_PKG_RAW_LEN; idx++) {
-         if ((text[idx] <= 0x1F) || (text[idx] == 0x7F))
+         unsigned char c = text[idx];
+         if ((c <= 0x1F) || (c == 0x7F))
             text[idx] = ' ';
       }
 
@@ -2733,8 +2757,8 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
             static const regex expr3("^(\\d\\d)[\\.:](\\d\\d) +$");
             string str3(text, pgfmt.time_off, pgfmt.title_off - pgfmt.time_off);
             if (regex_search(str3, whats, expr3)) {
-               hour = atoi(string(whats[1].first, whats[1].second).c_str());  //FIXME
-               min = atoi(string(whats[2].first, whats[2].second).c_str());  //FIXME
+               hour = atoi_substr(whats[1]);
+               min = atoi_substr(whats[2]);
                title = string(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
                new_title = true;
             }
@@ -2749,8 +2773,8 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
             static const regex expr6("^(\\d\\d)[\\.:](\\d\\d) +$");
             string str6(text, pgfmt.time_off, pgfmt.title_off - pgfmt.time_off);
             if (regex_search(str6, whats, expr6)) {
-               hour = atoi(string(whats[1].first, whats[1].second).c_str());  //FIXME
-               min = atoi(string(whats[2].first, whats[2].second).c_str());  //FIXME
+               hour = atoi_substr(whats[1]);
+               min = atoi_substr(whats[2]);
                new_title = true;
                title = string(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
             }
@@ -2811,8 +2835,8 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
          if (   regex_search(text, whats, expr8)   // ARD,SWR,BR-alpha
              || regex_search(text, whats, expr9) ) // arte, RTL
          {
-            slot.m_end_hour = atoi(string(whats[2]).c_str());
-            slot.m_end_min = atoi(string(whats[3]).c_str());
+            slot.m_end_hour = atoi_substr(whats[2]);
+            slot.m_end_min = atoi_substr(whats[3]);
             new_title = true;
             if (opt_debug) printf("Overview end time: %02d:%02d\n", slot.m_end_hour, slot.m_end_min);
          }
@@ -3080,13 +3104,15 @@ int DetermineLto(time_t whence)
  *  "\x0714.40\x05\x051445\x02\x02USBEKISTAN - ABWEHR DER   ",
  *  "            \x02\x02WAHABITEN  (2K)           ",
  */
-bool CalculateDates(T_PG_DATE& pgdate, T_PG_DATE& prev_pgdate,
+bool CalculateDates(T_PG_DATE& pgdate, const T_PG_DATE& prev_pgdate,
                     vector<TV_SLOT>& Slots, int prev_slot_idx, int cur_slot_idx)
 {
+   // note: caller's prev_pgdate must not be invalidated here, hence use a separate flag
+   bool use_prev_pgdate = prev_pgdate.is_valid();
    bool result = false;
 
    int date_off = 0;
-   if (prev_pgdate.is_valid()) {
+   if (use_prev_pgdate) {
       const TV_SLOT& prev_slot1 = Slots[prev_slot_idx];
       const TV_SLOT& prev_slot2 = Slots[cur_slot_idx - 1];
       // check if the page number of the previous page is adjacent
@@ -3128,14 +3154,15 @@ bool CalculateDates(T_PG_DATE& pgdate, T_PG_DATE& prev_pgdate,
             // TODO: check for date change within the previous page
          }
          else {
-            prev_pgdate.clear();
+            if (opt_debug) printf("OV DATE: prev page %03X.%04X date cleared\n", prev_pgdate.m_page, prev_pgdate.m_sub_page);
+            use_prev_pgdate = false;
          }
          // TODO: date may also be wrong by +1 (e.g. when starting at 23:55 with date for 00:00)
       }
       else {
          // not adjacent -> disregard the info
          if (opt_debug) printf("OV DATE: prev page %03X.%04X not adjacent - not used for date check\n", prev_pgdate.m_page, prev_pgdate.m_sub_page);
-         prev_pgdate.clear();
+         use_prev_pgdate = false;
       }
    }
 
@@ -3151,7 +3178,7 @@ bool CalculateDates(T_PG_DATE& pgdate, T_PG_DATE& prev_pgdate,
       pgdate.m_date_off = date_off;
       if (opt_debug) printf("OV DATE: using page header date %d.%d.%d, DELTA %d\n", mday, month, year, date_off);
    }
-   else if (prev_pgdate.is_valid()) {
+   else if (use_prev_pgdate) {
       // copy date from previous page
       pgdate.m_mday = mday = prev_pgdate.m_mday;
       pgdate.m_month = month = prev_pgdate.m_month;
@@ -3325,6 +3352,10 @@ vector<TV_SLOT> FilterExpiredSlots(const vector<TV_SLOT>& Slots)
       {
          NewSlots.push_back(Slots[idx]);
       }
+      else {
+        if (opt_debug) printf("EXPIRED new %ld-%ld < %ld '%s'\n", (long)Slots[idx].m_start_t,
+                              (long)Slots[idx].m_stop_t, (long)exp_thresh, Slots[idx].m_title.c_str());
+      }
    }
    return NewSlots;
 }
@@ -3468,13 +3499,18 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
          }
       }
       // video
-      if (slot.m_is_bw || slot.m_is_aspect_16_9) {
+      if (   slot.m_is_video_bw
+          || slot.m_is_aspect_16_9
+          || slot.m_is_video_hd) {
          fprintf(fp, "\t<video>\n");
-         if (slot.m_is_bw) {
+         if (slot.m_is_video_bw) {
             fprintf(fp, "\t\t<colour>no</colour>\n");
          }
          if (slot.m_is_aspect_16_9) {
             fprintf(fp, "\t\t<aspect>16:9</aspect>\n");
+         }
+         if (slot.m_is_video_hd) {
+            fprintf(fp, "\t\t<quality>HDTV</quality>\n");
          }
          fprintf(fp, "\t</video>\n");
       }
@@ -3487,6 +3523,9 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
       }
       else if (slot.m_is_mono) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>mono</stereo>\n\t</audio>\n");
+      }
+      else if (slot.m_is_2chan) {
+         fprintf(fp, "\t<audio>\n\t\t<stereo>bilingual</stereo>\n\t</audio>\n");
       }
       // subtitles
       if (slot.m_is_omu) {
@@ -3595,7 +3634,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          if (   regex_search(text, what, expr1)
              || regex_search(text, what, expr2)
              || regex_search(text, what, expr3)) {
-            if (CheckDate(string(what[2]), string(what[3]), string(what[4]), "", "", &lmday, &lmonth, &lyear)) {
+            if (CheckDate(atoi_substr(what[2]), atoi_substr(what[3]), atoi_substr(what[4]),
+                          "", "", &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3612,7 +3652,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          }
          if (   regex_search(text, what, expr4[lang])
              || regex_search(text, what, expr5[lang])) {
-            if (CheckDate(string(what[4]), string(what[5]), "", string(what[2]), "", &lmday, &lmonth, &lyear)) {
+            if (CheckDate(atoi_substr(what[4]), atoi_substr(what[5]), -1,
+                          string(what[2]), "", &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3624,7 +3665,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
                                ")( (\\d{4}|\\d{2}))?( |,|;|:|$)", regex::icase);
          }
          if (regex_search(text, what, expr6[lang])) {
-            if (CheckDate(string(what[2]), "", string(what[5]), "", string(what[3]), &lmday, &lmonth, &lyear)) {
+            if (CheckDate(atoi_substr(what[2]), -1, atoi_substr(what[5]),
+                          "", string(what[3]), &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3642,7 +3684,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          }
          if (   regex_search(text, what, expr7[lang])
              || regex_search(text, what, expr8[lang])) {
-            if (CheckDate(string(what[4]), "", string(what[7]), string(what[2]), string(what[5]), &lmday, &lmonth, &lyear)) {
+            if (CheckDate(atoi_substr(what[4]), -1, atoi_substr(what[7]),
+                          string(what[2]), string(what[5]), &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3663,7 +3706,7 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          }
          if (   regex_search(text, what, expr10[lang])
              || regex_search(text, what, expr11[lang])) {
-            if (CheckDate("", "", "", string(what[2]), "", &lmday, &lmonth, &lyear)) {
+            if (CheckDate(-1, -1, -1, string(what[2]), "", &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3675,9 +3718,9 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          // VPS label "1D102 120406 F9"
          static const regex expr12("^ +[0-9A-F]{2}\\d{3} (\\d{2})(\\d{2})(\\d{2}) [0-9A-F]{2} *$");
          if (regex_search(text, what, expr12)) {
-            lmday = atoi(string(what[1]).c_str());
-            lmonth = atoi(string(what[2]).c_str());
-            lyear = atoi(string(what[3]).c_str()) + 2000;
+            lmday = atoi_substr(what[1]);
+            lmonth = atoi_substr(what[2]);
+            lyear = atoi_substr(what[3]) + 2000;
             goto DATE_FOUND;
          }
       }
@@ -3695,11 +3738,11 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
       check_time = false;
       if (   regex_search(text, what, expr12)
           || regex_search(text, what, expr13)) {
-         int hour = atoi(string(what[2]).c_str());
-         int min = atoi(string(what[3]).c_str());
-         int end_hour = atoi(string(what[7]).c_str());
-         int end_min = atoi(string(what[8]).c_str());
-         // int vps = atoi(string(what[5]).c_str());
+         int hour = atoi_substr(what[2]);
+         int min = atoi_substr(what[3]);
+         int end_hour = atoi_substr(what[7]);
+         int end_min = atoi_substr(what[8]);
+         // int vps = atoi_substr(what[5]);
          if (opt_debug) printf("DESC TIME %02d.%02d - %02d.%02d\n", hour, min, end_hour, end_min);
          if ((hour < 24) && (min < 60) &&
              (end_hour < 24) && (end_min < 60)) {
@@ -3715,8 +3758,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
                || regex_search(text, what, expr15)
                || regex_search(text, what, expr16)
                || regex_search(text, what, expr17)) {
-         int hour = atoi(string(what[2]).c_str());
-         int min = atoi(string(what[3]).c_str());
+         int hour = atoi_substr(what[2]);
+         int min = atoi_substr(what[3]);
          if (opt_debug) printf("DESC TIME %02d.%02d\n", hour, min);
          if ((hour < 24) && (min < 60)) {
             lhour = hour;
@@ -4032,6 +4075,8 @@ string ParseChannelName()
    string wday_abbrv_match;
    string mname_match;
    int lang = -1;
+   regex expr3[8];
+   regex expr4[8];
 
    for (map<int,int>::iterator p = PgCnt.begin(); p != PgCnt.end(); p++) {
       int page = p->first;
@@ -4056,36 +4101,43 @@ string ParseChannelName()
                vt_pkg_txt ctrl;
                memcpy(ctrl, Pkg[page|(sub<<12)].m_line[0], VT_PKG_RAW_LEN + 1);
                memset(ctrl, ' ', 8);
-               vt_pkg_txt latin;
-               TtxToLatin1(ctrl, latin, lang);
+               vt_pkg_txt text;
+               TtxToLatin1(ctrl, text, lang);
                // remove remaining control characters
                for (int idx = 0; idx < VT_PKG_RAW_LEN; idx++) {
-                  if ((latin[idx] <= 0x1F) || (latin[idx] == 0x7F))
-                     latin[idx] = ' ';
+                  unsigned char c = text[idx];
+                  if ((c <= 0x1F) || (c == 0x7F))
+                     text[idx] = ' ';
                }
                char pgn[30];
                sprintf(pgn, "(^| )%03X( |$)", page);
                regex expr1(pgn);
-               cmatch what;
+               smatch whats;
+               string hd(text + 8, VT_PKG_RAW_LEN);
                // remove page number and time (both are required)
-               if (regex_search(latin, what, expr1)) {
-                  string hd = regex_replace(string(latin), expr1, " ", format_first_only);
-                  smatch whats;
+               if (regex_search(hd, whats, expr1)) {
+                  hd.replace(whats.position(), whats[0].length(), 1, ' ');
                   static regex expr2("^(.*)( \\d{2}[\\.: ]?\\d{2}([\\.: ]\\d{2}) *)");
                   if (regex_search(hd, whats, expr2)) {
                      hd.erase(whats[1].length());
                      // remove date: "Sam.12.Jan" OR "12 Sa Jan" (VOX)
-                     regex expr3(string("(((") + wday_abbrv_match + string(")|(") + wday_match +
-                                 string("))(\\, ?|\\. ?|  ?\\-  ?|  ?)?)?\\d{1,2}(\\.\\d{1,2}|[ \\.](") +
-                                 mname_match + "))(\\.|[ \\.]\\d{2,4}\\.?)? *$", regex::icase);
-                     regex expr4(string("\\d{1,2}(\\, ?|\\. ?|  ?\\-  ?|  ?)(((") +
-                                 wday_abbrv_match + string(")|(") +
-                                 wday_match +
-                                 string ("))(\\, ?|\\. ?|  ?\\-  ?|  ?)?)?(\\.\\d{1,2}|[ \\.](") +
-                                 mname_match + "))(\\.|[ \\.]\\d{2,4}\\.?)? *$",
-                                 regex::icase);
-                     hd = regex_replace(hd, expr3, "");
-                     hd = regex_replace(hd, expr4, "");
+                     if (expr3[lang].empty()) {
+                        expr3[lang].assign(string("(((") + wday_abbrv_match + string(")|(") + wday_match +
+                                           string("))(\\, ?|\\. ?|  ?\\-  ?|  ?)?)?\\d{1,2}(\\.\\d{1,2}|[ \\.](") +
+                                           mname_match + "))(\\.|[ \\.]\\d{2,4}\\.?)? *$", regex::icase);
+                        expr4[lang].assign(string("\\d{1,2}(\\, ?|\\. ?|  ?\\-  ?|  ?)(((") +
+                                           wday_abbrv_match + string(")|(") +
+                                           wday_match +
+                                           string ("))(\\, ?|\\. ?|  ?\\-  ?|  ?)?)?(\\.\\d{1,2}|[ \\.](") +
+                                           mname_match + "))(\\.|[ \\.]\\d{2,4}\\.?)? *$",
+                                           regex::icase);
+                     }
+                     if (regex_search(hd, whats, expr3[lang])) {
+                        hd.erase(whats.position(), whats[0].length());
+                     }
+                     else if (regex_search(hd, whats, expr4[lang])) {
+                        hd.erase(whats.position(), whats[0].length());
+                     }
 
                      // remove and compress whitespace
                      hd = regex_replace(hd, regex("(^ +| +$)"), "");
@@ -4481,15 +4533,16 @@ string ParseChannelId()
             break;
          }
       }
+      int pdc_cni = cni;
       if ((cni >> 8) == 0x0D) {
-         cni |= 0x1000;
+         pdc_cni |= 0x1000;
       } else if ((cni >> 8) == 0x0A) {
-         cni |= 0x1000;
+         pdc_cni |= 0x1000;
       } else if ((cni >> 8) == 0x04) {
-         cni |= 0x2000;
+         pdc_cni |= 0x2000;
       }
       for (int idx = 0; Cni2ChannelId[idx].cni != 0; idx++) {
-         if (Cni2ChannelId[idx].cni == cni) {
+         if (Cni2ChannelId[idx].cni == pdc_cni) {
             return string(Cni2ChannelId[idx].p_name);
          }
       }

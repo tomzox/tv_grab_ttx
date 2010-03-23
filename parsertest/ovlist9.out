@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="bw.swr.de">
+	<display-name>SWR</display-name>
+</channel>
+
+<programme start="20100322050000 +0000" stop="20100322052000 +0000" pdc-start="20100322060000 +0100" channel="bw.swr.de">
+	<title>Jacob 2/2</title>
+</programme>
+
+<programme start="20100322052000 +0000" stop="20100322054500 +0000" pdc-start="20100322062000 +0100" channel="bw.swr.de">
+	<title>Jacob 2/2</title>
+</programme>
+
+<programme start="20100322054500 +0000" stop="20100322055500 +0000" pdc-start="20100322064500 +0100" channel="bw.swr.de">
+	<title>Tracey McBean</title>
+</programme>
+
+<programme start="20100322055500 +0000" stop="20100322060000 +0000" pdc-start="20100322065500 +0100" channel="bw.swr.de">
+	<title>Minitz</title>
+	<desc>(teletext 792)</desc>
+</programme>
+
+<programme start="20100322060000 +0000" stop="20100322063000 +0000" pdc-start="20100322070000 +0100" channel="bw.swr.de">
+	<title>nano</title>
+	<desc>(teletext 376)</desc>
+</programme>
+
+<programme start="20100322063000 +0000" stop="20100322064500 +0000" pdc-start="20100322073000 +0100" channel="bw.swr.de">
+	<title>Reports in English</title>
+	<desc>(teletext 390)</desc>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+</programme>
+
+<programme start="20100322064500 +0000" stop="20100322070000 +0000" pdc-start="20100322073000 +0100" channel="bw.swr.de">
+	<title>Reports in English</title>
+	<desc>(teletext 390)</desc>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+</programme>
+
+<programme start="20100322070000 +0000" stop="20100322073000 +0000" pdc-start="20100322080000 +0100" channel="bw.swr.de">
+	<title>Fahr mal hin</title>
+	<sub-title>Fahr mal hin ...Frühling im Elsass</sub-title>
+</programme>
+
+<programme start="20100322073000 +0000" stop="20100322080000 +0000" pdc-start="20100322083000 +0100" channel="bw.swr.de">
+	<title>LS unterwegs (Wh):Dt.-türkische Partner beim Lernen</title>
+</programme>
+
+<programme start="20100322080000 +0000" stop="20100322084500 +0000" pdc-start="20100322090000 +0100" channel="bw.swr.de">
+	<title>ARD-Buffet (ARD-Wh)</title>
+</programme>
+
+<programme start="20100322084500 +0000" stop="20100322091500 +0000" pdc-start="20100322094500 +0100" channel="bw.swr.de">
+	<title>Brisant (ARD-Wh)</title>
+	<desc>(teletext 150)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100322091500 +0000" stop="20100322100000 +0000" pdc-start="20100322101500 +0100" channel="bw.swr.de">
+	<title>In aller Freundschaft</title>
+	<sub-title>In aller Freundschaft Rhapsodie in moll</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100322100000 +0000" stop="20100322105000 +0000" pdc-start="20100322110000 +0100" channel="bw.swr.de">
+	<title>Sturm der Liebe (ARD-Wh)</title>
+</programme>
+
+<programme start="20100322105000 +0000" stop="20100322114000 +0000" pdc-start="20100322115000 +0100" channel="bw.swr.de">
+	<title>Elefant, Tiger &amp; Co.</title>
+</programme>
+
+<programme start="20100322114000 +0000" stop="20100322123000 +0000" pdc-start="20100322124000 +0100" channel="bw.swr.de">
+	<title>Rote Rosen</title>
+	<sub-title>Rote Rosen Fernsehserie (ARD-Wh)</sub-title>
+</programme>
+
+<programme start="20100322123000 +0000" stop="20100322140000 +0000" pdc-start="20100322133000 +0100" channel="bw.swr.de">
+	<title>Königswalzer</title>
+	<sub-title>Königswalzer Spielfilm D 1955</sub-title>
+	<desc>(teletext 305)</desc>
+</programme>
+
+<programme start="20100322140000 +0000" stop="20100322150000 +0000" pdc-start="20100322150000 +0100" channel="bw.swr.de">
+	<title>Planet Wissen</title>
+	<sub-title>Planet Wissen Wunderstoff Glas</sub-title>
+	<desc>(teletext 396)</desc>
+</programme>
+
+<programme start="20100322150000 +0000" stop="20100322150500 +0000" pdc-start="20100322160000 +0100" channel="bw.swr.de">
+	<title>Baden-Württemberg</title>
+	<sub-title>Baden-Württemberg aktuell</sub-title>
+</programme>
+
+<programme start="20100322150500 +0000" stop="20100322160000 +0000" pdc-start="20100322160500 +0100" channel="bw.swr.de">
+	<title>Kaffee oder Tee?</title>
+	<desc>(teletext 361)</desc>
+</programme>
+
+<programme start="20100322160000 +0000" stop="20100322160500 +0000" pdc-start="20100322170000 +0100" channel="bw.swr.de">
+	<title>Baden-Württemberg</title>
+	<sub-title>Baden-Württemberg aktuell</sub-title>
+</programme>
+
+<programme start="20100322160500 +0000" stop="20100322170000 +0000" pdc-start="20100322160500 +0100" channel="bw.swr.de">
+	<title>Kaffee oder Tee?</title>
+	<desc>(teletext 361)</desc>
+</programme>
+
+<programme start="20100322170000 +0000" stop="20100322170900 +0000" pdc-start="20100322180000 +0100" channel="bw.swr.de">
+	<title>Baden-Württemberg aktuell</title>
+</programme>
+
+<programme start="20100322170900 +0000" stop="20100322171200 +0000" pdc-start="20100322180900 +0100" channel="bw.swr.de">
+	<title>Wirtschaftsinformationen</title>
+	<sub-title>Wirtschaftsinformationen von der Stuttgarter Börse</sub-title>
+</programme>
+
+<programme start="20100322171200 +0000" stop="20100322171500 +0000" pdc-start="20100322181200 +0100" channel="bw.swr.de">
+	<title>Baden-Württemberg Wetter</title>
+</programme>
+
+<programme start="20100322171500 +0000" stop="20100322174500 +0000" pdc-start="20100322181500 +0100" channel="bw.swr.de">
+	<title>Nahaufnahme: Die SWR4 -</title>
+	<sub-title>Nahaufnahme: Die SWR4 - Superwunschmelodie</sub-title>
+	<desc>(teletext 306)</desc>
+</programme>
+
+<programme start="20100322174500 +0000" stop="20100322184500 +0000" pdc-start="20100322184500 +0100" channel="bw.swr.de">
+	<title>Landesschau BW</title>
+	<desc>(teletext 310)</desc>
+</programme>
+
+<programme start="20100322184500 +0000" stop="20100322185800 +0000" pdc-start="20100322194500 +0100" channel="bw.swr.de">
+	<title>Baden-Württemberg</title>
+	<sub-title>Baden-Württemberg aktuell</sub-title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20100322185800 +0000" stop="20100322190000 +0000" pdc-start="20100322195800 +0100" channel="bw.swr.de">
+	<title>Baden-Württemberg Wetter</title>
+</programme>
+
+<programme start="20100322190000 +0000" stop="20100322191500 +0000" pdc-start="20100322200000 +0100" channel="bw.swr.de">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100322191500 +0000" stop="20100322204500 +0000" pdc-start="20100322201500 +0100" channel="bw.swr.de">
+	<title>Mord in bester Gesellschaft/Spielf. '09</title>
+	<desc>(teletext 314)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100322204500 +0000" stop="20100322205800 +0000" pdc-start="20100322214500 +0100" channel="bw.swr.de">
+	<title>Baden-Württemberg</title>
+	<sub-title>Baden-Württemberg aktuell</sub-title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20100322205800 +0000" stop="20100322210000 +0000" pdc-start="20100322215800 +0100" channel="bw.swr.de">
+	<title>Baden-Württemberg Wetter</title>
+</programme>
+
+<programme start="20100322210000 +0000" stop="20100322213000 +0000" pdc-start="20100322220000 +0100" channel="bw.swr.de">
+	<title>Sag die Wahrheit-Ratespiel</title>
+	<sub-title>Sag die Wahrheit-Ratespiel mit Spaß und Schwindel.355</sub-title>
+</programme>
+
+<programme start="20100322213000 +0000" stop="20100322220000 +0000" pdc-start="20100322222900 +0100" channel="bw.swr.de">
+	<title>Alarm hinter der Theke</title>
+</programme>
+
+<programme start="20100322220000 +0000" stop="20100322223000 +0000" pdc-start="20100322223000 +0100" channel="bw.swr.de">
+	<title>2+Leif</title>
+	<desc>(teletext 366)</desc>
+</programme>
+
+<programme start="20100322223000 +0000" stop="20100322235500 +0000" pdc-start="20100322230000 +0100" channel="bw.swr.de">
+	<title>Monogamie für Anfänger</title>
+	<sub-title>Monogamie für Anfänger Spielf.D '07</sub-title>
+	<!-- TTX 315 -->
+	<desc>1/2 S W R F E R N S E H E N BW
+22. März, 23.30 - 00.55 Uhr
+MONOGAMIE FÜR ANFÄNGER °°
+Spielfilm D 2007
+Während eines romantischen Paris-Trips macht Felix seiner Fabienne einen Hochzeitsantrag. Doch mit Beginn der Hochzeitsvorbereitungen kommen Zweifel in ihm auf. Ist er überhaupt reif für die lebenslange Monogamie? Wird er weiblichen Versuchungen dauerhaft widerstehen können?
+Als er der Versuchung in Person der attraktiven Johanna erliegt, ist die Hochzeitsmaschinerie bereits nicht mehr aufzuhalten.</desc>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+</programme>
+
+<programme start="20100322235500 +0000" stop="20100323002500 +0000" pdc-start="20100323002500 +0100" channel="bw.swr.de">
+	<title>Report Mainz</title>
+	<desc>(teletext 316)</desc>
+</programme>
+
+<programme start="20100323002500 +0000" stop="20100323005500 +0000" pdc-start="20100323012500 +0100" channel="bw.swr.de">
+	<title>Zum Tode von Erwin Lehn</title>
+	<sub-title>Zum Tode von Erwin Lehn Markus Brock bei E. Lehn</sub-title>
+</programme>
+
+<programme start="20100323005500 +0000" stop="20100323012500 +0000" pdc-start="20100323014000 +0100" channel="bw.swr.de">
+	<title>Sag die Wahrheit</title>
+	<desc>(teletext 355)</desc>
+</programme>
+
+<programme start="20100323012500 +0000" stop="20100323022500 +0000" pdc-start="20100323021000 +0100" channel="bw.swr.de">
+	<title>Landesschau</title>
+	<sub-title>Landesschau Baden-Württemberg (Wh).310</sub-title>
+</programme>
+
+<programme start="20100323022500 +0000" stop="20100323025000 +0000" pdc-start="20100323031000 +0100" channel="bw.swr.de">
+	<title>SWR1 Leute night</title>
+	<desc>(teletext 394)</desc>
+</programme>
+
+<programme start="20100323025000 +0000" stop="20100323033000 +0000" pdc-start="20100323031000 +0100" channel="bw.swr.de">
+	<title>SWR1 Leute night</title>
+	<desc>(teletext 394)</desc>
+</programme>
+
+<programme start="20100323033000 +0000" stop="20100323040000 +0000" pdc-start="20100323043000 +0100" channel="bw.swr.de">
+	<title>nano -</title>
+	<sub-title>nano - Die Welt von morgen</sub-title>
+	<desc>(teletext 376)</desc>
+</programme>
+
+<programme start="20100323040000 +0000" stop="20100323050000 +0000" pdc-start="20100323050000 +0100" channel="bw.swr.de">
+	<title>Planet Wissen</title>
+	<sub-title>Planet Wissen Wunderstoff Glas</sub-title>
+	<desc>(teletext 396)</desc>
+</programme>
+</tv>

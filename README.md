@@ -86,7 +86,7 @@ automate capturing and merging EPG data from multiple channels.
 
 # Copyright
 
-**Copyright 2006 - 2008 by T. Zoerner**
+**Copyright 2006-2008, 2010 by T. Zoerner**
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the

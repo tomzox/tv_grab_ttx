@@ -1,0 +1,251 @@
+#!/usr/bin/perl -w
+#
+# Test of the new "HD" feature flag on ARD introduced apx. March/2010
+# both in overview pages and descriptions.
+#
+# $Id: ovlist7.in,v 1.1 2010/03/22 20:07:40 tom Exp $
+#
+$VbiCaptureTime = 1269111999;
+$PkgCni{0xDC1} = 4501;
+$PkgCni{0x4901} = 180;
+$PgCnt{0x301} = 6;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x07ARDtext\x07Sa 20.03.10\x0720:06:31",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  05.30  Felix und die wilden Tiere    ",
+  "\x07 \x0605.55  Karen in Action               ",
+  "\x07  06.20  Die wunderbare Reise des      ",
+  "\x07         kleinen Nils Holgersson (1+2) ",
+  "\x07 \x0607.10  Shaun, das Schaf              ",
+  "\x07  07.35  Willi wills wissen ....... 312",
+  "\x07 \x0608.05  Wissen macht Ah!\x03UT\x06...... 313",
+  "\x07  08.30  neuneinhalb\x03UT                ",
+  "\x07 \x0608.40  Tiere bis unters\x03HD\x06...... 314",
+  "\x07        \x06Dach (9/13)                   ",
+  "\x07  09.10  Ein Fall f}r B.A.R.Z. .... 315",
+  "\x07 \x0609.35  Ein Fall f}r B.A.R.Z. .... 316",
+  "\x07  10.00  Tagesschau                    ",
+  "\x03!\x0610.05  Sportschau live:\x03HD/UT\x06... 390",
+  "\x07        \x06WM Skifliegen                 ",
+  "\x07  11.00  Tagesschau\x051110               ",
+  "\x07   \x05VPS\x07 bis 11.05 Uhr                 ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Nachmittag >\x06302",
+];
+$PgCnt{0x302} = 6;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x07ARDtext\x07Sa 20.03.10\x0720:06:31",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x03!\x0611.05  Sportschau live:\x03HD/UT\x06... 390",
+  "\x07  \x051005\x07\x06WM Skifliegen, Snowboard-     ",
+  "\x07        \x06Weltcup, Paralympics,         ",
+  "\x07        \x06Langlauf-Weltcup, Shorttrack- ",
+  "\x07        \x06WM, Biathlon-Weltcup          ",
+  "\x07  15.00  Tagesschau                    ",
+  "\x03!\x0615.05  Sportschau live:\x03HD/UT\x06... 390",
+  "\x07  \x051005\x07\x06Langlauf-Weltcup, Biathlon-   ",
+  "\x07        \x06Weltcup, Eisschnelllauf-WM    ",
+  "\x07  17.30  Brisant\x03UT\x07............... 319",
+  "\x07 \x0617.47  Das Wetter im Ersten          ",
+  "\x07  17.50  Tagesschau                    ",
+  "\x07\x06 18.00  Sportschau:\x03HD/UT\x06........ 322",
+  "\x07\x06        3.Liga                        ",
+  "\x03!\x0718.30  Sportschau\x03HD/UT\x07......... 323",
+  "\x07         Fu~ball-Bundesliga            ",
+  "\x07   \x05VPS\x07 bis 18.54 Uhr                 ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Abend >\x06303",
+];
+$PgCnt{0x314} = 6;
+$PgSub{0x314} = 0;
+$PgLang{0x314} = 1;
+$Pkg{0x314|(0x0000<<12)} =
+[
+  "d\x02\x15\x15\x15\x15\x15G314\x07ARDtext\x07Sa 20.03.10\x0720:06:32",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0708.40 - 09.10 Uhr                      ",
+  "\x06Tiere bis unters              \x07\x03     HD",
+  "\x06Dach (9/13)                            ",
+  "\x07                                       ",
+  "\x06Waldl{ufer                             ",
+  "\x07Im Wald unterwegs, treffen Jonas und   ",
+  "\x07seine Freunde scheinbar auf seltsame   ",
+  "\x07Fabelwesen. Sie gehen mit ihren Zwillen",
+  "\x07auf die Jagd, und dabei erwischt ein   ",
+  "\x07Stein von Jonas ein krankes Reh am     ",
+  "\x07Kopf.                                  ",
+  "\x07                                       ",
+  "\x07Als Greta und Jonas das verletzte Tier ",
+  "\x07im Wald finden, wird ihre Freundschaft ",
+  "\x07auf eine Zerrei~probe gestellt, denn   ",
+  "\x07verletzte Wildtiere m}ssen eigentlich  ",
+  "\x07erschossen werden. Doch Jonas f}hlt    ",
+  "\x07sich schuldig ...                      ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<      Ein Fall f}r B.A.R.Z. >\x06315",
+];
+$PgCnt{0x322} = 6;
+$PgSub{0x322} = 0;
+$PgLang{0x322} = 1;
+$Pkg{0x322|(0x0000<<12)} =
+[
+  "II\x15\x15\x15\x15\x15G322\x07ARDtext\x07Sa 20.03.10\x0720:06:32",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0718.00 - 18.30 Uhr                      ",
+  "\x06Sportschau:                   \x07\x03  HD/UT",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x06- 2.Bundesliga:                        ",
+  "\x07  FC Augsburg - RW Ahlen               ",
+  "\x07  Arminia Bielefeld - SC Paderborn     ",
+  "\x07                                       ",
+  "\x06- Fu~ball, 3.Liga                      ",
+  "\x07  1.FC Heidenheim - Holstein Kiel      ",
+  "\x07  FC Ingolstadt - Kickers Offenbach    ",
+  "\x07  Dynamo Dresden - Wacker Burghausen   ",
+  "\x07                                       ",
+  "\x06Moderation: Reinhold Beckmann          ",
+  "\x07                                       ",
+  "\x07Aktuelle Sportmeldungen >>\x06ab 200      ",
+  "\x06Internet: www.sportschau.de            ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Sportschau >\x06323",
+];
+$PgCnt{0x323} = 6;
+$PgSub{0x323} = 0;
+$PgLang{0x323} = 1;
+$Pkg{0x323|(0x0000<<12)} =
+[
+  "^I\x15\x15\x15\x15\x15G323\x07ARDtext\x07Sa 20.03.10\x0720:06:32",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0718.30 - 18.54 Uhr                      ",
+  "\x0718.55 - 19.57 Uhr                      ",
+  "\x06Sportschau                    \x07\x03  HD/UT",
+  "\x07                               \x03  Tipp!",
+  "\x06- Fu~ball-Bundesliga, 27.Spieltag      ",
+  "\x07  SC Freiburg - Mainz 05               ",
+  "\x07  VfB Stuttgart - Hannover 96          ",
+  "\x07  1.FC N}rnberg - 1899 Hoffenheim      ",
+  "\x07  Werder Bremen - VfL Bochum           ",
+  "\x07  Eintr.Frankfurt - FC Bayern M}nchen  ",
+  "\x07  R}ckblick 1.FC K|ln - Bor. M'gladbach",
+  "\x06- Historie:\x07Frankfurt FCB 14.10.1972   ",
+  "\x07                                       ",
+  "\x06Moderation: Reinhold Beckmann          ",
+  "\x07                                       ",
+  "\x07Aktuelle Sportmeldungen >>\x06ab 200      ",
+  "\x06Internet: www.sportschau.de            ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<      Das Fr}hlingsfest ... >\x06324",
+];
+$PgCnt{0x390} = 6;
+$PgSub{0x390} = 0;
+$PgLang{0x390} = 1;
+$Pkg{0x390|(0x0000<<12)} =
+[
+  "\x15G\x15\x15\x15\x15\x15G390\x07ARDtext\x07Sa 20.03.10\x0720:06:34",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Sa 20.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x06Wintersport live            \x03     HD/UT",
+  "\x0710.05 - 17.30 Uhr        \x03Ticker >> 666",
+  "\x07                                       ",
+  "\x06- ca. 15.05 Uhr aus Falun (S):         ",
+  "\x07  Langlauf-Weltcup                     ",
+  "\x07  Doppelverfolgung Herren              ",
+  "\x07  Reporter: Jens-J|rg Rieck            ",
+  "\x07                                       ",
+  "\x06- ca. 15.55 Uhr aus Oslo (NOR):        ",
+  "\x07  Biathlon-Weltcup, Verfolgung Herren  ",
+  "\x07  Reporter: Wilfried Hark              ",
+  "\x07                                       ",
+  "\x06- ca. 16.50 Uhr aus Herrenveen (NL):   ",
+  "\x07  Eisschnelllauf-WM                    ",
+  "\x07  Zusammenfassung von Ralf Scholt      ",
+  "\x07                                       ",
+  "\x06Aktuelle Sportmeldungen >> ab 200      ",
+  "\x06Paralympics im ARD-Text >> ab 800      ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                  H.Schmidt >\x06393",
+];
+$PgCnt{0x391} = 6;
+$PgSub{0x391} = 2;
+$PgLang{0x391} = 1;
+$Pkg{0x391|(0x0001<<12)} =
+[
+  "\x02G\x02P\x15\x15IG391\x07ARDtext\x07Sa 20.03.10\x0720:06:05",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      So 21.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x06Sportschau live\x07   \x03HD/UT/Ticker >> 666",
+  "\x0710.03-12.00 + 12.45-17.00 Uhr          ",
+  "\x07                                       ",
+  "\x06- aus Planica (SLO):                   ",
+  "\x07  WM Skifliegen - Finale               ",
+  "\x07  Reporter: Tom Bartels                ",
+  "\x07                                       ",
+  "\x06- ca. 12.45 aus Vancouver (KAN):       ",
+  "\x07  Paralympics - H|hepunkte des Tages   ",
+  "\x07                                       ",
+  "\x06- ca. 13.30 aus Falun (S):             ",
+  "\x07  Langlauf-Weltcup, 10 km Damen        ",
+  "\x07  Reporter: Jens-J|rg Rieck            ",
+  "\x07                                       ",
+  "\x06- ca. 14.05 Uhr aus Oslo (NOR)         ",
+  "\x07  Biathlon-Weltcup, Massenstart Damen  ",
+  "\x07  Reporter: Christian Dexne            ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           1/2             mehr >",
+];
+$PgCnt{0x391} = 6;
+$PgSub{0x391} = 2;
+$PgLang{0x391} = 1;
+$Pkg{0x391|(0x0002<<12)} =
+[
+  "\x02GIP\x15\x15IG391\x07ARDtext\x07Sa 20.03.10\x0720:06:34",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      So 21.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x06Sportschau live\x07   \x03HD/UT/Ticker >> 666",
+  "\x0710.03-12.00 + 12.45-17.00 Uhr          ",
+  "\x07                                       ",
+  "\x06- ca. 15.00 Uhr aus Heerenveen (NL):   ",
+  "\x07  Eisschnelllauf-WM / Zusammenfassung  ",
+  "\x07  Reporter: Ralf Scholt                ",
+  "\x07                                       ",
+  "\x06- ca. 15.25 Uhr aus Falun (S):         ",
+  "\x07\x06\x07Langlauf-Weltcup, 15 km Herren       ",
+  "\x07  Reporter Jens-J|rg Rieck             ",
+  "\x07                                       ",
+  "\x06- ca. 15.50 Uhr aus Oslo (NOR):        ",
+  "\x07  Biathlon-Weltcup, Massenstart Herren ",
+  "\x07  Reporter: Wilfried Hark              ",
+  "\x07                                       ",
+  "\x06- ca. 16.45 Uhr aus La Molina (E):     ",
+  "\x07  Snowboard Parallel-Riesenslalom Damen",
+  "\x07  Reporter: Andi Egertz                ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           2/2    H.Schmidt >\x06393",
+];
+1;
