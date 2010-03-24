@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.5 2010/03/24 10:06:10 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.6 2010/03/24 18:54:49 tom Exp $
  */
 
 #include <stdio.h>
@@ -3896,12 +3896,16 @@ bool DescFormatCastTable(vector<string>& Lines)
       if (spc3 == 0x3F) {
          expr2.assign(string("^") + string(spc0, ' ') +
                       string("([^ ].*?)") + string(spc1, ' ') +
-                      string("(\\.+)") + string(spc2, ' ') + "[^ \\.]$");
+                      string("(\\.*)") + string(spc2, ' ') + "[^ \\.]$");
       } else {
          expr2.assign(string("^(.*?)") + string(spc1, ' ') +
                       string("(\\.+)") + string(spc2, ' ') +
                       string("([^ \\.].*?)") + string(spc3, ' ') + "$");
       }
+      // Special handling for lines with overlong names on left or right side:
+      // only for lines inside of table; accept anything which looks like a separator
+      static const regex expr3("^(.*?)\\.\\.+ ?[^ \\.]");
+      static const regex expr4("^(.*?)[^ ] \\. [^ \\.]");  // must not match "Mr. X"
 
       // step #2: find all lines with dots ending at the right column and right amount of spaces
       uint last_row = 0;
@@ -3910,12 +3914,15 @@ bool DescFormatCastTable(vector<string>& Lines)
             //
             // 2nd column is left-aligned
             //
-            if (regex_search(Lines[row].substr(0, off + 1), whats, expr2)) {
+            if (   (   regex_search(Lines[row].substr(0, off + 1), whats, expr2)
+                    && ((last_row != 0) || (whats[2].length() > 0)) )
+                || ((last_row != 0) && regex_search(Lines[row], whats, expr3))
+                || ((last_row != 0) && regex_search(Lines[row], whats, expr4)) ) {
                string tab1 = string(whats[1]);
-               string tab2 = Lines[row].substr(off);
+               string tab2 = Lines[row].substr(whats[0].length() - 1);
                // match -> replace dots with colon
-               tab1 = regex_replace(tab1, regex(" *:$"), "");
-               tab2 = regex_replace(tab2, regex(",? +$"), "");
+               tab1 = regex_replace(tab1, regex("[ :]*$"), "");
+               tab2 = regex_replace(tab2, regex("[ ,]*$"), "");
                Lines[row] = tab1 + string(": ") + tab2 + string(",");
                last_row = row;
             }
