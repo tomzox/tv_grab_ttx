@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.4 2010/03/24 09:30:36 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.5 2010/03/24 10:06:10 tom Exp $
  */
 
 #include <stdio.h>
@@ -2850,6 +2850,8 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
             {
                new_title = true;
             }
+         } else {
+            new_title = true;
          }
 
          if (new_title == false) {

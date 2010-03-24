@@ -1,0 +1,38 @@
+#!/usr/bin/perl -w
+#
+# Ads within the overview list must be ignored.
+#
+# $Id: ovlist10.in,v 1.1 2010/03/24 10:04:36 tom Exp $
+#
+$VbiCaptureTime = 1269423222;
+$PgCnt{0x303} = 2;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "^\x15\x02\x15\x15\x15IG303\x03RTL II   \x07Mi 24 Mar\x0309:53:36",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Liebeskummer? \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Wir helfen 600\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                   ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0116:00\x00Immer wieder Jim...........335 ",
+  "\x07\x1D\x0117:00\x00Still Standing.............337 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0118:00\x00Der Tr|deltrupp............313 ",
+  "\x07\x1D\x0119:00\x00Big Brother................630 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x04     \x04                               ",
+  "\x07\x1D\x01\x1D\x07Fr}hbucher Rabatte sichern! >380\x07\x1D ",
+  "\x07\x1D\x04     \x04                               ",
+  "\x07\x1D\x0120:00\x00RTL II News................110 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Stargate Universe..........322 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0121:10\x00Stargate Atlantis..........321 ",
+  "\x07\x1D\x0122:05\x00Bionic Woman...............331 ",
+  "\x07\x1D                                      ",
+  "\x03\x1D\x00814 < Dr.M}ller / Fetischdamen > 841 ",
+  "\x04\x1D\x07\x0DDSL+200EUR / Handy schufafrei..162  ",
+  "\x01\x1D\x07                                     ",
+];
+1;
