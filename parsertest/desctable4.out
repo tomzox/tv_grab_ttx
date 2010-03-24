@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="vox.de">
+	<display-name>VOX</display-name>
+</channel>
+
+<programme start="20081003035500 +0000" stop="20081003044500 +0000" channel="vox.de">
+	<title>McLeods Töchter</title>
+	<desc>(teletext 320)</desc>
+</programme>
+
+<programme start="20081003044500 +0000" stop="20081003070500 +0000" channel="vox.de">
+	<title>Pleasentville</title>
+	<sub-title>Pleasentville (Komödie, USA 1998)</sub-title>
+	<!-- TTX 321 -->
+	<desc>VOX-STARKINO 1/2 Fr 06:45 Uhr Pleasantville Komödie, USA 1998
+Die Teenager David und Jennifer werden aus den 90er-Jahren in die 50er- Jahre-Serie Pleasantville versetzt, in der es weder Gewalt noch Sex gibt und alle ungemein nett zueinander sind.
+David und Jennifer tragen jedoch die Freiheiten der 1990er in die heile Serienwelt - und damit auch den Verlust der Unschuld...
+VOX-STARKINO 2/2 Fr 06:45 Uhr Pleasantville Komödie, USA 1998 ca. 110 Minuten
+David: Tobey Maguire, Jennifer: Reese Witherspoon, George Parker: William H. Macy, Betty Parker: Joan Allen, Mr. Johnson: Jeff Daniels, Big Bob: J.T. Walsh, Margaret: Marley Shelton, Davids Mutter: Jane Kaczmarek, Fernsehtechniker: Don Knotts;
+Regie: Gary Ross
+Verweis 1..........................</desc>
+</programme>
+
+<programme start="20081003070500 +0000" stop="20081003090000 +0000" channel="vox.de">
+	<title>An deiner Seite</title>
+	<sub-title>An deiner Seite (Drama, USA 1999)</sub-title>
+	<!-- TTX 322 -->
+	<desc>An deiner Seite Drama, USA 1999
+15 Jahre verheiratet, ein Haus, zwei wohlgeratene Kinder: Die Ehe von Ben und Katie Jordan wirkt nach außen hin perfekt. Doch der schöne Schein trügt: Der Alltag ist zur Belastung geworden, Auseinandersetzungen wegen nichtiger Kleinigkeiten, man hat sich auseinander gelebt.
+Als ihre Kinder ins Sommerlager fahren, wagen Ben und Katie den ersten Schritt zur Trennung. Endgültig? (Wh. Mo 06.10. 05:55) Verweis 1..........................
+An deiner Seite Drama, USA 1999, ca. 90 Minuten
+Ben Jordan: Bruce Willis, Katie Jordan: Michelle Pfeiffer, Erin Jordan: Colleen Rennison, Josh Jordan: Jake Sandvig, Marty: Tim Matheson;
+Regie: Rob Reiner
+Rob Reiner nimmt die Höhen und Tiefen einer langjährigen Beziehung humorvoll unter die Lupe - und hält den Ausgang bis zum überraschenden</desc>
+</programme>
+
+<programme start="20081003090000 +0000" stop="20081003103500 +0000" channel="vox.de">
+	<title>Ein heißer Coup</title>
+	<sub-title>Ein heißer Coup (Thriller, USA 2000)</sub-title>
+	<desc>(teletext 323)</desc>
+</programme>
+
+<programme start="20081003103500 +0000" stop="20081003122500 +0000" channel="vox.de">
+	<title>Ed</title>
+	<sub-title>Ed Die affenstarke Sportskanone (Komödie, USA 1996)</sub-title>
+	<desc>(teletext 324)</desc>
+</programme>
+
+<programme start="20081003122500 +0000" stop="20081003135500 +0000" channel="vox.de">
+	<title>Space Jam</title>
+	<sub-title>Space Jam (Komödie, USA 1996)</sub-title>
+	<desc>(teletext 325)</desc>
+</programme>
+
+<programme start="20081003135500 +0000" stop="20081003151500 +0000" channel="vox.de">
+	<title>Garfield</title>
+	<sub-title>Garfield (Komödie, USA 2004)</sub-title>
+	<desc>(teletext 326)</desc>
+</programme>
+
+<programme start="20081003151500 +0000" stop="20081003170000 +0000" channel="vox.de">
+	<title>Familie Drews</title>
+	<sub-title>Familie Drews Der verunglückte Urlaub Doku</sub-title>
+	<desc>(teletext 327)</desc>
+</programme>
+
+<programme start="20081003170000 +0000" stop="20081003175000 +0000" channel="vox.de">
+	<title>Das perfekte Dinner</title>
+	<sub-title>Das perfekte Dinner Koch-Doku</sub-title>
+	<desc>(teletext 328)</desc>
+</programme>
+
+<programme start="20081003175000 +0000" stop="20081003181500 +0000" channel="vox.de">
+	<title>Unter Volldampf</title>
+	<sub-title>Unter Volldampf Kochshow</sub-title>
+	<desc>(teletext 329)</desc>
+</programme>
+
+<programme start="20081003181500 +0000" stop="20081003201000 +0000" channel="vox.de">
+	<title>Kocharena</title>
+	<sub-title>Kocharena Kochshow, Folge 4</sub-title>
+	<desc>(teletext 330)</desc>
+</programme>
+
+<programme start="20081003201000 +0000" channel="vox.de">
+	<title>SPIEGEL TV Thema</title>
+	<sub-title>SPIEGEL TV Thema Chaos im Kopf - Wenn das Gehirn außer Kontrolle gerät</sub-title>
+	<desc>(teletext 331)</desc>
+</programme>
+</tv>

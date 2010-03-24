@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * Id: tv_grab_ttx.pl,v 1.23 2009/05/03 16:25:39 tom Exp tom 
+ * $Id: tv_grab_ttx.cc,v 1.4 2010/03/24 09:30:36 tom Exp $
  */
 
 #include <stdio.h>
@@ -3855,71 +3855,98 @@ bool DescFormatCastTable(vector<string>& Lines)
 
    // step #1: build statistic about lines with ".." (including space before and after)
    map<int,int> Tabs;
-   int tab_max = -1;
-   for (uint idx = 0; idx < Lines.size(); idx++) {
-      static const regex expr1("^((.*?)( ?)(\\.\\.+)( ?))");
-      if (regex_search(Lines[idx], whats, expr1)) {
-         int rec = whats[1].length() |
-                   (whats[3].length() << 8) |
-                   (whats[5].length() << 16);
+   uint tab_max = 0;
+   for (uint row = 1; row < Lines.size(); row++) {
+      static const regex expr1("^( *)((.*?)( ?)\\.\\.+( ?))[^ ].*?[^ ]( *)$");
+      if (regex_search(Lines[row], whats, expr1)) {
+         // left-aligned (ignore spacing on the right)
+         uint rec = whats[1].length() |
+                    ((whats[1].length() + whats[2].length()) << 6)|
+                    (whats[4].length() << 12) |
+                    (whats[5].length() << 18) |
+                    (0x3F << 24);
          Tabs[rec]++;
-         if ((tab_max == -1) || (Tabs[tab_max] < Tabs[rec]))
+         if ((tab_max == 0) || (Tabs[tab_max] < Tabs[rec]))
+            tab_max = rec;
+
+         // right-aligned (ignore spacing on the left)
+         rec = whats[1].length() |
+               (0x3F << 6) |
+               (whats[4].length() << 12) |
+               (whats[5].length() << 18) |
+               (whats[6].length() << 24);
+         Tabs[rec]++;
+         if ((tab_max == 0) || (Tabs[tab_max] < Tabs[rec]))
             tab_max = rec;
       }
    }
 
    // minimum is two lines looking like table rows
-   if ((tab_max != -1) && (Tabs[tab_max] >= 2)) {
-      int off  = tab_max & 0xFF;
-      int spc1 = (tab_max >> 8) & 0xFF;
-      int spc2 = tab_max >> 16;
-      if (opt_debug) printf("DESC reformat table into list: %d rows, FMT:%d,%d %d\n", Tabs[tab_max], off, spc1, spc2);
+   if ((tab_max != 0) && (Tabs[tab_max] >= 2)) {
+      const uint spc0 = tab_max & 0x3F;
+      const uint off  = (tab_max >> 6) & 0x3F;
+      const uint spc1 = (tab_max >> 12) & 0x3F;
+      const uint spc2 = (tab_max >> 18) & 0x3F;
+      const uint spc3 = tab_max >> 24;
+      if (opt_debug) printf("DESC reformat table into list: %d rows, FMT:%d,%d %d,%d\n", Tabs[tab_max], off, spc1, spc2, spc3);
+
+      regex expr2;
+      if (spc3 == 0x3F) {
+         expr2.assign(string("^") + string(spc0, ' ') +
+                      string("([^ ].*?)") + string(spc1, ' ') +
+                      string("(\\.+)") + string(spc2, ' ') + "[^ \\.]$");
+      } else {
+         expr2.assign(string("^(.*?)") + string(spc1, ' ') +
+                      string("(\\.+)") + string(spc2, ' ') +
+                      string("([^ \\.].*?)") + string(spc3, ' ') + "$");
+      }
 
       // step #2: find all lines with dots ending at the right column and right amount of spaces
-      int last_row = -1;
-      int row = 0;
-      for (uint idx = 0; idx < Lines.size(); idx++) {
-         static const regex expr2("^(.*?)( ?)(\\.+)( ?)$");
-         static const regex expr5("^ +[^ ]$");
-
-         if (   regex_search(Lines[idx].substr(0, off), whats, expr2)
-             && ((!whats[2].length() && !spc1) || (whats[2].length() == spc1))
-             && ((!whats[4].length() && !spc2) || (whats[4].length() == spc2)) ) {
-            string tab1 = string(whats[1]);
-            string tab2 = Lines[idx].substr(off);
-            static const regex expr3("^[^ \\.]");
-            if (regex_search(tab2, whats, expr3)) {
+      uint last_row = 0;
+      for (uint row = 1; row < Lines.size(); row++) {
+         if (spc3 == 0x3F) {
+            //
+            // 2nd column is left-aligned
+            //
+            if (regex_search(Lines[row].substr(0, off + 1), whats, expr2)) {
+               string tab1 = string(whats[1]);
+               string tab2 = Lines[row].substr(off);
                // match -> replace dots with colon
                tab1 = regex_replace(tab1, regex(" *:$"), "");
                tab2 = regex_replace(tab2, regex(",? +$"), "");
-               Lines[idx] = tab1 + string(": ") + tab2 + string(",");
+               Lines[row] = tab1 + string(": ") + tab2 + string(",");
                last_row = row;
             }
-            else if (last_row > 0) {
-               // end of table (non-empty line) -> terminate list with semicolon
-               Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), ";");
-               last_row = -1;
+            else if (last_row != 0) {
+               static const regex expr5("^ +[^ ]$");
+               if (regex_search(Lines[row].substr(0, off + 1), whats, expr5)) {
+                  // right-side table column continues (left side empty)
+                  Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), "");
+                  string tab2 = regex_replace(Lines[row].substr(off), regex(",? +$"), "");
+                  Lines[row] = tab2 + ",";
+                  last_row = row;
+               }
+            }
+         } else {
+            //
+            // 2nd column is right-aligned
+            //
+            if (regex_search(Lines[row], whats, expr2)) {
+               string tab1 = string(whats[1]);
+               string tab2 = Lines[row].substr(whats.position(3));
+               // match -> replace dots with colon
+               tab1 = regex_replace(tab1, regex(" *:$"), "");
+               tab2 = regex_replace(tab2, regex(",? +$"), "");
+               Lines[row] = tab1 + string(": ") + tab2 + string(",");
+               last_row = row;
             }
          }
-         else if (   (last_row != -1)
-                  && regex_search(Lines[idx].substr(0, off + 1), whats, expr5)) {
-            // right-side table column continues (left side empty)
-            Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), "");
-            string tab2 = regex_replace(Lines[idx].substr(off), regex(",? +$"), "");
-            Lines[idx] = tab2 + ",";
-            last_row = row;
+
+         if ((last_row > 0) && (last_row < row)) {
+            // end of table: terminate list
+            Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), ".");
+            last_row = 0;
          }
-         else if (last_row > 0) {
-            // end of table: if paragraph break remove comma; else terminate with semicolon
-            static const regex expr4("[^ ]");
-            if (!regex_search(Lines[idx], whats, expr4)) {
-               Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), "");
-            } else {
-               Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), ";");
-            }
-            last_row = -1;
-         }
-         row++;
       }
       if (last_row > 0) {
          Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), "");

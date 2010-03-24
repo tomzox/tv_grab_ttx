@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# Yet another test for parsing a cast table where the 2nd column
+# is aligned to the right side.
+#
+# $Id: desctable5.in,v 1.1 2010/03/24 09:31:33 tom Exp $
+#
+$VbiCaptureTime = 1269374416;
+$PgCnt{0x316} = 4;
+$PgSub{0x316} = 0;
+$PgLang{0x316} = 1;
+$Pkg{0x316|(0x0000<<12)} =
+[
+  "8\x02\x15\x15\x15\x15\x15G316\x06Bayerntext  \x0723.03. 21:00:09",
+  "\x14|4|4|4                \x05\x181D111\x18240310\x18B9",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen Mi,24.03.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x0621.45\x06\x06\x06Ein Fall von Liebe\x03UT          ",
+  "\x05\x182145\x07\x06\x06Spielfilm, D/A 2009 .......\x06359",
+  "\x0723.15\x07\x07\x07Kino Kino                      ",
+  "\x05\x182315\x07\x07\x07Das Filmmagazin des Bayerischen",
+  "         Fernsehens ................\x07410",
+  "\x0623.30\x06\x06\x06Rundschau-Nacht ...........\x06361",
+  "\x05\x182330\x07                                 ",
+  "\x0723.40\x07\x07\x07Live Stream                    ",
+  "\x05\x182340\x07\x07\x07Kurzspielfilm, D 2009          ",
+  "\x05\x05250310\x07                               ",
+  "\x0600.25\x06\x06\x06Suza - Leben auf der Kippe     ",
+  "\x05\x180025\x07\x06\x06Dokumentarfilm, D 2008         ",
+  "\x0701.25\x07\x07\x07Dahoam is Dahoam\x03UT            ",
+  "\x05\x180125\x07\x07\x07487. Guter Mond... ........\x07402",
+  "\x0601.55\x06\x06\x06Planet Erde                    ",
+  "\x05\x180155\x07\x06\x06Monument Valley                ",
+  undef,
+  "\x05\x18VPS\x07            ab\x0701.59\x07Uhr >>> 317  ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x359} = 3;
+$PgSub{0x359} = 2;
+$PgLang{0x359} = 1;
+$Pkg{0x359|(0x0001<<12)} =
+[
+  "Gs\x02P\x15\x15IG359\x06Bayerntext  \x0723.03. 20:59:18",
+  "\x14|4|4|4                \x05\x18240310\x181D111\x181B",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen Mi,24.03.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "   21.45-23.12\x05\x18VPS\x182145          \x07  1/2",
+  "   Ein Fall von Liebe\x03UT                ",
+  "   Spielfilm, D/A 2009                  ",
+  undef,
+  "\x06Der herzlose Staranwalt Florian Faber  ",
+  "\x06gewinnt einfach jeden Prozess und      ",
+  "\x06gef{llt sich in der Rolle des k}hlen,  ",
+  "\x06erfolgreichen Siegers. Als er bei einem",
+  "\x06schweren Autounfall beinahe umkommt,   ",
+  "\x06beginnt er sein Leben zu }berdenken.   ",
+  undef,
+  "\x06Das kann die impulsive Journalistin    ",
+  "\x06Sarah Pohl, die ihn in ihren Artikeln  ",
+  "\x06immer wieder provoziert, kaum glauben. ",
+  "\x06Wandelt sich ihr selbstgef{lliger      ",
+  "\x06Lieblingsfeind tats{chlich zum \"wei~en ",
+  "\x06Ritter\", der f}r das Recht der kleinen ",
+  "\x06Leute k{mpft?                          ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x359} = 3;
+$PgSub{0x359} = 2;
+$PgLang{0x359} = 1;
+$Pkg{0x359|(0x0002<<12)} =
+[
+  "GsIP\x15\x15IG359\x06Bayerntext  \x0723.03. 20:59:44",
+  "\x14|4|4|4                \x05\x18240310\x181D111\x181B",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen Mi,24.03.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "   21.45-23.12\x05\x18VPS\x182145          \x07  2/2",
+  "   Ein Fall von Liebe\x03UT                ",
+  "   Spielfilm, D/A 2009                  ",
+  undef,
+  "\x06Regie: Jorgo Pappavassiliou            ",
+  undef,
+  "\x06Florian Faber .... Francis Fulton-Smith",
+  "\x06Sarah Pohl ............ Mariella Ahrens",
+  "\x06Elke Linde ............ Floriane Daniel",
+  undef,
+  "\x06Peter Braun .............. Peter Kremer",
+  "\x06Jens Rigas ............ Vassily Kazakos",
+  "\x06Gudrun Kramer ........ Susanne Bentzien",
+  undef,
+  "\x06M{user ................. Stephan Korves",
+  "\x06Kant .............. Chajim Koenigshofen",
+  "\x06Thomas Linde ........... Thomas Wehling",
+  "\x06Bankdirektor .......... Barbara Trommer",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+1;
