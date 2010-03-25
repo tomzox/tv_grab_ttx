@@ -3,7 +3,7 @@
 # Test of the new "HD" feature flag on ZDF introduced apx. March/2010
 # both in overview pages and descriptions.
 #
-# $Id: ovlist8.in,v 1.1 2010/03/22 20:07:40 tom Exp $
+# $Id: ovlist8.in,v 1.2 2010/03/25 13:36:31 tom Exp $
 #
 $VbiCaptureTime = 1269111809;
 $PgCnt{0x303} = 5;
@@ -37,9 +37,9 @@ $Pkg{0x303|(0x0000<<12)} =
   "\x04\x1D\x07300 <-          ab\x0723.15\x07Uhr -> 304\x07 ",
 ];
 $PgCnt{0x329} = 6;
-$PgSub{0x329} = 2;
+$PgSub{0x329} = 0;
 $PgLang{0x329} = 1;
-$Pkg{0x329|(0x0001<<12)} =
+$Pkg{0x329|(0x0000<<12)} =
 [
   "GI\x02P\x15\x15IG329\x03ZDFtext\x02Sa\x0220.03.10\x0320:03:12",
   "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 1/2 ",
@@ -63,36 +63,6 @@ $Pkg{0x329|(0x0001<<12)} =
   "\x06Vater Thomas will ihnen n{her sein und ",
   "\x06hat einen Job an der Musikhochschule in",
   "\x06Berlin angenommen.                     ",
-  undef,
-  "\x04\x1D\x07300 <-                           ->  ",
-];
-$PgCnt{0x329} = 6;
-$PgSub{0x329} = 2;
-$PgLang{0x329} = 1;
-$Pkg{0x329|(0x0002<<12)} =
-[
-  "GIIP\x15\x15IG329\x03ZDFtext\x02Sa\x0220.03.10\x0320:02:40",
-  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute     \x07 2/2 ",
-  "\x04\x1D\x07 Programm  Samstag, 20. M{rz         ",
-  "                       \x05\x181D102\x18200310\x1841",
-  " \x0719.25\x07-\x0720.15\x07Uhr          \x05\x18VPS\x181925\x07",
-  "\x06\x06Unser Charly                          ",
-  "\x06\x06Es spukt\x0316:9 HD                      ",
-  undef,
-  " Darsteller:                            ",
-  undef,
-  " Max Henning ......... Ralf Lindermann  ",
-  " Katharina Hauser .... Ursula Buschhorn ",
-  " Lilly Hauser ........ Lea Wolfram      ",
-  " Jonas Hauser ........ Connor A. Mills  ",
-  " Ch. Roesner-Lombardi  Regina Lemnitz   ",
-  " Frau Hoppe .......... Brigitte B|ttrich",
-  " u.a.                                   ",
-  undef,
-  " Regie: Carl Lang                       ",
-  " Buch/Autor: Stefan Kuhlmann,           ",
-  " Martin Maurer                          ",
-  " Kamera: Claus Deubel                   ",
   undef,
   "\x04\x1D\x07300 <-                           ->  ",
 ];

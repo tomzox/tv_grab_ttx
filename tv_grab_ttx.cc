@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.6 2010/03/24 18:54:49 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.7 2010/03/25 13:35:03 tom Exp $
  */
 
 #include <stdio.h>
@@ -2561,34 +2561,34 @@ int ParseFooterByColor(int page, int sub)
  */
 void RemoveTrailingPageFooter(string& text)
 {
-   smatch whats;
+   match_results<string::iterator> whati;
 
    // look for a page reference or ">>" at line end
-   static const regex expr1("(.*[^[:alnum:]])([1-8][0-9][0-9]|>{1,4})[^\\x1D\\x21-\\xFF]*$");
-   if (regex_search(text, whats, expr1)) {
-      int ref_off = whats[1].length();
+   static const regex expr1("^(.*[^[:alnum:]])([1-8][0-9][0-9]|>{1,4})[^\\x1D\\x21-\\xFF]*$");
+   if (regex_search(text.begin(), text.end(), whati, expr1)) {
+      int ref_off = whati[1].length();
       // check if the background color is changed
-      static const regex expr2("(.*)\\x1D[^\\x1D]+$");
-      if (regex_search(text.substr(0, ref_off), whats, expr2)) {
-         ref_off = whats[1].length();
+      static const regex expr2("^(.*)\\x1D[^\\x1D]+$");
+      if (regex_search(text.begin(), text.begin() + ref_off, whati, expr2)) {
+         ref_off = whati[1].length();
          // determine the background color of the reference (i.e. last used FG color before 1D)
          int ref_col = 7;
-         static const regex expr3("(.*)([\\x00-\\x07\\x10-\\x17])[^\\x00-\\x07\\x10-\\x17\\x1D]*$");
-         if (regex_search(text.substr(0, ref_off), whats, expr3)) {
-            ref_col = *whats[2].first;
+         static const regex expr3("^(.*)([\\x00-\\x07\\x10-\\x17])[^\\x00-\\x07\\x10-\\x17\\x1D]*$");
+         if (regex_search(text.begin(), text.begin() + ref_off, whati, expr3)) {
+            ref_col = text[whati.position(2)];
          }
          //print "       REF OFF:$ref_off COL:$ref_col\n";
          // determine the background before the reference
          bool matched = false;
          int txt_off = ref_off;
-         if (regex_search(text.substr(0, ref_off), whats, expr2)) {
-            int tmp_off = whats[1].length();
-            if (regex_search(text.substr(0, tmp_off), whats, expr3)) {
-               int txt_col = *whats[2].first;
+         if (regex_search(text.begin(), text.begin() + ref_off, whati, expr2)) {
+            int tmp_off = whati[1].length();
+            if (regex_search(text.begin(), text.begin() + tmp_off, whati, expr3)) {
+               int txt_col = text[whati.position(2)];
                //print "       TXTCOL:$txt_col\n";
                // check if there's any text with this color
                static const regex expr4("[\\x21-\\xff]");
-               if (regex_search(text.substr(tmp_off, ref_off), whats, expr4)) {
+               if (regex_search(text.begin() + tmp_off, text.begin() + ref_off, whati, expr4)) {
                   matched = (txt_col != ref_col);
                   txt_off = tmp_off;
                }
@@ -2597,7 +2597,7 @@ void RemoveTrailingPageFooter(string& text)
          // check for text at the default BG color (unless ref. has default too)
          if (!matched && (ref_col != 7)) {
             static const regex expr5("[\\x21-\\xff]");
-            matched = regex_search(text.substr(0, txt_off), whats, expr5);
+            matched = regex_search(text.begin(), text.begin() + txt_off, whati, expr5);
             //if (matched) print "       DEFAULT TXTCOL:7\n";
          }
          if (matched) {
@@ -2845,8 +2845,9 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
          else if (pgfmt.subt_off >= 0) {
             static const regex expr10("^[ \\x00-\\x07\\x10-\\x17]*$");
             static const regex expr11("^[ \\x00-\\x07\\x10-\\x17]*$");
-            if (   !regex_search(text.substr(0, pgfmt.subt_off), whats, expr10)
-                || regex_search(text.substr(pgfmt.subt_off), whats, expr11) )
+            match_results<string::iterator> whati;
+            if (   !regex_search(text.begin(), text.begin() + pgfmt.subt_off, whati, expr10)
+                || regex_search(text.begin() + pgfmt.subt_off, text.end(), whati, expr11) )
             {
                new_title = true;
             }
@@ -3905,7 +3906,7 @@ bool DescFormatCastTable(vector<string>& Lines)
       // Special handling for lines with overlong names on left or right side:
       // only for lines inside of table; accept anything which looks like a separator
       static const regex expr3("^(.*?)\\.\\.+ ?[^ \\.]");
-      static const regex expr4("^(.*?)[^ ] \\. [^ \\.]");  // must not match "Mr. X"
+      static const regex expr4("^(.*?[^ ]) \\. [^ \\.]");  // must not match "Mr. X"
 
       // step #2: find all lines with dots ending at the right column and right amount of spaces
       uint last_row = 0;
@@ -3918,8 +3919,8 @@ bool DescFormatCastTable(vector<string>& Lines)
                     && ((last_row != 0) || (whats[2].length() > 0)) )
                 || ((last_row != 0) && regex_search(Lines[row], whats, expr3))
                 || ((last_row != 0) && regex_search(Lines[row], whats, expr4)) ) {
-               string tab1 = string(whats[1]);
-               string tab2 = Lines[row].substr(whats[0].length() - 1);
+               string tab1 = Lines[row].substr(spc0, whats[1].length());
+               string tab2 = Lines[row].substr(whats[0].length() - 1); // for expr3 or 4, else it's fixed to "off"
                // match -> replace dots with colon
                tab1 = regex_replace(tab1, regex("[ :]*$"), "");
                tab2 = regex_replace(tab2, regex("[ ,]*$"), "");
@@ -4149,7 +4150,7 @@ string ParseChannelName()
                sprintf(pgn, "(^| )%03X( |$)", page);
                regex expr1(pgn);
                smatch whats;
-               string hd(text + 8, VT_PKG_RAW_LEN);
+               string hd(text + 8, VT_PKG_RAW_LEN - 8);
                // remove page number and time (both are required)
                if (regex_search(hd, whats, expr1)) {
                   hd.replace(whats.position(), whats[0].length(), 1, ' ');
