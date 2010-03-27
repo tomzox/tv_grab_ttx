@@ -1,0 +1,189 @@
+#!/usr/bin/perl -w
+#
+# Double-Height ads at the bottom of multiple description pages.
+# Description sub-pages only differ in ad lines. Hence these pages
+# must be completely discarded.
+#
+# $Id: footer6.in,v 1.1 2010/03/27 15:59:30 tom Exp $
+#
+$VbiCaptureTime = 1269633629;
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 3;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "^\x15\x02\x15\x15\x15IG303\x07kabel eins\x0726.03.10\x0720:59:35",
+  "\x1354,4=4<45 <41<0<\$                      ",
+  "\x1374w5u5w1u w1555s5 \x03\x1D\x04Fr 17-24    \x1D\x031/1 ",
+  "\x13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " 16:59 Two and a Half Men\x03          >361",
+  " 17:27 Two and a Half Men\x03          >361",
+  " 17:55 Abenteuer Leben - t{glich        ",
+  "       Wissen\x03                      >330",
+  " 19:01 Achtung Kontrolle! Einsatz       ",
+  "       f}r die Ordnungsh}ter\x03       >327",
+  " 20:15 Ghost Whisperer - Stimmen        ",
+  "       aus dem Jenseits                 ",
+  "\x03      Die Herzoperation            >357",
+  " 21:16 Cold Case - Kein Opfer ist       ",
+  "       je vergessen                     ",
+  "\x03      Soul                         >358",
+  " 22:16 Medium - Nichts bleibt ver-      ",
+  "       borgen                           ",
+  "\x03      Eine Wagenladung Angst       >359",
+  " 23:15 Practice - Die Anw{lte           ",
+  "\x03      Der Kopf an der Wand         >337",
+  "\x03\x1D\x04302<11-17 Uhr          00-06 Uhr>304 ",
+  "\x01\x1D\x07\x0DNeu Verlieben - einfach per SMS 460 ",
+  "                                        ",
+];
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 3;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0002<<12)} =
+[
+  "^\x15I\x15\x15\x15IG303\x07kabel eins\x0726.03.10\x0720:59:59",
+  "\x1354,4=4<45 <41<0<\$                      ",
+  "\x1374w5u5w1u w1555s5 \x03\x1D\x04Fr 17-24    \x1D\x031/1 ",
+  "\x13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " 16:59 Two and a Half Men\x03          >361",
+  " 17:27 Two and a Half Men\x03          >361",
+  " 17:55 Abenteuer Leben - t{glich        ",
+  "       Wissen\x03                      >330",
+  " 19:01 Achtung Kontrolle! Einsatz       ",
+  "       f}r die Ordnungsh}ter\x03       >327",
+  " 20:15 Ghost Whisperer - Stimmen        ",
+  "       aus dem Jenseits                 ",
+  "\x03      Die Herzoperation            >357",
+  " 21:16 Cold Case - Kein Opfer ist       ",
+  "       je vergessen                     ",
+  "\x03      Soul                         >358",
+  " 22:16 Medium - Nichts bleibt ver-      ",
+  "       borgen                           ",
+  "\x03      Eine Wagenladung Angst       >359",
+  " 23:15 Practice - Die Anw{lte           ",
+  "\x03      Der Kopf an der Wand         >337",
+  "\x03\x1D\x04302<11-17 Uhr          00-06 Uhr>304 ",
+  "\x05\x1D\x07\x0DWahrsager und Kartenleger...... 430 ",
+  "                                        ",
+];
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 3;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0003<<12)} =
+[
+  "^\x15^\x15\x15\x15IG303\x07kabel eins\x0726.03.10\x0721:00:24",
+  "\x1354,4=4<45 <41<0<\$                      ",
+  "\x1374w5u5w1u w1555s5 \x03\x1D\x04Fr 17-24    \x1D\x031/1 ",
+  "\x13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " 16:59 Two and a Half Men\x03          >361",
+  " 17:27 Two and a Half Men\x03          >361",
+  " 17:55 Abenteuer Leben - t{glich        ",
+  "       Wissen\x03                      >330",
+  " 19:01 Achtung Kontrolle! Einsatz       ",
+  "       f}r die Ordnungsh}ter\x03       >327",
+  " 20:15 Ghost Whisperer - Stimmen        ",
+  "       aus dem Jenseits                 ",
+  "\x03      Die Herzoperation            >357",
+  " 21:16 Cold Case - Kein Opfer ist       ",
+  "       je vergessen                     ",
+  "\x03      Soul                         >358",
+  " 22:16 Medium - Nichts bleibt ver-      ",
+  "       borgen                           ",
+  "\x03      Eine Wagenladung Angst       >359",
+  " 23:15 Practice - Die Anw{lte           ",
+  "\x03      Der Kopf an der Wand         >337",
+  "\x03\x1D\x04302<11-17 Uhr          00-06 Uhr>304 ",
+  "\x01\x1D\x07\x0DSchnell und gesund Abnehmen >>> 701 ",
+  "                                        ",
+];
+$PgCnt{0x357} = 4;
+$PgSub{0x357} = 3;
+$PgLang{0x357} = 1;
+$Pkg{0x357|(0x0001<<12)} =
+[
+  "/s\x02\x15\x15\x15IG357\x07kabel eins\x0726.03.10\x0721:00:01",
+  "\x1354,4=4<45 <41<0<\$                      ",
+  "\x1374w5u5w1u w1555s5\x03\x1D\x04MYSTERY      \x1D\x031/1 ",
+  "\x13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x03Ghost Whisperer - Stimmen aus dem Jen- ",
+  "\x03seits                                  ",
+  " Die Herzoperation                      ",
+  "\x03Fr 26.03. 20:15-21:16                  ",
+  "\x03Sa 27.03. 00:11-01:09                  ",
+  "                                        ",
+  " Jim nimmt ein altes medizinisches In-  ",
+  " strument mit nach Hause. Es stellt sich",
+  " heraus, dass daran ein Geist h{ngt: Je-",
+  " den Abend taucht ein gewisser Dr.      ",
+  " Glassman auf und f}hrt immer wieder    ",
+  " dieselbe Operation durch. Melinda fin- ",
+  " det heraus, dass Dr. Glassman in den   ",
+  " 50er Jahren eine Herzoperation durchge-",
+  " f}hrt hat. Er glaubt, sein Patient w{re",
+  " dabei verstorben...                    ",
+  "                                        ",
+  "\x03\x1D\x04350<]bersicht Serie      weiter>358  ",
+  "\x04\x1D\x07\x0DBilliger und ges}nder Rauchen.. 719 ",
+  "                                        ",
+];
+$PgCnt{0x357} = 4;
+$PgSub{0x357} = 3;
+$PgLang{0x357} = 1;
+$Pkg{0x357|(0x0002<<12)} =
+[
+  "/sI\x15\x15\x15IG357\x07kabel eins\x0726.03.10\x0721:00:26",
+  "\x1354,4=4<45 <41<0<\$                      ",
+  "\x1374w5u5w1u w1555s5\x03\x1D\x04MYSTERY      \x1D\x031/1 ",
+  "\x13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x03Ghost Whisperer - Stimmen aus dem Jen- ",
+  "\x03seits                                  ",
+  " Die Herzoperation                      ",
+  "\x03Fr 26.03. 20:15-21:16                  ",
+  "\x03Sa 27.03. 00:11-01:09                  ",
+  "                                        ",
+  " Jim nimmt ein altes medizinisches In-  ",
+  " strument mit nach Hause. Es stellt sich",
+  " heraus, dass daran ein Geist h{ngt: Je-",
+  " den Abend taucht ein gewisser Dr.      ",
+  " Glassman auf und f}hrt immer wieder    ",
+  " dieselbe Operation durch. Melinda fin- ",
+  " det heraus, dass Dr. Glassman in den   ",
+  " 50er Jahren eine Herzoperation durchge-",
+  " f}hrt hat. Er glaubt, sein Patient w{re",
+  " dabei verstorben...                    ",
+  "                                        ",
+  "\x03\x1D\x04350<]bersicht Serie      weiter>358  ",
+  "\x02\x1D\x04\x0DZahnersatz bis zu 70\% g}nstiger 711 ",
+  "                                        ",
+];
+$PgCnt{0x357} = 4;
+$PgSub{0x357} = 3;
+$PgLang{0x357} = 1;
+$Pkg{0x357|(0x0003<<12)} =
+[
+  "/s^\x15\x15\x15IG357\x07kabel eins\x0726.03.10\x0720:59:36",
+  "\x1354,4=4<45 <41<0<\$                      ",
+  "\x1374w5u5w1u w1555s5\x03\x1D\x04MYSTERY      \x1D\x031/1 ",
+  "\x13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x03Ghost Whisperer - Stimmen aus dem Jen- ",
+  "\x03seits                                  ",
+  " Die Herzoperation                      ",
+  "\x03Fr 26.03. 20:15-21:16                  ",
+  "\x03Sa 27.03. 00:11-01:09                  ",
+  "                                        ",
+  " Jim nimmt ein altes medizinisches In-  ",
+  " strument mit nach Hause. Es stellt sich",
+  " heraus, dass daran ein Geist h{ngt: Je-",
+  " den Abend taucht ein gewisser Dr.      ",
+  " Glassman auf und f}hrt immer wieder    ",
+  " dieselbe Operation durch. Melinda fin- ",
+  " det heraus, dass Dr. Glassman in den   ",
+  " 50er Jahren eine Herzoperation durchge-",
+  " f}hrt hat. Er glaubt, sein Patient w{re",
+  " dabei verstorben...                    ",
+  "                                        ",
+  "\x03\x1D\x04350<]bersicht Serie      weiter>358  ",
+  "\x02\x1D\x04\x0DKrankenvers. wechseln + sparen! 507 ",
+  "                                        ",
+];

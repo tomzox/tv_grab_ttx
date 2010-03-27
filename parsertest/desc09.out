@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="rtl2.de">
+	<display-name>RTL II</display-name>
+</channel>
+
+<programme start="20060830150000 +0000" stop="20060830160000 +0000" channel="rtl2.de">
+	<title>Eine starke Familie</title>
+	<desc>(teletext 336)</desc>
+</programme>
+
+<programme start="20060830160000 +0000" stop="20060830170000 +0000" channel="rtl2.de">
+	<title>Still Standing</title>
+	<desc>(teletext 337)</desc>
+</programme>
+
+<programme start="20060830170000 +0000" stop="20060830180000 +0000" channel="rtl2.de">
+	<title>Immer wieder Jim</title>
+	<desc>(teletext 335)</desc>
+</programme>
+
+<programme start="20060830180000 +0000" stop="20060830181500 +0000" channel="rtl2.de">
+	<title>RTL II News</title>
+	<desc>(teletext 114)</desc>
+</programme>
+
+<programme start="20060830181500 +0000" stop="20060830191000 +0000" channel="rtl2.de">
+	<title>Stargate Atlantis</title>
+	<desc>(teletext 323)</desc>
+</programme>
+
+<programme start="20060830191000 +0000" stop="20060830200500 +0000" channel="rtl2.de">
+	<title>Stargate</title>
+	<desc>(teletext 323)</desc>
+</programme>
+
+<programme start="20060830200500 +0000" channel="rtl2.de">
+	<title>Dead Zone</title>
+	<!-- TTX 328 -->
+	<desc>DEAD ZONE 1/2
+Höllentrip Johnny hat Visionen von einer 16-jährigen Ausreißerin namens Jill. Das Gesehene lässt ihn vermuten, dass das Mädchen sich in einer alten Lagerhalle in Portland befinden könnte. Also macht er sich zusammen mit Walt und Officer Kohlan auf die Suche.
+Tatsächlich trifft das Trio in der abgelegenen Halle auf Jill, ihre Freundin Tammy und Jills Freund Scott, der gerade dabei ist, einen starken Drogencocktail aus verschiedenen chemischen Zutaten zu mixen.
+Zwischen zwei Welten Johnny erwacht eines Morgens und findet sich in einer völlig veränderten Realität wieder: Sarah ruft ihn zum Frühstück, zu dem ihn seine beiden Kinder erwarten! Offensichtlich ist er mit Sarah verheiratet, arbeitet im Gemeinderat und ist mit Sheriff Walt eng befreundet.
+Seine Mutter lebt und er selbst hat niemals einen Unfall gehabt, weswegen Krankengymnast Bruce und die Schwestern im Krankenhaus ihn nicht erkennen...</desc>
+</programme>
+</tv>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="KI.KA">
+	<display-name>KI.KA</display-name>
+</channel>
+
+<programme start="20060507170000 +0000" stop="20060507172500 +0000" channel="KI.KA">
+	<title>Timm Thaler (11)</title>
+	<sub-title>Timm Thaler (11) Der Stein des Bösen</sub-title>
+</programme>
+
+<programme start="20060507172500 +0000" stop="20060507175000 +0000" channel="KI.KA">
+	<title>TKKG - Der Club der Detektive</title>
+	<sub-title>TKKG - Der Club der Detektive Angriff aus dem Hinterhalt</sub-title>
+</programme>
+
+<programme start="20060507175000 +0000" stop="20060507180000 +0000" channel="KI.KA">
+	<title>KI.KA Kummerkasten</title>
+	<sub-title>KI.KA Kummerkasten Verliebt in den besten Freund</sub-title>
+</programme>
+
+<programme start="20060507180000 +0000" stop="20060507181500 +0000" channel="KI.KA">
+	<title>quergelesen</title>
+	<sub-title>quergelesen Fußball in allen Lebenslagen</sub-title>
+	<!-- TTX 380 -->
+	<desc>1/5
+am 07.05., 20.00 Uhr Thema der Sendung: "Fußball WM 2006" Josi hat alle möglichen Bücher für euch "quergelesen". Wir haben alle Tipps für dich aufgelistet:
+Die kleine Fußballmannschaft - Der Schrecken der Kreisliga Jackie Niebisch, cbj München
+Das große Fußballbuch für Kinder Birgit Brauburger, Compact Verlag
+Die Rivalen: Ein Zwilling kickt selten allein Christian Thielmann, Carlsen Verlag
+Die Fußball-Akademie mit Jürgen Klinsmann Klaus-Peter Niem/Karin Helle, Loewe Verlag
+11 Kicker &amp; ein fieses Foul Barbara Zoschke, arsEdition
+Tor! Gol! Goal! - Die große Welt des Fußballs Marcel Reif, moses Verlag
+Keeper Mal Peet, Carlsen Verlag
+Pele und ich Martin Klein, Carlsen Verlag
+Wie Franz Kaiser den Fußball erfand Karsten Teich, Fischer Schatzinsel
+Eule des Monats
+Was ist das? Antje Damm, Gerstenberg Verlag
+Die nächste Sendung "quergelesen" gibt es am 4. Juni 2006 um 20.00 Uhr.</desc>
+</programme>
+
+<programme start="20060507181500 +0000" stop="20060507184000 +0000" channel="KI.KA">
+	<title>Wie erziehe ich meine Eltern?</title>
+	<sub-title>Wie erziehe ich meine Eltern? 19. Unsere Freunde - eure Freunde!</sub-title>
+</programme>
+
+<programme start="20060507184000 +0000" stop="20060507185500 +0000" channel="KI.KA">
+	<title>ReläXX</title>
+	<sub-title>ReläXX Thema: Lamm, Pferd &amp; Kuh</sub-title>
+</programme>
+
+<programme start="20060507185500 +0000" stop="20060507190000 +0000" channel="KI.KA">
+	<title>bravo bernd</title>
+</programme>
+
+<programme start="20060507190000 +0000" channel="KI.KA">
+	<title>Sendeschluss</title>
+</programme>
+</tv>

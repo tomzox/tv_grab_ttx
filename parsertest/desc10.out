@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ARD">
+	<display-name>ARD</display-name>
+</channel>
+
+<programme start="20060503033000 +0000" stop="20060503070000 +0000" channel="ARD">
+	<title>ARD-Morgenmagazin</title>
+</programme>
+
+<programme start="20060503070000 +0000" stop="20060503070500 +0000" channel="ARD">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20060503070500 +0000" stop="20060503075500 +0000" channel="ARD">
+	<title>Happy Birthday</title>
+	<sub-title>Happy Birthday Die Leihmutter (D, 2001)</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060503075500 +0000" stop="20060503080000 +0000" channel="ARD">
+	<title>ARD-Wetterschau</title>
+</programme>
+
+<programme start="20060503080000 +0000" stop="20060503080300 +0000" channel="ARD">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20060503080300 +0000" stop="20060503082500 +0000" channel="ARD">
+	<title>Brisant</title>
+</programme>
+
+<programme start="20060503082500 +0000" stop="20060503091500 +0000" channel="ARD">
+	<title>Familie Dr. Kleist</title>
+	<sub-title>Familie Dr. Kleist Endstation Sehnsucht</sub-title>
+	<!-- TTX 314 -->
+	<desc>Familie Dr. Kleist 16:9/UT Endstation Sehnsucht
+Im Hause Kleist dreht sich alles um Clara: Lisa genießt das erweiterte Familienleben und Piwi ist stolz auf seine neue Rolle als "großer Bruder". Als Ersatzvater und fürsorglicher Arzt ist Christian voll gefordert und Marlene ist mit ihrer zusätzlichen Mutterrolle mehr als ausgelastet.
+So fällt es keinem auf, dass Johannes sich zunehmend ausgeschlossen und überflüssig fühlt. In seinem Kummer flüchtet er zu Inge und bringt endlich den Mut auf, ihr seine Gefühle zu gestehen.
+Darsteller: Dr. Kleist: Francis Fulton-Smith, Marlene Holstein: Christina Plate, Johannes Kleist: Ulrich Pleitgen, Inge März: Uta Schorn, Lisa Kleist: Marie Seiser, Peter Kleist: David Bode, Clara Hofer: Lisa-Marie Werner, Dr. Klein: Simone von Zglinicki, Nora Mann: Winnie Böwe.
+Regie: Hans Werner Buch: Katharina Hajos und Constanze Fischer</desc>
+	<video>
+		<aspect>16:9</aspect>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060503091500 +0000" stop="20060503100000 +0000" channel="ARD">
+	<title>In aller Freundschaft</title>
+	<sub-title>In aller Freundschaft Falsches Spiel (D, 2006)</sub-title>
+	<!-- TTX 332 -->
+	<desc>In aller Freundschaft 16:9/UT Falsches Spiel (D, 2006)
+Rebecca Simoni bricht auf der Tanzfläche eines Clubs zusammen. In der Sachsenklinik wird eine gefährliche Überzuckerung diagnostiziert: Rebecca hat Diabetes. Ihr behandelnder Arzt ist Dr. Martin Stein, auf den sie schon länger ein Auge geworfen hat. Sie nutzt die Gelegenheit, ihm Avancen zu machen.
+Als Arzu ihrem Mann Phillip vorwirft, zu wenig Zeit für sie zu haben, schlägt er ihr vor, sie solle sich etwas Eigenes schaffen. Sie geraten in einen heftigen Streit.
+Darsteller: Rebecca Simoni: Alma Leiberg, Ottmar Wolf: Tom Pauls, Prof. Dr. Simoni: Dieter Bellmann, Dr. Heilmann: Thomas Rühmann, Pia Heilmann: Hendrikje Fitz, Dr. Martin Stein: Bernhard Bettermann, Charlotte Gauss: Ursula Karusseit, Otto Stein: Rolf Becker, Dr.Brentano: Thomas Koch, Dr. Eichhorn: Cheryl Shepard.
+Buch: Stephan Wuschansky Regie: Mathias Luther</desc>
+	<video>
+		<aspect>16:9</aspect>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060503100000 +0000" stop="20060503101500 +0000" channel="ARD">
+	<title>Tagesschau um zwölf</title>
+</programme>
+
+<programme start="20060503101500 +0000" stop="20060503110000 +0000" channel="ARD">
+	<title>ARD-Buffet</title>
+	<sub-title>ARD-Buffet mit Bernadette Schoog</sub-title>
+</programme>
+
+<programme start="20060503110000 +0000" stop="20060503120000 +0000" channel="ARD">
+	<title>ARD-Mittagsmagazin</title>
+	<sub-title>ARD-Mittagsmagazin mit Tagesschau</sub-title>
+</programme>
+</tv>

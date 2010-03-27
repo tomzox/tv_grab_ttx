@@ -4,7 +4,7 @@
 # belonging to the same title. Title and date are repeated; the text
 # directly continues from the first to the following pages.
 #
-# $Id$
+# $Id: desc06.in,v 1.1 2010/03/27 17:22:32 tom Exp $
 #
 $VbiCaptureTime = 1149947756;
 $PgCnt{0x303} = 4;

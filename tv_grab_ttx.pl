@@ -19,7 +19,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.26 2010/03/23 19:15:03 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.27 2010/03/27 16:19:06 tom Exp $
 #
 
 use POSIX;
@@ -1453,7 +1453,7 @@ sub ParseFooter {
    my $pgtext = $PageText{$page | ($sub << 12)};
    my $pgctrl = $PageCtrl{$page | ($sub << 12)};
 
-   for ($foot = $#{$pgtext} ; $foot > $head; $foot--) {
+   for ($foot = $#{$pgtext} ; $foot >= $head; $foot--) {
       # note missing lines are treated as empty lines
       $_ = $pgtext->[$foot];
 

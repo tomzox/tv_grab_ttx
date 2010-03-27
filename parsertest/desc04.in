@@ -1,0 +1,96 @@
+#!/usr/bin/perl -w
+#
+# Title which starts with non-ASCII char.
+#
+$VbiCaptureTime = 1269632909;
+$PgCnt{0x302} = 5;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302 \x013satText \x0726.03.10\x0220:48:26",
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute in 3sat    ",
+  "\x11\x7F\x7F5\x1D\x07Freitag, 26. M{rz                 ",
+  "                       \x05\x181D107\x18260310\x18E5",
+  "\x0713.00\x05\x181300\x07\x07ZIB\x03oo 16:9               ",
+  "\x0613.15\x05\x181315\x06\x06Zapp\x03oo 16:9\x06.........\x06320",
+  "\x0713.45\x05\x051344\x07\x07]ber-Leben mit Hartz IV\x03oo",
+  "            \x03\x0316:9\x07.................\x07321",
+  "\x0614.15\x05\x181415\x06\x06Bilderbuch: Hohenloher    ",
+  "            \x06\x06Land\x03oo UT 16:9\x06......\x06322",
+  "\x0715.00\x05\x181500\x07\x07Die Ritter der Tafelrunde ",
+  "              Spielfilm, USA 1953       ",
+  "            \x03\x0316:9\x07.................\x07323",
+  "\x0616.55\x05\x181655\x06\x06Georgien                  ",
+  "            \x06\x06Menschen, Landschaften und",
+  "            \x06\x06Kulturen am Kaukasus  \x06324",
+  "\x0717.15\x05\x181715\x07\x07Kunst & Krempel\x03oo 16:9   ",
+  "\x0617.45\x05\x181745\x06\x06ZDF-History               ",
+  "            \x06\x06Wahre Helden -            ",
+  "            \x06\x06Zivilcourage auf dem      ",
+  "            \x06\x06Pr}fstand\x03oo 16:9\x06....\x06325",
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x01\x1D\x07300 <-          ab\x0718.30\x07Uhr -> 303\x07 ",
+];
+$PgCnt{0x321} = 5;
+$PgSub{0x321} = 0;
+$PgLang{0x321} = 1;
+$Pkg{0x321|(0x0000<<12)} =
+[
+  "\x02I\x15\x15\x15\x15\x15G321 \x013satText \x0726.03.10\x0220:48 27",
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute            ",
+  "\x11\x7F\x7F5\x1D\x07Freitag, 26. M{rz                 ",
+  "                       \x05\x181D107\x18260310\x1846",
+  " \x0713.45\x07-\x0714.15\x07Uhr          \x05\x05VPS\x051344\x07",
+  "\x06\x06]ber-Leben mit Hartz IV\x03oo 16:9       ",
+  "\x06\x06Film von Elle Langer                  ",
+  "\x06\x06(Erstsendung: 24. Februar 2010)       ",
+  undef,
+  " Vor f}nf Jahren wurde mit Hartz-IV die ",
+  " gr|~te deutsche Sozialreform einge-    ",
+  " f}hrt. Seitdem k{mpfen Bed}rftige,     ",
+  " Fallmanager in Jobcentern und Sozial-  ",
+  " richter mit den Gesetzen und Regeln der",
+  " Neuorganisation von Arbeits- und So-   ",
+  " zialamt. Mehrfach wurden in den letzten",
+  " Jahren Korrekturen vorgenommen. 25.118 ",
+  " Antr{ge sind bis heute unbearbeitet.   ",
+  "\x06Hat sich Hartz-IV bis heute bew{hrt?   ",
+  "\x06Ist die Sozial- und Arbeitsmarktreform ",
+  "\x06ein Instrument, um die Arbeitslosen-   ",
+  "\x06zahlen zu sch|nen? Was ist sinnvoll und",
+  "\x06was nicht?                             ",
+  "\x11\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x322} = 5;
+$PgSub{0x322} = 0;
+$PgLang{0x322} = 1;
+$Pkg{0x322|(0x0000<<12)} =
+[
+  "II\x15\x15\x15\x15\x15G322 \x013satText \x0726.03.10\x0220:48:28",
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute            ",
+  "\x11\x7F\x7F5\x1D\x07Freitag, 26. M{rz                 ",
+  "                       \x05\x181D107\x18260310\x183E",
+  " \x0714.15\x07-\x0715.00\x07Uhr          \x05\x18VPS\x181415\x07",
+  "\x06\x06Bilderbuch: Hohenloher Land\x03oo UT 16:9",
+  "\x06\x06Film von Susanne Bausch               ",
+  "\x06\x06(Erstsendung: 13. September 2009)     ",
+  undef,
+  " \"Starrsinn und Eigensinn sind eigent-  ",
+  " lich die Energie des Alters, aber wir  ",
+  " Hohenloher werden schon so geboren\",   ",
+  " beschreibt Molle von der Mundartband   ",
+  " \"Annaweech\" die Mentalit{t seiner      ",
+  " Landsleute. Ein Grund daf}r, dass viele",
+  " Hohenloher unternehmerisch erfolgreich ",
+  " sind.                                  ",
+  undef,
+  "\x06In Gammesfeld zum Beispiel sitzt die   ",
+  "\x06kleinste Bank Deutschlands, bei der die",
+  "\x06St}rme der Finanzkrise nicht einmal als",
+  "\x06laues L}ftchen zu sp}ren waren.        ",
+  undef,
+  "\x11\x1D\x07300 <-                           ->  ",
+];
+1;

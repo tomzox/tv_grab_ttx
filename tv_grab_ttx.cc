@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.7 2010/03/25 13:35:03 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.8 2010/03/27 17:20:47 tom Exp $
  */
 
 #include <stdio.h>
@@ -839,6 +839,136 @@ template<class MATCH>
 int atoi_substr(const MATCH& match)
 {
    return match.matched ? atoi_substr(match.first, match.second) : -1;
+}
+
+/* Turn the entire given string into lower-case.
+ */
+void str_tolower(string& str)
+{
+   for (string::iterator p = str.begin(); p < str.end(); p++) {
+      *p = tolower(*p);
+   }
+}
+
+/* Append the second sring to the first one, with exactly one blank
+ * in-between. Exception: if the first string ends in "-" and the
+ * second starts lower-case, remove the "-" and append w/o blank.
+ */
+void str_concat_title(string& title, const string& str2)
+{
+   // count whitespace at the end of the first string
+   string::reverse_iterator p_end = title.rbegin();
+   uint del1 = 0;
+   while (   (p_end != title.rend())
+          && (uint8_t(*p_end) <= ' ') )
+   {
+      ++p_end;
+      ++del1;
+   }
+
+   // count whitespace at the start of the second string
+   string::const_iterator p_start = str2.begin();
+   while (   (p_start != str2.end())
+          && (uint8_t(*p_start) <= ' ') )
+   {
+      ++p_start;
+   }
+
+   // remove whitespace and "-" at the end of the first string
+   if (   (title.length() > 2 + del1)
+       && (title[title.length() - del1 - 1] == '-')
+       && (title[title.length() - del1 - 2] != ' ')
+       && (p_start != str2.end())
+       && islower(*p_start) )
+   {
+      // remove (replace) the "-" and
+      // append (replace) the second string, skipping whitespace
+      title.replace(title.end() - del1 - 1, title.end(),
+                    p_start, str2.end());
+   }
+   else
+   {
+      if (del1 > 0)
+         title.erase(title.end() - del1);
+
+      title.append(1, ' ');
+      // append the second string, skipping whitespace
+      title.append(p_start, str2.end());
+   }
+}
+
+/* Check if there's a word boundary in the given string beginning
+ * at the character with the given position (i.e. the character before
+ * the given position is the last alpha-numeric character.)
+ */
+bool str_is_left_word_boundary(const string& str, uint pos)
+{
+   return (pos == 0) || !isalnum(str[pos - 1]);
+}
+
+/* Check if there's a word boundary in the given string before the
+ * character with the given position.
+ */
+bool str_is_right_word_boundary(const string& str, uint pos)
+{
+   return (pos >= str.length()) || !isalnum(str[pos]);
+}
+
+/* Search for the string "word" inside of "str". The match must be
+ * located at the beginning or end, or the adjacent characters must be
+ * non-alphanumeric (i.e. word boundaries)
+ */
+string::size_type str_find_word(const string& str, const string& word)
+{
+   string::size_type pos = 0;
+   do {
+      pos = str.find(word, pos);
+
+      if (pos != string::npos) {
+         if (   str_is_left_word_boundary(str, pos)
+             && str_is_right_word_boundary(str, pos + word.length()) ) {
+            return pos;
+         }
+      } else {
+         break;
+      }
+   } while (++pos + word.length() < str.length());
+
+   return string::npos;
+}
+
+/* Count and return the number of blank (or control) characters at the beginnine
+ * of the given string.
+ */
+uint str_get_indent(const string& str)
+{
+   uint off;
+
+   for (off = 0; off < str.length(); off++) {
+      uint8_t c = str[off];
+      if (c > ' ')  // not ctrl char or space
+         break;
+   }
+   return off;
+}
+
+/* Remove white-space from the beginning and end of the given string.
+ */
+void str_chomp(string& str)
+{
+   if (str.length() > 0) {
+      string::iterator end = str.begin() + str.length() - 1;
+      while ((str.begin() != end) && (uint8_t(*end) <= ' ')) {
+         end--;
+      }
+      str.erase(end + 1, str.end());
+   }
+
+   string::iterator begin = str.begin();
+   while ((begin != str.end()) && (uint8_t(*begin) <= ' ')) {
+      begin++;
+   }
+   str.erase(str.begin(), begin);
 }
 
 /* ------------------------------------------------------------------------------
@@ -2329,6 +2459,19 @@ void MapTrailingFeat(const char * feat, int len, TV_SLOT& slot, const string& ti
                      "DS|SS|DD|ZS|" \
                      "Wh\\.?|Wdh\\.?|Whg\\.?|Tipp!?"
 
+void RemoveTrailingFeat(string& title)
+{
+   static const regex expr3("\\(((" FEAT_PAT_STR ")(( ?/ ?|, ?| )(" FEAT_PAT_STR "))*)\\)$");
+   static const regex expr4("((" FEAT_PAT_STR ")"
+                            "((, ?|/ ?| |[,/]?[\\x00-\\x07\\x1D]+)(" FEAT_PAT_STR "))*)$");
+   smatch whats;
+
+   if (   regex_search(title, whats, expr3)
+       || regex_search(title, whats, expr4) ) {
+      title.erase(whats.position());
+   }
+}
+
 void ParseTrailingFeat(string& title, TV_SLOT& slot)
 {
    string orig_title = regex_replace(title, regex("[\\x00-\\x1F\\x7F]"), " ");
@@ -2407,8 +2550,14 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
    title = regex_replace(title, expr8, " ");
 
    // remove leading and trailing space
-   static const regex expr9("(^ +| +$)");
-   title = regex_replace(title, expr9, "");
+   static const regex expr10("^ +");
+   if (regex_search(title, whats, expr10)) {
+      title.erase(0, whats[0].length());
+   }
+   static const regex expr11(" +$");
+   if (regex_search(title, whats, expr11)) {
+      title.erase(whats.position());
+   }
 }
 
 /* ------------------------------------------------------------------------------
@@ -2431,7 +2580,7 @@ int ParseFooter(int page, int sub, int head)
    cmatch what;
    int foot;
 
-   for (foot = 23 ; foot > head; foot--) {
+   for (foot = 23 ; foot >= head; foot--) {
       // note missing lines are treated as empty lines
       const char * text = pgtext.m_line[foot];
 
@@ -2556,6 +2705,9 @@ int ParseFooterByColor(int page, int sub)
  *   the footer text at the right side on a line used for the overview,
  *   separated by using a different background color
  *   " 09.45 / Dragon (7)        Weiter   >>> " (line #23)
+ * - The same occurs on 3sat description pages:
+ *   "\\x06Lorraine Nancy.\\x03      Mitwirkende >>>  "
+ *   TODO: however with foreground colour intsead of BG
  * - note the cases with no text before the page ref is handled b the
  *   regular footer detection
  */
@@ -3470,9 +3622,7 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
 
       if (   !regex_search(title, whats, expr1)
           && regex_search(title, whats, expr2)) {
-         for (string::iterator p = title.begin(); p < title.end(); p++) {
-            *p = tolower(*p);
-         }
+         str_tolower(title);
       }
       Latin1ToXml(title);
 
@@ -3805,38 +3955,122 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
    return false;
 }
 
+/* Search for the line which contains the title string and return the
+ * line number. Additionally, extract feature attributes from the lines
+ * holding the title. The title may span across two consecutive lines,
+ * which are then concatenated in the same way as for overview pages.
+ * The comparison is done case-insensitive as some networks write the
+ * titles in all upper-case.
+ */
 int ParseDescTitle(int page, int sub, TV_SLOT& slot)
 {
-   const vt_page& pgtext = PageText[page | (sub << 12)];
+   const vt_page& pgctrl = PageCtrl[page | (sub << 12)];
+   string prev;
 
-   regex expr1(string("^ *\\Q") + slot.m_title + "\\E");
-   smatch whats;
+   string title_lc = slot.m_title;
+   str_tolower(title_lc);
 
-   // remove and compress whitespace
-   string l1 = pgtext.m_line[1];
-   l1 = regex_replace(l1, regex("(^ +| +$)"), "");
-   l1 = regex_replace(l1, regex("  +"), " ");
+   for (int idx = 1; idx <= 23/2; idx++) {
+      string text_lc(pgctrl.m_line[idx], VT_PKG_RAW_LEN);
+      str_tolower(text_lc);
 
-   for (int line = 1; line <= 23/2; line++) {
-      string l2 = pgtext.m_line[line + 1];
-      l2 = regex_replace(l2, regex("(^ +| +$)"), "");
-      l2 = regex_replace(l2, regex("  +"), " ");
+      uint off = str_get_indent(text_lc);
 
-      //string l = l1 + string(" ") + l2;
-      //TODO: join lines if l1 ends with "-" ?
-      //TODO: correct title/subtitle separation of overview
-
-      // TODO: one of the compared title strings may be all uppercase (SWR)
-
-      if (regex_search(l1, whats, expr1)) {
-         // Done: discard everything above
+      //if (str_find_word(text_lc, title_lc) != string::npos)
+      if (   (title_lc.length() <= text_lc.length() - off)
+          && (text_lc.compare(off, title_lc.length(), title_lc) == 0) ) {
          // TODO: back up if there's text in the previous line with the same indentation
-         return line;
+
+         string tmp(pgctrl.m_line[idx], VT_PKG_RAW_LEN);
+         ParseTrailingFeat(tmp, slot);
+
+         // correct title/sub-title split
+         if (!slot.m_subtitle.empty()) {
+            // check if the title line on the desc page contains 1st + 2nd title lines from overview
+            // Overview:                     Description page:
+            // Licht aus in Erichs           Licht aus in Erichs Lampenladen
+            // Lampenladen
+            string subtitle = slot.m_title + string(" ") +  slot.m_subtitle;
+            if (   (tmp.length() >= subtitle.length())
+                && str_is_right_word_boundary(tmp, subtitle.length())
+                && (tmp.compare(0, subtitle.length(), subtitle) == 0) ) {
+               if (opt_debug) printf("DESC title override \"%s\"\n", subtitle.c_str());
+               slot.m_title = subtitle;
+               slot.m_subtitle.clear();
+            }
+            else if (tmp.length() - off > slot.m_title.length()) {
+               string next(pgctrl.m_line[idx + 1], VT_PKG_RAW_LEN);
+               if (str_get_indent(next) == off) {
+                  str_concat_title(tmp, next);
+                  str_chomp(tmp);
+                  RemoveTrailingFeat(tmp);
+                  // Overview:                     Description page:
+                  // Battlefield Earth - Kampf     Battlefield Earth - Kampf um die
+                  // um die Erde                   Erde
+                  // Science Fiction USA 2000      Science Fiction USA 2000
+                  // FIXME instead of min() use "2nd line of title on overview page" as limit
+                  uint len = min(tmp.length(), subtitle.length());
+                  if (   str_is_right_word_boundary(tmp, len)
+                      && str_is_right_word_boundary(subtitle, len)
+                      && (tmp.compare(0, len, subtitle, 0, len) == 0) ) {
+                     if (opt_debug) printf("DESC title override \"%s\"\n", subtitle.c_str());
+                     slot.m_title.assign(subtitle, 0, len);
+                     slot.m_subtitle.assign(subtitle, len, subtitle.length() - len);
+                     str_chomp(slot.m_subtitle);
+                     ParseTrailingFeat(next, slot);
+                  }
+               }
+            }
+         }
+
+         return idx;
       }
-      l1 = l2;
+      else if (!prev.empty()) {
+         RemoveTrailingFeat(prev);
+         str_concat_title(prev, string(pgctrl.m_line[idx], VT_PKG_RAW_LEN));
+         str_tolower(prev);
+         //if (str_find_word(prev, title_lc) != string::npos)  // sub-string
+         if (   (title_lc.length() <= prev.length())
+             && (prev.compare(0, title_lc.length(), title_lc) == 0) ) {
+            string tmp = string(pgctrl.m_line[idx - 1], VT_PKG_RAW_LEN);
+            ParseTrailingFeat(tmp, slot);
+
+            tmp = string(pgctrl.m_line[idx], VT_PKG_RAW_LEN);
+            ParseTrailingFeat(tmp, slot);
+
+            //TODO: check if title/sub-title split can be corrected (see above)
+
+            return idx - 1;
+         }
+      }
+      prev = string(pgctrl.m_line[idx] + off, VT_PKG_RAW_LEN - off);
    }
    //print "NOT FOUND title\n";
    return 1;
+}
+
+/* Compare two text pages line-by-line until a difference is found.
+ * Thus identical lines on sub-pages can be excluded from descriptions.
+ */
+int CorrelateDescTitles(int page, int sub1, int sub2, int head)
+{
+   const vt_page& pgctrl1 = PageCtrl[page | (sub1 << 12)];
+   const vt_page& pgctrl2 = PageCtrl[page | (sub2 << 12)];
+
+   for (int line = head; line <= 23; line++) {
+      const char * p1 = pgctrl1.m_line[line];
+      const char * p2 = pgctrl2.m_line[line];
+      int cnt = 0;
+      for (int col = 0; col < VT_PKG_RAW_LEN; col++, p1++, p2++) {
+         if (*p1 == *p2)
+            cnt++;
+      }
+      // stop if lines are not similar enough
+      if (cnt < 37) {
+         return line;
+      }
+   }
+   return 23;
 }
 
 /* Reformat tables in "cast" format into plain lists. Note this function
@@ -4022,8 +4256,7 @@ string ParseDescContent(int page, int sub, int head, int foot)
          if (   regex_search(desc, whats, expr12)
              && regex_search(line, whats, expr13) )
          {
-            if (desc[desc.size() - 1] == '-')
-               desc.erase(desc.end() - 1);
+            desc.erase(desc.end() - 1);
             desc += line;
          }
          else if ((desc.length() > 0) && !is_nl) {
@@ -4039,6 +4272,11 @@ string ParseDescContent(int page, int sub, int head, int foot)
             is_nl = true;
          }
       }
+   }
+   // TODO: also cut off ">314" et.al. (but not ref. to non-TV pages)
+   static const regex expr14("(>>+ *| +)$");
+   if (regex_search(desc, whats, expr14)) {
+      desc.erase(whats.position());
    }
    return desc;
 }
@@ -4061,6 +4299,7 @@ string ParseDescPage(TV_SLOT& slot)
    if (PgCnt.find(page) != PgCnt.end()) {
       int sub1;
       int sub2;
+      int first_sub = -1;
       if (PgSub[page] == 0) {
          sub1 = sub2 = 0;
       } else {
@@ -4077,16 +4316,21 @@ string ParseDescPage(TV_SLOT& slot)
 
             if (ParseDescDate(page, sub, slot)) {
                int head = ParseDescTitle(page, sub, slot);
+               if (first_sub >= 0)
+                  head = CorrelateDescTitles(page, sub, first_sub, head);
+               else
+                  first_sub = sub;
 
                int foot = ParseFooterByColor(page, sub);
                int foot2 = ParseFooter(page, sub, head);
                foot = (foot2 < foot) ? foot2 : foot;
                if (opt_debug) printf("DESC page %03X.%04X match found: lines %d-%d\n", page, sub, head, foot);
 
-               if (found)
-                  desc += "\n";
-               desc += ParseDescContent(page, sub, head, foot);
-
+               if (foot > head) {
+                  if (!desc.empty())
+                     desc += "\n";
+                  desc += ParseDescContent(page, sub, head, foot);
+               }
                found = true;
             } else {
                if (opt_debug) printf("DESC page %03X.%04X no match found\n", page, sub);
@@ -4146,15 +4390,16 @@ string ParseChannelName()
                   if ((c <= 0x1F) || (c == 0x7F))
                      text[idx] = ' ';
                }
-               char pgn[30];
-               sprintf(pgn, "(^| )%03X( |$)", page);
-               regex expr1(pgn);
-               smatch whats;
+               char pgn[20];
+               sprintf(pgn, "%03X", page);
                string hd(text + 8, VT_PKG_RAW_LEN - 8);
                // remove page number and time (both are required)
-               if (regex_search(hd, whats, expr1)) {
-                  hd.replace(whats.position(), whats[0].length(), 1, ' ');
+               string::size_type pgn_pos = str_find_word(hd, pgn);
+               if (pgn_pos != string::npos) {
+                  hd.replace(pgn_pos, 3, 3, ' ');
+
                   static regex expr2("^(.*)( \\d{2}[\\.: ]?\\d{2}([\\.: ]\\d{2}) *)");
+                  smatch whats;
                   if (regex_search(hd, whats, expr2)) {
                      hd.erase(whats[1].length());
                      // remove date: "Sam.12.Jan" OR "12 Sa Jan" (VOX)

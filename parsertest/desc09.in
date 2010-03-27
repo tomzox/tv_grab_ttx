@@ -2,8 +2,10 @@
 #
 # Description page has title only at top and date at bottom.
 # Test if advertisement at the top of the page is cut off.
+# (Note this requires to match the all-uppercase title on the
+# description page.)
 #
-# $Id$
+# $Id: desc09.in,v 1.1 2010/03/27 17:22:32 tom Exp $
 #
 $VbiCaptureTime = 1156962810;
 $PkgCni{0xD8F} = 2270;

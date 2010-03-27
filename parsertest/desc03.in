@@ -2,7 +2,7 @@
 #
 # Test description page parsing
 #
-# $Id$
+# $Id: desc03.in,v 1.1 2010/03/27 17:22:32 tom Exp $
 #
 $VbiCaptureTime = 1146515528;
 $PgCnt{0x303} = 36;
