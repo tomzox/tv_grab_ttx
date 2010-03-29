@@ -30,7 +30,7 @@
 #
 
 DIR=parsertest
-EXE=./tv_grab_ttx.pl
+EXE=./tv_grab_ttx
 
 for v in $DIR/*.in ; do
    name=`echo $v | sed -e 's#\.in$##g'|sed -e "s#$DIR/##"`

@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.8 2010/03/27 17:20:47 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.9 2010/03/29 13:44:11 tom Exp $
  */
 
 #include <stdio.h>
@@ -49,22 +49,239 @@ const char copyright[] = "Copyright 2006-2010 Tom Zoerner";
 const char home_url[] = "http://nxtvepg.sourceforge.net/tv_grab_ttx";
 
 #define VT_PKG_RAW_LEN 40
-#define VT_PKG_PG_CNT 30
 typedef uint8_t vt_pkg_raw[VT_PKG_RAW_LEN];
-typedef char    vt_pkg_txt[VT_PKG_RAW_LEN + 1];
-struct vt_page
+class TTX_PG_HANDLE
 {
-  vt_pkg_txt    m_line[VT_PKG_PG_CNT];
-  uint32_t      m_defined;
 public:
-  vt_page() : m_defined(0) {}
-  void add_line(int idx, const uint8_t * p_data) {
-     assert(idx < VT_PKG_PG_CNT);
-     memcpy(m_line[idx], p_data, VT_PKG_RAW_LEN);
-     m_line[idx][VT_PKG_RAW_LEN] = 0;
-     m_defined |= 1 << idx;
-  }
+   TTX_PG_HANDLE(uint page, uint sub) : m_handle((page << 20) | (sub & 0x3f7f)) {}
+   bool operator< (TTX_PG_HANDLE v) const { return m_handle < v.m_handle; }
+   bool operator== (TTX_PG_HANDLE v) const { return m_handle == v.m_handle; }
+   bool operator!= (TTX_PG_HANDLE v) const { return m_handle != v.m_handle; }
+   uint page() const { return (m_handle >> 20); }
+   uint sub() const { return (m_handle & 0x3f7f); }
+private:
+   uint m_handle;
 };
+
+class TTX_DB_PAGE
+{
+public:
+   TTX_DB_PAGE(uint page, uint sub, uint ctrl);
+   void add_raw_pkg(uint idx, const uint8_t * p_data);
+   void inc_acq_cnt();
+   const string& get_ctrl(uint line) const {
+      assert(line < TTX_TEXT_LINE_CNT);
+      if (!m_text_valid)
+         page_to_latin1();
+      return m_ctrl[line];
+   }
+   const string& get_text(uint line) const {
+      assert(line < TTX_TEXT_LINE_CNT);
+      if (!m_text_valid)
+         page_to_latin1();
+      return m_text[line];
+   }
+   int get_lang() const { return m_lang; }
+   int get_acq_rep() const { return m_acq_rep_cnt; }
+   void dump_as_text(FILE * fp);
+   void dump_as_raw(FILE * fp, int last_sub);
+
+   typedef uint8_t TTX_RAW_PKG[VT_PKG_RAW_LEN];
+   static const uint TTX_TEXT_LINE_CNT = 24;
+   static const uint TTX_RAW_PKG_CNT = 30;
+
+private:
+   void page_to_latin1() const;
+   void line_to_latin1(uint line, string& out) const;
+
+   TTX_RAW_PKG   m_raw_pkg[TTX_RAW_PKG_CNT];
+   uint32_t      m_raw_pkg_valid;
+   int           m_acq_rep_cnt;
+   int           m_lang;
+   int           m_page;
+   int           m_sub;
+   
+   mutable bool   m_text_valid;
+   mutable string m_ctrl[TTX_TEXT_LINE_CNT];
+   mutable string m_text[TTX_TEXT_LINE_CNT];
+};
+
+TTX_DB_PAGE::TTX_DB_PAGE(uint page, uint sub, uint ctrl)
+{
+   m_page = page;
+   m_sub = sub;
+   m_raw_pkg_valid = 0;
+   m_acq_rep_cnt = 1;
+   m_text_valid = false;
+
+   // store G0 char set (bits must be reversed: C12,C13,C14)
+   int ctl2 = ctrl >> 16;
+   m_lang = ((ctl2 >> 7) & 1) | ((ctl2 >> 5) & 2) | ((ctl2 >> 3) & 4);
+}
+
+void TTX_DB_PAGE::add_raw_pkg(uint idx, const uint8_t * p_data)
+{
+   assert(idx < TTX_RAW_PKG_CNT);
+
+   if (idx == 0) {
+      memset(m_raw_pkg[idx], ' ', 8);
+      memcpy(m_raw_pkg[idx] + 8, p_data + 8, VT_PKG_RAW_LEN - 8);
+   }
+   else {
+      memcpy(m_raw_pkg[idx], p_data, VT_PKG_RAW_LEN);
+   }
+   m_raw_pkg_valid |= 1 << idx;
+}
+
+void TTX_DB_PAGE::inc_acq_cnt()
+{
+   m_acq_rep_cnt += 1;
+}
+
+void TTX_DB_PAGE::page_to_latin1() const // modifies mutable
+{
+   assert(!m_text_valid); // checked by caller for efficiency
+
+   for (uint idx = 0; idx < TTX_TEXT_LINE_CNT; idx++) {
+
+      if (m_raw_pkg_valid & (1 << idx)) {
+         m_ctrl[idx].assign(VT_PKG_RAW_LEN, ' ');
+         line_to_latin1(idx, m_ctrl[idx]);
+
+         m_text[idx].assign(VT_PKG_RAW_LEN, ' ');
+         for (int col = 0; col < VT_PKG_RAW_LEN; col++) {
+            unsigned char c = m_ctrl[idx][col];
+            if ((c < 0x1F) || (c == 0x7F))
+               m_text[idx][col] = ' ';
+            else
+               m_text[idx][col] = c;
+         }
+      }
+      else {
+         m_ctrl[idx].assign(VT_PKG_RAW_LEN, ' ');
+         m_text[idx].assign(VT_PKG_RAW_LEN, ' ');
+      }
+   }
+
+   m_text_valid = true;
+}
+
+class TTX_DB
+{
+public:
+   ~TTX_DB();
+   typedef map<TTX_PG_HANDLE, TTX_DB_PAGE*>::iterator iterator;
+   typedef map<TTX_PG_HANDLE, TTX_DB_PAGE*>::const_iterator const_iterator;
+
+   bool sub_page_exists(uint page, uint sub) const;
+   const TTX_DB_PAGE* get_sub_page(uint page, uint sub) const;
+   const_iterator begin() const { return m_db.begin(); }
+   const_iterator end() const { return m_db.end(); }
+   const_iterator first_sub_page(uint page) const;
+   const_iterator& next_sub_page(uint page, const_iterator& p) const;
+   int last_sub_page_no(uint page) const;
+
+   TTX_DB_PAGE* add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data);
+   TTX_DB_PAGE* add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data);
+   void dump_as_text(FILE * fp);
+   void dump_as_raw(FILE * fp);
+   double get_acq_rep_stats();
+private:
+   map<TTX_PG_HANDLE, TTX_DB_PAGE*> m_db;
+};
+
+TTX_DB::~TTX_DB()
+{
+   for (iterator p = m_db.begin(); p != m_db.end(); p++) {
+      delete p->second;
+   }
+}
+
+bool TTX_DB::sub_page_exists(uint page, uint sub) const
+{
+   return m_db.find(TTX_PG_HANDLE(page, sub)) != m_db.end();
+}
+
+const TTX_DB_PAGE* TTX_DB::get_sub_page(uint page, uint sub) const
+{
+   const_iterator p = m_db.find(TTX_PG_HANDLE(page, sub));
+   return (p != m_db.end()) ? p->second : 0;
+}
+
+TTX_DB::const_iterator TTX_DB::first_sub_page(uint page) const
+{
+   const_iterator p = m_db.lower_bound(TTX_PG_HANDLE(page, 0));
+   return (p->first.page() == page) ? p : end();
+}
+
+TTX_DB::const_iterator& TTX_DB::next_sub_page(uint page, const_iterator& p) const
+{
+   ++p;
+   if (p->first.page() > page)
+      p = end();
+   return p;
+}
+
+int TTX_DB::last_sub_page_no(uint page) const
+{
+   const_iterator p = m_db.lower_bound(TTX_PG_HANDLE(page + 1, 0));
+   int last_sub = -1;
+   if ((p != m_db.begin()) && (m_db.size() > 0)) {
+      --p;
+      if (p->first.page() == page)
+         last_sub = p->first.sub();
+   }
+   return last_sub;
+}
+
+TTX_DB_PAGE* TTX_DB::add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data)
+{
+   TTX_PG_HANDLE handle(page, sub);
+
+   iterator p = m_db.lower_bound(handle);
+   if ((p == m_db.end()) || (p->first != handle)) {
+      TTX_DB_PAGE * p_pg = new TTX_DB_PAGE(page, sub, ctrl);
+      p = m_db.insert(p, make_pair(handle, p_pg));
+      assert(p->second == p_pg);
+   }
+   else {
+      p->second->inc_acq_cnt();
+   }
+   p->second->add_raw_pkg(0, p_data);
+   return p->second;
+}
+
+TTX_DB_PAGE* TTX_DB::add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data)
+{
+   TTX_PG_HANDLE handle(page, sub);
+
+   iterator p = m_db.find(handle);
+   if (p != m_db.end()) {
+      p->second->add_raw_pkg(idx, p_data);
+      return p->second;
+   }
+   else {
+      //if (opt_debug) printf("ERROR: page:%d sub:%d not found for adding pkg:%d\n", page, sub, idx);
+      return 0;
+   }
+}
+
+double TTX_DB::get_acq_rep_stats()
+{
+   int page_cnt = 0;
+   int page_rep = 0;
+   uint prev_page = 0xFFFu;
+
+   for (const_iterator p = m_db.begin(); p != m_db.end(); p++) {
+      if (p->first.page() != prev_page)
+         page_cnt += 1;
+      prev_page = p->first.page();
+
+      page_rep += p->second->get_acq_rep();
+   }
+   return (page_cnt > 0) ? ((double)page_rep / page_cnt) : 0.0;
+}
+
 struct vt_pkg_dec
 {
    uint16_t     m_page_no;
@@ -207,14 +424,9 @@ public:
    int          m_vps_cni;
 };
 
-map<int,vt_page> Pkg;
 map<int,int> PkgCni;
-map<int,int> PgCnt;
-map<int,int> PgSub;
-map<int,int> PgLang;
-map<int,vt_page> PageCtrl;
-map<int,vt_page> PageText;
 time_t VbiCaptureTime;
+TTX_DB ttx_db;
 
 // command line options for capturing from device
 int opt_duration = 0;
@@ -235,8 +447,6 @@ int opt_tv_start = 0x301;
 int opt_tv_end = 0x399;
 int opt_expire = 120;
 
-// forward declaratins
-void PageToLatin(int page, int sub);
 
 /* ------------------------------------------------------------------------------
  * Command line argument parsing
@@ -800,30 +1010,6 @@ There is @b no @b warranty, to the extent permitted by law.
 
 */
 
-bool pkg_defined(int handle)
-{
-   return (Pkg.find(handle) != Pkg.end());
-}
-
-bool pkg_defined(int handle, int pkg_idx)
-{
-   map<int,vt_page>::iterator p = Pkg.find(handle);
-   return (p != Pkg.end()) && (p->second.m_defined & (1<<pkg_idx));
-}
-
-/* Check if the given sub-page of the given page exists
- */
-bool TtxSubPageDefined(int page, int sub)
-{
-   return pkg_defined(page | (sub << 12), 0);
-}
-
-
-bool map_defined(map<int,int>& m, int page)
-{
-   return (m.find(page) != m.end());
-}
-
 template<class IT>
 int atoi_substr(const IT& first, const IT& second)
 {
@@ -1286,20 +1472,13 @@ void ReadVbi()
          }
          // magazine serial mode (C11: 1=serial 0=parallel)
          mag_serial = ((ctl2 & 0x10) != 0);
-         if (!map_defined(PgCnt, page)) {
-            // new page
-            Pkg[page|(sub<<12)] = vt_page();
-            PgCnt[page] = 1;
-            PgSub[page] = sub;
-            // store G0 char set (bits must be reversed: C12,C13,C14)
-            PgLang[page] = ((ctl2 >> 7) & 1) | ((ctl2 >> 5) & 2) | ((ctl2 >> 3) & 4);
+         if ((page != CurPage[mag]) || (sub != CurSub[mag])) {
+            ttx_db.add_page(page, sub,
+                             CapPkgs[0].m_ctrl_lo | (CapPkgs[0].m_ctrl_hi << 16),
+                             p_data);
          }
-         else if ((page != CurPage[mag]) || (sub != CurSub[mag])) {
-            // repeat page (and not just repeated page header, e.g. as filler packet)
-            // TODO count sub-pages separately
-            PgCnt[page] += 1;
-            if (sub >= PgSub[page])
-               PgSub[page] = sub;
+         else {
+            ttx_db.add_page_data(page, sub, 0, p_data);
          }
 
          // check if every page (NOT sub-page) was received N times in average
@@ -1307,13 +1486,7 @@ void ReadVbi()
          if (opt_duration == 0) {
             intv += 1;
             if (intv >= 50) {
-               int page_cnt = 0;
-               int page_rep = 0;
-               for (map<int,int>::iterator p = PgCnt.begin(); p != PgCnt.end(); p++) {
-                  page_cnt += 1;
-                  page_rep += p->second;
-               }
-               if ((page_cnt > 0) && ((page_rep / page_cnt) >= 10))
+               if (ttx_db.get_acq_rep_stats() >= 10.0)
                   goto END_FRAMELOOP;
                intv = 0;
             }
@@ -1323,7 +1496,6 @@ void ReadVbi()
          CurSub[mag] = sub;
          CurPkg[mag] = 0;
          cur_mag = mag;
-         Pkg[page|(sub<<12)].add_line(0, p_data);
       }
       else if (pkg <= 27) {
          page = CurPage[mag];
@@ -1336,7 +1508,7 @@ void ReadVbi()
             else {
                if (pkg < 26)
                   CurPkg[mag] = pkg;
-               Pkg[page|(sub<<12)].add_line(pkg, p_data);
+               ttx_db.add_page_data(page, sub, pkg, p_data);
             }
          }
       }
@@ -1356,12 +1528,13 @@ END_FRAMELOOP:
 /* Erase the page with the given number from memory
  * used to handle the "erase" control bit in the TTX header
  */
+#if 0
 void VbiPageErase(int page)
 {
    map<int,int>::iterator p3 = PgSub.find(page);
    if (p3 != PgCnt.end()) {
       for (int sub = 0; sub <= p3->second; sub++) {
-         map<int,vt_page>::iterator p = Pkg.find(page|(sub<<12));
+         map<int,TTX_DB_PAGE>::iterator p = Pkg.find(page|(sub<<12));
          if (p != Pkg.end()) {
             Pkg.erase(p);
          }
@@ -1373,6 +1546,7 @@ void VbiPageErase(int page)
       PgCnt.erase(p2);
    }
 }
+#endif
 
 /* ------------------------------------------------------------------------------
  * Dump all loaded teletext pages as plain text
@@ -1382,42 +1556,36 @@ void VbiPageErase(int page)
 void DumpTextPages()
 {
    if (opt_outfile != 0) {
-      close(1);
-      if (open(opt_outfile, O_WRONLY|O_CREAT|O_EXCL, 0666) < 0) {
+      int fd = open(opt_outfile, O_WRONLY|O_CREAT|O_EXCL, 0666);
+      if (fd < 0) {
          fprintf(stderr, "Failed to create %s: %s\n", opt_outfile, strerror(errno));
          exit(1);
       }
+      FILE * fp = fdopen(fd, "w");
+
+      ttx_db.dump_as_text(fp);
+      fclose(fp);
    }
-
-   //foreach page (sort {a<=>b} keys(%PgCnt)) {
-   for (map<int,int>::iterator p = PgCnt.begin(); p != PgCnt.end(); p++) {
-      int sub1;
-      int sub2;
-      int handle;
-      int page = p->first;
-
-      if (PgSub[page] == 0) {
-         sub1 = sub2 = 0;
-      }
-      else {
-         sub1 = 1;
-         sub2 = PgSub[page];
-      }
-      for (int sub = sub1; sub <= sub2; sub++) {
-         handle = page | (sub << 12);
-         if (pkg_defined(handle)) {
-            printf("PAGE %03X.%04X\n", page, sub);
-
-            PageToLatin(page, sub);
-            vt_page& pgtext = PageText[handle];
-
-            for (int idx = 1; idx <= 23; idx++) {
-               printf("%.40s\n", pgtext.m_line[idx]);
-            }
-            printf("\n");
-         }
-      }
+   else {
+      ttx_db.dump_as_text(stdout);
    }
+}
+
+void TTX_DB::dump_as_text(FILE * fp)
+{
+   for (iterator p = m_db.begin(); p != m_db.end(); p++) {
+      p->second->dump_as_text(fp);
+   }
+}
+
+void TTX_DB_PAGE::dump_as_text(FILE * fp)
+{
+   fprintf(fp, "PAGE %03X.%04X\n", m_page, m_sub);
+
+   for (uint idx = 1; idx < TTX_TEXT_LINE_CNT; idx++) {
+      fprintf(fp, "%.40s\n", get_text(idx).c_str());
+   }
+   fprintf(fp, "\n");
 }
 
 /* ------------------------------------------------------------------------------
@@ -1426,18 +1594,24 @@ void DumpTextPages()
  */
 void DumpRawTeletext()
 {
-   FILE * fp;
-
    if (opt_outfile != 0) {
-      fp = fopen(opt_outfile, "w");
+      FILE * fp = fopen(opt_outfile, "w");
       if (fp == NULL) {
          fprintf(stderr, "Failed to create %s: %s\n", opt_outfile, strerror(errno));
          exit(1);
       }
-   } else {
-      fp = stdout;
-   }
+      ttx_db.dump_as_raw(fp);
 
+      fclose(fp);
+   }
+   else {
+      ttx_db.dump_as_raw(stdout);
+   }
+   // return TRUE to allow to "require" the file
+}
+
+void TTX_DB::dump_as_raw(FILE * fp)
+{
    fprintf(fp, "#!/usr/bin/perl -w\n"
                "$VbiCaptureTime = %ld;\n", (long)VbiCaptureTime);
 
@@ -1445,63 +1619,55 @@ void DumpRawTeletext()
       fprintf(fp, "$PkgCni{0x%X} = %d;\n", p->first, p->second);
    }
 
-   for (map<int,int>::iterator p = PgCnt.begin(); p != PgCnt.end(); p++) {
-      int page = p->first;
+   for (iterator p = m_db.begin(); p != m_db.end(); p++) {
+      int page = p->first.page();
       if ((page >= opt_tv_start) && (page <= opt_tv_end)) {
-         int sub1, sub2;
-         if (PgSub[page] == 0) {
-            sub1 = sub2 = 0;
-         } else {
-            sub1 = 1;
-            sub2 = PgSub[page];
-         }
-         for (int sub = sub1; sub <= sub2; sub++) {
-            int handle = page | (sub << 12);
+         int last_sub = ttx_db.last_sub_page_no(page);
 
-            // skip missing sub-pages
-            map<int,vt_page>::iterator it_pkg = Pkg.find(handle);
-            if (it_pkg != Pkg.end()) {
-               printf("$PgCnt{0x%03X} = %d;\n", page, PgCnt[page]);
-               printf("$PgSub{0x%03X} = %d;\n", page, PgSub[page]);
-               printf("$PgLang{0x%03X} = %d;\n", page, PgLang[page]);
-
-               printf("$Pkg{0x%03X|(0x%04X<<12)} =\n[\n", page, sub);
-
-               for (int pkg = 0; pkg <= 23; pkg++) {
-                  const vt_pkg_txt& line = it_pkg->second.m_line[pkg];
-                  if (it_pkg->second.m_defined & (1 << pkg)) {
-                     fprintf(fp, "  \"");
-                     for (uint cidx = 0; cidx < VT_PKG_RAW_LEN; cidx++) {
-                        // quote binary characters
-                        unsigned char c = line[cidx];
-                        if ((c < 0x20) || (c == 0x7F)) {
-                           fprintf(fp, "\\x%02X", c);
-                        }
-                        // backwards compatibility: quote C and Perl special characters
-                        else if (   (line[cidx] == '@')
-                                 || (line[cidx] == '$')
-                                 || (line[cidx] == '%')
-                                 || (line[cidx] == '"')
-                                 || (line[cidx] == '\\') ) {
-                           fprintf(fp, "\\%c", line[cidx]);
-                        }
-                        else {
-                           fprintf(fp, "%c", line[cidx]);
-                        }
-                     }
-                     fprintf(fp, "\",\n");
-                  } else {
-                     fprintf(fp, "  undef,\n");
-                  }
-               }
-               fprintf(fp, "];\n");
-            }
-         }
+         p->second->dump_as_raw(fp, last_sub);
       }
    }
-   // return TRUE to allow to "require" the file
+
+   // return TRUE to allow to "require" the file in Perl
    fprintf(fp, "1;\n");
-   fclose(fp);
+}
+
+void TTX_DB_PAGE::dump_as_raw(FILE * fp, int last_sub)
+{
+   printf("$PgCnt{0x%03X} = %d;\n", m_page, m_acq_rep_cnt);
+   printf("$PgSub{0x%03X} = %d;\n", m_page, last_sub);
+   printf("$PgLang{0x%03X} = %d;\n", m_page, m_lang);
+
+   printf("$Pkg{0x%03X|(0x%04X<<12)} =\n[\n", m_page, m_sub);
+
+   for (uint idx = 0; idx < TTX_RAW_PKG_CNT; idx++) {
+      if (m_raw_pkg_valid & (1 << idx)) {
+         fprintf(fp, "  \"");
+         for (uint cidx = 0; cidx < VT_PKG_RAW_LEN; cidx++) {
+            // quote binary characters
+            unsigned char c = m_raw_pkg[idx][cidx];
+            if ((c < 0x20) || (c == 0x7F)) {
+               fprintf(fp, "\\x%02X", c);
+            }
+            // backwards compatibility: quote C and Perl special characters
+            else if (   (c == '@')
+                     || (c == '$')
+                     || (c == '%')
+                     || (c == '"')
+                     || (c == '\\') ) {
+               fprintf(fp, "\\%c", c);
+            }
+            else {
+               fprintf(fp, "%c", c);
+            }
+         }
+         fprintf(fp, "\",\n");
+      }
+      else {
+         fprintf(fp, "  undef,\n");
+      }
+   }
+   fprintf(fp, "];\n");
 }
 
 /* ------------------------------------------------------------------------------
@@ -1537,9 +1703,13 @@ void ImportRawDump()
    static const regex expr13("(#.*\\s*|\\s*)");
 
    int file_line_no = 0;
-   int handle = -1;
-   int pkg_idx = 0;
-   vt_page pg_data;
+   int page = -1;
+   uint sub = 0;
+   uint pkg_idx = 0;
+   uint lang = 0;
+   uint pg_cnt = 0;
+   TTX_DB_PAGE::TTX_RAW_PKG pg_data[TTX_DB_PAGE::TTX_RAW_PKG_CNT];
+   uint32_t pg_data_valid = 0;
 
    char buf[256];
    while (fgets(buf, sizeof(buf), fp) != 0) {
@@ -1550,26 +1720,33 @@ void ImportRawDump()
          VbiCaptureTime = atol(string(what[1]).c_str());
       }
       else if (regex_match(buf, what, expr3)) {
-         long page = strtol(string(what[1]).c_str(), NULL, 16);
-         PkgCni[page] = atoi_substr(what[2]);
+         long cni = strtol(string(what[1]).c_str(), NULL, 16);
+         PkgCni[cni] = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr4)) {
-         long page = strtol(string(what[1]).c_str(), NULL, 16);
-         PgCnt[page] = atoi_substr(what[2]);
+         long lpage = strtol(string(what[1]).c_str(), NULL, 16);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         pg_cnt = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr5)) {
-         long page = strtol(string(what[1]).c_str(), NULL, 16);
-         PgSub[page] = atoi_substr(what[2]);
+         long lpage = strtol(string(what[1]).c_str(), NULL, 16);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         sub = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr6)) {
-         long page = strtol(string(what[1]).c_str(), NULL, 16);
-         PgLang[page] = atoi_substr(what[2]);
+         long lpage = strtol(string(what[1]).c_str(), NULL, 16);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         lang = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr7)) {
-         long page = strtol(string(what[1]).c_str(), NULL, 16);
-         long sub = strtol(string(what[2]).c_str(), NULL, 16);
-         handle = page | (sub << 12);
-         pg_data = vt_page();
+         long lpage = strtol(string(what[1]).c_str(), NULL, 16);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         sub = strtol(string(what[2]).c_str(), NULL, 16);
+         pg_data_valid = 0;
          pkg_idx = 0;
       }
       else if (regex_match(buf, what, expr8)) {
@@ -1580,31 +1757,38 @@ void ImportRawDump()
       }
       else if (regex_match(buf, what, expr10)) {
          // line
-         assert((handle != -1) && (pkg_idx < VT_PKG_PG_CNT));
-         pg_data.m_defined |= 1 << pkg_idx;
+         assert((page != -1) && (pkg_idx < TTX_DB_PAGE::TTX_RAW_PKG_CNT));
          const char * p = &*what[1].first;
          int idx = 0;
          while ((*p != 0) && (idx < VT_PKG_RAW_LEN)) {
             int val, val_len;
             if ((*p == '\\') && (p[1] == 'x') &&
                 (sscanf(p + 2, "%2x%n", &val, &val_len) >= 1) && (val_len == 2)) {
-               pg_data.m_line[pkg_idx][idx++] = val;
+               pg_data[pkg_idx][idx++] = val;
                p += 4;
             } else if (*p == '\\') {
-               pg_data.m_line[pkg_idx][idx++] = p[1];
+               pg_data[pkg_idx][idx++] = p[1];
                p += 2;
             } else {
-               pg_data.m_line[pkg_idx][idx++] = *p;
+               pg_data[pkg_idx][idx++] = *p;
                p += 1;
             }
          }
-         pg_data.m_line[pkg_idx][VT_PKG_RAW_LEN] = 0;
+         pg_data_valid |= (1 << pkg_idx);
          pkg_idx += 1;
       }
       else if (regex_match(buf, what, expr11)) {
-         assert(handle != -1);
-         Pkg[handle] = pg_data;
-         handle = -1;
+         assert(page != -1);
+         int ctrl = sub | ((lang & 1) << (16+7)) | ((lang & 2) << (16+5)) | ((lang & 4) << (16+3));
+         TTX_DB_PAGE * pgtext = ttx_db.add_page(page, sub, ctrl, pg_data[0]);
+         for (uint idx = 1; idx < pkg_idx; idx++) {
+            if (pg_data_valid & (1 << idx))
+               ttx_db.add_page_data(page, sub, idx, pg_data[idx]);
+         }
+         for (uint idx = 1; idx < pg_cnt; idx++) {
+            pgtext->inc_acq_cnt();
+         }
+         page = -1;
       }
       else if (regex_match(buf, what, expr12)) {
       }
@@ -1701,11 +1885,12 @@ const bool DelSpcAttr[] =
 };
 
 // TODO: evaluate packet 26 and 28
-void TtxToLatin1(const vt_pkg_txt& line, vt_pkg_txt& out, unsigned g0_set)
+void TTX_DB_PAGE::line_to_latin1(uint line, string& out) const
 {
    bool is_g1 = false;
+
    for (int idx = 0; idx < VT_PKG_RAW_LEN; idx++) {
-      unsigned char val = line[idx];
+      uint8_t val = m_raw_pkg[line][idx];
 
       // alpha color code
       if (val <= 0x07) {
@@ -1728,54 +1913,10 @@ void TtxToLatin1(const vt_pkg_txt& line, vt_pkg_txt& out, unsigned g0_set)
          val = ' ';
       }
       else if ( (val < 0x80) && (NationalOptionsMatrix[val] >= 0) ) {
-         if (g0_set < sizeof(NatOptMaps)/sizeof(NatOptMaps[0])) {
-            val = NatOptMaps[g0_set][NationalOptionsMatrix[val]];
-         }
-         else {
-            val = ' ';
-         }
+         assert((size_t)m_lang < sizeof(NatOptMaps)/sizeof(NatOptMaps[0]));
+         val = NatOptMaps[m_lang][NationalOptionsMatrix[val]];
       }
       out[idx] = val;
-   }
-   out[VT_PKG_RAW_LEN] = 0;
-}
-
-void PageToLatin(int page, int sub)
-{
-   int handle = page | (sub << 12);
-
-   map<int,vt_page>::iterator p = Pkg.find(handle);
-   if (p != Pkg.end()) {
-      int lang = PgLang[page];
-      vt_page * pkgs = &p->second;
-
-      if (PageCtrl.find(handle) == PageCtrl.end()) {
-         vt_page& PgCtrl = PageCtrl[handle];
-         vt_page& PgText = PageText[handle];
-
-         for (int idx = 0; idx <= 23; idx++) {
-            if (pkgs->m_defined & (1 << idx)) {
-               TtxToLatin1(pkgs->m_line[idx], PgCtrl.m_line[idx], lang);
-
-               memcpy(PgText.m_line[idx], PgCtrl.m_line[idx], VT_PKG_RAW_LEN);
-               for (int col = 0; col < VT_PKG_RAW_LEN; col++) {
-                  unsigned char c = PgText.m_line[idx][col];
-                  if ((c < 0x1F) || (c == 0x7F))
-                     PgText.m_line[idx][col] = ' ';
-               }
-            }
-            else {
-               memset(PgCtrl.m_line[idx], ' ', VT_PKG_RAW_LEN);
-               memset(PgText.m_line[idx], ' ', VT_PKG_RAW_LEN);
-            }
-            PgCtrl.m_line[idx][VT_PKG_RAW_LEN] = 0;
-            PgText.m_line[idx][VT_PKG_RAW_LEN] = 0;
-         }
-         PgText.m_defined = 0xFFFFFF;  // lines 0..23
-         PgText.m_defined = 0xFFFFFF;
-      }
-   } else {
-      assert(false);  // caller should check if sub-page exists
    }
 }
 
@@ -2071,27 +2212,27 @@ public:
 
 void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
 {
-   vt_page& pgtext = PageText[page | (sub << 12)];
-   cmatch what;
+   const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
+   smatch whats;
 
    for (int line = 5; line <= 21; line++) {
-      char * text = pgtext.m_line[line];
+      const string& text = pgtext->get_text(line);
       // look for a line containing a start time (hour 0-23 : minute 0-59)
       // TODO allow start-stop times "10:00-11:00"?
       static const regex expr1("^(( *| *! +)([01][0-9]|2[0-3])[\\.:]([0-5][0-9]) +)");
-      if (regex_search(text, what, expr1)) {
-         int off = what[1].length();
+      if (regex_search(text, whats, expr1)) {
+         int off = whats[1].length();
          struct T_OV_FMT_STAT fmt;
-         fmt.time_off = what[2].length();
+         fmt.time_off = whats[2].length();
          fmt.vps_off = -1;
          fmt.title_off = off;
          fmt.subt_off = -1;
 
          // TODO VPS must be magenta or concealed
          static const regex expr2("^([0-2][0-9][0-5][0-9] +)");
-         if (regex_search(text + off, what, expr2)) {
+         if (regex_search(text.begin() + off, text.end(), whats, expr2)) {
             fmt.vps_off = off;
-            fmt.title_off = off + what[1].length();
+            fmt.title_off = off + whats[1].length();
          }
          else {
             fmt.vps_off = -1;
@@ -2100,15 +2241,15 @@ void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
 
          static const regex expr3("^( *| *\\d{4} +)[[:alpha:]]");
          static const regex expr4("^( *)[[:alpha:]]");
-         char * text2 = pgtext.m_line[line + 1];
+         const string& text2 = pgtext->get_text(line + 1);
          if ( (fmt.vps_off == -1)
-              ? regex_search(text2, what, expr3)
-              : regex_search(text2, what, expr4) )
+              ? regex_search(text2, whats, expr3)
+              : regex_search(text2, whats, expr4) )
          {
-            fmt.subt_off = what[1].second - what[1].first;
+            fmt.subt_off = whats[1].second - whats[1].first;
          }
 
-         //printf("FMT: %d,%d,%d,%d\n", fmt.time_off, fmt.vps_off, fmt.title_off, fmt.subt_off);
+         //if (opt_debug) printf("FMT(%03X.%d): %d,%d,%d,%d\n", page, sub, fmt.time_off, fmt.vps_off, fmt.title_off, fmt.subt_off);
          fmt_list.push_back(fmt);
       }
    }
@@ -2126,30 +2267,15 @@ T_OV_FMT_STAT DetectOvFormat()
 
    // look at the first 5 pages (default start at page 301)
    int cnt = 0;
-   for (map<int,int>::iterator p = PgCnt.begin();
-           (p != PgCnt.end()) && (cnt < 5);
-              p++)
+   for (TTX_DB::const_iterator p = ttx_db.begin(); p != ttx_db.end(); p++)
    {
-      if ((p->first >= opt_tv_start) && (p->first <= opt_tv_end))
-      {
-         int page = p->first;
-         int max_sub = PgSub[page];
-         int sub1, sub2;
-         if (max_sub == 0) {
-            sub1 = sub2 = 0;
-         }
-         else {
-            sub1 = 1;
-            sub2 = max_sub;
-         }
-         for (int sub = sub1; sub <= sub2; sub++) {
-            if (TtxSubPageDefined(page, sub)) {
-               PageToLatin(page, sub);
+      int page = p->first.page();
+      int sub = p->first.sub();
+      if ((page >= opt_tv_start) && (page <= opt_tv_end)) {
+         DetectOvFormatParse(fmt_list, page, sub);
 
-               DetectOvFormatParse(fmt_list, page, sub);
-            }
-         }
-         cnt++;
+         if (++cnt > 5)
+            break;
       }
    }
 
@@ -2220,30 +2346,31 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
    int month = -1;
    int year = -1;
 
-   vt_page& pgtext = PageText[page | (sub << 12)];
-   int lang = PgLang[page];
+   const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
+   int lang = pgtext->get_lang();
 
    string wday_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_FULL);
    string wday_abbrv_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_ABBRV);
    string mname_match = GetDateNameRegExp(MonthNames, lang, DATE_NAME_ANY);
    string relday_match = GetDateNameRegExp(RelDateNames, lang, DATE_NAME_ANY);
-   cmatch what;
+   smatch whats;
    int prio = -1;
 
    for (int line = 1; line < pgdate.m_head_end; line++)
    {
       // [Mo.]13.04.[2006]
       // So,06.01.
+      const string& text = pgtext->get_text(line);
       static regex expr1[8];
       static regex expr2[8];
       if (expr1[lang].empty()) {
          expr1[lang].assign(string("(^| |(") + wday_abbrv_match + ")(\\.|\\.,|,) ?)(\\d{1,2})\\.(\\d{1,2})\\.(\\d{2}|\\d{4})?([ ,:]|$)", regex::icase);
          expr2[lang].assign(string("(^| |(") + wday_match + ")(, ?| ))(\\d{1,2})\\.(\\d{1,2})\\.(\\d{2}|\\d{4})?([ ,:]|$)", regex::icase);
       }
-      if (   regex_search(pgtext.m_line[line], what, expr1[lang])
-          || regex_search(pgtext.m_line[line], what, expr2[lang]) )
+      if (   regex_search(text, whats, expr1[lang])
+          || regex_search(text, whats, expr2[lang]) )
       {
-         if (CheckDate(atoi_substr(what[4]), atoi_substr(what[5]), atoi_substr(what[6]),
+         if (CheckDate(atoi_substr(whats[4]), atoi_substr(whats[5]), atoi_substr(whats[6]),
                        "", "", &mday, &month, &year)) {
             prio = 3;
          }
@@ -2253,9 +2380,9 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       if (expr3[lang].empty()) {
          expr3[lang].assign(string("(^| )(\\d{1,2})\\. ?(") + mname_match + ")( (\\d{2}|\\d{4}))?([ ,:]|$)", regex::icase);
       }
-      if (regex_search(pgtext.m_line[line], what, expr3[lang])) {
-         if (CheckDate(atoi_substr(what[2]), -1, atoi_substr(what[5]),
-                       "", string(what[3]), &mday, &month, &year)) {
+      if (regex_search(text, whats, expr3[lang])) {
+         if (CheckDate(atoi_substr(whats[2]), -1, atoi_substr(whats[5]),
+                       "", string(whats[3]), &mday, &month, &year)) {
             prio = 3;
          }
       }
@@ -2266,10 +2393,10 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
          expr4[lang].assign(string("(^| )(") + wday_match + string(")(, ?| )(\\d{1,2})\\.? ?(") + mname_match + ")( (\\d{4}|\\d{2}))?( |,|;|$)", regex::icase);
          expr5[lang].assign(string("(^| )(") + wday_abbrv_match + string(")(\\.,? ?|, ?| )(\\d{1,2})\\.? ?(") + mname_match + ")( (\\d{4}|\\d{2}))?( |,|;|$)", regex::icase);
       }
-      if (   regex_search(pgtext.m_line[line], what, expr4[lang])
-          || regex_search(pgtext.m_line[line], what, expr5[lang])) {
-         if (CheckDate(atoi_substr(what[4]), -1, atoi_substr(what[7]),
-                       string(what[2]), string(what[5]), &mday, &month, &year)) {
+      if (   regex_search(text, whats, expr4[lang])
+          || regex_search(text, whats, expr5[lang])) {
+         if (CheckDate(atoi_substr(whats[4]), -1, atoi_substr(whats[7]),
+                       string(whats[2]), string(whats[5]), &mday, &month, &year)) {
             prio = 3;
          }
       }
@@ -2280,12 +2407,12 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       if (expr6[lang].empty()) {
          expr6[lang].assign(string("(^| )((") + wday_abbrv_match + string(")\\.?|(") + wday_match + ")) *((\\d{1,2}(-| - )\\d{1,2}( +Uhr| ?h|   ))|(\\d{1,2}[\\.:]\\d{2}(-| - )(\\d{1,2}[\\.:]\\d{2})?))( |$)", regex::icase);
       }
-      if (regex_search(pgtext.m_line[line], what, expr6[lang])) {
+      if (regex_search(text, whats, expr6[lang])) {
          string wday_name;
-         if (what[2].matched)
-            wday_name = string(what[2]);
+         if (whats[2].matched)
+            wday_name.assign(whats[2]);
          else
-            wday_name = string(what[3]);
+            wday_name.assign(whats[3]);
          int off = GetWeekDayOffset(wday_name);
          if (off >= 0)
             reldate = off;
@@ -2297,8 +2424,8 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       if (expr7[lang].empty()) {
          expr7[lang].assign(string("(^| )(") + wday_match + ")([ ,:]|$)", regex::icase);
       }
-      if (regex_search(pgtext.m_line[line], what, expr7[lang])) {
-         int off = GetWeekDayOffset(string(what[2]));
+      if (regex_search(text, whats, expr7[lang])) {
+         int off = GetWeekDayOffset(string(whats[2]));
          if (off >= 0)
             reldate = off;
          prio = 1;
@@ -2309,8 +2436,8 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       if (expr8[lang].empty()) {
          expr8[lang].assign(string("(^| )(") + relday_match + ")([ ,:]|$)", regex::icase);
       }
-      if (regex_search(pgtext.m_line[line], what, expr8[lang])) {
-         string rel_name = string(what[2]);
+      if (regex_search(text, whats, expr8[lang])) {
+         string rel_name = string(whats[2]);
          const T_DATE_NAME * p = MapDateName(rel_name.c_str(), RelDateNames);
          if (p != 0)
             reldate = p->idx;
@@ -2575,27 +2702,24 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
  */
 int ParseFooter(int page, int sub, int head)
 {
-   const vt_page& pgtext = PageText[page | (sub << 12)];
-   const vt_page& pgctrl = PageCtrl[page | (sub << 12)];
-   cmatch what;
+   const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
+   smatch whats;
    int foot;
 
    for (foot = 23 ; foot >= head; foot--) {
       // note missing lines are treated as empty lines
-      const char * text = pgtext.m_line[foot];
+      const string& text = pgtext->get_text(foot);
 
       // stop at lines which look like separators
       static const regex expr1("^ *-{10,} *$");
-      if (regex_search(text, what, expr1)) {
+      if (regex_search(text, whats, expr1)) {
          foot -= 1;
          break;
       }
       static const regex expr2("\\S");
-      if (!regex_search(text, what, expr2)) {
+      if (!regex_search(text, whats, expr2)) {
          static const regex expr3("[\\x0D\\x0F][^\\x0C]*[^ ]");
-         string prev_ctrl = string(pgctrl.m_line[foot - 1], VT_PKG_RAW_LEN);
-         smatch whats;
-         if (!regex_search(prev_ctrl, whats, expr3)) {
+         if (!regex_search(pgtext->get_ctrl(foot - 1), whats, expr3)) {
             foot -= 1;
             break;
          }
@@ -2607,9 +2731,9 @@ int ParseFooter(int page, int sub, int head)
       static const regex expr4("^ *(seite |page |<+ *)?[1-8][0-9][0-9]([^\\d]|$)", regex::icase);
       static const regex expr5("[^\\d][1-8][0-9][0-9]([\\.\\?!:,]|>+)? *$");
       //static const regex expr6("(^ *<|> *$)");
-      if (   regex_search(text, what, expr4)
-          || regex_search(text, what, expr5)) {
-           //|| ((sub != 0) && regex_search(text, what, expr6)) )
+      if (   regex_search(text, whats, expr4)
+          || regex_search(text, whats, expr5)) {
+           //|| ((sub != 0) && regex_search(text, whats, expr6)) )
       }
       else {
          break;
@@ -2636,26 +2760,22 @@ int ParseFooterByColor(int page, int sub)
    // - ignore top-most header and one footer line
    // - ignore missing lines (although they would display black (except for
    //   double-height) but we don't know if they're intentionally missing)
-   int handle = page | (sub << 12);
-   vt_page& pg_pkg = Pkg[handle];
+   const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
    for (int line = 4; line <= 23; line++) {
-      if (pg_pkg.m_defined & (1 << line)) {
-         // get first non-blank char; skip non-color control chars
-         static const regex expr1("^[ \\x00-\\x1F]*([\\x00-\\x07\\x10-\\x17])\\x1D");
-         string text(pg_pkg.m_line[line], VT_PKG_RAW_LEN);
-         if (regex_search(text, whats, expr1)) {
-            unsigned char c = *whats[1].first;
-            if (c <= 0x07) {
-               ColCount[c] += 1;
-            }
-            LineCol[line] = c;
-            // else: ignore mosaic
+      // get first non-blank char; skip non-color control chars
+      static const regex expr1("^[ \\x00-\\x1F]*([\\x00-\\x07\\x10-\\x17])\\x1D");
+      if (regex_search(pgtext->get_ctrl(line), whats, expr1)) {
+         unsigned char c = *whats[1].first;
+         if (c <= 0x07) {
+            ColCount[c] += 1;
          }
-         else {
-            // background color unchanged
-            ColCount[0] += 1;
-            LineCol[line] = 0;
-         }
+         LineCol[line] = c;
+         // else: ignore mosaic
+      }
+      else {
+         // background color unchanged
+         ColCount[0] += 1;
+         LineCol[line] = 0;
       }
    }
 
@@ -2689,8 +2809,7 @@ int ParseFooterByColor(int page, int sub)
    if (max_count >= 8) {
       // skip footer until normal color is reached
       for (int line = 23; line >= 0; line--) {
-         if (   (pg_pkg.m_defined & (1 << line))
-             && (LineCol[line] == max_idx)) {
+         if (LineCol[line] == max_idx) {
             last_line = line;
             break;
          }
@@ -2768,11 +2887,13 @@ void RemoveTrailingPageFooter(string& text)
  * - 3rd digit is an "address area", indicating network code tables 1 to 4
  * - the final 3 digits are decimal and the index into the network table
  */
-int ConvertVpsCni(const char * cni_str)
+template<class IT>
+int ConvertVpsCni(const IT& first, const IT& second)
 {
    int a, b, c;
 
-   if (   (sscanf(cni_str, "%2x%1d%2d", &a, &b, &c) == 3)
+   if (   (first + (2+1+2) == second)
+       && (sscanf(&*first, "%2x%1d%2d", &a, &b, &c) == 3)
        && (b >= 1) && (b <= 4)) {
       return (a<<8) | ((4 - b) << 6) | (c & 0x3F);
    }
@@ -2793,9 +2914,9 @@ void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
 {
    smatch whats;
    static const regex expr1("^(.*)([\\x05\\x18]+(VPS[\\x05\\x18 ]+)?"
-               "(\\d{4})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$))");
+                            "(\\d{4})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$))");
    static const regex expr2("^(.*)([\\x05\\x18]+([0-9A-F]{2}\\d{3})[\\x05\\x18 ]+"
-               "(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$))");
+                            "(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$))");
    static const regex expr3("^(.*)([\\x05\\x18]+(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$))");
    static const regex expr4("^(.*)([\\x05\\x18]+(\\d{2}[.:]\\d{2}) oo *([\\x00-\\x04\\x06\\x07]|$))");
    static const regex expr5("^(.*)([\\x05\\x18][\\x05\\x18 ]*VPS *([\\x00-\\x04\\x06\\x07]|$))");
@@ -2803,7 +2924,7 @@ void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
    // time
    // discard any concealed/magenta labels which follow
    if (regex_search(text, whats, expr1)) {
-      vps_data.m_vps_time = string(whats[4].first, whats[4].second);
+      vps_data.m_vps_time.assign(whats[4].first, whats[4].second);
       vps_data.m_new_vps_time = true;
       // blank out the same area in the text-only string
       for (int idx = whats[1].length(); idx < whats[1].length() + whats[2].length(); idx++)
@@ -2812,17 +2933,16 @@ void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
    }
    // CNI and date "1D102 120406 F9" (ignoring checksum)
    else if (regex_search(text, whats, expr2)) {
-      string cni_str = string(whats[3].first, whats[3].second);
-      vps_data.m_vps_date = string(whats[4].first, whats[4].second);
+      vps_data.m_vps_date.assign(whats[4].first, whats[4].second);
       vps_data.m_new_vps_date = true;
       for (int idx = whats[1].length(); idx < whats[1].length() + whats[2].length(); idx++)
          text[idx] = ' ';
-      vps_data.m_vps_cni = ConvertVpsCni(cni_str.c_str());
+      vps_data.m_vps_cni = ConvertVpsCni(whats[3].first, whats[3].second);
       if (opt_debug) printf("VPS date and CNI: 0x%X, /%s/\n", vps_data.m_vps_cni, vps_data.m_vps_date.c_str());
    }
    // date
    else if (regex_search(text, whats, expr3)) {
-      vps_data.m_vps_date = string(whats[3].first, whats[3].second);
+      vps_data.m_vps_date.assign(whats[3].first, whats[3].second);
       vps_data.m_new_vps_date = true;
       for (int idx = whats[1].length(); idx < whats[1].length() + whats[2].length(); idx++)
          text[idx] = ' ';
@@ -2871,12 +2991,12 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
    TV_SLOT slot;
    T_VPS_TIME vps_data;
 
-   const vt_page& pgctrl = PageCtrl[page | (sub << 12)];
+   const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
    vps_data.m_new_vps_date = false;
 
    for (int line = 1; line <= 23; line++) {
       // note: use text including control-characters, because the next 2 steps require these
-      string ctrl(pgctrl.m_line[line], VT_PKG_RAW_LEN);
+      string ctrl = pgctrl->get_ctrl(line);
 
       if (line >= 23) {
          RemoveTrailingPageFooter(ctrl);
@@ -2890,7 +3010,7 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
       }
 
       // remove remaining control characters
-      string text(ctrl, 0, VT_PKG_RAW_LEN);
+      string text = ctrl;
       for (int idx = 0; idx < VT_PKG_RAW_LEN; idx++) {
          unsigned char c = text[idx];
          if ((c <= 0x1F) || (c == 0x7F))
@@ -2911,7 +3031,7 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
             if (regex_search(str3, whats, expr3)) {
                hour = atoi_substr(whats[1]);
                min = atoi_substr(whats[2]);
-               title = string(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
+               title.assign(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
                new_title = true;
             }
          }
@@ -2928,7 +3048,7 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
                hour = atoi_substr(whats[1]);
                min = atoi_substr(whats[2]);
                new_title = true;
-               title = string(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
+               title.assign(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
             }
          }
       }
@@ -2959,10 +3079,10 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
          if (opt_debug) printf("OV TITLE: \"%s\", %02d:%02d\n", title.c_str(), slot.m_hour, slot.m_min);
 
          // kika special: subtitle appended to title
-         static const regex expr7("(.*\\(\\d+( *[\\&\\-] *\\d+)?\\))\\/ *(\\S.*)");
+         static const regex expr7("(.*\\(\\d+( ?[\\&\\-\\+] ?\\d+)*\\))/ *(\\S.*)");
          if (regex_search(title, whats, expr7)) {
-            slot.m_subtitle = string(whats[3].first, whats[3].second);
-            title = string(whats[1].first, whats[1].second);  // invalidates "whats"
+            slot.m_subtitle.assign(whats[3].first, whats[3].second);
+            title.assign(whats[1].first, whats[1].second);  // invalidates "whats"
             slot.m_subtitle = regex_replace(slot.m_subtitle, regex(" {2,}"), " ");
          }
          slot.m_title = title;
@@ -3225,8 +3345,10 @@ bool CheckIfPagesAdjacent(const T_PG_DATE& pg1, const T_PG_DATE& pg2)
       // check for jump from last sub-page of prev page to first of new page
       int next = GetNextPageNumber(pg1.m_page);
 
+      int last_sub = ttx_db.last_sub_page_no(pg1.m_page);
+
       if ( (next == pg2.m_page) &&
-           (pg1.m_sub_page + pg1.m_sub_page_skip == PgSub[pg1.m_page]) &&
+           (pg1.m_sub_page + pg1.m_sub_page_skip == last_sub) &&
            (pg2.m_sub_page <= 1) ) {
          result = true;
       } 
@@ -3385,8 +3507,6 @@ void ParseOv(int page, int sub, const T_OV_FMT_STAT& fmt,
 {
    if (opt_debug) printf("OVERVIEW PAGE %03X.%04X\n", page, sub);
 
-   PageToLatin(page, sub);
-
    int foot = ParseFooterByColor(page, sub);
    uint start_idx = Slots.size();
 
@@ -3445,38 +3565,29 @@ vector<TV_SLOT> ParseAllOvPages()
       T_PG_DATE prev_pgdate;
       int prev_slot_idx = -1;
 
-      for (map<int,int>::iterator p = PgCnt.begin(); p != PgCnt.end(); p++) {
-         if ((p->first >= opt_tv_start) && (p->first <= opt_tv_end)) {
-            int page = p->first;
-            int max_sub = PgSub[page];
-            int sub1, sub2;
-            if (max_sub == 0) {
-               sub1 = sub2 = 0;
-            }
-            else {
-               sub1 = 1;
-               sub2 = max_sub;
-            }
-            for (int sub = sub1; sub <= sub2; sub++) {
-               uint new_prev_slot_idx = Slots.size();
-               if (TtxSubPageDefined(page, sub)) {
-                  pgdate.clear();
-                  pgdate.m_page = page;
-                  pgdate.m_sub_page = sub;
-                  pgdate.m_sub_page_skip = 0;
+      for (TTX_DB::const_iterator p = ttx_db.begin(); p != ttx_db.end(); p++)
+      {
+         int page = p->first.page();
+         int sub = p->first.sub();
 
-                  ParseOv(page, sub, fmt, pgdate, prev_pgdate, prev_slot_idx, Slots);
-               }
+         if ((page >= opt_tv_start) && (page <= opt_tv_end)) {
+            uint new_prev_slot_idx = Slots.size();
 
-               if (Slots.size() > new_prev_slot_idx) {
-                  prev_pgdate = pgdate;
-                  prev_slot_idx = new_prev_slot_idx;
-               }
-               else if ( prev_pgdate.is_valid() &&
-                         (prev_pgdate.m_sub_page + prev_pgdate.m_sub_page_skip < sub) ) {
-                  prev_pgdate.clear();
-                  prev_slot_idx = -1;
-               }
+            pgdate.clear();
+            pgdate.m_page = page;
+            pgdate.m_sub_page = sub;
+            pgdate.m_sub_page_skip = 0;
+
+            ParseOv(page, sub, fmt, pgdate, prev_pgdate, prev_slot_idx, Slots);
+
+            if (Slots.size() > new_prev_slot_idx) {
+               prev_pgdate = pgdate;
+               prev_slot_idx = new_prev_slot_idx;
+            }
+            else if ( prev_pgdate.is_valid() &&
+                      (prev_pgdate.m_sub_page + prev_pgdate.m_sub_page_skip < sub) ) {
+               prev_pgdate.clear();
+               prev_slot_idx = -1;
             }
          }
       }
@@ -3558,21 +3669,6 @@ string GetXmlVpsTimestamp(const TV_SLOT& slot)
  * - the result is not suitable for attributes since quotes are not escaped
  * - input must already have teletext control characters removed
  */
-#if 0
-class T_RESUB_XML
-{
-public:
-   const string operator() (const smatch& whats) const {
-      switch (*whats[0].first)
-      {
-         case '&': return string("&amp;");
-         case '<': return string("&lt;");
-         case '>': return string("&gt;");
-         default: assert(false); return string("");
-      }
-   }
-};
-#endif
 void Latin1ToXml(string& title)
 {
    //static const regex expr1("[&<>]");
@@ -3767,16 +3863,16 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
    int lend_min = -1;
    bool check_time = false;
 
-   const vt_page& pgtext = PageText[page | (sub << 12)];
-   int lang = PgLang[page];
+   const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
+   int lang = pgtext->get_lang();
    string wday_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_FULL);
    string wday_abbrv_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_ABBRV);
    string mname_match = GetDateNameRegExp(MonthNames, lang, DATE_NAME_ANY);
-   cmatch what;
+   smatch whats;
 
    // search date and time
    for (int line = 1; line <= 23; line++) {
-      const char * text = pgtext.m_line[line];
+      const string& text = pgtext->get_text(line);
       bool new_date = false;
 
       {
@@ -3784,10 +3880,10 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          static const regex expr1("(^| )(\\d{1,2})\\.(\\d{1,2})\\.(\\d{4}|\\d{2})?( |,|;|:|$)");
          static const regex expr2("(^| )(\\d{1,2})\\.(\\d)\\.(\\d{4}|\\d{2})( |,|;|:|$)");
          static const regex expr3("(^| )(\\d{1,2})\\.(\\d)\\.?(\\d{4}|\\d{2})?(,|;| ?-)? +\\d{1,2}[\\.:]\\d{2}(h| |,|;|:|$)");
-         if (   regex_search(text, what, expr1)
-             || regex_search(text, what, expr2)
-             || regex_search(text, what, expr3)) {
-            if (CheckDate(atoi_substr(what[2]), atoi_substr(what[3]), atoi_substr(what[4]),
+         if (   regex_search(text, whats, expr1)
+             || regex_search(text, whats, expr2)
+             || regex_search(text, whats, expr3)) {
+            if (CheckDate(atoi_substr(whats[2]), atoi_substr(whats[3]), atoi_substr(whats[4]),
                           "", "", &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
@@ -3803,10 +3899,10 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
             expr5[lang].assign(string("(^| )(") + wday_abbrv_match + ")(\\.,? ?|, ?| - | )"
                                "(\\d{1,2})\\.(\\d{1,2})( |\\.|,|;|:|$)", regex::icase);
          }
-         if (   regex_search(text, what, expr4[lang])
-             || regex_search(text, what, expr5[lang])) {
-            if (CheckDate(atoi_substr(what[4]), atoi_substr(what[5]), -1,
-                          string(what[2]), "", &lmday, &lmonth, &lyear)) {
+         if (   regex_search(text, whats, expr4[lang])
+             || regex_search(text, whats, expr5[lang])) {
+            if (CheckDate(atoi_substr(whats[4]), atoi_substr(whats[5]), -1,
+                          string(whats[2]), "", &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3817,9 +3913,9 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
             expr6[lang].assign(string("(^| )(\\d{1,2})\\.? ?(") + mname_match +
                                ")( (\\d{4}|\\d{2}))?( |,|;|:|$)", regex::icase);
          }
-         if (regex_search(text, what, expr6[lang])) {
-            if (CheckDate(atoi_substr(what[2]), -1, atoi_substr(what[5]),
-                          "", string(what[3]), &lmday, &lmonth, &lyear)) {
+         if (regex_search(text, whats, expr6[lang])) {
+            if (CheckDate(atoi_substr(whats[2]), -1, atoi_substr(whats[5]),
+                          "", string(whats[3]), &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3835,10 +3931,10 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
                                string(")(\\.,? ?|, ?| ?- ?| )(\\d{1,2})\\.? ?(") + mname_match +
                                ")( (\\d{4}|\\d{2}))?( |,|;|:|$)", regex::icase);
          }
-         if (   regex_search(text, what, expr7[lang])
-             || regex_search(text, what, expr8[lang])) {
-            if (CheckDate(atoi_substr(what[4]), -1, atoi_substr(what[7]),
-                          string(what[2]), string(what[5]), &lmday, &lmonth, &lyear)) {
+         if (   regex_search(text, whats, expr7[lang])
+             || regex_search(text, whats, expr8[lang])) {
+            if (CheckDate(atoi_substr(whats[4]), -1, atoi_substr(whats[7]),
+                          string(whats[2]), string(whats[5]), &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3857,9 +3953,9 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
                                 ")(\\.,? ?|, ?| - | )(\\d{1,2}[\\.:]\\d{2}"
                                 "((-| - )\\d{1,2}[\\.:]\\d{2})?(h| |,|;|:|$))", regex::icase);
          }
-         if (   regex_search(text, what, expr10[lang])
-             || regex_search(text, what, expr11[lang])) {
-            if (CheckDate(-1, -1, -1, string(what[2]), "", &lmday, &lmonth, &lyear)) {
+         if (   regex_search(text, whats, expr10[lang])
+             || regex_search(text, whats, expr11[lang])) {
+            if (CheckDate(-1, -1, -1, string(whats[2]), "", &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -3870,10 +3966,10 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          // TODO: allow garbage before or after label; check reveal and magenta codes (ETS 300 231 ch. 7.3)
          // VPS label "1D102 120406 F9"
          static const regex expr12("^ +[0-9A-F]{2}\\d{3} (\\d{2})(\\d{2})(\\d{2}) [0-9A-F]{2} *$");
-         if (regex_search(text, what, expr12)) {
-            lmday = atoi_substr(what[1]);
-            lmonth = atoi_substr(what[2]);
-            lyear = atoi_substr(what[3]) + 2000;
+         if (regex_search(text, whats, expr12)) {
+            lmday = atoi_substr(whats[1]);
+            lmonth = atoi_substr(whats[2]);
+            lyear = atoi_substr(whats[3]) + 2000;
             goto DATE_FOUND;
          }
       }
@@ -3889,13 +3985,13 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
       static const regex expr16("(^| )(\\d{1,2})[\\.:](\\d{1,2})( ?h| Uhr)( |,|;|:|$)");
       static const regex expr17("(^| )(\\d{1,2})h(\\d{2})( |,|;|:|$)");
       check_time = false;
-      if (   regex_search(text, what, expr12)
-          || regex_search(text, what, expr13)) {
-         int hour = atoi_substr(what[2]);
-         int min = atoi_substr(what[3]);
-         int end_hour = atoi_substr(what[7]);
-         int end_min = atoi_substr(what[8]);
-         // int vps = atoi_substr(what[5]);
+      if (   regex_search(text, whats, expr12)
+          || regex_search(text, whats, expr13)) {
+         int hour = atoi_substr(whats[2]);
+         int min = atoi_substr(whats[3]);
+         int end_hour = atoi_substr(whats[7]);
+         int end_min = atoi_substr(whats[8]);
+         // int vps = atoi_substr(whats[5]);
          if (opt_debug) printf("DESC TIME %02d.%02d - %02d.%02d\n", hour, min, end_hour, end_min);
          if ((hour < 24) && (min < 60) &&
              (end_hour < 24) && (end_min < 60)) {
@@ -3907,12 +4003,12 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          }
       }
       // 15.40 (Uhr|h)
-      else if (   (new_date && regex_search(text, what, expr14))
-               || regex_search(text, what, expr15)
-               || regex_search(text, what, expr16)
-               || regex_search(text, what, expr17)) {
-         int hour = atoi_substr(what[2]);
-         int min = atoi_substr(what[3]);
+      else if (   (new_date && regex_search(text, whats, expr14))
+               || regex_search(text, whats, expr15)
+               || regex_search(text, whats, expr16)
+               || regex_search(text, whats, expr17)) {
+         int hour = atoi_substr(whats[2]);
+         int min = atoi_substr(whats[3]);
          if (opt_debug) printf("DESC TIME %02d.%02d\n", hour, min);
          if ((hour < 24) && (min < 60)) {
             lhour = hour;
@@ -3964,14 +4060,14 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
  */
 int ParseDescTitle(int page, int sub, TV_SLOT& slot)
 {
-   const vt_page& pgctrl = PageCtrl[page | (sub << 12)];
+   const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
    string prev;
 
    string title_lc = slot.m_title;
    str_tolower(title_lc);
 
    for (int idx = 1; idx <= 23/2; idx++) {
-      string text_lc(pgctrl.m_line[idx], VT_PKG_RAW_LEN);
+      string text_lc = pgctrl->get_ctrl(idx);
       str_tolower(text_lc);
 
       uint off = str_get_indent(text_lc);
@@ -3981,7 +4077,7 @@ int ParseDescTitle(int page, int sub, TV_SLOT& slot)
           && (text_lc.compare(off, title_lc.length(), title_lc) == 0) ) {
          // TODO: back up if there's text in the previous line with the same indentation
 
-         string tmp(pgctrl.m_line[idx], VT_PKG_RAW_LEN);
+         string tmp = pgctrl->get_ctrl(idx);
          ParseTrailingFeat(tmp, slot);
 
          // correct title/sub-title split
@@ -3999,7 +4095,7 @@ int ParseDescTitle(int page, int sub, TV_SLOT& slot)
                slot.m_subtitle.clear();
             }
             else if (tmp.length() - off > slot.m_title.length()) {
-               string next(pgctrl.m_line[idx + 1], VT_PKG_RAW_LEN);
+               string next = pgctrl->get_ctrl(idx + 1);
                if (str_get_indent(next) == off) {
                   str_concat_title(tmp, next);
                   str_chomp(tmp);
@@ -4027,15 +4123,15 @@ int ParseDescTitle(int page, int sub, TV_SLOT& slot)
       }
       else if (!prev.empty()) {
          RemoveTrailingFeat(prev);
-         str_concat_title(prev, string(pgctrl.m_line[idx], VT_PKG_RAW_LEN));
+         str_concat_title(prev, pgctrl->get_ctrl(idx));
          str_tolower(prev);
          //if (str_find_word(prev, title_lc) != string::npos)  // sub-string
          if (   (title_lc.length() <= prev.length())
              && (prev.compare(0, title_lc.length(), title_lc) == 0) ) {
-            string tmp = string(pgctrl.m_line[idx - 1], VT_PKG_RAW_LEN);
+            string tmp = string(pgctrl->get_ctrl(idx - 1));
             ParseTrailingFeat(tmp, slot);
 
-            tmp = string(pgctrl.m_line[idx], VT_PKG_RAW_LEN);
+            tmp = pgctrl->get_ctrl(idx);
             ParseTrailingFeat(tmp, slot);
 
             //TODO: check if title/sub-title split can be corrected (see above)
@@ -4043,7 +4139,7 @@ int ParseDescTitle(int page, int sub, TV_SLOT& slot)
             return idx - 1;
          }
       }
-      prev = string(pgctrl.m_line[idx] + off, VT_PKG_RAW_LEN - off);
+      prev.assign(pgctrl->get_ctrl(idx), off, VT_PKG_RAW_LEN - off);
    }
    //print "NOT FOUND title\n";
    return 1;
@@ -4054,23 +4150,23 @@ int ParseDescTitle(int page, int sub, TV_SLOT& slot)
  */
 int CorrelateDescTitles(int page, int sub1, int sub2, int head)
 {
-   const vt_page& pgctrl1 = PageCtrl[page | (sub1 << 12)];
-   const vt_page& pgctrl2 = PageCtrl[page | (sub2 << 12)];
+   const TTX_DB_PAGE * pgctrl1 = ttx_db.get_sub_page(page, sub1);
+   const TTX_DB_PAGE * pgctrl2 = ttx_db.get_sub_page(page, sub2);
 
-   for (int line = head; line <= 23; line++) {
-      const char * p1 = pgctrl1.m_line[line];
-      const char * p2 = pgctrl2.m_line[line];
-      int cnt = 0;
-      for (int col = 0; col < VT_PKG_RAW_LEN; col++, p1++, p2++) {
-         if (*p1 == *p2)
+   for (uint line = head; line < TTX_DB_PAGE::TTX_TEXT_LINE_CNT; line++) {
+      const string& p1 = pgctrl1->get_ctrl(line);
+      const string& p2 = pgctrl2->get_ctrl(line);
+      uint cnt = 0;
+      for (uint col = 0; col < VT_PKG_RAW_LEN; col++) {
+         if (p1[col] == p2[col])
             cnt++;
       }
       // stop if lines are not similar enough
-      if (cnt < 37) {
+      if (cnt < VT_PKG_RAW_LEN - VT_PKG_RAW_LEN/10) {
          return line;
       }
    }
-   return 23;
+   return TTX_DB_PAGE::TTX_TEXT_LINE_CNT;
 }
 
 /* Reformat tables in "cast" format into plain lists. Note this function
@@ -4206,12 +4302,12 @@ string ParseDescContent(int page, int sub, int head, int foot)
    smatch whats;
    vector<string> Lines;
 
-   const vt_page& pgctrl = PageCtrl[page | (sub << 12)];
+   const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
    bool is_nl = 0;
    string desc;
 
    for (int idx = head; idx <= foot; idx++) {
-      string ctrl(pgctrl.m_line[idx], VT_PKG_RAW_LEN);
+      string ctrl = pgctrl->get_ctrl(idx);
 
       // TODO parse features behind date, title or subtitle
 
@@ -4260,7 +4356,8 @@ string ParseDescContent(int page, int sub, int head, int foot)
             desc += line;
          }
          else if ((desc.length() > 0) && !is_nl) {
-            desc += string(" ") + line;
+            desc += " ";
+            desc += line;
          }
          else {
             desc += line;
@@ -4289,6 +4386,7 @@ string ParseDescPage(TV_SLOT& slot)
    string desc;
    bool found = false;
    int page = slot.m_ttx_ref;
+   int first_sub = -1;
 
    if (opt_debug) {
       char buf[100];
@@ -4296,52 +4394,44 @@ string ParseDescPage(TV_SLOT& slot)
       printf("DESC parse page %03X: search match for %s \"%s\"\n", page, buf, slot.m_title.c_str());
    }
 
-   if (PgCnt.find(page) != PgCnt.end()) {
-      int sub1;
-      int sub2;
-      int first_sub = -1;
-      if (PgSub[page] == 0) {
-         sub1 = sub2 = 0;
-      } else {
-         sub1 = 1;
-         sub2 = PgSub[page];
-      }
-      for (int sub = sub1; sub <= sub2; sub++) {
-         if (TtxSubPageDefined(page, sub)) {
-            PageToLatin(page, sub);
-            // TODO: multiple sub-pages may belong to same title, but have no date
-            //       caution: multiple pages may also have the same title, but describe different instances of a series
+   for (TTX_DB::const_iterator p = ttx_db.first_sub_page(page);
+           p != ttx_db.end();
+              ttx_db.next_sub_page(page, p))
+   {
+      int sub = p->first.sub();
 
-            // TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
+      // TODO: multiple sub-pages may belong to same title, but have no date
+      //       caution: multiple pages may also have the same title, but describe different instances of a series
 
-            if (ParseDescDate(page, sub, slot)) {
-               int head = ParseDescTitle(page, sub, slot);
-               if (first_sub >= 0)
-                  head = CorrelateDescTitles(page, sub, first_sub, head);
-               else
-                  first_sub = sub;
+      // TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
 
-               int foot = ParseFooterByColor(page, sub);
-               int foot2 = ParseFooter(page, sub, head);
-               foot = (foot2 < foot) ? foot2 : foot;
-               if (opt_debug) printf("DESC page %03X.%04X match found: lines %d-%d\n", page, sub, head, foot);
+      if (ParseDescDate(page, sub, slot)) {
+         int head = ParseDescTitle(page, sub, slot);
+         if (first_sub >= 0)
+            head = CorrelateDescTitles(page, sub, first_sub, head);
+         else
+            first_sub = sub;
 
-               if (foot > head) {
-                  if (!desc.empty())
-                     desc += "\n";
-                  desc += ParseDescContent(page, sub, head, foot);
-               }
-               found = true;
-            } else {
-               if (opt_debug) printf("DESC page %03X.%04X no match found\n", page, sub);
-               if (found)
-                  break;
-            }
+         int foot = ParseFooterByColor(page, sub);
+         int foot2 = ParseFooter(page, sub, head);
+         foot = (foot2 < foot) ? foot2 : foot;
+         if (opt_debug) printf("DESC page %03X.%04X match found: lines %d-%d\n", page, sub, head, foot);
+
+         if (foot > head) {
+            if (!desc.empty())
+               desc += "\n";
+            desc += ParseDescContent(page, sub, head, foot);
          }
+         found = true;
       }
-   } else {
-      if (opt_debug) printf("DESC page %03X not found\n", page);
+      else {
+         if (opt_debug) printf("DESC page %03X.%04X no match found\n", page, sub);
+         if (found)
+            break;
+      }
    }
+   if (!found && opt_debug) printf("DESC page %03X not found\n", page);
+
    return desc;
 }
 
@@ -4355,89 +4445,66 @@ string ParseChannelName()
    string wday_match;
    string wday_abbrv_match;
    string mname_match;
+   smatch whats;
    int lang = -1;
    regex expr3[8];
    regex expr4[8];
 
-   for (map<int,int>::iterator p = PgCnt.begin(); p != PgCnt.end(); p++) {
-      int page = p->first;
-      if ( (((page>>4)&0xF)<=9) && ((page&0xF)<=9) ) {
-         int sub1, sub2;
-         if (PgSub[page] == 0) {
-            sub1 = sub2 = 0;
+   for (TTX_DB::const_iterator p = ttx_db.begin(); p != ttx_db.end(); p++) {
+      int page = p->first.page();
+      if ( (((page>>4)&0xF) <= 9) && ((page&0xF) <= 9) ) {
+         if (p->second->get_lang() != lang) {
+            lang = p->second->get_lang();
+            wday_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_FULL);
+            wday_abbrv_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_ABBRV);
+            mname_match = GetDateNameRegExp(MonthNames, lang, DATE_NAME_ANY);
          }
-         else {
-            sub1 = 1;
-            sub2 = PgSub[page];
-         }
-         for (int sub = sub1; sub <= sub2; sub++) {
-            if (Pkg[page|(sub<<12)].m_defined & (1 << 0)) {
-               if (PgLang[page] != lang) {
-                  lang = PgLang[page];
-                  wday_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_FULL);
-                  wday_abbrv_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_ABBRV);
-                  mname_match = GetDateNameRegExp(MonthNames, lang, DATE_NAME_ANY);
+
+         char pgn[20];
+         sprintf(pgn, "%03X", page);
+         string hd = p->second->get_text(0);
+         // remove page number and time (both are required)
+         string::size_type pgn_pos = str_find_word(hd, pgn);
+         if (pgn_pos != string::npos) {
+            hd.replace(pgn_pos, 3, 3, ' ');
+
+            static regex expr2("^(.*)( \\d{2}[\\.: ]?\\d{2}([\\.: ]\\d{2}) *)");
+            if (regex_search(hd, whats, expr2)) {
+               hd.erase(whats[1].length());
+               // remove date: "Sam.12.Jan" OR "12 Sa Jan" (VOX)
+               if (expr3[lang].empty()) {
+                  expr3[lang].assign(string("(((") + wday_abbrv_match + string(")|(") + wday_match +
+                                     string("))(\\, ?|\\. ?|  ?\\-  ?|  ?)?)?\\d{1,2}(\\.\\d{1,2}|[ \\.](") +
+                                     mname_match + "))(\\.|[ \\.]\\d{2,4}\\.?)? *$", regex::icase);
+                  expr4[lang].assign(string("\\d{1,2}(\\, ?|\\. ?|  ?\\-  ?|  ?)(((") +
+                                     wday_abbrv_match + string(")|(") +
+                                     wday_match +
+                                     string ("))(\\, ?|\\. ?|  ?\\-  ?|  ?)?)?(\\.\\d{1,2}|[ \\.](") +
+                                     mname_match + "))(\\.|[ \\.]\\d{2,4}\\.?)? *$",
+                                     regex::icase);
+               }
+               if (regex_search(hd, whats, expr3[lang])) {
+                  hd.erase(whats.position(), whats[0].length());
+               }
+               else if (regex_search(hd, whats, expr4[lang])) {
+                  hd.erase(whats.position(), whats[0].length());
                }
 
-               vt_pkg_txt ctrl;
-               memcpy(ctrl, Pkg[page|(sub<<12)].m_line[0], VT_PKG_RAW_LEN + 1);
-               memset(ctrl, ' ', 8);
-               vt_pkg_txt text;
-               TtxToLatin1(ctrl, text, lang);
-               // remove remaining control characters
-               for (int idx = 0; idx < VT_PKG_RAW_LEN; idx++) {
-                  unsigned char c = text[idx];
-                  if ((c <= 0x1F) || (c == 0x7F))
-                     text[idx] = ' ';
+               // remove and compress whitespace
+               hd = regex_replace(hd, regex("(^ +| +$)"), "");
+               hd = regex_replace(hd, regex("  +"), " ");
+
+               // remove possible "text" postfix
+               hd = regex_replace(hd, regex("[ \\.\\-]?text$", regex::icase), "");
+               hd = regex_replace(hd, regex("[ \\.\\-]?Text .*"), "");
+
+               if (ChName.find(hd) != ChName.end()) {
+                  ChName[hd] += 1;
+                  if (ChName[hd] >= 100)
+                     break;
                }
-               char pgn[20];
-               sprintf(pgn, "%03X", page);
-               string hd(text + 8, VT_PKG_RAW_LEN - 8);
-               // remove page number and time (both are required)
-               string::size_type pgn_pos = str_find_word(hd, pgn);
-               if (pgn_pos != string::npos) {
-                  hd.replace(pgn_pos, 3, 3, ' ');
-
-                  static regex expr2("^(.*)( \\d{2}[\\.: ]?\\d{2}([\\.: ]\\d{2}) *)");
-                  smatch whats;
-                  if (regex_search(hd, whats, expr2)) {
-                     hd.erase(whats[1].length());
-                     // remove date: "Sam.12.Jan" OR "12 Sa Jan" (VOX)
-                     if (expr3[lang].empty()) {
-                        expr3[lang].assign(string("(((") + wday_abbrv_match + string(")|(") + wday_match +
-                                           string("))(\\, ?|\\. ?|  ?\\-  ?|  ?)?)?\\d{1,2}(\\.\\d{1,2}|[ \\.](") +
-                                           mname_match + "))(\\.|[ \\.]\\d{2,4}\\.?)? *$", regex::icase);
-                        expr4[lang].assign(string("\\d{1,2}(\\, ?|\\. ?|  ?\\-  ?|  ?)(((") +
-                                           wday_abbrv_match + string(")|(") +
-                                           wday_match +
-                                           string ("))(\\, ?|\\. ?|  ?\\-  ?|  ?)?)?(\\.\\d{1,2}|[ \\.](") +
-                                           mname_match + "))(\\.|[ \\.]\\d{2,4}\\.?)? *$",
-                                           regex::icase);
-                     }
-                     if (regex_search(hd, whats, expr3[lang])) {
-                        hd.erase(whats.position(), whats[0].length());
-                     }
-                     else if (regex_search(hd, whats, expr4[lang])) {
-                        hd.erase(whats.position(), whats[0].length());
-                     }
-
-                     // remove and compress whitespace
-                     hd = regex_replace(hd, regex("(^ +| +$)"), "");
-                     hd = regex_replace(hd, regex("  +"), " ");
-
-                     // remove possible "text" postfix
-                     hd = regex_replace(hd, regex("[ \\.\\-]?text$", regex::icase), "");
-                     hd = regex_replace(hd, regex("[ \\.\\-]?Text .*"), "");
-
-                     if (ChName.find(hd) != ChName.end()) {
-                        ChName[hd] += 1;
-                        if (ChName[hd] >= 100)
-                           break;
-                     }
-                     else {
-                        ChName[hd] = 1;
-                     }
-                  }
+               else {
+                  ChName[hd] = 1;
                }
             }
          }
@@ -4843,7 +4910,7 @@ string ParseChannelId()
  * Parse an XMLTV timestamp (DTD 0.5)
  * - we expect local timezone only (since this is what the ttx grabber generates)
  */
-time_t ParseTimestamp(const char * ts)
+time_t ParseXmltvTimestamp(const char * ts)
 {
    int year, mon, mday, hour, min, sec;
 
@@ -4864,15 +4931,15 @@ time_t ParseTimestamp(const char * ts)
        * Hack to get mktime() to take an operand in GMT instead of localtime:
        * Calculate the offset from GMT to adjust the argument given to mktime().
        */
-      time_t now = time(NULL);
-#ifndef WIN32
-      tm_obj.tm_sec = localtime(&now)->tm_gmtoff;
+#if defined(_BSD_SOURCE)
+      time_t ts = timegm( &tm_obj );
 #else
-      struct tm * pTm = localtime( &now );
-      tm_obj.tm_sec = 60*60 * pTm->tm_isdst - timezone;
+      time_t ts = mktime( &tm_obj );
+      //ts += tm_obj.tm_gmtoff;  // glibc extension (_BSD_SOURCE)
+      ts += 60*60 * tm_obj.tm_isdst - timezone;
 #endif
 
-      return mktime( &tm_obj );
+      return ts;
    }
    else {
       return -1;
@@ -4886,7 +4953,7 @@ string GetXmltvTitle(const string& xml)
 
    static const regex expr1("<title>(.*)</title>");
    if (regex_search(xml, whats, expr1)) {
-      title = string(whats[1]);
+      title.assign(whats[1]);
       XmlToLatin1(title);
    }
    return title;
@@ -4898,7 +4965,7 @@ time_t GetXmltvStopTime(const string& xml, time_t old_ts)
    static const regex expr1("stop=\"([^\"]*)\"");
 
    if (regex_search(xml, whats, expr1)) {
-      return ParseTimestamp(&*whats[1].first);
+      return ParseXmltvTimestamp(&*whats[1].first);
    }
    else {
       return old_ts;
@@ -4974,7 +5041,7 @@ void ImportXmltvFile(const char * fname,
             else if (regex_search(buf, what, expr2)) {
                static const regex expr5("id=\"([^\"]*)\"", regex::icase);
                if (regex_search(buf, what, expr5)) {
-                  chn_id = string(what[1]);
+                  chn_id.assign(what[1]);
                } else {
                   fprintf(stderr, "Missing 'id' attribute in '%s' in %s\n", buf, fname);
                }
@@ -4984,8 +5051,8 @@ void ImportXmltvFile(const char * fname,
             else if (regex_search(buf, what, expr3)) {
                static const regex expr6("start=\"([^\"]*)\".*channel=\"([^\"]*)\"", regex::icase);
                if (regex_search(buf, what, expr6)) {
-                  chn_id = string(what[2]);
-                  start_t = ParseTimestamp(&*what[1].first);
+                  chn_id.assign(what[2]);
+                  start_t = ParseXmltvTimestamp(&*what[1].first);
                   if (MergeChn.find(chn_id) == MergeChn.end()) {
                      fprintf(stderr, "Unknown channel %s in merge input\n", chn_id.c_str());
                      exit(2);
@@ -5075,7 +5142,7 @@ void MergeSlotDesc(TV_SLOT * p_slot, const string& old_xml,
 
             if (regex_search(old_xml, whats, expr2))
             {
-               old_desc = string(whats[1]);
+               old_desc.assign(whats[1]);
                XmlToLatin1(old_desc);
             }
 
@@ -5363,7 +5430,6 @@ int main( int argc, char *argv[])
          }
 
          ExportXmltv(ch_id, ch_name, NewSlots, MergeProg, MergeChn);
-         exit(0);
       }
       else {
          // return error code to signal abormal termination
