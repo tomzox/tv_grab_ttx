@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.9 2010/03/29 13:44:11 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.10 2010/03/30 18:15:08 tom Exp $
  */
 
 #include <stdio.h>
@@ -49,15 +49,14 @@ const char copyright[] = "Copyright 2006-2010 Tom Zoerner";
 const char home_url[] = "http://nxtvepg.sourceforge.net/tv_grab_ttx";
 
 #define VT_PKG_RAW_LEN 40
-typedef uint8_t vt_pkg_raw[VT_PKG_RAW_LEN];
 class TTX_PG_HANDLE
 {
 public:
-   TTX_PG_HANDLE(uint page, uint sub) : m_handle((page << 20) | (sub & 0x3f7f)) {}
+   TTX_PG_HANDLE(uint page, uint sub) : m_handle((page << 16) | (sub & 0x3f7f)) {}
    bool operator< (TTX_PG_HANDLE v) const { return m_handle < v.m_handle; }
    bool operator== (TTX_PG_HANDLE v) const { return m_handle == v.m_handle; }
    bool operator!= (TTX_PG_HANDLE v) const { return m_handle != v.m_handle; }
-   uint page() const { return (m_handle >> 20); }
+   uint page() const { return (m_handle >> 16); }
    uint sub() const { return (m_handle & 0x3f7f); }
 private:
    uint m_handle;
@@ -282,16 +281,16 @@ double TTX_DB::get_acq_rep_stats()
    return (page_cnt > 0) ? ((double)page_rep / page_cnt) : 0.0;
 }
 
-struct vt_pkg_dec
+class TTX_ACQ_PKG
 {
+   typedef uint8_t vt_pkg_raw[VT_PKG_RAW_LEN];
+public:
    uint16_t     m_page_no;
    uint16_t     m_ctrl_lo;
    uint8_t      m_ctrl_hi;
    uint8_t      m_pkg;
    vt_pkg_raw   m_data;
 public:
-   // dummy constructor - invalid packet
-   vt_pkg_dec() : m_page_no(0xFFFFU) {};
    // constructor for header packet
    void set_pg_header(int page, int ctrl, const uint8_t * data) {
       m_page_no = page;
@@ -319,6 +318,10 @@ public:
       memcpy(m_data, &l_cni, sizeof(l_cni));
       memset(m_data + sizeof(l_cni), 0, VT_PKG_RAW_LEN - sizeof(l_cni));
    }
+   bool feed_ttx_pkg(uint8_t * data);
+   bool feed_vps_pkg(const uint8_t * data);
+   bool dump_raw_pkg(int fd);
+   bool read_raw_pkg(int fd);
 };
 
 class TV_SLOT
@@ -1027,6 +1030,28 @@ int atoi_substr(const MATCH& match)
    return match.matched ? atoi_substr(match.first, match.second) : -1;
 }
 
+template<class IT>
+int atox_substr(const IT& first, const IT& second)
+{
+   IT p = first;
+   int val = 0;
+   while (p != second) {
+      char c = *(p++);
+      if ((c >= '0') && (c <= '9'))
+         val = (val * 16) + (c - '0');
+      else
+         val = (val * 16) + ((c - 'A') & ~0x20) + 10;
+   }
+   return val;
+}
+
+template<class MATCH>
+int atox_substr(const MATCH& match)
+{
+   return match.matched ? atox_substr(match.first, match.second) : -1;
+}
+
+
 /* Turn the entire given string into lower-case.
  */
 void str_tolower(string& str)
@@ -1158,28 +1183,40 @@ void str_chomp(string& str)
 }
 
 /* ------------------------------------------------------------------------------
- * Write a single TTX packet or CNI to STDOUT in a packed binary format
+ * TODO
  */
-bool dump_raw_pkg(const vt_pkg_dec * p_dec)
+
+class TTX_ACQ_SRC
 {
-   const uint8_t * p_data = reinterpret_cast<const uint8_t*>(p_dec);
-   int len = sizeof(vt_pkg_dec);
-   ssize_t wstat;
+public:
+   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf) = 0;
+   virtual ~TTX_ACQ_SRC() {};
+};
 
-   do {
-      wstat = write(1, p_data, len);
-      if (wstat > 0) {
-        p_data += wstat;
-        len -= wstat;
-      }
-   } while ( ((wstat == -1) && (errno == EINTR)) || (len > 0) );
+class TTX_ACQ_ZVBI : public TTX_ACQ_SRC
+{
+public:
+   TTX_ACQ_ZVBI(const char * p_dev, int dvb_pid);
+   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf);
+   virtual ~TTX_ACQ_ZVBI();
+private:
+   void device_read();
 
-   if (wstat == -1) {
-      fprintf(stderr, "dump write error: %s\n", strerror(errno));
-   }
- 
-   return (wstat >= 0);
-}
+   vbi_capture * mp_cap;
+   vbi_capture_buffer * mp_buf;
+   int m_line_count;
+   int m_line_idx;
+};
+
+class TTX_ACQ_FILE : public TTX_ACQ_SRC
+{
+public:
+   TTX_ACQ_FILE(const char * p_file);
+   virtual ~TTX_ACQ_FILE();
+   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf);
+private:
+   int m_fd;
+};
 
 /* ------------------------------------------------------------------------------
  * Decoding of teletext packets (esp. hamming decoding)
@@ -1188,13 +1225,12 @@ bool dump_raw_pkg(const vt_pkg_dec * p_dec)
  * - for PDC and NI (packet 30) the CNI is derived
  * - returns a list with 5 elements: page/16, ctrl/16, ctrl/8, pkg/8, data/40*8
  */
-vt_pkg_dec FeedTtxPkg(int *p_last_pg, uint8_t * data)
+bool TTX_ACQ_PKG::feed_ttx_pkg(uint8_t * data)
 {
-   vt_pkg_dec dec;
-
    int mpag = vbi_unham16p(data);
    int mag = mpag & 7;
    int y = (mpag & 0xf8) >> 3;
+   bool result = false;
 
    if (y == 0) {
       // teletext page header (packet #0)
@@ -1205,26 +1241,15 @@ vt_pkg_dec FeedTtxPkg(int *p_last_pg, uint8_t * data)
       // drop filler packets
       if ((page & 0xFF) != 0xFF) {
          vbi_unpar(data + 2, 40);
-         dec.set_pg_header(page, ctrl, data + 2);
-         if (opt_dump == 3) {
-            dump_raw_pkg(&dec);
-         }
-         int spg = (page << 16) | (ctrl & 0x3f7f);
-         if (spg != *p_last_pg) {
-            if (opt_verbose) {
-               fprintf(stderr, "%03X.%04X\n", page, ctrl & 0x3f7f);
-            }
-            *p_last_pg = spg;
-         }
+         set_pg_header(page, ctrl, data + 2);
+         result = true;
       }
    }
    else if (y<=25) {
       // regular teletext packet (lines 1-25)
       vbi_unpar(data + 2, 40);
-      dec.set_pg_row(mag, y, data + 2);
-      if (opt_dump == 3) {
-         dump_raw_pkg(&dec);
-      }
+      set_pg_row(mag, y, data + 2);
+      result = true;
    }
    else if (y == 30) {
       int dc = (vbi_unham16p(data + 2) & 0x0F) >> 1;
@@ -1232,10 +1257,8 @@ vt_pkg_dec FeedTtxPkg(int *p_last_pg, uint8_t * data)
          // packet 8/30/1
          int cni = vbi_rev16p(data + 2+7);
          if ((cni != 0) && (cni != 0xffff)) {
-            dec.set_cni(mag, 30, cni);
-            if (opt_dump == 3) {
-               dump_raw_pkg(&dec);
-            }
+            set_cni(mag, 30, cni);
+            result = true;
          }
       }
       else if (dc == 1) {
@@ -1253,23 +1276,21 @@ vt_pkg_dec FeedTtxPkg(int *p_last_pg, uint8_t * data)
          if ((cni & 0xF000) == 0xF000)
             cni &= 0x0FFF;
          if ((cni != 0) && (cni != 0xffff)) {
-            dec.set_cni(mag, 30, cni);
-            if (opt_dump == 3) {
-               dump_raw_pkg(&dec);
-            }
+            set_cni(mag, 30, cni);
+            result = true;
          }
       }
    }
-   return dec;
+   return result;
 }
 
 /* ------------------------------------------------------------------------------
  * Decoding of VPS packets
  * - returns a list of 5 elements (see TTX decoder), but data contains only 16-bit CNI
  */
-vt_pkg_dec FeedVps(const uint8_t * data)
+bool TTX_ACQ_PKG::feed_vps_pkg(const uint8_t * data)
 {
-   vt_pkg_dec dec;
+   bool result = false;
    //int cni = Video::ZVBI::decode_vps_cni(_[0]); # only since libzvbi 0.2.22
 
    uint8_t cd_02 = data[ 2];
@@ -1285,79 +1306,282 @@ vt_pkg_dec FeedVps(const uint8_t * data)
       cni = (cd_02 & 0x20) ? 0xDC1 : 0xDC2;
    }
    if ((cni != 0) && (cni != 0xfff)) {
-      dec.set_cni(0, 32, cni);
-      if (opt_dump == 3) {
-         dump_raw_pkg(&dec);
-      }
+      set_cni(0, 32, cni);
+      result = true;
    }
-   return dec;
+   return result;
+}
+
+/* ------------------------------------------------------------------------------
+ * Write a single TTX packet or CNI to STDOUT in a packed binary format
+ */
+bool TTX_ACQ_PKG::dump_raw_pkg(int fd)
+{
+   const uint8_t * p_data = reinterpret_cast<const uint8_t*>(this);
+   int len = sizeof(*this);
+   ssize_t wstat;
+
+   do {
+      wstat = write(fd, p_data, len);
+      if (wstat > 0) {
+        p_data += wstat;
+        len -= wstat;
+      }
+   } while ( ((wstat == -1) && (errno == EINTR)) || (len > 0) );
+
+   if (wstat == -1) {
+      fprintf(stderr, "dump write error: %s\n", strerror(errno));
+   }
+ 
+   return (wstat >= 0);
+}
+
+bool TTX_ACQ_PKG::read_raw_pkg(int fd)
+{
+   size_t line_off = 0;
+   ssize_t rstat;
+
+   do {
+      rstat = read(fd, reinterpret_cast<uint8_t*>(this) + line_off,
+                       sizeof(*this) - line_off);
+      if (rstat > 0) {
+         line_off += rstat;
+      }
+      else if (rstat == 0) {
+         if (line_off > 0)
+            fprintf(stderr, "Warning: short read from input file (last record is truncated)\n");
+         break;
+      }
+   } while (   ((rstat == -1) && (errno == EINTR))
+            || (line_off < sizeof(*this)) );
+
+   if (rstat < 0) {
+      fprintf(stderr, "read error from input file: %s\n", strerror(errno));
+   }
+
+   return (line_off == sizeof(*this));
+}
+
+/* ------------------------------------------------------------------------------
+ */
+TTX_ACQ_FILE::TTX_ACQ_FILE(const char * p_file)
+{
+   if (*p_file == 0) {
+      m_fd = dup(0);
+      VbiCaptureTime = time(NULL);
+   }
+   else {
+      m_fd = open(p_file, O_RDONLY);
+      if (m_fd < 0) {
+         fprintf(stderr, "Failed to open %s: %s\n", p_file, strerror(errno));
+         exit(1);
+      }
+      struct stat st;
+      if (fstat(m_fd, &st) != 0) {
+         fprintf(stderr, "Failed to fstat opened %s: %s\n", p_file, strerror(errno));
+         exit(1);
+      }
+      VbiCaptureTime = st.st_mtime;
+   }
+}
+
+TTX_ACQ_FILE::~TTX_ACQ_FILE()
+{
+   close(m_fd);
+}
+
+bool TTX_ACQ_FILE::read_pkg(TTX_ACQ_PKG& ret_buf)
+{
+   return ret_buf.read_raw_pkg(m_fd);
 }
 
 /* ------------------------------------------------------------------------------
  * Open the VBI device for capturing, using the ZVBI library
- * - require is done here (and not via "use") to avoid dependency
  */
-vbi_capture * DeviceOpen()
+TTX_ACQ_ZVBI::TTX_ACQ_ZVBI(const char * p_dev, int dvb_pid)
 {
-   unsigned srv = VBI_SLICED_VPS |
-                  VBI_SLICED_TELETEXT_B |
-                  VBI_SLICED_TELETEXT_B_525;
    char * err = 0;
-   vbi_capture * cap;
 
    if (opt_dvbpid >= 0) {
-      cap = vbi_capture_dvb_new2(opt_device, opt_dvbpid, &err, opt_debug);
+      mp_cap = vbi_capture_dvb_new2(p_dev, opt_dvbpid, &err, opt_debug);
    }
    else {
-      cap = vbi_capture_v4l2_new(const_cast<char*>(opt_device), 6, &srv, 0, &err, opt_debug);
+      unsigned srv = VBI_SLICED_VPS |
+                     VBI_SLICED_TELETEXT_B |
+                     VBI_SLICED_TELETEXT_B_525;
+      mp_cap = vbi_capture_v4l2_new(const_cast<char*>(p_dev), 6, &srv, 0, &err, opt_debug);
    }
 
-   if (cap == 0) {
+   if (mp_cap == 0) {
       fprintf(stderr, "Failed to open capture device %s: %s\n", opt_device, err);
       exit(1);
    }
-   return cap;
+   mp_buf = 0;
+   m_line_count = 0;
+   m_line_idx = 0;
+
+   VbiCaptureTime = time(NULL);
+}
+
+TTX_ACQ_ZVBI::~TTX_ACQ_ZVBI()
+{
+   vbi_capture_delete(mp_cap);
 }
 
 /* ------------------------------------------------------------------------------
  * Read one frame's worth of teletext and VPS packets
  * - blocks until the device delivers the next packet
- * - returns a flat list; 5 elements in list for each teletext packet
  */
-void DeviceRead(vbi_capture * cap, int *p_last_pg, deque<vt_pkg_dec>& ret_buf)
+void TTX_ACQ_ZVBI::device_read()
 {
-   int fd_ttx = vbi_capture_fd(cap);
+   int fd_ttx = vbi_capture_fd(mp_cap);
    fd_set rd_fd;
    FD_ZERO(&rd_fd);
    FD_SET(fd_ttx, &rd_fd);
 
    select(fd_ttx + 1, &rd_fd, NULL, NULL, NULL);
 
-   //int buf;
-   //int lcount;
-   //int ts;
-   //int ret = cap->pull_sliced(buf, lcount, ts, 0);
    vbi_capture_buffer * buf = NULL;
    struct timeval to;
    to.tv_sec = 0;
    to.tv_usec = 0;
-   int ret = vbi_capture_pull_sliced(cap, &buf, &to);
+   int ret = vbi_capture_pull_sliced(mp_cap, &buf, &to);
    if (ret > 0) {
-      int lcount = buf->size / sizeof(vbi_sliced);
-      for (int idx = 0; idx < lcount; idx++) {
-         vbi_sliced * p_line = reinterpret_cast<vbi_sliced*>(buf->data) + idx;
-         if (p_line->id & (VBI_SLICED_TELETEXT_B |
-                           VBI_SLICED_TELETEXT_B_525)) {
-            ret_buf.push_back( FeedTtxPkg(p_last_pg, p_line->data) );
-         }
-         else if (p_line->id & VBI_SLICED_VPS) {
-            ret_buf.push_back( FeedVps(p_line->data) );
-         }
-      }
+      mp_buf = buf;
+      m_line_count = buf->size / sizeof(vbi_sliced);
+      m_line_idx = 0;
    }
    else if (ret < 0) {
       fprintf(stderr, "capture device error: %s: %s\n", strerror(errno), opt_device);
       exit(1);
+   }
+}
+
+bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf)
+{
+   bool result = false;
+
+   do {
+      if ((opt_duration > 0) && ((time(NULL) - VbiCaptureTime) > opt_duration)) {
+         // capture duration limit reached -> terminate loop
+         break;
+      }
+      if (m_line_idx >= m_line_count) {
+         device_read();
+      }
+
+      if (m_line_idx < m_line_count) {
+         vbi_sliced * p_line = reinterpret_cast<vbi_sliced*>(mp_buf->data) + m_line_idx;
+         ++m_line_idx;
+
+         if (p_line->id & (VBI_SLICED_TELETEXT_B |
+                           VBI_SLICED_TELETEXT_B_525)) {
+            result = ret_buf.feed_ttx_pkg(p_line->data);
+         }
+         else if (p_line->id & VBI_SLICED_VPS) {
+            result = ret_buf.feed_vps_pkg(p_line->data);
+         }
+      }
+   } while (!result);
+
+   return result;
+}
+
+class TTX_ACQ
+{
+public:
+   TTX_ACQ();
+   ~TTX_ACQ();
+   void add_pkg(const TTX_ACQ_PKG * p_pkg_buf);
+private:
+   int m_cur_page[8];
+   int m_cur_sub[8];
+   int m_prev_pkg[8];
+   int m_prev_mag;
+   bool m_is_mag_serial;
+};
+
+TTX_ACQ::TTX_ACQ()
+{
+   for (int idx = 0; idx < 8; idx++) {
+      m_cur_page[idx] = -1;
+      m_cur_sub[idx] = 0;
+      m_prev_pkg[idx] = 0;
+   }
+
+   m_prev_mag = 0;
+   m_is_mag_serial = false;
+}
+
+TTX_ACQ::~TTX_ACQ()
+{
+}
+
+void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf)
+{
+   int page = p_pkg_buf->m_page_no;
+   if (page < 0x100)
+      page += 0x800;
+   int mag = (p_pkg_buf->m_page_no >> 8) & 7;
+   int sub = p_pkg_buf->m_ctrl_lo & 0x3f7f;
+   int ctl2 = p_pkg_buf->m_ctrl_hi;
+   int pkg = p_pkg_buf->m_pkg;
+   const uint8_t * p_data = p_pkg_buf->m_data;
+   //printf("%03X.%04X, %2d %.40s\n", page, sub, pkg, p_data);
+
+   if (m_is_mag_serial && (mag != m_prev_mag) && (pkg <= 29)) {
+      m_cur_page[m_prev_mag] = -1;
+   }
+
+   if (pkg == 0) {
+      // erase page control bit (C4) - ignored, some channels abuse this
+      //if (ctl1 & 0x80) {
+      //   VbiPageErase(page);
+      //}
+      // inhibit display control bit (C10)
+      //if (ctl2 & 0x08) {
+      //   m_cur_page[mag] = -1;
+      //   return;
+      //}
+      if (ctl2 & 0x01) {
+         const char * blank_line = "                                        "; // 40 spaces
+         p_data = reinterpret_cast<const uint8_t*>(blank_line);
+      }
+      // drop all non-decimal pages
+      if ( ((page & 0x0F) > 9) || (((page >> 4) & 0x0f) > 9) ) {
+         page = m_cur_page[mag] = -1;
+         return;
+      }
+      // magazine serial mode (C11: 1=serial 0=parallel)
+      m_is_mag_serial = ((ctl2 & 0x10) != 0);
+      if ((page != m_cur_page[mag]) || (sub != m_cur_sub[mag])) {
+         ttx_db.add_page(page, sub,
+                          p_pkg_buf->m_ctrl_lo | (p_pkg_buf->m_ctrl_hi << 16),
+                          p_data);
+      }
+      else {
+         ttx_db.add_page_data(page, sub, 0, p_data);
+      }
+
+      m_cur_page[mag] = page;
+      m_cur_sub[mag] = sub;
+      m_prev_pkg[mag] = 0;
+      m_prev_mag = mag;
+   }
+   else if (pkg <= 27) {
+      page = m_cur_page[mag];
+      sub = m_cur_sub[mag];
+      if (page != -1) {
+         // page body packets are supposed to be in order
+         if (pkg < m_prev_pkg[mag]) {
+            page = m_cur_page[mag] = -1;
+         }
+         else {
+            if (pkg < 26)
+               m_prev_pkg[mag] = pkg;
+            ttx_db.add_page_data(page, sub, pkg, p_data);
+         }
+      }
    }
 }
 
@@ -1368,40 +1592,20 @@ void DeviceRead(vbi_capture * cap, int *p_last_pg, deque<vt_pkg_dec>& ret_buf)
  */
 void ReadVbi()
 {
-   int CurPage[8] = {-1, -1, -1, -1, -1, -1, -1, -1};
-   int CurSub[8+1] = {0,0,0,0,0,0,0,0,0};
-   int CurPkg[8+1] = {0,0,0,0,0,0,0,0,0};
-   int cur_mag = 0;
-   int intv;
+   TTX_ACQ_SRC * acq_src = 0;
+   TTX_ACQ_PKG pkg_buf;
+   TTX_ACQ acq;
    int last_pg = -1;
-   vbi_capture * cap = 0;
-   int mag_serial = 0;
-   int fd_ttx = -1;
+   int intv = 0;
 
    if (opt_infile != 0) {
       // read VBI input data from a stream or file
-      if (*opt_infile == 0) {
-         fd_ttx = dup(0);
-         VbiCaptureTime = time(NULL);
-      }
-      else {
-         fd_ttx = open(opt_infile, O_RDONLY);
-         if (fd_ttx < 0) {
-            fprintf(stderr, "Failed to open %s: %s\n", opt_infile, strerror(errno));
-            exit(1);
-         }
-         struct stat st;
-         if (fstat(fd_ttx, &st) != 0) {
-            fprintf(stderr, "Failed to fstat opened %s: %s\n", opt_infile, strerror(errno));
-            exit(1);
-         }
-         VbiCaptureTime = st.st_mtime;
-      }
+      acq_src = new TTX_ACQ_FILE(opt_infile);
    }
    else {
       // capture input data from a VBI device
-      VbiCaptureTime = time(NULL);
-      cap = DeviceOpen();
+      acq_src = new TTX_ACQ_ZVBI(opt_device, opt_dvbpid);
+
       if (opt_outfile != 0) {
          close(1);
          if (open(opt_outfile, O_WRONLY|O_CREAT|O_EXCL, 0666) < 0) {
@@ -1411,118 +1615,46 @@ void ReadVbi()
       }
    }
 
-   deque<vt_pkg_dec> CapPkgs;
-   intv = 0;
    while (1) {
-      if (fd_ttx >= 0) {
-         size_t line_off = 0;
-         ssize_t rstat;
-         vt_pkg_dec buf;
-         while ((rstat = read(fd_ttx, reinterpret_cast<uint8_t*>(&buf) + line_off,
-                                      sizeof(vt_pkg_dec) - line_off)) > 0) {
-            line_off += rstat;
-            if (line_off >= sizeof(vt_pkg_dec))
+      if (!acq_src->read_pkg(pkg_buf))
+         break;
+
+      if (opt_dump == 3) {
+         pkg_buf.dump_raw_pkg(1);
+      }
+
+      if (opt_verbose && (pkg_buf.m_pkg == 0)) {
+         int page = pkg_buf.m_page_no;
+         if (page < 0x100)
+            page += 0x800;
+         int spg = (page << 16) | (pkg_buf.m_ctrl_lo & 0x3f7f);
+         if (spg != last_pg) {
+            fprintf(stderr, "%03X.%04X\n", page, pkg_buf.m_ctrl_lo & 0x3f7f);
+            last_pg = spg;
+         }
+      }
+
+      // check if every page (NOT sub-page) was received N times in average
+      // (only do the check every 50th page to save CPU)
+      if ((opt_duration == 0) && (pkg_buf.m_pkg == 0)) {
+         intv += 1;
+         if (intv >= 50) {
+            if (ttx_db.get_acq_rep_stats() >= 10.0)
                break;
-         }
-         if (rstat <= 0)
-            goto END_FRAMELOOP;
-         CapPkgs.push_back(buf);
-      }
-      else {
-         while (CapPkgs.size() == 0) {
-            if ((opt_duration > 0) && ((time(NULL) - VbiCaptureTime) > opt_duration)) {
-               // capture duration limit reached -> terminate loop
-               goto END_FRAMELOOP;
-            }
-            DeviceRead(cap, &last_pg, CapPkgs);
+            intv = 0;
          }
       }
 
-      int page = CapPkgs[0].m_page_no;
-      if (page < 0x100)
-         page += 0x800;
-      int mag = (page >> 8) & 7;
-      int sub = CapPkgs[0].m_ctrl_lo & 0x3f7f;
-      int ctl2 = CapPkgs[0].m_ctrl_hi;
-      int pkg = CapPkgs[0].m_pkg;
-      const uint8_t * p_data = CapPkgs[0].m_data;
-      //printf("%03X.%04X, %2d %.40s\n", page, sub, pkg, p_data);
-
-      if (mag_serial && (mag != cur_mag) && (pkg <= 29)) {
-         CurPage[cur_mag] = -1;
+      if (pkg_buf.m_pkg < 30) {
+         acq.add_pkg(&pkg_buf);
       }
-
-      if (pkg == 0) {
-         // erase page control bit (C4) - ignored, some channels abuse this
-         //if (ctl1 & 0x80) {
-         //   VbiPageErase(page);
-         //}
-         // inhibit display control bit (C10)
-         //if (ctl2 & 0x08) {
-         //   CurPage[mag] = -1;
-         //   next;
-         //}
-         if (ctl2 & 0x01) {
-            p_data = reinterpret_cast<const uint8_t*>("                                        "); // " " x 40
-         }
-         if ( ((page & 0x0F) > 9) || (((page >> 4) & 0x0f) > 9) ) {
-            page = CurPage[mag] = -1;
-            CapPkgs.pop_front();
-            continue;
-         }
-         // magazine serial mode (C11: 1=serial 0=parallel)
-         mag_serial = ((ctl2 & 0x10) != 0);
-         if ((page != CurPage[mag]) || (sub != CurSub[mag])) {
-            ttx_db.add_page(page, sub,
-                             CapPkgs[0].m_ctrl_lo | (CapPkgs[0].m_ctrl_hi << 16),
-                             p_data);
-         }
-         else {
-            ttx_db.add_page_data(page, sub, 0, p_data);
-         }
-
-         // check if every page (NOT sub-page) was received N times in average
-         // (only do the check every 50th page to save CPU)
-         if (opt_duration == 0) {
-            intv += 1;
-            if (intv >= 50) {
-               if (ttx_db.get_acq_rep_stats() >= 10.0)
-                  goto END_FRAMELOOP;
-               intv = 0;
-            }
-         }
-
-         CurPage[mag] = page;
-         CurSub[mag] = sub;
-         CurPkg[mag] = 0;
-         cur_mag = mag;
-      }
-      else if (pkg <= 27) {
-         page = CurPage[mag];
-         sub = CurSub[mag];
-         if (page != -1) {
-            // page body packets are supposed to be in order
-            if (pkg < CurPkg[mag]) {
-               page = CurPage[mag] = -1;
-            }
-            else {
-               if (pkg < 26)
-                  CurPkg[mag] = pkg;
-               ttx_db.add_page_data(page, sub, pkg, p_data);
-            }
-         }
-      }
-      else if ((pkg == 30) || (pkg == 32)) {
+      else if ((pkg_buf.m_pkg == 30) || (pkg_buf.m_pkg == 32)) {
          uint16_t cni;
-         memcpy(&cni, p_data, sizeof(cni));
+         memcpy(&cni, pkg_buf.m_data, sizeof(cni));
          PkgCni[cni]++;
       }
-      CapPkgs.pop_front();
    }
-END_FRAMELOOP:
-   if (fd_ttx >= 0) {
-      close(fd_ttx);
-   }
+   delete acq_src;
 }
 
 /* Erase the page with the given number from memory
@@ -1720,32 +1852,32 @@ void ImportRawDump()
          VbiCaptureTime = atol(string(what[1]).c_str());
       }
       else if (regex_match(buf, what, expr3)) {
-         long cni = strtol(string(what[1]).c_str(), NULL, 16);
+         long cni = atox_substr(what[1]);
          PkgCni[cni] = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr4)) {
-         long lpage = strtol(string(what[1]).c_str(), NULL, 16);
+         long lpage = atox_substr(what[1]);
          assert((page == -1) || (page == lpage));
          page = lpage;
          pg_cnt = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr5)) {
-         long lpage = strtol(string(what[1]).c_str(), NULL, 16);
+         long lpage = atox_substr(what[1]);
          assert((page == -1) || (page == lpage));
          page = lpage;
          sub = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr6)) {
-         long lpage = strtol(string(what[1]).c_str(), NULL, 16);
+         long lpage = atox_substr(what[1]);
          assert((page == -1) || (page == lpage));
          page = lpage;
          lang = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr7)) {
-         long lpage = strtol(string(what[1]).c_str(), NULL, 16);
+         long lpage = atox_substr(what[1]);
          assert((page == -1) || (page == lpage));
          page = lpage;
-         sub = strtol(string(what[2]).c_str(), NULL, 16);
+         sub = atox_substr(what[2]);
          pg_data_valid = 0;
          pkg_idx = 0;
       }
