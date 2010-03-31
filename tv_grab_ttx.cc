@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.10 2010/03/30 18:15:08 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.11 2010/03/31 11:52:39 tom Exp $
  */
 
 #include <stdio.h>
@@ -65,9 +65,9 @@ private:
 class TTX_DB_PAGE
 {
 public:
-   TTX_DB_PAGE(uint page, uint sub, uint ctrl);
+   TTX_DB_PAGE(uint page, uint sub, uint ctrl, time_t ts);
    void add_raw_pkg(uint idx, const uint8_t * p_data);
-   void inc_acq_cnt();
+   void inc_acq_cnt(time_t ts);
    const string& get_ctrl(uint line) const {
       assert(line < TTX_TEXT_LINE_CNT);
       if (!m_text_valid)
@@ -82,8 +82,9 @@ public:
    }
    int get_lang() const { return m_lang; }
    int get_acq_rep() const { return m_acq_rep_cnt; }
-   void dump_as_text(FILE * fp);
-   void dump_as_raw(FILE * fp, int last_sub);
+   time_t get_timestamp() const { return m_timestamp; }
+   void dump_page_as_text(FILE * fp);
+   void dump_page_as_raw(FILE * fp, int last_sub);
 
    typedef uint8_t TTX_RAW_PKG[VT_PKG_RAW_LEN];
    static const uint TTX_TEXT_LINE_CNT = 24;
@@ -93,25 +94,27 @@ private:
    void page_to_latin1() const;
    void line_to_latin1(uint line, string& out) const;
 
-   TTX_RAW_PKG   m_raw_pkg[TTX_RAW_PKG_CNT];
-   uint32_t      m_raw_pkg_valid;
-   int           m_acq_rep_cnt;
-   int           m_lang;
-   int           m_page;
-   int           m_sub;
+   TTX_RAW_PKG  m_raw_pkg[TTX_RAW_PKG_CNT];
+   uint32_t     m_raw_pkg_valid;
+   int          m_acq_rep_cnt;
+   int          m_lang;
+   int          m_page;
+   int          m_sub;
+   time_t       m_timestamp;
    
    mutable bool   m_text_valid;
    mutable string m_ctrl[TTX_TEXT_LINE_CNT];
    mutable string m_text[TTX_TEXT_LINE_CNT];
 };
 
-TTX_DB_PAGE::TTX_DB_PAGE(uint page, uint sub, uint ctrl)
+TTX_DB_PAGE::TTX_DB_PAGE(uint page, uint sub, uint ctrl, time_t ts)
 {
    m_page = page;
    m_sub = sub;
    m_raw_pkg_valid = 0;
    m_acq_rep_cnt = 1;
    m_text_valid = false;
+   m_timestamp = ts;
 
    // store G0 char set (bits must be reversed: C12,C13,C14)
    int ctl2 = ctrl >> 16;
@@ -132,9 +135,10 @@ void TTX_DB_PAGE::add_raw_pkg(uint idx, const uint8_t * p_data)
    m_raw_pkg_valid |= 1 << idx;
 }
 
-void TTX_DB_PAGE::inc_acq_cnt()
+void TTX_DB_PAGE::inc_acq_cnt(time_t ts)
 {
    m_acq_rep_cnt += 1;
+   m_timestamp = ts;
 }
 
 void TTX_DB_PAGE::page_to_latin1() const // modifies mutable
@@ -180,10 +184,10 @@ public:
    const_iterator& next_sub_page(uint page, const_iterator& p) const;
    int last_sub_page_no(uint page) const;
 
-   TTX_DB_PAGE* add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data);
+   TTX_DB_PAGE* add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data, time_t ts);
    TTX_DB_PAGE* add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data);
-   void dump_as_text(FILE * fp);
-   void dump_as_raw(FILE * fp);
+   void dump_db_as_text(FILE * fp);
+   void dump_db_as_raw(FILE * fp);
    double get_acq_rep_stats();
 private:
    map<TTX_PG_HANDLE, TTX_DB_PAGE*> m_db;
@@ -233,18 +237,18 @@ int TTX_DB::last_sub_page_no(uint page) const
    return last_sub;
 }
 
-TTX_DB_PAGE* TTX_DB::add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data)
+TTX_DB_PAGE* TTX_DB::add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data, time_t ts)
 {
    TTX_PG_HANDLE handle(page, sub);
 
    iterator p = m_db.lower_bound(handle);
    if ((p == m_db.end()) || (p->first != handle)) {
-      TTX_DB_PAGE * p_pg = new TTX_DB_PAGE(page, sub, ctrl);
+      TTX_DB_PAGE * p_pg = new TTX_DB_PAGE(page, sub, ctrl, ts);
       p = m_db.insert(p, make_pair(handle, p_pg));
       assert(p->second == p_pg);
    }
    else {
-      p->second->inc_acq_cnt();
+      p->second->inc_acq_cnt(ts);
    }
    p->second->add_raw_pkg(0, p_data);
    return p->second;
@@ -290,8 +294,8 @@ public:
    uint8_t      m_ctrl_hi;
    uint8_t      m_pkg;
    vt_pkg_raw   m_data;
-public:
-   // constructor for header packet
+private:
+   // constructor for page header packet
    void set_pg_header(int page, int ctrl, const uint8_t * data) {
       m_page_no = page;
       m_ctrl_lo = ctrl & 0xFFFFU;
@@ -299,7 +303,7 @@ public:
       m_pkg = 0;
       memcpy(m_data, data, VT_PKG_RAW_LEN);
    };
-   // constructor for body packet
+   // constructor for page body packets
    void set_pg_row(int mag, int pkg, const uint8_t * data) {
       m_page_no = mag << 8;
       m_ctrl_lo = 0;
@@ -318,6 +322,7 @@ public:
       memcpy(m_data, &l_cni, sizeof(l_cni));
       memset(m_data + sizeof(l_cni), 0, VT_PKG_RAW_LEN - sizeof(l_cni));
    }
+public:
    bool feed_ttx_pkg(uint8_t * data);
    bool feed_vps_pkg(const uint8_t * data);
    bool dump_raw_pkg(int fd);
@@ -428,7 +433,6 @@ public:
 };
 
 map<int,int> PkgCni;
-time_t VbiCaptureTime;
 TTX_DB ttx_db;
 
 // command line options for capturing from device
@@ -1189,15 +1193,15 @@ void str_chomp(string& str)
 class TTX_ACQ_SRC
 {
 public:
-   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf) = 0;
    virtual ~TTX_ACQ_SRC() {};
+   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts) = 0;
 };
 
 class TTX_ACQ_ZVBI : public TTX_ACQ_SRC
 {
 public:
    TTX_ACQ_ZVBI(const char * p_dev, int dvb_pid);
-   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf);
+   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts);
    virtual ~TTX_ACQ_ZVBI();
 private:
    void device_read();
@@ -1206,6 +1210,7 @@ private:
    vbi_capture_buffer * mp_buf;
    int m_line_count;
    int m_line_idx;
+   time_t m_timestamp;
 };
 
 class TTX_ACQ_FILE : public TTX_ACQ_SRC
@@ -1213,9 +1218,10 @@ class TTX_ACQ_FILE : public TTX_ACQ_SRC
 public:
    TTX_ACQ_FILE(const char * p_file);
    virtual ~TTX_ACQ_FILE();
-   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf);
+   virtual bool read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts);
 private:
    int m_fd;
+   time_t m_timestamp;
 };
 
 /* ------------------------------------------------------------------------------
@@ -1368,7 +1374,7 @@ TTX_ACQ_FILE::TTX_ACQ_FILE(const char * p_file)
 {
    if (*p_file == 0) {
       m_fd = dup(0);
-      VbiCaptureTime = time(NULL);
+      m_timestamp = time(NULL);
    }
    else {
       m_fd = open(p_file, O_RDONLY);
@@ -1381,7 +1387,7 @@ TTX_ACQ_FILE::TTX_ACQ_FILE(const char * p_file)
          fprintf(stderr, "Failed to fstat opened %s: %s\n", p_file, strerror(errno));
          exit(1);
       }
-      VbiCaptureTime = st.st_mtime;
+      m_timestamp = st.st_mtime;
    }
 }
 
@@ -1390,8 +1396,9 @@ TTX_ACQ_FILE::~TTX_ACQ_FILE()
    close(m_fd);
 }
 
-bool TTX_ACQ_FILE::read_pkg(TTX_ACQ_PKG& ret_buf)
+bool TTX_ACQ_FILE::read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts)
 {
+   *ts = m_timestamp;
    return ret_buf.read_raw_pkg(m_fd);
 }
 
@@ -1419,8 +1426,7 @@ TTX_ACQ_ZVBI::TTX_ACQ_ZVBI(const char * p_dev, int dvb_pid)
    mp_buf = 0;
    m_line_count = 0;
    m_line_idx = 0;
-
-   VbiCaptureTime = time(NULL);
+   m_timestamp = 0;
 }
 
 TTX_ACQ_ZVBI::~TTX_ACQ_ZVBI()
@@ -1455,14 +1461,15 @@ void TTX_ACQ_ZVBI::device_read()
       fprintf(stderr, "capture device error: %s: %s\n", strerror(errno), opt_device);
       exit(1);
    }
+   m_timestamp = time(NULL);
 }
 
-bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf)
+bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts)
 {
    bool result = false;
 
    do {
-      if ((opt_duration > 0) && ((time(NULL) - VbiCaptureTime) > opt_duration)) {
+      if (time(NULL) > time_limit) {
          // capture duration limit reached -> terminate loop
          break;
       }
@@ -1484,6 +1491,7 @@ bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf)
       }
    } while (!result);
 
+   *ts = m_timestamp;
    return result;
 }
 
@@ -1492,7 +1500,7 @@ class TTX_ACQ
 public:
    TTX_ACQ();
    ~TTX_ACQ();
-   void add_pkg(const TTX_ACQ_PKG * p_pkg_buf);
+   void add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts);
 private:
    int m_cur_page[8];
    int m_cur_sub[8];
@@ -1517,7 +1525,7 @@ TTX_ACQ::~TTX_ACQ()
 {
 }
 
-void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf)
+void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
 {
    int page = p_pkg_buf->m_page_no;
    if (page < 0x100)
@@ -1556,8 +1564,8 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf)
       m_is_mag_serial = ((ctl2 & 0x10) != 0);
       if ((page != m_cur_page[mag]) || (sub != m_cur_sub[mag])) {
          ttx_db.add_page(page, sub,
-                          p_pkg_buf->m_ctrl_lo | (p_pkg_buf->m_ctrl_hi << 16),
-                          p_data);
+                         p_pkg_buf->m_ctrl_lo | (p_pkg_buf->m_ctrl_hi << 16),
+                         p_data, ts);
       }
       else {
          ttx_db.add_page_data(page, sub, 0, p_data);
@@ -1614,9 +1622,11 @@ void ReadVbi()
          }
       }
    }
+   time_t time_limit = (opt_duration > 0) ? (time(NULL) + opt_duration) : 0;
 
    while (1) {
-      if (!acq_src->read_pkg(pkg_buf))
+      time_t timestamp;
+      if (!acq_src->read_pkg(pkg_buf, time_limit, &timestamp))
          break;
 
       if (opt_dump == 3) {
@@ -1646,7 +1656,7 @@ void ReadVbi()
       }
 
       if (pkg_buf.m_pkg < 30) {
-         acq.add_pkg(&pkg_buf);
+         acq.add_pkg(&pkg_buf, timestamp);
       }
       else if ((pkg_buf.m_pkg == 30) || (pkg_buf.m_pkg == 32)) {
          uint16_t cni;
@@ -1695,22 +1705,22 @@ void DumpTextPages()
       }
       FILE * fp = fdopen(fd, "w");
 
-      ttx_db.dump_as_text(fp);
+      ttx_db.dump_db_as_text(fp);
       fclose(fp);
    }
    else {
-      ttx_db.dump_as_text(stdout);
+      ttx_db.dump_db_as_text(stdout);
    }
 }
 
-void TTX_DB::dump_as_text(FILE * fp)
+void TTX_DB::dump_db_as_text(FILE * fp)
 {
    for (iterator p = m_db.begin(); p != m_db.end(); p++) {
-      p->second->dump_as_text(fp);
+      p->second->dump_page_as_text(fp);
    }
 }
 
-void TTX_DB_PAGE::dump_as_text(FILE * fp)
+void TTX_DB_PAGE::dump_page_as_text(FILE * fp)
 {
    fprintf(fp, "PAGE %03X.%04X\n", m_page, m_sub);
 
@@ -1732,20 +1742,24 @@ void DumpRawTeletext()
          fprintf(stderr, "Failed to create %s: %s\n", opt_outfile, strerror(errno));
          exit(1);
       }
-      ttx_db.dump_as_raw(fp);
+      ttx_db.dump_db_as_raw(fp);
 
       fclose(fp);
    }
    else {
-      ttx_db.dump_as_raw(stdout);
+      ttx_db.dump_db_as_raw(stdout);
    }
    // return TRUE to allow to "require" the file
 }
 
-void TTX_DB::dump_as_raw(FILE * fp)
+void TTX_DB::dump_db_as_raw(FILE * fp)
 {
-   fprintf(fp, "#!/usr/bin/perl -w\n"
-               "$VbiCaptureTime = %ld;\n", (long)VbiCaptureTime);
+   fprintf(fp, "#!/usr/bin/perl -w\n");
+
+   // acq start time (for backwards compatibility with Perl version only)
+   const_iterator first = m_db.begin();
+   time_t acq_ts = (first != m_db.end()) ? first->second->get_timestamp() : 0;
+   fprintf(fp, "$VbiCaptureTime = %ld;\n", (long)acq_ts);
 
    for (map<int,int>::iterator p = PkgCni.begin(); p != PkgCni.end(); p++) {
       fprintf(fp, "$PkgCni{0x%X} = %d;\n", p->first, p->second);
@@ -1756,7 +1770,7 @@ void TTX_DB::dump_as_raw(FILE * fp)
       if ((page >= opt_tv_start) && (page <= opt_tv_end)) {
          int last_sub = ttx_db.last_sub_page_no(page);
 
-         p->second->dump_as_raw(fp, last_sub);
+         p->second->dump_page_as_raw(fp, last_sub);
       }
    }
 
@@ -1764,13 +1778,14 @@ void TTX_DB::dump_as_raw(FILE * fp)
    fprintf(fp, "1;\n");
 }
 
-void TTX_DB_PAGE::dump_as_raw(FILE * fp, int last_sub)
+void TTX_DB_PAGE::dump_page_as_raw(FILE * fp, int last_sub)
 {
-   printf("$PgCnt{0x%03X} = %d;\n", m_page, m_acq_rep_cnt);
-   printf("$PgSub{0x%03X} = %d;\n", m_page, last_sub);
-   printf("$PgLang{0x%03X} = %d;\n", m_page, m_lang);
+   fprintf(fp, "$PgCnt{0x%03X} = %d;\n", m_page, m_acq_rep_cnt);
+   fprintf(fp, "$PgSub{0x%03X} = %d;\n", m_page, last_sub);
+   fprintf(fp, "$PgLang{0x%03X} = %d;\n", m_page, m_lang);
+   fprintf(fp, "$PgTime{0x%03X} = %ld;\n", m_page, (long)m_timestamp);
 
-   printf("$Pkg{0x%03X|(0x%04X<<12)} =\n[\n", m_page, m_sub);
+   fprintf(fp, "$Pkg{0x%03X|(0x%04X<<12)} =\n[\n", m_page, m_sub);
 
    for (uint idx = 0; idx < TTX_RAW_PKG_CNT; idx++) {
       if (m_raw_pkg_valid & (1 << idx)) {
@@ -1826,6 +1841,7 @@ void ImportRawDump()
    static const regex expr4("\\$PgCnt\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
    static const regex expr5("\\$PgSub\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
    static const regex expr6("\\$PgLang\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
+   static const regex expr6b("\\$PgTime\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
    static const regex expr7("\\$Pkg\\{0x([0-9A-Za-z]+)\\|\\(0x([0-9A-Za-z]+)<<12\\)\\}\\s*=\\s*");
    static const regex expr8("\\[\\s*");
    static const regex expr9("\\s*undef,\\s*");
@@ -1842,6 +1858,7 @@ void ImportRawDump()
    uint pg_cnt = 0;
    TTX_DB_PAGE::TTX_RAW_PKG pg_data[TTX_DB_PAGE::TTX_RAW_PKG_CNT];
    uint32_t pg_data_valid = 0;
+   time_t timestamp;
 
    char buf[256];
    while (fgets(buf, sizeof(buf), fp) != 0) {
@@ -1849,32 +1866,38 @@ void ImportRawDump()
       if (regex_match(buf, what, expr1)) {
       }
       else if (regex_match(buf, what, expr2)) {
-         VbiCaptureTime = atol(string(what[1]).c_str());
+         timestamp = atol(string(what[1]).c_str());
       }
       else if (regex_match(buf, what, expr3)) {
-         long cni = atox_substr(what[1]);
+         int cni = atox_substr(what[1]);
          PkgCni[cni] = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr4)) {
-         long lpage = atox_substr(what[1]);
+         int lpage = atox_substr(what[1]);
          assert((page == -1) || (page == lpage));
          page = lpage;
          pg_cnt = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr5)) {
-         long lpage = atox_substr(what[1]);
+         int lpage = atox_substr(what[1]);
          assert((page == -1) || (page == lpage));
          page = lpage;
          sub = atoi_substr(what[2]);
       }
       else if (regex_match(buf, what, expr6)) {
-         long lpage = atox_substr(what[1]);
+         int lpage = atox_substr(what[1]);
          assert((page == -1) || (page == lpage));
          page = lpage;
          lang = atoi_substr(what[2]);
       }
+      else if (regex_match(buf, what, expr6b)) {
+         int lpage = atox_substr(what[1]);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         timestamp = atol(string(what[2]).c_str());
+      }
       else if (regex_match(buf, what, expr7)) {
-         long lpage = atox_substr(what[1]);
+         int lpage = atox_substr(what[1]);
          assert((page == -1) || (page == lpage));
          page = lpage;
          sub = atox_substr(what[2]);
@@ -1912,13 +1935,13 @@ void ImportRawDump()
       else if (regex_match(buf, what, expr11)) {
          assert(page != -1);
          int ctrl = sub | ((lang & 1) << (16+7)) | ((lang & 2) << (16+5)) | ((lang & 4) << (16+3));
-         TTX_DB_PAGE * pgtext = ttx_db.add_page(page, sub, ctrl, pg_data[0]);
+         TTX_DB_PAGE * pgtext = ttx_db.add_page(page, sub, ctrl, pg_data[0], timestamp);
          for (uint idx = 1; idx < pkg_idx; idx++) {
             if (pg_data_valid & (1 << idx))
                ttx_db.add_page_data(page, sub, idx, pg_data[idx]);
          }
          for (uint idx = 1; idx < pg_cnt; idx++) {
-            pgtext->inc_acq_cnt();
+            pgtext->inc_acq_cnt(timestamp);
          }
          page = -1;
       }
@@ -2223,7 +2246,7 @@ const T_DATE_NAME * MapDateName(const char * p_name, const T_DATE_NAME * p_list)
    return 0;
 }
 
-int GetWeekDayOffset(string wday_name)
+int GetWeekDayOffset(string wday_name, time_t timestamp)
 {
    int reldate = -1;
 
@@ -2231,7 +2254,7 @@ int GetWeekDayOffset(string wday_name)
       const T_DATE_NAME * p = MapDateName(wday_name.c_str(), WDayNames);
       if (p != 0) {
          int wday_idx = p->idx;
-         struct tm * ptm = localtime(&VbiCaptureTime);
+         struct tm * ptm = localtime(&timestamp);
          int cur_wday_idx = ptm->tm_wday;
 
          if (wday_idx >= cur_wday_idx) {
@@ -2247,6 +2270,7 @@ int GetWeekDayOffset(string wday_name)
 
 bool CheckDate(int mday, int month, int year,
                string wday_name, string month_name,
+               time_t timestamp,
                int * ret_mday, int * ret_mon, int * ret_year)
 {
    // first check all provided values
@@ -2260,11 +2284,11 @@ bool CheckDate(int mday, int month, int year,
    if ((wday_name.length() > 0) && (mday == -1))
    {
       // determine date from weekday name alone
-      int reldate = GetWeekDayOffset(wday_name);
+      int reldate = GetWeekDayOffset(wday_name, timestamp);
       if (reldate < 0)
          return false;
 
-      time_t whence = VbiCaptureTime + reldate*24*60*60;
+      time_t whence = timestamp + reldate*24*60*60;
       struct tm * ptm = localtime(&whence);
       mday = ptm->tm_mday;
       month = ptm->tm_mon + 1;
@@ -2287,11 +2311,11 @@ bool CheckDate(int mday, int month, int year,
          return false;
       }
       if (year == -1) {
-         struct tm * ptm = localtime(&VbiCaptureTime);
+         struct tm * ptm = localtime(&timestamp);
          year = ptm->tm_year + 1900;
       }
       else if (year < 100) {
-         struct tm * ptm = localtime(&VbiCaptureTime);
+         struct tm * ptm = localtime(&timestamp);
          int cur_year = ptm->tm_year + 1900;
          year += (cur_year - cur_year % 100);
       }
@@ -2503,7 +2527,7 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
           || regex_search(text, whats, expr2[lang]) )
       {
          if (CheckDate(atoi_substr(whats[4]), atoi_substr(whats[5]), atoi_substr(whats[6]),
-                       "", "", &mday, &month, &year)) {
+                       "", "", pgtext->get_timestamp(), &mday, &month, &year)) {
             prio = 3;
          }
       }
@@ -2514,7 +2538,8 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       }
       if (regex_search(text, whats, expr3[lang])) {
          if (CheckDate(atoi_substr(whats[2]), -1, atoi_substr(whats[5]),
-                       "", string(whats[3]), &mday, &month, &year)) {
+                       "", string(whats[3]), pgtext->get_timestamp(),
+                       &mday, &month, &year)) {
             prio = 3;
          }
       }
@@ -2528,7 +2553,8 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       if (   regex_search(text, whats, expr4[lang])
           || regex_search(text, whats, expr5[lang])) {
          if (CheckDate(atoi_substr(whats[4]), -1, atoi_substr(whats[7]),
-                       string(whats[2]), string(whats[5]), &mday, &month, &year)) {
+                       string(whats[2]), string(whats[5]), pgtext->get_timestamp(),
+                       &mday, &month, &year)) {
             prio = 3;
          }
       }
@@ -2545,7 +2571,7 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
             wday_name.assign(whats[2]);
          else
             wday_name.assign(whats[3]);
-         int off = GetWeekDayOffset(wday_name);
+         int off = GetWeekDayOffset(wday_name, pgtext->get_timestamp());
          if (off >= 0)
             reldate = off;
          prio = 2;
@@ -2557,7 +2583,7 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
          expr7[lang].assign(string("(^| )(") + wday_match + ")([ ,:]|$)", regex::icase);
       }
       if (regex_search(text, whats, expr7[lang])) {
-         int off = GetWeekDayOffset(string(whats[2]));
+         int off = GetWeekDayOffset(string(whats[2]), pgtext->get_timestamp());
          if (off >= 0)
             reldate = off;
          prio = 1;
@@ -2578,14 +2604,15 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
    }
 
    if ((mday == -1) && (reldate != -1)) {
-      time_t whence = VbiCaptureTime + reldate*24*60*60;
+      time_t whence = pgtext->get_timestamp() + reldate*24*60*60;
       struct tm * ptm = localtime(&whence);
       mday = ptm->tm_mday;
       month = ptm->tm_mon + 1;
       year = ptm->tm_year + 1900;
    }
    else if ((year != -1) && (year < 100)) {
-      struct tm * ptm = localtime(&VbiCaptureTime);
+      time_t whence = pgtext->get_timestamp();
+      struct tm * ptm = localtime(&whence);
       int cur_year = ptm->tm_year + 1900;
       year += (cur_year - cur_year % 100);
    }
@@ -3633,9 +3660,9 @@ bool CalculateDates(T_PG_DATE& pgdate, const T_PG_DATE& prev_pgdate,
  * - 3: determine dates
  * - 4: determine stop times
  */
-void ParseOv(int page, int sub, const T_OV_FMT_STAT& fmt,
-             T_PG_DATE& pgdate, T_PG_DATE& prev_pgdate,
-             int prev_slot_idx, vector<TV_SLOT>& Slots)
+void ParseOvPage(int page, int sub, const T_OV_FMT_STAT& fmt,
+                 T_PG_DATE& pgdate, T_PG_DATE& prev_pgdate,
+                 int prev_slot_idx, vector<TV_SLOT>& Slots)
 {
    if (opt_debug) printf("OVERVIEW PAGE %03X.%04X\n", page, sub);
 
@@ -3710,7 +3737,7 @@ vector<TV_SLOT> ParseAllOvPages()
             pgdate.m_sub_page = sub;
             pgdate.m_sub_page_skip = 0;
 
-            ParseOv(page, sub, fmt, pgdate, prev_pgdate, prev_slot_idx, Slots);
+            ParseOvPage(page, sub, fmt, pgdate, prev_pgdate, prev_slot_idx, Slots);
 
             if (Slots.size() > new_prev_slot_idx) {
                prev_pgdate = pgdate;
@@ -3754,6 +3781,9 @@ vector<TV_SLOT> FilterExpiredSlots(const vector<TV_SLOT>& Slots)
         if (opt_debug) printf("EXPIRED new %ld-%ld < %ld '%s'\n", (long)Slots[idx].m_start_t,
                               (long)Slots[idx].m_stop_t, (long)exp_thresh, Slots[idx].m_title.c_str());
       }
+   }
+   if (!Slots.empty() && NewSlots.empty()) {
+      fprintf(stderr, "Warning: all newly acquired programmes are already expired\n");
    }
    return NewSlots;
 }
@@ -4016,7 +4046,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
              || regex_search(text, whats, expr2)
              || regex_search(text, whats, expr3)) {
             if (CheckDate(atoi_substr(whats[2]), atoi_substr(whats[3]), atoi_substr(whats[4]),
-                          "", "", &lmday, &lmonth, &lyear)) {
+                          "", "", pgtext->get_timestamp(),
+                          &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -4034,7 +4065,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          if (   regex_search(text, whats, expr4[lang])
              || regex_search(text, whats, expr5[lang])) {
             if (CheckDate(atoi_substr(whats[4]), atoi_substr(whats[5]), -1,
-                          string(whats[2]), "", &lmday, &lmonth, &lyear)) {
+                          string(whats[2]), "", pgtext->get_timestamp(),
+                          &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -4047,7 +4079,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          }
          if (regex_search(text, whats, expr6[lang])) {
             if (CheckDate(atoi_substr(whats[2]), -1, atoi_substr(whats[5]),
-                          "", string(whats[3]), &lmday, &lmonth, &lyear)) {
+                          "", string(whats[3]), pgtext->get_timestamp(),
+                          &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -4066,7 +4099,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          if (   regex_search(text, whats, expr7[lang])
              || regex_search(text, whats, expr8[lang])) {
             if (CheckDate(atoi_substr(whats[4]), -1, atoi_substr(whats[7]),
-                          string(whats[2]), string(whats[5]), &lmday, &lmonth, &lyear)) {
+                          string(whats[2]), string(whats[5]), pgtext->get_timestamp(),
+                          &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -4087,7 +4121,8 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          }
          if (   regex_search(text, whats, expr10[lang])
              || regex_search(text, whats, expr11[lang])) {
-            if (CheckDate(-1, -1, -1, string(whats[2]), "", &lmday, &lmonth, &lyear)) {
+            if (CheckDate(-1, -1, -1, string(whats[2]), "", pgtext->get_timestamp(),
+                          &lmday, &lmonth, &lyear)) {
                new_date = true;
                goto DATE_FOUND;
             }
@@ -5510,14 +5545,15 @@ int main( int argc, char *argv[])
    }
 
    if (opt_dump == 1) {
-      // debug only: dump teletext data into file
+      // debug only: dump teletext pages into file (text only)
       DumpTextPages();
    }
    else if (opt_dump == 2) {
+      // dump teletext pages into file, including all control chars
       DumpRawTeletext();
    }
    else if (opt_dump == 3) {
-      // dump already done while capturing
+      // dump each VBI packet: already done while capturing
    }
    else {
       // parse and export programme data
