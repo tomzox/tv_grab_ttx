@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.11 2010/03/31 11:52:39 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.12 2010/03/31 17:38:15 tom Exp $
  */
 
 #include <stdio.h>
@@ -245,7 +245,6 @@ TTX_DB_PAGE* TTX_DB::add_page(uint page, uint sub, uint ctrl, const uint8_t * p_
    if ((p == m_db.end()) || (p->first != handle)) {
       TTX_DB_PAGE * p_pg = new TTX_DB_PAGE(page, sub, ctrl, ts);
       p = m_db.insert(p, make_pair(handle, p_pg));
-      assert(p->second == p_pg);
    }
    else {
       p->second->inc_acq_cnt(ts);
@@ -283,6 +282,38 @@ double TTX_DB::get_acq_rep_stats()
       page_rep += p->second->get_acq_rep();
    }
    return (page_cnt > 0) ? ((double)page_rep / page_cnt) : 0.0;
+}
+
+class TTX_CHN_ID
+{
+public:
+   typedef map<int,int>::iterator iterator;
+   typedef map<int,int>::const_iterator const_iterator;
+
+   void add_cni(uint cni);
+   void dump_as_raw(FILE * fp);
+   string get_ch_id();
+private:
+   struct T_CNI_TO_ID_MAP
+   {
+      uint16_t cni;
+      const char * const p_name;
+   };
+   map<int,int> m_cnis;
+
+   static const T_CNI_TO_ID_MAP Cni2ChannelId[];
+   static const uint16_t NiToPdcCni[];
+};
+
+void TTX_CHN_ID::add_cni(uint cni)
+{
+   iterator p = m_cnis.lower_bound(cni);
+   if ((p == m_cnis.end()) || (p->first != int(cni))) {
+      p = m_cnis.insert(p, make_pair<int,int>(cni, 1));
+   }
+   else {
+      ++p->second;
+   }
 }
 
 class TTX_ACQ_PKG
@@ -432,8 +463,9 @@ public:
    int          m_vps_cni;
 };
 
-map<int,int> PkgCni;
+// global data
 TTX_DB ttx_db;
+TTX_CHN_ID ttx_chn_id;
 
 // command line options for capturing from device
 int opt_duration = 0;
@@ -1661,7 +1693,7 @@ void ReadVbi()
       else if ((pkg_buf.m_pkg == 30) || (pkg_buf.m_pkg == 32)) {
          uint16_t cni;
          memcpy(&cni, pkg_buf.m_data, sizeof(cni));
-         PkgCni[cni]++;
+         ttx_chn_id.add_cni(cni);
       }
    }
    delete acq_src;
@@ -1736,34 +1768,44 @@ void TTX_DB_PAGE::dump_page_as_text(FILE * fp)
  */
 void DumpRawTeletext()
 {
+   FILE * fp = stdout;
+
    if (opt_outfile != 0) {
       FILE * fp = fopen(opt_outfile, "w");
       if (fp == NULL) {
          fprintf(stderr, "Failed to create %s: %s\n", opt_outfile, strerror(errno));
          exit(1);
       }
-      ttx_db.dump_db_as_raw(fp);
+   }
 
+   fprintf(fp, "#!/usr/bin/perl -w\n");
+
+   // return TRUE to allow to "require" the file
+   ttx_db.dump_db_as_raw(fp);
+
+   ttx_chn_id.dump_as_raw(fp);
+
+   // return TRUE to allow to "require" the file in Perl
+   fprintf(fp, "1;\n");
+
+   if (fp != stdout) {
       fclose(fp);
    }
-   else {
-      ttx_db.dump_db_as_raw(stdout);
+}
+
+void TTX_CHN_ID::dump_as_raw(FILE * fp)
+{
+   for (const_iterator p = m_cnis.begin(); p != m_cnis.end(); p++) {
+      fprintf(fp, "$PkgCni{0x%X} = %d;\n", p->first, p->second);
    }
-   // return TRUE to allow to "require" the file
 }
 
 void TTX_DB::dump_db_as_raw(FILE * fp)
 {
-   fprintf(fp, "#!/usr/bin/perl -w\n");
-
    // acq start time (for backwards compatibility with Perl version only)
    const_iterator first = m_db.begin();
    time_t acq_ts = (first != m_db.end()) ? first->second->get_timestamp() : 0;
    fprintf(fp, "$VbiCaptureTime = %ld;\n", (long)acq_ts);
-
-   for (map<int,int>::iterator p = PkgCni.begin(); p != PkgCni.end(); p++) {
-      fprintf(fp, "$PkgCni{0x%X} = %d;\n", p->first, p->second);
-   }
 
    for (iterator p = m_db.begin(); p != m_db.end(); p++) {
       int page = p->first.page();
@@ -1773,9 +1815,6 @@ void TTX_DB::dump_db_as_raw(FILE * fp)
          p->second->dump_page_as_raw(fp, last_sub);
       }
    }
-
-   // return TRUE to allow to "require" the file in Perl
-   fprintf(fp, "1;\n");
 }
 
 void TTX_DB_PAGE::dump_page_as_raw(FILE * fp, int last_sub)
@@ -1858,7 +1897,7 @@ void ImportRawDump()
    uint pg_cnt = 0;
    TTX_DB_PAGE::TTX_RAW_PKG pg_data[TTX_DB_PAGE::TTX_RAW_PKG_CNT];
    uint32_t pg_data_valid = 0;
-   time_t timestamp;
+   time_t timestamp = 0;
 
    char buf[256];
    while (fgets(buf, sizeof(buf), fp) != 0) {
@@ -1870,7 +1909,10 @@ void ImportRawDump()
       }
       else if (regex_match(buf, what, expr3)) {
          int cni = atox_substr(what[1]);
-         PkgCni[cni] = atoi_substr(what[2]);
+         int cnt = atoi_substr(what[2]);
+         for (int idx = 0; idx < cnt; idx++) {
+            ttx_chn_id.add_cni(cni);
+         }
       }
       else if (regex_match(buf, what, expr4)) {
          int lpage = atox_substr(what[1]);
@@ -4694,12 +4736,7 @@ string ParseChannelName()
 /* ------------------------------------------------------------------------------
  * Determine channel ID from CNI
  */
-struct T_CNI_TO_ID_MAP
-{
-   uint16_t cni;
-   const char * const p_name;
-};
-const T_CNI_TO_ID_MAP Cni2ChannelId[] =
+const TTX_CHN_ID::T_CNI_TO_ID_MAP TTX_CHN_ID::Cni2ChannelId[] =
 {
    { 0x1DCA, "1.br-online.de" },
    { 0x4801, "1.omroep.nl" },
@@ -4771,7 +4808,8 @@ const T_CNI_TO_ID_MAP Cni2ChannelId[] =
    { 0x1DC2, "zdf.de" },
    { 0, 0 }
 };
-const uint16_t NiToPdcCni[] =
+
+const uint16_t TTX_CHN_ID::NiToPdcCni[] =
 {
    // Austria
    0x4301, 0x1AC1,
@@ -5030,12 +5068,12 @@ const uint16_t NiToPdcCni[] =
    0, 0
 };
 
-string ParseChannelId()
+string TTX_CHN_ID::get_ch_id()
 {
    // search the most frequently seen CNI value 
    uint16_t cni = 0;
    int max_cnt = -1;
-   for (map<int,int>::iterator p = PkgCni.begin(); p != PkgCni.end(); p++) {
+   for (const_iterator p = m_cnis.begin(); p != m_cnis.end(); p++) {
       if (p->second > max_cnt) {
          cni = p->first;
          max_cnt = p->second;
@@ -5578,7 +5616,7 @@ int main( int argc, char *argv[])
          // get channel name from teletext header packets
          string ch_name = *opt_chname ? string(opt_chname) : ParseChannelName();
 
-         string ch_id = *opt_chid ? string(opt_chid) : ParseChannelId();
+         string ch_id = *opt_chid ? string(opt_chid) : ttx_chn_id.get_ch_id();
 
          if (ch_name.length() == 0) {
             ch_name = ch_id;
