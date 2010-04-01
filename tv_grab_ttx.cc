@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.12 2010/03/31 17:38:15 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.13 2010/04/01 10:16:52 tom Exp $
  */
 
 #include <stdio.h>
@@ -68,6 +68,7 @@ public:
    TTX_DB_PAGE(uint page, uint sub, uint ctrl, time_t ts);
    void add_raw_pkg(uint idx, const uint8_t * p_data);
    void inc_acq_cnt(time_t ts);
+   void erase_page_c4();
    const string& get_ctrl(uint line) const {
       assert(line < TTX_TEXT_LINE_CNT);
       if (!m_text_valid)
@@ -141,6 +142,12 @@ void TTX_DB_PAGE::inc_acq_cnt(time_t ts)
    m_timestamp = ts;
 }
 
+void TTX_DB_PAGE::erase_page_c4()
+{
+   m_raw_pkg_valid = 1;
+   m_text_valid = false;
+}
+
 void TTX_DB_PAGE::page_to_latin1() const // modifies mutable
 {
    assert(!m_text_valid); // checked by caller for efficiency
@@ -186,6 +193,7 @@ public:
 
    TTX_DB_PAGE* add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data, time_t ts);
    TTX_DB_PAGE* add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data);
+   void erase_page_c4(int page, int sub);
    void dump_db_as_text(FILE * fp);
    void dump_db_as_raw(FILE * fp);
    double get_acq_rep_stats();
@@ -265,6 +273,20 @@ TTX_DB_PAGE* TTX_DB::add_page_data(uint page, uint sub, uint idx, const uint8_t 
    else {
       //if (opt_debug) printf("ERROR: page:%d sub:%d not found for adding pkg:%d\n", page, sub, idx);
       return 0;
+   }
+}
+
+/* Erase the page with the given number from memory: used to handle the "erase"
+ * control bit in the TTX header. Since the page is added again right after we
+ * only invalidate the page contents, but keep the page.
+ */
+void TTX_DB::erase_page_c4(int page, int sub)
+{
+   TTX_PG_HANDLE handle(page, sub);
+
+   iterator p = m_db.find(handle);
+   if (p != m_db.end()) {
+      p->second->erase_page_c4();
    }
 }
 
@@ -534,9 +556,9 @@ void ParseArgv(int argc, char *argv[])
          idx += 2;
       }
       // -page <NNN>-<MMM>: specify range of programme overview pages
-      else if (strcmp(argv[idx], "-pages") == 0) {
+      else if (strcmp(argv[idx], "-page") == 0) {
          if (idx + 1 >= argc) {
-            fprintf(stderr, "%s: missing argument for -pages\n%s", argv[0], usage);
+            fprintf(stderr, "%s: missing argument for -page\n%s", argv[0], usage);
             exit(1);
          }
          int val_len;
@@ -620,15 +642,15 @@ void ParseArgv(int argc, char *argv[])
          if (   (sscanf(argv[idx + 1], "%3x-%3x%n", &opt_tv_start, &opt_tv_end, &val_len) >= 2)
              && (argv[idx + 1][val_len] == 0) ) {
             if ((opt_tv_start < 0x100) || (opt_tv_start > 0x899)) {
-               fprintf(stderr, "-page: not a valid start page number: %03X (range 100-899)\n", opt_tv_start);
+               fprintf(stderr, "-dumpraw: not a valid start page number: %03X (range 100-899)\n", opt_tv_start);
                exit(1);
             }
             if ((opt_tv_end < 0x100) || (opt_tv_end > 0x899)) {
-               fprintf(stderr, "-page: not a valid end page number: %03X (range 100-899)\n", opt_tv_end);
+               fprintf(stderr, "-dumpraw: not a valid end page number: %03X (range 100-899)\n", opt_tv_end);
                exit(1);
             }
             if (opt_tv_end < opt_tv_start) {
-               fprintf(stderr, "-page: start page (%03X) must be <= end page (%03X)\n", opt_tv_start, opt_tv_end);
+               fprintf(stderr, "-dumpraw: start page (%03X) must be <= end page (%03X)\n", opt_tv_start, opt_tv_end);
                exit(1);
             }
          }
@@ -1501,7 +1523,7 @@ bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts)
    bool result = false;
 
    do {
-      if (time(NULL) > time_limit) {
+      if ((time_limit > 0) && (time(NULL) > time_limit)) {
          // capture duration limit reached -> terminate loop
          break;
       }
@@ -1564,7 +1586,6 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
       page += 0x800;
    int mag = (p_pkg_buf->m_page_no >> 8) & 7;
    int sub = p_pkg_buf->m_ctrl_lo & 0x3f7f;
-   int ctl2 = p_pkg_buf->m_ctrl_hi;
    int pkg = p_pkg_buf->m_pkg;
    const uint8_t * p_data = p_pkg_buf->m_data;
    //printf("%03X.%04X, %2d %.40s\n", page, sub, pkg, p_data);
@@ -1575,15 +1596,16 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
 
    if (pkg == 0) {
       // erase page control bit (C4) - ignored, some channels abuse this
-      //if (ctl1 & 0x80) {
-      //   VbiPageErase(page);
+      //if ((p_pkg_buf->m_ctrl_lo & 0x80) && (p_pkg_buf->m_ctrl_hi & 0x02)) {  // C4 & C8
+      //   ttx_db.erase_page_c4(page, sub);
       //}
       // inhibit display control bit (C10)
-      //if (ctl2 & 0x08) {
+      //if (p_pkg_buf->m_ctrl_hi & 0x08) {
       //   m_cur_page[mag] = -1;
       //   return;
       //}
-      if (ctl2 & 0x01) {
+      // Suppress header (C7)
+      if (p_pkg_buf->m_ctrl_hi & 0x01) {
          const char * blank_line = "                                        "; // 40 spaces
          p_data = reinterpret_cast<const uint8_t*>(blank_line);
       }
@@ -1593,7 +1615,7 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
          return;
       }
       // magazine serial mode (C11: 1=serial 0=parallel)
-      m_is_mag_serial = ((ctl2 & 0x10) != 0);
+      m_is_mag_serial = ((p_pkg_buf->m_ctrl_hi & 0x10) != 0);
       if ((page != m_cur_page[mag]) || (sub != m_cur_sub[mag])) {
          ttx_db.add_page(page, sub,
                          p_pkg_buf->m_ctrl_lo | (p_pkg_buf->m_ctrl_hi << 16),
@@ -1654,7 +1676,7 @@ void ReadVbi()
          }
       }
    }
-   time_t time_limit = (opt_duration > 0) ? (time(NULL) + opt_duration) : 0;
+   time_t time_limit = (opt_duration > 0) ? (time(NULL) + opt_duration) : -1;
 
    while (1) {
       time_t timestamp;
@@ -1698,29 +1720,6 @@ void ReadVbi()
    }
    delete acq_src;
 }
-
-/* Erase the page with the given number from memory
- * used to handle the "erase" control bit in the TTX header
- */
-#if 0
-void VbiPageErase(int page)
-{
-   map<int,int>::iterator p3 = PgSub.find(page);
-   if (p3 != PgCnt.end()) {
-      for (int sub = 0; sub <= p3->second; sub++) {
-         map<int,TTX_DB_PAGE>::iterator p = Pkg.find(page|(sub<<12));
-         if (p != Pkg.end()) {
-            Pkg.erase(p);
-         }
-      }
-      PgCnt.erase(p3);
-   }
-   map<int,int>::iterator p2 = PgCnt.find(page);
-   if (p2 != PgCnt.end()) {
-      PgCnt.erase(p2);
-   }
-}
-#endif
 
 /* ------------------------------------------------------------------------------
  * Dump all loaded teletext pages as plain text
@@ -2391,21 +2390,32 @@ public:
    bool operator==(const T_OV_FMT_STAT& b) const {
       return (   (time_off == b.time_off)
               && (vps_off == b.vps_off)
-              && (title_off == b.title_off));
+              && (title_off == b.title_off)
+              && (separator == b.separator));
    }
    bool operator<(const T_OV_FMT_STAT& b) const {
       return    (time_off < b.time_off)
              || (   (time_off == b.time_off)
                  && (   (vps_off < b.vps_off)
                      || (   (vps_off == b.vps_off)
-                         && (title_off < b.title_off) )));
+                         && (   (title_off < b.title_off)
+                             || (   (title_off == b.title_off)
+                                 && (separator < b.separator) )))));
+   }
+   const char * print_key() const {
+      static char buf[100];
+      sprintf(buf, "time:%d,vps:%d,title:%d,title2:%d,MMHH-sep:'%c'",
+              time_off, vps_off, title_off, subt_off, separator);
+      return buf;
    }
    bool is_valid() const { return time_off >= 0; }
 public:
-   int time_off;
-   int vps_off;
-   int title_off;
-   int subt_off;
+   int time_off;    ///< Offset to HH:MM or HH.MM
+   int vps_off;     ///< Offset to HHMM (concealed VPS)
+   int title_off;   ///< Offset to title
+   int subt_off;    ///< Offset to 2nd title line
+   char separator;  ///< HH:MM separator character
+   //int mod;       ///< hour*60+minute (minutes since midnight)
 };
 
 void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
@@ -2417,15 +2427,19 @@ void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
       const string& text = pgtext->get_text(line);
       // look for a line containing a start time (hour 0-23 : minute 0-59)
       // TODO allow start-stop times "10:00-11:00"?
-      static const regex expr1("^(( *| *! +)([01][0-9]|2[0-3])[\\.:]([0-5][0-9]) +)");
+      static const regex expr1("^( *| *! +)([01][0-9]|2[0-3])([\\.:])([0-5][0-9]) +");
       if (regex_search(text, whats, expr1)) {
-         int off = whats[1].length();
+         int off = whats[0].length();
          struct T_OV_FMT_STAT fmt;
-         fmt.time_off = whats[2].length();
+         fmt.time_off = whats[1].length();
          fmt.vps_off = -1;
          fmt.title_off = off;
          fmt.subt_off = -1;
+         fmt.separator = whats[3].first[0];
+         // TODO require that times are increasing (within the same format)
+         //fmt.mod = atoi_substr(whats[2]) * 60 + atoi_substr(whats[4]);
 
+         // look for a VPS label on the same line after the human readable start time
          // TODO VPS must be magenta or concealed
          static const regex expr2("^([0-2][0-9][0-5][0-9] +)");
          if (regex_search(text.begin() + off, text.end(), whats, expr2)) {
@@ -2437,7 +2451,8 @@ void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
             fmt.title_off = off;
          }
 
-         static const regex expr3("^( *| *\\d{4} +)[[:alpha:]]");
+         // measure the indentation of the following line, if starting with a letter (2nd title line)
+         static const regex expr3("^( *| *([01][0-9]|2[0-3])[0-5][0-9] +)[[:alpha:]]");
          static const regex expr4("^( *)[[:alpha:]]");
          const string& text2 = pgtext->get_text(line + 1);
          if ( (fmt.vps_off == -1)
@@ -2447,7 +2462,7 @@ void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
             fmt.subt_off = whats[1].second - whats[1].first;
          }
 
-         //if (opt_debug) printf("FMT(%03X.%d): %d,%d,%d,%d\n", page, sub, fmt.time_off, fmt.vps_off, fmt.title_off, fmt.subt_off);
+         //if (opt_debug) printf("FMT(%03X.%d.%d): %s\n", page, sub, line, fmt.print_key());
          fmt_list.push_back(fmt);
       }
    }
@@ -2484,14 +2499,14 @@ T_OV_FMT_STAT DetectOvFormat()
       int max_cnt = 0;
       int max_idx = -1;
       for (uint idx = 0; idx < fmt_list.size(); idx++) {
-         map<T_OV_FMT_STAT,int>::iterator p = fmt_stats.find(fmt_list[idx]);
-         if (p != fmt_stats.end()) {
-            p->second += 1;
+         map<T_OV_FMT_STAT,int>::iterator p = fmt_stats.lower_bound(fmt_list[idx]);
+         if ((p == fmt_stats.end()) || !(p->first == fmt_list[idx])) {
+            p = fmt_stats.insert(p, make_pair(fmt_list[idx], 1));
          }
          else {
-            fmt_stats[fmt_list[idx]] = 1;
+            p->second += 1;
          }
-         if (fmt_stats[fmt_list[idx]] > max_cnt) {
+         if (p->second > max_cnt) {
             max_cnt = fmt_stats[fmt_list[idx]];
             max_idx = idx;
          }
@@ -2519,10 +2534,7 @@ T_OV_FMT_STAT DetectOvFormat()
          }
       }
 
-      if (opt_debug)  {
-         printf("auto-detected overview format: time:%d,vps:%d,title:%d,title2:%d\n",
-                fmt.time_off, fmt.vps_off, fmt.title_off, fmt.subt_off);
-      }
+      if (opt_debug) printf("auto-detected overview format: %s\n", fmt.print_key());
    }
    else {
       if (cnt == 0)
@@ -2966,7 +2978,7 @@ int ParseFooterByColor(int page, int sub)
       // get first non-blank char; skip non-color control chars
       static const regex expr1("^[ \\x00-\\x1F]*([\\x00-\\x07\\x10-\\x17])\\x1D");
       if (regex_search(pgtext->get_ctrl(line), whats, expr1)) {
-         unsigned char c = *whats[1].first;
+         unsigned char c = whats[1].first[0];
          if (c <= 0x07) {
             ColCount[c] += 1;
          }
@@ -3187,6 +3199,7 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
    int min = -1;
    string title;
    smatch whats;
+   match_results<string::iterator> whati;
    bool new_title = false;
    bool in_title = false;
    TV_SLOT slot;
@@ -3223,15 +3236,16 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
          // TODO: Phoenix wraps titles into 2nd line, appends subtitle with "-"
          // m#^ {0,2}(\d\d)[\.\:](\d\d)( {1,3}(\d{4}))? +#
          static const regex expr2("^ *([\\*!] +)?$");
-         string str2(text, 0, pgfmt.time_off);
-         if (regex_search(str2, whats, expr2)) {
-            is_tip = whats[1].matched;
+         if (regex_search(text.begin(), text.begin() + pgfmt.time_off, whati, expr2)) {
+            is_tip = whati[1].matched;
             // note: VPS time has already been extracted above, so the area is blank
-            static const regex expr3("^(\\d\\d)[\\.:](\\d\\d) +$");
-            string str3(text, pgfmt.time_off, pgfmt.title_off - pgfmt.time_off);
-            if (regex_search(str3, whats, expr3)) {
-               hour = atoi_substr(whats[1]);
-               min = atoi_substr(whats[2]);
+            static const regex expr3("^(2[0-3]|[01][0-9])([\\.:])([0-5][0-9]) +[^ ]$");
+            if (   regex_search(text.begin() + pgfmt.time_off,
+                                text.begin() + pgfmt.title_off + 1,
+                                whati, expr3)
+                && (whati[2].first[0] == pgfmt.separator) ) {
+               hour = atoi_substr(whati[1]);
+               min = atoi_substr(whati[3]);
                title.assign(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
                new_title = true;
             }
@@ -3240,14 +3254,15 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
       else {
          // m#^( {0,5}| {0,3}\! {1,3})(\d\d)[\.\:](\d\d) +#
          static const regex expr5("^ *([\\*!] +)?$");
-         string str5(text, 0, pgfmt.time_off);
-         if (regex_search(str5, whats, expr5)) {
-            is_tip = whats[1].matched;
-            static const regex expr6("^(\\d\\d)[\\.:](\\d\\d) +$");
-            string str6(text, pgfmt.time_off, pgfmt.title_off - pgfmt.time_off);
-            if (regex_search(str6, whats, expr6)) {
-               hour = atoi_substr(whats[1]);
-               min = atoi_substr(whats[2]);
+         if (regex_search(text.begin(), text.begin() + pgfmt.time_off, whati, expr5)) {
+            is_tip = whati[1].matched;
+            static const regex expr6("^(2[0-3]|[01][0-9])([\\.:])([0-5][0-9]) +[^ ]$");
+            if (   regex_search(text.begin() + pgfmt.time_off,
+                                text.begin() + pgfmt.title_off + 1,
+                                whati, expr6)
+                && (whati[2].first[0] == pgfmt.separator) ) {
+               hour = atoi_substr(whati[1]);
+               min = atoi_substr(whati[3]);
                new_title = true;
                title.assign(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
             }
@@ -3318,7 +3333,6 @@ void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
          else if (pgfmt.subt_off >= 0) {
             static const regex expr10("^[ \\x00-\\x07\\x10-\\x17]*$");
             static const regex expr11("^[ \\x00-\\x07\\x10-\\x17]*$");
-            match_results<string::iterator> whati;
             if (   !regex_search(text.begin(), text.begin() + pgfmt.subt_off, whati, expr10)
                 || regex_search(text.begin() + pgfmt.subt_off, text.end(), whati, expr11) )
             {

@@ -1,8 +1,8 @@
 #!/usr/bin/perl -w
 #
-# Test parsing various feature tags
+# Test if invalid lines are ignored.
 #
-# $Id: feat-ov1.in,v 1.5 2010/04/01 10:18:51 tom Exp $
+# $Id: ovlist11.in,v 1.1 2010/04/01 10:22:17 tom Exp $
 #
 $VbiCaptureTime = 1146299961;
 $PgCnt{0x303} = 5;
@@ -22,14 +22,14 @@ $Pkg{0x303|(0x0000<<12)} =
   "\x07 \x0620.00  Tagesschau\x03UT\x06............ 310",
   "\x03!\x0720.15  Im Tal des Schweigens..... 324",
   "\x07         Spielfilm, D 2004 \x03OmU\x07       ",
-  "\x07  22.00  Konzert in Stereo       oo    ",
-  "\x07  22.04  Konzert in 2 mal Mono   mono  ",
-  "\x07  22.06  Konzert in einmal Mono        ",
-  "\x07  22.08  Finalkonzert Test\x03mono\x07       ",
-  "\x07  22.10  Wiederholung            Wdh.  ",
   undef,
-  undef,
-  undef,
+  "\x07\x0622.04   Time at smaller offset        ",
+  "\x07  \x0622.05 Time at larger offset         ",
+  "\x07 \x0622:07  Different HHMM separator      ",
+  "\x07 \x0622.10 Title at smaller offset        ",
+  "\x07 \x0622.11   Title at larger offset       ",
+  "\x07 \x0622.12 2215 VPS time added            ",
+  "\x07  \x0622.04  Time and title at larger off  ",
   undef,
   "\x03!\x07= TV-Tipps                           ",
   "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
