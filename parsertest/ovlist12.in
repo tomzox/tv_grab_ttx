@@ -1,0 +1,263 @@
+#!/usr/bin/perl -w
+#
+# Page 333 should be discarded as it carries no date and adjacent pages
+# have a different date.
+#
+# $Id: ovlist12.in,v 1.1 2010/04/05 13:17:22 tom Exp $
+#
+$VbiCaptureTime = 1269111999;
+$PgCnt{0x307} = 6;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "        307\x07ARDtext\x07Sa 20.03.10\x0720:06:31",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      So 21.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07 \x0618.49  Ein Platz an der Sonne        ",
+  "\x07  18.50  Lindenstra~e\x03UT\x07.......... 342",
+  "\x07         Kakao (D, 2010)               ",
+  "\x07 \x0619.20  Weltspiegel\x03UT\x06........... 343",
+  "\x07  20.00  Tagesschau\x03UT                 ",
+  "\x03!\x0620.15  Tatort: Kaltes Herz\x03UT\x06... 344",
+  "\x07        \x06Fernsehfilm, D 2010           ",
+  "\x03!\x0721.45  Anne Will\x03UT\x07............. 345",
+  "\x07 \x0622.45  Tagesthemen                   ",
+  "\x07  23.03  Das Wetter im Ersten          ",
+  "\x03!\x0623.05  ttt - titel thesen\x03UT\x06.... 346",
+  "\x07        \x06temperamente                  ",
+  "\x03!\x0723.35  Die Stille nach dem\x03UT\x07... 347",
+  "\x07         Schuss (D, 2000)              ",
+  "\x07         Das FilmFestival              ",
+  "\x07         bis 01.10 Uhr                 ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Nacht >\x06308",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x308} = 6;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "        308\x07ARDtext\x07Sa 20.03.10\x0720:06:31",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      So 21.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x05220310                                 ",
+  "\x07 \x0601.10  Tagesschau                    ",
+  "\x07  01.20  Die Verfehlung ........... 348",
+  "\x07         Spielfilm, D 1991             ",
+  "\x07 \x0603.00  Tagesschau                    ",
+  "\x03!\x0703.05  Sportschau live\x03UT            ",
+  "\x07         Paralympics Vancouver 2010    ",
+  "\x07         Schlussfeier                  ",
+  "\x07 \x0605.00  Tagesschau                    ",
+  "\x07  05.05  Die sch|nsten Bahnstrecken    ",
+  "\x07         Deutschlands                  ",
+  "\x07         ICE: Bonn - Berlin            ",
+  "\x07         bis 05.30 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Tagesschau >\x06310",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x333} = 24;
+$PgSub{0x333} = 0;
+$PgLang{0x333} = 1;
+$Pkg{0x333|(0x0000<<12)} =
+[
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "\x0B\x0B\x06\x1D   \x04\x1D\x07Zurzeit im Ersten             ",
+  "\x0B\x0B\x0720.00  Tagesschau UT ............ 310",
+  "\x0B\x0B\x0620.15  Das Fr}hlingsfest UT ..... 324",
+  "\x0B\x0B\x07      \x06der Volksmusik                ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x351} = 1;
+$PgSub{0x351} = 4;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0001<<12)} =
+[
+  "        351\x07ARDtext\x07Sa 20.03.10\x0720:05:04",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 22.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  05.30  ZDF-Morgenmagazin             ",
+  "\x07 \x0609.00  heute                         ",
+  "\x03!\x0709.05  Sportschau extra:\x03UT          ",
+  "\x07         Paralympics Vancouver 2010    ",
+  "\x07         Highlights                    ",
+  "\x07 \x0610.00  heute                         ",
+  "\x07  10.03  Das Fr}hlingsfest der         ",
+  "\x07         Volksmusik                    ",
+  "\x07         mit Florian Silbereisen       ",
+  "\x07 \x0612.00  heute                         ",
+  "\x07        \x06mit B|rsenbericht             ",
+  "\x07  12.15  ARD-Buffet\x03HD                 ",
+  "\x07         Moderation: Florian Weber     ",
+  "\x07 \x0613.00  ZDF-Mittagsmagazin            ",
+  "\x07        \x06mit heute-Nachrichten         ",
+  "\x07        \x06bis 14.00 Uhr                 ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           1/4       Nachmittag >",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x351} = 1;
+$PgSub{0x351} = 4;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0002<<12)} =
+[
+  "        351\x07ARDtext\x07Sa 20.03.10\x0720:05:33",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 22.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  14.00  Tagesschau                    ",
+  "\x07 \x0614.10  Rote Rosen (765)              ",
+  "\x07  15.00  Tagesschau                    ",
+  "\x07 \x0615.10  Sturm der Liebe (1036)        ",
+  "\x07  16.00  Tagesschau\x03UT                 ",
+  "\x07 \x0616.10  Nashorn, Zebra & Co.          ",
+  "\x07        \x06Tierpark Hellabrunn           ",
+  "\x07  17.00  Tagesschau\x03UT                 ",
+  "\x07 \x0617.15  Brisant\x03UT                    ",
+  "\x07        \x06Boulevardmagazin              ",
+  "\x07  18.00  Verbotene Liebe (3579)        ",
+  "\x07 \x0618.25  Marienhof (3781)              ",
+  "\x07  18.50  Gro~stadtrevier               ",
+  "\x07         Das Geheimnis des             ",
+  "\x07         Hafenpastors (D, 2007)        ",
+  "\x07         bis 19.50 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           2/4            Abend >",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x351} = 2;
+$PgSub{0x351} = 4;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0003<<12)} =
+[
+  "        351\x07ARDtext\x07Sa 20.03.10\x0720:06:03",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 22.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07 \x0619.50  Das Wetter im Ersten          ",
+  "\x07  19.55  B|rse im Ersten               ",
+  "\x07 \x0620.00  Tagesschau\x03UT                 ",
+  "\x03!\x0720.15  Erlebnis Erde:\x03UT             ",
+  "\x07         Kaltbl}tig (3/4)              ",
+  "\x07         Schlangen mit Pfiff           ",
+  "\x03!\x0621.00  Der K{mpfer -                 ",
+  "\x07        \x06Helmut Kohl im R}ckblick      ",
+  "\x03!\x0721.45  Report Mainz                  ",
+  "\x07         Moderation: Fritz Frey        ",
+  "\x07 \x0622.15  Tagesthemen                   ",
+  "\x07  22.43  Das Wetter im Ersten          ",
+  "\x03!\x0622.45  Beckmann                      ",
+  "\x07        \x06bis 00.00 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           3/4            Nacht >",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x351} = 2;
+$PgSub{0x351} = 4;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0004<<12)} =
+[
+  "        351\x07ARDtext\x07Sa 20.03.10\x0720:06:33",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 22.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x05230310                                 ",
+  "\x07  00.00  Nachtmagazin                  ",
+  "\x03!\x0600.20  Dittsche -                    ",
+  "\x07        \x06Das wirklich wahre Leben      ",
+  "\x07  00.50  M{nner sind zum               ",
+  "\x07         K}ssen da (USA, 1997)         ",
+  "\x07 \x0602.15  Tagesschau                    ",
+  "\x07  02.20  Sturm der Liebe (1036)        ",
+  "\x07 \x0603.10  Der K{mpfer -                 ",
+  "\x07        \x06Helmut Kohl im R}ckblick      ",
+  "\x07  03.55  W wie Wissen\x03HD               ",
+  "\x07 \x0604.25  Die sch|nsten Bahnstrecken    ",
+  "\x07        \x06Deutschlands                  ",
+  "\x07        \x06ICE: Bonn - Berlin            ",
+  "\x07  04.55  Tagesschau                    ",
+  "\x07 \x0605.00  Report Mainz                  ",
+  "\x07        \x06bis 05.30 Uhr                 ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<           4/4     Dienstag >\x06352",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PkgCni{0xDC1} = 4501;
+$PkgCni{0x4901} = 180;
+1;

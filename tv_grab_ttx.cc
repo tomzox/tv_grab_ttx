@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.13 2010/04/01 10:16:52 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.14 2010/04/05 13:14:18 tom Exp $
  */
 
 #include <stdio.h>
@@ -382,29 +382,10 @@ public:
    bool read_raw_pkg(int fd);
 };
 
-class TV_SLOT
+class TV_FEAT
 {
 public:
-   TV_SLOT() { clear(); }
-   void clear() {
-      m_hour = -1;
-      m_min = -1;
-      m_mday = -1;
-      m_month = -1;
-      m_year = -1;
-      m_date_off = 0;
-      m_vps_date.clear();
-      m_vps_time.clear();
-      m_vps_cni = -1;
-      m_end_hour = -1;
-      m_end_min = -1;
-      m_ttx_ref = -1;
-      m_title.clear();
-      m_subtitle.clear();
-      m_desc.clear();
-      m_start_t = -1;
-      m_stop_t = -1;
-
+   TV_FEAT() {
       m_has_subtitles = false;
       m_is_2chan = false;
       m_is_aspect_16_9 = false;
@@ -415,24 +396,36 @@ public:
       m_is_omu = false;
       m_is_stereo = false;
       m_is_tip = false;
-   }
-   bool is_valid() const { return !m_title.empty(); }
-public:
-   int          m_hour;
-   int          m_min;
-   int          m_mday;
-   int          m_month;
-   int          m_year;
-   int          m_date_off;
-   string       m_vps_time;
-   string       m_vps_date;
-   int          m_vps_cni;
-   int          m_end_hour;
-   int          m_end_min;
-   int          m_ttx_ref;
-   time_t       m_start_t;
-   time_t       m_stop_t;
+   };
+   void set_tip(bool v) { if (v) m_is_tip = true; };
+private:
+   enum TV_FEAT_TYPE
+   {
+      TV_FEAT_SUBTITLES,
+      TV_FEAT_2CHAN,
+      TV_FEAT_ASPECT_16_9,
+      TV_FEAT_HDTV,
+      TV_FEAT_BW,
+      TV_FEAT_HD,
+      TV_FEAT_DOLBY,
+      TV_FEAT_MONO,
+      TV_FEAT_OMU,
+      TV_FEAT_STEREO,
+      TV_FEAT_TIP,
+      TV_FEAT_COUNT
+   };
+   struct TV_FEAT_STR
+   {
+      const char         * p_name;
+      TV_FEAT_TYPE         type;
+   };
+   static const TV_FEAT_STR FeatToFlagMap[];
 
+   void MapTrailingFeat(const char * feat, int len, const string& title);
+public:
+   void ParseTrailingFeat(string& title);
+   static void RemoveTrailingFeat(string& title);
+public:
    bool         m_has_subtitles;
    bool         m_is_2chan;
    bool         m_is_aspect_16_9;
@@ -443,36 +436,46 @@ public:
    bool         m_is_omu;
    bool         m_is_stereo;
    bool         m_is_tip;
+};
+
+class TV_SLOT
+{
+public:
+   TV_SLOT(int ttx_ref, time_t start_ts, time_t stop_ts,
+           const string& vps_time, const string& vps_date)
+      : m_start_t(start_ts)
+      , m_stop_t(stop_ts)
+      , m_vps_time(vps_time)
+      , m_vps_date(vps_date)
+      , m_ttx_ref(ttx_ref) {
+   }
+public:
+   time_t       m_start_t;
+   time_t       m_stop_t;
+   string       m_vps_time;
+   string       m_vps_date;
 
    string       m_title;
    string       m_subtitle;
    string       m_desc;
+   TV_FEAT      m_feat;
+   int          m_ttx_ref;
 };
 
 class T_PG_DATE
 {
 public:
-   T_PG_DATE() { clear(); };
-   void clear() {
-      m_page = -1;
-      m_sub_page = -1;
+   T_PG_DATE() {
       m_mday = -1;
       m_month = -1;
       m_year = -1;
       m_date_off = 0;
-      m_head_end = -1;
-      m_sub_page_skip = 0;
    };
-   bool is_valid() const { return m_year != -1; };
 public:
-   int          m_page;
-   int          m_sub_page;
    int          m_mday;
    int          m_month;
    int          m_year;
    int          m_date_off;
-   int          m_head_end;
-   mutable int  m_sub_page_skip;
 };
 
 class T_VPS_TIME
@@ -484,6 +487,63 @@ public:
    bool         m_new_vps_date;
    int          m_vps_cni;
 };
+
+class T_OV_FMT_STAT;
+class OV_SLOT;
+
+class OV_PAGE
+{
+public:
+   OV_PAGE(int page, int sub);
+   ~OV_PAGE();
+   bool parse_slots(int foot_line, const T_OV_FMT_STAT& pgfmt);
+   bool parse_ov_date();
+   bool check_redundant_subpage(OV_PAGE * prev);
+   void calc_stop_times(const OV_PAGE * next);
+   bool is_adjacent(const OV_PAGE * prev) const;
+   bool calc_date_off(const OV_PAGE * prev);
+   void calculate_start_times();
+   void extract_tv(list<TV_SLOT*>& tv_slots);
+private:
+   bool parse_end_time(const string& text, int& hour, int& min);
+private:
+   const int    m_page;
+   const int    m_sub;
+   T_PG_DATE    m_date;
+   int          m_sub_page_skip;
+   int          m_head;
+   int          m_foot;
+   vector<OV_SLOT*> m_slots;
+};
+
+class OV_SLOT
+{
+public:
+   OV_SLOT(int hour, int min, bool is_tip);
+   ~OV_SLOT();
+private:
+   friend class OV_PAGE;
+   time_t       m_start_t;
+   time_t       m_stop_t;
+   int          m_hour;
+   int          m_min;
+   int          m_end_hour;
+   int          m_end_min;
+   string       m_vps_time;
+   string       m_vps_date;
+   int          m_ttx_ref;
+   bool         m_is_tip;
+   vector<string> m_title;
+public:
+   void add_title(string ctrl);
+   bool ParseTrailingTtxRef(string& title);
+   void parse_ttx_ref();
+   void parse_feature_flags(TV_SLOT * p_slot);
+   void parse_title(TV_SLOT * p_slot);
+   time_t ConvertStartTime(const T_PG_DATE * pgdate, int date_off) const;
+   bool is_same_prog(const OV_SLOT& v) const;
+};
+
 
 // global data
 TTX_DB ttx_db;
@@ -507,6 +567,9 @@ bool opt_verify = false;
 int opt_tv_start = 0x301;
 int opt_tv_end = 0x399;
 int opt_expire = 120;
+
+// forward declarations
+void ParseDescPage(TV_SLOT * slot);
 
 
 /* ------------------------------------------------------------------------------
@@ -1109,6 +1172,24 @@ int atox_substr(const MATCH& match)
    return match.matched ? atox_substr(match.first, match.second) : -1;
 }
 
+template<class IT>
+void str_blank(const IT& first, const IT& second)
+{
+   IT p = first;
+   while (p != second) {
+      *(p++) = ' ';
+   }
+}
+
+template<class MATCH>
+void str_blank(const MATCH& match)
+{
+   if (match.matched) {
+      str_blank(match.first, match.second);
+   }
+}
+
+
 
 /* Turn the entire given string into lower-case.
  */
@@ -1119,12 +1200,26 @@ void str_tolower(string& str)
    }
 }
 
+/* Replace all TTX control characters with whitespace. Note this is used after
+ * G0 to Latin-1 conversion, so there may be 8-bit chars.
+ */
+void str_repl_ctrl(string& str)
+{
+   for (int idx = 0; idx < VT_PKG_RAW_LEN; idx++) {
+      unsigned char c = str[idx];
+      if ((c <= 0x1F) || (c == 0x7F))
+         str[idx] = ' ';
+   }
+}
+
 /* Append the second sring to the first one, with exactly one blank
  * in-between. Exception: if the first string ends in "-" and the
  * second starts lower-case, remove the "-" and append w/o blank.
  */
-void str_concat_title(string& title, const string& str2)
+bool str_concat_title(string& title, const string& str2, bool if_cont_only)
 {
+   bool result = false;
+
    // count whitespace at the end of the first string
    string::reverse_iterator p_end = title.rbegin();
    uint del1 = 0;
@@ -1154,16 +1249,20 @@ void str_concat_title(string& title, const string& str2)
       // append (replace) the second string, skipping whitespace
       title.replace(title.end() - del1 - 1, title.end(),
                     p_start, str2.end());
+      result = true;
    }
-   else
+   else if (!if_cont_only)
    {
       if (del1 > 0)
          title.erase(title.end() - del1);
 
-      title.append(1, ' ');
+      if ((title.length() > 0) && (p_start != str2.end()))
+         title.append(1, ' ');
+
       // append the second string, skipping whitespace
       title.append(p_start, str2.end());
    }
+   return result;
 }
 
 /* Check if there's a word boundary in the given string beginning
@@ -2386,83 +2485,177 @@ bool CheckDate(int mday, int month, int year,
 class T_OV_FMT_STAT
 {
 public:
-   T_OV_FMT_STAT() : time_off(-1), vps_off(-1), title_off(-1), subt_off(-1) {}
+   T_OV_FMT_STAT() : m_time_off(-1), m_vps_off(-1), m_title_off(-1), m_subt_off(-1) {}
    bool operator==(const T_OV_FMT_STAT& b) const {
-      return (   (time_off == b.time_off)
-              && (vps_off == b.vps_off)
-              && (title_off == b.title_off)
-              && (separator == b.separator));
+      return (   (m_time_off == b.m_time_off)
+              && (m_vps_off == b.m_vps_off)
+              && (m_title_off == b.m_title_off)
+              && (m_separator == b.m_separator));
    }
    bool operator<(const T_OV_FMT_STAT& b) const {
-      return    (time_off < b.time_off)
-             || (   (time_off == b.time_off)
-                 && (   (vps_off < b.vps_off)
-                     || (   (vps_off == b.vps_off)
-                         && (   (title_off < b.title_off)
-                             || (   (title_off == b.title_off)
-                                 && (separator < b.separator) )))));
+      return    (m_time_off < b.m_time_off)
+             || (   (m_time_off == b.m_time_off)
+                 && (   (m_vps_off < b.m_vps_off)
+                     || (   (m_vps_off == b.m_vps_off)
+                         && (   (m_title_off < b.m_title_off)
+                             || (   (m_title_off == b.m_title_off)
+                                 && (m_separator < b.m_separator) )))));
    }
-   const char * print_key() const {
-      static char buf[100];
-      sprintf(buf, "time:%d,vps:%d,title:%d,title2:%d,MMHH-sep:'%c'",
-              time_off, vps_off, title_off, subt_off, separator);
-      return buf;
-   }
-   bool is_valid() const { return time_off >= 0; }
+   const char * print_key() const;
+   bool detect_fmt(const string& text, const string& text2);
+   bool parse_title_line(const string& text, int& hour, int& min, bool &is_tip) const;
+   bool parse_subtitle(const string& text) const;
+   string extract_title(const string& text) const;
+   string extract_subtitle(const string& text) const;
+   bool is_valid() const { return m_time_off >= 0; }
+   int get_subt_off() const { return m_subt_off; }
+   void set_subt_off(const T_OV_FMT_STAT& v) { m_subt_off = v.m_subt_off; }
 public:
-   int time_off;    ///< Offset to HH:MM or HH.MM
-   int vps_off;     ///< Offset to HHMM (concealed VPS)
-   int title_off;   ///< Offset to title
-   int subt_off;    ///< Offset to 2nd title line
-   char separator;  ///< HH:MM separator character
-   //int mod;       ///< hour*60+minute (minutes since midnight)
+   int m_time_off;    ///< Offset to HH:MM or HH.MM
+   int m_vps_off;     ///< Offset to HHMM (concealed VPS)
+   int m_title_off;   ///< Offset to title
+   int m_subt_off;    ///< Offset to 2nd title line
+   char m_separator;  ///< HH:MM separator character
+   //int m_mod;       ///< hour*60+minute (minutes since midnight)
 };
+
+const char * T_OV_FMT_STAT::print_key() const
+{
+   static char buf[100];
+   sprintf(buf, "time:%d,vps:%d,title:%d,title2:%d,MMHH-sep:'%c'",
+           m_time_off, m_vps_off, m_title_off, m_subt_off, m_separator);
+   return buf;
+}
+
+bool T_OV_FMT_STAT::parse_title_line(const string& text, int& hour, int& min, bool &is_tip) const
+{
+   match_results<string::const_iterator> whati;
+   bool result = false;
+
+   if (m_vps_off >= 0) {
+      // TODO: Phoenix wraps titles into 2nd line, appends subtitle with "-"
+      // m#^ {0,2}(\d\d)[\.\:](\d\d)( {1,3}(\d{4}))? +#
+      static const regex expr2("^ *([\\*!] +)?$");
+      if (regex_search(text.begin(), text.begin() + m_time_off, whati, expr2)) {
+         is_tip = whati[1].matched;
+         // note: VPS time has already been extracted above, so the area is blank
+         static const regex expr3("^(2[0-3]|[01][0-9])([\\.:])([0-5][0-9]) +[^ ]$");
+         if (   regex_search(text.begin() + m_time_off,
+                             text.begin() + m_title_off + 1,
+                             whati, expr3)
+             && (whati[2].first[0] == m_separator) ) {
+            hour = atoi_substr(whati[1]);
+            min = atoi_substr(whati[3]);
+            result = true;
+         }
+      }
+   }
+   else {
+      // m#^( {0,5}| {0,3}\! {1,3})(\d\d)[\.\:](\d\d) +#
+      static const regex expr5("^ *([\\*!] +)?$");
+      if (regex_search(text.begin(), text.begin() + m_time_off, whati, expr5)) {
+         is_tip = whati[1].matched;
+         static const regex expr6("^(2[0-3]|[01][0-9])([\\.:])([0-5][0-9]) +[^ ]$");
+         if (   regex_search(text.begin() + m_time_off,
+                             text.begin() + m_title_off + 1,
+                             whati, expr6)
+             && (whati[2].first[0] == m_separator) ) {
+            hour = atoi_substr(whati[1]);
+            min = atoi_substr(whati[3]);
+            result = true;
+         }
+      }
+   }
+   return result;
+}
+
+bool T_OV_FMT_STAT::parse_subtitle(const string& text) const
+{
+   bool result = false;
+
+   if (m_subt_off >= 0) {
+      static const regex expr10("^[ \\x00-\\x07\\x10-\\x17]*$");
+      static const regex expr11("^[ \\x00-\\x07\\x10-\\x17]*$");
+      match_results<string::const_iterator> whati;
+
+      if (   !regex_search(text.begin(), text.begin() + m_subt_off, whati, expr10)
+          || regex_search(text.begin() + m_subt_off, text.end(), whati, expr11) )
+      {
+      }
+      else {
+         result = true;
+      }
+   }
+   return result;
+}
+
+string T_OV_FMT_STAT::extract_title(const string& text) const
+{
+   return text.substr(m_title_off);
+}
+
+string T_OV_FMT_STAT::extract_subtitle(const string& text) const
+{
+   return text.substr(m_subt_off);
+}
+
+bool T_OV_FMT_STAT::detect_fmt(const string& text, const string& text2)
+{
+   smatch whats;
+
+   // look for a line containing a start time (hour 0-23 : minute 0-59)
+   // TODO allow start-stop times "10:00-11:00"?
+   static const regex expr1("^( *| *! +)([01][0-9]|2[0-3])([\\.:])([0-5][0-9]) +");
+   if (regex_search(text, whats, expr1)) {
+      int off = whats[0].length();
+
+      m_time_off = whats[1].length();
+      m_vps_off = -1;
+      m_title_off = off;
+      m_subt_off = -1;
+      m_separator = whats[3].first[0];
+      // TODO require that times are increasing (within the same format)
+      //m_mod = atoi_substr(whats[2]) * 60 + atoi_substr(whats[4]);
+
+      // look for a VPS label on the same line after the human readable start time
+      // TODO VPS must be magenta or concealed
+      static const regex expr2("^([0-2][0-9][0-5][0-9] +)");
+      if (regex_search(text.begin() + off, text.end(), whats, expr2)) {
+         m_vps_off = off;
+         m_title_off = off + whats[1].length();
+      }
+      else {
+         m_vps_off = -1;
+         m_title_off = off;
+      }
+
+      // measure the indentation of the following line, if starting with a letter (2nd title line)
+      static const regex expr3("^( *| *([01][0-9]|2[0-3])[0-5][0-9] +)[[:alpha:]]");
+      static const regex expr4("^( *)[[:alpha:]]");
+      if ( (m_vps_off == -1)
+           ? regex_search(text2, whats, expr3)
+           : regex_search(text2, whats, expr4) )
+      {
+         m_subt_off = whats[1].second - whats[1].first;
+      }
+
+      //if (opt_debug) printf("FMT(%03X.%d.%d): %s\n", page, sub, line, fmt.print_key());
+      return true;
+   }
+   return false;
+}
 
 void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
 {
    const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
+   T_OV_FMT_STAT fmt;
    smatch whats;
 
    for (int line = 5; line <= 21; line++) {
       const string& text = pgtext->get_text(line);
-      // look for a line containing a start time (hour 0-23 : minute 0-59)
-      // TODO allow start-stop times "10:00-11:00"?
-      static const regex expr1("^( *| *! +)([01][0-9]|2[0-3])([\\.:])([0-5][0-9]) +");
-      if (regex_search(text, whats, expr1)) {
-         int off = whats[0].length();
-         struct T_OV_FMT_STAT fmt;
-         fmt.time_off = whats[1].length();
-         fmt.vps_off = -1;
-         fmt.title_off = off;
-         fmt.subt_off = -1;
-         fmt.separator = whats[3].first[0];
-         // TODO require that times are increasing (within the same format)
-         //fmt.mod = atoi_substr(whats[2]) * 60 + atoi_substr(whats[4]);
+      const string& text2 = pgtext->get_text(line + 1);
 
-         // look for a VPS label on the same line after the human readable start time
-         // TODO VPS must be magenta or concealed
-         static const regex expr2("^([0-2][0-9][0-5][0-9] +)");
-         if (regex_search(text.begin() + off, text.end(), whats, expr2)) {
-            fmt.vps_off = off;
-            fmt.title_off = off + whats[1].length();
-         }
-         else {
-            fmt.vps_off = -1;
-            fmt.title_off = off;
-         }
-
-         // measure the indentation of the following line, if starting with a letter (2nd title line)
-         static const regex expr3("^( *| *([01][0-9]|2[0-3])[0-5][0-9] +)[[:alpha:]]");
-         static const regex expr4("^( *)[[:alpha:]]");
-         const string& text2 = pgtext->get_text(line + 1);
-         if ( (fmt.vps_off == -1)
-              ? regex_search(text2, whats, expr3)
-              : regex_search(text2, whats, expr4) )
-         {
-            fmt.subt_off = whats[1].second - whats[1].first;
-         }
-
-         //if (opt_debug) printf("FMT(%03X.%d.%d): %s\n", page, sub, line, fmt.print_key());
+      if (fmt.detect_fmt(text, text2)) {
          fmt_list.push_back(fmt);
       }
    }
@@ -2518,18 +2711,18 @@ T_OV_FMT_STAT DetectOvFormat()
       max_cnt = 0;
       for (uint idx = 0; idx < fmt_list.size(); idx++) {
          if (   (fmt_list[idx] == fmt)
-             && (fmt_list[idx].subt_off != -1))
+             && (fmt_list[idx].get_subt_off() != -1))
          {
-            map<int,int>::iterator p = fmt_subt.find(fmt_list[idx].subt_off);
+            map<int,int>::iterator p = fmt_subt.find(fmt_list[idx].get_subt_off());
             if (p != fmt_subt.end()) {
                p->second += 1;
             }
             else {
-               fmt_subt[fmt_list[idx].subt_off] = 1;
+               fmt_subt[fmt_list[idx].get_subt_off()] = 1;
             }
-            if (fmt_subt[fmt_list[idx].subt_off] > max_cnt) {
-               max_cnt = fmt_subt[fmt_list[idx].subt_off];
-               fmt.subt_off = fmt_list[idx].subt_off;
+            if (fmt_subt[fmt_list[idx].get_subt_off()] > max_cnt) {
+               max_cnt = fmt_subt[fmt_list[idx].get_subt_off()];
+               fmt.set_subt_off( fmt_list[idx] );
             }
          }
       }
@@ -2545,18 +2738,34 @@ T_OV_FMT_STAT DetectOvFormat()
    return fmt;
 }
 
+OV_PAGE::OV_PAGE(int page, int sub)
+   : m_page(page)
+   , m_sub(sub)
+   , m_sub_page_skip(0)
+   , m_head(-1)
+   , m_foot(23)
+{
+}
+
+OV_PAGE::~OV_PAGE()
+{
+   for (uint idx = 0; idx < m_slots.size(); idx++) {
+      delete m_slots[idx];
+   }
+}
+
 /* ------------------------------------------------------------------------------
  * Parse date in an overview page
  * - similar to dates on description pages
  */
-void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
+bool OV_PAGE::parse_ov_date()
 {
    int reldate = -1;
    int mday = -1;
    int month = -1;
    int year = -1;
 
-   const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
+   const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(m_page, m_sub);
    int lang = pgtext->get_lang();
 
    string wday_match = GetDateNameRegExp(WDayNames, lang, DATE_NAME_FULL);
@@ -2566,11 +2775,12 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
    smatch whats;
    int prio = -1;
 
-   for (int line = 1; line < pgdate.m_head_end; line++)
+   for (int line = 1; line < m_head; line++)
    {
+      const string& text = pgtext->get_text(line);
+
       // [Mo.]13.04.[2006]
       // So,06.01.
-      const string& text = pgtext->get_text(line);
       static regex expr1[8];
       static regex expr2[8];
       if (expr1[lang].empty()) {
@@ -2612,7 +2822,9 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
             prio = 3;
          }
       }
+
       if (prio >= 3) continue;
+
       // "Do. 21-22 Uhr" (e.g. on VIVA)  --  TODO internationalize "Uhr"
       // "Do  21:00-22:00" (e.g. Tele-5)
       static regex expr6[8];
@@ -2630,7 +2842,9 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
             reldate = off;
          prio = 2;
       }
+
       if (prio >= 2) continue;
+
       // monday, tuesday, ... (non-abbreviated only)
       static regex expr7[8];
       if (expr7[lang].empty()) {
@@ -2642,7 +2856,9 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
             reldate = off;
          prio = 1;
       }
+
       if (prio >= 1) continue;
+
       // today, tomorrow, ...
       static regex expr8[8];
       if (expr8[lang].empty()) {
@@ -2670,12 +2886,16 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
       int cur_year = ptm->tm_year + 1900;
       year += (cur_year - cur_year % 100);
    }
+   else if (year == -1) {
+      if (opt_debug) printf("OV DATE %03X.%04X: no match\n", m_page, m_sub);
+   }
 
-   // return results via the struct
-   pgdate.m_mday = mday;
-   pgdate.m_month = month;
-   pgdate.m_year = year;
-   pgdate.m_date_off = 0;
+   m_date.m_mday = mday;
+   m_date.m_month = month;
+   m_date.m_year = year;
+   m_date.m_date_off = 0;
+
+   return (year != -1);
 }
 
 /* ------------------------------------------------------------------------------
@@ -2702,28 +2922,8 @@ void ParseOvHeaderDate(int page, int sub, T_PG_DATE& pgdate)
  *
  * TODO: some tags need to be localized (i.e. same as month names etc.)
  */
-enum TV_FEAT_TYPE
-{
-   TV_FEAT_SUBTITLES,
-   TV_FEAT_2CHAN,
-   TV_FEAT_ASPECT_16_9,
-   TV_FEAT_HDTV,
-   TV_FEAT_BW,
-   TV_FEAT_HD,
-   TV_FEAT_DOLBY,
-   TV_FEAT_MONO,
-   TV_FEAT_OMU,
-   TV_FEAT_STEREO,
-   TV_FEAT_TIP,
-   TV_FEAT_COUNT
-};
-struct TV_FEAT_STR
-{
-   const char         * p_name;
-   TV_FEAT_TYPE         type;
-};
 
-const TV_FEAT_STR FeatToFlagMap[] =
+const TV_FEAT::TV_FEAT_STR TV_FEAT::FeatToFlagMap[] =
 {
    { "untertitel", TV_FEAT_SUBTITLES },
    { "ut", TV_FEAT_SUBTITLES },
@@ -2731,6 +2931,7 @@ const TV_FEAT_STR FeatToFlagMap[] =
    { "sw", TV_FEAT_BW },
    { "s/w", TV_FEAT_BW },
    { "hd", TV_FEAT_HD },
+   { "breitbild", TV_FEAT_ASPECT_16_9 },
    { "16:9", TV_FEAT_ASPECT_16_9 },
    { "hd", TV_FEAT_HDTV },
    { "°°", TV_FEAT_2CHAN }, // according to ARD page 395
@@ -2757,12 +2958,12 @@ const TV_FEAT_STR FeatToFlagMap[] =
 };
 #define TV_FEAT_MAP_LEN (sizeof(FeatToFlagMap)/sizeof(FeatToFlagMap[0]))
 
-void MapTrailingFeat(const char * feat, int len, TV_SLOT& slot, const string& title)
+void TV_FEAT::MapTrailingFeat(const char * feat, int len, const string& title)
 {
    if ((len >= 2) && (strncasecmp(feat, "ut", 2) == 0)) // TV_FEAT_SUBTITLES
    {
       if (opt_debug) printf("FEAT \"%s\" -> on TITLE %s\n", feat, title.c_str());
-      slot.m_has_subtitles = true;
+      m_has_subtitles = true;
       return;
    }
 
@@ -2772,16 +2973,16 @@ void MapTrailingFeat(const char * feat, int len, TV_SLOT& slot, const string& ti
       {
          switch (FeatToFlagMap[idx].type)
          {
-            case TV_FEAT_SUBTITLES:     slot.m_has_subtitles = true; break;
-            case TV_FEAT_2CHAN:         slot.m_is_2chan = true; break;
-            case TV_FEAT_ASPECT_16_9:   slot.m_is_aspect_16_9 = true; break;
-            case TV_FEAT_HD:            slot.m_is_video_hd = true; break;
-            case TV_FEAT_BW:            slot.m_is_video_bw = true; break;
-            case TV_FEAT_DOLBY:         slot.m_is_dolby = true; break;
-            case TV_FEAT_MONO:          slot.m_is_mono = true; break;
-            case TV_FEAT_OMU:           slot.m_is_omu = true; break;
-            case TV_FEAT_STEREO:        slot.m_is_stereo = true; break;
-            case TV_FEAT_TIP:           slot.m_is_tip = true; break;
+            case TV_FEAT_SUBTITLES:     m_has_subtitles = true; break;
+            case TV_FEAT_2CHAN:         m_is_2chan = true; break;
+            case TV_FEAT_ASPECT_16_9:   m_is_aspect_16_9 = true; break;
+            case TV_FEAT_HD:            m_is_video_hd = true; break;
+            case TV_FEAT_BW:            m_is_video_bw = true; break;
+            case TV_FEAT_DOLBY:         m_is_dolby = true; break;
+            case TV_FEAT_MONO:          m_is_mono = true; break;
+            case TV_FEAT_OMU:           m_is_omu = true; break;
+            case TV_FEAT_STEREO:        m_is_stereo = true; break;
+            case TV_FEAT_TIP:           m_is_tip = true; break;
             default: assert(false); break;
          }
          if (opt_debug) printf("FEAT \"%s\" -> on TITLE %s\n", feat, title.c_str());
@@ -2794,12 +2995,12 @@ void MapTrailingFeat(const char * feat, int len, TV_SLOT& slot, const string& ti
 // note: must correct $n below if () are added to pattern
 #define FEAT_PAT_STR "UT(( auf | )?[1-8][0-9][0-9])?|" \
                      "[Uu]ntertitel|[Hh]örfilm(°°)?|HF|AD|" \
-                     "s/?w|S/?W|tlw. s/w|oo|°°|°\\*|OmU|16:9|HD|" \
+                     "s/?w|S/?W|tlw. s/w|oo|°°|°\\*|OmU|16:9|HD|[Bb]reitbild|" \
                      "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|" \
                      "DS|SS|DD|ZS|" \
                      "Wh\\.?|Wdh\\.?|Whg\\.?|Tipp!?"
 
-void RemoveTrailingFeat(string& title)
+void TV_FEAT::RemoveTrailingFeat(string& title)
 {
    static const regex expr3("\\(((" FEAT_PAT_STR ")(( ?/ ?|, ?| )(" FEAT_PAT_STR "))*)\\)$");
    static const regex expr4("((" FEAT_PAT_STR ")"
@@ -2812,9 +3013,8 @@ void RemoveTrailingFeat(string& title)
    }
 }
 
-void ParseTrailingFeat(string& title, TV_SLOT& slot)
+bool OV_SLOT::ParseTrailingTtxRef(string& title)
 {
-   string orig_title = regex_replace(title, regex("[\\x00-\\x1F\\x7F]"), " ");
    smatch whats;
 
    // teletext reference (there's at most one at the very right, so parse this first)
@@ -2822,18 +3022,28 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
                             "|[\\.>]*[\\x00-\\x07\\x1D]+)"
                             "([1-8][0-9][0-9]) {0,3}$");
    if (regex_search(title, whats, expr1)) {
-      string ttx_ref = string(whats[2].first, whats[2].second);
+      if (opt_debug) {
+         string orig_title = regex_replace(title, regex("[\\x00-\\x1F\\x7F]"), " ");
+         printf("OV TTX ref %c%c%c on TITLE %s\n",
+                whats[2].first[0], whats[2].first[1], whats[2].first[2], orig_title.c_str());
+      }
 
       const char * p = &(whats[2].first[0]);
-      slot.m_ttx_ref = ((p[0] - 0x30)<<8) |
-                       ((p[1] - 0x30)<<4) |
-                       (p[2] - 0x30);
-      if (opt_debug) printf("FEAT TTX ref \"%s\" on TITLE %s\n", ttx_ref.c_str(), orig_title.c_str());
+      m_ttx_ref = ((p[0] - 0x30)<<8) |
+                  ((p[1] - 0x30)<<4) |
+                  (p[2] - 0x30);
 
       // warning: must be done last - invalidates "whats"
       title.erase(title.length() - whats[0].length());
+      return true;
    }
+   return false;
+}
 
+void TV_FEAT::ParseTrailingFeat(string& title)
+{
+   string orig_title = regex_replace(title, regex("[\\x00-\\x1F\\x7F]"), " ");
+   smatch whats;
    // note: remove trailing space here, not in the loop to allow max. 1 space between features
    static const regex expr2("[ \\x00-\\x1F\\x7F]+$");
    title = regex_replace(title, expr2, "");
@@ -2848,7 +3058,7 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
    if (regex_search(title, whats, expr3)) {
       string feat_list = string(whats[2].first, whats[2].second);
 
-      MapTrailingFeat(feat_list.c_str(), whats[3].length(), slot, orig_title);
+      MapTrailingFeat(feat_list.c_str(), whats[3].length(), orig_title);
       feat_list.erase(0, whats[3].length());
 
       // delete everything following the first sub-match
@@ -2857,14 +3067,14 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
       if (feat_list.length() != 0)  {
          static const regex expr5("( ?/ ?|, ?| )(" FEAT_PAT_STR ")$");
          while (regex_search(feat_list, whats, expr5)) {
-            MapTrailingFeat(&*whats[2].first, whats[2].length(), slot, orig_title);
+            MapTrailingFeat(&*whats[2].first, whats[2].length(), orig_title);
             feat_list.erase(feat_list.length() - whats[0].length());
          } 
       }
       else {
          static const regex expr6("[ \\x00-\\x07\\x1D]*\\((" FEAT_PAT_STR ")\\)$");
          while (regex_search(title, whats, expr6)) {
-            MapTrailingFeat(&*whats[1].first, whats[1].length(), slot, orig_title);
+            MapTrailingFeat(&*whats[1].first, whats[1].length(), orig_title);
             title.erase(title.length() - whats[0].length());
          } 
       }
@@ -2872,7 +3082,7 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
    else if (regex_search(title, whats, expr4)) {
       string feat_list = string(whats[3]);
 
-      MapTrailingFeat(feat_list.c_str(), whats[4].length(), slot, orig_title);
+      MapTrailingFeat(feat_list.c_str(), whats[4].length(), orig_title);
       feat_list.erase(0, whats[4].length());
 
       // delete everything following the first sub-match
@@ -2880,7 +3090,7 @@ void ParseTrailingFeat(string& title, TV_SLOT& slot)
 
       static const regex expr7("([,/][ \\x00-\\x07\\x1D]*|[ \\x00-\\x07\\x1D]+)(" FEAT_PAT_STR ")$");
       while (regex_search(feat_list, whats, expr7)) {
-         MapTrailingFeat(&*whats[2].first, whats[2].length(), slot, orig_title);
+         MapTrailingFeat(&*whats[2].first, whats[2].length(), orig_title);
          feat_list.erase(feat_list.length() - whats[0].length());
       } 
    } //else { print "NONE orig_title\n"; }
@@ -3119,69 +3329,180 @@ int ConvertVpsCni(const IT& first, const IT& second)
  * Parse and remove VPS indicators
  * - format as defined in ETS 300 231, ch. 7.3.1.3
  * - matching text is replaced with blanks
- * - for performance reasons the caller should check if there's a magenta
- *   or conceal character in the line before calling this function
  * - TODO: KiKa special: "VPS 20.00" (magenta)
  */
 void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
 {
-   smatch whats;
-   static const regex expr1("^(.*)([\\x05\\x18]+(VPS[\\x05\\x18 ]+)?"
-                            "(\\d{4})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$))");
-   static const regex expr2("^(.*)([\\x05\\x18]+([0-9A-F]{2}\\d{3})[\\x05\\x18 ]+"
-                            "(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$))");
-   static const regex expr3("^(.*)([\\x05\\x18]+(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$))");
-   static const regex expr4("^(.*)([\\x05\\x18]+(\\d{2}[.:]\\d{2}) oo *([\\x00-\\x04\\x06\\x07]|$))");
-   static const regex expr5("^(.*)([\\x05\\x18][\\x05\\x18 ]*VPS *([\\x00-\\x04\\x06\\x07]|$))");
+   match_results<string::iterator> whati;
+   string::iterator starti = text.begin();
 
-   // time
-   // discard any concealed/magenta labels which follow
-   if (regex_search(text, whats, expr1)) {
-      vps_data.m_vps_time.assign(whats[4].first, whats[4].second);
-      vps_data.m_new_vps_time = true;
-      // blank out the same area in the text-only string
-      for (int idx = whats[1].length(); idx < whats[1].length() + whats[2].length(); idx++)
-         text[idx] = ' ';
-      if (opt_debug) printf("VPS time found: %s\n", vps_data.m_vps_time.c_str());
+   // for performance reasons check first if there's a magenta or conceal char
+   static const regex expr0("([\\x05\\x18]+[\\x05\\x18 ]*)([^\\x00-\\x20])");
+   while (regex_search(starti, text.end(), whati, expr0)) {
+      bool is_concealed = false;
+      for (string::iterator p = whati[1].first; p != whati[1].second; p++) {
+         if (*p == '\x18') {
+            is_concealed = true;
+            break;
+         }
+      }
+      starti = whati[2].first;
+
+      static const regex expr1("^(VPS[\\x05\\x18 ]+)?"
+                               "(\\d{4})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$)");
+      static const regex expr2("^([0-9A-F]{2}\\d{3})[\\x05\\x18 ]+"
+                               "(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$)");
+      static const regex expr3("^(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$)");
+      static const regex expr4("^(\\d{2}[.:]\\d{2}) oo *([\\x00-\\x04\\x06\\x07]|$)");
+      static const regex expr5("^VPS *([\\x00-\\x04\\x06\\x07]|$)");
+
+      // time
+      // discard any concealed/magenta labels which follow
+      if (regex_search(starti, text.end(), whati, expr1)) {
+         vps_data.m_vps_time.assign(whati[2].first, whati[2].second);
+         vps_data.m_new_vps_time = true;
+         // blank out the same area in the text-only string
+         str_blank(whati[0]);
+         if (opt_debug) printf("VPS time found: %s\n", vps_data.m_vps_time.c_str());
+      }
+      // CNI and date "1D102 120406 F9" (ignoring checksum)
+      else if (regex_search(starti, text.end(), whati, expr2)) {
+         vps_data.m_vps_date.assign(whati[2].first, whati[2].second);
+         vps_data.m_new_vps_date = true;
+         str_blank(whati[0]);
+         vps_data.m_vps_cni = ConvertVpsCni(whati[1].first, whati[1].second);
+         if (opt_debug) printf("VPS date and CNI: 0x%X, /%s/\n", vps_data.m_vps_cni, vps_data.m_vps_date.c_str());
+      }
+      // date
+      else if (regex_search(starti, text.end(), whati, expr3)) {
+         vps_data.m_vps_date.assign(whati[1].first, whati[1].second);
+         vps_data.m_new_vps_date = true;
+         str_blank(whati[0]);
+         if (opt_debug) printf("VPS date: /%s/\n", vps_data.m_vps_date.c_str());
+      }
+      // end time (RTL special - not standardized)
+      else if (!is_desc && regex_search(starti, text.end(), whati, expr4)) {
+         // detected by the OV parser without evaluating the conceal code
+         //vps_data.m_page_end_time = string(whati[1].first, whati[1].second);
+         //if (opt_debug) printf("VPS(pseudo) page end time: %s\n", vps_data.m_page_end_time);
+      }
+      // "VPS" marker string
+      else if (regex_search(starti, text.end(), whati, expr5)) {
+         str_blank(whati[0]);
+      }
+      else if (is_concealed) {
+         if (opt_debug) printf("VPS label unrecognized in line \"%s\"\n", text.c_str());
+
+         // replace all concealed text with blanks (may also be non-VPS related, e.g. HR3: "Un", "Ra" - who knows what this means to tell us)
+         // FIXME text can also be concealed by setting fg := bg (e.g. on desc pages of MDR)
+         static const regex expr6("^[^\\x00-\\x07\\x10-\\x17]*");
+         if (regex_search(starti, text.end(), whati, expr6)) {
+            str_blank(whati[0]);
+         }
+         if (opt_debug) printf("VPS label unrecognized in line \"%s\"\n", text.c_str());
+      }
    }
-   // CNI and date "1D102 120406 F9" (ignoring checksum)
-   else if (regex_search(text, whats, expr2)) {
-      vps_data.m_vps_date.assign(whats[4].first, whats[4].second);
-      vps_data.m_new_vps_date = true;
-      for (int idx = whats[1].length(); idx < whats[1].length() + whats[2].length(); idx++)
-         text[idx] = ' ';
-      vps_data.m_vps_cni = ConvertVpsCni(whats[3].first, whats[3].second);
-      if (opt_debug) printf("VPS date and CNI: 0x%X, /%s/\n", vps_data.m_vps_cni, vps_data.m_vps_date.c_str());
+}
+
+/* TODO  SWR:
+ *  21.58  2158  Baden-Württemberg Wetter
+ *          VPS   (bis 22.00 Uhr)
+ * TODO ARD
+ *  13.00  ARD-Mittagsmagazin ....... 312
+ *         mit Tagesschau
+ *    VPS  bis 14.00 Uhr
+ */
+bool OV_PAGE::parse_end_time(const string& text, int& hour, int& min)
+{
+   smatch whats;
+   bool result = false;
+
+   // check if last line specifies and end time
+   // (usually last line of page)
+   // TODO internationalize "bis", "Uhr"
+   static const regex expr8("^ *(\\(?bis |ab |\\- ?)(\\d{1,2})[\\.:](\\d{2})"
+                            "( Uhr| ?h)( |\\)|$)");
+   // FIXME does not work because the line is concealed and already blanked when coming here!
+   static const regex expr9("^( *)(\\d\\d)[\\.:](\\d\\d) (oo)? *$");
+   if (   regex_search(text, whats, expr8)   // ARD,SWR,BR-alpha
+       || regex_search(text, whats, expr9) ) // arte, RTL
+   {
+      hour = atoi_substr(whats[2]);
+      min = atoi_substr(whats[3]);
+
+      if (opt_debug) printf("Overview end time: %02d:%02d\n", hour, min);
+      result = true;
    }
-   // date
-   else if (regex_search(text, whats, expr3)) {
-      vps_data.m_vps_date.assign(whats[3].first, whats[3].second);
-      vps_data.m_new_vps_date = true;
-      for (int idx = whats[1].length(); idx < whats[1].length() + whats[2].length(); idx++)
-         text[idx] = ' ';
-      if (opt_debug) printf("VPS date: 3\n");
+   return result;
+}
+
+OV_SLOT::OV_SLOT(int hour, int min, bool is_tip)
+{
+   m_hour = hour;
+   m_min = min;
+   m_is_tip = is_tip;
+   m_start_t = -1;
+   m_stop_t = -1;
+   m_end_hour = -1;
+   m_end_min = -1;
+   m_ttx_ref = -1;
+}
+
+OV_SLOT::~OV_SLOT()
+{
+}
+
+void OV_SLOT::add_title(string subt)
+{
+   m_title.push_back(subt);
+}
+
+void OV_SLOT::parse_ttx_ref()
+{
+   for (uint idx = 0; idx < m_title.size(); idx++) {
+      if (ParseTrailingTtxRef(m_title[idx]))
+         break;
    }
-   // end time (RTL special - not standardized)
-   else if (!is_desc && regex_search(text, whats, expr4)) {
-      // detected by the OV parser without evaluating the conceal code
-      //vps_data.m_page_end_time = string(whats[3].first, whats[3].second);
-      //if (opt_debug) printf("VPS(pseudo) page end time: %s\n", vps_data.m_page_end_time);
+}
+
+void OV_SLOT::parse_feature_flags(TV_SLOT * p_slot)
+{
+   for (uint idx = 0; idx < m_title.size(); idx++) {
+      if (idx != 0)
+         m_title[idx].insert(0, 2, ' '); //FIXME!! HACK
+
+      p_slot->m_feat.ParseTrailingFeat(m_title[idx]);
    }
-   // "VPS" marker string
-   else if (regex_search(text, whats, expr5)) {
-      for (int idx = whats[1].length(); idx < whats[1].length() + whats[2].length(); idx++)
-         text[idx] = ' ';
+}
+
+void OV_SLOT::parse_title(TV_SLOT * p_slot)
+{
+#if 0 // obsolete?
+   // kika special: subtitle appended to title
+   static const regex expr7("(.*\\(\\d+( ?[\\&\\-\\+] ?\\d+)*\\))/ *(\\S.*)");
+   smatch whats;
+   if (regex_search(subt, whats, expr7)) {
+      m_title.push_back(string(whats[1]));
+      m_title.push_back(string(whats[3]));
+      str_chomp(m_title[1]);
    }
    else {
-      if (opt_debug) printf("VPS label unrecognized in line \"%s\"\n", text.c_str());
+      m_title.push_back(subt);
+      str_chomp(m_title[0]);
+   }
+#endif
 
-      // replace all concealed text with blanks (may also be non-VPS related, e.g. HR3: "Un", "Ra" - who knows what this means to tell us)
-      // FIXME text can also be concealed by setting fg := bg (e.g. on desc pages of MDR)
-      static const regex expr6("^(.*)(\\x18[^\\x00-\\x07\\x10-\\x17]*)");
-      if (regex_search(text, whats, expr6)) {
-         for (int idx = whats[1].length(); idx < whats[1].length() + whats[2].length(); idx++)
-            text[idx] = ' ';
-      }
+   // combine title with next line only if finding "-"
+   uint first_subt = 1;
+   p_slot->m_title = m_title[0];
+   while (   (m_title.size() > first_subt)
+          && (str_concat_title(p_slot->m_title, m_title[first_subt], true)) ) {
+      ++first_subt;
+   }
+
+   // rest of lines: combine words separated by line end with "-"
+   for (uint idx = first_subt; idx < m_title.size(); idx++) {
+      str_concat_title(p_slot->m_subtitle, m_title[idx], false);
    }
 }
 
@@ -3191,224 +3512,115 @@ void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
  *   have a tables with strict columns for times and titles; rows that don't
  *   have the expected format are skipped (normally only header & footer)
  */
-void ParseOvList(vector<TV_SLOT>& Slots, int page, int sub, int foot_line,
-                 const T_OV_FMT_STAT& pgfmt, T_PG_DATE& pgdate)
+bool OV_PAGE::parse_slots(int foot_line, const T_OV_FMT_STAT& pgfmt)
 {
-   bool is_tip = false;
-   int hour = -1;
-   int min = -1;
-   string title;
-   smatch whats;
-   match_results<string::iterator> whati;
-   bool new_title = false;
-   bool in_title = false;
-   TV_SLOT slot;
    T_VPS_TIME vps_data;
+   OV_SLOT * ov_slot = 0;
 
-   const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
+   const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(m_page, m_sub);
    vps_data.m_new_vps_date = false;
 
    for (int line = 1; line <= 23; line++) {
       // note: use text including control-characters, because the next 2 steps require these
       string ctrl = pgctrl->get_ctrl(line);
 
-      if (line >= 23) {
-         RemoveTrailingPageFooter(ctrl);
-      }
       // extract and remove VPS labels
       // (labels not asigned here since we don't know yet if a new title starts in this line)
       vps_data.m_new_vps_time = false;
-      static const regex expr1("[\\x05\\x18]+ *[^\\x00-\\x20]");
-      if (regex_search(ctrl, whats, expr1)) {
-         ParseVpsLabel(ctrl, vps_data, false);
-      }
+      ParseVpsLabel(ctrl, vps_data, false);
 
       // remove remaining control characters
       string text = ctrl;
-      for (int idx = 0; idx < VT_PKG_RAW_LEN; idx++) {
-         unsigned char c = text[idx];
-         if ((c <= 0x1F) || (c == 0x7F))
-            text[idx] = ' ';
-      }
+      str_repl_ctrl(text);
 
-      new_title = false;
-      if (pgfmt.vps_off >= 0) {
-         // TODO: Phoenix wraps titles into 2nd line, appends subtitle with "-"
-         // m#^ {0,2}(\d\d)[\.\:](\d\d)( {1,3}(\d{4}))? +#
-         static const regex expr2("^ *([\\*!] +)?$");
-         if (regex_search(text.begin(), text.begin() + pgfmt.time_off, whati, expr2)) {
-            is_tip = whati[1].matched;
-            // note: VPS time has already been extracted above, so the area is blank
-            static const regex expr3("^(2[0-3]|[01][0-9])([\\.:])([0-5][0-9]) +[^ ]$");
-            if (   regex_search(text.begin() + pgfmt.time_off,
-                                text.begin() + pgfmt.title_off + 1,
-                                whati, expr3)
-                && (whati[2].first[0] == pgfmt.separator) ) {
-               hour = atoi_substr(whati[1]);
-               min = atoi_substr(whati[3]);
-               title.assign(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
-               new_title = true;
-            }
-         }
-      }
-      else {
-         // m#^( {0,5}| {0,3}\! {1,3})(\d\d)[\.\:](\d\d) +#
-         static const regex expr5("^ *([\\*!] +)?$");
-         if (regex_search(text.begin(), text.begin() + pgfmt.time_off, whati, expr5)) {
-            is_tip = whati[1].matched;
-            static const regex expr6("^(2[0-3]|[01][0-9])([\\.:])([0-5][0-9]) +[^ ]$");
-            if (   regex_search(text.begin() + pgfmt.time_off,
-                                text.begin() + pgfmt.title_off + 1,
-                                whati, expr6)
-                && (whati[2].first[0] == pgfmt.separator) ) {
-               hour = atoi_substr(whati[1]);
-               min = atoi_substr(whati[3]);
-               new_title = true;
-               title.assign(ctrl, pgfmt.title_off, VT_PKG_RAW_LEN - pgfmt.title_off);
-            }
-         }
-      }
+      bool is_tip = false;
+      int hour = -1;
+      int min = -1;
 
-      if (new_title) {
+      if ( pgfmt.parse_title_line(text, hour, min, is_tip) ) {
          // remember end of page header for date parser
-         if (pgdate.m_head_end < 0)
-            pgdate.m_head_end = line;
+         if (m_head < 0)
+            m_head = line;
 
-         // push previous title
-         if (slot.is_valid())
-            Slots.push_back(slot);
-         slot.clear();
+         if (opt_debug) printf("OV TITLE: \"%s\", %02d:%02d\n", pgfmt.extract_title(text).c_str(), hour, min);
 
-         slot.m_hour = hour;
-         slot.m_min = min;
-         slot.m_is_tip = is_tip;
+         ov_slot = new OV_SLOT(hour, min, is_tip);
+         m_slots.push_back(ov_slot);
+
+         ov_slot->add_title(pgfmt.extract_title(ctrl));
+
          if (vps_data.m_new_vps_time) {
-            slot.m_vps_time = vps_data.m_vps_time;
+            ov_slot->m_vps_time = vps_data.m_vps_time;
          }
          if (vps_data.m_new_vps_date) {
-            slot.m_vps_date = vps_data.m_vps_date;
+            ov_slot->m_vps_date = vps_data.m_vps_date;
             vps_data.m_new_vps_date = false;
          }
-         slot.m_vps_cni = vps_data.m_vps_cni;
+         //ov_slot->m_vps_cni = vps_data.m_vps_cni; // currently unused
 
-         ParseTrailingFeat(title, slot);
-         if (opt_debug) printf("OV TITLE: \"%s\", %02d:%02d\n", title.c_str(), slot.m_hour, slot.m_min);
-
-         // kika special: subtitle appended to title
-         static const regex expr7("(.*\\(\\d+( ?[\\&\\-\\+] ?\\d+)*\\))/ *(\\S.*)");
-         if (regex_search(title, whats, expr7)) {
-            slot.m_subtitle.assign(whats[3].first, whats[3].second);
-            title.assign(whats[1].first, whats[1].second);  // invalidates "whats"
-            slot.m_subtitle = regex_replace(slot.m_subtitle, regex(" {2,}"), " ");
-         }
-         slot.m_title = title;
-         in_title = true;
-         //printf("ADD  %02d.%02d.%d %02d:%02d %s\n", slot.m_mday, slot.m_month, slot.m_year, slot.m_hour, slot.m_min, slot.m_title.c_str());
+         //printf("ADD  %02d.%02d.%d %02d:%02d %s\n", ov_slot->m_mday, ov_slot->m_month, ov_slot->m_year, ov_slot->m_hour, ov_slot->m_min, ov_slot->m_title.c_str());
       }
-      else if (in_title) {
-
+      else if (ov_slot != 0) {
          // stop appending subtitles before page footer ads
          if (line > foot_line)
             break;
 
          if (vps_data.m_new_vps_time)
-            slot.m_vps_time = vps_data.m_vps_time;
+            ov_slot->m_vps_time = vps_data.m_vps_time;
 
-         // check if last line specifies and end time
-         // (usually last line of page)
-         // TODO internationalize "bis", "Uhr"
-         static const regex expr8("^ *(\\(?bis |ab |\\- ?)(\\d{1,2})[\\.:](\\d{2})"
-                                  "( Uhr| ?h)( |\\)|$)");
-         static const regex expr9("^( *)(\\d\\d)[\\.:](\\d\\d) (oo)? *$");
-         if (   regex_search(text, whats, expr8)   // ARD,SWR,BR-alpha
-             || regex_search(text, whats, expr9) ) // arte, RTL
-         {
-            slot.m_end_hour = atoi_substr(whats[2]);
-            slot.m_end_min = atoi_substr(whats[3]);
-            new_title = true;
-            if (opt_debug) printf("Overview end time: %02d:%02d\n", slot.m_end_hour, slot.m_end_min);
+         //FIXME normally only following the last slot on the page
+         if (parse_end_time(text, ov_slot->m_end_hour, ov_slot->m_end_min)) {
+            // end of this slot
+            ov_slot = 0;
          }
          // check if we're still in a continuation of the previous title
          // time column must be empty (possible VPS labels were already removed above)
-         else if (pgfmt.subt_off >= 0) {
-            static const regex expr10("^[ \\x00-\\x07\\x10-\\x17]*$");
-            static const regex expr11("^[ \\x00-\\x07\\x10-\\x17]*$");
-            if (   !regex_search(text.begin(), text.begin() + pgfmt.subt_off, whati, expr10)
-                || regex_search(text.begin() + pgfmt.subt_off, text.end(), whati, expr11) )
-            {
-               new_title = true;
-            }
-         } else {
-            new_title = true;
-         }
+         else if (pgfmt.parse_subtitle(text)) {
+            ov_slot->add_title(pgfmt.extract_subtitle(ctrl));
 
-         if (new_title == false) {
-            string subt = ctrl;
-            ParseTrailingFeat(subt, slot);
-            if (!subt.empty()) {
-               // combine words separated by line end with "-"
-               static const regex expr12("\\S-$");
-               static const regex expr13("^[[:lower:]]");
-               if (   (slot.m_subtitle.size() == 0)
-                   && regex_search(slot.m_title, whats, expr12)
-                   && regex_search(subt, whats, expr13) )
-               {
-                  if (slot.m_title[slot.m_title.size() - 1] == '-')
-                     slot.m_title.erase(slot.m_title.end() - 1);
-                  slot.m_title += subt;
-               }
-               else {
-                  if (   !slot.m_subtitle.empty()
-                      && regex_search(slot.m_subtitle, whats, expr12)
-                      && regex_search(subt, whats, expr13) )
-                  {
-                     if (slot.m_subtitle[slot.m_subtitle.size() - 1] == '-')
-                        slot.m_subtitle.erase(slot.m_subtitle.end() - 1);
-                     slot.m_subtitle += subt;
-                  }
-                  else if (!slot.m_subtitle.empty()) {
-                     slot.m_subtitle += " ";
-                     slot.m_subtitle += subt;
-                  }
-                  else {
-                     slot.m_subtitle = subt;
-                  }
-               }
-            }
             if (vps_data.m_new_vps_date) {
-               slot.m_vps_date = vps_data.m_vps_date;
+               ov_slot->m_vps_date = vps_data.m_vps_date;
                vps_data.m_new_vps_date = false;
             }
          }
          else {
-            if (slot.is_valid())
-               Slots.push_back(slot);
-            slot.clear();
-            in_title = false;
+            ov_slot = 0;
          }
       }
    }
-   if (slot.is_valid())
-      Slots.push_back(slot);
+   return m_slots.size() > 0;
+}
+
+bool OV_SLOT::is_same_prog(const OV_SLOT& v) const
+{
+   return (v.m_hour == m_hour) &&
+          (v.m_min == m_min);
 }
 
 /* ------------------------------------------------------------------------------
  * Check if an overview page has exactly the same title list as the predecessor
+ * (some networks use subpages just to display different ads)
  */
-bool CheckRedundantSubpage(const vector<TV_SLOT>& Slots,
-                           int prev_slot_idx, uint cur_slot_idx)
+bool OV_PAGE::check_redundant_subpage(OV_PAGE * prev)
 {
    bool result = false;
 
-   if (Slots.size() - cur_slot_idx == cur_slot_idx - prev_slot_idx) {
-      result = true;
-      for (uint idx = 0; idx < cur_slot_idx - prev_slot_idx; idx++) {
-         if (Slots[prev_slot_idx + idx].m_start_t
-                != Slots[cur_slot_idx + idx].m_start_t) {
-
-            // TODO compare title
-            result = false;
-            break;
+   if (   (m_page == prev->m_page)
+       && (m_sub > 1)
+       && (m_sub == prev->m_sub + prev->m_sub_page_skip + 1) )
+   {
+      // FIXME check for overlap in a more general way (allow for missing line on one page? but then we'd need to merge)
+      if (prev->m_slots.size() == m_slots.size()) {
+         result = true;
+         for (uint idx = 0; idx < m_slots.size(); idx++) {
+            if (!m_slots[idx]->is_same_prog(*prev->m_slots[idx])) {
+               result = false;
+               break;
+            }
+         }
+         if (result) {
+            if (opt_debug) printf("OV_PAGE 0x%3X.%d dropped: redundant to sub-page %d\n", m_page, m_sub, prev->m_sub);
+            prev->m_sub_page_skip += 1;
          }
       }
    }
@@ -3416,73 +3628,22 @@ bool CheckRedundantSubpage(const vector<TV_SLOT>& Slots,
 }
 
 /* ------------------------------------------------------------------------------
- * Determine stop times
- * - assuming that in overview tables the stop time is equal to the start of the
- *   following programme & that this also holds true inbetween adjacent pages
- * - if in doubt, leave it undefined (this is allowed in XMLTV)
- * - TODO: restart at non-adjacent text pages
- */
-void CalculateStopTimes(vector<TV_SLOT>& Slots, uint start_idx)
-{
-   for (uint idx = start_idx; idx < Slots.size(); idx++)
-   {
-      TV_SLOT& slot = Slots[idx];
-
-      if (slot.m_stop_t < 0) {
-         if (slot.m_end_min >= 0) {
-            // there was an end time in the overview or a description page -> use that
-            int date_off = slot.m_date_off;
-
-            // check for a day break between start and end
-            if ( (slot.m_end_hour < slot.m_hour) ||
-                 ( (slot.m_end_hour == slot.m_hour) &&
-                   (slot.m_end_min < slot.m_min) ))
-            {
-               date_off += 1;
-            }
-
-            struct tm tm;
-            memset(&tm, 0, sizeof(tm));
-
-            tm.tm_hour = slot.m_end_hour;
-            tm.tm_min  = slot.m_end_min;
-            tm.tm_mday = slot.m_mday + date_off;
-            tm.tm_mon  = slot.m_month - 1;
-            tm.tm_year = slot.m_year - 1900;
-            tm.tm_isdst = -1;
-
-            slot.m_stop_t = mktime(&tm);
-         }
-         else if (idx + 1 < Slots.size())
-         {
-            // no end time: use start time of the following programme if less than 9h away
-            const TV_SLOT& next = Slots[idx + 1];
-
-            if ( (next.m_start_t > slot.m_start_t) &&
-                 (next.m_start_t - slot.m_start_t < 9*60*60) )
-            {
-               slot.m_stop_t = next.m_start_t;
-            }
-         }
-      }
-   }
-}
-
-/* ------------------------------------------------------------------------------
  * Convert discrete start times into UNIX epoch format
  * - implies a conversion from local time zone into GMT
  */
-time_t ConvertStartTime(const TV_SLOT& slot)
+time_t OV_SLOT::ConvertStartTime(const T_PG_DATE * pgdate, int date_off) const
 {
    struct tm tm;
 
    memset(&tm, 0, sizeof(tm));
 
-   tm.tm_hour = slot.m_hour;
-   tm.tm_min  = slot.m_min;
-   tm.tm_mday = slot.m_mday + slot.m_date_off;
-   tm.tm_mon  = slot.m_month - 1;
-   tm.tm_year = slot.m_year - 1900;
+   tm.tm_hour = m_hour;
+   tm.tm_min  = m_min;
+
+   tm.tm_mday = pgdate->m_mday + pgdate->m_date_off + date_off;
+   tm.tm_mon  = pgdate->m_month - 1;
+   tm.tm_year = pgdate->m_year - 1900;
+
    tm.tm_isdst = -1;
 
    return mktime(&tm);
@@ -3547,28 +3708,33 @@ int GetNextPageNumber(int page)
  * Check if two given teletext pages are adjacent
  * - both page numbers must have decimal digits only (i.e. match /[1-8][1-9][1-9]/)
  */
-bool CheckIfPagesAdjacent(const T_PG_DATE& pg1, const T_PG_DATE& pg2)
+bool CheckIfPagesAdjacent(int page1, int sub1, int sub_skip, int page2, int sub2)
 {
    bool result = false;
 
-   if ( (pg1.m_page == pg2.m_page) &&
-        (pg1.m_sub_page + pg1.m_sub_page_skip + 1 == pg2.m_sub_page) ) {
+   if ( (page1 == page2) &&
+        (sub1 + sub_skip + 1 == sub2) ) {
       // next sub-page on same page
       result = true;
    }
    else {
       // check for jump from last sub-page of prev page to first of new page
-      int next = GetNextPageNumber(pg1.m_page);
+      int next = GetNextPageNumber(page1);
 
-      int last_sub = ttx_db.last_sub_page_no(pg1.m_page);
+      int last_sub = ttx_db.last_sub_page_no(page1);
 
-      if ( (next == pg2.m_page) &&
-           (pg1.m_sub_page + pg1.m_sub_page_skip == last_sub) &&
-           (pg2.m_sub_page <= 1) ) {
+      if ( (next == page2) &&
+           (sub1 + sub_skip == last_sub) &&
+           (sub2 <= 1) ) {
          result = true;
       } 
    }
    return result;
+}
+
+bool OV_PAGE::is_adjacent(const OV_PAGE * prev) const
+{
+   return CheckIfPagesAdjacent(prev->m_page, prev->m_sub, prev->m_sub_page_skip, m_page, m_sub);
 }
 
 /* ------------------------------------------------------------------------------
@@ -3596,172 +3762,180 @@ int DetermineLto(time_t whence)
  *  "\x0714.40\x05\x051445\x02\x02USBEKISTAN - ABWEHR DER   ",
  *  "            \x02\x02WAHABITEN  (2K)           ",
  */
-bool CalculateDates(T_PG_DATE& pgdate, const T_PG_DATE& prev_pgdate,
-                    vector<TV_SLOT>& Slots, int prev_slot_idx, int cur_slot_idx)
+bool OV_PAGE::calc_date_off(const OV_PAGE * prev)
 {
-   // note: caller's prev_pgdate must not be invalidated here, hence use a separate flag
-   bool use_prev_pgdate = prev_pgdate.is_valid();
    bool result = false;
 
    int date_off = 0;
-   if (use_prev_pgdate) {
-      const TV_SLOT& prev_slot1 = Slots[prev_slot_idx];
-      const TV_SLOT& prev_slot2 = Slots[cur_slot_idx - 1];
+   if ((prev != 0) && (prev->m_slots.size() > 0)) {
+      const OV_SLOT * prev_slot1 = prev->m_slots[0];
+      //FIXME const OV_SLOT * prev_slot2 = prev->m_slots[prev->m_slots.size() - 1];
       // check if the page number of the previous page is adjacent
       // and as consistency check require that the prev page covers less than a day
-      if (   (prev_slot2.m_start_t - prev_slot1.m_start_t < 22*60*60)
-          && CheckIfPagesAdjacent(prev_pgdate, pgdate) ) {
-
+      if (   /* (prev_slot2->m_start_t - prev_slot1->m_start_t < 22*60*60) // TODO/FIXME
+          &&*/ is_adjacent(prev))
+      {
          int prev_delta = 0;
          // check if there's a date on the current page
          // if yes, get the delta to the previous one in days (e.g. tomorrow - today = 1)
          // if not, silently fall back to the previous page's date and assume date delta zero
-         if (pgdate.m_year != -1) {
-            prev_delta = CalculateDateDelta(prev_pgdate, pgdate);
+         if (m_date.m_year != -1) {
+            prev_delta = CalculateDateDelta(prev->m_date, m_date);
          }
          if (prev_delta == 0) {
             // check if our start date should be different from the one of the previous page
             // -> check if we're starting on a new date (smaller hour)
             // (note: comparing with the 1st slot of the prev. page, not the last!)
-            if (Slots[cur_slot_idx].m_hour < prev_slot1.m_hour) {
+            if (m_slots[0]->m_hour < prev_slot1->m_hour) {
                // TODO: check continuity to slot2: gap may have 6h max.
                // TODO: check end hour
                date_off = 1;
             }
-            // else: same date as the last programme on the prev page
-            // may have been a date change inside the prev. page but our header date may still be unchanged
-            // historically this is only done up to 6 o'clock (i.e. 0:00 to 6:00 counts as the old day)
-            //else if (Slots[cur_slot_idx].m_hour <= 6) {
-            //   # check continuity
-            //   if ( defined(prev_slot2.m_end_hour) ?
-            //          ( (Slots[cur_slot_idx].m_hour >= prev_slot2.m_end_hour) &&
-            //            (Slots[cur_slot_idx].m_hour - prev_slot2.m_end_hour <= 1) ) :
-            //          ( (Slots[cur_slot_idx].m_hour >= prev_slot2.m_hour) &&
-            //            (Slots[cur_slot_idx].m_hour - prev_slot2.m_hour <= 6) ) ) {
-            //      # OK
-            //   } else {
-            //      # 
-            //   }
-            //}
-            // TODO: check for date change within the previous page
          }
          else {
-            if (opt_debug) printf("OV DATE: prev page %03X.%04X date cleared\n", prev_pgdate.m_page, prev_pgdate.m_sub_page);
-            use_prev_pgdate = false;
+            if (opt_debug) printf("OV DATE %03X.%d: prev page %03X.%04X date cleared\n",
+                                  m_page, m_sub, prev->m_page, prev->m_sub);
+            prev = 0;
          }
          // TODO: date may also be wrong by +1 (e.g. when starting at 23:55 with date for 00:00)
       }
       else {
          // not adjacent -> disregard the info
-         if (opt_debug) printf("OV DATE: prev page %03X.%04X not adjacent - not used for date check\n", prev_pgdate.m_page, prev_pgdate.m_sub_page);
-         use_prev_pgdate = false;
+         if (opt_debug) printf("OV DATE %03X.%d: prev page %03X.%04X not adjacent - not used for date check\n",
+                               m_page, m_sub, prev->m_page, prev->m_sub);
+         prev = 0;
       }
    }
 
-   int mday = -1;
-   int month = -1;
-   int year = -1;
-
-   if (pgdate.m_year != -1) {
-      mday = pgdate.m_mday;
-      month = pgdate.m_month;
-      year = pgdate.m_year;
+   if (m_date.m_year != -1) {
       // store date offset in page meta data (to calculate delta of subsequent pages)
-      pgdate.m_date_off = date_off;
-      if (opt_debug) printf("OV DATE: using page header date %d.%d.%d, DELTA %d\n", mday, month, year, date_off);
+      m_date.m_date_off = date_off;
+      if (opt_debug) printf("OV DATE %03X.%d: using page header date %d.%d.%d, DELTA %d\n",
+                            m_page, m_sub, m_date.m_mday, m_date.m_month, m_date.m_year, m_date.m_date_off);
+      result = true;
    }
-   else if (use_prev_pgdate) {
+   else if (prev != 0) {
       // copy date from previous page
-      pgdate.m_mday = mday = prev_pgdate.m_mday;
-      pgdate.m_month = month = prev_pgdate.m_month;
-      pgdate.m_year = year = prev_pgdate.m_year;
+      m_date.m_mday = prev->m_date.m_mday;
+      m_date.m_month = prev->m_date.m_month;
+      m_date.m_year = prev->m_date.m_year;
       // add date offset if a date change was detected
-      date_off += prev_pgdate.m_date_off;
-      pgdate.m_date_off = date_off;
+      m_date.m_date_off = prev->m_date.m_date_off + date_off;
 
-      if (opt_debug) printf("OV DATE: using predecessor date %d.%d.%d, DELTA %d\n", mday, month, year, date_off);
-   }
-
-   // finally assign the date to all programmes on this page (with auto-increment at hour wraps)
-   if (year != -1) {
-      int prev_hour = -1;
-      for (uint idx = cur_slot_idx; idx < Slots.size(); idx++) {
-         TV_SLOT& slot = Slots[idx];
-
-         // detect date change (hour wrap at midnight)
-         if ((prev_hour != -1) && (prev_hour > slot.m_hour)) {
-            date_off += 1;
-         }
-         prev_hour = slot.m_hour;
-
-         slot.m_date_off  = date_off;
-         slot.m_mday      = pgdate.m_mday;
-         slot.m_month     = pgdate.m_month;
-         slot.m_year      = pgdate.m_year;
-
-         slot.m_start_t   = ConvertStartTime(slot);
-      }
+      if (opt_debug) printf("OV DATE: using predecessor date %d.%d.%d, DELTA %d\n", m_date.m_mday, m_date.m_month, m_date.m_year, m_date.m_date_off);
       result = true;
    }
    else {
-      if (opt_debug) printf("OV missing date - discarding programmes\n");
+      if (opt_debug) printf("OV %03X.%d missing date - discarding programmes\n", m_page, m_sub);
    }
    return result;
 }
 
-/* ------------------------------------------------------------------------------
- * Parse programme overview table
- * - 1: retrieve programme list (i.e. start times and titles)
- * - 2: retrieve date from the page header
- * - 3: determine dates
- * - 4: determine stop times
- */
-void ParseOvPage(int page, int sub, const T_OV_FMT_STAT& fmt,
-                 T_PG_DATE& pgdate, T_PG_DATE& prev_pgdate,
-                 int prev_slot_idx, vector<TV_SLOT>& Slots)
+void OV_PAGE::calculate_start_times()
 {
-   if (opt_debug) printf("OVERVIEW PAGE %03X.%04X\n", page, sub);
+   // finally assign the date to all programmes on this page (with auto-increment at hour wraps)
+   if (m_date.m_year != -1) {
+      int date_off = 0;
+      int prev_hour = -1;
 
-   int foot = ParseFooterByColor(page, sub);
-   uint start_idx = Slots.size();
+      for (uint idx = 0; idx < m_slots.size(); idx++) {
+         OV_SLOT * slot = m_slots[idx];
 
-   ParseOvList(Slots, page, sub, foot, fmt, pgdate);
-
-   if (Slots.size() > start_idx) {
-      ParseOvHeaderDate(page, sub, pgdate);
-
-      if (CalculateDates(pgdate, prev_pgdate, Slots, prev_slot_idx, start_idx)) {
-
-         // check if this subpage has any new content
-         // (some networks use subpages just to display different ads)
-         if (   (sub > 1) && prev_pgdate.is_valid()
-             && (prev_pgdate.m_page == page)
-             && (prev_pgdate.m_sub_page + prev_pgdate.m_sub_page_skip + 1 == sub)
-             && CheckRedundantSubpage(Slots, prev_slot_idx, start_idx) )
-         {
-            // redundant -> discard content of this page
-            if (opt_debug) printf("OV dropping redundant sub-page %03X.%d\n", page, sub);
-            prev_pgdate.m_sub_page_skip += 1;
-            Slots.erase(Slots.begin() + start_idx, Slots.end());
+         // detect date change (hour wrap at midnight)
+         if ((prev_hour != -1) && (prev_hour > slot->m_hour)) {
+            date_off += 1;
          }
-         else
-         {
-            // guess missing stop time for last slot of the previous page
-            if (   prev_pgdate.is_valid()
-                && (start_idx > 0)
-                && CheckIfPagesAdjacent(prev_pgdate, pgdate) )
-            {
-               start_idx -= 1;
-            }
+         prev_hour = slot->m_hour;
 
-            // guess missing stop times for the current page
-            CalculateStopTimes(Slots, start_idx);
+         slot->m_start_t = slot->ConvertStartTime(&m_date, date_off);
+      }
+   }
+}
+
+/* ------------------------------------------------------------------------------
+ * Determine stop times
+ * - assuming that in overview tables the stop time is equal to the start of the
+ *   following programme & that this also holds true inbetween adjacent pages
+ * - if in doubt, leave it undefined (this is allowed in XMLTV)
+ * - TODO: restart at non-adjacent text pages
+ */
+void OV_PAGE::calc_stop_times(const OV_PAGE * next)
+{
+   for (uint idx = 0; idx < m_slots.size(); idx++)
+   {
+      OV_SLOT * slot = m_slots[idx];
+
+      if (slot->m_end_min >= 0) {
+         // there was an end time in the overview or a description page -> use that
+         struct tm tm = *localtime(&slot->m_start_t);
+
+         tm.tm_min = slot->m_end_min;
+         tm.tm_hour = slot->m_end_hour;
+
+         // check for a day break between start and end
+         if ( (slot->m_end_hour < slot->m_hour) ||
+              ( (slot->m_end_hour == slot->m_hour) &&
+                (slot->m_end_min < slot->m_min) )) {
+            tm.tm_mday += 1; // possible wrap done by mktime()
          }
+         slot->m_stop_t = mktime(&tm);
+
+         if (opt_debug) printf("OV_SLOT %02d:%02d use end time %02d:%02d - %s",
+                               slot->m_hour, slot->m_min, slot->m_end_hour, slot->m_end_min, ctime(&slot->m_stop_t));
       }
-      else {
-         // failed to determine the date
-         Slots.erase(Slots.begin() + start_idx, Slots.end());
+      else if (idx + 1 < m_slots.size()) {
+         OV_SLOT * next_slot = m_slots[idx + 1];
+
+         if (next_slot->m_start_t != slot->m_start_t) {
+            slot->m_stop_t = next_slot->m_start_t;
+         }
+
+         if (opt_debug) printf("OV_SLOT %02d:%02d ends at next start time %s",
+                               slot->m_hour, slot->m_min, ctime(&next_slot->m_start_t));
       }
+      else if (   (next != 0)
+               && (next->m_slots.size() > 0)
+               && next->is_adjacent(this) )
+      {
+         OV_SLOT * next_slot = next->m_slots[0];
+
+         // no end time: use start time of the following programme if less than 9h away
+         if (   (next_slot->m_start_t > slot->m_start_t)
+             && (next_slot->m_start_t - slot->m_start_t < 9*60*60) )
+         {
+            slot->m_stop_t = next_slot->m_start_t;
+         }
+         if (opt_debug) printf("OV_SLOT %02d:%02d ends at next page %03X.%d start time %s",
+                               slot->m_hour, slot->m_min, next->m_page, next->m_sub,
+                               ctime(&next_slot->m_start_t));
+      }
+   }
+}
+
+void OV_PAGE::extract_tv(list<TV_SLOT*>& tv_slots)
+{
+   if (m_slots.size() > 0) {
+      RemoveTrailingPageFooter(m_slots.back()->m_title.back());
+   }
+
+   for (uint idx = 0; idx < m_slots.size(); idx++) {
+      OV_SLOT * slot = m_slots[idx];
+
+      slot->parse_ttx_ref();
+
+      TV_SLOT * p_tv = new TV_SLOT(slot->m_ttx_ref, slot->m_start_t, slot->m_stop_t,
+                                   slot->m_vps_time, slot->m_vps_date);
+
+      slot->parse_feature_flags(p_tv);
+      p_tv->m_feat.set_tip(slot->m_is_tip);
+
+      slot->parse_title(p_tv);
+
+      if (slot->m_ttx_ref != -1) {
+         ParseDescPage(p_tv);
+      }
+
+      tv_slots.push_back(p_tv);
    }
 }
 
@@ -3769,16 +3943,18 @@ void ParseOvPage(int page, int sub, const T_OV_FMT_STAT& fmt,
  * Retrieve programme data from an overview page
  * - 1: compare several overview pages to identify the layout
  * - 2: parse all overview pages, retrieving titles and ttx references
+ *   + a: retrieve programme list (i.e. start times and titles)
+ *   + b: retrieve date from the page header
+ *   + c: determine dates
+ *   + d: determine stop times
  */
-vector<TV_SLOT> ParseAllOvPages()
+list<TV_SLOT*> ParseAllOvPages()
 {
-   vector<TV_SLOT> Slots;
+   list<TV_SLOT*> tv_slots;
 
    T_OV_FMT_STAT fmt = DetectOvFormat();
    if (fmt.is_valid()) {
-      T_PG_DATE pgdate;
-      T_PG_DATE prev_pgdate;
-      int prev_slot_idx = -1;
+      vector<OV_PAGE*> ov_pages;
 
       for (TTX_DB::const_iterator p = ttx_db.begin(); p != ttx_db.end(); p++)
       {
@@ -3786,29 +3962,54 @@ vector<TV_SLOT> ParseAllOvPages()
          int sub = p->first.sub();
 
          if ((page >= opt_tv_start) && (page <= opt_tv_end)) {
-            uint new_prev_slot_idx = Slots.size();
+            if (opt_debug) printf("OVERVIEW PAGE %03X.%04X\n", page, sub);
 
-            pgdate.clear();
-            pgdate.m_page = page;
-            pgdate.m_sub_page = sub;
-            pgdate.m_sub_page_skip = 0;
+            OV_PAGE * ov_page = new OV_PAGE(page, sub);
 
-            ParseOvPage(page, sub, fmt, pgdate, prev_pgdate, prev_slot_idx, Slots);
+            int foot = ParseFooterByColor(page, sub);
 
-            if (Slots.size() > new_prev_slot_idx) {
-               prev_pgdate = pgdate;
-               prev_slot_idx = new_prev_slot_idx;
+            if (ov_page->parse_slots(foot, fmt)) {
+               ov_page->parse_ov_date();
+
+               if (   (ov_pages.size() == 0)
+                   || !ov_page->check_redundant_subpage(ov_pages.back())) {
+
+                  ov_pages.push_back(ov_page);
+                  ov_page = 0;
+               }
             }
-            else if ( prev_pgdate.is_valid() &&
-                      (prev_pgdate.m_sub_page + prev_pgdate.m_sub_page_skip < sub) ) {
-               prev_pgdate.clear();
-               prev_slot_idx = -1;
-            }
+            delete ov_page;
          }
+      }
+
+      for (uint idx = 0; idx < ov_pages.size(); ) {
+         if (ov_pages[idx]->calc_date_off((idx > 0) ? ov_pages[idx - 1] : 0)) {
+
+            ov_pages[idx]->calculate_start_times();
+            idx++;
+         }
+         else {
+            delete ov_pages[idx];
+            ov_pages.erase(ov_pages.begin() + idx);
+         }
+      }
+
+      // guess missing stop times for the current page
+      // (requires start times for the next page)
+      for (uint idx = 0; idx < ov_pages.size(); idx++) {
+         OV_PAGE * next = (idx + 1 < ov_pages.size()) ? ov_pages[idx + 1] : 0;
+         ov_pages[idx]->calc_stop_times(next);
+      }
+
+      // retrieve descriptions from references teletext pages
+      for (uint idx = 0; idx < ov_pages.size(); idx++) {
+         ov_pages[idx]->extract_tv(tv_slots);
+
+         delete ov_pages[idx];
       }
    }
 
-   return Slots;
+   return tv_slots;
 }
 
 /* ------------------------------------------------------------------------------
@@ -3818,30 +4019,29 @@ vector<TV_SLOT> ParseAllOvPages()
  *   it and we certainly shouldn't discard programmes which are still running
  * - resulting problem: we don't always have the stop time
  */
-vector<TV_SLOT> FilterExpiredSlots(const vector<TV_SLOT>& Slots)
+void FilterExpiredSlots(list<TV_SLOT*>& Slots)
 {
    time_t exp_thresh = time(NULL) - opt_expire * 60;
-   vector<TV_SLOT> NewSlots;
 
-   NewSlots.reserve(Slots.size());
-
-   for (uint idx = 0; idx < Slots.size(); idx++)
-   {
-      if (   (   (Slots[idx].m_stop_t != -1)
-              && (Slots[idx].m_stop_t >= exp_thresh))
-          || (Slots[idx].m_start_t + 120*60 >= exp_thresh) )
-      {
-         NewSlots.push_back(Slots[idx]);
+   if (!Slots.empty()) {
+      for (list<TV_SLOT*>::iterator p = Slots.begin(); p != Slots.end(); ) {
+         if (   (   ((*p)->m_stop_t != -1)
+                 && ((*p)->m_stop_t >= exp_thresh))
+             || ((*p)->m_start_t + 120*60 >= exp_thresh) )
+         {
+            ++p;
+         }
+         else {
+            if (opt_debug) printf("EXPIRED new %ld-%ld < %ld '%s'\n", (long)(*p)->m_start_t,
+                                  (long)(*p)->m_stop_t, (long)exp_thresh, (*p)->m_title.c_str());
+            delete *p;
+            Slots.erase(p++);
+         }
       }
-      else {
-        if (opt_debug) printf("EXPIRED new %ld-%ld < %ld '%s'\n", (long)Slots[idx].m_start_t,
-                              (long)Slots[idx].m_stop_t, (long)exp_thresh, Slots[idx].m_title.c_str());
+      if (Slots.empty()) {
+         fprintf(stderr, "Warning: all newly acquired programmes are already expired\n");
       }
    }
-   if (!Slots.empty() && NewSlots.empty()) {
-      fprintf(stderr, "Warning: all newly acquired programmes are already expired\n");
-   }
-   return NewSlots;
 }
 
 /* ------------------------------------------------------------------------------
@@ -3910,12 +4110,9 @@ void XmlToLatin1(string& title)
  */
 void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
 {
-   if ((slot.m_title.length() > 0) &&
-       (slot.m_mday != -1) &&
-       (slot.m_month != -1) &&
-       (slot.m_year != -1) &&
-       (slot.m_hour != -1) &&
-       (slot.m_min != -1))
+   assert(slot.m_title.length() > 0);
+   assert(slot.m_start_t != -1);
+
    {
       string start_str = GetXmlTimestamp(slot.m_start_t);
       string stop_str;
@@ -3939,6 +4136,8 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
          str_tolower(title);
       }
       Latin1ToXml(title);
+
+      //TODO fprintf(fp, "\n<!-- TTX %03X.%04d %02d:%02d %02d.%02d.%04d -->\n", ...);
 
       fprintf(fp, "\n<programme start=\"%s\"%s%s channel=\"%s\">\n"
                   "\t<title>%s</title>\n",
@@ -3966,49 +4165,46 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
          }
       }
       // video
-      if (   slot.m_is_video_bw
-          || slot.m_is_aspect_16_9
-          || slot.m_is_video_hd) {
+      if (   slot.m_feat.m_is_video_bw
+          || slot.m_feat.m_is_aspect_16_9
+          || slot.m_feat.m_is_video_hd) {
          fprintf(fp, "\t<video>\n");
-         if (slot.m_is_video_bw) {
+         if (slot.m_feat.m_is_video_bw) {
             fprintf(fp, "\t\t<colour>no</colour>\n");
          }
-         if (slot.m_is_aspect_16_9) {
+         if (slot.m_feat.m_is_aspect_16_9) {
             fprintf(fp, "\t\t<aspect>16:9</aspect>\n");
          }
-         if (slot.m_is_video_hd) {
+         if (slot.m_feat.m_is_video_hd) {
             fprintf(fp, "\t\t<quality>HDTV</quality>\n");
          }
          fprintf(fp, "\t</video>\n");
       }
       // audio
-      if (slot.m_is_dolby) {
+      if (slot.m_feat.m_is_dolby) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>surround</stereo>\n\t</audio>\n");
       }
-      else if (slot.m_is_stereo) {
+      else if (slot.m_feat.m_is_stereo) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>stereo</stereo>\n\t</audio>\n");
       }
-      else if (slot.m_is_mono) {
+      else if (slot.m_feat.m_is_mono) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>mono</stereo>\n\t</audio>\n");
       }
-      else if (slot.m_is_2chan) {
+      else if (slot.m_feat.m_is_2chan) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>bilingual</stereo>\n\t</audio>\n");
       }
       // subtitles
-      if (slot.m_is_omu) {
+      if (slot.m_feat.m_is_omu) {
          fprintf(fp, "\t<subtitles type=\"onscreen\"/>\n");
       }
-      else if (slot.m_has_subtitles) {
+      else if (slot.m_feat.m_has_subtitles) {
          fprintf(fp, "\t<subtitles type=\"teletext\"/>\n");
       }
       // tip/highlight (ARD only)
-      if (slot.m_is_tip) {
+      if (slot.m_feat.m_is_tip) {
          fprintf(fp, "\t<star-rating>\n\t\t<value>1/1</value>\n\t</star-rating>\n");
       }
       fprintf(fp, "</programme>\n");
-   }
-   else {
-      if (opt_debug) printf("SKIPPING PARTIAL %s %02d:%02d\n", slot.m_title.c_str(), slot.m_hour, slot.m_min);
    }
 }
 
@@ -4070,7 +4266,7 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
  * Tele5: Fr 19:15-20:15
  */
 
-bool ParseDescDate(int page, int sub, TV_SLOT& slot)
+bool ParseDescDate(int page, int sub, TV_SLOT * slot)
 {
    int lmday = -1;
    int lmonth = -1;
@@ -4251,18 +4447,20 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
          tm.tm_year = lyear - 1900;
          tm.tm_isdst = -1;
          time_t start_t = mktime(&tm);
-         if ((start_t != -1) && (abs(start_t - slot.m_start_t) < 5*60)) {
+         if ((start_t != -1) && (abs(start_t - slot->m_start_t) < 5*60)) {
             // match found
-            if ((lend_hour != -1) && (slot.m_end_hour != -1)) {
+#if 0 //TODO
+            if ((lend_hour != -1) && (slot->m_end_hour != -1)) {
                // add end time to the slot data
                // TODO: also add VPS time
                // XXX FIXME: these are never used because stop_t is already calculated!
-               slot.m_end_hour = lend_hour;
-               slot.m_end_min = lend_min;
+               slot->m_end_hour = lend_hour;
+               slot->m_end_min = lend_min;
             }
+#endif
             return true;
          } else {
-            if (opt_debug) printf("MISMATCH: %s %s\n", GetXmlTimestamp(start_t).c_str(), GetXmlTimestamp(slot.m_start_t).c_str());
+            if (opt_debug) printf("MISMATCH: %s %s\n", GetXmlTimestamp(start_t).c_str(), GetXmlTimestamp(slot->m_start_t).c_str());
             lend_hour = -1;
             if (new_date) {
                // date on same line as time: invalidate both upon mismatch
@@ -4281,12 +4479,12 @@ bool ParseDescDate(int page, int sub, TV_SLOT& slot)
  * The comparison is done case-insensitive as some networks write the
  * titles in all upper-case.
  */
-int ParseDescTitle(int page, int sub, TV_SLOT& slot)
+int ParseDescTitle(int page, int sub, TV_SLOT * slot)
 {
    const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
    string prev;
 
-   string title_lc = slot.m_title;
+   string title_lc = slot->m_title;
    str_tolower(title_lc);
 
    for (int idx = 1; idx <= 23/2; idx++) {
@@ -4301,28 +4499,28 @@ int ParseDescTitle(int page, int sub, TV_SLOT& slot)
          // TODO: back up if there's text in the previous line with the same indentation
 
          string tmp = pgctrl->get_ctrl(idx);
-         ParseTrailingFeat(tmp, slot);
+         slot->m_feat.ParseTrailingFeat(tmp);
 
          // correct title/sub-title split
-         if (!slot.m_subtitle.empty()) {
+         if (!slot->m_subtitle.empty()) {
             // check if the title line on the desc page contains 1st + 2nd title lines from overview
             // Overview:                     Description page:
             // Licht aus in Erichs           Licht aus in Erichs Lampenladen
             // Lampenladen
-            string subtitle = slot.m_title + string(" ") +  slot.m_subtitle;
+            string subtitle = slot->m_title + string(" ") +  slot->m_subtitle;
             if (   (tmp.length() >= subtitle.length())
                 && str_is_right_word_boundary(tmp, subtitle.length())
                 && (tmp.compare(0, subtitle.length(), subtitle) == 0) ) {
                if (opt_debug) printf("DESC title override \"%s\"\n", subtitle.c_str());
-               slot.m_title = subtitle;
-               slot.m_subtitle.clear();
+               slot->m_title = subtitle;
+               slot->m_subtitle.clear();
             }
-            else if (tmp.length() - off > slot.m_title.length()) {
+            else if (tmp.length() - off > slot->m_title.length()) {
                string next = pgctrl->get_ctrl(idx + 1);
                if (str_get_indent(next) == off) {
-                  str_concat_title(tmp, next);
+                  str_concat_title(tmp, next, false);
                   str_chomp(tmp);
-                  RemoveTrailingFeat(tmp);
+                  TV_FEAT::RemoveTrailingFeat(tmp);
                   // Overview:                     Description page:
                   // Battlefield Earth - Kampf     Battlefield Earth - Kampf um die
                   // um die Erde                   Erde
@@ -4333,10 +4531,10 @@ int ParseDescTitle(int page, int sub, TV_SLOT& slot)
                       && str_is_right_word_boundary(subtitle, len)
                       && (tmp.compare(0, len, subtitle, 0, len) == 0) ) {
                      if (opt_debug) printf("DESC title override \"%s\"\n", subtitle.c_str());
-                     slot.m_title.assign(subtitle, 0, len);
-                     slot.m_subtitle.assign(subtitle, len, subtitle.length() - len);
-                     str_chomp(slot.m_subtitle);
-                     ParseTrailingFeat(next, slot);
+                     slot->m_title.assign(subtitle, 0, len);
+                     slot->m_subtitle.assign(subtitle, len, subtitle.length() - len);
+                     str_chomp(slot->m_subtitle);
+                     slot->m_feat.ParseTrailingFeat(next);
                   }
                }
             }
@@ -4345,17 +4543,17 @@ int ParseDescTitle(int page, int sub, TV_SLOT& slot)
          return idx;
       }
       else if (!prev.empty()) {
-         RemoveTrailingFeat(prev);
-         str_concat_title(prev, pgctrl->get_ctrl(idx));
+         TV_FEAT::RemoveTrailingFeat(prev);
+         str_concat_title(prev, pgctrl->get_ctrl(idx), false);
          str_tolower(prev);
          //if (str_find_word(prev, title_lc) != string::npos)  // sub-string
          if (   (title_lc.length() <= prev.length())
              && (prev.compare(0, title_lc.length(), title_lc) == 0) ) {
             string tmp = string(pgctrl->get_ctrl(idx - 1));
-            ParseTrailingFeat(tmp, slot);
+            slot->m_feat.ParseTrailingFeat(tmp);
 
             tmp = pgctrl->get_ctrl(idx);
-            ParseTrailingFeat(tmp, slot);
+            slot->m_feat.ParseTrailingFeat(tmp);
 
             //TODO: check if title/sub-title split can be corrected (see above)
 
@@ -4535,10 +4733,8 @@ string ParseDescContent(int page, int sub, int head, int foot)
       // TODO parse features behind date, title or subtitle
 
       // extract and remove VPS labels and all concealed text
-      static const regex expr1("[\\x05\\x18]");
-      if (regex_search(ctrl, whats, expr1)) {
-         ParseVpsLabel(ctrl, vps_data, true);
-      }
+      ParseVpsLabel(ctrl, vps_data, true);
+
       static const regex expr2("[\\x00-\\x1F\\x7F]");
       ctrl = regex_replace(ctrl, expr2, " ");
 
@@ -4604,17 +4800,16 @@ string ParseDescContent(int page, int sub, int head, int foot)
 /* TODO: check for all referenced text pages where no match was found if they
  *       describe a yet unknown programme (e.g. next instance of a weekly series)
  */
-string ParseDescPage(TV_SLOT& slot)
+void ParseDescPage(TV_SLOT * slot)
 {
-   string desc;
    bool found = false;
-   int page = slot.m_ttx_ref;
    int first_sub = -1;
+   int page = slot->m_ttx_ref;
 
    if (opt_debug) {
       char buf[100];
-      strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M", localtime(&slot.m_start_t));
-      printf("DESC parse page %03X: search match for %s \"%s\"\n", page, buf, slot.m_title.c_str());
+      strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M", localtime(&slot->m_start_t));
+      printf("DESC parse page %03X: search match for %s \"%s\"\n", page, buf, slot->m_title.c_str());
    }
 
    for (TTX_DB::const_iterator p = ttx_db.first_sub_page(page);
@@ -4641,9 +4836,11 @@ string ParseDescPage(TV_SLOT& slot)
          if (opt_debug) printf("DESC page %03X.%04X match found: lines %d-%d\n", page, sub, head, foot);
 
          if (foot > head) {
-            if (!desc.empty())
-               desc += "\n";
-            desc += ParseDescContent(page, sub, head, foot);
+            if (!slot->m_desc.empty())
+               slot->m_desc += "\n";
+            slot->m_desc += ParseDescContent(page, sub, head, foot);
+
+            slot->m_ttx_ref = page;
          }
          found = true;
       }
@@ -4654,8 +4851,6 @@ string ParseDescPage(TV_SLOT& slot)
       }
    }
    if (!found && opt_debug) printf("DESC page %03X not found\n", page);
-
-   return desc;
 }
 
 /* ------------------------------------------------------------------------------
@@ -5406,6 +5601,7 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
          if (opt_debug) printf("MERGE DISCARD NEW %ld '%.30s' ovl %ld..%ld\n",
                                (*it_next_slot)->m_start_t, (*it_next_slot)->m_title.c_str(),
                                (long)new_start, (long)new_stop);
+         delete *it_next_slot;
          NewSlotList.erase(it_next_slot++);
       }
    }
@@ -5471,7 +5667,7 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
  * - merge with old data, if available
  */
 void ExportXmltv(const string& ch_id, string ch_name,
-                 vector<TV_SLOT>& NewSlots,
+                 list<TV_SLOT*>& NewSlots,
                  map<string,string>& MergeProg,
                  map<string,string>& MergeChn)
 {
@@ -5534,10 +5730,7 @@ void ExportXmltv(const string& ch_id, string ch_name,
          }
       }
       // sort new programmes by start time
-      list<TV_SLOT*> NewSlotList;
-      for (uint idx = 0; idx < NewSlots.size(); idx++)
-         NewSlotList.push_back(&NewSlots[idx]);
-      NewSlotList.sort(TV_SLOT_cmp_start());
+      NewSlots.sort(TV_SLOT_cmp_start());
 
       // map holding old programmes is already sorted, as start time is used as key
       list<time_t> OldSlotList;
@@ -5545,12 +5738,13 @@ void ExportXmltv(const string& ch_id, string ch_name,
          OldSlotList.push_back(p->first);
 
       // combine both sources (i.e. merge them)
-      while (!NewSlotList.empty() || !OldSlotList.empty()) {
-         switch (MergeNextSlot(NewSlotList, OldSlotList, OldProgHash)) {
+      while (!NewSlots.empty() || !OldSlotList.empty()) {
+         switch (MergeNextSlot(NewSlots, OldSlotList, OldProgHash)) {
             case 1:
-               assert(!NewSlotList.empty());
-               ExportTitle(fp, *NewSlotList.front(), ch_id);
-               NewSlotList.pop_front();
+               assert(!NewSlots.empty());
+               ExportTitle(fp, *NewSlots.front(), ch_id);
+               delete NewSlots.front();
+               NewSlots.pop_front();
                break;
             case 2:
                assert(!OldSlotList.empty());
@@ -5564,8 +5758,13 @@ void ExportXmltv(const string& ch_id, string ch_name,
    }
    else {
       // no merge required -> simply print all new
-      for (uint idx = 0; idx < NewSlots.size(); idx++) {
-         ExportTitle(fp, NewSlots[idx], ch_id);
+      //for (list<TV_SLOT*>::iterator p = NewSlots.begin(); p != NewSlots.end(); p++)
+      //   ExportTitle(fp, *(*p), ch_id);
+      while (!NewSlots.empty()) {
+         ExportTitle(fp, *NewSlots.front(), ch_id);
+
+         delete NewSlots.front();
+         NewSlots.pop_front();
       }
    }
 
@@ -5610,18 +5809,11 @@ int main( int argc, char *argv[])
    else {
       // parse and export programme data
       // grab new XML data from teletext
-      vector<TV_SLOT> NewSlots = ParseAllOvPages();
-
-      // retrieve descriptions from references teletext pages
-      for (uint idx = 0; idx < NewSlots.size(); idx++) {
-         if (NewSlots[idx].m_ttx_ref != -1) {
-            NewSlots[idx].m_desc = ParseDescPage(NewSlots[idx]);
-         }
-      }
+      list<TV_SLOT*> NewSlots = ParseAllOvPages();
 
       // remove programmes beyond the expiration threshold
       if (!opt_verify) {
-         NewSlots = FilterExpiredSlots(NewSlots);
+         FilterExpiredSlots(NewSlots);
       }
 
       // make sure to never write an empty file

@@ -17,9 +17,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
+#  Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.27 2010/03/27 16:19:06 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.28 2010/04/05 13:09:29 tom Exp $
 #
 
 use POSIX;
@@ -990,6 +990,8 @@ sub ImportRawDump {
       $file .= $_;
    }
    close(DUMP);
+
+   my %PgTime;  # dummy for C++ version
 
    eval $file || die "syntax error in $opt_infile: $@\n";
 }
@@ -2374,7 +2376,9 @@ sub CheckRedundantSubpage {
    if ($#$PrevSlots - $prev_slot_idx == $#$Slots) {
       $result = 1;
       for (my $idx = 0; $idx <= $#$Slots; $idx++) {
-         if ($PrevSlots->[$prev_slot_idx + $idx]->{start_t} != $Slots->[$idx]->{start_t}) {
+         # compare HH:MIN instead of start_t as that one depends on page relations (e.g. missing date or after 00:00 etc.)
+         if (($PrevSlots->[$prev_slot_idx + $idx]->{hour} != $Slots->[$idx]->{hour}) ||
+             ($PrevSlots->[$prev_slot_idx + $idx]->{min} != $Slots->[$idx]->{min})) {
             # TODO compare title
             $result = 0;
             last;

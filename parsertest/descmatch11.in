@@ -1,0 +1,191 @@
+#!/usr/bin/perl -w
+#
+# Two dates on description page & title in all-upper-case
+#
+# $Id: descmatch11.in,v 1.1 2010/04/05 13:16:43 tom Exp $
+#
+$VbiCaptureTime = 1270410881;
+$PgCnt{0x301} = 1;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301\x03RTLtext  \x07So 4 Apr\x03 21:54:32",
+  "\x11<,,,l\x13<,,,l\x14<,l|| \x1C  \x04\x1D\x03Experten der   ",
+  "\x115 s n\x13\x7F5 j\x7F\x145 */o \x1C  \x04\x1D\x03Magie & Zukunft",
+  "\x11#####\x13#####\x14##### \x1C  \x04\x1D\x03       > 425   ",
+  "\x03\x1D\x04TV-PROGRAMM\x01           So 04.04.\x041/1 ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x11\$\x0406:00 Die Camper..............>389 ",
+  "\x07\x1D\x11\$\x0406:20 Alles Atze..............>384 ",
+  "\x07\x1D\x11\$\x0406:50 Nikola..................>393 ",
+  "\x07\x1D\x11\$\x0407:20 Ritas Welt..............>390 ",
+  "\x07\x1D\x11\$\x0407:50 Ich bin Boes............>381 ",
+  "\x07\x1D\x11\$\x0408:15 B|se M{dchen............>385 ",
+  "\x07\x1D\x11 \x04                                   ",
+  "\x07\x1D\x11\$\x0408:45 Formel 1:Countdown......>250 ",
+  "\x07\x1D\x11\$\x0410:00 Formel 1:Das Rennen.....>250 ",
+  "\x07\x1D\x11\$\x0411:45 Formel 1:Siegerehrung &      ",
+  "\x07\x1D\x11 \x04               Highlights.....>250 ",
+  "\x07\x1D\x11\$\x0412:30 Red Bull Air Race.......>269 ",
+  "\x07\x1D\x11\$\x0412:55 Die Autoh{ndler.........>319 ",
+  "\x07\x1D\x14ppppppppppppppppppppppppppppppppppp  ",
+  "\x07\x1D\x04\x1D\x03DSDS - das gro~e Special.....850\x07\x1D\x03",
+  "\x07\x1D\x04\x1D\x03\"DEINE WELT\" - GZSZ & Co.....600\x07\x1D\x03",
+  "\x03\x1D\x04\x1D\x03Astro Experten helfen Ihnen..410\x03\x1D\x03",
+  "\x03\x1D\x04\x1D\x03Programm der anderen Sender..309\x03\x1D\x03",
+  "\x01zur}ck  \x02vor  \x03Jetzt bei RTL \x06TV-Planer",
+  undef,
+  undef,
+  "\x15\x15\x15j/j^I\x15j/j^^^j/j^G\x15j/j^jjjjj/jjjjj/\x1B  ",
+  undef,
+  undef,
+];
+$PgCnt{0x384} = 1;
+$PgSub{0x384} = 0;
+$PgLang{0x384} = 1;
+$PgTime{0x384} = 1270410881;
+$Pkg{0x384|(0x0000<<12)} =
+[
+  "        384\x03RTLtext  \x07So 4 Apr\x03 21:54:36",
+  "\x11<,,,l\x13<,,,l\x14<,l|| \x1C  \x04\x1D\x07 Traumreisen   ",
+  "\x115 s n\x13\x7F5 j\x7F\x145 */o \x1C  \x04\x1D\x07  G]NSTIG!!!   ",
+  "\x11#####\x13#####\x14##### \x1C  \x04\x1D\x07   > 500 <     ",
+  "\x03\x1D\x04ALLES ATZE                       1/1 ",
+  "\x07\x1D\x01                \x04Sa 03.04.\x0101:10 Uhr ",
+  "\x07\x1D\x01                \x04So 04.04.\x0106:20 Uhr\x07",
+  "\x07\x1D\x01M{usejagd\x07                           ",
+  "\x07\x1D\x04Atze passt es }berhaupt nicht, dass\x07 ",
+  "\x07\x1D\x04Opa Pl{te einen Urlaub plant. Der\x07   ",
+  "\x07\x1D\x04soll gef{lligst seinen Hausmeister-\x07 ",
+  "\x07\x1D\x04pflichten nachkommen, anstatt in der\x07",
+  "\x07\x1D\x04Sonne zu braten. So setzt Atze ein\x07  ",
+  "\x07\x1D\x04kleines M{uschen aus, um Opa Pl{tes\x07 ",
+  "\x07\x1D\x04Anwesenheit zu erzwingen.\x07           ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x04Doch Pl{te denkt nicht daran, auf\x07   ",
+  "\x07\x1D\x04den Urlaub zu verzichten. Das\x07       ",
+  "\x07\x1D\x04M{uschen dagegen f}hlt sich bald im\x07 ",
+  "\x07\x1D\x04ganzen Haus sehr wohl. Die Geister,\x07 ",
+  "\x07\x1D\x04die Atze rief, wird er nun nicht\x07    ",
+  "\x07\x1D\x04mehr los...\x07                         ",
+  "\x01\x1D\x03\x0DAstroberatung individuell.......410\x07",
+  "                                        ",
+  "\x01zur}ck    \x02vor    \x03Ratgeber   \x06VIP-News",
+  undef,
+  undef,
+  "\x15\x02Pj/j^8Pj/j^\x15\x15jjjj\x15sj/j/jjjjj/jjjjj/\x1B  ",
+  undef,
+  undef,
+];
+$PgCnt{0x389} = 1;
+$PgSub{0x389} = 0;
+$PgLang{0x389} = 1;
+$PgTime{0x389} = 1270410881;
+$Pkg{0x389|(0x0000<<12)} =
+[
+  "        389\x03RTLtext  \x07So 4 Apr\x03 21:54:36",
+  "\x11<,,,l\x13<,,,l\x14<,l|| \x1C  \x04\x1D\x07Sch|ne Reise-  ",
+  "\x115 s n\x13\x7F5 j\x7F\x145 */o \x1C  \x04\x1D\x07angebote welt- ",
+  "\x11#####\x13#####\x14##### \x1C  \x04\x1D\x07weit > 500     ",
+  "\x03\x1D\x04DIE CAMPER                       1/1 ",
+  "\x07\x1D\x01                \x04So 04.04.\x0106:00 Uhr ",
+  "\x07\x1D\x01                \x04                    ",
+  "\x07\x1D\x01Manndeckung\x07                         ",
+  "\x07\x1D\x04Campingplatz-King Benno trainiert\x07   ",
+  "\x07\x1D\x04seine Kumpels f}r das allj{hrliche\x07  ",
+  "\x07\x1D\x04Fu~ballspiel der Camper gegen die\x07   ",
+  "\x07\x1D\x04Bauern aus dem nahe gelegenen Dorf.\x07 ",
+  "\x07\x1D\x04Doch sowohl Kondition als auch das\x07  ",
+  "\x07\x1D\x04Spielverm|gen der eher unsportlichen\x07",
+  "\x07\x1D\x04Camper lassen zu w}nschen }brig.\x07    ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x04Da k|nnte ein Freund von Tanja\x07      ",
+  "\x07\x1D\x04helfen, der durchaus ein guter\x07      ",
+  "\x07\x1D\x04Fu~baller ist. Aber Benno will\x07      ",
+  "\x07\x1D\x04Oliver nicht aufstellen, denn Oliver\x07",
+  "\x07\x1D\x04ist schwul. Und wenn er dann mit dem\x07",
+  "\x07\x1D\x04duschen m}sste - oh Gott...\x07         ",
+  "\x03\x1D\x01\x0DIhr pers|nliches Horoskop >>> 410   ",
+  "                                        ",
+  "\x01zur}ck   \x02vor   \x03TV Jetzt    \x06RTL-Shows",
+  undef,
+  undef,
+  "\x15/Pj/j^\x15Gj/j^^^j/j^\x15sj/j^jjjjj/jjjjj/\x1B  ",
+  undef,
+  undef,
+];
+$PgCnt{0x390} = 1;
+$PgSub{0x390} = 0;
+$PgLang{0x390} = 1;
+$PgTime{0x390} = 1270410881;
+$Pkg{0x390|(0x0000<<12)} =
+[
+  "        390\x03RTLtext  \x07So 4 Apr\x03 21:54:36",
+  "\x11<,,,l\x13<,,,l\x14<,l|| \x1C  \x04\x1D\x03Seri|se        ",
+  "\x115 s n\x13\x7F5 j\x7F\x145 */o \x1C  \x04\x1D\x03Lebensberatung ",
+  "\x11#####\x13#####\x14##### \x1C  \x04\x1D\x03LIVE >>> 410   ",
+  "\x03\x1D\x04RITAS WELT                       1/1 ",
+  "\x07\x1D\x01                \x04Sa 03.04.\x0106:45 Uhr ",
+  "\x07\x1D\x01                \x04So 04.04.\x0107:20 Uhr ",
+  "\x07\x1D\x01Bitte l{cheln, Herr Schumann!\x07       ",
+  "\x07\x1D\x04Ritas Chef Schumann entwickelt sich\x07 ",
+  "\x07\x1D\x04zur echten Plage, nachdem er zum\x07    ",
+  "\x07\x1D\x04'Gesch{ftsmann der Woche' gew{hlt\x07   ",
+  "\x07\x1D\x04wurde und diese Tatsache }berall\x07    ",
+  "\x07\x1D\x04herumposaunt. Allerdings plagen\x07     ",
+  "\x07\x1D\x04Schumann auch h{usliche Probleme.\x07   ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x04Nachdem ihm sein Zimmer gek}ndigt\x07   ",
+  "\x07\x1D\x04wurde, wohnt er nun in einem sch{-\x07  ",
+  "\x07\x1D\x04bigen Loch in K|ln-Porz. Und das\x07    ",
+  "\x07\x1D\x04nach der Ehrung! Niemand darf das\x07   ",
+  "\x07\x1D\x04wissen. Wie peinlich! Nur Rita be-\x07  ",
+  "\x07\x1D\x04kommt das Geheimnis heraus und will\x07 ",
+  "\x07\x1D\x04helfen. Mit einem fatalen Ergebnis.\x07 ",
+  "\x01\x1D\x07\x0DDeutschland sucht den Superstar>850\x07",
+  "                                        ",
+  "\x01zur}ck    \x02vor    \x03Ratgeber   \x06VIP-News",
+  undef,
+  undef,
+  "\x15GPj/j^IGj/j^\x15\x15jjjj\x15sj/j/jjjjj/jjjjj/\x1B  ",
+  undef,
+  undef,
+];
+$PgCnt{0x393} = 1;
+$PgSub{0x393} = 0;
+$PgLang{0x393} = 1;
+$PgTime{0x393} = 1270410881;
+$Pkg{0x393|(0x0000<<12)} =
+[
+  "        393\x03RTLtext  \x07So 4 Apr\x03 21:54:36",
+  "\x11<,,,l\x13<,,,l\x14<,l|| \x1C  \x01\x1D\x03Ihre indivi-   ",
+  "\x115 s n\x13\x7F5 j\x7F\x145 */o \x1C  \x01\x1D\x03duelle Astro-  ",
+  "\x11#####\x13#####\x14##### \x1C  \x01\x1D\x03beratung > 410 ",
+  "\x03\x1D\x04NIKOLA                           1/1 ",
+  "\x07\x1D\x01                \x04Sa 03.04.\x0107:15 Uhr ",
+  "\x07\x1D\x01                \x04So 04.04.\x0106:50 Uhr ",
+  "\x07\x1D\x01Der Anfang vom Ende\x07                 ",
+  "\x07\x1D\x04Nikolas Ex-Freund Erik l{dt Nikola\x07  ",
+  "\x07\x1D\x04und Schmidt zu einem romantischen\x07   ",
+  "\x07\x1D\x04Abendessen ein, um ihnen seine neue\x07 ",
+  "\x07\x1D\x04Freundin zu pr{sentieren. Doch die\x07  ",
+  "\x07\x1D\x04werdenden Eltern zeigen sich mal\x07    ",
+  "\x07\x1D\x04wieder von ihrer 'besten' Seite und\x07 ",
+  "\x07\x1D\x04zerfleischen sich fast am Tisch.\x07    ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x04Erik ist schier entsetzt und\x07        ",
+  "\x07\x1D\x04verl{sst mit seiner Bea das Lokal.\x07  ",
+  "\x07\x1D\x04Zur}ck bleiben Nikola und Schmidt,\x07  ",
+  "\x07\x1D\x04die sich geknickt in die Augen\x07      ",
+  "\x07\x1D\x04schauen. Dann setzt Nikola zu einem\x07 ",
+  "\x07\x1D\x04folgenschweren Satz an...\x07           ",
+  "\x03\x1D\x04\x0DNah-& Fernreisen g}nstig buchen 500 ",
+  "                                        ",
+  "\x01zur}ck    \x02vor    \x03Ratgeber   \x06VIP-News",
+  undef,
+  undef,
+  "\x15IGj/j^dGj/j^\x15\x15jjjj\x15sj/j/jjjjj/jjjjj/\x1B  ",
+  undef,
+  undef,
+];

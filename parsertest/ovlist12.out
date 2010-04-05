@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ard.de">
+	<display-name>ARD</display-name>
+</channel>
+
+<programme start="20100321174900 +0000" stop="20100321175000 +0000" channel="ard.de">
+	<title>Ein Platz an der Sonne</title>
+</programme>
+
+<programme start="20100321175000 +0000" stop="20100321182000 +0000" channel="ard.de">
+	<title>Lindenstraße</title>
+	<sub-title>Lindenstraße Kakao (D, 2010)</sub-title>
+	<desc>(teletext 342)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100321182000 +0000" stop="20100321190000 +0000" channel="ard.de">
+	<title>Weltspiegel</title>
+	<desc>(teletext 343)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100321190000 +0000" stop="20100321191500 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100321191500 +0000" stop="20100321204500 +0000" channel="ard.de">
+	<title>Tatort: Kaltes Herz</title>
+	<sub-title>Tatort: Kaltes Herz Fernsehfilm, D 2010</sub-title>
+	<desc>(teletext 344)</desc>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100321204500 +0000" stop="20100321214500 +0000" channel="ard.de">
+	<title>Anne Will</title>
+	<desc>(teletext 345)</desc>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100321214500 +0000" stop="20100321220300 +0000" channel="ard.de">
+	<title>Tagesthemen</title>
+</programme>
+
+<programme start="20100321220300 +0000" stop="20100321220500 +0000" channel="ard.de">
+	<title>Das Wetter im Ersten</title>
+</programme>
+
+<programme start="20100321220500 +0000" stop="20100321223500 +0000" channel="ard.de">
+	<title>ttt - titel thesen</title>
+	<sub-title>ttt - titel thesen temperamente</sub-title>
+	<desc>(teletext 346)</desc>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100321223500 +0000" stop="20100322001000 +0000" channel="ard.de">
+	<title>Die Stille nach dem</title>
+	<sub-title>Die Stille nach dem Schuss (D, 2000) Das FilmFestival</sub-title>
+	<desc>(teletext 347)</desc>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100322001000 +0000" stop="20100322002000 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100322002000 +0000" stop="20100322020000 +0000" channel="ard.de">
+	<title>Die Verfehlung</title>
+	<sub-title>Die Verfehlung Spielfilm, D 1991</sub-title>
+	<desc>(teletext 348)</desc>
+</programme>
+
+<programme start="20100322020000 +0000" stop="20100322020500 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100322020500 +0000" stop="20100322040000 +0000" channel="ard.de">
+	<title>Sportschau live</title>
+	<sub-title>Sportschau live Paralympics Vancouver 2010 Schlussfeier</sub-title>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100322040000 +0000" stop="20100322040500 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100322040500 +0000" stop="20100322043000 +0000" channel="ard.de">
+	<title>Die schönsten Bahnstrecken</title>
+	<sub-title>Die schönsten Bahnstrecken Deutschlands ICE: Bonn - Berlin</sub-title>
+</programme>
+
+<programme start="20100322043000 +0000" stop="20100322080000 +0000" channel="ard.de">
+	<title>ZDF-Morgenmagazin</title>
+</programme>
+
+<programme start="20100322080000 +0000" stop="20100322080500 +0000" channel="ard.de">
+	<title>heute</title>
+</programme>
+
+<programme start="20100322080500 +0000" stop="20100322090000 +0000" channel="ard.de">
+	<title>Sportschau extra:</title>
+	<sub-title>Sportschau extra: Paralympics Vancouver 2010 Highlights</sub-title>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100322090000 +0000" stop="20100322090300 +0000" channel="ard.de">
+	<title>heute</title>
+</programme>
+
+<programme start="20100322090300 +0000" stop="20100322110000 +0000" channel="ard.de">
+	<title>Das Frühlingsfest der</title>
+	<sub-title>Das Frühlingsfest der Volksmusik mit Florian Silbereisen</sub-title>
+</programme>
+
+<programme start="20100322110000 +0000" stop="20100322111500 +0000" channel="ard.de">
+	<title>heute</title>
+	<sub-title>heute mit Börsenbericht</sub-title>
+</programme>
+
+<programme start="20100322111500 +0000" stop="20100322120000 +0000" channel="ard.de">
+	<title>ARD-Buffet</title>
+	<sub-title>ARD-Buffet Moderation: Florian Weber</sub-title>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+</programme>
+
+<programme start="20100322120000 +0000" stop="20100322130000 +0000" channel="ard.de">
+	<title>ZDF-Mittagsmagazin</title>
+	<sub-title>ZDF-Mittagsmagazin mit heute-Nachrichten</sub-title>
+</programme>
+
+<programme start="20100322130000 +0000" stop="20100322131000 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100322131000 +0000" stop="20100322140000 +0000" channel="ard.de">
+	<title>Rote Rosen (765)</title>
+</programme>
+
+<programme start="20100322140000 +0000" stop="20100322141000 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100322141000 +0000" stop="20100322150000 +0000" channel="ard.de">
+	<title>Sturm der Liebe (1036)</title>
+</programme>
+
+<programme start="20100322150000 +0000" stop="20100322151000 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100322151000 +0000" stop="20100322160000 +0000" channel="ard.de">
+	<title>Nashorn, Zebra &amp; Co.</title>
+	<sub-title>Nashorn, Zebra &amp; Co. Tierpark Hellabrunn</sub-title>
+</programme>
+
+<programme start="20100322160000 +0000" stop="20100322161500 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100322161500 +0000" stop="20100322170000 +0000" channel="ard.de">
+	<title>Brisant</title>
+	<sub-title>Brisant Boulevardmagazin</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100322170000 +0000" stop="20100322172500 +0000" channel="ard.de">
+	<title>Verbotene Liebe (3579)</title>
+</programme>
+
+<programme start="20100322172500 +0000" stop="20100322175000 +0000" channel="ard.de">
+	<title>Marienhof (3781)</title>
+</programme>
+
+<programme start="20100322175000 +0000" stop="20100322185000 +0000" channel="ard.de">
+	<title>Großstadtrevier</title>
+	<sub-title>Großstadtrevier Das Geheimnis des Hafenpastors (D, 2007)</sub-title>
+</programme>
+
+<programme start="20100322185000 +0000" stop="20100322185500 +0000" channel="ard.de">
+	<title>Das Wetter im Ersten</title>
+</programme>
+
+<programme start="20100322185500 +0000" stop="20100322190000 +0000" channel="ard.de">
+	<title>Börse im Ersten</title>
+</programme>
+
+<programme start="20100322190000 +0000" stop="20100322191500 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100322191500 +0000" stop="20100322200000 +0000" channel="ard.de">
+	<title>Erlebnis Erde:</title>
+	<sub-title>Erlebnis Erde: Kaltblütig (3/4) Schlangen mit Pfiff</sub-title>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100322200000 +0000" stop="20100322204500 +0000" channel="ard.de">
+	<title>Der Kämpfer -</title>
+	<sub-title>Der Kämpfer - Helmut Kohl im Rückblick</sub-title>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100322204500 +0000" stop="20100322211500 +0000" channel="ard.de">
+	<title>Report Mainz</title>
+	<sub-title>Report Mainz Moderation: Fritz Frey</sub-title>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100322211500 +0000" stop="20100322214300 +0000" channel="ard.de">
+	<title>Tagesthemen</title>
+</programme>
+
+<programme start="20100322214300 +0000" stop="20100322214500 +0000" channel="ard.de">
+	<title>Das Wetter im Ersten</title>
+</programme>
+
+<programme start="20100322214500 +0000" stop="20100322230000 +0000" channel="ard.de">
+	<title>Beckmann</title>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100322230000 +0000" stop="20100322232000 +0000" channel="ard.de">
+	<title>Nachtmagazin</title>
+</programme>
+
+<programme start="20100322232000 +0000" stop="20100322235000 +0000" channel="ard.de">
+	<title>Dittsche -</title>
+	<sub-title>Dittsche - Das wirklich wahre Leben</sub-title>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100322235000 +0000" stop="20100323011500 +0000" channel="ard.de">
+	<title>Männer sind zum</title>
+	<sub-title>Männer sind zum Küssen da (USA, 1997)</sub-title>
+</programme>
+
+<programme start="20100323011500 +0000" stop="20100323012000 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100323012000 +0000" stop="20100323021000 +0000" channel="ard.de">
+	<title>Sturm der Liebe (1036)</title>
+</programme>
+
+<programme start="20100323021000 +0000" stop="20100323025500 +0000" channel="ard.de">
+	<title>Der Kämpfer -</title>
+	<sub-title>Der Kämpfer - Helmut Kohl im Rückblick</sub-title>
+</programme>
+
+<programme start="20100323025500 +0000" stop="20100323032500 +0000" channel="ard.de">
+	<title>W wie Wissen</title>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+</programme>
+
+<programme start="20100323032500 +0000" stop="20100323035500 +0000" channel="ard.de">
+	<title>Die schönsten Bahnstrecken</title>
+	<sub-title>Die schönsten Bahnstrecken Deutschlands ICE: Bonn - Berlin</sub-title>
+</programme>
+
+<programme start="20100323035500 +0000" stop="20100323040000 +0000" channel="ard.de">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100323040000 +0000" stop="20100323043000 +0000" channel="ard.de">
+	<title>Report Mainz</title>
+</programme>
+</tv>
