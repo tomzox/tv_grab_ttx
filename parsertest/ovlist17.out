@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="Bayern">
+	<display-name>Bayern</display-name>
+</channel>
+
+<programme start="20100404040000 +0000" stop="20100404043000 +0000" pdc-start="20100404060000 +0200" channel="Bayern">
+	<title>Nachtlinie</title>
+	<sub-title>Nachtlinie Andreas Bönte unterwegs mit Altabt Odilo Lechner und Hans- Günther Kaufmann</sub-title>
+	<desc>(teletext 334)</desc>
+</programme>
+
+<programme start="20100404043000 +0000" stop="20100404051500 +0000" pdc-start="20100404063000 +0200" channel="Bayern">
+	<title>Eichstätt - Alte Stadt und</title>
+	<sub-title>Eichstätt - Alte Stadt und junger Geist Von Stefan Ludwig</sub-title>
+	<desc>(teletext 335)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100404051500 +0000" stop="20100404053000 +0000" pdc-start="20100404071500 +0200" channel="Bayern">
+	<title>Tele-Gym</title>
+	<sub-title>Tele-Gym Wild &amp; Weiblich (4/8)</sub-title>
+	<desc>(teletext 374)</desc>
+</programme>
+
+<programme start="20100404053000 +0000" stop="20100404064000 +0000" pdc-start="20100404073000 +0200" channel="Bayern">
+	<title>Panoramabilder / Bergwetter</title>
+</programme>
+
+<programme start="20100404064000 +0000" stop="20100404081500 +0000" pdc-start="20100404084000 +0200" channel="Bayern">
+	<title>Der Trotzkopf (1)</title>
+	<sub-title>Der Trotzkopf (1) Kinderspielfilm, D 1981</sub-title>
+	<desc>(teletext 336)</desc>
+</programme>
+
+<programme start="20100404081500 +0000" stop="20100404103000 +0000" pdc-start="20100404101500 +0200" channel="Bayern">
+	<title>Ostern in Rom</title>
+	<sub-title>Ostern in Rom Gottesdienst mit Papst Benedikt XVI. und Segen "Urbi et orbi"</sub-title>
+	<desc>(teletext 411)</desc>
+</programme>
+</tv>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="kika.de">
+	<display-name>KI.KA</display-name>
+</channel>
+
+<programme start="20061119175000 +0000" stop="20061119180000 +0000" channel="kika.de">
+	<title>Unser Sandmännchen</title>
+	<sub-title>Unser Sandmännchen Pittiplatsch: Die Wolke an der Leine</sub-title>
+</programme>
+
+<programme start="20061119180000 +0000" stop="20061119182500 +0000" channel="kika.de">
+	<title>Little Amadeus (12)</title>
+	<sub-title>Little Amadeus (12) Straßenmusikanten</sub-title>
+	<desc>(teletext 354)</desc>
+</programme>
+
+<programme start="20061119182500 +0000" stop="20061119185000 +0000" channel="kika.de">
+	<title>Willi wills wissen</title>
+	<sub-title>Willi wills wissen Was ist ohne Obdach los?</sub-title>
+</programme>
+
+<programme start="20061119185000 +0000" stop="20061119190500 +0000" channel="kika.de">
+	<title>KI.KA Kummerkasten</title>
+	<sub-title>KI.KA Kummerkasten Mister Perfect - Jungs und Schönheitswahn</sub-title>
+	<desc>(teletext 574)</desc>
+</programme>
+
+<programme start="20061119190500 +0000" stop="20061119191500 +0000" pdc-start="20061119200000 +0100" channel="kika.de">
+	<title>quergelesen</title>
+	<sub-title>quergelesen EXTRA - Vorgelesen</sub-title>
+	<desc>(teletext 380)</desc>
+</programme>
+
+<programme start="20061119191500 +0000" stop="20061119195000 +0000" channel="kika.de">
+	<title>Jesus &amp; Josefine (3+4)</title>
+	<sub-title>Jesus &amp; Josefine (3+4) Die Flucht nach Ägypten Heim nach Nazareth</sub-title>
+	<desc>(teletext 354)</desc>
+</programme>
+
+<programme start="20061119195000 +0000" stop="20061119195500 +0000" channel="kika.de">
+	<title>Xmas Xpress (2)/Griechenland</title>
+</programme>
+
+<programme start="20061119195500 +0000" stop="20061119200000 +0000" channel="kika.de">
+	<title>bravo bernd</title>
+</programme>
+
+<programme start="20061119200000 +0000" channel="kika.de">
+	<title>Sendeschluss</title>
+</programme>
+</tv>

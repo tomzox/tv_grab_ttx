@@ -1,0 +1,43 @@
+#!/usr/bin/perl -w
+#
+# Test of parsing of "end time" (for last entry on the page)
+#
+# $Id: ovlist15.in,v 1.1 2010/04/06 19:20:47 tom Exp $
+#
+$VbiCaptureTime = 1270412983;
+$PgCnt{0x301} = 3;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301 WDR-Text  So 04.04.\x0722:29:28",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "       \x03Sonntag, 04.04.10\x05\x18040410\x03      ",
+  "\x0204.25\x02\x02Lokalzeit aus Dortmund          ",
+  undef,
+  "\x0204.55\x02\x02Lokalzeit M}nsterland           ",
+  undef,
+  "\x0205.25\x02\x02Lokalzeit OWL aktuell           ",
+  undef,
+  "\x0205.50\x02\x02Lokalzeit S}dwestfalen          ",
+  undef,
+  "\x0206.20\x02\x02Tagesschau vor 20 Jahren\x03Mono   ",
+  undef,
+  "\x0206.35\x02\x02Die Anrheiner\x03UT                ",
+  "\x05\x18    \x07\x07568. Entscheidungsprozesse      ",
+  "\x0207.05\x02\x02Lindenstra~e\x03UT                 ",
+  "\x05\x18    \x07\x071269. Ausgekevint               ",
+  "\x0207.35\x02\x02S}~e Erlebnistour durchs        ",
+  "\x05\x18    \x07\x02M}nsterland\x03UT\x02............. 307",
+  "\x0208.05\x02\x02plasberg pers|nlich\x03UT\x02..... 379",
+  "\x05\x18    \x07\x07bis\x0709.36\x07Uhr                   ",
+  "\x1D\x04300 < ]bersicht          \x04weiter > 302",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

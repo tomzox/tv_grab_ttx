@@ -1,0 +1,43 @@
+#!/usr/bin/perl -w
+#
+# Test of parsing of "end time" (for last entry on the page)
+#
+# $Id: ovlist16.in,v 1.1 2010/04/06 19:20:47 tom Exp $
+#
+$VbiCaptureTime = 1270413253;
+$PgCnt{0x301} = 4;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301\x02SWR Text\x03Son.04.Apr\x0722:33:53",
+  "\x01\x1D                                      ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04SONNTAG, 04. APRIL  \x05\x181D133\x18040410\x1892",
+  "\x07                                       ",
+  "\x06                                       ",
+  "\x0705.30\x05\x180530\x07\x07Wunderwelt Wald           ",
+  "\x06                                       ",
+  "\x0607.40\x05\x180740\x06\x06Wunderwelt See            ",
+  "\x07                                       ",
+  "\x0709.10\x05\x180910\x07\x07Lichtblicke               ",
+  "\x07           \x07\x07Unglaubliche Hoffnung     ",
+  "\x0609.15\x05\x180915\x06\x06Zum Osterfest in die Taiga",
+  "\x06                                       ",
+  "\x0710.00\x05\x181000\x07\x07Dornr|schen\x03UT 150        ",
+  "\x06           \x07\x07M{rchenfilm D 2009.....305",
+  "\x0611.00\x05\x181100\x06\x06Die 30 sch|nsten M{rchen  ",
+  "\x07                                       ",
+  "\x0711.45\x05\x181145\x07\x07Spion in Spitzenh|schen   ",
+  "\x07           \x07\x07Spielfilm USA 1965\x03UT\x07.306",
+  "\x07     \x05\x05VPS \x07\x07(bis\x0713.30\x07Uhr)           ",
+  "\x07                                       ",
+  "\x07\x1D\x04                       weiter auf\x01302",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

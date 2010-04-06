@@ -19,7 +19,7 @@
 #
 #  Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pl,v 1.28 2010/04/05 13:09:29 tom Exp $
+#  $Id: tv_grab_ttx.pl,v 1.29 2011/01/06 11:12:50 tom Exp $
 #
 
 use POSIX;
@@ -1658,7 +1658,7 @@ sub ParseOvList {
                $hour = $1;
                $min = $2;
                # VPS time has already been extracted above
-               if (substr($text, $vps_off, $title_off - $vps_off) =~ m#^ +$#) {
+               if (substr($text, $vps_off, $title_off - $vps_off + 1) =~ m#^ +\S$#) {
                   $new_title = 1;
                   $title = substr($_, $title_off);
                }
@@ -1668,7 +1668,7 @@ sub ParseOvList {
          # m#^( {0,5}| {0,3}\! {1,3})(\d\d)[\.\:](\d\d) +#
          if (substr($text, 0, $time_off) =~ m#^ *([\*\!] +)?$#) {
             $is_tip = $1;
-            if (substr($text, $time_off, $title_off - $time_off) =~ m#^(\d\d)[\.\:](\d\d) +$#) {
+            if (substr($text, $time_off, $title_off - $time_off + 1) =~ m#^(\d\d)[\.\:](\d\d) +\S$#) {
                $hour = $1;
                $min = $2;
                $new_title = 1;

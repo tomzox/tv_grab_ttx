@@ -1,0 +1,43 @@
+#!/usr/bin/perl -w
+#
+# Test of parsing of "end time" (for last entry on the page)
+#
+# $Id: ovlist14.in,v 1.1 2010/04/06 19:20:47 tom Exp $
+#
+$VbiCaptureTime = 1270412338;
+$PgCnt{0x301} = 3;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301\x07ARDtext\x07So 04.04.10\x0722:18:36",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06    So 04.04.2010\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  05.30  Die Erschaffung der Welt . 309",
+  "\x07         Zeichentrickfilm, CSSR 1957   ",
+  "\x07 \x0606.50  Die wunderbare Reise des      ",
+  "\x07        \x06kleinen Nils Holgersson mit   ",
+  "\x07        \x06den Wildg{nsen                ",
+  "\x07  07.15  Sesamstra~e                   ",
+  "\x07 \x0607.40  Ernie und Bert im Land        ",
+  "\x07        \x06der Tr{ume                    ",
+  "\x07  07.50  Meister Eder und sein Pumuckl ",
+  "\x07         Pumuckl im Zoo                ",
+  "\x07 \x0608.15  Meister Eder und sein Pumuckl ",
+  "\x07        \x06Die geheimnisvollen Briefe    ",
+  "\x07  08.40  Tigerenten Club .......... 312",
+  "\x07         Revolverheld                  ",
+  "\x07 \x0609.40  Die Sendung mit der\x03UT\x06... 313",
+  "\x07        \x06Maus                          ",
+  "\x07  10.10  Tagesschau                    ",
+  "\x07         bis 10.15 Uhr                 ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Nachmittag >\x06302",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

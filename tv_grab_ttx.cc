@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.14 2010/04/05 13:14:18 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.15 2010/04/06 19:39:56 tom Exp $
  */
 
 #include <stdio.h>
@@ -505,7 +505,7 @@ public:
    void calculate_start_times();
    void extract_tv(list<TV_SLOT*>& tv_slots);
 private:
-   bool parse_end_time(const string& text, int& hour, int& min);
+   bool parse_end_time(const string& text, const string& ctrl, int& hour, int& min);
 private:
    const int    m_page;
    const int    m_sub;
@@ -1337,6 +1337,76 @@ void str_chomp(string& str)
       begin++;
    }
    str.erase(str.begin(), begin);
+}
+
+// return the current foreground color at the end of the given string
+template<class IT>
+int str_fg_col(const IT& first, const IT& second)
+{
+   int fg = 7;
+
+   for (IT p = first; p != second; p++) {
+      unsigned char c = *p;
+      if (c <= 7) {
+         fg = (unsigned int) c;
+      }
+   }
+   return fg;
+}
+
+template<class MATCH>
+int str_fg_col(const MATCH& match)
+{
+   return str_fg_col(match.first, match.second);
+}
+
+// return TRUE if text is concealed at the end of the given string
+template<class IT>
+bool str_is_concealed(const IT& first, const IT& second)
+{
+   bool is_concealed = false;
+
+   for (IT p = first; p != second; p++) {
+      unsigned char c = *p;
+      if (c == '\x18') {
+         is_concealed = true;
+      }
+      else if (c <= '\x07') {
+         is_concealed = false;
+      }
+   }
+   return is_concealed;
+}
+
+template<class MATCH>
+bool str_is_concealed(const MATCH& match)
+{
+   return str_is_concealed(match.first, match.second);
+}
+
+// return the current background color at the end of the given string
+template<class IT>
+int str_bg_col(const IT& first, const IT& second)
+{
+   int fg = 7;
+   int bg = 0;
+
+   for (IT p = first; p != second; p++) {
+      unsigned char c = *p;
+      if (c <= 7) {
+         fg = (unsigned int) c;
+      }
+      else if (c == 0x1D) {
+         bg = fg;
+      }
+   }
+   return bg;
+}
+
+template<class MATCH>
+int str_bg_col(const MATCH& match)
+{
+   return str_bg_col(match.first, match.second);
 }
 
 /* ------------------------------------------------------------------------------
@@ -3331,7 +3401,7 @@ int ConvertVpsCni(const IT& first, const IT& second)
  * - matching text is replaced with blanks
  * - TODO: KiKa special: "VPS 20.00" (magenta)
  */
-void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
+void ParseVpsLabel(string& text, const string& text_pred, T_VPS_TIME& vps_data, bool is_desc)
 {
    match_results<string::iterator> whati;
    string::iterator starti = text.begin();
@@ -3339,22 +3409,20 @@ void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
    // for performance reasons check first if there's a magenta or conceal char
    static const regex expr0("([\\x05\\x18]+[\\x05\\x18 ]*)([^\\x00-\\x20])");
    while (regex_search(starti, text.end(), whati, expr0)) {
-      bool is_concealed = false;
-      for (string::iterator p = whati[1].first; p != whati[1].second; p++) {
-         if (*p == '\x18') {
-            is_concealed = true;
-            break;
-         }
-      }
+      bool is_concealed = str_is_concealed(whati[1]);
       starti = whati[2].first;
 
       static const regex expr1("^(VPS[\\x05\\x18 ]+)?"
-                               "(\\d{4})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$)");
+                               "(\\d{4})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]| *$)");
+      static const regex expr1b("^VPS[\\x05\\x18 ]+" // obligatory "VPS "
+                               "(\\d{2})[.:](\\d{2})([\\x00-\\x04\\x06\\x07]| *$)");
+      static const regex expr1c("^((\\d{2})[.:](\\d{2}))([\\x00-\\x04\\x06\\x07]| *$)"); // obligatory VPS in preceding line
+      static const regex expr1c2("[\\x00-\\x07\\x018 ]*VPS[\\x00-\\x07\\x018 ]*");
       static const regex expr2("^([0-9A-F]{2}\\d{3})[\\x05\\x18 ]+"
-                               "(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$)");
-      static const regex expr3("^(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]|$)");
-      static const regex expr4("^(\\d{2}[.:]\\d{2}) oo *([\\x00-\\x04\\x06\\x07]|$)");
-      static const regex expr5("^VPS *([\\x00-\\x04\\x06\\x07]|$)");
+                               "(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]| *$)");
+      static const regex expr3("^(\\d{6})([\\x05\\x18 ]+[\\dA-Fs]*)*([\\x00-\\x04\\x06\\x07]| *$)");
+      //static const regex expr4("^(\\d{2}[.:]\\d{2}) oo *([\\x00-\\x04\\x06\\x07]| *$)");
+      static const regex expr5("^VPS *([\\x00-\\x04\\x06\\x07]| *$)");
 
       // time
       // discard any concealed/magenta labels which follow
@@ -3364,6 +3432,32 @@ void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
          // blank out the same area in the text-only string
          str_blank(whati[0]);
          if (opt_debug) printf("VPS time found: %s\n", vps_data.m_vps_time.c_str());
+      }
+      // time with ":" separator - only allowed after "VPS" prefix
+      // discard any concealed/magenta labels which follow
+      else if (regex_search(starti, text.end(), whati, expr1b)) {
+         vps_data.m_vps_time.assign(whati[1].first, whati[1].second);
+         vps_data.m_vps_time += string(whati[2].first, whati[2].second);
+         vps_data.m_new_vps_time = true;
+         // blank out the same area in the text-only string
+         str_blank(whati[0]);
+         if (opt_debug) printf("VPS time found: %s\n", vps_data.m_vps_time.c_str());
+      }
+      // FIXME should accept this only inside the start time column
+      else if (!is_desc && regex_search(starti, text.end(), whati, expr1c)) {
+         match_results<string::const_iterator> whatic; // whati remains valid
+         string str_tmp = string(text_pred.begin() + whati.position(1),
+                                 text_pred.begin() + whati.position(1) + whati[1].length());
+         if (regex_match(text_pred.begin() + whati.position(1),
+                         text_pred.begin() + whati.position(1) + whati[1].length(),
+                         whatic, expr1c2)) {
+            vps_data.m_vps_time.assign(whati[2].first, whati[2].second);
+            vps_data.m_vps_time += string(whati[3].first, whati[3].second);
+            vps_data.m_new_vps_time = true;
+            // blank out the same area in the text-only string
+            str_blank(whati[0]);
+            if (opt_debug) printf("VPS time found: %s\n", vps_data.m_vps_time.c_str());
+         }
       }
       // CNI and date "1D102 120406 F9" (ignoring checksum)
       else if (regex_search(starti, text.end(), whati, expr2)) {
@@ -3381,11 +3475,11 @@ void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
          if (opt_debug) printf("VPS date: /%s/\n", vps_data.m_vps_date.c_str());
       }
       // end time (RTL special - not standardized)
-      else if (!is_desc && regex_search(starti, text.end(), whati, expr4)) {
+      //else if (!is_desc && regex_search(starti, text.end(), whati, expr4)) {
          // detected by the OV parser without evaluating the conceal code
          //vps_data.m_page_end_time = string(whati[1].first, whati[1].second);
          //if (opt_debug) printf("VPS(pseudo) page end time: %s\n", vps_data.m_page_end_time);
-      }
+      //}
       // "VPS" marker string
       else if (regex_search(starti, text.end(), whati, expr5)) {
          str_blank(whati[0]);
@@ -3412,7 +3506,7 @@ void ParseVpsLabel(string& text, T_VPS_TIME& vps_data, bool is_desc)
  *         mit Tagesschau
  *    VPS  bis 14.00 Uhr
  */
-bool OV_PAGE::parse_end_time(const string& text, int& hour, int& min)
+bool OV_PAGE::parse_end_time(const string& text, const string& ctrl, int& hour, int& min)
 {
    smatch whats;
    bool result = false;
@@ -3422,10 +3516,11 @@ bool OV_PAGE::parse_end_time(const string& text, int& hour, int& min)
    // TODO internationalize "bis", "Uhr"
    static const regex expr8("^ *(\\(?bis |ab |\\- ?)(\\d{1,2})[\\.:](\\d{2})"
                             "( Uhr| ?h)( |\\)|$)");
-   // FIXME does not work because the line is concealed and already blanked when coming here!
-   static const regex expr9("^( *)(\\d\\d)[\\.:](\\d\\d) (oo)? *$");
+   // FIXME should acceppt this only after title_off
+   static const regex expr9("^([\\x00-\\x07\\x18 ]*)(\\d\\d)[\\.:](\\d\\d)([\\x00-\\x07\\x18 ]+oo)?[\\x00-\\x07\\x18 ]*$");
    if (   regex_search(text, whats, expr8)   // ARD,SWR,BR-alpha
-       || regex_search(text, whats, expr9) ) // arte, RTL
+       || (   regex_search(ctrl, whats, expr9)  // arte, RTL
+           && (str_fg_col(ctrl.begin(), ctrl.begin() + whats.position(2)) != 5)) ) // KiKa VPS label across 2 lines
    {
       hour = atoi_substr(whats[2]);
       min = atoi_substr(whats[3]);
@@ -3527,7 +3622,7 @@ bool OV_PAGE::parse_slots(int foot_line, const T_OV_FMT_STAT& pgfmt)
       // extract and remove VPS labels
       // (labels not asigned here since we don't know yet if a new title starts in this line)
       vps_data.m_new_vps_time = false;
-      ParseVpsLabel(ctrl, vps_data, false);
+      ParseVpsLabel(ctrl, pgctrl->get_ctrl(line - 1), vps_data, false);
 
       // remove remaining control characters
       string text = ctrl;
@@ -3569,7 +3664,7 @@ bool OV_PAGE::parse_slots(int foot_line, const T_OV_FMT_STAT& pgfmt)
             ov_slot->m_vps_time = vps_data.m_vps_time;
 
          //FIXME normally only following the last slot on the page
-         if (parse_end_time(text, ov_slot->m_end_hour, ov_slot->m_end_min)) {
+         if (parse_end_time(text, ctrl, ov_slot->m_end_hour, ov_slot->m_end_min)) {
             // end of this slot
             ov_slot = 0;
          }
@@ -4733,7 +4828,7 @@ string ParseDescContent(int page, int sub, int head, int foot)
       // TODO parse features behind date, title or subtitle
 
       // extract and remove VPS labels and all concealed text
-      ParseVpsLabel(ctrl, vps_data, true);
+      ParseVpsLabel(ctrl, pgctrl->get_ctrl(idx - 1), vps_data, true);
 
       static const regex expr2("[\\x00-\\x1F\\x7F]");
       ctrl = regex_replace(ctrl, expr2, " ");

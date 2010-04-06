@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="SWR">
+	<display-name>SWR</display-name>
+</channel>
+
+<programme start="20100404033000 +0000" stop="20100404054000 +0000" pdc-start="20100404053000 +0200" channel="SWR">
+	<title>Wunderwelt Wald</title>
+</programme>
+
+<programme start="20100404054000 +0000" stop="20100404071000 +0000" pdc-start="20100404074000 +0200" channel="SWR">
+	<title>Wunderwelt See</title>
+</programme>
+
+<programme start="20100404071000 +0000" stop="20100404071500 +0000" pdc-start="20100404091000 +0200" channel="SWR">
+	<title>Lichtblicke</title>
+	<sub-title>Lichtblicke Unglaubliche Hoffnung</sub-title>
+</programme>
+
+<programme start="20100404071500 +0000" stop="20100404080000 +0000" pdc-start="20100404091500 +0200" channel="SWR">
+	<title>Zum Osterfest in die Taiga</title>
+</programme>
+
+<programme start="20100404080000 +0000" stop="20100404090000 +0000" pdc-start="20100404100000 +0200" channel="SWR">
+	<title>Dornröschen</title>
+	<sub-title>Dornröschen Märchenfilm D 2009</sub-title>
+	<desc>(teletext 305)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100404090000 +0000" stop="20100404094500 +0000" pdc-start="20100404110000 +0200" channel="SWR">
+	<title>Die 30 schönsten Märchen</title>
+</programme>
+
+<programme start="20100404094500 +0000" stop="20100404113000 +0000" pdc-start="20100404114500 +0200" channel="SWR">
+	<title>Spion in Spitzenhöschen</title>
+	<sub-title>Spion in Spitzenhöschen Spielfilm USA 1965</sub-title>
+	<desc>(teletext 306)</desc>
+	<subtitles type="teletext"/>
+</programme>
+</tv>

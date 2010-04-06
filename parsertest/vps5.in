@@ -3,7 +3,7 @@
 # VPS test: Differing VPS start time is printed after the title.
 # Test that it's not included in the title string.
 #
-# $Id$
+# $Id: vps5.in,v 1.1 2010/04/05 13:41:46 tom Exp $
 #
 $VbiCaptureTime = 1163958730;
 $PkgCni{0xDC9} = 677;

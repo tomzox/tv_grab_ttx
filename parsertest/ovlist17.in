@@ -1,0 +1,43 @@
+#!/usr/bin/perl -w
+#
+# Test of parsing of "end time" (for last entry on the page)
+#
+# $Id: ovlist17.in,v 1.1 2010/04/06 19:20:47 tom Exp $
+#
+$VbiCaptureTime = 1270413163;
+$PgCnt{0x302} = 4;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302\x06Bayerntext  \x0704.04. 22:32:38",
+  "\x14|4|4|4                \x05\x181D111\x18040410\x1892",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen So,04.04.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "\x0606.00\x06\x06\x06Nachtlinie                     ",
+  "\x05\x180600\x07\x06\x06Andreas B|nte unterwegs mit    ",
+  "       \x06\x06Altabt Odilo Lechner und Hans- ",
+  "       \x06\x06G}nther Kaufmann ..........\x06334",
+  "\x0706.30\x07\x07\x07Eichst{tt - Alte Stadt und     ",
+  "\x05\x180630\x07\x07\x07junger Geist\x03UT                ",
+  "         Von Stefan Ludwig .........\x07335",
+  "\x0607.15\x06\x06\x06Tele-Gym                       ",
+  "\x05\x180715\x07\x06\x06Wild & Weiblich (4/8) .....\x06374",
+  "\x0707.30\x07\x07\x07Panoramabilder / Bergwetter    ",
+  "\x05\x180730\x07                                 ",
+  "\x0608.40\x06\x06\x06Der Trotzkopf (1)              ",
+  "\x05\x180840\x07\x06\x06Kinderspielfilm, D 1981 ...\x06336",
+  "\x0710.15\x07\x07\x07Ostern in Rom                  ",
+  "\x05\x181015\x07\x07\x07Gottesdienst mit Papst Benedikt",
+  "         XVI. und Segen \"Urbi et        ",
+  "         orbi\" .....................\x07411",
+  "\x05\x18VPS\x07            ab\x0712.30\x07Uhr >>> 303  ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

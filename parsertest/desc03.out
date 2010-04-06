@@ -47,7 +47,7 @@ THEMA: Sigmund Freud</desc>
 	</audio>
 </programme>
 
-<programme start="20060501152000 +0000" pdc-start="20060501172000 +0200" channel="ARTE">
+<programme start="20060501152000 +0000" stop="20060501160300 +0000" pdc-start="20060501172000 +0200" channel="ARTE">
 	<title>rettet die liebesÄpfel!</title>
 	<desc>(teletext 313)</desc>
 	<audio>

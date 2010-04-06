@@ -1,0 +1,43 @@
+#!/usr/bin/perl -w
+#
+# Test of parsing of "end time" (for last entry on the page)
+#
+# $Id: ovlist18.in,v 1.1 2010/04/06 19:20:47 tom Exp $
+#
+$VbiCaptureTime = 1270412608;
+$PgCnt{0x301} = 14;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301  \x01ARTE \x07So 04.04.10\x0222 23 29",
+  "\x01\x1D\x07\x07  \x05\x18VPS\x07 SONNTAG, 04. APRIL         ",
+  "                                        ",
+  "\x05\x181D205\x18040410\x07                         ",
+  "\x0705.15\x05\x180515\x02\x02MICHELANGELO SUPERSTAR    ",
+  "                                        ",
+  "\x0706.10\x05\x180610\x02\x02K]NSTLER HAUTNAH          ",
+  "                                        ",
+  "\x0706.35\x05\x180635\x02\x02KLEIDER UND LEUTE         ",
+  "                                        ",
+  "\x0707.05\x05\x180705\x07\x07EINE MEISTERKLASSE MIT    ",
+  "              RAVI SHANKAR (HD)         ",
+  "                                        ",
+  "\x0708.00\x05\x180800\x06\x06HALLO SPENCER ........\x06307",
+  undef,
+  "\x0708.25\x05\x180825\x06\x06ES WAR EINMAL ... DER     ",
+  "            \x06\x06WELTRAUM .............\x06308",
+  undef,
+  "\x0708.55\x05\x180855\x06\x06DIE SENDUNG MIT DER KATZE ",
+  "            \x06\x06(1) ..................\x06309",
+  "             \x1809.00                     ",
+  undef,
+  undef,
+  "\x01\x1D\x07PROGRAMM]BERSICHT               >>>  ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
