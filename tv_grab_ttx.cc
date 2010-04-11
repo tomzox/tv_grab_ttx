@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.16 2010/04/10 12:26:33 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.17 2010/04/11 12:31:36 tom Exp $
  */
 
 #include <stdio.h>
@@ -488,6 +488,7 @@ public:
    int          m_vps_cni;
 };
 
+class T_TRAIL_REF_FMT;
 class T_OV_FMT_STAT;
 class OV_SLOT;
 
@@ -503,7 +504,9 @@ public:
    bool is_adjacent(const OV_PAGE * prev) const;
    bool calc_date_off(const OV_PAGE * prev);
    void calculate_start_times();
+   void extract_ttx_ref(const T_TRAIL_REF_FMT& fmt);
    void extract_tv(list<TV_SLOT*>& tv_slots);
+   static T_TRAIL_REF_FMT detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages);
 private:
    bool parse_end_time(const string& text, const string& ctrl, int& hour, int& min);
 private:
@@ -536,8 +539,8 @@ private:
    vector<string> m_title;
 public:
    void add_title(string ctrl);
-   bool ParseTrailingTtxRef(string& title);
-   void parse_ttx_ref();
+   void parse_ttx_ref(const T_TRAIL_REF_FMT& fmt);
+   void detect_ttx_ref_fmt(vector<T_TRAIL_REF_FMT>& fmt_list);
    void parse_feature_flags(TV_SLOT * p_slot);
    void parse_title(TV_SLOT * p_slot);
    time_t ConvertStartTime(const T_PG_DATE * pgdate, int date_off) const;
@@ -2135,7 +2138,7 @@ void ImportRawDump()
       else if (regex_match(buf, what, expr10)) {
          // line
          assert((page != -1) && (pkg_idx < TTX_DB_PAGE::TTX_RAW_PKG_CNT));
-         const char * p = &*what[1].first;
+         const char * p = &what[1].first[0];
          int idx = 0;
          while ((*p != 0) && (idx < VT_PKG_RAW_LEN)) {
             int val, val_len;
@@ -2731,7 +2734,6 @@ void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
 {
    const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
    T_OV_FMT_STAT fmt;
-   smatch whats;
 
    for (int line = 5; line <= 21; line++) {
       const string& text = pgtext->get_text(line);
@@ -2769,7 +2771,7 @@ T_OV_FMT_STAT DetectOvFormat()
 
    T_OV_FMT_STAT fmt;
    if (!fmt_list.empty()) {
-      // search the most used format (ignoreing "subt_off")
+      // search the most used format (ignoring "subt_off")
       map<T_OV_FMT_STAT,int> fmt_stats;
       int max_cnt = 0;
       int max_idx = -1;
@@ -3095,33 +3097,6 @@ void TV_FEAT::RemoveTrailingFeat(string& title)
    }
 }
 
-bool OV_SLOT::ParseTrailingTtxRef(string& title)
-{
-   smatch whats;
-
-   // teletext reference (there's at most one at the very right, so parse this first)
-   static const regex expr1("([ \\x00-\\x07\\x1D]\\.+|\\.\\.+|\\.+>|>>?|--?>|>{1,4} +|\\.* +"
-                            "|[\\.>]*[\\x00-\\x07\\x1D]+)"
-                            "([1-8][0-9][0-9]) {0,3}$");
-   if (regex_search(title, whats, expr1)) {
-      if (opt_debug) {
-         string orig_title = regex_replace(title, regex("[\\x00-\\x1F\\x7F]"), " ");
-         printf("OV TTX ref %c%c%c on TITLE %s\n",
-                whats[2].first[0], whats[2].first[1], whats[2].first[2], orig_title.c_str());
-      }
-
-      const char * p = &(whats[2].first[0]);
-      m_ttx_ref = ((p[0] - 0x30)<<8) |
-                  ((p[1] - 0x30)<<4) |
-                  (p[2] - 0x30);
-
-      // warning: must be done last - invalidates "whats"
-      title.erase(title.length() - whats[0].length());
-      return true;
-   }
-   return false;
-}
-
 void TV_FEAT::ParseTrailingFeat(string& title)
 {
    string orig_title = regex_replace(title, regex("[\\x00-\\x1F\\x7F]"), " ");
@@ -3149,14 +3124,14 @@ void TV_FEAT::ParseTrailingFeat(string& title)
       if (feat_list.length() != 0)  {
          static const regex expr5("( ?/ ?|, ?| )(" FEAT_PAT_STR ")$");
          while (regex_search(feat_list, whats, expr5)) {
-            MapTrailingFeat(&*whats[2].first, whats[2].length(), orig_title);
+            MapTrailingFeat(&whats[2].first[0], whats[2].length(), orig_title);
             feat_list.erase(feat_list.length() - whats[0].length());
          } 
       }
       else {
          static const regex expr6("[ \\x00-\\x07\\x1D]*\\((" FEAT_PAT_STR ")\\)$");
          while (regex_search(title, whats, expr6)) {
-            MapTrailingFeat(&*whats[1].first, whats[1].length(), orig_title);
+            MapTrailingFeat(&whats[1].first[0], whats[1].length(), orig_title);
             title.erase(title.length() - whats[0].length());
          } 
       }
@@ -3172,7 +3147,7 @@ void TV_FEAT::ParseTrailingFeat(string& title)
 
       static const regex expr7("([,/][ \\x00-\\x07\\x1D]*|[ \\x00-\\x07\\x1D]+)(" FEAT_PAT_STR ")$");
       while (regex_search(feat_list, whats, expr7)) {
-         MapTrailingFeat(&*whats[2].first, whats[2].length(), orig_title);
+         MapTrailingFeat(&whats[2].first[0], whats[2].length(), orig_title);
          feat_list.erase(feat_list.length() - whats[0].length());
       } 
    } //else { print "NONE orig_title\n"; }
@@ -3189,6 +3164,164 @@ void TV_FEAT::ParseTrailingFeat(string& title)
    static const regex expr11(" +$");
    if (regex_search(title, whats, expr11)) {
       title.erase(whats.position());
+   }
+}
+
+/* ------------------------------------------------------------------------------
+ * Detect position and leading garbage for description page references
+ * - The main goal is to find the exact position relative to the line end
+ * - When that is fixed, we can be flexible about leading separators, i.e.
+ *   swallow when present, else require a single blank only.
+ *
+ * ARD:  "Die Sendung mit der\x03UT\x06... 313""
+ * ZDF:  "ZDF SPORTreportage ...\x06321"
+ * SAT1: "Navy CIS: Das Boot        >353 "
+ * RTL:  "Die Camper..............>389 "
+ * RTL2: "X-Factor: Das Unfassbare...328 "
+ * Kab1: "X-Men\x03                       >375"
+ */
+class T_TRAIL_REF_FMT
+{
+public:
+   T_TRAIL_REF_FMT() : m_spc_trail(-1) {}
+   bool operator<(const T_TRAIL_REF_FMT& b) const {
+      return    (m_ch1 < b.m_ch1)
+             || (   (m_ch1 == b.m_ch1)
+                 && (   (m_ch2 < b.m_ch2)
+                     || (   (m_ch2 == b.m_ch2)
+                         && (   (m_spc_lead < b.m_spc_lead)
+                             || (   (m_spc_lead == b.m_spc_lead)
+                                 && (m_spc_trail < b.m_spc_trail) )))));
+   }
+   const char * print_key() const;
+   bool detect_fmt(const string& text);
+   bool parse_trailing_ttx_ref(string& text, int& ttx_ref) const;
+   bool is_valid() const { return m_spc_trail >= 0; }
+   static const T_TRAIL_REF_FMT& select_ttx_ref_fmt(const vector<T_TRAIL_REF_FMT>& fmt_list);
+private:
+   void init_expr() const;
+public:
+   char m_ch1;          ///< Leading separator (e.g. "..... 314"), or zero
+   char m_ch2;          ///< Second terminator char (e.g. "...>314"), or zero
+   int m_spc_lead;      ///< Number of leading spaces
+   int m_spc_trail;     ///< Number of spaces before line end
+
+   mutable regex m_expr;  ///< Regex used for extracting the match
+   mutable int m_subexp_idx;  ///< Index of TTX page sub-expression in match result
+};
+
+const char * T_TRAIL_REF_FMT::print_key() const
+{
+   static char buf[100];
+   sprintf(buf, "ch1:%c,ch2:%c,spc1:%d,spc2:%d",
+           (m_ch1 > 0)?m_ch1:'X', (m_ch2 > 0)?m_ch2:'X', m_spc_lead, m_spc_trail);
+   return buf;
+}
+
+bool T_TRAIL_REF_FMT::detect_fmt(const string& text)
+{
+   smatch whats;
+
+   static const regex expr1("((\\.+|>+)(>{1,4})?)?([ \\x00-\\x07\\x1D]{0,2})"
+                            "[1-8][0-9][0-9]([ \\x00-\\x07\\x1D]{0,3})$");
+   if (   regex_search(text, whats, expr1)
+       && (whats[1].matched || (whats[4].length() > 0)) )
+   {
+      if (whats[1].matched) {
+         m_ch1 = whats[2].first[0];
+         m_ch2 = whats[3].matched ? whats[3].first[0] : 0;
+         m_spc_lead = whats[4].length();
+      }
+      else {
+         m_ch1 = 0;
+         m_ch2 = 0;
+         m_spc_lead = 1;
+      }
+      m_spc_trail = whats[5].length();
+
+      if (opt_debug) printf("FMT: %s\n", print_key());
+      return true;
+   }
+   return false;
+}
+
+void T_TRAIL_REF_FMT::init_expr() const
+{
+   ostringstream re;
+   if (m_ch1 > 0) {
+      m_subexp_idx = 2;
+      re << "(\\Q" << string(1, m_ch1) << "\\E*";
+      if (m_ch2 > 0) {
+         re << "\\Q" + string(1, m_ch2) << "\\E{0,4}";
+      }
+      re << "[ \\x00-\\x07\\x1D]{" << m_spc_lead << "}|[ \\x00-\\x07\\x1D]+)";
+   }
+   else {
+      re << "[ \\x00-\\x07\\x1D]+";
+      m_subexp_idx = 1;
+   }
+   re << "([1-8][0-9][0-9])[ \\x00-\\x07\\x1D]{" << m_spc_trail << "}$";
+
+   if (opt_debug) printf("TTX REF expr '%s'\n", re.str().c_str());
+
+   m_expr.assign(re.str());
+}
+
+bool T_TRAIL_REF_FMT::parse_trailing_ttx_ref(string& title, int& ttx_ref) const
+{
+   smatch whats;
+
+   if (is_valid()) {
+      if (m_expr.empty()) {
+         init_expr();
+      }
+      if (regex_search(title, whats, m_expr)) {
+         string::const_iterator p = whats[m_subexp_idx].first;
+
+         ttx_ref = ((p[0] - '0')<<8) |
+                   ((p[1] - '0')<<4) |
+                   (p[2] - '0');
+
+         if (opt_debug) printf("TTX_REF %03X on title '%s'\n", ttx_ref, title.c_str());
+
+         // warning: must be done last - invalidates "whats"
+         title.erase(title.length() - whats[0].length());
+         return true;
+      }
+   }
+   return false;
+}
+
+const T_TRAIL_REF_FMT& T_TRAIL_REF_FMT::select_ttx_ref_fmt(const vector<T_TRAIL_REF_FMT>& fmt_list)
+{
+   map<T_TRAIL_REF_FMT,int> fmt_stats;
+   int max_cnt = 0;
+   int max_idx = -1;
+
+   if (!fmt_list.empty()) {
+      for (uint idx = 0; idx < fmt_list.size(); idx++) {
+         // count the number of occurrences of the same format in the list
+         map<T_TRAIL_REF_FMT,int>::iterator p = fmt_stats.lower_bound(fmt_list[idx]);
+         if ((p == fmt_stats.end()) || (fmt_list[idx] < p->first)) {
+            p = fmt_stats.insert(p, make_pair(fmt_list[idx], 1));
+         }
+         else {
+            p->second += 1;
+         }
+         // track the most frequently used format
+         if (p->second > max_cnt) {
+            max_cnt = fmt_stats[fmt_list[idx]];
+            max_idx = idx;
+         }
+      }
+      if (opt_debug) printf("auto-detected TTX reference format: %s\n", fmt_list[max_idx].print_key());
+
+      return fmt_list[max_idx];
+   }
+   else {
+      if (opt_debug) printf("no TTX references found for format auto-detection\n");
+      static const T_TRAIL_REF_FMT dummy;
+      return dummy;
    }
 }
 
@@ -3398,7 +3531,7 @@ int ConvertVpsCni(const IT& first, const IT& second)
    int a, b, c;
 
    if (   (first + (2+1+2) == second)
-       && (sscanf(&*first, "%2x%1d%2d", &a, &b, &c) == 3)
+       && (sscanf(&first[0], "%2x%1d%2d", &a, &b, &c) == 3)
        && (b >= 1) && (b <= 4)) {
       return (a<<8) | ((4 - b) << 6) | (c & 0x3F);
    }
@@ -3564,13 +3697,24 @@ void OV_SLOT::add_title(string subt)
    m_title.push_back(subt);
 }
 
-void OV_SLOT::parse_ttx_ref()
+void OV_SLOT::parse_ttx_ref(const T_TRAIL_REF_FMT& fmt)
 {
    for (uint idx = 0; idx < m_title.size(); idx++) {
-      if (ParseTrailingTtxRef(m_title[idx]))
+      if (fmt.parse_trailing_ttx_ref(m_title[idx], m_ttx_ref))
          break;
    }
 }
+
+void OV_SLOT::detect_ttx_ref_fmt(vector<T_TRAIL_REF_FMT>& fmt_list)
+{
+   for (uint idx = 0; idx < m_title.size(); idx++) {
+      T_TRAIL_REF_FMT fmt;
+      if (fmt.detect_fmt(m_title[idx])) {
+         fmt_list.push_back(fmt);
+      }
+   }
+}
+
 
 void OV_SLOT::parse_feature_flags(TV_SLOT * p_slot)
 {
@@ -4019,6 +4163,32 @@ void OV_PAGE::calc_stop_times(const OV_PAGE * next)
    }
 }
 
+/* ------------------------------------------------------------------------------
+ * Detect position and leading garbage for description page references
+ */
+T_TRAIL_REF_FMT OV_PAGE::detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages)
+{
+   vector<T_TRAIL_REF_FMT> fmt_list;
+
+   // parse all slot titles for TTX reference format
+   for (uint pg_idx = 0; pg_idx < ov_pages.size(); pg_idx++) {
+      OV_PAGE * ov_page = ov_pages[pg_idx];
+      for (uint slot_idx = 0; slot_idx < ov_page->m_slots.size(); slot_idx++) {
+         OV_SLOT * slot = ov_page->m_slots[slot_idx];
+         slot->detect_ttx_ref_fmt(fmt_list);
+      }
+   }
+   return T_TRAIL_REF_FMT::select_ttx_ref_fmt(fmt_list);
+}
+
+void OV_PAGE::extract_ttx_ref(const T_TRAIL_REF_FMT& fmt)
+{
+   for (uint idx = 0; idx < m_slots.size(); idx++) {
+      OV_SLOT * slot = m_slots[idx];
+      slot->parse_ttx_ref(fmt);
+   }
+}
+
 void OV_PAGE::extract_tv(list<TV_SLOT*>& tv_slots)
 {
    if (m_slots.size() > 0) {
@@ -4027,8 +4197,6 @@ void OV_PAGE::extract_tv(list<TV_SLOT*>& tv_slots)
 
    for (uint idx = 0; idx < m_slots.size(); idx++) {
       OV_SLOT * slot = m_slots[idx];
-
-      slot->parse_ttx_ref();
 
       TV_SLOT * p_tv = new TV_SLOT(slot->m_ttx_ref, slot->m_start_t, slot->m_stop_t,
                                    slot->m_vps_time, slot->m_vps_date);
@@ -4106,6 +4274,12 @@ list<TV_SLOT*> ParseAllOvPages()
       for (uint idx = 0; idx < ov_pages.size(); idx++) {
          OV_PAGE * next = (idx + 1 < ov_pages.size()) ? ov_pages[idx + 1] : 0;
          ov_pages[idx]->calc_stop_times(next);
+      }
+
+      // retrieve TTX page references
+      T_TRAIL_REF_FMT ttx_ref_fmt = OV_PAGE::detect_ov_ttx_ref_fmt(ov_pages);
+      for (uint idx = 0; idx < ov_pages.size(); idx++) {
+         ov_pages[idx]->extract_ttx_ref(ttx_ref_fmt);
       }
 
       // retrieve descriptions from references teletext pages
@@ -5504,7 +5678,7 @@ time_t GetXmltvStopTime(const string& xml, time_t old_ts)
    static const regex expr1("stop=\"([^\"]*)\"");
 
    if (regex_search(xml, whats, expr1)) {
-      return ParseXmltvTimestamp(&*whats[1].first);
+      return ParseXmltvTimestamp(&whats[1].first[0]);
    }
    else {
       return old_ts;
@@ -5589,7 +5763,7 @@ void XMLTV::ImportXmltvFile(const char * fname)
                static const regex expr6("start=\"([^\"]*)\".*channel=\"([^\"]*)\"", regex::icase);
                if (regex_search(buf, what, expr6)) {
                   chn_id.assign(what[2]);
-                  start_t = ParseXmltvTimestamp(&*what[1].first);
+                  start_t = ParseXmltvTimestamp(&what[1].first[0]);
                   if (m_merge_chn.find(chn_id) == m_merge_chn.end()) {
                      fprintf(stderr, "Unknown channel %s in merge input\n", chn_id.c_str());
                      exit(2);

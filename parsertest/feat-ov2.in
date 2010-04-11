@@ -1,0 +1,37 @@
+#!/usr/bin/perl -w
+#
+# Reference to page 352 is appended as ".352" to title text.
+#
+# $Id: feat-ov2.in,v 1.1 2010/04/11 12:36:08 tom Exp $
+#
+$VbiCaptureTime = 1270895715;
+$PgCnt{0x302} = 3;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302\x03RTL II   \x07Sa 10 Apr\x0312:35:03",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Chat und Flirt\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00 >>> 666 <<<  \x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0112:35\x00Splash - Jungfrau am Haken.352 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0114:40\x00American Pie 4                 ",
+  "\x07\x1D\x01     \x00Die n{chste Generation.....353 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0116:20\x00Smallville.................324 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0117:10\x00Stargate...................322 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0119:00\x00Big Brother................630 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01                                     ",
+  "\x03\x1D\x01      Fragen an das Universum! >698  ",
+  "\x01\x1D\x07\x0DAstro-Beratung & Karten legen > 600 ",
+  "                                        ",
+];

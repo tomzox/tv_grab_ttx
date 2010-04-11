@@ -13,7 +13,8 @@
 
 <programme start="20060506235000 +0000" stop="20060507013500 +0000" channel="VOX">
 	<title>Mimic</title>
-	<sub-title>Mimic Angriff der Killerinsekten.336 (Horror-Thriller, USA 1997)</sub-title>
+	<sub-title>Mimic Angriff der Killerinsekten (Horror-Thriller, USA 1997)</sub-title>
+	<desc>(teletext 336)</desc>
 </programme>
 
 <programme start="20060507013500 +0000" stop="20060507030500 +0000" channel="VOX">

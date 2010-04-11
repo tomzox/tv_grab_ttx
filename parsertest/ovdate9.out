@@ -77,7 +77,8 @@
 </programme>
 
 <programme start="20100322221500 +0000" stop="20100322232000 +0000" channel="rtl2.de">
-	<title>Fun Club: Comedystars live.390</title>
+	<title>Fun Club: Comedystars live</title>
+	<desc>(teletext 390)</desc>
 </programme>
 
 <programme start="20100322232000 +0000" stop="20100322232500 +0000" channel="rtl2.de">

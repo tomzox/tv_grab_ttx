@@ -58,7 +58,6 @@
 
 <programme start="20100322084500 +0000" stop="20100322091500 +0000" pdc-start="20100322094500 +0100" channel="bw.swr.de">
 	<title>Brisant (ARD-Wh)</title>
-	<desc>(teletext 150)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
@@ -170,7 +169,8 @@
 
 <programme start="20100322210000 +0000" stop="20100322213000 +0000" pdc-start="20100322220000 +0100" channel="bw.swr.de">
 	<title>Sag die Wahrheit-Ratespiel</title>
-	<sub-title>Sag die Wahrheit-Ratespiel mit Spaß und Schwindel.355</sub-title>
+	<sub-title>Sag die Wahrheit-Ratespiel mit Spaß und Schwindel</sub-title>
+	<desc>(teletext 355)</desc>
 </programme>
 
 <programme start="20100322213000 +0000" stop="20100322220000 +0000" pdc-start="20100322222900 +0100" channel="bw.swr.de">
@@ -214,7 +214,8 @@ Als er der Versuchung in Person der attraktiven Johanna erliegt, ist die Hochzei
 
 <programme start="20100323012500 +0000" stop="20100323022500 +0000" pdc-start="20100323021000 +0100" channel="bw.swr.de">
 	<title>Landesschau</title>
-	<sub-title>Landesschau Baden-Württemberg (Wh).310</sub-title>
+	<sub-title>Landesschau Baden-Württemberg</sub-title>
+	<desc>(teletext 310)</desc>
 </programme>
 
 <programme start="20100323022500 +0000" stop="20100323025000 +0000" pdc-start="20100323031000 +0100" channel="bw.swr.de">

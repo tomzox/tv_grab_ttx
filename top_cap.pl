@@ -17,7 +17,7 @@
 #
 #  Copyright 2006,2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: top_cap.pl,v 1.1 2008/03/08 17:10:24 tom Exp tom $
+#  $Id: top_cap.pl,v 1.2 2010/04/11 12:32:48 tom Exp $
 #
 
 use Video::ZVBI qw(/^VBI_/);
@@ -45,6 +45,7 @@ $start_t = time;
 $vbi_fd = $cap->fd();
 $is_btt = 0;
 $is_aip = 0;
+$is_mpt = 0;
 
 for(;;) {
    my $rin="";
@@ -76,14 +77,15 @@ sub feed {
       my $page = ($mag << 8) | Video::ZVBI::unham16p($data, 2);
 
       $is_btt = ($page == 0x1F0);
+      $is_mpt = ($page == 0x1F1);
       $is_aip = ($page == 0x1F2);
 
    } elsif ($is_btt) {
       if (($y >= 1) && ($y <= 20)) {
-         # lines 1-20: page function (coded Hamming-8/4)
-         printf "%03d: ", ($y-1)*40+$i;
-         for (my $i=0; $i < 40; $i++) {
-            printf " %2d", Video::ZVBI::unham8(substr($data, 2 + $i, 1));
+         # lines 1-20: page function (coded Hamming-8/4) - see 9.4.2.1
+         printf "%03d: ", (($y-1)*40+$i) + 100;
+         foreach (unpack("x2C40", $data)) {
+            printf " %d", Video::ZVBI::unham8($_);
          }
          print "\n";
 
@@ -96,6 +98,15 @@ sub feed {
 
       } else {
          # ignore
+      }
+   } elsif ($is_mpt) {
+      if (($y >= 1) && ($y <= 20)) {
+         # lines 1-20: multi-page (coded Hamming-8/4)
+         printf "%03d: ", (($y-1)*40+$i) + 100;
+         foreach (unpack("x2C40", $data)) {
+            printf " %d", Video::ZVBI::unham8($_);
+         }
+         print "\n";
       }
    } elsif ($is_aip) {
       Video::ZVBI::unpar_str($data);
