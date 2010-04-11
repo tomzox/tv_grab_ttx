@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.17 2010/04/11 12:31:36 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.18 2010/04/11 13:03:54 tom Exp $
  */
 
 #include <stdio.h>
@@ -3239,7 +3239,7 @@ bool T_TRAIL_REF_FMT::detect_fmt(const string& text)
       }
       m_spc_trail = whats[5].length();
 
-      if (opt_debug) printf("FMT: %s\n", print_key());
+      //if (opt_debug) printf("FMT: %s\n", print_key());
       return true;
    }
    return false;
@@ -3262,7 +3262,7 @@ void T_TRAIL_REF_FMT::init_expr() const
    }
    re << "([1-8][0-9][0-9])[ \\x00-\\x07\\x1D]{" << m_spc_trail << "}$";
 
-   if (opt_debug) printf("TTX REF expr '%s'\n", re.str().c_str());
+   //if (opt_debug) printf("TTX REF expr '%s'\n", re.str().c_str());
 
    m_expr.assign(re.str());
 }
@@ -4891,7 +4891,7 @@ bool DescFormatCastTable(vector<string>& Lines)
    // step #1: build statistic about lines with ".." (including space before and after)
    map<int,int> Tabs;
    uint tab_max = 0;
-   for (uint row = 1; row < Lines.size(); row++) {
+   for (uint row = 0; row < Lines.size(); row++) {
       static const regex expr1("^( *)((.*?)( ?)\\.\\.+( ?))[^ ].*?[^ ]( *)$");
       if (regex_search(Lines[row], whats, expr1)) {
          // left-aligned (ignore spacing on the right)
@@ -4923,7 +4923,6 @@ bool DescFormatCastTable(vector<string>& Lines)
       const uint spc1 = (tab_max >> 12) & 0x3F;
       const uint spc2 = (tab_max >> 18) & 0x3F;
       const uint spc3 = tab_max >> 24;
-      if (opt_debug) printf("DESC reformat table into list: %d rows, FMT:%d,%d %d,%d\n", Tabs[tab_max], off, spc1, spc2, spc3);
 
       regex expr2;
       if (spc3 == 0x3F) {
@@ -4940,17 +4939,20 @@ bool DescFormatCastTable(vector<string>& Lines)
       static const regex expr3("^(.*?)\\.\\.+ ?[^ \\.]");
       static const regex expr4("^(.*?[^ ]) \\. [^ \\.]");  // must not match "Mr. X"
 
+      if (opt_debug) printf("DESC reformat table into list: %d rows, FMT:%d,%d %d,%d EXPR:%s\n",
+                            Tabs[tab_max], off, spc1, spc2, spc3, expr2.str().c_str());
+
       // step #2: find all lines with dots ending at the right column and right amount of spaces
-      uint last_row = 0;
-      for (uint row = 1; row < Lines.size(); row++) {
+      int last_row = -1;
+      for (uint row = 0; row < Lines.size(); row++) {
          if (spc3 == 0x3F) {
             //
             // 2nd column is left-aligned
             //
             if (   (   regex_search(Lines[row].substr(0, off + 1), whats, expr2)
-                    && ((last_row != 0) || (whats[2].length() > 0)) )
-                || ((last_row != 0) && regex_search(Lines[row], whats, expr3))
-                || ((last_row != 0) && regex_search(Lines[row], whats, expr4)) ) {
+                    && ((last_row != -1) || (whats[2].length() > 0)) )
+                || ((last_row != -1) && regex_search(Lines[row], whats, expr3))
+                || ((last_row != -1) && regex_search(Lines[row], whats, expr4)) ) {
                string tab1 = Lines[row].substr(spc0, whats[1].length());
                string tab2 = Lines[row].substr(whats[0].length() - 1); // for expr3 or 4, else it's fixed to "off"
                // match -> replace dots with colon
@@ -4959,7 +4961,7 @@ bool DescFormatCastTable(vector<string>& Lines)
                Lines[row] = tab1 + string(": ") + tab2 + string(",");
                last_row = row;
             }
-            else if (last_row != 0) {
+            else if (last_row != -1) {
                static const regex expr5("^ +[^ ]$");
                if (regex_search(Lines[row].substr(0, off + 1), whats, expr5)) {
                   // right-side table column continues (left side empty)
@@ -4984,13 +4986,13 @@ bool DescFormatCastTable(vector<string>& Lines)
             }
          }
 
-         if ((last_row > 0) && (last_row < row)) {
+         if ((last_row != -1) && (last_row < (int)row)) {
             // end of table: terminate list
             Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), ".");
-            last_row = 0;
+            last_row = -1;
          }
       }
-      if (last_row > 0) {
+      if (last_row != -1) {
          Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), "");
       }
       result = true;

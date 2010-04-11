@@ -1,0 +1,100 @@
+#!/usr/bin/perl -w
+#
+# The table starts in the first line following the title header. Also page
+# 351.2 contains a separate line with a dot inside of the right-side text,
+# which may confuse the parser.
+#
+# Additionally note there's a reference to 351 by a second title,
+# to a missing sub-page (3/4 + 4/4)
+# 
+$VbiCaptureTime = 1270918322;
+$PgCnt{0x301} = 2;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301\x03RTL II   \x07Sa 10 Apr\x0318:51:31",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Dein aktuelles ",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Horoskop!..600 ",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x01",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0106:05\x00MythBusters                    ",
+  "\x07\x1D\x01     \x00Die Wissensj{ger               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0107:00\x00X-Factor: Das Unfassbare       ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0108:50\x00Lionheart..................351 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0110:50\x00Benji - Sein gr|~tes           ",
+  "\x07\x1D\x01     \x00Abenteuer..................351 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D                                      ",
+  "\x04\x1D\x07   Passen wir zusammen?   Seite 698  ",
+  "\x01\x1D\x03\x0D666<   Tausche Foto mit ihr!   >666\x07",
+  "                                        ",
+];
+$PgCnt{0x351} = 1;
+$PgSub{0x351} = 2;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0001<<12)} =
+[
+  "        351\x03RTL II   \x07Sa 10 Apr\x0318:50:55",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHATS, DATES &\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00FLIRTS!....666\x18",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x001/4\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Lionheart                            ",
+  "\x07\x1D\x00Historien-Abenteuer, H, USA 1987     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Nachdem der junge Ritter Robert sich ",
+  "\x07\x1D\x00mit seiner Familie entzweit, be-     ",
+  "\x07\x1D\x00schlie~t er, nach Paris zu ziehen.   ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Dort trifft er auf zwei Waisenkinder,",
+  "\x07\x1D\x00die sich den Kreuzz}gen des Richard  ",
+  "\x07\x1D\x00L|wenherz anschlie~en wollen. Unter- ",
+  "\x07\x1D\x00wegs schart Robert noch mehr Kinder  ",
+  "\x07\x1D\x00um sich, die alle von dem Schwarzen  ",
+  "\x07\x1D\x00Prinzen, einem brutalen Sklavenhal-  ",
+  "\x07\x1D\x00ter bedroht werden ...               ",
+  "\x07\x1D\x00                                     ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Samstag, 10.04.10; 08:50 Uhr \x01\x1D\x07\x07   ",
+  "\x03\x1D\x01\x0DEsoterische Lebensberatung.....600  ",
+  "                                        ",
+];
+$PgCnt{0x351} = 1;
+$PgSub{0x351} = 2;
+$PgLang{0x351} = 1;
+$Pkg{0x351|(0x0002<<12)} =
+[
+  "        351\x03RTL II   \x07Sa 10 Apr\x0318:51:33",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHATS, DATES &\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00FLIRTS!....666\x18",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x002/4\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Lionheart                            ",
+  "\x07\x1D\x00Historien-Abenteuer, H, USA 1987     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Regie...........Franklin J.Schaffner ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Schwarze Prinz.........Gabriel Byrne ",
+  "\x07\x1D\x00Ritter Robert Nerra......Eric Stoltz ",
+  "\x07\x1D\x00Blanche................Nicola Cowper ",
+  "\x07\x1D\x00Michelle.............Dexter Fletcher ",
+  "\x07\x1D\x00K|nig Richard...........Neil Dickson ",
+  "\x07\x1D\x00Mathilda...........Deborah Barrymore ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Aufwendiger Abenteuerfilm, der sich  ",
+  "\x07\x1D\x00an die Ereignisse des \"Kinder-       ",
+  "\x07\x1D\x00kreuzzugs\" von 1212 anlehnt.         ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Samstag, 10.04.10; 08:50 Uhr \x01\x1D\x07\x07   ",
+  "\x05\x1D\x03\x0DIhr pers|nliches Horoskop.......600\x07",
+  "                                        ",
+];
