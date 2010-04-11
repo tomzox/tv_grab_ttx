@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.18 2010/04/11 13:03:54 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.19 2010/04/11 17:54:10 tom Exp $
  */
 
 #include <stdio.h>
@@ -489,7 +489,7 @@ public:
 };
 
 class T_TRAIL_REF_FMT;
-class T_OV_FMT_STAT;
+class T_OV_LINE_FMT;
 class OV_SLOT;
 
 class OV_PAGE
@@ -497,7 +497,7 @@ class OV_PAGE
 public:
    OV_PAGE(int page, int sub);
    ~OV_PAGE();
-   bool parse_slots(int foot_line, const T_OV_FMT_STAT& pgfmt);
+   bool parse_slots(int foot_line, const T_OV_LINE_FMT& pgfmt);
    bool parse_ov_date();
    bool check_redundant_subpage(OV_PAGE * prev);
    void calc_stop_times(const OV_PAGE * next);
@@ -2567,17 +2567,17 @@ bool CheckDate(int mday, int month, int year,
  * News bulletins on the hour (...)
  * 10:30 WORLD SPORT                      
  */
-class T_OV_FMT_STAT
+class T_OV_LINE_FMT
 {
 public:
-   T_OV_FMT_STAT() : m_time_off(-1), m_vps_off(-1), m_title_off(-1), m_subt_off(-1) {}
-   bool operator==(const T_OV_FMT_STAT& b) const {
+   T_OV_LINE_FMT() : m_time_off(-1), m_vps_off(-1), m_title_off(-1), m_subt_off(-1) {}
+   bool operator==(const T_OV_LINE_FMT& b) const {
       return (   (m_time_off == b.m_time_off)
               && (m_vps_off == b.m_vps_off)
               && (m_title_off == b.m_title_off)
               && (m_separator == b.m_separator));
    }
-   bool operator<(const T_OV_FMT_STAT& b) const {
+   bool operator<(const T_OV_LINE_FMT& b) const {
       return    (m_time_off < b.m_time_off)
              || (   (m_time_off == b.m_time_off)
                  && (   (m_vps_off < b.m_vps_off)
@@ -2594,17 +2594,17 @@ public:
    string extract_subtitle(const string& text) const;
    bool is_valid() const { return m_time_off >= 0; }
    int get_subt_off() const { return m_subt_off; }
-   void set_subt_off(const T_OV_FMT_STAT& v) { m_subt_off = v.m_subt_off; }
-public:
+   void set_subt_off(const T_OV_LINE_FMT& v) { m_subt_off = v.m_subt_off; }
+   static T_OV_LINE_FMT select_ov_fmt(vector<T_OV_LINE_FMT>& fmt_list);
+private:
    int m_time_off;    ///< Offset to HH:MM or HH.MM
    int m_vps_off;     ///< Offset to HHMM (concealed VPS)
    int m_title_off;   ///< Offset to title
    int m_subt_off;    ///< Offset to 2nd title line
    char m_separator;  ///< HH:MM separator character
-   //int m_mod;       ///< hour*60+minute (minutes since midnight)
 };
 
-const char * T_OV_FMT_STAT::print_key() const
+const char * T_OV_LINE_FMT::print_key() const
 {
    static char buf[100];
    sprintf(buf, "time:%d,vps:%d,title:%d,title2:%d,MMHH-sep:'%c'",
@@ -2612,7 +2612,7 @@ const char * T_OV_FMT_STAT::print_key() const
    return buf;
 }
 
-bool T_OV_FMT_STAT::parse_title_line(const string& text, int& hour, int& min, bool &is_tip) const
+bool T_OV_LINE_FMT::parse_title_line(const string& text, int& hour, int& min, bool &is_tip) const
 {
    match_results<string::const_iterator> whati;
    bool result = false;
@@ -2654,7 +2654,7 @@ bool T_OV_FMT_STAT::parse_title_line(const string& text, int& hour, int& min, bo
    return result;
 }
 
-bool T_OV_FMT_STAT::parse_subtitle(const string& text) const
+bool T_OV_LINE_FMT::parse_subtitle(const string& text) const
 {
    bool result = false;
 
@@ -2674,17 +2674,17 @@ bool T_OV_FMT_STAT::parse_subtitle(const string& text) const
    return result;
 }
 
-string T_OV_FMT_STAT::extract_title(const string& text) const
+string T_OV_LINE_FMT::extract_title(const string& text) const
 {
    return text.substr(m_title_off);
 }
 
-string T_OV_FMT_STAT::extract_subtitle(const string& text) const
+string T_OV_LINE_FMT::extract_subtitle(const string& text) const
 {
    return text.substr(m_subt_off);
 }
 
-bool T_OV_FMT_STAT::detect_fmt(const string& text, const string& text2)
+bool T_OV_LINE_FMT::detect_fmt(const string& text, const string& text2)
 {
    smatch whats;
 
@@ -2730,54 +2730,17 @@ bool T_OV_FMT_STAT::detect_fmt(const string& text, const string& text2)
    return false;
 }
 
-void DetectOvFormatParse(vector<T_OV_FMT_STAT>& fmt_list, int page, int sub)
+T_OV_LINE_FMT T_OV_LINE_FMT::select_ov_fmt(vector<T_OV_LINE_FMT>& fmt_list)
 {
-   const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
-   T_OV_FMT_STAT fmt;
-
-   for (int line = 5; line <= 21; line++) {
-      const string& text = pgtext->get_text(line);
-      const string& text2 = pgtext->get_text(line + 1);
-
-      if (fmt.detect_fmt(text, text2)) {
-         fmt_list.push_back(fmt);
-      }
-   }
-}
-
-/* ------------------------------------------------------------------------------
- *  Determine layout of programme overview pages
- *  (to allow stricter parsing)
- *  - TODO: detect color used to mark features (e.g. yellow on ARD) (WDR: ttx ref same color as title)
- *  - TODO: detect color used to distinguish title from subtitle/category (WDR,Tele5)
- */
-T_OV_FMT_STAT DetectOvFormat()
-{
-   vector<T_OV_FMT_STAT> fmt_list;
-
-   // look at the first 5 pages (default start at page 301)
-   int cnt = 0;
-   for (TTX_DB::const_iterator p = ttx_db.begin(); p != ttx_db.end(); p++)
-   {
-      int page = p->first.page();
-      int sub = p->first.sub();
-      if ((page >= opt_tv_start) && (page <= opt_tv_end)) {
-         DetectOvFormatParse(fmt_list, page, sub);
-
-         if (++cnt > 5)
-            break;
-      }
-   }
-
-   T_OV_FMT_STAT fmt;
    if (!fmt_list.empty()) {
-      // search the most used format (ignoring "subt_off")
-      map<T_OV_FMT_STAT,int> fmt_stats;
+      map<T_OV_LINE_FMT,int> fmt_stats;
       int max_cnt = 0;
       int max_idx = -1;
+
+      // search the most used format (ignoring "subt_off")
       for (uint idx = 0; idx < fmt_list.size(); idx++) {
-         map<T_OV_FMT_STAT,int>::iterator p = fmt_stats.lower_bound(fmt_list[idx]);
-         if ((p == fmt_stats.end()) || !(p->first == fmt_list[idx])) {
+         map<T_OV_LINE_FMT,int>::iterator p = fmt_stats.lower_bound(fmt_list[idx]);
+         if ((p == fmt_stats.end()) || (fmt_list[idx] < p->first)) {
             p = fmt_stats.insert(p, make_pair(fmt_list[idx], 1));
          }
          else {
@@ -2788,7 +2751,7 @@ T_OV_FMT_STAT DetectOvFormat()
             max_idx = idx;
          }
       }
-      fmt = fmt_list[max_idx];
+      T_OV_LINE_FMT& fmt = fmt_list[max_idx];
 
       // search the most used "subt_off" among the most used format
       map<int,int> fmt_subt;
@@ -2797,29 +2760,71 @@ T_OV_FMT_STAT DetectOvFormat()
          if (   (fmt_list[idx] == fmt)
              && (fmt_list[idx].get_subt_off() != -1))
          {
-            map<int,int>::iterator p = fmt_subt.find(fmt_list[idx].get_subt_off());
-            if (p != fmt_subt.end()) {
-               p->second += 1;
+            int subt_off = fmt_list[idx].get_subt_off();
+            map<int,int>::iterator p = fmt_subt.lower_bound(subt_off);
+            if ((p == fmt_subt.end()) || (subt_off < p->first)) {
+               p = fmt_subt.insert(p, make_pair(subt_off, 1));
             }
             else {
-               fmt_subt[fmt_list[idx].get_subt_off()] = 1;
+               p->second += 1;
             }
-            if (fmt_subt[fmt_list[idx].get_subt_off()] > max_cnt) {
-               max_cnt = fmt_subt[fmt_list[idx].get_subt_off()];
+            if (p->second > max_cnt) {
+               max_cnt = p->second;
                fmt.set_subt_off( fmt_list[idx] );
             }
          }
       }
 
       if (opt_debug) printf("auto-detected overview format: %s\n", fmt.print_key());
+      return fmt;
    }
    else {
+      return T_OV_LINE_FMT();
+   }
+}
+
+/* ------------------------------------------------------------------------------
+ *  Determine layout of programme overview pages
+ *  (to allow stricter parsing)
+ *  - TODO: detect color used to mark features (e.g. yellow on ARD) (WDR: ttx ref same color as title)
+ *  - TODO: detect color used to distinguish title from subtitle/category (WDR,Tele5)
+ */
+T_OV_LINE_FMT DetectOvFormat()
+{
+   vector<T_OV_LINE_FMT> fmt_list;
+   T_OV_LINE_FMT fmt;
+
+   // look at the first 5 pages (default start at page 301)
+   int cnt = 0;
+   for (TTX_DB::const_iterator p = ttx_db.begin(); p != ttx_db.end(); p++)
+   {
+      int page = p->first.page();
+      int sub = p->first.sub();
+      if ((page >= opt_tv_start) && (page <= opt_tv_end)) {
+         const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
+
+         for (int line = 5; line <= 21; line++) {
+            const string& text = pgtext->get_text(line);
+            const string& text2 = pgtext->get_text(line + 1);
+
+            if (fmt.detect_fmt(text, text2)) {
+               fmt_list.push_back(fmt);
+            }
+         }
+
+         if (++cnt > 5)
+            break;
+      }
+   }
+
+   if (fmt_list.empty()) {
       if (cnt == 0)
          fprintf(stderr, "No pages found in range %03X-%03X\n", opt_tv_start, opt_tv_end);
       else
          fprintf(stderr, "Failed to detect overview format on pages %03X-%03X\n", opt_tv_start, opt_tv_end);
    }
-   return fmt;
+
+   return T_OV_LINE_FMT::select_ov_fmt(fmt_list);
 }
 
 OV_PAGE::OV_PAGE(int page, int sub)
@@ -3197,7 +3202,7 @@ public:
    bool detect_fmt(const string& text);
    bool parse_trailing_ttx_ref(string& text, int& ttx_ref) const;
    bool is_valid() const { return m_spc_trail >= 0; }
-   static const T_TRAIL_REF_FMT& select_ttx_ref_fmt(const vector<T_TRAIL_REF_FMT>& fmt_list);
+   static T_TRAIL_REF_FMT select_ttx_ref_fmt(const vector<T_TRAIL_REF_FMT>& fmt_list);
 private:
    void init_expr() const;
 public:
@@ -3292,7 +3297,7 @@ bool T_TRAIL_REF_FMT::parse_trailing_ttx_ref(string& title, int& ttx_ref) const
    return false;
 }
 
-const T_TRAIL_REF_FMT& T_TRAIL_REF_FMT::select_ttx_ref_fmt(const vector<T_TRAIL_REF_FMT>& fmt_list)
+T_TRAIL_REF_FMT T_TRAIL_REF_FMT::select_ttx_ref_fmt(const vector<T_TRAIL_REF_FMT>& fmt_list)
 {
    map<T_TRAIL_REF_FMT,int> fmt_stats;
    int max_cnt = 0;
@@ -3320,8 +3325,7 @@ const T_TRAIL_REF_FMT& T_TRAIL_REF_FMT::select_ttx_ref_fmt(const vector<T_TRAIL_
    }
    else {
       if (opt_debug) printf("no TTX references found for format auto-detection\n");
-      static const T_TRAIL_REF_FMT dummy;
-      return dummy;
+      return T_TRAIL_REF_FMT();
    }
 }
 
@@ -3763,7 +3767,7 @@ void OV_SLOT::parse_title(TV_SLOT * p_slot)
  *   have a tables with strict columns for times and titles; rows that don't
  *   have the expected format are skipped (normally only header & footer)
  */
-bool OV_PAGE::parse_slots(int foot_line, const T_OV_FMT_STAT& pgfmt)
+bool OV_PAGE::parse_slots(int foot_line, const T_OV_LINE_FMT& pgfmt)
 {
    T_VPS_TIME vps_data;
    OV_SLOT * ov_slot = 0;
@@ -4227,7 +4231,7 @@ list<TV_SLOT*> ParseAllOvPages()
 {
    list<TV_SLOT*> tv_slots;
 
-   T_OV_FMT_STAT fmt = DetectOvFormat();
+   T_OV_LINE_FMT fmt = DetectOvFormat();
    if (fmt.is_valid()) {
       vector<OV_PAGE*> ov_pages;
 
