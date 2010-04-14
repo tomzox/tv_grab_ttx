@@ -17,7 +17,7 @@
 #
 #  Copyright 2006,2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: top_cap.pl,v 1.2 2010/04/11 12:32:48 tom Exp $
+#  $Id: top_cap.pl,v 1.3 2010/04/14 19:22:56 tom Exp $
 #
 
 use Video::ZVBI qw(/^VBI_/);
@@ -83,7 +83,7 @@ sub feed {
    } elsif ($is_btt) {
       if (($y >= 1) && ($y <= 20)) {
          # lines 1-20: page function (coded Hamming-8/4) - see 9.4.2.1
-         printf "%03d: ", (($y-1)*40+$i) + 100;
+         printf "%03d: ", (($y-1)*40) + 100;
          foreach (unpack("x2C40", $data)) {
             printf " %d", Video::ZVBI::unham8($_);
          }
@@ -102,15 +102,26 @@ sub feed {
    } elsif ($is_mpt) {
       if (($y >= 1) && ($y <= 20)) {
          # lines 1-20: multi-page (coded Hamming-8/4)
-         printf "%03d: ", (($y-1)*40+$i) + 100;
+         printf "%03d: ", ($y-1)*40 + 100;
          foreach (unpack("x2C40", $data)) {
             printf " %d", Video::ZVBI::unham8($_);
          }
          print "\n";
       }
    } elsif ($is_aip) {
-      Video::ZVBI::unpar_str($data);
-      printf "%02d %s\n", $y, substr($data, 2, 40);
+      if (($y >= 1) && ($y <= 22)) {
+         my $txt = $data;
+         Video::ZVBI::unpar_str($txt);
+         printf "%02d: ", $y;
+         foreach (unpack("x2C8", $data)) {
+            printf "%x", Video::ZVBI::unham8($_);
+         }
+         printf " %s - ", substr($txt, 2+8, 12);
+         foreach (unpack("x22C8", $data)) {
+            printf "%x", Video::ZVBI::unham8($_);
+         }
+         printf " %s\n", substr($txt, 2+20+8, 12);
+      }
    }
 }
 

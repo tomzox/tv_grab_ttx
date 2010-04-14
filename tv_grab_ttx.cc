@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.19 2010/04/11 17:54:10 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.20 2010/04/14 19:21:58 tom Exp $
  */
 
 #include <stdio.h>
@@ -176,6 +176,132 @@ void TTX_DB_PAGE::page_to_latin1() const // modifies mutable
    m_text_valid = true;
 }
 
+class TTX_DB_BTT
+{
+public:
+   TTX_DB_BTT() : m_have_btt(false), m_have_mpt(false), m_have_ait(false) {}
+   void add_btt_pkg(uint page, uint idx, const uint8_t * p_data);
+   int get_last_sub(uint page) const;
+   bool is_valid() const { return m_have_btt; }
+   bool is_top_page(uint page) const;
+   void dump_btt_as_text(FILE * fp);
+private:
+   struct BTT_AIT_ELEM {
+      uint8_t      hd_text[13];
+      uint16_t     page;
+   };
+private:
+   bool         m_have_btt;
+   bool         m_have_mpt;
+   bool         m_have_ait;
+   uint8_t      m_pg_func[900 - 100];  ///< Page function - see 9.4.2.1
+   uint8_t      m_sub_cnt[900 - 100];
+   uint16_t     m_link[3 * 5];
+   BTT_AIT_ELEM m_ait[44];
+};
+
+bool TTX_DB_BTT::is_top_page(uint page) const
+{
+   return    (page == 0x1F0)
+          || (m_have_btt && (m_link[0] == page))
+          || (m_have_btt && (m_link[1] == page));
+}
+
+void TTX_DB_BTT::add_btt_pkg(uint page, uint pkg, const uint8_t * p_data)
+{
+   if (page == 0x1F0)
+   {
+      if (!m_have_btt) {
+         memset(m_pg_func, 0xFF, sizeof(m_pg_func));
+         memset(m_link, 0xFF, sizeof(m_link));
+         m_have_btt = true;
+      }
+      if ((pkg >= 1) && (pkg <= 20)) {
+         int off = (pkg - 1) * 40;
+         for (int idx = 0; idx < 40; idx++) {
+            int v = vbi_unham8(p_data[idx]);
+            if (v >= 0) {
+               m_pg_func[off + idx] = v;
+            }
+         }
+      }
+      else if ((pkg >= 21) && (pkg <= 23)) {
+         int off = (pkg - 21) * 5;
+         for (int idx = 0; idx < 5; idx++) {
+            m_link[off + idx] = (vbi_unham8(p_data[idx * 2*4 + 0]) << 8) |
+                                (vbi_unham8(p_data[idx * 2*4 + 1]) << 4) |
+                                (vbi_unham8(p_data[idx * 2*4 + 2]) << 0);
+            // next 5 bytes are unused
+         }
+      }
+   }
+   else if (m_have_btt && (m_link[0] == page)) {
+      if (!m_have_mpt) {
+         memset(m_sub_cnt, 0, sizeof(m_sub_cnt));
+         m_have_mpt = true;
+      }
+      if ((pkg >= 1) && (pkg <= 20)) {
+         int off = (pkg - 1) * 40;
+         for (int idx = 0; idx < 40; idx++) {
+            int v = vbi_unham8(p_data[idx]);
+            if (v >= 0) {
+               m_sub_cnt[off + idx] = v;
+            }
+         }
+      }
+   }
+   else if (m_have_btt && (m_link[1] == page)) {
+      if (!m_have_ait) {
+         memset(m_ait, 0, sizeof(m_ait));
+         m_have_ait = true;
+      }
+      if ((pkg >= 1) && (pkg <= 22)) {
+         int off = 2 * (pkg - 1);
+         // note terminating 0 is written once during init
+         memcpy(m_ait[off + 0].hd_text, p_data + 8, 12); // TODO char set conversion
+         memcpy(m_ait[off + 1].hd_text, p_data + 20 + 8, 12);
+
+         m_ait[off + 0].page = (vbi_unham8(p_data[0 + 0]) << 8) |
+                               (vbi_unham8(p_data[0 + 1]) << 4) |
+                               (vbi_unham8(p_data[0 + 2]) << 0);
+         m_ait[off + 1].page = (vbi_unham8(p_data[20 + 0]) << 8) |
+                               (vbi_unham8(p_data[20 + 1]) << 4) |
+                               (vbi_unham8(p_data[20 + 2]) << 0);
+      }
+   }
+}
+
+int TTX_DB_BTT::get_last_sub(uint page) const
+{
+   if (m_have_mpt) {
+      // array is indexed by decimal page number (compression)
+      int d0 = (page >> 8);
+      int d1 = (page >> 4) & 0x0F;
+      int d2 = page & 0x0F;
+      if ((d1 < 10) && (d2 < 10)) {
+         assert((d0 >= 1) && (d0 <= 8));
+         int idx = d0 * 100 + d1 * 10 + d2 - 100;
+         if (m_sub_cnt[idx] == 0)
+            return -1;
+         else if (m_sub_cnt[idx] == 1)
+            return 0;
+         else
+            return m_sub_cnt[idx];
+      }
+   }
+   return -1;
+}
+
+void TTX_DB_BTT::dump_btt_as_text(FILE * fp)
+{
+   if (m_have_ait) {
+      fprintf(fp, "PAGE BTT-AIT\n");
+      for (int idx = 0; idx < 44; idx++) {
+         fprintf(fp, " %03X %.12s\n", m_ait[idx].page, m_ait[idx].hd_text);
+      }
+   }
+}
+
 class TTX_DB
 {
 public:
@@ -192,13 +318,15 @@ public:
    int last_sub_page_no(uint page) const;
 
    TTX_DB_PAGE* add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data, time_t ts);
-   TTX_DB_PAGE* add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data);
+   void add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data);
    void erase_page_c4(int page, int sub);
    void dump_db_as_text(FILE * fp);
    void dump_db_as_raw(FILE * fp);
    double get_acq_rep_stats();
+   bool page_acceptable(uint page) const;
 private:
    map<TTX_PG_HANDLE, TTX_DB_PAGE*> m_db;
+   TTX_DB_BTT m_btt;
 };
 
 TTX_DB::~TTX_DB()
@@ -235,14 +363,25 @@ TTX_DB::const_iterator& TTX_DB::next_sub_page(uint page, const_iterator& p) cons
 
 int TTX_DB::last_sub_page_no(uint page) const
 {
-   const_iterator p = m_db.lower_bound(TTX_PG_HANDLE(page + 1, 0));
-   int last_sub = -1;
-   if ((p != m_db.begin()) && (m_db.size() > 0)) {
-      --p;
-      if (p->first.page() == page)
-         last_sub = p->first.sub();
+   int last_sub = m_btt.get_last_sub(page);
+   if (last_sub == -1) {
+      const_iterator p = m_db.lower_bound(TTX_PG_HANDLE(page + 1, 0));
+      last_sub = -1;
+      if ((p != m_db.begin()) && (m_db.size() > 0)) {
+         --p;
+         if (p->first.page() == page)
+            last_sub = p->first.sub();
+      }
    }
    return last_sub;
+}
+
+// Decides if the page is acceptable for addition to the database.
+bool TTX_DB::page_acceptable(uint page) const
+{
+   // decimal page (human readable) or TOP table
+   return (   (((page & 0x0F) <= 9) && (((page >> 4) & 0x0f) <= 9))
+           || m_btt.is_top_page(page));
 }
 
 TTX_DB_PAGE* TTX_DB::add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data, time_t ts)
@@ -261,18 +400,22 @@ TTX_DB_PAGE* TTX_DB::add_page(uint page, uint sub, uint ctrl, const uint8_t * p_
    return p->second;
 }
 
-TTX_DB_PAGE* TTX_DB::add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data)
+void TTX_DB::add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data)
 {
-   TTX_PG_HANDLE handle(page, sub);
-
-   iterator p = m_db.find(handle);
-   if (p != m_db.end()) {
-      p->second->add_raw_pkg(idx, p_data);
-      return p->second;
+   if (m_btt.is_top_page(page)) {
+      // forward the data to the BTT
+      m_btt.add_btt_pkg(page, idx, p_data);
    }
    else {
-      //if (opt_debug) printf("ERROR: page:%d sub:%d not found for adding pkg:%d\n", page, sub, idx);
-      return 0;
+      TTX_PG_HANDLE handle(page, sub);
+
+      iterator p = m_db.find(handle);
+      if (p != m_db.end()) {
+         p->second->add_raw_pkg(idx, p_data);
+      }
+      else {
+         //if (opt_debug) printf("ERROR: page:%d sub:%d not found for adding pkg:%d\n", page, sub, idx);
+      }
    }
 }
 
@@ -1794,8 +1937,8 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
          p_data = reinterpret_cast<const uint8_t*>(blank_line);
       }
       // drop all non-decimal pages
-      if ( ((page & 0x0F) > 9) || (((page >> 4) & 0x0f) > 9) ) {
-         page = m_cur_page[mag] = -1;
+      if (!ttx_db.page_acceptable(page)) {
+         m_cur_page[mag] = -1;
          return;
       }
       // magazine serial mode (C11: 1=serial 0=parallel)
@@ -1933,6 +2076,8 @@ void TTX_DB::dump_db_as_text(FILE * fp)
    for (iterator p = m_db.begin(); p != m_db.end(); p++) {
       p->second->dump_page_as_text(fp);
    }
+
+   ttx_db.m_btt.dump_btt_as_text(fp);
 }
 
 void TTX_DB_PAGE::dump_page_as_text(FILE * fp)
@@ -2024,10 +2169,11 @@ void TTX_DB_PAGE::dump_page_as_raw(FILE * fp, int last_sub)
                      || (c == '%')
                      || (c == '"')
                      || (c == '\\') ) {
-               fprintf(fp, "\\%c", c);
+               fputc('\\', fp);
+               fputc(c, fp);
             }
             else {
-               fprintf(fp, "%c", c);
+               fputc(c, fp);
             }
          }
          fprintf(fp, "\",\n");
@@ -2587,7 +2733,7 @@ public:
                                  && (m_separator < b.m_separator) )))));
    }
    const char * print_key() const;
-   bool detect_fmt(const string& text, const string& text2);
+   bool detect_line_fmt(const string& text, const string& text2);
    bool parse_title_line(const string& text, int& hour, int& min, bool &is_tip) const;
    bool parse_subtitle(const string& text) const;
    string extract_title(const string& text) const;
@@ -2684,7 +2830,7 @@ string T_OV_LINE_FMT::extract_subtitle(const string& text) const
    return text.substr(m_subt_off);
 }
 
-bool T_OV_LINE_FMT::detect_fmt(const string& text, const string& text2)
+bool T_OV_LINE_FMT::detect_line_fmt(const string& text, const string& text2)
 {
    smatch whats;
 
@@ -2724,7 +2870,7 @@ bool T_OV_LINE_FMT::detect_fmt(const string& text, const string& text2)
          m_subt_off = whats[1].second - whats[1].first;
       }
 
-      //if (opt_debug) printf("FMT(%03X.%d.%d): %s\n", page, sub, line, fmt.print_key());
+      //if (opt_debug) printf("FMT: %s\n", print_key());
       return true;
    }
    return false;
@@ -2807,7 +2953,7 @@ T_OV_LINE_FMT DetectOvFormat()
             const string& text = pgtext->get_text(line);
             const string& text2 = pgtext->get_text(line + 1);
 
-            if (fmt.detect_fmt(text, text2)) {
+            if (fmt.detect_line_fmt(text, text2)) {
                fmt_list.push_back(fmt);
             }
          }
@@ -3199,7 +3345,7 @@ public:
                                  && (m_spc_trail < b.m_spc_trail) )))));
    }
    const char * print_key() const;
-   bool detect_fmt(const string& text);
+   bool detect_ref_fmt(const string& text);
    bool parse_trailing_ttx_ref(string& text, int& ttx_ref) const;
    bool is_valid() const { return m_spc_trail >= 0; }
    static T_TRAIL_REF_FMT select_ttx_ref_fmt(const vector<T_TRAIL_REF_FMT>& fmt_list);
@@ -3223,7 +3369,7 @@ const char * T_TRAIL_REF_FMT::print_key() const
    return buf;
 }
 
-bool T_TRAIL_REF_FMT::detect_fmt(const string& text)
+bool T_TRAIL_REF_FMT::detect_ref_fmt(const string& text)
 {
    smatch whats;
 
@@ -3713,7 +3859,7 @@ void OV_SLOT::detect_ttx_ref_fmt(vector<T_TRAIL_REF_FMT>& fmt_list)
 {
    for (uint idx = 0; idx < m_title.size(); idx++) {
       T_TRAIL_REF_FMT fmt;
-      if (fmt.detect_fmt(m_title[idx])) {
+      if (fmt.detect_ref_fmt(m_title[idx])) {
          fmt_list.push_back(fmt);
       }
    }
@@ -4875,6 +5021,31 @@ int CorrelateDescTitles(int page, int sub1, int sub2, int head)
    return TTX_DB_PAGE::TTX_TEXT_LINE_CNT;
 }
 
+/* Replace page index markers in description pages with space; the marker
+ * is expected at the end of one of the top lines of the page only
+ * (e.g. "...     2/2 "). Note currently not handled: providers
+ * might mark a page with "1/1" when sub-pages differ by ads only.
+ */
+void DescRemoveSubPageIdx(vector<string>& Lines, int sub)
+{
+   smatch whats;
+
+   for (uint row = 0; (row < Lines.size()) && (row < 6); row++) {
+      static const regex expr1(" (\\d+)/(\\d+) ?$");
+      if (regex_search(Lines[row], whats, expr1)) {
+         int sub_idx = atoi_substr(whats[1]);
+         int sub_cnt = atoi_substr(whats[2]);
+         if ((sub == 0)
+               ? ((sub_idx == 1) && (sub_cnt == 1))
+               : ((sub_idx == sub) && (sub_cnt > 1)) )
+         {
+            Lines[row].replace(whats.position(), whats[0].length(), whats[0].length(), ' ');
+            break;
+         }
+      }
+   }
+}
+
 /* Reformat tables in "cast" format into plain lists. Note this function
  * must be called before removing control characters so that columns are
  * still aligned. Example:
@@ -5034,6 +5205,7 @@ string ParseDescContent(int page, int sub, int head, int foot)
       Lines.push_back(ctrl);
    }
 
+   DescRemoveSubPageIdx(Lines, sub);
    DescFormatCastTable(Lines);
 
    for (uint idx = 0; idx < Lines.size(); idx++) {
