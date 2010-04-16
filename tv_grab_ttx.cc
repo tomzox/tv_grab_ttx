@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.20 2010/04/14 19:21:58 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.21 2010/04/16 18:13:32 tom Exp $
  */
 
 #include <stdio.h>
@@ -727,7 +727,7 @@ int opt_tv_end = 0x399;
 int opt_expire = 120;
 
 // forward declarations
-void ParseDescPage(TV_SLOT * slot);
+void ParseDescPage(TV_SLOT * slot, const T_PG_DATE * pg_date);
 
 
 /* ------------------------------------------------------------------------------
@@ -4357,7 +4357,7 @@ void OV_PAGE::extract_tv(list<TV_SLOT*>& tv_slots)
       slot->parse_title(p_tv);
 
       if (slot->m_ttx_ref != -1) {
-         ParseDescPage(p_tv);
+         ParseDescPage(p_tv, &m_date);
       }
 
       tv_slots.push_back(p_tv);
@@ -4697,7 +4697,7 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
  * Tele5: Fr 19:15-20:15
  */
 
-bool ParseDescDate(int page, int sub, TV_SLOT * slot)
+bool ParseDescDate(int page, int sub, TV_SLOT * slot, int date_off)
 {
    int lmday = -1;
    int lmonth = -1;
@@ -4890,12 +4890,26 @@ bool ParseDescDate(int page, int sub, TV_SLOT * slot)
             }
 #endif
             return true;
-         } else {
-            if (opt_debug) printf("MISMATCH: %s %s\n", GetXmlTimestamp(start_t).c_str(), GetXmlTimestamp(slot->m_start_t).c_str());
-            lend_hour = -1;
-            if (new_date) {
-               // date on same line as time: invalidate both upon mismatch
-               lyear = -1;
+         }
+         else {
+            if (date_off != 0) {
+               // try again with compensation by date offset which was found on overview page (usually in time range 0:00 - 6:00)
+               tm.tm_mday += date_off;
+               start_t = mktime(&tm);
+            }
+            if ((start_t != -1) && (abs(start_t - slot->m_start_t) < 5*60)) {
+               // match found
+               return true;
+            }
+            else {
+               if (opt_debug) printf("MISMATCH[date_off:%d]: %s %s\n", date_off,
+                                     GetXmlTimestamp(start_t).c_str(),
+                                     GetXmlTimestamp(slot->m_start_t).c_str());
+               lend_hour = -1;
+               if (new_date) {
+                  // date on same line as time: invalidate both upon mismatch
+                  lyear = -1;
+               }
             }
          }
       }
@@ -5259,7 +5273,7 @@ string ParseDescContent(int page, int sub, int head, int foot)
 /* TODO: check for all referenced text pages where no match was found if they
  *       describe a yet unknown programme (e.g. next instance of a weekly series)
  */
-void ParseDescPage(TV_SLOT * slot)
+void ParseDescPage(TV_SLOT * slot, const T_PG_DATE * pg_date)
 {
    bool found = false;
    int first_sub = -1;
@@ -5282,7 +5296,7 @@ void ParseDescPage(TV_SLOT * slot)
 
       // TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
 
-      if (ParseDescDate(page, sub, slot)) {
+      if (ParseDescDate(page, sub, slot, pg_date->m_date_off)) {
          int head = ParseDescTitle(page, sub, slot);
          if (first_sub >= 0)
             head = CorrelateDescTitles(page, sub, first_sub, head);

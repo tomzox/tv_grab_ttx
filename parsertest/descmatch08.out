@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="RTL II">
+	<display-name>RTL II</display-name>
+</channel>
+
+<programme start="20060511150000 +0000" stop="20060511153000 +0000" channel="RTL II">
+	<title>5 gegen 5</title>
+	<desc>(teletext 371)</desc>
+</programme>
+
+<programme start="20060511153000 +0000" stop="20060511170000 +0000" channel="RTL II">
+	<title>Immer wieder Jim</title>
+	<!-- TTX 335 -->
+	<desc>IMMER WIEDER JIM
+Oh, du Stressige Zu Weihnachten kommt Cheryls Mutter Maggie auf Besuch. Diesmal übernachtet sie jedoch nicht im Hotel, sondern quartiert sich in Jims und Cheryls Schlafzimmer ein. Trotzdem setzt Cheryl alles daran, ihre Mutter bei Laune zu halten: Sie hofft nämlich, von ihr in diesem Jahr die kostbare Perlenkette ihrer Urgroßmutter geschenkt zu bekommen...
+Weitere Folgen heute: "Fluchen will gelernt sein" und "Hauptsache Spaß".</desc>
+</programme>
+
+<programme start="20060511170000 +0000" stop="20060511180000 +0000" channel="RTL II">
+	<title>Wir ziehen um!</title>
+	<sub-title>Wir ziehen um! Tutti &amp; Rita packen's an</sub-title>
+	<desc>(teletext 345)</desc>
+</programme>
+
+<programme start="20060511180000 +0000" stop="20060511181500 +0000" channel="RTL II">
+	<title>RTL II News</title>
+	<desc>(teletext 114)</desc>
+</programme>
+
+<programme start="20060511181500 +0000" stop="20060511191000 +0000" channel="RTL II">
+	<title>Law &amp; Order</title>
+	<sub-title>Law &amp; Order New York</sub-title>
+	<desc>(teletext 329)</desc>
+</programme>
+
+<programme start="20060511191000 +0000" channel="RTL II">
+	<title>Frauentausch</title>
+	<desc>(teletext 341)</desc>
+</programme>
+</tv>

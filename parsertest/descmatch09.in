@@ -3,7 +3,7 @@
 # Test #1 of match on description pages with wrong dates, i.e. date of the
 # previous day.  Note the same date offset is present in the overview pages.
 #
-# $Id$
+# $Id: descmatch09.in,v 1.1 2010/04/15 18:15:20 tom Exp $
 #
 $VbiCaptureTime = 1149946245;
 $PgCnt{0x302} = 2;

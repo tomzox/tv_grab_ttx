@@ -7,7 +7,7 @@
 # Also note page 303 is a duplicate with the same programmes, just different
 # ads.
 #
-# $Id$
+# $Id: descmatch10.in,v 1.1 2010/04/15 18:16:34 tom Exp $
 #
 $VbiCaptureTime = 1222090547;
 $PkgCni{0xD8F} = 90;

@@ -5,7 +5,7 @@
 # make the test harder the description subpage count has been changed
 # from 1 to 2.)
 #
-# $Id$
+# $Id: descmatch08.in,v 1.1 2010/04/15 18:13:36 tom Exp $
 #
 $VbiCaptureTime = 1147377524;
 $PgCnt{0x303} = 6;
@@ -46,7 +46,7 @@ $Pkg{0x335|(0x0001<<12)} =
   "s^\x15\x15\x15\x15\x15G335\x03RTL II   \x07Do 11 Mai\x0321:58:42",
   "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Reisen: Buchen\x18",
   "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Sie hier!..600\x18",
-  "\x01\x1D\x07IMMER WIEDER JIM                \x001/1\x07",
+  "\x01\x1D\x07IMMER WIEDER JIM                \x001/2\x07",
   "\x07\x1D\x00                                     ",
   "\x07\x1D\x01Oh, du Stressige                     ",
   "\x07\x1D\x00Zu Weihnachten kommt Cheryls Mutter  ",

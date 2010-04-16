@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="rtl2.de">
+	<display-name>RTL II</display-name>
+</channel>
+
+<programme start="20080922031000 +0000" stop="20080922035000 +0000" channel="rtl2.de">
+	<title>Still Standing</title>
+	<desc>(teletext 337)</desc>
+</programme>
+
+<programme start="20080922035000 +0000" stop="20080922044500 +0000" channel="rtl2.de">
+	<title>Immer wieder Jim</title>
+	<desc>(teletext 335)</desc>
+</programme>
+
+<programme start="20080922044500 +0000" stop="20080922070000 +0000" channel="rtl2.de">
+	<title>Infomercial</title>
+</programme>
+
+<programme start="20080922070000 +0000" stop="20080922090000 +0000" channel="rtl2.de">
+	<title>Frauentausch</title>
+	<desc>(teletext 312)</desc>
+</programme>
+
+<programme start="20080922090000 +0000" stop="20080922110000 +0000" channel="rtl2.de">
+	<title>Zuhause im Glück</title>
+	<sub-title>Zuhause im Glück Unser Einzug in ein neues Zuhause</sub-title>
+	<desc>(teletext 317)</desc>
+</programme>
+
+<programme start="20080922110000 +0000" stop="20080922112500 +0000" channel="rtl2.de">
+	<title>Magi-Nation</title>
+	<desc>(teletext 373)</desc>
+</programme>
+
+<programme start="20080922112500 +0000" stop="20080922115000 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 373)</desc>
+</programme>
+
+<programme start="20080922115000 +0000" stop="20080922121500 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 373)</desc>
+</programme>
+
+<programme start="20080922121500 +0000" stop="20080922124500 +0000" channel="rtl2.de">
+	<title>Pokemon</title>
+	<desc>(teletext 373)</desc>
+</programme>
+
+<programme start="20080922124500 +0000" stop="20080922131000 +0000" channel="rtl2.de">
+	<title>Storm Hawks</title>
+	<desc>(teletext 373)</desc>
+</programme>
+
+<programme start="20080922131000 +0000" stop="20080922133000 +0000" channel="rtl2.de">
+	<title>Dinosaur King</title>
+	<desc>(teletext 373)</desc>
+</programme>
+
+<programme start="20080922133000 +0000" stop="20080922134000 +0000" channel="rtl2.de">
+	<title>My Pokito</title>
+	<desc>(teletext 373)</desc>
+</programme>
+
+<programme start="20080922134000 +0000" stop="20080922141000 +0000" channel="rtl2.de">
+	<title>Naruto</title>
+	<desc>(teletext 373)</desc>
+</programme>
+
+<programme start="20080922141000 +0000" stop="20080922143000 +0000" channel="rtl2.de">
+	<title>Tom und Jerry</title>
+	<desc>(teletext 372)</desc>
+</programme>
+
+<programme start="20080922143000 +0000" stop="20080922150000 +0000" channel="rtl2.de">
+	<title>Full House</title>
+	<desc>(teletext 332)</desc>
+</programme>
+
+<programme start="20080922150000 +0000" stop="20080922160000 +0000" channel="rtl2.de">
+	<title>Still Standing</title>
+	<desc>(teletext 337)</desc>
+</programme>
+
+<programme start="20080922160000 +0000" stop="20080922170000 +0000" channel="rtl2.de">
+	<title>Immer wieder Jim</title>
+	<desc>(teletext 335)</desc>
+</programme>
+
+<programme start="20080922170000 +0000" stop="20080922180000 +0000" channel="rtl2.de">
+	<title>Hör' mal, wer da hämmert!</title>
+	<desc>(teletext 336)</desc>
+</programme>
+
+<programme start="20080922180000 +0000" stop="20080922181500 +0000" channel="rtl2.de">
+	<title>RTL II News</title>
+	<desc>(teletext 110)</desc>
+</programme>
+
+<programme start="20080922181500 +0000" stop="20080922191500 +0000" channel="rtl2.de">
+	<title>Die Kochprofis</title>
+	<sub-title>Die Kochprofis Einsatz am Herd</sub-title>
+	<desc>(teletext 316)</desc>
+</programme>
+
+<programme start="20080922191500 +0000" stop="20080922211500 +0000" channel="rtl2.de">
+	<title>Frauentausch</title>
+	<sub-title>Frauentausch Das Aschenputtel-Experiment</sub-title>
+	<desc>(teletext 313)</desc>
+</programme>
+
+<programme start="20080922211500 +0000" stop="20080922221000 +0000" channel="rtl2.de">
+	<title>Cheaters</title>
+	<sub-title>Cheaters Beim Fremdgehen erwischt!</sub-title>
+	<desc>(teletext 319)</desc>
+</programme>
+
+<programme start="20080922221000 +0000" stop="20080922222500 +0000" channel="rtl2.de">
+	<title>RTL II News</title>
+	<desc>(teletext 110)</desc>
+</programme>
+
+<programme start="20080922222500 +0000" stop="20080922232500 +0000" channel="rtl2.de">
+	<title>Akte Mord</title>
+</programme>
+
+<programme start="20080922232500 +0000" stop="20080923003000 +0000" channel="rtl2.de">
+	<title>Autopsie</title>
+	<sub-title>Autopsie Mysteriöse Todesfälle</sub-title>
+	<desc>(teletext 338)</desc>
+</programme>
+
+<programme start="20080923003000 +0000" stop="20080923021500 +0000" channel="rtl2.de">
+	<title>Blood &amp; Wine</title>
+	<sub-title>Blood &amp; Wine Ein tödlicher Cocktail</sub-title>
+	<!-- TTX 351 -->
+	<desc>Blood &amp; Wine: Ein tödlicher Cocktail Krimi, GB 1996
+Mit Hilfe seiner Geliebten Gabriella und des englischen Safeknackers Victor Spansky raubt Weinhändler Alex Gates ein millionenschweres Diamantkollier.
+Aber auch seine verbitterte Frau Suzanne und sein erwachsener Stiefsohn Jason sind plötzlich hinter dem Schmuckstück her. Es beginnt eine mörderische Hatz...
+Regie: Bob Rafelson.
+Alex Gate: Jack Nicholson, Jason Gates: Stephen Dorff, Gabriella: Jennifer Lopez, Suzanne Gates: Judy Davis, Victor Spansky: Michael Caine, Henry: Harrold Perrineau Jr..
+Die skurrilen Charaktere und ihre spritzigen Dialoge kommen in der Star-Besetzung voll zur Entfaltung.</desc>
+</programme>
+
+<programme start="20080923021500 +0000" stop="20080923031000 +0000" channel="rtl2.de">
+	<title>Killer Instinct</title>
+</programme>
+
+<programme start="20080923031000 +0000" stop="20080923035000 +0000" channel="rtl2.de">
+	<title>Still Standing</title>
+	<desc>(teletext 337)</desc>
+</programme>
+
+<programme start="20080923035000 +0000" stop="20080923044500 +0000" channel="rtl2.de">
+	<title>Immer wieder Jim</title>
+	<desc>(teletext 335)</desc>
+</programme>
+
+<programme start="20080923044500 +0000" stop="20080923070000 +0000" channel="rtl2.de">
+	<title>Infomercial</title>
+</programme>
+
+<programme start="20080923070000 +0000" stop="20080923090000 +0000" channel="rtl2.de">
+	<title>Frauentausch</title>
+	<desc>(teletext 312)</desc>
+</programme>
+
+<programme start="20080923090000 +0000" channel="rtl2.de">
+	<title>Zuhause im Glück</title>
+	<sub-title>Zuhause im Glück Unser Einzug in ein neues Leben</sub-title>
+	<desc>(teletext 317)</desc>
+</programme>
+</tv>
