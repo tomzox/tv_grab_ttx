@@ -1,0 +1,135 @@
+#!/usr/bin/perl -w
+#
+# Last line of page contains reference to next page at the same position
+# as references to description pages in overview lists.  Check that the
+# reference is not appended to the title even if there's no blank line
+# in-between. Same for description pages.  (Currently this is handled
+# via background color footer detection.)
+#
+# $Id: ovlist20.in,v 1.1 2010/04/17 18:49:17 tom Exp $
+#
+$VbiCaptureTime = 1271441929;
+$PgCnt{0x308} = 1;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$PgTime{0x308} = 1271441929;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "        308 DAS VIERTE 16.04.10 20:18:43",
+  "\x11\x1D\x17 `|t \x1D\x00                          1/1 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07MORGEN NACHT             ",
+  " \x1D\x01                                     ",
+  " \x1D\x0023:20 Hei~e Girls                    ",
+  " \x1D\x0101:00 Secret Fruits                  ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  "\x17/////////////////////////////////\x07>309 ",
+  "\x02\x1D\x0D\x04Sport: Tabellen & Ergebnisse >200   ",
+  undef,
+];
+$PgCnt{0x309} = 1;
+$PgSub{0x309} = 1;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1271441929;
+$Pkg{0x309|(0x0001<<12)} =
+[
+  "        309 DAS VIERTE 16.04.10 20:18:43",
+  "\x11\x1D\x17 `|t \x1D\x00                          1/2 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07]BERMORGEN               ",
+  " \x1D\x01                                     ",
+  " \x1D\x0006:00 Die Zwei                  >342 ",
+  " \x1D\x0107:00 Living Gospel - Antworten      ",
+  " \x1D\x01      aus Gottes Wort                ",
+  " \x1D\x0010:00 Teleshopping                   ",
+  " \x1D\x0111:00 Astro TV                  >150 ",
+  " \x1D\x0013:00 Teleshopping                   ",
+  " \x1D\x0115:00 Astro TV                  >150 ",
+  " \x1D\x0017:30 Teleshopping                   ",
+  " \x1D\x0118:30 sonnenklar.TV             >460 ",
+  " \x1D\x0020:15 T|dlicher Irrtum          >314 ",
+  " \x1D\x0122:20 Teleshopping                   ",
+  " \x1D\x0023:20 Ghost Hunters                  ",
+  " \x1D\x00      International                  ",
+  " \x1D\x0100:05 Hei~e Girls                    ",
+  " \x1D\x0001:00 Secret Fruits                  ",
+  "\x17/////////////////////////////////\x07>310 ",
+  "\x04\x1D\x0D\x07     Wo steht was??? >> 101         ",
+  undef,
+];
+$PgCnt{0x314} = 1;
+$PgSub{0x314} = 1;
+$PgLang{0x314} = 1;
+$PgTime{0x314} = 1271441929;
+$Pkg{0x314|(0x0001<<12)} =
+[
+  "        314 DAS VIERTE 16.04.10 20:18:43",
+  "\x11\x1D\x17 `|t \x1D\x00                          1/2 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07Spielfilm                ",
+  " \x1D\x01                                     ",
+  " \x1D\x01T|dlicher Irrtum                     ",
+  " \x1D\x00Western, Deutschland 1970            ",
+  " \x1D\x01\x1D\x07So 18.04., 20:15 Uhr           \x07\x1D  ",
+  " \x1D\x00\x10                                    ",
+  " \x1D\x00Eine goldene Zukunft verspricht der  ",
+  " \x1D\x00Boss der \\lgesellschaft den India-   ",
+  " \x1D\x00nern, als im Reservat ein Erd|lvor-  ",
+  " \x1D\x00kommen entdeckt wird. Aber schon     ",
+  " \x1D\x00bald ist von einer Gewinnbeteiligung ",
+  " \x1D\x00nicht mehr die Rede und die Reser-   ",
+  " \x1D\x00vatbewohner werden schamlos ausge-   ",
+  " \x1D\x00beutet. Nur Shave Head, ein Unter-   ",
+  " \x1D\x00h{uptling der Schoschonen und sein   ",
+  " \x1D\x00Halbbruder Chris Howard wagen Wider- ",
+  " \x1D\x00stand.                               ",
+  " \x1D                                      ",
+  "\x17/////////////////////////////////\x07>315 ",
+  "\x01\x1D\x07   Internet: www.das-vierte.de\x06      ",
+];
+$PgCnt{0x315} = 1;
+$PgSub{0x315} = 1;
+$PgLang{0x315} = 1;
+$PgTime{0x315} = 1271441929;
+$Pkg{0x315|(0x0001<<12)} =
+[
+  "        315 DAS VIERTE 16.04.10 20:18:43",
+  "\x11\x1D\x17 `|t \x1D\x00                          1/2 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07Spielfilm                ",
+  " \x1D\x01                                     ",
+  " \x1D\x01T|dlicher Irrtum                     ",
+  " \x1D\x00Western, Deutschland 1970            ",
+  " \x1D\x01\x1D\x07Mo 19.04., 03:25 Uhr     Wdh.  \x07\x1D  ",
+  " \x1D\x00\x10                                    ",
+  " \x1D\x00Eine goldene Zukunft verspricht der  ",
+  " \x1D\x00Boss der \\lgesellschaft den India-   ",
+  " \x1D\x00nern, als im Reservat ein Erd|lvor-  ",
+  " \x1D\x00kommen entdeckt wird. Aber schon     ",
+  " \x1D\x00bald ist von einer Gewinnbeteiligung ",
+  " \x1D\x00nicht mehr die Rede und die Reser-   ",
+  " \x1D\x00vatbewohner werden schamlos ausge-   ",
+  " \x1D\x00beutet. Nur Shave Head, ein Unter-   ",
+  " \x1D\x00h{uptling der Schoschonen und sein   ",
+  " \x1D\x00Halbbruder Chris Howard wagen Wider- ",
+  " \x1D\x00stand.                               ",
+  " \x1D                                      ",
+  "\x17/////////////////////////////////\x07>316 ",
+  "\x01\x1D\x07   Internet: www.das-vierte.de\x06      ",
+];

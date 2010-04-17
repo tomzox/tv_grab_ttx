@@ -1,0 +1,188 @@
+#!/usr/bin/perl -w
+#
+# Trailing footer on description page (">314") should be cut off.
+#
+# $Id: footer8.in,v 1.1 2010/04/17 19:47:05 tom Exp $
+#
+$VbiCaptureTime = 1269634169;
+$PkgCni{0xD76} = 90;
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 4;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "^\x15\x02P\x15\x15IG303 DAS VIERTE 26.03.10 21:09:12",
+  "\x11\x1D\x17 `|t \x1D\x00                          1/1 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07HEUTE ABEND              ",
+  " \x1D\x01                                     ",
+  " \x1D\x0018:30 sonnenklar.TV             >460 ",
+  " \x1D\x0120:15 Airborne - Fl}gel aus          ",
+  " \x1D\x01      Stahl                     >312 ",
+  " \x1D\x0021:50 Teleshopping                   ",
+  " \x1D\x0122:50 Making Of                      ",
+  " \x1D\x01      Making Of: Green Zone          ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  "\x17/////////////////////////////////\x07>304 ",
+  "\x01\x1D\x07\x0D   EXTASE - PARADIES......616       ",
+  undef,
+];
+$PgCnt{0x307} = 3;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "/\x15\x15\x15\x15\x15\x15G307 DAS VIERTE 26.03.10 21:09:12",
+  "\x11\x1D\x17 `|t \x1D\x00                          1/1 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07MORGEN ABEND             ",
+  " \x1D\x01                                     ",
+  " \x1D\x0018:30 sonnenklar.TV             >460 ",
+  " \x1D\x0120:15 Drei Amigos               >313 ",
+  " \x1D\x0022:15 Teleshopping                   ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  "\x17/////////////////////////////////\x07>308 ",
+  "\x03\x1D\x0D\x04Spielfilme auf einen Blick....310   ",
+  undef,
+];
+$PgCnt{0x312} = 3;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0001<<12)} =
+[
+  "I\x02\x02P\x15\x15IG312 DAS VIERTE 26.03.10 21:09:12",
+  "\x11\x1D\x17 `|t \x1D\x00                          1/2 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07Spielfilm                ",
+  " \x1D\x01                                     ",
+  " \x1D\x01Airborne - Fl}gel aus Stahl          ",
+  " \x1D\x00Actionfilm, USA 1990                 ",
+  " \x1D\x01\x1D\x07Fr 26.03., 20:15 Uhr           \x07\x1D  ",
+  " \x1D\x00\x10                                    ",
+  " \x1D\x00F}r den Kampf gegen ein Drogenkar-   ",
+  " \x1D\x00tell werden junge Piloten vom Penta- ",
+  " \x1D\x00gon rekrutiert. Darunter ist auch    ",
+  " \x1D\x00Jake Preston, der mit Hilfe eines    ",
+  " \x1D\x00hochmodernen Hubschraubers einen     ",
+  " \x1D\x00Drogenboss unsch{dlich machen soll.  ",
+  " \x1D\x00Trainiert wird er daf}r von Brad     ",
+  " \x1D\x00Little, der dem Hitzkopf auch Dis-   ",
+  " \x1D\x00ziplin beibringen soll. Doch Jake    ",
+  " \x1D\x00verliert immer wieder die Kontrolle  ",
+  " \x1D\x00}ber sich. Das liegt vor allem an    ",
+  " \x1D\x00seiner Ex-Freundin Billie.           ",
+  "\x17/////////////////////////////////\x07>313 ",
+  "\x01\x1D\x07   Internet: www.das-vierte.de\x06      ",
+];
+$PgCnt{0x312} = 3;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0002<<12)} =
+[
+  "I\x02IP\x15\x15IG312 DAS VIERTE 26.03.10 21:08:44",
+  "\x11\x1D\x17 `|t \x1D\x00                          2/2 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07Spielfilm                ",
+  " \x1D\x01                                     ",
+  " \x1D\x01Airborne - Fl}gel aus Stahl          ",
+  " \x1D\x00Fire Birds                           ",
+  " \x1D\x01\x1D\x07Fr 26.03., 20:15 Uhr           \x07\x1D  ",
+  " \x1D\x00Regie: David Green                   ",
+  " \x1D\x00\x10                                    ",
+  " \x1D\x00Jake Preston......Nicolas Cage       ",
+  " \x1D\x00Brad Little.......Tommy Lee Jones    ",
+  " \x1D\x00Billie Lee Guthr..Sean Young         ",
+  " \x1D\x00Breaker...........Bryan Kestner      ",
+  " \x1D\x00Sharon Geller.....Illana Diamant     ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  "\x17/////////////////////////////////\x07>313 ",
+  "\x01\x1D\x07   Internet: www.das-vierte.de\x06      ",
+];
+$PgCnt{0x313} = 3;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$Pkg{0x313|(0x0001<<12)} =
+[
+  "^\x02\x02P\x15\x15IG313 DAS VIERTE 26.03.10 21:09:13",
+  "\x11\x1D\x17 `|t \x1D\x00                          1/2 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07Spielfilm                ",
+  " \x1D\x01                                     ",
+  " \x1D\x01Drei Amigos                          ",
+  " \x1D\x00Kom|die, USA 1986                    ",
+  " \x1D\x01\x1D\x07Sa 27.03., 20:15 Uhr           \x07\x1D  ",
+  " \x1D\x00\x10                                    ",
+  " \x1D\x00Banditen haben es auf ein kleines    ",
+  " \x1D\x00mexikanisches D|rfchen abgesehen.    ",
+  " \x1D\x00Dorfsch|nheit Carmen setzt alles     ",
+  " \x1D\x00daran, die Pl}nderung durch die      ",
+  " \x1D\x00R{uber zu verhindern. Sie heuert     ",
+  " \x1D\x00drei Schauspieler an. Deren einzige  ",
+  " \x1D\x00\"Qualifikation\" ist allerdings die   ",
+  " \x1D\x00Darstellung von Westernhelden in     ",
+  " \x1D\x00einen Stummfilm. Da die drei mitt-   ",
+  " \x1D\x00lerweile Pleite sind, kann die sch|- ",
+  " \x1D\x00ne Frau sie problemlos f}r ihre      ",
+  " \x1D\x00\"Wildwestshow\" engagieren.           ",
+  "\x17/////////////////////////////////\x07>314 ",
+  "\x01\x1D\x07   Internet: www.das-vierte.de\x06      ",
+];
+$PgCnt{0x313} = 3;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$Pkg{0x313|(0x0002<<12)} =
+[
+  "^\x02IP\x15\x15IG313 DAS VIERTE 26.03.10 21:08:44",
+  "\x11\x1D\x17 `|t \x1D\x00                          2/2 ",
+  "\x11\x1D\x17`~o\x7F \x1D\x11   \x1D\x17<0<4<\$ 444<\$<4l\$<\$       ",
+  "\x11\x1D\x17~\x7F~\x7F<\x1D\x11   \x1D\x17u\%75s5 m\%5w074j w0       ",
+  "\x11\x1D\x17\"#k\x7F#\x1D\x11   \x1D\x07Spielfilm                ",
+  " \x1D\x01                                     ",
+  " \x1D\x01Drei Amigos                          ",
+  " \x1D\x00Three Amigos                         ",
+  " \x1D\x01\x1D\x07Sa 27.03., 20:15 Uhr           \x07\x1D  ",
+  " \x1D\x00Regie: John Landis                   ",
+  " \x1D\x00\x10                                    ",
+  " \x1D\x00Lucky Day.........Steve Martin       ",
+  " \x1D\x00Dusty Bottoms.....Chevy Chase        ",
+  " \x1D\x00Ned Nederlander...Martin Short       ",
+  " \x1D\x00Carmen............Patrice Martinez   ",
+  " \x1D\x00Rodrigo...........Phillip Gordon     ",
+  " \x1D\x00Morty.............John Lovitz        ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  " \x1D                                      ",
+  "\x17/////////////////////////////////\x07>314 ",
+  "\x01\x1D\x07   Internet: www.das-vierte.de\x06      ",
+];

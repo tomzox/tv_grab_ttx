@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="das-vierte.de">
+	<display-name>DAS VIERTE</display-name>
+</channel>
+
+<programme start="20100326173000 +0000" stop="20100326191500 +0000" channel="das-vierte.de">
+	<title>sonnenklar.TV</title>
+	<desc>(teletext 460)</desc>
+</programme>
+
+<programme start="20100326191500 +0000" stop="20100326205000 +0000" channel="das-vierte.de">
+	<title>Airborne - Flügel aus Stahl</title>
+	<!-- TTX 312 -->
+	<desc>Airborne - Flügel aus Stahl Actionfilm, USA 1990 Fr 26.03., 20:15 Uhr
+Für den Kampf gegen ein Drogenkartell werden junge Piloten vom Pentagon rekrutiert. Darunter ist auch Jake Preston, der mit Hilfe eines hochmodernen Hubschraubers einen Drogenboss unschädlich machen soll. Trainiert wird er dafür von Brad Little, der dem Hitzkopf auch Disziplin beibringen soll. Doch Jake verliert immer wieder die Kontrolle über sich. Das liegt vor allem an seiner Ex-Freundin Billie.
+Fire Birds Fr 26.03., 20:15 Uhr Regie: David Green
+Jake Preston: Nicolas Cage, Brad Little: Tommy Lee Jones, Billie Lee Guthr: Sean Young, Breaker: Bryan Kestner, Sharon Geller: Illana Diamant.</desc>
+</programme>
+
+<programme start="20100326205000 +0000" stop="20100326215000 +0000" channel="das-vierte.de">
+	<title>Teleshopping</title>
+</programme>
+
+<programme start="20100326215000 +0000" channel="das-vierte.de">
+	<title>Making Of</title>
+	<sub-title>Making Of Making Of: Green Zone</sub-title>
+</programme>
+
+<programme start="20100327173000 +0000" stop="20100327191500 +0000" channel="das-vierte.de">
+	<title>sonnenklar.TV</title>
+	<desc>(teletext 460)</desc>
+</programme>
+
+<programme start="20100327191500 +0000" stop="20100327211500 +0000" channel="das-vierte.de">
+	<title>Drei Amigos</title>
+	<!-- TTX 313 -->
+	<desc>Drei Amigos Komödie, USA 1986 Sa 27.03., 20:15 Uhr
+Banditen haben es auf ein kleines mexikanisches Dörfchen abgesehen. Dorfschönheit Carmen setzt alles daran, die Plünderung durch die Räuber zu verhindern. Sie heuert drei Schauspieler an. Deren einzige "Qualifikation" ist allerdings die Darstellung von Westernhelden in einen Stummfilm. Da die drei mittlerweile Pleite sind, kann die schöne Frau sie problemlos für ihre "Wildwestshow" engagieren.
+Three Amigos Sa 27.03., 20:15 Uhr Regie: John Landis
+Lucky Day: Steve Martin, Dusty Bottoms: Chevy Chase, Ned Nederlander: Martin Short, Carmen: Patrice Martinez, Rodrigo: Phillip Gordon, Morty: John Lovitz.</desc>
+</programme>
+
+<programme start="20100327211500 +0000" channel="das-vierte.de">
+	<title>Teleshopping</title>
+</programme>
+</tv>

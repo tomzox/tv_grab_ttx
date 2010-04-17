@@ -1,0 +1,68 @@
+#!/usr/bin/perl -w
+#
+# Test date match on description page: Two-line combined date/time:
+# The date is given only as week-day name, but time is directly below.
+#
+# $Id: descmatch07b.in,v 1.1 2010/04/17 19:36:35 tom Exp $
+#
+$VbiCaptureTime = 1270410640;
+$PgCnt{0x301} = 1;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301\x06hr-text\x07So 04.04.10\x0621:50:34",
+  "\x14|     \x16 p          0   \x03   Ostersonntag",
+  "\x14\x7F|t x|\x16 =hlh\$<4<\$<4=4<4<4\x06      Sonntag",
+  "\x14\x7F \x7F \x7F \x16 5jsj 55s5w155w155\x06      4.April",
+  "\x14/ / /                                  ",
+  undef,
+  "\x0604.55   Lange Ohren, flinke Beine.. 314",
+  "\x0705.25   Fabelhaftes Langohr........ 314",
+  "\x0606.10   Die Legende                    ",
+  "\x06        vom Hasen und der Sonne.... 314",
+  "\x0706.55   Wandervolles Hessen            ",
+  "\x07        Urwaldsteig am Edersee..... 315",
+  "\x0607.10   Faszination Berge              ",
+  "\x06        Allg{uer Alpen............. 315",
+  "\x0708.45   Hessens sch|nste Burgen.... 315",
+  "\x0610.15   Das Sonntagsgespr{ch           ",
+  "\x06        Gast: Nikolaus Schneider... 316",
+  "\x0710.45   Joseph Offenbach               ",
+  "\x07        Kleiner Mann ganz gro~..... 316",
+  "\x0611.30   13 kleine Esel                 ",
+  "\x06        und der Sonnenhof, D 1958.. 318",
+  "\x06        (bis 13.05 Uhr)                ",
+  "\x07                                       ",
+  "\x04\x1D\x07morgen 305-308         Nachmittag 302",
+];
+$PgCnt{0x314} = 1;
+$PgSub{0x314} = 1;
+$PgLang{0x314} = 1;
+$Pkg{0x314|(0x0001<<12)} =
+[
+  "        314\x06hr-text\x07So 04.04.10\x0621:50:35",
+  "\x14ppppppppppppppppppppppppppppppppppppppp",
+  "\x04\x1D\x07hr-fernsehen \x06\x1D\x04             Sonntag ",
+  "\x14#######################################",
+  "\x074.55-5.25 Uhr                          ",
+  " LANGE OHREN, FLINKE BEINE              ",
+  " Feldhasen und Kaninchen                ",
+  undef,
+  "\x06Im Fr}hjahr toben die Feldhasen boxend ",
+  "\x06}ber die Felder. In der Zeitlupe wird  ",
+  "\x06deutlich: Die H{sin haut dem Rammler   ",
+  "\x06ordentlich was hinter die L|ffel. Ihr  ",
+  "\x06Boxkampf ist Teil des turbulenten Paa- ",
+  "\x06rungsvorspiels. Wie lange noch?        ",
+  undef,
+  " Meister Lampe geht es nicht gut. Die   ",
+  " Tiere finden auf landwirtschaftlich    ",
+  " genutzter Fl{che kaum noch Wildkr{u-   ",
+  " ter. Die sind jedoch f}r die Hasen le- ",
+  " bensnotwendig. Anders ihre Verwandten, ",
+  " die Kaninchen: Die kommen ganz gut mit ",
+  " der ver{nderten Umwelt zurecht.        ",
+  "\x07                                       ",
+  "\x04\x1D\x06]bersichten 301-308           1/3 >> ",
+];

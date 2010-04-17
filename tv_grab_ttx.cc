@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.21 2010/04/16 18:13:32 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.22 2010/04/17 20:46:31 tom Exp $
  */
 
 #include <stdio.h>
@@ -646,6 +646,7 @@ public:
    void calc_stop_times(const OV_PAGE * next);
    bool is_adjacent(const OV_PAGE * prev) const;
    bool calc_date_off(const OV_PAGE * prev);
+   bool check_start_times();
    void calculate_start_times();
    void extract_ttx_ref(const T_TRAIL_REF_FMT& fmt);
    void extract_tv(list<TV_SLOT*>& tv_slots);
@@ -1553,6 +1554,9 @@ int str_bg_col(const IT& first, const IT& second)
       unsigned char c = *p;
       if (c <= 7) {
          fg = (unsigned int) c;
+      }
+      else if ((c >= 0x10) && (c <= 0x17)) {
+         fg = (unsigned int) c - 0x10;
       }
       else if (c == 0x1D) {
          bg = fg;
@@ -3551,14 +3555,21 @@ int ParseFooterByColor(int page, int sub)
    const TTX_DB_PAGE * pgtext = ttx_db.get_sub_page(page, sub);
    for (int line = 4; line <= 23; line++) {
       // get first non-blank char; skip non-color control chars
-      static const regex expr1("^[ \\x00-\\x1F]*([\\x00-\\x07\\x10-\\x17])\\x1D");
+      static const regex expr1("^[^\\x21-\\x7F]*\\x1D");
+      static const regex expr2("[\\x21-\\x7F]");
+      static const regex expr3("[\\x0D\\x0F][^\\x0C]*[^ ]");
+
       if (regex_search(pgtext->get_ctrl(line), whats, expr1)) {
-         unsigned char c = whats[1].first[0];
-         if (c <= 0x07) {
-            ColCount[c] += 1;
-         }
-         LineCol[line] = c;
-         // else: ignore mosaic
+         int bg = str_bg_col(whats[0]);
+         ColCount[bg] += 1;
+         LineCol[line] = bg;
+      }
+      else if (   !regex_search(pgtext->get_ctrl(line), whats, expr2)
+               && regex_search(pgtext->get_ctrl(line - 1), whats, expr3)) {
+         // ignore this empty line since there's double-height chars above
+         int bg = LineCol[line - 1];
+         ColCount[bg] += 1;
+         LineCol[line] = bg;
       }
       else {
          // background color unchanged
@@ -3592,17 +3603,26 @@ int ParseFooterByColor(int page, int sub)
 
    // TODO: merge with other footer function: require TTX ref in every skipped segment with the same bg color
 
-   // reliable only if 8 consecutive lines without changes, else don't skip any footer lines
+   // ignore last line if completely empty (e.g. ARTE: in-between double-hirhgt footer and FLOF)
    int last_line = 23;
+   static const regex expr4("[\\x21-\\xff]");
+   if (!regex_search(pgtext->get_ctrl(last_line), whats, expr4)) {
+      --last_line;
+   }
+
+   // reliable only if 8 consecutive lines without changes, else don't skip any footer lines
    if (max_count >= 8) {
       // skip footer until normal color is reached
-      for (int line = 23; line >= 0; line--) {
+      for (int line = last_line; line >= 0; line--) {
          if (LineCol[line] == max_idx) {
             last_line = line;
             break;
          }
       }
    }
+   //if (opt_debug) printf("FOOTER max-col:%d count:%d continuous:%d last_line:%d\n",
+   //                      max_idx, ColCount[max_idx], max_count, last_line);
+
    return last_line;
 }
 
@@ -4232,25 +4252,59 @@ bool OV_PAGE::calc_date_off(const OV_PAGE * prev)
    return result;
 }
 
+/* ------------------------------------------------------------------------------
+ * Calculate exact start time for each title: Based on page date and HH::MM
+ * - date may wrap inside of the page
+ */
 void OV_PAGE::calculate_start_times()
 {
-   // finally assign the date to all programmes on this page (with auto-increment at hour wraps)
-   if (m_date.m_year != -1) {
-      int date_off = 0;
-      int prev_hour = -1;
+   assert (m_date.m_year != -1);
 
-      for (uint idx = 0; idx < m_slots.size(); idx++) {
-         OV_SLOT * slot = m_slots[idx];
+   int date_off = 0;
+   int prev_hour = -1;
 
-         // detect date change (hour wrap at midnight)
-         if ((prev_hour != -1) && (prev_hour > slot->m_hour)) {
-            date_off += 1;
-         }
-         prev_hour = slot->m_hour;
+   for (uint idx = 0; idx < m_slots.size(); idx++) {
+      OV_SLOT * slot = m_slots[idx];
 
-         slot->m_start_t = slot->ConvertStartTime(&m_date, date_off);
+      // detect date change (hour wrap at midnight)
+      if ((prev_hour != -1) && (prev_hour > slot->m_hour)) {
+         date_off += 1;
       }
+      prev_hour = slot->m_hour;
+
+      slot->m_start_t = slot->ConvertStartTime(&m_date, date_off);
    }
+}
+
+/* ------------------------------------------------------------------------------
+ * Check plausibility of times on a page
+ * - there are sometimes pages with times in reverse order (e.g. with ratings)
+ *   these cause extreme overlaps as all titles will cover 22 to 23 hours
+ */
+bool OV_PAGE::check_start_times()
+{
+   int date_wraps = 0;
+   int prev_hour = -1;
+   int prev_min = -1;
+
+   for (uint idx = 0; idx < m_slots.size(); idx++) {
+      OV_SLOT * slot = m_slots[idx];
+
+      // detect date change (hour wrap at midnight)
+      if (   (prev_hour != -1)
+          && (   (prev_hour > slot->m_hour)
+              || (   (prev_hour == slot->m_hour)
+                  && (prev_min > slot->m_min) )))  // allow ==
+      {
+         ++date_wraps;
+      }
+      prev_hour = slot->m_hour;
+      prev_min = slot->m_min;
+   }
+   bool result = date_wraps < 2;
+
+   if (opt_debug && !result) printf("DROP PAGE %03X.%d: %d date wraps\n", m_page, m_sub, date_wraps);
+   return result;
 }
 
 /* ------------------------------------------------------------------------------
@@ -4394,13 +4448,15 @@ list<TV_SLOT*> ParseAllOvPages()
             int foot = ParseFooterByColor(page, sub);
 
             if (ov_page->parse_slots(foot, fmt)) {
-               ov_page->parse_ov_date();
+               if (ov_page->check_start_times()) {
+                  ov_page->parse_ov_date();
 
-               if (   (ov_pages.size() == 0)
-                   || !ov_page->check_redundant_subpage(ov_pages.back())) {
+                  if (   (ov_pages.size() == 0)
+                      || !ov_page->check_redundant_subpage(ov_pages.back())) {
 
-                  ov_pages.push_back(ov_page);
-                  ov_page = 0;
+                     ov_pages.push_back(ov_page);
+                     ov_page = 0;
+                  }
                }
             }
             delete ov_page;
@@ -4810,13 +4866,25 @@ bool ParseDescDate(int page, int sub, TV_SLOT * slot, int date_off)
                goto DATE_FOUND;
             }
          }
+         // " ... Sonntag" (HR3) (time sometimes directly below, but not always)
+         static regex expr20[8];
+         if (expr20[lang].empty()) {
+            expr20[lang].assign(string("(^| )(") + wday_match + ") *$", regex::icase);
+         }
+         if (!check_time && regex_search(text, whats, expr20[lang])) {
+            if (CheckDate(-1, -1, -1, string(whats[2]), "", pgtext->get_timestamp(),
+                          &lmday, &lmonth, &lyear)) {
+               new_date = true;
+               goto DATE_FOUND;
+            }
+         }
          // TODO: 21h (i.e. no minute value: TV5)
 
          // TODO: make exact match between VPS date and time from overview page
          // TODO: allow garbage before or after label; check reveal and magenta codes (ETS 300 231 ch. 7.3)
          // VPS label "1D102 120406 F9"
-         static const regex expr12("^ +[0-9A-F]{2}\\d{3} (\\d{2})(\\d{2})(\\d{2}) [0-9A-F]{2} *$");
-         if (regex_search(text, whats, expr12)) {
+         static const regex expr21("^ +[0-9A-F]{2}\\d{3} (\\d{2})(\\d{2})(\\d{2}) [0-9A-F]{2} *$");
+         if (regex_search(text, whats, expr21)) {
             lmday = atoi_substr(whats[1]);
             lmonth = atoi_substr(whats[2]);
             lyear = atoi_substr(whats[3]) + 2000;
@@ -5045,7 +5113,7 @@ void DescRemoveSubPageIdx(vector<string>& Lines, int sub)
    smatch whats;
 
    for (uint row = 0; (row < Lines.size()) && (row < 6); row++) {
-      static const regex expr1(" (\\d+)/(\\d+) ?$");
+      static const regex expr1(" (\\d+)/(\\d+) {0,2}$");
       if (regex_search(Lines[row], whats, expr1)) {
          int sub_idx = atoi_substr(whats[1]);
          int sub_cnt = atoi_substr(whats[2]);
@@ -6131,11 +6199,11 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
             MergeSlotDesc(p_slot, *p_xml, new_start, new_stop, old_start, old_stop);
             OldSlotList.pop_front();
          }
-         if (opt_debug) printf("MERGE CHOOSE NEW\n");
+         if (opt_debug) printf("MERGE CHOOSE NEW %ld..%ld\n", new_start, new_stop);
          return 1; // new
       } else {
          // choose data from old source
-         if (opt_debug) printf("MERGE CHOOSE OLD\n");
+         if (opt_debug) printf("MERGE CHOOSE OLD %ld..%ld\n", old_start, old_stop);
          return 2; // old
       }
    }

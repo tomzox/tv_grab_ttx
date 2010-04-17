@@ -1,0 +1,127 @@
+#!/usr/bin/perl -w
+#
+# Footer on description pages should be removed.
+#
+# $Id: footer7.in,v 1.1 2010/04/17 18:42:53 tom Exp $
+#
+$VbiCaptureTime = 1271441854;
+$PgCnt{0x301} = 2;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301  \x01ARTE \x07Fr 16.04.10\x0220:17:30",
+  "\x01\x1D\x07\x07  \x05\x18VPS\x07 FREITAG, 16. APRIL         ",
+  undef,
+  "\x05\x181D205\x18160410\x07                         ",
+  "\x0706.00\x05\x180600\x07\x07FOLLE JOURNEE 2009: SCH]TZ",
+  "              / BUXTEHUDE (HD)          ",
+  undef,
+  "\x0706.45\x05\x180645\x01\x01KARAMBOLAGE               ",
+  undef,
+  "\x0707.00\x05\x180700\x02\x02YOUROPE                   ",
+  undef,
+  "\x0707.30\x05\x180730\x02\x02K]NSTLER HAUTNAH          ",
+  undef,
+  "\x0708.00\x05\x180800\x01\x01METROPOLIS ...........\x01307",
+  undef,
+  "\x0708.45\x05\x180845\x02\x02X:ENIUS ..............\x02308",
+  undef,
+  "\x0709.10\x05\x180910\x06\x06L.H.O. (OmU)              ",
+  undef,
+  "\x0709.15\x05\x180915\x02\x02DIE GROSSEN               ",
+  "            \x02\x02SPORTDUELLE ..........\x02309",
+  "             \x1809.56                     ",
+  undef,
+  "\x01\x1D\x07PROGRAMM]BERSICHT               >>>  ",
+];
+$PgCnt{0x302} = 2;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302  \x01ARTE \x07Fr 16.04.10\x0220 17 29",
+  "\x01\x1D\x07\x07  \x05\x05VPS\x07 FREITAG, 16. APRIL         ",
+  "\x05\x181D205\x18160410\x07                         ",
+  "\x0710.00\x05\x181000\x02\x02SNEAKERS: DER KULT DER    ",
+  "            \x02\x02TURNSCHUHE ...........\x02310",
+  undef,
+  "\x0710.55\x05\x181055\x02\x02MEIN AVATAR UND ICH ..\x02311",
+  undef,
+  "\x0712.25\x05\x051220\x02\x02GLOBAL ...............\x02312",
+  undef,
+  "\x0712.45\x05\x181245\x01\x01ARTE JOURNAL              ",
+  undef,
+  "\x0713.00\x05\x181300\x02\x02ZU TISCH IN ... (HD)  \x02313",
+  undef,
+  "\x0713.30\x05\x181330\x02\x02ZU TISCH IN ... ......\x02314",
+  undef,
+  "\x0714.00\x05\x181400\x02\x02ZOO-BABIES (5/5) (HD) \x02315",
+  undef,
+  "\x0714.45\x05\x181445\x06\x06DIE TEUFLISCHEN (HD)  \x06316",
+  undef,
+  "\x0716.40\x05\x181640\x06\x06O'MORO (HD) (OmU)         ",
+  "             \x1816.52                     ",
+  undef,
+  "\x01\x1D\x07PROGRAMM]BERSICHT               >>>  ",
+];
+$PgCnt{0x309} = 1;
+$PgSub{0x309} = 0;
+$PgLang{0x309} = 1;
+$Pkg{0x309|(0x0000<<12)} =
+[
+  "        309  \x01ARTE \x07Fr 16.04.10\x0220:17:30",
+  undef,
+  "\x02  FR, 16.04. UM 09.15 UHR\x03\x05\x18VPS\x180915   ",
+  undef,
+  undef,
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\x01arte ",
+  "\x02DIE GROSSEN SPORTDUELLE:        41 MIN.",
+  "\x02FECHTEN: FRANKREICH - ITALIEN          ",
+  " Dokumentation von Frederic Delpla und  ",
+  " Christian Seychal, F 2002, ARTE F      ",
+  undef,
+  " Das Fechten war einst keine Sportart,  ",
+  " sondern eine Kampftechnik zur Austra-  ",
+  " gung von Duellen. Gro~e Duelle gibt es ",
+  " im Fechten auch heute noch. Ein Wett-  ",
+  " kampf zwischen Frankreich und Italien  ",
+  " ist schon l{ngst ein Klassiker, in dem ",
+  " sich immer wieder aufs Neue zwei der   ",
+  " besten Fechtsport-Nationen der Welt du-",
+  " ellieren.                              ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x02\x1D\x04\x0D             Die gro~en Sportduelle ",
+  undef,
+  undef,
+];
+$PgCnt{0x310} = 1;
+$PgSub{0x310} = 0;
+$PgLang{0x310} = 1;
+$Pkg{0x310|(0x0000<<12)} =
+[
+  "        310  \x01ARTE \x07Fr 16.04.10\x0220:17:30",
+  undef,
+  "\x02  FR, 16.04. UM 10.00 UHR\x03\x05\x18VPS\x181000   ",
+  "      (Wh.: 19.04. um 10.25 Uhr)        ",
+  undef,
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\x01arte ",
+  "\x02SNEAKERS: DER KULT DER          52 MIN.",
+  "\x02TURNSCHUHE                             ",
+  " Dokumentation von Thibaut de Longeville",
+  " und Lisa Leone, F / USA 2005, ARTE F   ",
+  undef,
+  " Wie die Jeans in den 70er Jahren ist   ",
+  " der Sneaker sp{testens seit den 90er   ",
+  " Jahren zum Markenzeichen einer ganzen  ",
+  " Generation geworden: In Interviews mit ",
+  " bekannten Sammlern, Hip-Hop-Pionieren, ",
+  " Rappern, Graffitik}nstlern, Journalis- ",
+  " ten und Markenverantwortlichen beleuch-",
+  " tet die Dokumentation das Ph{nomen und ",
+  " die Kultur des Alltag-Turnschuhs.      ",
+  "\x12,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x02\x1D\x04\x0D                         Kulturdoku ",
+  undef,
+  undef,
+];

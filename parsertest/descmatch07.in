@@ -1,8 +1,9 @@
 #!/usr/bin/perl -w
 #
-# Test date match on description page
+# Test date match on description page: Two-line combined date/time:
+# The date is given only as week-day name, but time is directly below.
 #
-# $Id$
+# $Id: descmatch07.in,v 1.1 2010/04/17 19:36:35 tom Exp $
 #
 $VbiCaptureTime = 1150362522;
 $PgCnt{0x302} = 5;

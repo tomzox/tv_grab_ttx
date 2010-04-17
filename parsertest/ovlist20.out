@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="DAS VIERTE">
+	<display-name>DAS VIERTE</display-name>
+</channel>
+
+<programme start="20100417212000 +0000" stop="20100417230000 +0000" channel="DAS VIERTE">
+	<title>Heiße Girls</title>
+</programme>
+
+<programme start="20100417230000 +0000" stop="20100418040000 +0000" channel="DAS VIERTE">
+	<title>Secret Fruits</title>
+</programme>
+
+<programme start="20100418040000 +0000" stop="20100418050000 +0000" channel="DAS VIERTE">
+	<title>Die Zwei</title>
+	<desc>(teletext 342)</desc>
+</programme>
+
+<programme start="20100418050000 +0000" stop="20100418080000 +0000" channel="DAS VIERTE">
+	<title>Living Gospel - Antworten</title>
+	<sub-title>Living Gospel - Antworten aus Gottes Wort</sub-title>
+</programme>
+
+<programme start="20100418080000 +0000" stop="20100418090000 +0000" channel="DAS VIERTE">
+	<title>Teleshopping</title>
+</programme>
+
+<programme start="20100418090000 +0000" stop="20100418110000 +0000" channel="DAS VIERTE">
+	<title>Astro TV</title>
+	<desc>(teletext 150)</desc>
+</programme>
+
+<programme start="20100418110000 +0000" stop="20100418130000 +0000" channel="DAS VIERTE">
+	<title>Teleshopping</title>
+</programme>
+
+<programme start="20100418130000 +0000" stop="20100418153000 +0000" channel="DAS VIERTE">
+	<title>Astro TV</title>
+	<desc>(teletext 150)</desc>
+</programme>
+
+<programme start="20100418153000 +0000" stop="20100418163000 +0000" channel="DAS VIERTE">
+	<title>Teleshopping</title>
+</programme>
+
+<programme start="20100418163000 +0000" stop="20100418181500 +0000" channel="DAS VIERTE">
+	<title>sonnenklar.TV</title>
+	<desc>(teletext 460)</desc>
+</programme>
+
+<programme start="20100418181500 +0000" stop="20100418202000 +0000" channel="DAS VIERTE">
+	<title>Tödlicher Irrtum</title>
+	<!-- TTX 314 -->
+	<desc>Tödlicher Irrtum Western, Deutschland 1970 So 18.04., 20:15 Uhr
+Eine goldene Zukunft verspricht der Boss der Ölgesellschaft den Indianern, als im Reservat ein Erdölvorkommen entdeckt wird. Aber schon bald ist von einer Gewinnbeteiligung nicht mehr die Rede und die Reservatbewohner werden schamlos ausgebeutet. Nur Shave Head, ein Unterhäuptling der Schoschonen und sein Halbbruder Chris Howard wagen Widerstand.</desc>
+</programme>
+
+<programme start="20100418202000 +0000" stop="20100418212000 +0000" channel="DAS VIERTE">
+	<title>Teleshopping</title>
+</programme>
+
+<programme start="20100418212000 +0000" stop="20100418220500 +0000" channel="DAS VIERTE">
+	<title>Ghost Hunters</title>
+	<sub-title>Ghost Hunters International</sub-title>
+</programme>
+
+<programme start="20100418220500 +0000" stop="20100418230000 +0000" channel="DAS VIERTE">
+	<title>Heiße Girls</title>
+</programme>
+
+<programme start="20100418230000 +0000" channel="DAS VIERTE">
+	<title>Secret Fruits</title>
+</programme>
+</tv>
