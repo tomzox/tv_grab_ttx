@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.22 2010/04/17 20:46:31 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.23 2010/04/19 18:00:48 tom Exp $
  */
 
 #include <stdio.h>
@@ -581,30 +581,6 @@ public:
    bool         m_is_tip;
 };
 
-class TV_SLOT
-{
-public:
-   TV_SLOT(int ttx_ref, time_t start_ts, time_t stop_ts,
-           const string& vps_time, const string& vps_date)
-      : m_start_t(start_ts)
-      , m_stop_t(stop_ts)
-      , m_vps_time(vps_time)
-      , m_vps_date(vps_date)
-      , m_ttx_ref(ttx_ref) {
-   }
-public:
-   time_t       m_start_t;
-   time_t       m_stop_t;
-   string       m_vps_time;
-   string       m_vps_date;
-
-   string       m_title;
-   string       m_subtitle;
-   string       m_desc;
-   TV_FEAT      m_feat;
-   int          m_ttx_ref;
-};
-
 class T_PG_DATE
 {
 public:
@@ -634,6 +610,7 @@ public:
 class T_TRAIL_REF_FMT;
 class T_OV_LINE_FMT;
 class OV_SLOT;
+class TV_SLOT;
 
 class OV_PAGE
 {
@@ -649,9 +626,11 @@ public:
    bool check_start_times();
    void calculate_start_times();
    void extract_ttx_ref(const T_TRAIL_REF_FMT& fmt);
-   void extract_tv(list<TV_SLOT*>& tv_slots);
+   void extract_tv();
+   static list<TV_SLOT> get_ov_slots(vector<OV_PAGE*> ov_pages);
    static T_TRAIL_REF_FMT detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages);
 private:
+   friend class TV_SLOT;
    bool parse_end_time(const string& text, const string& ctrl, int& hour, int& min);
 private:
    const int    m_page;
@@ -670,6 +649,7 @@ public:
    ~OV_SLOT();
 private:
    friend class OV_PAGE;
+   friend class TV_SLOT;
    time_t       m_start_t;
    time_t       m_stop_t;
    int          m_hour;
@@ -680,22 +660,53 @@ private:
    string       m_vps_date;
    int          m_ttx_ref;
    bool         m_is_tip;
-   vector<string> m_title;
+   vector<string> m_ov_title;
+
+   string       m_ext_title;
+   string       m_ext_subtitle;
+   string       m_ext_desc;
+   TV_FEAT      m_ext_feat;
 public:
    void add_title(string ctrl);
    void parse_ttx_ref(const T_TRAIL_REF_FMT& fmt);
    void detect_ttx_ref_fmt(vector<T_TRAIL_REF_FMT>& fmt_list);
-   void parse_feature_flags(TV_SLOT * p_slot);
-   void parse_title(TV_SLOT * p_slot);
+   void parse_feature_flags();
+   void parse_ov_title();
+   void parse_desc_page(const T_PG_DATE * pg_date);
+   int parse_desc_title(int page, int sub);
+   bool parse_desc_date(int page, int sub, int date_off);
+   void merge_desc(const string& desc);
    time_t ConvertStartTime(const T_PG_DATE * pgdate, int date_off) const;
    bool is_same_prog(const OV_SLOT& v) const;
+};
+
+class TV_SLOT
+{
+public:
+   TV_SLOT(OV_PAGE* ov_page, int slot_idx)
+      : mp_ov_page(ov_page)
+      , m_slot_idx(slot_idx) {
+   }
+   time_t get_start_t() const { return mp_ov_page->m_slots[m_slot_idx]->m_start_t; }
+   time_t get_stop_t() const { return mp_ov_page->m_slots[m_slot_idx]->m_stop_t; }
+   const string& get_title() const { return mp_ov_page->m_slots[m_slot_idx]->m_ext_title; }
+   const string& get_subtitle() const { return mp_ov_page->m_slots[m_slot_idx]->m_ext_subtitle; }
+   const string& get_desc() const { return mp_ov_page->m_slots[m_slot_idx]->m_ext_desc; }
+   const string& get_vps_time() const { return mp_ov_page->m_slots[m_slot_idx]->m_vps_time; }
+   const string& get_vps_date() const { return mp_ov_page->m_slots[m_slot_idx]->m_vps_date; }
+   const TV_FEAT& get_feat() const { return mp_ov_page->m_slots[m_slot_idx]->m_ext_feat; }
+   int get_ttx_ref() const { return mp_ov_page->m_slots[m_slot_idx]->m_ttx_ref; }
+   void merge_desc(const string& desc) { mp_ov_page->m_slots[m_slot_idx]->merge_desc(desc); }
+private:
+   OV_PAGE *    mp_ov_page;
+   int          m_slot_idx;
 };
 
 class XMLTV
 {
 public:
    void ImportXmltvFile(const char * fname);
-   void ExportXmltv(list<TV_SLOT*>& NewSlots);
+   void ExportXmltv(list<TV_SLOT>& NewSlots);
    void SetChannelName(const char * user_chname, const char * user_chid);
 private:
    map<string,string> m_merge_prog;
@@ -726,10 +737,6 @@ bool opt_verify = false;
 int opt_tv_start = 0x301;
 int opt_tv_end = 0x399;
 int opt_expire = 120;
-
-// forward declarations
-void ParseDescPage(TV_SLOT * slot, const T_PG_DATE * pg_date);
-
 
 /* ------------------------------------------------------------------------------
  * Command line argument parsing
@@ -3864,66 +3871,68 @@ OV_SLOT::~OV_SLOT()
 
 void OV_SLOT::add_title(string subt)
 {
-   m_title.push_back(subt);
+   m_ov_title.push_back(subt);
 }
 
 void OV_SLOT::parse_ttx_ref(const T_TRAIL_REF_FMT& fmt)
 {
-   for (uint idx = 0; idx < m_title.size(); idx++) {
-      if (fmt.parse_trailing_ttx_ref(m_title[idx], m_ttx_ref))
+   for (uint idx = 0; idx < m_ov_title.size(); idx++) {
+      if (fmt.parse_trailing_ttx_ref(m_ov_title[idx], m_ttx_ref))
          break;
    }
 }
 
 void OV_SLOT::detect_ttx_ref_fmt(vector<T_TRAIL_REF_FMT>& fmt_list)
 {
-   for (uint idx = 0; idx < m_title.size(); idx++) {
+   for (uint idx = 0; idx < m_ov_title.size(); idx++) {
       T_TRAIL_REF_FMT fmt;
-      if (fmt.detect_ref_fmt(m_title[idx])) {
+      if (fmt.detect_ref_fmt(m_ov_title[idx])) {
          fmt_list.push_back(fmt);
       }
    }
 }
 
 
-void OV_SLOT::parse_feature_flags(TV_SLOT * p_slot)
+void OV_SLOT::parse_feature_flags()
 {
-   for (uint idx = 0; idx < m_title.size(); idx++) {
+   for (uint idx = 0; idx < m_ov_title.size(); idx++) {
       if (idx != 0)
-         m_title[idx].insert(0, 2, ' '); //FIXME!! HACK
+         m_ov_title[idx].insert(0, 2, ' '); //FIXME!! HACK
 
-      p_slot->m_feat.ParseTrailingFeat(m_title[idx]);
+      m_ext_feat.ParseTrailingFeat(m_ov_title[idx]);
    }
+
+   m_ext_feat.set_tip(m_is_tip);
 }
 
-void OV_SLOT::parse_title(TV_SLOT * p_slot)
+void OV_SLOT::parse_ov_title()
 {
 #if 0 // obsolete?
    // kika special: subtitle appended to title
    static const regex expr7("(.*\\(\\d+( ?[\\&\\-\\+] ?\\d+)*\\))/ *(\\S.*)");
    smatch whats;
    if (regex_search(subt, whats, expr7)) {
-      m_title.push_back(string(whats[1]));
-      m_title.push_back(string(whats[3]));
-      str_chomp(m_title[1]);
+      m_ov_title.push_back(string(whats[1]));
+      m_ov_title.push_back(string(whats[3]));
+      str_chomp(m_ov_title[1]);
    }
    else {
-      m_title.push_back(subt);
-      str_chomp(m_title[0]);
+      m_ov_title.push_back(subt);
+      str_chomp(m_ov_title[0]);
    }
 #endif
 
    // combine title with next line only if finding "-"
    uint first_subt = 1;
-   p_slot->m_title = m_title[0];
-   while (   (m_title.size() > first_subt)
-          && (str_concat_title(p_slot->m_title, m_title[first_subt], true)) ) {
+   m_ext_title = m_ov_title[0];
+   while (   (m_ov_title.size() > first_subt)
+          && (str_concat_title(m_ext_title, m_ov_title[first_subt], true)) ) {
       ++first_subt;
    }
 
    // rest of lines: combine words separated by line end with "-"
-   for (uint idx = first_subt; idx < m_title.size(); idx++) {
-      str_concat_title(p_slot->m_subtitle, m_title[idx], false);
+   for (uint idx = first_subt; idx < m_ov_title.size(); idx++) {
+      str_concat_title(m_ext_subtitle, m_ov_title[idx], false);
    }
 }
 
@@ -3979,7 +3988,7 @@ bool OV_PAGE::parse_slots(int foot_line, const T_OV_LINE_FMT& pgfmt)
          }
          //ov_slot->m_vps_cni = vps_data.m_vps_cni; // currently unused
 
-         //printf("ADD  %02d.%02d.%d %02d:%02d %s\n", ov_slot->m_mday, ov_slot->m_month, ov_slot->m_year, ov_slot->m_hour, ov_slot->m_min, ov_slot->m_title.c_str());
+         //printf("ADD  %02d.%02d.%d %02d:%02d %s\n", ov_slot->m_mday, ov_slot->m_month, ov_slot->m_year, ov_slot->m_hour, ov_slot->m_min, ov_slot->m_ov_title.c_str());
       }
       else if (ov_slot != 0) {
          // stop appending subtitles before page footer ads
@@ -4393,28 +4402,22 @@ void OV_PAGE::extract_ttx_ref(const T_TRAIL_REF_FMT& fmt)
    }
 }
 
-void OV_PAGE::extract_tv(list<TV_SLOT*>& tv_slots)
+void OV_PAGE::extract_tv()
 {
    if (m_slots.size() > 0) {
-      RemoveTrailingPageFooter(m_slots.back()->m_title.back());
+      RemoveTrailingPageFooter(m_slots.back()->m_ov_title.back());
    }
 
    for (uint idx = 0; idx < m_slots.size(); idx++) {
       OV_SLOT * slot = m_slots[idx];
 
-      TV_SLOT * p_tv = new TV_SLOT(slot->m_ttx_ref, slot->m_start_t, slot->m_stop_t,
-                                   slot->m_vps_time, slot->m_vps_date);
+      slot->parse_feature_flags();
 
-      slot->parse_feature_flags(p_tv);
-      p_tv->m_feat.set_tip(slot->m_is_tip);
-
-      slot->parse_title(p_tv);
+      slot->parse_ov_title();
 
       if (slot->m_ttx_ref != -1) {
-         ParseDescPage(p_tv, &m_date);
+         slot->parse_desc_page(&m_date);
       }
-
-      tv_slots.push_back(p_tv);
    }
 }
 
@@ -4427,13 +4430,12 @@ void OV_PAGE::extract_tv(list<TV_SLOT*>& tv_slots)
  *   + c: determine dates
  *   + d: determine stop times
  */
-list<TV_SLOT*> ParseAllOvPages()
+vector<OV_PAGE*> ParseAllOvPages()
 {
-   list<TV_SLOT*> tv_slots;
+   vector<OV_PAGE*> ov_pages;
 
    T_OV_LINE_FMT fmt = DetectOvFormat();
    if (fmt.is_valid()) {
-      vector<OV_PAGE*> ov_pages;
 
       for (TTX_DB::const_iterator p = ttx_db.begin(); p != ttx_db.end(); p++)
       {
@@ -4490,12 +4492,22 @@ list<TV_SLOT*> ParseAllOvPages()
 
       // retrieve descriptions from references teletext pages
       for (uint idx = 0; idx < ov_pages.size(); idx++) {
-         ov_pages[idx]->extract_tv(tv_slots);
-
-         delete ov_pages[idx];
+         ov_pages[idx]->extract_tv();
       }
    }
 
+   return ov_pages;
+}
+
+list<TV_SLOT> OV_PAGE::get_ov_slots(vector<OV_PAGE*> ov_pages)
+{
+   list<TV_SLOT> tv_slots;
+
+   for (uint idx = 0; idx < ov_pages.size(); idx++) {
+      for (uint slot_idx = 0; slot_idx < ov_pages[idx]->m_slots.size(); slot_idx++) {
+         tv_slots.push_back(TV_SLOT(ov_pages[idx], slot_idx));
+      }
+   }
    return tv_slots;
 }
 
@@ -4506,22 +4518,21 @@ list<TV_SLOT*> ParseAllOvPages()
  *   it and we certainly shouldn't discard programmes which are still running
  * - resulting problem: we don't always have the stop time
  */
-void FilterExpiredSlots(list<TV_SLOT*>& Slots)
+void FilterExpiredSlots(list<TV_SLOT>& Slots)
 {
    time_t exp_thresh = time(NULL) - opt_expire * 60;
 
    if (!Slots.empty()) {
-      for (list<TV_SLOT*>::iterator p = Slots.begin(); p != Slots.end(); ) {
-         if (   (   ((*p)->m_stop_t != -1)
-                 && ((*p)->m_stop_t >= exp_thresh))
-             || ((*p)->m_start_t + 120*60 >= exp_thresh) )
+      for (list<TV_SLOT>::iterator p = Slots.begin(); p != Slots.end(); ) {
+         if (   (   ((*p).get_stop_t() != -1)
+                 && ((*p).get_stop_t() >= exp_thresh))
+             || ((*p).get_start_t() + 120*60 >= exp_thresh) )
          {
             ++p;
          }
          else {
-            if (opt_debug) printf("EXPIRED new %ld-%ld < %ld '%s'\n", (long)(*p)->m_start_t,
-                                  (long)(*p)->m_stop_t, (long)exp_thresh, (*p)->m_title.c_str());
-            delete *p;
+            if (opt_debug) printf("EXPIRED new %ld-%ld < %ld '%s'\n", (long)(*p).get_start_t(),
+                                  (long)(*p).get_stop_t(), (long)exp_thresh, (*p).get_title().c_str());
             Slots.erase(p++);
          }
       }
@@ -4547,26 +4558,27 @@ string GetXmlTimestamp(time_t whence)
 
 string GetXmlVpsTimestamp(const TV_SLOT& slot)
 {
-   int lto = DetermineLto(slot.m_start_t);
+   int lto = DetermineLto(slot.get_start_t());
    int m, d, y;
    char date_str[20];
    char tz_str[20];
 
-   if (slot.m_vps_date.length() > 0) {
+   if (slot.get_vps_date().length() > 0) {
       // VPS data was specified -> reformat only
-      if (sscanf(slot.m_vps_date.c_str(), "%2u%2u%2u", &d, &m, &y) != 3)
+      if (sscanf(slot.get_vps_date().c_str(), "%2u%2u%2u", &d, &m, &y) != 3)
          assert(false);  // parser failure
       sprintf(date_str, "%04d%02d%02d", y + 2000, m, d);
    }
    else {
       // no VPS date given -> derive from real start time/date
-      struct tm * ptm = localtime(&slot.m_start_t);
+      time_t start_t = slot.get_start_t();
+      struct tm * ptm = localtime(&start_t);
       sprintf(date_str, "%04d%02d%02d", ptm->tm_year + 1900, ptm->tm_mon + 1, ptm->tm_mday);
    }
    // get time zone (format +HHHMM)
    sprintf(tz_str, "00 %+03d%02d", lto / (60*60), abs(lto / 60) % 60);
 
-   return string(date_str) + slot.m_vps_time + tz_str;
+   return string(date_str) + slot.get_vps_time() + tz_str;
 }
 
 /* ------------------------------------------------------------------------------
@@ -4597,20 +4609,20 @@ void XmlToLatin1(string& title)
  */
 void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
 {
-   assert(slot.m_title.length() > 0);
-   assert(slot.m_start_t != -1);
+   assert(slot.get_title().length() > 0);
+   assert(slot.get_start_t() != -1);
 
    {
-      string start_str = GetXmlTimestamp(slot.m_start_t);
+      string start_str = GetXmlTimestamp(slot.get_start_t());
       string stop_str;
       string vps_str;
-      if (slot.m_stop_t != -1) {
-         stop_str = string(" stop=\"") + GetXmlTimestamp(slot.m_stop_t) + string("\"");
+      if (slot.get_stop_t() != -1) {
+         stop_str = string(" stop=\"") + GetXmlTimestamp(slot.get_stop_t()) + string("\"");
       }
-      if (slot.m_vps_time.length() > 0) {
+      if (slot.get_vps_time().length() > 0) {
          vps_str = string(" pdc-start=\"") + GetXmlVpsTimestamp(slot) + string("\"");
       }
-      string title = slot.m_title;
+      string title = slot.get_title();
       // convert all-upper-case titles to lower-case
       // (unless only one consecutive letter, e.g. movie "K2" or "W.I.T.C.H.")
       // TODO move this into separate post-processing stage; make statistics for all titles first
@@ -4631,64 +4643,65 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
                   start_str.c_str(), stop_str.c_str(), vps_str.c_str(), ch_id.c_str(),
                   title.c_str());
 
-      if (slot.m_subtitle.length() > 0) {
+      if (slot.get_subtitle().length() > 0) {
          // repeat the title because often the subtitle is actually just the 2nd part
          // of an overlong title (there's no way to distinguish this from series subtitles etc.)
          // TODO: some channel distinguish title from subtitle by making title all-caps (e.g. TV5)
-         string subtitle = slot.m_title + string(" ") +  slot.m_subtitle;
+         string subtitle = slot.get_title() + string(" ") +  slot.get_subtitle();
          Latin1ToXml(subtitle);
          fprintf(fp, "\t<sub-title>%s</sub-title>\n", subtitle.c_str());
       }
-      if (slot.m_ttx_ref != -1) {
-         if (slot.m_desc.length() > 0) {
-            fprintf(fp, "\t<!-- TTX %03X -->\n", slot.m_ttx_ref);
-            string desc = slot.m_desc;
+      if (slot.get_ttx_ref() != -1) {
+         if (slot.get_desc().length() > 0) {
+            fprintf(fp, "\t<!-- TTX %03X -->\n", slot.get_ttx_ref());
+            string desc = slot.get_desc();
             Latin1ToXml(desc);
             fprintf(fp, "\t<desc>%s</desc>\n", desc.c_str());
          }
          else {
             // page not captured or no matching date/title found
-            fprintf(fp, "\t<desc>(teletext %03X)</desc>\n", slot.m_ttx_ref);
+            fprintf(fp, "\t<desc>(teletext %03X)</desc>\n", slot.get_ttx_ref());
          }
       }
       // video
-      if (   slot.m_feat.m_is_video_bw
-          || slot.m_feat.m_is_aspect_16_9
-          || slot.m_feat.m_is_video_hd) {
+      const TV_FEAT& feat = slot.get_feat();
+      if (   feat.m_is_video_bw
+          || feat.m_is_aspect_16_9
+          || feat.m_is_video_hd) {
          fprintf(fp, "\t<video>\n");
-         if (slot.m_feat.m_is_video_bw) {
+         if (feat.m_is_video_bw) {
             fprintf(fp, "\t\t<colour>no</colour>\n");
          }
-         if (slot.m_feat.m_is_aspect_16_9) {
+         if (feat.m_is_aspect_16_9) {
             fprintf(fp, "\t\t<aspect>16:9</aspect>\n");
          }
-         if (slot.m_feat.m_is_video_hd) {
+         if (feat.m_is_video_hd) {
             fprintf(fp, "\t\t<quality>HDTV</quality>\n");
          }
          fprintf(fp, "\t</video>\n");
       }
       // audio
-      if (slot.m_feat.m_is_dolby) {
+      if (feat.m_is_dolby) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>surround</stereo>\n\t</audio>\n");
       }
-      else if (slot.m_feat.m_is_stereo) {
+      else if (feat.m_is_stereo) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>stereo</stereo>\n\t</audio>\n");
       }
-      else if (slot.m_feat.m_is_mono) {
+      else if (feat.m_is_mono) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>mono</stereo>\n\t</audio>\n");
       }
-      else if (slot.m_feat.m_is_2chan) {
+      else if (feat.m_is_2chan) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>bilingual</stereo>\n\t</audio>\n");
       }
       // subtitles
-      if (slot.m_feat.m_is_omu) {
+      if (feat.m_is_omu) {
          fprintf(fp, "\t<subtitles type=\"onscreen\"/>\n");
       }
-      else if (slot.m_feat.m_has_subtitles) {
+      else if (feat.m_has_subtitles) {
          fprintf(fp, "\t<subtitles type=\"teletext\"/>\n");
       }
       // tip/highlight (ARD only)
-      if (slot.m_feat.m_is_tip) {
+      if (feat.m_is_tip) {
          fprintf(fp, "\t<star-rating>\n\t\t<value>1/1</value>\n\t</star-rating>\n");
       }
       fprintf(fp, "</programme>\n");
@@ -4753,7 +4766,7 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
  * Tele5: Fr 19:15-20:15
  */
 
-bool ParseDescDate(int page, int sub, TV_SLOT * slot, int date_off)
+bool OV_SLOT::parse_desc_date(int page, int sub, int date_off)
 {
    int lmday = -1;
    int lmonth = -1;
@@ -4946,15 +4959,15 @@ bool ParseDescDate(int page, int sub, TV_SLOT * slot, int date_off)
          tm.tm_year = lyear - 1900;
          tm.tm_isdst = -1;
          time_t start_t = mktime(&tm);
-         if ((start_t != -1) && (abs(start_t - slot->m_start_t) < 5*60)) {
+         if ((start_t != -1) && (abs(start_t - m_start_t) < 5*60)) {
             // match found
 #if 0 //TODO
-            if ((lend_hour != -1) && (slot->m_end_hour != -1)) {
+            if ((lend_hour != -1) && (m_end_hour != -1)) {
                // add end time to the slot data
                // TODO: also add VPS time
                // XXX FIXME: these are never used because stop_t is already calculated!
-               slot->m_end_hour = lend_hour;
-               slot->m_end_min = lend_min;
+               m_end_hour = lend_hour;
+               m_end_min = lend_min;
             }
 #endif
             return true;
@@ -4965,14 +4978,14 @@ bool ParseDescDate(int page, int sub, TV_SLOT * slot, int date_off)
                tm.tm_mday += date_off;
                start_t = mktime(&tm);
             }
-            if ((start_t != -1) && (abs(start_t - slot->m_start_t) < 5*60)) {
+            if ((start_t != -1) && (abs(start_t - m_start_t) < 5*60)) {
                // match found
                return true;
             }
             else {
                if (opt_debug) printf("MISMATCH[date_off:%d]: %s %s\n", date_off,
                                      GetXmlTimestamp(start_t).c_str(),
-                                     GetXmlTimestamp(slot->m_start_t).c_str());
+                                     GetXmlTimestamp(m_start_t).c_str());
                lend_hour = -1;
                if (new_date) {
                   // date on same line as time: invalidate both upon mismatch
@@ -4992,12 +5005,12 @@ bool ParseDescDate(int page, int sub, TV_SLOT * slot, int date_off)
  * The comparison is done case-insensitive as some networks write the
  * titles in all upper-case.
  */
-int ParseDescTitle(int page, int sub, TV_SLOT * slot)
+int OV_SLOT::parse_desc_title(int page, int sub)
 {
    const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
    string prev;
 
-   string title_lc = slot->m_title;
+   string title_lc = m_ext_title;
    str_tolower(title_lc);
 
    for (int idx = 1; idx <= 23/2; idx++) {
@@ -5012,23 +5025,23 @@ int ParseDescTitle(int page, int sub, TV_SLOT * slot)
          // TODO: back up if there's text in the previous line with the same indentation
 
          string tmp = pgctrl->get_ctrl(idx);
-         slot->m_feat.ParseTrailingFeat(tmp);
+         m_ext_feat.ParseTrailingFeat(tmp);
 
          // correct title/sub-title split
-         if (!slot->m_subtitle.empty()) {
+         if (!m_ext_subtitle.empty()) {
             // check if the title line on the desc page contains 1st + 2nd title lines from overview
             // Overview:                     Description page:
             // Licht aus in Erichs           Licht aus in Erichs Lampenladen
             // Lampenladen
-            string subtitle = slot->m_title + string(" ") +  slot->m_subtitle;
+            string subtitle = m_ext_title + string(" ") +  m_ext_subtitle;
             if (   (tmp.length() >= subtitle.length())
                 && str_is_right_word_boundary(tmp, subtitle.length())
                 && (tmp.compare(0, subtitle.length(), subtitle) == 0) ) {
                if (opt_debug) printf("DESC title override \"%s\"\n", subtitle.c_str());
-               slot->m_title = subtitle;
-               slot->m_subtitle.clear();
+               m_ext_title = subtitle;
+               m_ext_subtitle.clear();
             }
-            else if (tmp.length() - off > slot->m_title.length()) {
+            else if (tmp.length() - off > m_ext_title.length()) {
                string next = pgctrl->get_ctrl(idx + 1);
                if (str_get_indent(next) == off) {
                   str_concat_title(tmp, next, false);
@@ -5044,10 +5057,10 @@ int ParseDescTitle(int page, int sub, TV_SLOT * slot)
                       && str_is_right_word_boundary(subtitle, len)
                       && (tmp.compare(0, len, subtitle, 0, len) == 0) ) {
                      if (opt_debug) printf("DESC title override \"%s\"\n", subtitle.c_str());
-                     slot->m_title.assign(subtitle, 0, len);
-                     slot->m_subtitle.assign(subtitle, len, subtitle.length() - len);
-                     str_chomp(slot->m_subtitle);
-                     slot->m_feat.ParseTrailingFeat(next);
+                     m_ext_title.assign(subtitle, 0, len);
+                     m_ext_subtitle.assign(subtitle, len, subtitle.length() - len);
+                     str_chomp(m_ext_subtitle);
+                     m_ext_feat.ParseTrailingFeat(next);
                   }
                }
             }
@@ -5063,10 +5076,10 @@ int ParseDescTitle(int page, int sub, TV_SLOT * slot)
          if (   (title_lc.length() <= prev.length())
              && (prev.compare(0, title_lc.length(), title_lc) == 0) ) {
             string tmp = string(pgctrl->get_ctrl(idx - 1));
-            slot->m_feat.ParseTrailingFeat(tmp);
+            m_ext_feat.ParseTrailingFeat(tmp);
 
             tmp = pgctrl->get_ctrl(idx);
-            slot->m_feat.ParseTrailingFeat(tmp);
+            m_ext_feat.ParseTrailingFeat(tmp);
 
             //TODO: check if title/sub-title split can be corrected (see above)
 
@@ -5341,16 +5354,16 @@ string ParseDescContent(int page, int sub, int head, int foot)
 /* TODO: check for all referenced text pages where no match was found if they
  *       describe a yet unknown programme (e.g. next instance of a weekly series)
  */
-void ParseDescPage(TV_SLOT * slot, const T_PG_DATE * pg_date)
+void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date)
 {
    bool found = false;
    int first_sub = -1;
-   int page = slot->m_ttx_ref;
+   int page = m_ttx_ref;
 
    if (opt_debug) {
       char buf[100];
-      strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M", localtime(&slot->m_start_t));
-      printf("DESC parse page %03X: search match for %s \"%s\"\n", page, buf, slot->m_title.c_str());
+      strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M", localtime(&m_start_t));
+      printf("DESC parse page %03X: search match for %s \"%s\"\n", page, buf, m_ov_title[0].c_str());
    }
 
    for (TTX_DB::const_iterator p = ttx_db.first_sub_page(page);
@@ -5364,8 +5377,8 @@ void ParseDescPage(TV_SLOT * slot, const T_PG_DATE * pg_date)
 
       // TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
 
-      if (ParseDescDate(page, sub, slot, pg_date->m_date_off)) {
-         int head = ParseDescTitle(page, sub, slot);
+      if (parse_desc_date(page, sub, pg_date->m_date_off)) {
+         int head = parse_desc_title(page, sub);
          if (first_sub >= 0)
             head = CorrelateDescTitles(page, sub, first_sub, head);
          else
@@ -5377,11 +5390,9 @@ void ParseDescPage(TV_SLOT * slot, const T_PG_DATE * pg_date)
          if (opt_debug) printf("DESC page %03X.%04X match found: lines %d-%d\n", page, sub, head, foot);
 
          if (foot > head) {
-            if (!slot->m_desc.empty())
-               slot->m_desc += "\n";
-            slot->m_desc += ParseDescContent(page, sub, head, foot);
-
-            slot->m_ttx_ref = page;
+            if (!m_ext_desc.empty())
+               m_ext_desc += "\n";
+            m_ext_desc += ParseDescContent(page, sub, head, foot);
          }
          found = true;
       }
@@ -5392,6 +5403,11 @@ void ParseDescPage(TV_SLOT * slot, const T_PG_DATE * pg_date)
       }
    }
    if (!found && opt_debug) printf("DESC page %03X not found\n", page);
+}
+
+void OV_SLOT::merge_desc(const string& desc)
+{
+   m_ext_desc = desc;
 }
 
 /* ------------------------------------------------------------------------------
@@ -5945,11 +5961,11 @@ time_t GetXmltvStopTime(const string& xml, time_t old_ts)
    }
 }
 
-class TV_SLOT_cmp_start
+class TV_SLOT_cmp_start_t
 {
 public:
-  int operator() (const TV_SLOT * a, const TV_SLOT * b) const {
-     return a->m_start_t < b->m_start_t;
+  bool operator() (const TV_SLOT a, const TV_SLOT b) const {
+     return a.get_start_t() < b.get_start_t();
   }
 };
 
@@ -6091,7 +6107,7 @@ void XMLTV::ImportXmltvFile(const char * fname)
  * Merge description and other meta-data from old source, if missing in new source
  * - called before programmes in the old source are discarded
  */
-void MergeSlotDesc(TV_SLOT * p_slot, const string& old_xml,
+void MergeSlotDesc(TV_SLOT& slot, const string& old_xml,
                    time_t new_start, time_t new_stop,
                    time_t old_start, time_t old_stop)
 {
@@ -6100,13 +6116,13 @@ void MergeSlotDesc(TV_SLOT * p_slot, const string& old_xml,
       string old_title = GetXmltvTitle(old_xml);
 
       // FIXME allow for parity errors (& use redundancy to correct them)
-      if (p_slot->m_title == old_title)
+      if (slot.get_title() == old_title)
       {
          static const regex expr1("^\\(teletext [1-8][0-9][0-9]\\)$");
          smatch whats;
 
-         if (   (p_slot->m_desc.length() == 0)
-             || regex_search(p_slot->m_desc, whats, expr1) )
+         if (   (slot.get_desc().length() == 0)
+             || regex_search(slot.get_desc(), whats, expr1) )
          {
             string old_desc;
             static const regex expr2("<desc>(.*)</desc>");
@@ -6121,7 +6137,7 @@ void MergeSlotDesc(TV_SLOT * p_slot, const string& old_xml,
                 && !regex_search(old_desc, whats, expr1))
             {
                // copy description
-               p_slot->m_desc = old_desc;
+               slot.merge_desc(old_desc);
             }
          }
       }
@@ -6131,11 +6147,10 @@ void MergeSlotDesc(TV_SLOT * p_slot, const string& old_xml,
 /* ------------------------------------------------------------------------------
  * Merge old and new programmes
  */
-int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
+int MergeNextSlot( list<TV_SLOT>& NewSlotList,
                    list<time_t>& OldSlotList,
                    const map<time_t,string>& OldProgHash )
 {
-   TV_SLOT * p_slot = 0;
    const string * p_xml = 0;
    time_t new_start = -1;
    time_t new_stop = -1;
@@ -6144,21 +6159,20 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
 
    // get the first (oldest) programme start/stop times from both sources
    if (!NewSlotList.empty()) {
-      p_slot = NewSlotList.front();
-      new_start = p_slot->m_start_t;
-      new_stop = p_slot->m_stop_t;
+      TV_SLOT& slot = NewSlotList.front();
+      new_start = slot.get_start_t();
+      new_stop = slot.get_stop_t();
       if (new_stop == -1)  // FIXME
          new_stop = new_start + 1;
 
       // remove overlapping (or repeated) programmes in the new data
-      list<TV_SLOT*>::iterator it_next_slot = NewSlotList.begin();
+      list<TV_SLOT>::iterator it_next_slot = NewSlotList.begin();
       ++it_next_slot;
       while (   (it_next_slot != NewSlotList.end())
-             && ((*it_next_slot)->m_start_t < new_stop)) {
+             && ((*it_next_slot).get_start_t() < new_stop)) {
          if (opt_debug) printf("MERGE DISCARD NEW %ld '%.30s' ovl %ld..%ld\n",
-                               (*it_next_slot)->m_start_t, (*it_next_slot)->m_title.c_str(),
+                               (*it_next_slot).get_start_t(), (*it_next_slot).get_title().c_str(),
                                (long)new_start, (long)new_stop);
-         delete *it_next_slot;
          NewSlotList.erase(it_next_slot++);
       }
    }
@@ -6169,13 +6183,14 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
    }
 
    if ((new_start != -1) && (old_start != -1)) {
-      if (opt_debug) printf("MERGE CMP %s -- %.30s\n", p_slot->m_title.c_str(), GetXmltvTitle(*p_xml).c_str());
+      TV_SLOT& slot = NewSlotList.front();
+      if (opt_debug) printf("MERGE CMP %s -- %.30s\n", slot.get_title().c_str(), GetXmltvTitle(*p_xml).c_str());
       // discard old programmes which overlap the next new one
       // TODO: merge description from old to new if time and title are identical and new has no description
       while ((old_start < new_stop) && (old_stop > new_start)) {
          if (opt_debug) printf("MERGE DISCARD OLD %ld...%ld  ovl %ld..%ld\n",
                                (long)old_start, (long)old_stop, (long)new_start, (long)new_stop);
-         MergeSlotDesc(p_slot, *p_xml, new_start, new_stop, old_start, old_stop);
+         MergeSlotDesc(slot, *p_xml, new_start, new_stop, old_start, old_stop);
          OldSlotList.pop_front();
 
          if (!OldSlotList.empty()) {
@@ -6183,7 +6198,7 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
             old_start = OldSlotList.front();
             old_stop = GetXmltvStopTime(*p_xml, old_start);
             if (opt_debug) printf("MERGE CMP %s -- %.30s\n",
-                                  p_slot->m_title.c_str(), GetXmltvTitle(*p_xml).c_str());
+                                  slot.get_title().c_str(), GetXmltvTitle(*p_xml).c_str());
          } else {
             old_start = -1;
             old_stop = -1;
@@ -6196,7 +6211,7 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
          while (!OldSlotList.empty() && (OldSlotList.front() < new_stop)) {
             if (opt_debug) printf("MERGE DISCARD2 OLD %ld ovl STOP %ld\n",
                                   (long)OldSlotList.front(), (long)new_stop);
-            MergeSlotDesc(p_slot, *p_xml, new_start, new_stop, old_start, old_stop);
+            MergeSlotDesc(slot, *p_xml, new_start, new_stop, old_start, old_stop);
             OldSlotList.pop_front();
          }
          if (opt_debug) printf("MERGE CHOOSE NEW %ld..%ld\n", new_start, new_stop);
@@ -6223,7 +6238,7 @@ int MergeNextSlot( list<TV_SLOT*>& NewSlotList,
  * Write grabbed data to XMLTV
  * - merge with old data, if available
  */
-void XMLTV::ExportXmltv(list<TV_SLOT*>& NewSlots)
+void XMLTV::ExportXmltv(list<TV_SLOT>& NewSlots)
 {
    FILE * fp;
 
@@ -6284,7 +6299,7 @@ void XMLTV::ExportXmltv(list<TV_SLOT*>& NewSlots)
          }
       }
       // sort new programmes by start time
-      NewSlots.sort(TV_SLOT_cmp_start());
+      NewSlots.sort(TV_SLOT_cmp_start_t());
 
       // map holding old programmes is already sorted, as start time is used as key
       list<time_t> OldSlotList;
@@ -6296,8 +6311,7 @@ void XMLTV::ExportXmltv(list<TV_SLOT*>& NewSlots)
          switch (MergeNextSlot(NewSlots, OldSlotList, OldProgHash)) {
             case 1:
                assert(!NewSlots.empty());
-               ExportTitle(fp, *NewSlots.front(), m_ch_id);
-               delete NewSlots.front();
+               ExportTitle(fp, NewSlots.front(), m_ch_id);
                NewSlots.pop_front();
                break;
             case 2:
@@ -6312,12 +6326,11 @@ void XMLTV::ExportXmltv(list<TV_SLOT*>& NewSlots)
    }
    else {
       // no merge required -> simply print all new
-      //for (list<TV_SLOT*>::iterator p = NewSlots.begin(); p != NewSlots.end(); p++)
+      //for (list<TV_SLOT>::iterator p = NewSlots.begin(); p != NewSlots.end(); p++)
       //   ExportTitle(fp, *(*p), m_ch_id);
       while (!NewSlots.empty()) {
-         ExportTitle(fp, *NewSlots.front(), m_ch_id);
+         ExportTitle(fp, NewSlots.front(), m_ch_id);
 
-         delete NewSlots.front();
          NewSlots.pop_front();
       }
    }
@@ -6336,6 +6349,8 @@ void XMLTV::ExportXmltv(list<TV_SLOT*>& NewSlots)
  */
 int main( int argc, char *argv[])
 {
+   int result = 0;
+
    // enable locale so that case conversions work outside of ASCII too
    setlocale(LC_CTYPE, "");
 
@@ -6363,7 +6378,10 @@ int main( int argc, char *argv[])
    else {
       // parse and export programme data
       // grab new XML data from teletext
-      list<TV_SLOT*> NewSlots = ParseAllOvPages();
+      vector<OV_PAGE*> ov_pages = ParseAllOvPages();
+
+      // retrieve descriptions from references teletext pages
+      list<TV_SLOT> NewSlots = OV_PAGE::get_ov_slots(ov_pages);
 
       // remove programmes beyond the expiration threshold
       if (!opt_verify) {
@@ -6385,8 +6403,13 @@ int main( int argc, char *argv[])
       }
       else {
          // return error code to signal abormal termination
-         exit(100);
+         result = 100;
+      }
+
+      for (uint idx = 0; idx < ov_pages.size(); idx++) {
+         delete ov_pages[idx];
       }
    }
+   return result;
 }
 
