@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="rtl2.de">
+	<display-name>RTL II</display-name>
+</channel>
+
+<programme start="20100418180000 +0000" stop="20100418181500 +0000" channel="rtl2.de">
+	<title>RTL II News</title>
+	<desc>(teletext 110)</desc>
+</programme>
+
+<programme start="20100418181500 +0000" stop="20100418211500 +0000" channel="rtl2.de">
+	<title>Der große deutsche 80er-Test</title>
+	<sub-title>Der große deutsche 80er-Test by RTL II</sub-title>
+	<desc>(teletext 371)</desc>
+</programme>
+
+<programme start="20100418211500 +0000" stop="20100418222000 +0000" channel="rtl2.de">
+	<title>crime 360</title>
+	<desc>(teletext 338)</desc>
+</programme>
+
+<programme start="20100418222000 +0000" stop="20100418231000 +0000" channel="rtl2.de">
+	<title>Das Nachrichtenjournal</title>
+</programme>
+
+<programme start="20100418231000 +0000" stop="20100419001000 +0000" channel="rtl2.de">
+	<title>Ungeklärte Morde</title>
+	<sub-title>Ungeklärte Morde Dem Täter auf der Spur</sub-title>
+	<!-- TTX 339 -->
+	<desc>UNGEKLÄRTE MORDE
+DEM TÄTER AUF DER SPUR In dieser Sendung werden drei ungeklärte Mordfälle rekonstruiert. Die ermittelnden Beamten, Gerichtmediziner, Staatsanwälte und Juristen kommen zu Wort, Angehörige und Zeugen erinnern sich.
+Für anonyme Hinweise der Zuschauer ist eine Telefon-Nr. freigeschaltet: 01378 - 100 100 (0,49 Euro/ Anruf - Dt. Telekom). Die Telefonnummern der zuständigen Polizeidienststellen werden eingeblendet. Weitere Informationen unter www.ungeklaerte-morde.de</desc>
+</programme>
+
+<programme start="20100419001000 +0000" stop="20100419021000 +0000" channel="rtl2.de">
+	<title>Düsenjäger</title>
+	<desc>(teletext 347)</desc>
+</programme>
+
+<programme start="20100419021000 +0000" channel="rtl2.de">
+	<title>MythBusters</title>
+	<sub-title>MythBusters Die Wissensjäger</sub-title>
+</programme>
+
+<programme start="20100419211500 +0000" stop="20100419221500 +0000" channel="rtl2.de">
+	<title>Fun Club: Comedystars live</title>
+	<desc>(teletext 390)</desc>
+</programme>
+
+<programme start="20100419221500 +0000" stop="20100419222500 +0000" channel="rtl2.de">
+	<title>RTL II-Late News</title>
+	<desc>(teletext 110)</desc>
+</programme>
+
+<programme start="20100419222500 +0000" stop="20100419231500 +0000" channel="rtl2.de">
+	<title>Grip - Das Motormagazin</title>
+</programme>
+
+<programme start="20100419231500 +0000" stop="20100420000500 +0000" channel="rtl2.de">
+	<title>Ärger im Revier</title>
+</programme>
+
+<programme start="20100420000500 +0000" stop="20100420005500 +0000" channel="rtl2.de">
+	<title>Dog - Der Kopfgeldjäger</title>
+	<!-- TTX 317 -->
+	<desc>DOG - DER KOPFGELDJÄGER
+Monalisa auf der Flucht Was Dog und sein Team immer wieder bei ihrer Arbeit feststellen ist: Frauen sind viel schwerer zu schnappen als Männer.
+Monalisa Hartsock passt in dieses Muster: Denn sie ist wie vom Erdboden verschluckt. Monalisa hat gegen ihre Bewährungsunterlagen verstoßen und erschien nicht zu ihrem Gerichtstermin und das bei einem außerordentlich strengen Richter. Damit die Kaution nicht verfällt, hat Dog nur noch wenige Tage Zeit ...</desc>
+</programme>
+
+<programme start="20100420005500 +0000" stop="20100420022500 +0000" channel="rtl2.de">
+	<title>Mit 17 bist Du tot</title>
+	<!-- TTX 348 -->
+	<desc>Mit 17 bist Du tot Mystery-Thriller, CDN 2008
+Alyssa Harris will nicht glauben, dass ihr 17-jähriger Sohn Selbstmord begangen hat.
+Gemeinsam mit ihrer Tochter Danielle stellt sie eigene Ermittlungen an und kommt einem schrecklichen Geheimnis auf die Spur ...</desc>
+</programme>
+
+<programme start="20100420022500 +0000" channel="rtl2.de">
+	<title>MythBusters</title>
+</programme>
+</tv>

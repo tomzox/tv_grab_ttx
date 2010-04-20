@@ -1,0 +1,129 @@
+#!/usr/bin/perl -w
+#
+# Feature-string "UT 150" near the end of an overview line must not be
+# mistaken for a teletext reference ("Brisant 9.45).
+#
+# $Id: feat-ov3.in,v 1.1 2010/04/20 17:22:34 tom Exp $
+#
+$VbiCaptureTime = 1271536489;
+$PkgCni{0xDE1} = 90;
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x02SWR Text\x03Sam.17.Apr\x0722:34:34",
+  "\x01\x1D                                      ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04SAMSTAG, 17. APRIL  \x05\x181D133\x18170410\x182C",
+  "\x0718.12\x05\x181812\x07\x07Baden-W}rttemberg         ",
+  "\x07           \x07\x07Wetter                    ",
+  "\x0618.15\x05\x181815\x06\x06LS unterwegs: Einblicke   ",
+  "\x07           \x06\x06in die Jugendgewalt....307",
+  "\x0718.45\x05\x181845\x07\x07Landesschau Mobil......310",
+  "\x0619.15\x05\x181915\x06\x06Vis-a-Vis..............314",
+  "\x0719.45\x05\x181945\x07\x07Baden-W}rttemberg aktuell ",
+  "\x06           \x07\x07mit Sport..............311",
+  "\x0619.58\x05\x181958\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x06                                       ",
+  "\x0720.00\x05\x182000\x07\x07Tagesschau\x03UT 150         ",
+  "\x0620.15\x05\x182015\x06\x06SamstagAbend              ",
+  "\x06           \x06\x06Nachtschw{rmer.........315",
+  "\x0721.45\x05\x182145\x07\x07Baden-W}rttemberg         ",
+  "\x07           \x07\x07aktuell                   ",
+  "\x0621.50\x05\x182150\x06\x06Loriot                    ",
+  "\x06           \x06\x06Von Mensch und Musik...316",
+  "\x06     \x05\x05VPS \x06\x06(bis\x0622.15\x06Uhr)           ",
+  "\x07\x1D\x04                       weiter auf\x01304",
+];
+$PgCnt{0x341} = 1;
+$PgSub{0x341} = 4;
+$PgLang{0x341} = 1;
+$Pkg{0x341|(0x0001<<12)} =
+[
+  "        341\x02SWR Text\x03Sam.17.Apr\x0722:33:34",
+  "\x01\x1D                                  \x071/4",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04MONTAG, 19. APRIL   \x05\x181D133\x18190410\x1830",
+  "\x0706.00\x05\x180600\x07\x07Die faula Paula           ",
+  "\x0606.05\x05\x180605\x06\x06Schloss Einstein          ",
+  "\x0706.30\x05\x180630\x07\x07Schloss Einstein          ",
+  "\x0606.55\x05\x180655\x06\x06Minitz                    ",
+  "\x0707.00\x05\x180700\x07\x07nano (Wh)                 ",
+  "\x0607.30\x05\x180730\x06\x06St{dte und Landschaften\x03``",
+  "\x0707.45\x05\x050730\x07\x07St{dte und Landschaften\x03``",
+  "\x0608.00\x05\x180800\x06\x06Wie wird man              ",
+  "\x06           \x06\x06Milliard{r? (Wh)          ",
+  "\x0708.30\x05\x180830\x07\x07LS unterwegs (Wh)         ",
+  "\x0609.00\x05\x180900\x06\x06ARD-Buffet (ARD-Wh)       ",
+  "\x07           \x06\x06Leben & genie~en          ",
+  "\x0709.45\x05\x180945\x07\x07Brisant (ARD-Wh)\x03UT 150   ",
+  "\x0610.15\x05\x181015\x06\x06In aller Freundschaft     ",
+  "\x06           \x06\x06Vollmond\x03UT 150           ",
+  "\x0711.00\x05\x181100\x07\x07Sturm der Liebe (ARD-Wh)  ",
+  "\x0611.50\x05\x181150\x06\x06Elefant, Tiger & Co.      ",
+  "\x06     \x05\x05VPS \x06\x06(bis\x0612.40\x06Uhr)           ",
+  "\x07\x1D\x04                                   >>",
+];
+$PgCnt{0x341} = 1;
+$PgSub{0x341} = 4;
+$PgLang{0x341} = 1;
+$Pkg{0x341|(0x0002<<12)} =
+[
+  "        341\x02SWR Text\x03Sam.17.Apr\x0722:33:54",
+  "\x01\x1D                                  \x072/4",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04MONTAG, 19. APRIL   \x05\x181D133\x18190410\x18AD",
+  "\x07                                       ",
+  "\x0712.40\x05\x181240\x07\x07Rote Rosen                ",
+  "\x07           \x07\x07Fernsehserie (ARD-Wh)     ",
+  "\x0613.30\x05\x181330\x06\x06Sohn ohne Heimat          ",
+  "\x06           \x06\x06Spielfilm D 1955 (Wh)     ",
+  "\x0715.00\x05\x181500\x07\x07Planet Wissen: Milch -    ",
+  "\x06           \x07\x07So gesund wie ihr Ruf?    ",
+  "\x0616.00\x05\x181600\x06\x06Baden-W}rttemberg         ",
+  "\x07           \x06\x06aktuell                   ",
+  "\x0716.05\x05\x181605\x07\x07Kaffee oder Tee?          ",
+  "\x07                                       ",
+  "\x0617.00\x05\x181700\x06\x06Baden-W}rttemberg         ",
+  "\x07           \x06\x06aktuell                   ",
+  "\x0717.05\x05\x051605\x07\x07Kaffee oder Tee?          ",
+  "\x07                                       ",
+  "\x0618.00\x05\x181800\x06\x06Baden-W}rttemberg aktuell ",
+  "\x07                                       ",
+  "\x07     \x05\x05VPS \x06\x06(bis\x0618.09\x06Uhr)           ",
+  "\x07\x1D\x04                                   >>",
+];
+$PgCnt{0x341} = 1;
+$PgSub{0x341} = 4;
+$PgLang{0x341} = 1;
+$Pkg{0x341|(0x0003<<12)} =
+[
+  "        341\x02SWR Text\x03Sam.17.Apr\x0722:34:14",
+  "\x01\x1D                                  \x073/4",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04MONTAG, 19. APRIL   \x05\x181D133\x18190410\x184A",
+  "\x0718.09\x05\x181809\x07\x07Wirtschaftsinformationen  ",
+  "\x07           \x07\x07von der Stuttgarter B|rse ",
+  "\x0618.12\x05\x181812\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x0718.15\x05\x181815\x07\x07Nahaufnahme               ",
+  "\x06           \x07\x07SOS Wasenwache            ",
+  "\x0618.45\x05\x181845\x06\x06Landesschau BW            ",
+  "\x0719.45\x05\x181945\x07\x07Baden-W}rttemberg         ",
+  "\x06           \x07\x07aktuell                   ",
+  "\x0619.58\x05\x181958\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x0720.00\x05\x182000\x07\x07Tagesschau\x03(UT 150)       ",
+  "\x0620.15\x05\x182015\x06\x06Pfarrer Braun: Im Namen   ",
+  "\x06           \x06\x06von Rose: Spielf.D '09\x03UT ",
+  "\x0721.45\x05\x182145\x07\x07Baden-W}rttemberg         ",
+  "\x07           \x07\x07aktuell                   ",
+  "\x0621.58\x05\x182158\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x0722.00\x05\x182200\x07\x07Sag die Wahrheit          ",
+  "\x07           \x07\x07Ratespiel                 ",
+  "\x07     \x05\x05VPS \x07\x07(bis\x0722.30\x07Uhr)           ",
+  "\x07\x1D\x04                                   >>",
+];

@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: tv_grab_ttx.cc,v 1.23 2010/04/19 18:00:48 tom Exp $
+ * $Id: tv_grab_ttx.cc,v 1.24 2010/04/20 18:55:06 tom Exp $
  */
 
 #include <stdio.h>
@@ -656,6 +656,7 @@ private:
    int          m_min;
    int          m_end_hour;
    int          m_end_min;
+   int          m_date_wrap;
    string       m_vps_time;
    string       m_vps_date;
    int          m_ttx_ref;
@@ -1355,15 +1356,66 @@ void str_blank(const MATCH& match)
    }
 }
 
+bool isupper_latin1(char chr)
+{
+   uint8_t c = chr;
+   return (   ((c <= 'Z') && (c >= 'A'))
+           || ((c >= 0xC0) && (c <= 0xDE) && (c != 0xD7)) );
+}
 
+bool islower_latin1(char chr)
+{
+   uint8_t c = chr;
+   return (   ((c <= 'z') && (c >= 'a'))
+           || ((c >= 0xE0) && (c <= 0xFE) && (c != 0xF7)) );
+}
+
+char tolower_latin1(char chr)
+{
+   uint8_t c = chr;
+
+   if ((c <= 'Z') && (c >= 'A'))
+      return c + 32;
+   else if ((c >= 0xC0) && (c <= 0xDE) && (c != 0xD7))
+      return c + 32;
+   else
+      return c;
+}
 
 /* Turn the entire given string into lower-case.
  */
-void str_tolower(string& str)
+void str_tolower_latin1(string& str)
 {
    for (string::iterator p = str.begin(); p < str.end(); p++) {
-      *p = tolower(*p);
+      *p = tolower_latin1(*p);
    }
+}
+
+/* Check if all letters in the string are upper-case
+ * AND if at least two letters are in the string (i.e. exclude "K2" and "D.A.R.P")
+ */
+bool str_all_upper(string& str)
+{
+   bool two = false;
+
+   for (string::iterator p = str.begin(); p != str.end(); ++p) {
+      // check for at least two consecutive upper-case letters
+      if (isupper_latin1(*p)) {
+         ++p;
+         if (p == str.end()) {
+            return two;
+         }
+         if (isupper_latin1(*p)) {
+            two = true;
+            continue;
+         }
+      }
+      // abort upon any lower-case letters
+      if (islower_latin1(*p)) {
+         return false;
+      }
+   }
+   return two;
 }
 
 /* Replace all TTX control characters with whitespace. Note this is used after
@@ -3862,6 +3914,7 @@ OV_SLOT::OV_SLOT(int hour, int min, bool is_tip)
    m_stop_t = -1;
    m_end_hour = -1;
    m_end_min = -1;
+   m_date_wrap = 0;
    m_ttx_ref = -1;
 }
 
@@ -4282,6 +4335,7 @@ void OV_PAGE::calculate_start_times()
       prev_hour = slot->m_hour;
 
       slot->m_start_t = slot->ConvertStartTime(&m_date, date_off);
+      slot->m_date_wrap = date_off;
    }
 }
 
@@ -4626,13 +4680,8 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
       // convert all-upper-case titles to lower-case
       // (unless only one consecutive letter, e.g. movie "K2" or "W.I.T.C.H.")
       // TODO move this into separate post-processing stage; make statistics for all titles first
-      static const regex expr1("[[:lower:]]");
-      static const regex expr2("[[:upper:]]{2}");
-      smatch whats;
-
-      if (   !regex_search(title, whats, expr1)
-          && regex_search(title, whats, expr2)) {
-         str_tolower(title);
+      if (str_all_upper(title)) {
+         str_tolower_latin1(title);
       }
       Latin1ToXml(title);
 
@@ -5011,11 +5060,11 @@ int OV_SLOT::parse_desc_title(int page, int sub)
    string prev;
 
    string title_lc = m_ext_title;
-   str_tolower(title_lc);
+   str_tolower_latin1(title_lc);
 
    for (int idx = 1; idx <= 23/2; idx++) {
       string text_lc = pgctrl->get_ctrl(idx);
-      str_tolower(text_lc);
+      str_tolower_latin1(text_lc);
 
       uint off = str_get_indent(text_lc);
 
@@ -5024,6 +5073,7 @@ int OV_SLOT::parse_desc_title(int page, int sub)
           && (text_lc.compare(off, title_lc.length(), title_lc) == 0) ) {
          // TODO: back up if there's text in the previous line with the same indentation
 
+         // TODO remove the feature flags from the description text
          string tmp = pgctrl->get_ctrl(idx);
          m_ext_feat.ParseTrailingFeat(tmp);
 
@@ -5071,7 +5121,7 @@ int OV_SLOT::parse_desc_title(int page, int sub)
       else if (!prev.empty()) {
          TV_FEAT::RemoveTrailingFeat(prev);
          str_concat_title(prev, pgctrl->get_ctrl(idx), false);
-         str_tolower(prev);
+         str_tolower_latin1(prev);
          //if (str_find_word(prev, title_lc) != string::npos)  // sub-string
          if (   (title_lc.length() <= prev.length())
              && (prev.compare(0, title_lc.length(), title_lc) == 0) ) {
@@ -5377,7 +5427,7 @@ void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date)
 
       // TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
 
-      if (parse_desc_date(page, sub, pg_date->m_date_off)) {
+      if (parse_desc_date(page, sub, pg_date->m_date_off + m_date_wrap)) {
          int head = parse_desc_title(page, sub);
          if (first_sub >= 0)
             head = CorrelateDescTitles(page, sub, first_sub, head);

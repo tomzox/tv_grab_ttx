@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# Yet another example where the overview page date is corret, but titles
+# wrap into the next date. Description pages of titles on the next day
+# still carry the previous date (page 343)
+#
+# $Id: descmatch15.in,v 1.1 2010/04/20 17:22:03 tom Exp $
+#
+$VbiCaptureTime = 1271703432;
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x01VOX-TEXT\x07Mo 19.Apr  20:56:57",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Spitzen        \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07Kartenleger.468\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x11\x7F\x07TV-PROGRAMM         Mo. 19.04.\x01\x1D\x071/1 ",
+  "\x07\x1D\x04                                     ",
+  "\x07\x1D\x0019:00 Das perfekte Dinner            ",
+  "\x07\x1D\x00      Koch-Doku..................336 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0019:50 Prominent!.................337 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0020:15 CSI: NY....................338 ",
+  "\x07\x1D\x0021:15 Criminal Intent............339 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0022:15 Burn Notice................340 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0000:05 vox nachrichten............341 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0000:25 Criminal Intent............342 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0001:25 Burn Notice................343 ",
+  "\x07\x1D\x00                                     ",
+  "\x01\x1D\x03\x0D Express-Magie & Zukunft  >>>  473  ",
+  "\x01\x1D\x07<302                           304>  ",
+];
+$PgCnt{0x340} = 3;
+$PgSub{0x340} = 0;
+$PgLang{0x340} = 1;
+$Pkg{0x340|(0x0000<<12)} =
+[
+  "        340\x01VOX-TEXT\x07Mo 19.Apr  20:56:58",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07G}nstige Traum-\x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07reisen >>> 440 \x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x11\x7F\x07BURN NOTICE                   \x01\x1D\x071/1 ",
+  "\x07\x1D\x00                        Mo 22:15 Uhr ",
+  "\x07\x1D\x011 + 2/I Kaltgestellt\x07                ",
+  "\x07\x1D\x00Dem Undercover-Agenten Michael Wes-\x07 ",
+  "\x07\x1D\x00ten geschieht das Schlimmste, was in\x07",
+  "\x07\x1D\x00seinem Beruf passieren kann: Er wird\x07",
+  "\x07\x1D\x00mit einer so genannten \"Burn Notice\"\x07",
+  "\x07\x1D\x00belegt - und kalt gestellt. Die CIA\x07 ",
+  "\x07\x1D\x00friert seine Kontakte und Konten\x07    ",
+  "\x07\x1D\x00ein, so dass Michael mittellos und\x07  ",
+  "\x07\x1D\x00ohne Dach }ber dem Kopf auf sich al-\x07",
+  "\x07\x1D\x00lein gestellt ist.\x07                  ",
+  "\x07\x1D\x00Doch statt klein beizugeben, macht\x07  ",
+  "\x07\x1D\x00Michael sich daran, die Gr}nde und\x07  ",
+  "\x07\x1D\x00die Verantwortlichen f}r den Raus-\x07  ",
+  "\x07\x1D\x00schmiss zu finden. (Wh. um 01:20)\x07   ",
+  "\x07\x1D\x01------------------------------------ ",
+  "\x07\x1D\x00News rund um die Stars von Vox...130 ",
+  "\x07\x1D\x1C\x03Tageshoroskope mit Beratung....460\x07\x1D",
+  "\x01\x1D\x07<339                           341>  ",
+];
+$PgCnt{0x343} = 3;
+$PgSub{0x343} = 0;
+$PgLang{0x343} = 1;
+$Pkg{0x343|(0x0000<<12)} =
+[
+  "        343\x01VOX-TEXT\x07Mo 19.Apr  20:56:58",
+  "\x07\x1D\x10(|4 |<\x11x|t\x10lt`|< \x01\x1D\x07Lebensberatung \x07\x1D",
+  "\x07\x1D \x10+\x7F~?!\x11\x7F\x7F\x7F\x10b\x7F\x7Fw  \x01\x1D\x07HIER LIVE > 460\x07\x1D",
+  "\x07\x1D  \x10+/!\x10\x11+/'\x10.'\"/- \x11////////////////// ",
+  "\x11\x7F\x07BURN NOTICE                   \x01\x1D\x071/1 ",
+  "\x07\x1D\x00                        Mo 01:25 Uhr ",
+  "\x07\x1D\x011 + 2/I Kaltgestellt\x07                ",
+  "\x07\x1D\x00Dem Undercover-Agenten Michael Wes-\x07 ",
+  "\x07\x1D\x00ten geschieht das Schlimmste, was in\x07",
+  "\x07\x1D\x00seinem Beruf passieren kann: Er wird\x07",
+  "\x07\x1D\x00mit einer so genannten \"Burn Notice\"\x07",
+  "\x07\x1D\x00belegt - und kalt gestellt. Die CIA\x07 ",
+  "\x07\x1D\x00friert seine Kontakte und Konten\x07    ",
+  "\x07\x1D\x00ein, so dass Michael mittellos und\x07  ",
+  "\x07\x1D\x00ohne Dach }ber dem Kopf auf sich al-\x07",
+  "\x07\x1D\x00lein gestellt ist.\x07                  ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Doch statt klein beizugeben, macht\x07  ",
+  "\x07\x1D\x00Michael sich daran, die Gr}nde und\x07  ",
+  "\x07\x1D\x00die Verantwortlichen f}r den Raus-\x07  ",
+  "\x07\x1D\x00schmiss zu finden. (Wh. von 22:15)\x07  ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x1CNette Flirts mit tollen Singles.665\x07\x1D",
+  "\x01\x1D\x07<342                           344>  ",
+];

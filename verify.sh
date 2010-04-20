@@ -24,9 +24,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
+#  Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: verify.sh,v 1.5 2010/03/21 20:51:13 tom Exp $
+# $Id: verify.sh,v 1.6 2010/04/20 18:56:33 tom Exp $
 #
 
 DIR=parsertest
@@ -44,8 +44,10 @@ for v in $DIR/*.in ; do
          fi
          cmp -s $DIR/$name.out out.verify
          if [ $? == 0 ] ; then
+            rm -f $name.diff
             echo "OK:   $v"
          else
+            diff -u $DIR/$name.out out.verify > $name.diff
             echo "FAIL: $v"
          fi
       else

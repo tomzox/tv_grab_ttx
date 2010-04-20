@@ -1,0 +1,227 @@
+#!/usr/bin/perl -w
+#
+# Description date for title after midnight carries date of the previous
+# date.  Overview page 304 also has a wrong date. The overview date on
+# page 308 however is correct, as it starts shortly before midnight.
+#
+# $Id: descmatch14.in,v 1.1 2010/04/20 18:21:40 tom Exp $
+#
+$VbiCaptureTime = 1271618179;
+$PkgCni{0xD8F} = 90;
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x03RTL II   \x07So 18 Apr\x0321:15:34",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Experten deuten",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Zukunft! > 600 ",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:00\x00RTL II News................110 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0120:15\x00Der gro~e deutsche 80er-Test   ",
+  "\x07\x1D\x01     \x00by RTL II..................371 ",
+  "\x07\x1D\x04     \x04                               ",
+  " \x1D\x04\x1D\x07  Passen wir zusammen?  >698     \x1D ",
+  "\x07\x1D\x04     \x04                               ",
+  "\x07\x1D\x0123:15\x00CRIME 360..................338 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0100:20\x00Das Nachrichtenjournal         ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D                                      ",
+  "\x03\x1D\x00   814 < Single- Flirt-Party > 898   ",
+  "\x01\x1D\x07\x0D   INTIME TELEFONGESPR[CHE...801    ",
+  "                                        ",
+];
+$PgCnt{0x304} = 3;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "        304\x03RTL II   \x07So 18 Apr\x0321:16:12",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Heisse Frauen! ",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00735,739,807-813",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0101:10\x00Ungekl{rte Morde               ",
+  "\x07\x1D\x01     \x00Dem T{ter auf der Spur.....339 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0102:10\x00D}senj{ger.................347 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x04     \x00                               ",
+  " \x1D \x01\x1D\x07]ber 5.000 Singles warten! >666 \x1D ",
+  "\x07\x1D\x04     \x00                               ",
+  "\x07\x1D\x0104:10\x00MythBusters                    ",
+  "\x07\x1D\x01     \x00Die Wissensj{ger               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D5     \x00                               ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x1C\x07Esoterische Lebensberatung >>> 600\x1D ",
+  "\x01\x1D\x03\x0DNette Singles kennenlernen.....666 \x07",
+  "\x01\x1D\x07                                     ",
+];
+$PgCnt{0x308} = 3;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "        308\x03RTL II   \x07So 18 Apr\x0321:16:12",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Jetzt g}nstig \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00verreisen! 380\x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00MORGEN                 \x00",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x0123:15\x00Fun Club: Comedystars live.390 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0100:15\x00RTL II-Late News...........110 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0100:25\x00Grip - Das Motormagazin        ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x04     \x04                               ",
+  " \x1D \x01\x1D\x07]ber 5.000 Singles warten! >666 \x1D ",
+  "\x07\x1D\x04     \x04                               ",
+  "\x07\x1D\x0101:15\x00[rger im Revier                ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0102:05\x00Dog - Der Kopfgeldj{ger....317 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0102:55\x00Mit 17 bist Du tot.........348 ",
+  "\x07\x1D\x0104:25\x00MythBusters                    ",
+  "\x07\x1D ger                                  ",
+  "\x07\x1D\x1CIndividuelle Astroberatung......600\x07\x1D",
+  "\x01\x1D\x03\x0DNette Singles kennenlernen.....666 \x07",
+  "\x01\x1D\x07                                     ",
+];
+$PgCnt{0x317} = 3;
+$PgSub{0x317} = 0;
+$PgLang{0x317} = 1;
+$Pkg{0x317|(0x0000<<12)} =
+[
+  "        317\x03RTL II   \x07So 18 Apr\x0321:16:13",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHATS, DATES &\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00FLIRTS!....666\x18",
+  "\x01\x1D\x07DOG - DER KOPFGELDJ[GER         \x001/1\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Monalisa auf der Flucht              ",
+  "\x07\x1D\x00Was Dog und sein Team immer wieder   ",
+  "\x07\x1D\x00bei ihrer Arbeit feststellen ist:    ",
+  "\x07\x1D\x00Frauen sind viel schwerer zu schnap- ",
+  "\x07\x1D\x00pen als M{nner.                      ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Monalisa Hartsock passt in dieses    ",
+  "\x07\x1D\x00Muster: Denn sie ist wie vom Erdbo-  ",
+  "\x07\x1D\x00den verschluckt. Monalisa hat gegen  ",
+  "\x07\x1D\x00ihre Bew{hrungsunterlagen versto~en  ",
+  "\x07\x1D\x00und erschien nicht zu ihrem Gerichts-",
+  "\x07\x1D\x00termin und das bei einem au~eror-\x11   ",
+  "\x07\x1D\x00dentlich strengen Richter. Damit die\x11",
+  "\x07\x1D\x00Kaution nicht verf{llt, hat Dog nur  ",
+  "\x07\x1D\x00noch wenige Tage Zeit ...\x01           ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Montag, 19.04.10; 02:05 Uhr \x01\x1D\x07\x07    ",
+  "\x01\x1D\x03\x0DFlirt-Line macht Spa~!   >>>   666  ",
+  "                                        ",
+];
+$PgCnt{0x339} = 3;
+$PgSub{0x339} = 0;
+$PgLang{0x339} = 1;
+$Pkg{0x339|(0x0000<<12)} =
+[
+  "        339\x03RTL II   \x07So 18 Apr\x0321:16:14",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHATS, DATES &\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00FLIRTS!....666\x18",
+  "\x01\x1D\x07UNGEKL[RTE MORDE                \x001/1\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01DEM T[TER AUF DER SPUR               ",
+  "\x07\x1D\x00In dieser Sendung werden drei unge-  ",
+  "\x07\x1D\x00kl{rte Mordf{lle rekonstruiert. Die  ",
+  "\x07\x1D\x00ermittelnden Beamten, Gerichtmedizi- ",
+  "\x07\x1D\x00ner, Staatsanw{lte und Juristen kom- ",
+  "\x07\x1D\x00men zu Wort, Angeh|rige und Zeugen   ",
+  "\x07\x1D\x00erinnern sich.                       ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00F}r anonyme Hinweise der Zuschauer   ",
+  "\x07\x1D\x00ist eine Telefon-Nr. freigeschaltet: ",
+  "\x07\x1D\x0101378 - 100 100\x00(0,49 Euro/ Anruf -  ",
+  "\x07\x1D\x00Dt. Telekom). Die Telefonnummern der ",
+  "\x07\x1D\x00zust{ndigen Polizeidienststellen wer-",
+  "\x07\x1D\x00den eingeblendet. Weitere Informatio-",
+  "\x07\x1D\x00nen unter\x01www.ungeklaerte-morde.de\x00  ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Sonntag, 18.04.10; 01:10 Uhr \x01\x1D\x07\x07   ",
+  "\x01\x1D\x07\x0D310 >>> RTL II DOKU-SOAPS <<< 310   ",
+  "                                        ",
+];
+$PgCnt{0x348} = 2;
+$PgSub{0x348} = 2;
+$PgLang{0x348} = 1;
+$PgTime{0x348} = 1271618179;
+$Pkg{0x348|(0x0001<<12)} =
+[
+  "        348\x03RTL II   \x07So 18 Apr\x0321:16:14",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x04Sexy Telefon-  ",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x04gespr{che >730 ",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x001/2\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Mit 17 bist Du tot                   ",
+  "\x07\x1D\x00Mystery-Thriller, CDN 2008\x01          ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Alyssa Harris will nicht glauben,    ",
+  "\x07\x1D\x00dass ihr 17-j{hriger Sohn Selbstmord ",
+  "\x07\x1D\x00begangen hat.                        ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Gemeinsam mit ihrer Tochter Danielle ",
+  "\x07\x1D\x00stellt sie eigene Ermittlungen an    ",
+  "\x07\x1D\x00und kommt einem schrecklichen        ",
+  "\x07\x1D\x00Geheimnis auf die Spur ...           ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Montag, 19.04.10; 02:55 Uhr \x01\x1D\x07\x07    ",
+  "\x01\x1D\x07\x0DTOP-Handygames - OHNE Abo!  >  683  ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x348} = 2;
+$PgSub{0x348} = 2;
+$PgLang{0x348} = 1;
+$Pkg{0x348|(0x0001<<12)} =
+[
+  "        348\x03RTL II   \x07So 18 Apr\x0321:16:14",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x04Sexy Telefon-  ",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x04gespr{che >730 ",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x001/2\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Mit 17 bist Du tot                   ",
+  "\x07\x1D\x00Mystery-Thriller, CDN 2008\x01          ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Alyssa Harris will nicht glauben,    ",
+  "\x07\x1D\x00dass ihr 17-j{hriger Sohn Selbstmord ",
+  "\x07\x1D\x00begangen hat.                        ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Gemeinsam mit ihrer Tochter Danielle ",
+  "\x07\x1D\x00stellt sie eigene Ermittlungen an    ",
+  "\x07\x1D\x00und kommt einem schrecklichen        ",
+  "\x07\x1D\x00Geheimnis auf die Spur ...           ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Montag, 19.04.10; 02:55 Uhr \x01\x1D\x07\x07    ",
+  "\x01\x1D\x07\x0DTOP-Handygames - OHNE Abo!  >  683  ",
+  "                                        ",
+];

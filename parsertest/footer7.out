@@ -6,7 +6,7 @@
 </channel>
 
 <programme start="20100416040000 +0000" stop="20100416044500 +0000" pdc-start="20100416060000 +0200" channel="ARTE">
-	<title>folle journee 2009: schÜtz</title>
+	<title>folle journee 2009: schütz</title>
 	<sub-title>FOLLE JOURNEE 2009: SCHÜTZ / BUXTEHUDE</sub-title>
 	<video>
 		<quality>HDTV</quality>
@@ -22,7 +22,7 @@
 </programme>
 
 <programme start="20100416053000 +0000" stop="20100416060000 +0000" pdc-start="20100416073000 +0200" channel="ARTE">
-	<title>kÜnstler hautnah</title>
+	<title>künstler hautnah</title>
 </programme>
 
 <programme start="20100416060000 +0000" stop="20100416064500 +0000" pdc-start="20100416080000 +0200" channel="ARTE">
