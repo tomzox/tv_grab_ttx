@@ -26,11 +26,14 @@
 #
 #  Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: verify.sh,v 1.6 2010/04/20 18:56:33 tom Exp $
+# $Id: verify.sh,v 1.7 2010/04/25 14:23:01 tom Exp $
 #
 
 DIR=parsertest
 EXE=./tv_grab_ttx
+
+pass_cnt=0
+fail_cnt=0
 
 for v in $DIR/*.in ; do
    name=`echo $v | sed -e 's#\.in$##g'|sed -e "s#$DIR/##"`
@@ -46,9 +49,11 @@ for v in $DIR/*.in ; do
          if [ $? == 0 ] ; then
             rm -f $name.diff
             echo "OK:   $v"
+            pass_cnt=`expr $pass_cnt + 1`
          else
             diff -u $DIR/$name.out out.verify > $name.diff
             echo "FAIL: $v"
+            fail_cnt=`expr $pass_cnt + 1`
          fi
       else
          echo "INCONC: $v (exit status $?)"
@@ -58,3 +63,6 @@ for v in $DIR/*.in ; do
       echo "SKIP: $v"
    fi
 done
+
+echo "TOTAL PASS: $pass_cnt"
+echo "TOTAL FAIL: $fail_cnt"

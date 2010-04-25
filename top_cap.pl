@@ -17,7 +17,7 @@
 #
 #  Copyright 2006,2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: top_cap.pl,v 1.3 2010/04/14 19:22:56 tom Exp $
+#  $Id: top_cap.pl,v 1.4 2010/04/25 14:23:14 tom Exp $
 #
 
 use Video::ZVBI qw(/^VBI_/);
@@ -78,7 +78,7 @@ sub feed {
 
       $is_btt = ($page == 0x1F0);
       $is_mpt = ($page == 0x1F1);
-      $is_aip = ($page == 0x1F2);
+      $is_aip = ($page == 0x1F2) || ($page == 0x1F3);
 
    } elsif ($is_btt) {
       if (($y >= 1) && ($y <= 20)) {
