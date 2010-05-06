@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_main.cc,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_main.cc,v 1.2 2010/05/06 17:57:53 tom Exp $
  */
 
 #include <stdio.h>
@@ -390,7 +390,7 @@ int main( int argc, char *argv[] )
          result = 100;
       }
 
-      for (uint idx = 0; idx < ov_pages.size(); idx++) {
+      for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
          delete ov_pages[idx];
       }
    }

@@ -16,11 +16,12 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_db.cc,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_db.cc,v 1.4 2010/05/06 17:57:53 tom Exp $
  */
 
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 
 #include <string>
 #include <algorithm>
@@ -50,7 +51,7 @@ inline int vbi_unham8(unsigned int c)
 }
 #endif // USE_LIBZVBI
 
-TTX_DB_PAGE::TTX_DB_PAGE(uint page, uint sub, uint ctrl, time_t ts)
+TTX_DB_PAGE::TTX_DB_PAGE(unsigned page, unsigned sub, unsigned ctrl, time_t ts)
 {
    m_page = page;
    m_sub = sub;
@@ -64,7 +65,7 @@ TTX_DB_PAGE::TTX_DB_PAGE(uint page, uint sub, uint ctrl, time_t ts)
    m_lang = ((ctl2 >> 7) & 1) | ((ctl2 >> 5) & 2) | ((ctl2 >> 3) & 4);
 }
 
-void TTX_DB_PAGE::add_raw_pkg(uint idx, const uint8_t * p_data)
+void TTX_DB_PAGE::add_raw_pkg(unsigned idx, const uint8_t * p_data)
 {
    assert(idx < TTX_RAW_PKG_CNT);
 
@@ -94,7 +95,7 @@ void TTX_DB_PAGE::page_to_latin1() const // modifies mutable
 {
    assert(!m_text_valid); // checked by caller for efficiency
 
-   for (uint idx = 0; idx < TTX_TEXT_LINE_CNT; idx++) {
+   for (unsigned idx = 0; idx < TTX_TEXT_LINE_CNT; idx++) {
 
       if (m_raw_pkg_valid & (1 << idx)) {
          m_ctrl[idx].assign(VT_PKG_RAW_LEN, ' ');
@@ -200,7 +201,7 @@ const bool DelSpcAttr[] =
 };
 
 // TODO: evaluate packet 26 and 28
-void TTX_DB_PAGE::line_to_latin1(uint line, string& out) const
+void TTX_DB_PAGE::line_to_latin1(unsigned line, string& out) const
 {
    bool is_g1 = false;
 
@@ -238,14 +239,14 @@ void TTX_DB_PAGE::line_to_latin1(uint line, string& out) const
 
 /* ------------------------------------------------------------------------- */
 
-bool TTX_DB_BTT::is_top_page(uint page) const
+bool TTX_DB_BTT::is_top_page(unsigned page) const
 {
    return    (page == 0x1F0)
           || (m_have_btt && (m_link[0] == page))
           || (m_have_btt && (m_link[1] == page));
 }
 
-void TTX_DB_BTT::add_btt_pkg(uint page, uint pkg, const uint8_t * p_data)
+void TTX_DB_BTT::add_btt_pkg(unsigned page, unsigned pkg, const uint8_t * p_data)
 {
    if (page == 0x1F0)
    {
@@ -309,7 +310,7 @@ void TTX_DB_BTT::add_btt_pkg(uint page, uint pkg, const uint8_t * p_data)
    }
 }
 
-int TTX_DB_BTT::get_last_sub(uint page) const
+int TTX_DB_BTT::get_last_sub(unsigned page) const
 {
    if (m_have_mpt) {
       // array is indexed by decimal page number (compression)
@@ -340,6 +341,13 @@ void TTX_DB_BTT::dump_btt_as_text(FILE * fp)
    }
 }
 
+void TTX_DB_BTT::flush()
+{
+   m_have_btt = false;
+   m_have_mpt = false;
+   m_have_ait = false;
+}
+
 /* ------------------------------------------------------------------------- */
 
 TTX_DB::~TTX_DB()
@@ -349,24 +357,24 @@ TTX_DB::~TTX_DB()
    }
 }
 
-bool TTX_DB::sub_page_exists(uint page, uint sub) const
+bool TTX_DB::sub_page_exists(unsigned page, unsigned sub) const
 {
    return m_db.find(TTX_PG_HANDLE(page, sub)) != m_db.end();
 }
 
-const TTX_DB_PAGE* TTX_DB::get_sub_page(uint page, uint sub) const
+const TTX_DB_PAGE* TTX_DB::get_sub_page(unsigned page, unsigned sub) const
 {
    const_iterator p = m_db.find(TTX_PG_HANDLE(page, sub));
    return (p != m_db.end()) ? p->second : 0;
 }
 
-TTX_DB::const_iterator TTX_DB::first_sub_page(uint page) const
+TTX_DB::const_iterator TTX_DB::first_sub_page(unsigned page) const
 {
    const_iterator p = m_db.lower_bound(TTX_PG_HANDLE(page, 0));
    return (p->first.page() == page) ? p : end();
 }
 
-TTX_DB::const_iterator& TTX_DB::next_sub_page(uint page, const_iterator& p) const
+TTX_DB::const_iterator& TTX_DB::next_sub_page(unsigned page, const_iterator& p) const
 {
    ++p;
    if (p->first.page() > page)
@@ -374,7 +382,7 @@ TTX_DB::const_iterator& TTX_DB::next_sub_page(uint page, const_iterator& p) cons
    return p;
 }
 
-int TTX_DB::last_sub_page_no(uint page) const
+int TTX_DB::last_sub_page_no(unsigned page) const
 {
    int last_sub = m_btt.get_last_sub(page);
    if (last_sub == -1) {
@@ -390,14 +398,14 @@ int TTX_DB::last_sub_page_no(uint page) const
 }
 
 // Decides if the page is acceptable for addition to the database.
-bool TTX_DB::page_acceptable(uint page) const
+bool TTX_DB::page_acceptable(unsigned page) const
 {
    // decimal page (human readable) or TOP table
-   return (   (((page & 0x0F) <= 9) && (((page >> 4) & 0x0f) <= 9))
+   return (   (((page & 0x0F) <= 9) && (((page >> 4) & 0x0F) <= 9))
            || m_btt.is_top_page(page));
 }
 
-TTX_DB_PAGE* TTX_DB::add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data, time_t ts)
+TTX_DB_PAGE* TTX_DB::add_page(unsigned page, unsigned sub, unsigned ctrl, const uint8_t * p_data, time_t ts)
 {
    TTX_PG_HANDLE handle(page, sub);
 
@@ -413,7 +421,7 @@ TTX_DB_PAGE* TTX_DB::add_page(uint page, uint sub, uint ctrl, const uint8_t * p_
    return p->second;
 }
 
-void TTX_DB::add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data)
+void TTX_DB::add_page_data(unsigned page, unsigned sub, unsigned idx, const uint8_t * p_data)
 {
    if (m_btt.is_top_page(page)) {
       // forward the data to the BTT
@@ -430,6 +438,12 @@ void TTX_DB::add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data
          //if (opt_debug) printf("ERROR: page:%d sub:%d not found for adding pkg:%d\n", page, sub, idx);
       }
    }
+}
+
+void TTX_DB::flush()
+{
+   m_db.clear();
+   m_btt.flush();
 }
 
 /* Erase the page with the given number from memory: used to handle the "erase"
@@ -450,7 +464,7 @@ double TTX_DB::get_acq_rep_stats()
 {
    int page_cnt = 0;
    int page_rep = 0;
-   uint prev_page = 0xFFFu;
+   unsigned prev_page = 0xFFFu;
 
    for (const_iterator p = m_db.begin(); p != m_db.end(); p++) {
       if (p->first.page() != prev_page)
@@ -461,6 +475,287 @@ double TTX_DB::get_acq_rep_stats()
    }
    return (page_cnt > 0) ? ((double)page_rep / page_cnt) : 0.0;
 }
+
+/* ------------------------------------------------------------------------------
+ * Dump all loaded teletext pages as plain text
+ * - teletext control characters and mosaic is replaced by space
+ * - used for -dump option, intended for debugging only
+ */
+void DumpTextPages(const char * p_name)
+{
+   if (p_name != 0) {
+      FILE * fp = fopen(p_name, "w");
+      if (fp == NULL) {
+         fprintf(stderr, "Failed to create %s: %s\n", p_name, strerror(errno));
+         exit(1);
+      }
+
+      ttx_db.dump_db_as_text(fp);
+      fclose(fp);
+   }
+   else {
+      ttx_db.dump_db_as_text(stdout);
+   }
+}
+
+void TTX_DB::dump_db_as_text(FILE * fp)
+{
+   for (iterator p = m_db.begin(); p != m_db.end(); p++) {
+      p->second->dump_page_as_text(fp);
+   }
+
+   ttx_db.m_btt.dump_btt_as_text(fp);
+}
+
+void TTX_DB_PAGE::dump_page_as_text(FILE * fp)
+{
+   fprintf(fp, "PAGE %03X.%04X\n", m_page, m_sub);
+
+   for (unsigned idx = 1; idx < TTX_TEXT_LINE_CNT; idx++) {
+      fprintf(fp, "%.40s\n", get_text(idx).c_str());
+   }
+   fprintf(fp, "\n");
+}
+
+/* ------------------------------------------------------------------------------
+ * Dump all loaded teletext data as Perl script
+ * - the generated script can be loaded with the -verify option
+ */
+void DumpRawTeletext(const char * p_name, int pg_start, int pg_end)
+{
+   FILE * fp = stdout;
+
+   if (p_name != 0) {
+      fp = fopen(p_name, "w");
+      if (fp == NULL) {
+         fprintf(stderr, "Failed to create %s: %s\n", p_name, strerror(errno));
+         exit(1);
+      }
+   }
+
+   fprintf(fp, "#!/usr/bin/perl -w\n");
+
+   // return TRUE to allow to "require" the file
+   ttx_db.dump_db_as_raw(fp, pg_start, pg_end);
+
+   ttx_chn_id.dump_as_raw(fp);
+
+   // return TRUE to allow to "require" the file in Perl
+   fprintf(fp, "1;\n");
+
+   if (fp != stdout) {
+      fclose(fp);
+   }
+}
+
+void TTX_CHN_ID::dump_as_raw(FILE * fp)
+{
+   for (const_iterator p = m_cnis.begin(); p != m_cnis.end(); p++) {
+      fprintf(fp, "$PkgCni{0x%X} = %d;\n", p->first, p->second);
+   }
+}
+
+void TTX_DB::dump_db_as_raw(FILE * fp, int pg_start, int pg_end)
+{
+   // acq start time (for backwards compatibility with Perl version only)
+   const_iterator first = m_db.begin();
+   time_t acq_ts = (first != m_db.end()) ? first->second->get_timestamp() : 0;
+   fprintf(fp, "$VbiCaptureTime = %ld;\n", (long)acq_ts);
+
+   for (iterator p = m_db.begin(); p != m_db.end(); p++) {
+      int page = p->first.page();
+      if ((page >= pg_start) && (page <= pg_end)) {
+         int last_sub = ttx_db.last_sub_page_no(page);
+
+         p->second->dump_page_as_raw(fp, last_sub);
+      }
+   }
+}
+
+void TTX_DB_PAGE::dump_page_as_raw(FILE * fp, int last_sub)
+{
+   fprintf(fp, "$PgCnt{0x%03X} = %d;\n", m_page, m_acq_rep_cnt);
+   fprintf(fp, "$PgSub{0x%03X} = %d;\n", m_page, last_sub);
+   fprintf(fp, "$PgLang{0x%03X} = %d;\n", m_page, m_lang);
+   fprintf(fp, "$PgTime{0x%03X} = %ld;\n", m_page, (long)m_timestamp);
+
+   fprintf(fp, "$Pkg{0x%03X|(0x%04X<<12)} =\n[\n", m_page, m_sub);
+
+   for (unsigned idx = 0; idx < TTX_RAW_PKG_CNT; idx++) {
+      if (m_raw_pkg_valid & (1 << idx)) {
+         fprintf(fp, "  \"");
+         for (unsigned cidx = 0; cidx < VT_PKG_RAW_LEN; cidx++) {
+            // quote binary characters
+            unsigned char c = m_raw_pkg[idx][cidx];
+            if ((c < 0x20) || (c == 0x7F)) {
+               fprintf(fp, "\\x%02X", c);
+            }
+            // backwards compatibility: quote C and Perl special characters
+            else if (   (c == '@')
+                     || (c == '$')
+                     || (c == '%')
+                     || (c == '"')
+                     || (c == '\\') ) {
+               fputc('\\', fp);
+               fputc(c, fp);
+            }
+            else {
+               fputc(c, fp);
+            }
+         }
+         fprintf(fp, "\",\n");
+      }
+      else {
+         fprintf(fp, "  undef,\n");
+      }
+   }
+   fprintf(fp, "];\n");
+}
+
+/* ------------------------------------------------------------------------------
+ * Import a data file generated by DumpRawTeletext
+ */
+void ImportRawDump(const char * p_name)
+{
+   FILE * fp;
+
+   if ((p_name == 0) || (*p_name == 0)) {
+      fp = stdin;
+   } else {
+      fp = fopen(p_name, "r");
+      if (fp == NULL) {
+         fprintf(stderr, "Failed to open %s: %s\n", p_name, strerror(errno));
+         exit(1);
+      }
+   }
+
+   cmatch what;
+   static const regex expr1("#!/usr/bin/perl -w\\s*");
+   static const regex expr2("\\$VbiCaptureTime\\s*=\\s*(\\d+);\\s*");
+   static const regex expr3("\\$PkgCni\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
+   static const regex expr4("\\$PgCnt\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
+   static const regex expr5("\\$PgSub\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
+   static const regex expr6("\\$PgLang\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
+   static const regex expr6b("\\$PgTime\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
+   static const regex expr7("\\$Pkg\\{0x([0-9A-Za-z]+)\\|\\(0x([0-9A-Za-z]+)<<12\\)\\}\\s*=\\s*");
+   static const regex expr8("\\[\\s*");
+   static const regex expr9("\\s*undef,\\s*");
+   static const regex expr10("\\s*\"(.*)\",\\s*");
+   static const regex expr11("\\];\\s*");
+   static const regex expr12("1;\\s*");
+   static const regex expr13("(#.*\\s*|\\s*)");
+
+   int file_line_no = 0;
+   int page = -1;
+   unsigned sub = 0;
+   unsigned pkg_idx = 0;
+   unsigned lang = 0;
+   unsigned pg_cnt = 0;
+   TTX_DB_PAGE::TTX_RAW_PKG pg_data[TTX_DB_PAGE::TTX_RAW_PKG_CNT];
+   uint32_t pg_data_valid = 0;
+   time_t timestamp = 0;
+
+   char buf[256];
+   while (fgets(buf, sizeof(buf), fp) != 0) {
+      file_line_no ++;
+      if (regex_match(buf, what, expr1)) {
+      }
+      else if (regex_match(buf, what, expr2)) {
+         timestamp = atol(string(what[1]).c_str());
+      }
+      else if (regex_match(buf, what, expr3)) {
+         int cni = atox_substr(what[1]);
+         int cnt = atoi_substr(what[2]);
+         for (int idx = 0; idx < cnt; idx++) {
+            ttx_chn_id.add_cni(cni);
+         }
+      }
+      else if (regex_match(buf, what, expr4)) {
+         int lpage = atox_substr(what[1]);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         pg_cnt = atoi_substr(what[2]);
+      }
+      else if (regex_match(buf, what, expr5)) {
+         int lpage = atox_substr(what[1]);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         sub = atoi_substr(what[2]);
+      }
+      else if (regex_match(buf, what, expr6)) {
+         int lpage = atox_substr(what[1]);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         lang = atoi_substr(what[2]);
+      }
+      else if (regex_match(buf, what, expr6b)) {
+         int lpage = atox_substr(what[1]);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         timestamp = atol(string(what[2]).c_str());
+      }
+      else if (regex_match(buf, what, expr7)) {
+         int lpage = atox_substr(what[1]);
+         assert((page == -1) || (page == lpage));
+         page = lpage;
+         sub = atox_substr(what[2]);
+         pg_data_valid = 0;
+         pkg_idx = 0;
+      }
+      else if (regex_match(buf, what, expr8)) {
+      }
+      else if (regex_match(buf, what, expr9)) {
+         // undef
+         pkg_idx += 1;
+      }
+      else if (regex_match(buf, what, expr10)) {
+         // line
+         assert((page != -1) && (pkg_idx < TTX_DB_PAGE::TTX_RAW_PKG_CNT));
+         const char * p = &what[1].first[0];
+         int idx = 0;
+         while ((*p != 0) && (idx < VT_PKG_RAW_LEN)) {
+            int val, val_len;
+            if ((*p == '\\') && (p[1] == 'x') &&
+                (sscanf(p + 2, "%2x%n", &val, &val_len) >= 1) && (val_len == 2)) {
+               pg_data[pkg_idx][idx++] = val;
+               p += 4;
+            } else if (*p == '\\') {
+               pg_data[pkg_idx][idx++] = p[1];
+               p += 2;
+            } else {
+               pg_data[pkg_idx][idx++] = *p;
+               p += 1;
+            }
+         }
+         pg_data_valid |= (1 << pkg_idx);
+         pkg_idx += 1;
+      }
+      else if (regex_match(buf, what, expr11)) {
+         assert(page != -1);
+         int ctrl = sub | ((lang & 1) << (16+7)) | ((lang & 2) << (16+5)) | ((lang & 4) << (16+3));
+         TTX_DB_PAGE * pgtext = ttx_db.add_page(page, sub, ctrl, pg_data[0], timestamp);
+         for (unsigned idx = 1; idx < pkg_idx; idx++) {
+            if (pg_data_valid & (1 << idx))
+               ttx_db.add_page_data(page, sub, idx, pg_data[idx]);
+         }
+         for (unsigned idx = 1; idx < pg_cnt; idx++) {
+            pgtext->inc_acq_cnt(timestamp);
+         }
+         page = -1;
+      }
+      else if (regex_match(buf, what, expr12)) {
+      }
+      else if (regex_match(buf, what, expr13)) {
+         // comment or empty line - ignored
+      }
+      else {
+         fprintf(stderr, "Import parse error in line %d '%s'\n", file_line_no, buf);
+         exit(1);
+      }
+   }
+   fclose(fp);
+}
+
 
 /* ------------------------------------------------------------------------- */
 
@@ -842,7 +1137,7 @@ string TTX_CHN_ID::get_ch_id()
    }
 }
 
-void TTX_CHN_ID::add_cni(uint cni)
+void TTX_CHN_ID::add_cni(unsigned cni)
 {
    iterator p = m_cnis.lower_bound(cni);
    if ((p == m_cnis.end()) || (p->first != int(cni))) {
@@ -851,5 +1146,10 @@ void TTX_CHN_ID::add_cni(uint cni)
    else {
       ++p->second;
    }
+}
+
+void TTX_CHN_ID::flush()
+{
+   m_cnis.clear();
 }
 

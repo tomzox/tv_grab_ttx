@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_ov_fmt.cc,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_ov_fmt.cc,v 1.3 2010/05/06 17:57:53 tom Exp $
  */
 
 #include <stdio.h>
@@ -25,7 +25,6 @@
 #include <string>
 #include <map>
 
-#include "libzvbi.h"
 #include "boost/regex.h"
 #include "boost/regex.hpp"
 
@@ -183,7 +182,7 @@ T_OV_LINE_FMT T_OV_LINE_FMT::select_ov_fmt(vector<T_OV_LINE_FMT>& fmt_list)
       int max_idx = -1;
 
       // search the most used format (ignoring "subt_off")
-      for (uint idx = 0; idx < fmt_list.size(); idx++) {
+      for (unsigned idx = 0; idx < fmt_list.size(); idx++) {
          map<T_OV_LINE_FMT,int>::iterator p = fmt_stats.lower_bound(fmt_list[idx]);
          if ((p == fmt_stats.end()) || (fmt_list[idx] < p->first)) {
             p = fmt_stats.insert(p, make_pair(fmt_list[idx], 1));
@@ -201,7 +200,7 @@ T_OV_LINE_FMT T_OV_LINE_FMT::select_ov_fmt(vector<T_OV_LINE_FMT>& fmt_list)
       // search the most used "subt_off" among the most used format
       map<int,int> fmt_subt;
       max_cnt = 0;
-      for (uint idx = 0; idx < fmt_list.size(); idx++) {
+      for (unsigned idx = 0; idx < fmt_list.size(); idx++) {
          if (   (fmt_list[idx] == fmt)
              && (fmt_list[idx].get_subt_off() != -1))
          {

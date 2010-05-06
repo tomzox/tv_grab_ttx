@@ -1,5 +1,5 @@
 /*
- * Teletext EPG grabber: VBI data acquisition control
+ * Teletext EPG grabber: C external interfaces
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,13 +16,25 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_acq.h,v 1.2 2010/05/03 18:22:43 tom Exp $
+ * $Id: ttx_cif.h,v 1.2 2010/05/06 17:57:53 tom Exp $
  */
-#if !defined (__TTX_ACQ_H)
-#define __TTX_ACQ_H
+#if !defined (__TTX_IF_H)
+#define __TTX_IF_H
 
-void ReadVbi(const char * p_infile, const char * p_dumpfile,
-             const char * p_dev_name, int dvb_pid,
-             bool do_verbose, bool do_dump, int cap_duration);
+#if defined (__cplusplus)
+extern "C" {
+#endif
 
-#endif // __TTX_ACQ_H
+void ttx_db_init( void );
+void ttx_db_add_cni(unsigned cni);
+bool ttx_db_add_pkg( int page, int ctrl, int pkgno, const uint8_t * p_data, time_t ts );
+int ttx_db_parse( int pg_start, int pg_end, int expire_min,
+                  const char * p_xml_in, const char * p_xml_out,
+                  const char * p_ch_name, const char * p_ch_id );
+void ttx_db_dump(const char * p_name, int pg_start, int pg_end);
+
+#if defined (__cplusplus)
+}
+#endif
+
+#endif // __TTX_IF_H

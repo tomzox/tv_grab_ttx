@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_pg_ref.cc,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_pg_ref.cc,v 1.2 2010/05/03 17:16:47 tom Exp $
  */
 
 #include <stdio.h>
@@ -143,7 +143,7 @@ T_TRAIL_REF_FMT T_TRAIL_REF_FMT::select_ttx_ref_fmt(const vector<T_TRAIL_REF_FMT
    int max_idx = -1;
 
    if (!fmt_list.empty()) {
-      for (uint idx = 0; idx < fmt_list.size(); idx++) {
+      for (unsigned idx = 0; idx < fmt_list.size(); idx++) {
          // count the number of occurrences of the same format in the list
          map<T_TRAIL_REF_FMT,int>::iterator p = fmt_stats.lower_bound(fmt_list[idx]);
          if ((p == fmt_stats.end()) || (fmt_list[idx] < p->first)) {

@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_feat.cc,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_feat.cc,v 1.2 2010/05/03 17:19:02 tom Exp $
  */
 
 #include <stdio.h>
@@ -106,7 +106,7 @@ void TV_FEAT::MapTrailingFeat(const char * feat, int len, const string& title)
       return;
    }
 
-   for (uint idx = 0; idx < TV_FEAT_MAP_LEN; idx++)
+   for (unsigned idx = 0; idx < TV_FEAT_MAP_LEN; idx++)
    {
       if (strncasecmp(feat, FeatToFlagMap[idx].p_name, len) == 0)
       {

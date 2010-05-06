@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.cc,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_util.cc,v 1.2 2010/05/03 17:16:13 tom Exp $
  */
 
 #include <stdio.h>
@@ -74,7 +74,7 @@ bool str_all_upper(string& str)
  */
 void str_repl_ctrl(string& str)
 {
-   for (uint idx = 0; idx < str.length(); idx++) {
+   for (unsigned idx = 0; idx < str.length(); idx++) {
       unsigned char c = str[idx];
       if ((c <= 0x1F) || (c == 0x7F))
          str[idx] = ' ';
@@ -91,7 +91,7 @@ bool str_concat_title(string& title, const string& str2, bool if_cont_only)
 
    // count whitespace at the end of the first string
    string::reverse_iterator p_end = title.rbegin();
-   uint del1 = 0;
+   unsigned del1 = 0;
    while (   (p_end != title.rend())
           && (uint8_t(*p_end) <= ' ') )
    {
@@ -138,7 +138,7 @@ bool str_concat_title(string& title, const string& str2, bool if_cont_only)
  * at the character with the given position (i.e. the character before
  * the given position is the last alpha-numeric character.)
  */
-bool str_is_left_word_boundary(const string& str, uint pos)
+bool str_is_left_word_boundary(const string& str, unsigned pos)
 {
    return (pos == 0) || !isalnum(str[pos - 1]);
 }
@@ -146,7 +146,7 @@ bool str_is_left_word_boundary(const string& str, uint pos)
 /* Check if there's a word boundary in the given string before the
  * character with the given position.
  */
-bool str_is_right_word_boundary(const string& str, uint pos)
+bool str_is_right_word_boundary(const string& str, unsigned pos)
 {
    return (pos >= str.length()) || !isalnum(str[pos]);
 }
@@ -177,9 +177,9 @@ string::size_type str_find_word(const string& str, const string& word)
 /* Count and return the number of blank (or control) characters at the beginnine
  * of the given string.
  */
-uint str_get_indent(const string& str)
+unsigned str_get_indent(const string& str)
 {
-   uint off;
+   unsigned off;
 
    for (off = 0; off < str.length(); off++) {
       uint8_t c = str[off];

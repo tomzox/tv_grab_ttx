@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.cc,v 1.1 2010/04/25 14:21:43 tom Exp $
+ * $Id: ttx_scrape.cc,v 1.2 2010/05/06 17:57:53 tom Exp $
  */
 
 #include <stdio.h>
@@ -70,7 +70,7 @@ void OV_SLOT::merge_desc(const string& desc)
 
 void OV_SLOT::parse_ttx_ref(const T_TRAIL_REF_FMT& fmt)
 {
-   for (uint idx = 0; idx < m_ov_title.size(); idx++) {
+   for (unsigned idx = 0; idx < m_ov_title.size(); idx++) {
       if (fmt.parse_trailing_ttx_ref(m_ov_title[idx], m_ttx_ref))
          break;
    }
@@ -78,7 +78,7 @@ void OV_SLOT::parse_ttx_ref(const T_TRAIL_REF_FMT& fmt)
 
 void OV_SLOT::detect_ttx_ref_fmt(vector<T_TRAIL_REF_FMT>& fmt_list)
 {
-   for (uint idx = 0; idx < m_ov_title.size(); idx++) {
+   for (unsigned idx = 0; idx < m_ov_title.size(); idx++) {
       T_TRAIL_REF_FMT fmt;
       if (fmt.detect_ref_fmt(m_ov_title[idx])) {
          fmt_list.push_back(fmt);
@@ -88,7 +88,7 @@ void OV_SLOT::detect_ttx_ref_fmt(vector<T_TRAIL_REF_FMT>& fmt_list)
 
 void OV_SLOT::parse_feature_flags()
 {
-   for (uint idx = 0; idx < m_ov_title.size(); idx++) {
+   for (unsigned idx = 0; idx < m_ov_title.size(); idx++) {
       if (idx != 0)
          m_ov_title[idx].insert(0, 2, ' '); //FIXME!! HACK
 
@@ -116,7 +116,7 @@ void OV_SLOT::parse_ov_title()
 #endif
 
    // combine title with next line only if finding "-"
-   uint first_subt = 1;
+   unsigned first_subt = 1;
    m_ext_title = m_ov_title[0];
    while (   (m_ov_title.size() > first_subt)
           && (str_concat_title(m_ext_title, m_ov_title[first_subt], true)) ) {
@@ -124,7 +124,7 @@ void OV_SLOT::parse_ov_title()
    }
 
    // rest of lines: combine words separated by line end with "-"
-   for (uint idx = first_subt; idx < m_ov_title.size(); idx++) {
+   for (unsigned idx = first_subt; idx < m_ov_title.size(); idx++) {
       str_concat_title(m_ext_subtitle, m_ov_title[idx], false);
    }
 }
@@ -156,7 +156,7 @@ OV_PAGE::OV_PAGE(int page, int sub)
 
 OV_PAGE::~OV_PAGE()
 {
-   for (uint idx = 0; idx < m_slots.size(); idx++) {
+   for (unsigned idx = 0; idx < m_slots.size(); idx++) {
       delete m_slots[idx];
    }
 }
@@ -487,7 +487,7 @@ void RemoveTrailingPageFooter(string& text)
          }
          if (matched) {
             if (opt_debug) printf("OV removing trailing page ref\n");
-            for (uint idx = ref_off; idx < text.size(); idx++) {
+            for (unsigned idx = ref_off; idx < text.size(); idx++) {
                text[idx] = ' ';
             }
          }
@@ -515,7 +515,7 @@ int OV_SLOT::parse_desc_title(int page, int sub)
       string text_lc = pgctrl->get_ctrl(idx);
       str_tolower_latin1(text_lc);
 
-      uint off = str_get_indent(text_lc);
+      unsigned off = str_get_indent(text_lc);
 
       //if (str_find_word(text_lc, title_lc) != string::npos)
       if (   (title_lc.length() <= text_lc.length() - off)
@@ -551,7 +551,7 @@ int OV_SLOT::parse_desc_title(int page, int sub)
                   // um die Erde                   Erde
                   // Science Fiction USA 2000      Science Fiction USA 2000
                   // FIXME instead of min() use "2nd line of title on overview page" as limit
-                  uint len = min(tmp.length(), subtitle.length());
+                  unsigned len = min(tmp.length(), subtitle.length());
                   if (   str_is_right_word_boundary(tmp, len)
                       && str_is_right_word_boundary(subtitle, len)
                       && (tmp.compare(0, len, subtitle, 0, len) == 0) ) {
@@ -600,11 +600,11 @@ int CorrelateDescTitles(int page, int sub1, int sub2, int head)
    const TTX_DB_PAGE * pgctrl1 = ttx_db.get_sub_page(page, sub1);
    const TTX_DB_PAGE * pgctrl2 = ttx_db.get_sub_page(page, sub2);
 
-   for (uint line = head; line < TTX_DB_PAGE::TTX_TEXT_LINE_CNT; line++) {
+   for (unsigned line = head; line < TTX_DB_PAGE::TTX_TEXT_LINE_CNT; line++) {
       const string& p1 = pgctrl1->get_ctrl(line);
       const string& p2 = pgctrl2->get_ctrl(line);
-      uint cnt = 0;
-      for (uint col = 0; col < VT_PKG_RAW_LEN; col++) {
+      unsigned cnt = 0;
+      for (unsigned col = 0; col < VT_PKG_RAW_LEN; col++) {
          if (p1[col] == p2[col])
             cnt++;
       }
@@ -626,7 +626,7 @@ void DescRemoveSubPageIdx(vector<string>& Lines, int sub)
 {
    smatch whats;
 
-   for (uint row = 0; (row < Lines.size()) && (row < 6); row++) {
+   for (unsigned row = 0; (row < Lines.size()) && (row < 6); row++) {
       static const regex expr1(" (\\d+)/(\\d+) {0,2}$");
       if (regex_search(Lines[row], whats, expr1)) {
          int sub_idx = atoi_substr(whats[1]);
@@ -662,12 +662,12 @@ bool DescFormatCastTable(vector<string>& Lines)
 
    // step #1: build statistic about lines with ".." (including space before and after)
    map<int,int> Tabs;
-   uint tab_max = 0;
-   for (uint row = 0; row < Lines.size(); row++) {
+   unsigned tab_max = 0;
+   for (unsigned row = 0; row < Lines.size(); row++) {
       static const regex expr1("^( *)((.*?)( ?)\\.\\.+( ?))[^ ].*?[^ ]( *)$");
       if (regex_search(Lines[row], whats, expr1)) {
          // left-aligned (ignore spacing on the right)
-         uint rec = whats[1].length() |
+         unsigned rec = whats[1].length() |
                     ((whats[1].length() + whats[2].length()) << 6)|
                     (whats[4].length() << 12) |
                     (whats[5].length() << 18) |
@@ -690,11 +690,11 @@ bool DescFormatCastTable(vector<string>& Lines)
 
    // minimum is two lines looking like table rows
    if ((tab_max != 0) && (Tabs[tab_max] >= 2)) {
-      const uint spc0 = tab_max & 0x3F;
-      const uint off  = (tab_max >> 6) & 0x3F;
-      const uint spc1 = (tab_max >> 12) & 0x3F;
-      const uint spc2 = (tab_max >> 18) & 0x3F;
-      const uint spc3 = tab_max >> 24;
+      const unsigned spc0 = tab_max & 0x3F;
+      const unsigned off  = (tab_max >> 6) & 0x3F;
+      const unsigned spc1 = (tab_max >> 12) & 0x3F;
+      const unsigned spc2 = (tab_max >> 18) & 0x3F;
+      const unsigned spc3 = tab_max >> 24;
 
       regex expr2;
       if (spc3 == 0x3F) {
@@ -716,7 +716,7 @@ bool DescFormatCastTable(vector<string>& Lines)
 
       // step #2: find all lines with dots ending at the right column and right amount of spaces
       int last_row = -1;
-      for (uint row = 0; row < Lines.size(); row++) {
+      for (unsigned row = 0; row < Lines.size(); row++) {
          if (spc3 == 0x3F) {
             //
             // 2nd column is left-aligned
@@ -805,7 +805,7 @@ string ParseDescContent(int page, int sub, int head, int foot)
    DescRemoveSubPageIdx(Lines, sub);
    DescFormatCastTable(Lines);
 
-   for (uint idx = 0; idx < Lines.size(); idx++) {
+   for (unsigned idx = 0; idx < Lines.size(); idx++) {
       // TODO: replace 0x7f (i.e. square) at line start with "-"
       // line consisting only of "-": treat as paragraph break
       string line = Lines[idx];
@@ -1050,7 +1050,7 @@ bool OV_PAGE::check_redundant_subpage(OV_PAGE * prev)
       // FIXME check for overlap in a more general way (allow for missing line on one page? but then we'd need to merge)
       if (prev->m_slots.size() == m_slots.size()) {
          result = true;
-         for (uint idx = 0; idx < m_slots.size(); idx++) {
+         for (unsigned idx = 0; idx < m_slots.size(); idx++) {
             if (!m_slots[idx]->is_same_prog(*prev->m_slots[idx])) {
                result = false;
                break;
@@ -1206,7 +1206,7 @@ void OV_PAGE::calculate_start_times()
    int date_off = 0;
    int prev_hour = -1;
 
-   for (uint idx = 0; idx < m_slots.size(); idx++) {
+   for (unsigned idx = 0; idx < m_slots.size(); idx++) {
       OV_SLOT * slot = m_slots[idx];
 
       // detect date change (hour wrap at midnight)
@@ -1231,7 +1231,7 @@ bool OV_PAGE::check_start_times()
    int prev_hour = -1;
    int prev_min = -1;
 
-   for (uint idx = 0; idx < m_slots.size(); idx++) {
+   for (unsigned idx = 0; idx < m_slots.size(); idx++) {
       OV_SLOT * slot = m_slots[idx];
 
       // detect date change (hour wrap at midnight)
@@ -1260,7 +1260,7 @@ bool OV_PAGE::check_start_times()
  */
 void OV_PAGE::calc_stop_times(const OV_PAGE * next)
 {
-   for (uint idx = 0; idx < m_slots.size(); idx++)
+   for (unsigned idx = 0; idx < m_slots.size(); idx++)
    {
       OV_SLOT * slot = m_slots[idx];
 
@@ -1319,9 +1319,9 @@ T_TRAIL_REF_FMT OV_PAGE::detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages)
    vector<T_TRAIL_REF_FMT> fmt_list;
 
    // parse all slot titles for TTX reference format
-   for (uint pg_idx = 0; pg_idx < ov_pages.size(); pg_idx++) {
+   for (unsigned pg_idx = 0; pg_idx < ov_pages.size(); pg_idx++) {
       OV_PAGE * ov_page = ov_pages[pg_idx];
-      for (uint slot_idx = 0; slot_idx < ov_page->m_slots.size(); slot_idx++) {
+      for (unsigned slot_idx = 0; slot_idx < ov_page->m_slots.size(); slot_idx++) {
          OV_SLOT * slot = ov_page->m_slots[slot_idx];
          slot->detect_ttx_ref_fmt(fmt_list);
       }
@@ -1331,7 +1331,7 @@ T_TRAIL_REF_FMT OV_PAGE::detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages)
 
 void OV_PAGE::extract_ttx_ref(const T_TRAIL_REF_FMT& fmt)
 {
-   for (uint idx = 0; idx < m_slots.size(); idx++) {
+   for (unsigned idx = 0; idx < m_slots.size(); idx++) {
       OV_SLOT * slot = m_slots[idx];
       slot->parse_ttx_ref(fmt);
    }
@@ -1343,7 +1343,7 @@ void OV_PAGE::extract_tv()
       RemoveTrailingPageFooter(m_slots.back()->m_ov_title.back());
    }
 
-   for (uint idx = 0; idx < m_slots.size(); idx++) {
+   for (unsigned idx = 0; idx < m_slots.size(); idx++) {
       OV_SLOT * slot = m_slots[idx];
 
       slot->parse_feature_flags();
@@ -1400,7 +1400,7 @@ vector<OV_PAGE*> ParseAllOvPages(int ov_start, int ov_end)
          }
       }
 
-      for (uint idx = 0; idx < ov_pages.size(); ) {
+      for (unsigned idx = 0; idx < ov_pages.size(); ) {
          if (ov_pages[idx]->calc_date_off((idx > 0) ? ov_pages[idx - 1] : 0)) {
 
             ov_pages[idx]->calculate_start_times();
@@ -1414,19 +1414,19 @@ vector<OV_PAGE*> ParseAllOvPages(int ov_start, int ov_end)
 
       // guess missing stop times for the current page
       // (requires start times for the next page)
-      for (uint idx = 0; idx < ov_pages.size(); idx++) {
+      for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
          OV_PAGE * next = (idx + 1 < ov_pages.size()) ? ov_pages[idx + 1] : 0;
          ov_pages[idx]->calc_stop_times(next);
       }
 
       // retrieve TTX page references
       T_TRAIL_REF_FMT ttx_ref_fmt = OV_PAGE::detect_ov_ttx_ref_fmt(ov_pages);
-      for (uint idx = 0; idx < ov_pages.size(); idx++) {
+      for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
          ov_pages[idx]->extract_ttx_ref(ttx_ref_fmt);
       }
 
       // retrieve descriptions from references teletext pages
-      for (uint idx = 0; idx < ov_pages.size(); idx++) {
+      for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
          ov_pages[idx]->extract_tv();
       }
    }
@@ -1438,8 +1438,8 @@ list<TV_SLOT> OV_PAGE::get_ov_slots(vector<OV_PAGE*> ov_pages)
 {
    list<TV_SLOT> tv_slots;
 
-   for (uint idx = 0; idx < ov_pages.size(); idx++) {
-      for (uint slot_idx = 0; slot_idx < ov_pages[idx]->m_slots.size(); slot_idx++) {
+   for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
+      for (unsigned slot_idx = 0; slot_idx < ov_pages[idx]->m_slots.size(); slot_idx++) {
          tv_slots.push_back(TV_SLOT(ov_pages[idx], slot_idx));
       }
    }

@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_db.h,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_db.h,v 1.3 2010/05/03 18:22:43 tom Exp $
  */
 #if !defined (__TTX_DB_H)
 #define __TTX_DB_H
@@ -25,30 +25,30 @@
 class TTX_PG_HANDLE
 {
 public:
-   TTX_PG_HANDLE(uint page, uint sub) : m_handle((page << 16) | (sub & 0x3f7f)) {}
+   TTX_PG_HANDLE(unsigned page, unsigned sub) : m_handle((page << 16) | (sub & 0x3f7f)) {}
    bool operator< (TTX_PG_HANDLE v) const { return m_handle < v.m_handle; }
    bool operator== (TTX_PG_HANDLE v) const { return m_handle == v.m_handle; }
    bool operator!= (TTX_PG_HANDLE v) const { return m_handle != v.m_handle; }
-   uint page() const { return (m_handle >> 16); }
-   uint sub() const { return (m_handle & 0x3f7f); }
+   unsigned page() const { return (m_handle >> 16); }
+   unsigned sub() const { return (m_handle & 0x3f7f); }
 private:
-   uint m_handle;
+   unsigned m_handle;
 };
 
 class TTX_DB_PAGE
 {
 public:
-   TTX_DB_PAGE(uint page, uint sub, uint ctrl, time_t ts);
-   void add_raw_pkg(uint idx, const uint8_t * p_data);
+   TTX_DB_PAGE(unsigned page, unsigned sub, unsigned ctrl, time_t ts);
+   void add_raw_pkg(unsigned idx, const uint8_t * p_data);
    void inc_acq_cnt(time_t ts);
    void erase_page_c4();
-   const string& get_ctrl(uint line) const {
+   const string& get_ctrl(unsigned line) const {
       assert(line < TTX_TEXT_LINE_CNT);
       if (!m_text_valid)
          page_to_latin1();
       return m_ctrl[line];
    }
-   const string& get_text(uint line) const {
+   const string& get_text(unsigned line) const {
       assert(line < TTX_TEXT_LINE_CNT);
       if (!m_text_valid)
          page_to_latin1();
@@ -61,12 +61,12 @@ public:
    void dump_page_as_raw(FILE * fp, int last_sub);
 
    typedef uint8_t TTX_RAW_PKG[VT_PKG_RAW_LEN];
-   static const uint TTX_TEXT_LINE_CNT = 24;
-   static const uint TTX_RAW_PKG_CNT = 30;
+   static const unsigned TTX_TEXT_LINE_CNT = 24;
+   static const unsigned TTX_RAW_PKG_CNT = 30;
 
 private:
    void page_to_latin1() const;
-   void line_to_latin1(uint line, string& out) const;
+   void line_to_latin1(unsigned line, string& out) const;
 
    TTX_RAW_PKG  m_raw_pkg[TTX_RAW_PKG_CNT];
    uint32_t     m_raw_pkg_valid;
@@ -85,11 +85,12 @@ class TTX_DB_BTT
 {
 public:
    TTX_DB_BTT() : m_have_btt(false), m_have_mpt(false), m_have_ait(false) {}
-   void add_btt_pkg(uint page, uint idx, const uint8_t * p_data);
-   int get_last_sub(uint page) const;
+   void add_btt_pkg(unsigned page, unsigned idx, const uint8_t * p_data);
+   int get_last_sub(unsigned page) const;
    bool is_valid() const { return m_have_btt; }
-   bool is_top_page(uint page) const;
+   bool is_top_page(unsigned page) const;
    void dump_btt_as_text(FILE * fp);
+   void flush();
 private:
    struct BTT_AIT_ELEM {
       uint8_t      hd_text[13];
@@ -112,21 +113,22 @@ public:
    typedef map<TTX_PG_HANDLE, TTX_DB_PAGE*>::iterator iterator;
    typedef map<TTX_PG_HANDLE, TTX_DB_PAGE*>::const_iterator const_iterator;
 
-   bool sub_page_exists(uint page, uint sub) const;
-   const TTX_DB_PAGE* get_sub_page(uint page, uint sub) const;
+   bool sub_page_exists(unsigned page, unsigned sub) const;
+   const TTX_DB_PAGE* get_sub_page(unsigned page, unsigned sub) const;
    const_iterator begin() const { return m_db.begin(); }
    const_iterator end() const { return m_db.end(); }
-   const_iterator first_sub_page(uint page) const;
-   const_iterator& next_sub_page(uint page, const_iterator& p) const;
-   int last_sub_page_no(uint page) const;
+   const_iterator first_sub_page(unsigned page) const;
+   const_iterator& next_sub_page(unsigned page, const_iterator& p) const;
+   int last_sub_page_no(unsigned page) const;
 
-   TTX_DB_PAGE* add_page(uint page, uint sub, uint ctrl, const uint8_t * p_data, time_t ts);
-   void add_page_data(uint page, uint sub, uint idx, const uint8_t * p_data);
+   TTX_DB_PAGE* add_page(unsigned page, unsigned sub, unsigned ctrl, const uint8_t * p_data, time_t ts);
+   void add_page_data(unsigned page, unsigned sub, unsigned idx, const uint8_t * p_data);
    void erase_page_c4(int page, int sub);
    void dump_db_as_text(FILE * fp);
    void dump_db_as_raw(FILE * fp, int pg_start, int pg_end);
    double get_acq_rep_stats();
-   bool page_acceptable(uint page) const;
+   bool page_acceptable(unsigned page) const;
+   void flush();
 private:
    map<TTX_PG_HANDLE, TTX_DB_PAGE*> m_db;
    TTX_DB_BTT m_btt;
@@ -138,8 +140,9 @@ public:
    typedef map<int,int>::iterator iterator;
    typedef map<int,int>::const_iterator const_iterator;
 
-   void add_cni(uint cni);
+   void add_cni(unsigned cni);
    void dump_as_raw(FILE * fp);
+   void flush();
    string get_ch_id();
 private:
    struct T_CNI_TO_ID_MAP
@@ -156,5 +159,9 @@ private:
 // global data
 extern TTX_DB ttx_db;
 extern TTX_CHN_ID ttx_chn_id;
+
+void ImportRawDump(const char * p_name);
+void DumpTextPages(const char * p_name);
+void DumpRawTeletext(const char * p_name, int pg_start, int pg_end);
 
 #endif // __TTX_DB_H

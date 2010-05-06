@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.h,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_util.h,v 1.2 2010/05/03 17:16:13 tom Exp $
  */
 #if !defined (__TTX_UTIL_H)
 #define __TTX_UTIL_H
@@ -183,10 +183,10 @@ void str_tolower_latin1(string& str);
 bool str_all_upper(string& str);
 void str_repl_ctrl(string& str);
 bool str_concat_title(string& title, const string& str2, bool if_cont_only);
-bool str_is_left_word_boundary(const string& str, uint pos);
-bool str_is_right_word_boundary(const string& str, uint pos);
+bool str_is_left_word_boundary(const string& str, unsigned pos);
+bool str_is_right_word_boundary(const string& str, unsigned pos);
 string::size_type str_find_word(const string& str, const string& word);
-uint str_get_indent(const string& str);
+unsigned str_get_indent(const string& str);
 void str_chomp(string& str);
 
 #if defined (USE_TTX_GRABBER) // nxtvepg
