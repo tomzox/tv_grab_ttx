@@ -19,7 +19,7 @@
 #
 #  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: capall.pl,v 1.2 2008/10/05 19:13:18 tom Exp tom $
+#  $Id: capall.pl,v 1.3 2011/01/03 13:50:37 tom Exp $
 #
 
 use strict;
@@ -69,7 +69,7 @@ for (my $idx = 0; $idx < $#Nets; $idx++) {
    # - capture into temporary file
    # - merge output with previous XML file of same name, if one exists
    my $out_file = "ttx-$fname.xml";
-   my $cmd  = "./tv_grab_ttx.pl -dev $device -duration $duration";
+   my $cmd  = "./tv_grab_ttx -dev $device -duration $duration";
    $cmd .= " -merge $out_file" if -e $out_file && !-z $out_file;
    $cmd .= " > ${out_file}.tmp && mv ${out_file}.tmp ${out_file}";
    system $cmd;

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # This script is used to verify the grabber by running it on a number of
 # input files (*.in) and comparing the output with files (*.out) which are
@@ -24,9 +24,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+#  Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: verify.sh,v 1.7 2010/04/25 14:23:01 tom Exp $
+# $Id: verify.sh,v 1.8 2011/01/03 13:53:03 tom Exp $
 #
 
 DIR=parsertest
@@ -37,23 +37,23 @@ fail_cnt=0
 
 for v in $DIR/*.in ; do
    name=`echo $v | sed -e 's#\.in$##g'|sed -e "s#$DIR/##"`
-   if [ -e $DIR/$name.out ] ; then
+   if [ -r $DIR/$name.out ] ; then
       $EXE -verify $v > out.verify
-      if [ $? == 0 ] ; then
-         if [ -e $DIR/$name.in2 ] ; then
+      if [ $? -eq 0 ] ; then
+         if [ -r $DIR/$name.in2 ] ; then
             mv out.verify out.verify1
             $EXE -merge out.verify1 -verify $DIR/$name.in2 > out.verify
             rm -f out.verify1
          fi
          cmp -s $DIR/$name.out out.verify
-         if [ $? == 0 ] ; then
+         if [ $? -eq 0 ] ; then
             rm -f $name.diff
             echo "OK:   $v"
             pass_cnt=`expr $pass_cnt + 1`
          else
             diff -u $DIR/$name.out out.verify > $name.diff
             echo "FAIL: $v"
-            fail_cnt=`expr $pass_cnt + 1`
+            fail_cnt=`expr $fail_cnt + 1`
          fi
       else
          echo "INCONC: $v (exit status $?)"

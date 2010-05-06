@@ -1,3 +1,18 @@
+libxmltv-ttx (2.0) unstable; urgency=medium
+
+  * Added support for new "HD" feature attribute
+  * Updated XMLTV output to DTD 0.5.56: "bilingual", "HDTV"
+  * Map audio-descriptive to bilingual
+  * Remove redundancy from descriptions on multiple sub-pages
+  * Improved fuzzy-matching on dates on description page dates
+  * Repair line-break in programme titles using descriptions
+  * Bug-fix end-time parser for ARTE
+  * Fixed TTX page ref matching: avoid false matches
+  * Extended cast table parser
+  * Implementation switched from Perl to C++ (code design improvement)
+
+ -- Tom Zoerner <tomzo@users.sourceforge.net>  Thu, 06 May 2010 20:18:13 +0200
+
 libxmltv-ttx (1.1) unstable; urgency=low
 
   * Added documentation inside of tv_grab_ttx.pl (man page in POD format)
@@ -7,7 +22,7 @@ libxmltv-ttx (1.1) unstable; urgency=low
 
   * Grabber parses and reformats "cast" tables on description tables
 
- -- maintainer Tom Zoerner <tomzo@users.sourceforge.net>  Sun, 05 Oct 2008 21:35:00 +0200
+ -- Tom Zoerner <tomzo@users.sourceforge.net>  Sun, 05 Oct 2008 21:35:00 +0200
 
 libxmltv-ttx (1.0) unstable; urgency=low
 
@@ -16,4 +31,4 @@ libxmltv-ttx (1.0) unstable; urgency=low
   * Improved channel display name parsing;
     fall back to using channel name on failure instead of "???"
 
- -- maintainer Tom Zoerner <tomzo@users.sourceforge.net>  Sat, 08 Mar 2008 00:00:00 +0200
+ -- Tom Zoerner <tomzo@users.sourceforge.net>  Sat, 08 Mar 2008 00:00:00 +0200
