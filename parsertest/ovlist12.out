@@ -115,7 +115,7 @@
 </programme>
 
 <programme start="20100322080500 +0000" stop="20100322090000 +0000" channel="ard.de">
-	<title>Sportschau extra:</title>
+	<title>Sportschau extra: Paralympics Vancouver 2010</title>
 	<sub-title>Sportschau extra: Paralympics Vancouver 2010 Highlights</sub-title>
 	<subtitles type="teletext"/>
 	<star-rating>
@@ -214,7 +214,7 @@
 </programme>
 
 <programme start="20100322191500 +0000" stop="20100322200000 +0000" channel="ard.de">
-	<title>Erlebnis Erde:</title>
+	<title>Erlebnis Erde: Kaltblütig (3/4)</title>
 	<sub-title>Erlebnis Erde: Kaltblütig (3/4) Schlangen mit Pfiff</sub-title>
 	<subtitles type="teletext"/>
 	<star-rating>
@@ -223,8 +223,7 @@
 </programme>
 
 <programme start="20100322200000 +0000" stop="20100322204500 +0000" channel="ard.de">
-	<title>Der Kämpfer -</title>
-	<sub-title>Der Kämpfer - Helmut Kohl im Rückblick</sub-title>
+	<title>Der Kämpfer - Helmut Kohl im Rückblick</title>
 	<star-rating>
 		<value>1/1</value>
 	</star-rating>
@@ -258,8 +257,7 @@
 </programme>
 
 <programme start="20100322232000 +0000" stop="20100322235000 +0000" channel="ard.de">
-	<title>Dittsche -</title>
-	<sub-title>Dittsche - Das wirklich wahre Leben</sub-title>
+	<title>Dittsche - Das wirklich wahre Leben</title>
 	<star-rating>
 		<value>1/1</value>
 	</star-rating>
@@ -279,8 +277,7 @@
 </programme>
 
 <programme start="20100323021000 +0000" stop="20100323025500 +0000" channel="ard.de">
-	<title>Der Kämpfer -</title>
-	<sub-title>Der Kämpfer - Helmut Kohl im Rückblick</sub-title>
+	<title>Der Kämpfer - Helmut Kohl im Rückblick</title>
 </programme>
 
 <programme start="20100323025500 +0000" stop="20100323032500 +0000" channel="ard.de">

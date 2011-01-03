@@ -10,8 +10,7 @@
 </programme>
 
 <programme start="20060430165000 +0000" stop="20060430172000 +0000" channel="ARD">
-	<title>Lindenstraﬂe:</title>
-	<sub-title>Lindenstraﬂe: Anteile (D, 2006)</sub-title>
+	<title>Lindenstraﬂe: Anteile (D, 2006)</title>
 	<desc>(teletext 319)</desc>
 	<subtitles type="teletext"/>
 </programme>
@@ -28,8 +27,7 @@
 </programme>
 
 <programme start="20060430181500 +0000" stop="20060430194500 +0000" channel="ARD">
-	<title>Polizeiruf 110:</title>
-	<sub-title>Polizeiruf 110: Matrosenbraut (D, 2006)</sub-title>
+	<title>Polizeiruf 110: Matrosenbraut (D, 2006)</title>
 	<desc>(teletext 324)</desc>
 	<subtitles type="teletext"/>
 	<star-rating>

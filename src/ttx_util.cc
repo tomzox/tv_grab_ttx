@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.cc,v 1.2 2010/05/03 17:16:13 tom Exp $
+ * $Id: ttx_util.cc,v 1.3 2011/01/03 13:56:56 tom Exp $
  */
 
 #include <stdio.h>
@@ -84,6 +84,8 @@ void str_repl_ctrl(string& str)
 /* Append the second sring to the first one, with exactly one blank
  * in-between. Exception: if the first string ends in "-" and the
  * second starts lower-case, remove the "-" and append w/o blank.
+ * Note this function is called multiple times to concatenate multiple
+ * lines, until the function returns false.
  */
 bool str_concat_title(string& title, const string& str2, bool if_cont_only)
 {
@@ -118,6 +120,19 @@ bool str_concat_title(string& title, const string& str2, bool if_cont_only)
       // append (replace) the second string, skipping whitespace
       title.replace(title.end() - del1 - 1, title.end(),
                     p_start, str2.end());
+      result = true;
+   }
+   else if (   (title.length() > 2 + del1)
+            && (   (title[title.length() - del1 - 1] == ':')
+                || (title[title.length() - del1 - 1] == ',')
+                || (title[title.length() - del1 - 1] == '&')
+                || (   (title[title.length() - del1 - 1] == '-')
+                    && (title[title.length() - del1 - 2] == ' ')) )
+            && (p_start != str2.end()) )
+   {
+      // keep the ':' plus a single whitespace, then append the second string
+      title.replace(title.end() - del1, title.end(), " ");
+      title.append(p_start, str2.end());
       result = true;
    }
    else if (!if_cont_only)

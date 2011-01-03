@@ -16,9 +16,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_main.cc,v 1.2 2010/05/06 17:57:53 tom Exp $
+ * $Id: ttx_main.cc,v 1.3 2011/01/03 14:12:55 tom Exp $
  */
 
 #include <stdio.h>
@@ -42,7 +42,7 @@ using namespace boost;
 #include "ttx_scrape.h"
 
 const char version[] = "Teletext EPG grabber, v2.0";
-const char copyright[] = "Copyright 2006-2010 Tom Zoerner";
+const char copyright[] = "Copyright 2006-2011 Tom Zoerner";
 const char home_url[] = "http://nxtvepg.sourceforge.net/tv_grab_ttx";
 
 // command line options for capturing from device
@@ -71,24 +71,24 @@ void ParseArgv(int argc, char *argv[])
 {
    const char usage[] =
                "Usage: [OPTIONS] [<file>]\n"
-               "  -device <path>\t: VBI device used for input (when no file given)\n"
+               "  -device <path>\t: VBI device used for input (when no input file given)\n"
                "  -dvbpid <PID>\t\t: Use DVB stream with given PID\n"
-               "  -duration <secs>\t\t: Capture duration in seconds\n"
+               "  -duration <secs>\t: Capture duration in seconds\n"
                "  -page <NNN>-<MMM>\t: Page range for TV schedules\n"
                "  -chn_name <name>\t: display name for XMLTV \"<channel>\" tag\n"
                "  -chn_id <name>\t: channel ID for XMLTV \"<channel>\" tag\n"
                "  -outfile <path>\t: Redirect XMLTV or dump output into the given file\n"
-               "  -merge <path>\t\t: Merge output with programmes from file\n"
-               "  -expire <N>\t\t: Omit programmes which ended X minutes ago\n"
+               "  -merge <path>\t\t: Merge output with programmes from an XML file\n"
+               "  -expire <N>\t\t: Omit programmes which ended at least N minutes ago\n"
                "  -dumpvbi\t\t: Dump captured VBI data; no grabbing\n"
                "  -dump\t\t\t: Dump teletext pages as clear text; no grabbing\n"
                "  -dumpraw <NNN>-<MMM>\t: Dump teletext packets in given range; no grabbing\n"
-               "  -verify\t\t: Load previously dumped \"raw\" teletext packets\n"
+               "  -verify\t\t: Load previously dumped \"raw\" packets from input file\n"
                "  -verbose\t\t: Print teletext page numbers during capturing\n"
-               "  -debug\t\t: Emit debug messages during grabbing and device open\n"
+               "  -debug\t\t: Emit debug messages during grabbing and device access\n"
                "  -version\t\t: Print version number only, then exit\n"
                "  -help\t\t\t: Print this text, then exit\n"
-               "  file or \"-\"\t\t: Read VBI input from file instead of device\n";
+               "  file or \"-\"\t\t: Read VBI input from file or stdin instead of device\n";
    int idx = 1;
 
    while (idx < argc) {

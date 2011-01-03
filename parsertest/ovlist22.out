@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="MDR">
+	<display-name>MDR</display-name>
+</channel>
+
+<programme start="20110106053000 +0000" stop="20110106055500 +0000" channel="MDR">
+	<title>Auf der Suche</title>
+	<sub-title>Auf der Suche nach der Schatzinsel (6/26) Abenteuerserie (AUS 1998)</sub-title>
+</programme>
+
+<programme start="20110106055500 +0000" stop="20110106062500 +0000" channel="MDR">
+	<title>Länderzeit</title>
+</programme>
+
+<programme start="20110106062500 +0000" stop="20110106065000 +0000" channel="MDR">
+	<title>Im Tiefflug zum Nordpol (3/4)</title>
+</programme>
+
+<programme start="20110106065000 +0000" stop="20110106072000 +0000" channel="MDR">
+	<title>Mit dem Wind nach Westen</title>
+	<sub-title>Mit dem Wind nach Westen Auf der Kolumbusroute nach Amerika</sub-title>
+</programme>
+
+<programme start="20110106072000 +0000" stop="20110106074500 +0000" channel="MDR">
+	<title>Johann Sebastian Bach: Weihnachtsoratorium BWV 248</title>
+	<sub-title>Johann Sebastian Bach: Weihnachtsoratorium BWV 248 Kantate 6</sub-title>
+</programme>
+
+<programme start="20110106074500 +0000" stop="20110106101800 +0000" channel="MDR">
+	<title>Title test test test test &amp; test once more</title>
+</programme>
+
+<programme start="20110106101800 +0000" stop="20110106104500 +0000" channel="MDR">
+	<title>Title test test test test test, test forever...</title>
+</programme>
+
+<programme start="20110106104500 +0000" stop="20110106113000 +0000" channel="MDR">
+	<title>Title test test test test test:</title>
+</programme>
+</tv>

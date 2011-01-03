@@ -11,8 +11,7 @@
 </programme>
 
 <programme start="20060503110000 +0000" stop="20060503120000 +0000" channel="SAT.1">
-	<title>Britt: Britt deckt auf:</title>
-	<sub-title>Britt: Britt deckt auf: Heimliche Sex-Abenteuer</sub-title>
+	<title>Britt: Britt deckt auf: Heimliche Sex-Abenteuer</title>
 	<desc>(teletext 365)</desc>
 </programme>
 
@@ -67,8 +66,7 @@
 </programme>
 
 <programme start="20060503171500 +0000" stop="20060503174500 +0000" channel="SAT.1">
-	<title>Verliebt in Berlin:</title>
-	<sub-title>Verliebt in Berlin: Folge 299</sub-title>
+	<title>Verliebt in Berlin: Folge 299</title>
 	<desc>(teletext 590)</desc>
 </programme>
 
@@ -79,8 +77,7 @@
 </programme>
 
 <programme start="20060503181500 +0000" stop="20060503201500 +0000" channel="SAT.1">
-	<title>Die Hit Giganten -</title>
-	<sub-title>Die Hit Giganten - Fuﬂballhits</sub-title>
+	<title>Die Hit Giganten - Fuﬂballhits</title>
 	<desc>(teletext 334)</desc>
 </programme>
 
@@ -118,7 +115,7 @@
 </programme>
 
 <programme start="20060504024500 +0000" channel="SAT.1">
-	<title>Test programme 3:</title>
-	<sub-title>Test programme 3: Subtitle of Test 3</sub-title>
+	<title>Test programme 3</title>
+	<sub-title>Test programme 3 Subtitle of Test 3</sub-title>
 </programme>
 </tv>

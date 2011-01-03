@@ -3,7 +3,7 @@
 # Test footer detection in overview pages. Make sure footers are
 # not appended to titles or subtitles. This is never the case if
 # there's an empty line inbetween, so we don't test this here.
-# The 1st is a farily simple case since the footer lines start
+# The 1st is a fairly simple case since the footer lines start
 # inside the time column of the overview table, so they are
 # ignored by the overview parser anyways, even if not detected
 # as footer.  Hence there's a faked 2nd example where the start
@@ -12,7 +12,7 @@
 # in the 3rd example there's 2 different background colors and
 # different formats.
 #
-# $Id: footer2.in,v 1.2 2006/05/07 18:21:10 tom Exp $
+# $Id: footer2.in,v 1.3 2011/01/03 13:47:09 tom Exp $
 #
 $VbiCaptureTime = 1146685197;
 $PgCnt{0x302} = 7;
@@ -98,7 +98,7 @@ $Pkg{0x304|(0x0000<<12)} =
   "\x07\x1D\x0402.05  Frag doch die Sterne          ",
   "\x07\x1D\x0103.05  Richterin Salesch        >368 ",
   "\x07\x1D\x0403.55  Richter Hold             >369 ",
-  "\x07\x1D\x0104.45  Test programme 3:             ",
+  "\x07\x1D\x0104.45  Test programme 3              ",
   "\x07\x1D\x01       Subtitle of Test 3            ",
   "                         \x01\x1D\x07Movies >310 ",
   "                         \x01\x1D\x07Serien >340 ",

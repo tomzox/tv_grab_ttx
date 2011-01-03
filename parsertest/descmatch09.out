@@ -16,8 +16,7 @@
 </programme>
 
 <programme start="20060610101500 +0000" stop="20060610110000 +0000" channel="ARD">
-	<title>FIFA WM 2006 live:</title>
-	<sub-title>FIFA WM 2006 live: DFB-Pressekonferenz</sub-title>
+	<title>FIFA WM 2006 live: DFB-Pressekonferenz</title>
 </programme>
 
 <programme start="20060610110000 +0000" stop="20060610120000 +0000" channel="ARD">
@@ -31,8 +30,7 @@
 </programme>
 
 <programme start="20060610120300 +0000" stop="20060610130000 +0000" channel="ARD">
-	<title>FIFA WM 2006 live:</title>
-	<sub-title>FIFA WM 2006 live: Aktuelle Berichte</sub-title>
+	<title>FIFA WM 2006 live: Aktuelle Berichte</title>
 	<desc>(teletext 316)</desc>
 	<subtitles type="teletext"/>
 	<star-rating>
@@ -62,7 +60,7 @@
 </programme>
 
 <programme start="20060610160000 +0000" stop="20060610180000 +0000" channel="ARD">
-	<title>FIFA WM 2006 live:</title>
+	<title>FIFA WM 2006 live: Trinidad&amp;Tobago - Schweden</title>
 	<sub-title>FIFA WM 2006 live: Trinidad&amp;Tobago - Schweden Vorrunde Gruppe B</sub-title>
 	<desc>(teletext 318)</desc>
 	<subtitles type="teletext"/>
@@ -83,8 +81,7 @@
 </programme>
 
 <programme start="20060610182200 +0000" stop="20060610190000 +0000" channel="ARD">
-	<title>FIFA WM 2006 live:</title>
-	<sub-title>FIFA WM 2006 live: Aktuelle Berichte</sub-title>
+	<title>FIFA WM 2006 live: Aktuelle Berichte</title>
 	<desc>(teletext 324)</desc>
 	<subtitles type="teletext"/>
 	<star-rating>
@@ -93,7 +90,7 @@
 </programme>
 
 <programme start="20060610190000 +0000" stop="20060610195000 +0000" channel="ARD">
-	<title>FIFA WM 2006 live:</title>
+	<title>FIFA WM 2006 live: Argentinien - Elfenbeinküste</title>
 	<sub-title>FIFA WM 2006 live: Argentinien - Elfenbeinküste Vorrunde Gruppe C</sub-title>
 	<desc>(teletext 326)</desc>
 	<subtitles type="teletext"/>
@@ -108,8 +105,7 @@
 </programme>
 
 <programme start="20060610195700 +0000" stop="20060610213000 +0000" pdc-start="20060610210000 +0200" channel="ARD">
-	<title>FIFA WM 2006 live:</title>
-	<sub-title>FIFA WM 2006 live: Argentinien - Elfenbeinküste</sub-title>
+	<title>FIFA WM 2006 live: Argentinien - Elfenbeinküste</title>
 	<subtitles type="teletext"/>
 	<star-rating>
 		<value>1/1</value>
@@ -117,8 +113,7 @@
 </programme>
 
 <programme start="20060610213000 +0000" stop="20060610220000 +0000" channel="ARD">
-	<title>FIFA WM 2006 live:</title>
-	<sub-title>FIFA WM 2006 live: Waldis WM-Club</sub-title>
+	<title>FIFA WM 2006 live: Waldis WM-Club</title>
 	<desc>(teletext 327)</desc>
 	<star-rating>
 		<value>1/1</value>

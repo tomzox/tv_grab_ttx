@@ -1,0 +1,40 @@
+#!/usr/bin/perl -w
+#
+# Title line ends in ':', ',' or '&': Concatenate the second line,
+# if one exists
+# 
+# $Id: ovlist22.in,v 1.1 2011/01/03 13:12:14 tom Exp $
+#
+$VbiCaptureTime = 1294057889;
+$PgCnt{0x364} = 1;
+$PgSub{0x364} = 5;
+$PgLang{0x364} = 1;
+$PgTime{0x364} = 1294057859;
+$Pkg{0x364|(0x0001<<12)} =
+[
+  "        364\x01MDR    \x07Mo 03.01.11\x0313:31:06",
+  "\x17 \x16pp0p5p                         \x07 1/5 ",
+  "\x04\x1D\x16555555\x0400\x06     Donnerstag, 06.01.11  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x03\x0306.30\x03\x03Auf der Suche                  ",
+  "        \x03nach der Schatzinsel (6/26)    ",
+  "        \x03Abenteuerserie (AUS 1998)      ",
+  "\x07\x0706.55\x07\x07L{nderzeit                     ",
+  "\x03\x0307.25\x03\x03Im Tiefflug zum Nordpol (3/4)  ",
+  "\x07\x0707.50\x07\x07Mit dem Wind nach Westen       ",
+  "        \x07Auf der Kolumbusroute          ",
+  "        \x07nach Amerika                   ",
+  undef,
+  "\x03\x0308.20\x03\x03Johann Sebastian Bach:         ",
+  "        \x03Weihnachtsoratorium BWV 248    ",
+  "        \x03Kantate 6                      ",
+  "\x03\x0308.45\x03\x03Title test test test test &    ",
+  "        \x03test once more                 ",
+  "\x03\x0311.18\x03\x03Title test test test test test,",
+  "        \x03test forever...                ",
+  "\x03\x0311.45\x03\x03Title test test test test test:",
+  "        \x03bis\x0312.30\x03Uhr\x03                 ",
+  undef,
+  "\x04\x1D\x06 Die Woche 360  \x06 \x1C       \x06weiter >> ",
+];
+1;

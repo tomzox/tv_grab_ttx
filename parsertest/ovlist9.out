@@ -126,8 +126,7 @@
 </programme>
 
 <programme start="20100322171500 +0000" stop="20100322174500 +0000" pdc-start="20100322181500 +0100" channel="bw.swr.de">
-	<title>Nahaufnahme: Die SWR4 -</title>
-	<sub-title>Nahaufnahme: Die SWR4 - Superwunschmelodie</sub-title>
+	<title>Nahaufnahme: Die SWR4 - Superwunschmelodie</title>
 	<desc>(teletext 306)</desc>
 </programme>
 
@@ -227,8 +226,7 @@ Als er der Versuchung in Person der attraktiven Johanna erliegt, ist die Hochzei
 </programme>
 
 <programme start="20100323033000 +0000" stop="20100323040000 +0000" pdc-start="20100323043000 +0100" channel="bw.swr.de">
-	<title>nano -</title>
-	<sub-title>nano - Die Welt von morgen</sub-title>
+	<title>nano - Die Welt von morgen</title>
 	<desc>(teletext 376)</desc>
 </programme>
 
