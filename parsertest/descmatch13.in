@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# - Title in overview list concatenates sub-title via ":" while description
+#   page 380 contains them in separate lines without separator.
+# - Description page contains "1/1" but has 2 sub-pages: content is identical.
+#
+# $Id: descmatch13.in,v 1.1 2011/01/05 13:05:10 tom Exp $
+#
+$VbiCaptureTime = 1271533996;
+$PgCnt{0x305} = 1;
+$PgSub{0x305} = 2;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0001<<12)} =
+[
+  "        305\x07   SAT.1  \x0717.04.10\x0321:52:24",
+  "\x17   #7!e`\%     \x06\x1D\x0470\% sparen bei       \x1C",
+  "\x17    \% \"&      \x06\x1D\x04Zahnersatz...... 689 \x1C",
+  "\x01\x1D\x07  MORGEN    \x16####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0405:05 Len~en & Partner: Die          ",
+  " \x1D\x04      verruchte Nachbarin       >372 ",
+  " \x1D\x0105:35 Das Making of: Cop Out -       ",
+  " \x1D\x01      Geladen und entsichert &       ",
+  " \x1D\x01      weitere Neustarts              ",
+  " \x1D\x0405:55 Kommissar Rex: Vollgas    >348 ",
+  " \x1D\x0107:00 Kommissar Rex: Baby in         ",
+  " \x1D\x01      Gefahr                    >348 ",
+  " \x1D\x0408:00 WECK UP: Thema: Tierisch       ",
+  " \x1D\x04      talentiert                >332 ",
+  " \x1D\x0109:05 Genial daneben - Die Co-       ",
+  " \x1D\x01      medy Arena                >387 ",
+  " \x1D\x0410:00 CLEVER - Die Show, die         ",
+  " \x1D\x04      Wissen schafft            >362 ",
+  " \x1D\x0111:00 Schillerstra~e: Die Ein-       ",
+  " \x1D\x01      richtungsprofis           >380 ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x04\x1D\x03Traumpartner per SMS! Mit Foto!  840 ",
+];
+$PgCnt{0x380} = 2;
+$PgSub{0x380} = 2;
+$PgLang{0x380} = 1;
+$Pkg{0x380|(0x0001<<12)} =
+[
+  "        380\x07   SAT.1  \x0717.04.10\x0321:52:56",
+  "\x17   #7!e`\%   \x07\x1D\x01                   1/1  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Sonntag 18.04.   \x07\x1D ",
+  "\x01\x1D\x07COMEDY     \x1D\x03\x1D\x04  11:00-12:00      \x07\x1D ",
+  " \x1D                                      ",
+  " \x1D\x01Schillerstra~e                       ",
+  " \x1D\x04Die Einrichtungsprofis               ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Nach einer anstrengenden Umzugswoche ",
+  " \x1D\x04ist J}rgen mit den Nerven ziemlich   ",
+  " \x1D\x04am Ende. Sein neues Zuhause ist fast ",
+  " \x1D\x04fertig - aber auch nur fast. Das w{- ",
+  " \x1D\x04re alles halb so wild, w}rde er heu- ",
+  " \x1D\x04te nicht noch Besuch von einer Frau  ",
+  " \x1D\x04erwarten, die er sehr gern n{her     ",
+  " \x1D\x04kennen lernen w}rde. Und f}r diese   ",
+  " \x1D\x04Frau muss die neue Wohnung unbedingt ",
+  " \x1D\x04perfekt sein.                        ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x04\x1D\x03Traumpartner per SMS! Mit Foto!  840 ",
+];
+$PgCnt{0x380} = 1;
+$PgSub{0x380} = 2;
+$PgLang{0x380} = 1;
+$Pkg{0x380|(0x0002<<12)} =
+[
+  "        380\x07   SAT.1  \x0717.04.10\x0321:52:26",
+  "\x17   #7!e`\%   \x07\x1D\x01                   1/1  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Sonntag 18.04.   \x07\x1D ",
+  "\x01\x1D\x07COMEDY     \x1D\x03\x1D\x04  11:00-12:00      \x07\x1D ",
+  " \x1D                                      ",
+  " \x1D\x01Schillerstra~e                       ",
+  " \x1D\x04Die Einrichtungsprofis               ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Nach einer anstrengenden Umzugswoche ",
+  " \x1D\x04ist J}rgen mit den Nerven ziemlich   ",
+  " \x1D\x04am Ende. Sein neues Zuhause ist fast ",
+  " \x1D\x04fertig - aber auch nur fast. Das w{- ",
+  " \x1D\x04re alles halb so wild, w}rde er heu- ",
+  " \x1D\x04te nicht noch Besuch von einer Frau  ",
+  " \x1D\x04erwarten, die er sehr gern n{her     ",
+  " \x1D\x04kennen lernen w}rde. Und f}r diese   ",
+  " \x1D\x04Frau muss die neue Wohnung unbedingt ",
+  " \x1D\x04perfekt sein.                        ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x03\x1D\x04Ihr t{gliches Experten-Horoskop\x01 600 ",
+];

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="RTL II">
+	<display-name>RTL II</display-name>
+</channel>
+
+<programme start="20100410040500 +0000" stop="20100410050000 +0000" channel="RTL II">
+	<title>MythBusters</title>
+	<sub-title>MythBusters Die Wissensjäger</sub-title>
+</programme>
+
+<programme start="20100410050000 +0000" stop="20100410065000 +0000" channel="RTL II">
+	<title>X-Factor: Das Unfassbare</title>
+</programme>
+
+<programme start="20100410065000 +0000" stop="20100410085000 +0000" channel="RTL II">
+	<title>Lionheart</title>
+	<desc>(teletext 351)</desc>
+</programme>
+
+<programme start="20100410085000 +0000" stop="20100410103500 +0000" channel="RTL II">
+	<title>Benji - Sein größtes</title>
+	<sub-title>Benji - Sein größtes Abenteuer</sub-title>
+	<desc>(teletext 351)</desc>
+</programme>
+
+<programme start="20100410103500 +0000" stop="20100410124000 +0000" channel="RTL II">
+	<title>Splash - Jungfrau am Haken</title>
+	<!-- TTX 352 -->
+	<desc>Splash: Jungfrau am Haken Kult-Komödie, USA 1984
+Die Meerjungfrau Madison rettete Allen Bauer einst als Kind das Leben. Inzwischen ist er erwachsen und hat das Erlebnis längst vergessen. Als er erneut ins Wasser fällt, taucht die geheimnisvolle Meeresbewohnerin wieder auf und bewahrt Allen erneut vor dem Ertrinken.
+Sie folgt ihm nach New York, wo sie erst einmal für Aufregung sorgt ...
+Regie: Ron Howard.
+Madison: Daryl Hannah, Allen Bauer: Tom Hanks, Freddie Bauer: John Candy, Walter Kornbluth: Eugene Levy, Mrs. Stimler: Dody Goodman, Dr. Ross: Richard B. Shull.
+Kinomärchen, das mit Romantik und Komik vergnüglich unterhält. Durchbruch für Tom Hanks!</desc>
+</programme>
+
+<programme start="20100410124000 +0000" stop="20100410142000 +0000" channel="RTL II">
+	<title>American Pie 4</title>
+	<sub-title>American Pie 4 Die nächste Generation</sub-title>
+	<desc>(teletext 353)</desc>
+</programme>
+
+<programme start="20100410142000 +0000" stop="20100410151000 +0000" channel="RTL II">
+	<title>Smallville</title>
+	<desc>(teletext 324)</desc>
+</programme>
+
+<programme start="20100410151000 +0000" stop="20100410170000 +0000" channel="RTL II">
+	<title>Stargate</title>
+	<desc>(teletext 322)</desc>
+</programme>
+
+<programme start="20100410170000 +0000" channel="RTL II">
+	<title>Big Brother</title>
+	<desc>(teletext 630)</desc>
+</programme>
+</tv>

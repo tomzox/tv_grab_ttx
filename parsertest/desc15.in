@@ -1,0 +1,133 @@
+#!/usr/bin/perl -w
+#
+# Description page has feature attribute between first and second line of the
+# title. These should be removed from the title and sub-title. TODO? Would be
+# nicer to also remove from description (although generally keeping a
+# clear-text repetition is OK)
+#
+# Also note the unusual feature flag combination "HD/s/w" and a space after the
+# color switch.
+#
+# $Id: desc15.in,v 1.1 2011/01/05 13:05:10 tom Exp $
+#
+$VbiCaptureTime = 1272478721;
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x07ARDtext\x07Mi 28.04.10\x0720:18:35",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mi 28.04.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  19.50  Das Wetter im Ersten          ",
+  "\x07\x06 19.55  B|rse im Ersten .......... 720",
+  "\x07  20.00  Tagesschau\x03UT\x07............ 310",
+  "\x03! 20.15  Die Auflehnung HD/UT ..... 324",
+  "\x07\x03        Spielfilm, D 2009             ",
+  "\x07\x03        FilmMittwoch im Ersten        ",
+  "\x03!\x0721.45  Hart aber fair\x03UT\x07........ 326",
+  "\x07         Moderation: Frank Plasberg    ",
+  "\x07 \x0623.00  Tagesthemen .............. 311",
+  "\x07  23.28  Das Wetter im Ersten          ",
+  "\x03!\x0623.30  Geboren im KZ ............ 328",
+  "\x07        \x06Film von Eva Gruberova        ",
+  "\x07        \x06und Martina Gawatz            ",
+  "\x07        \x06bis 00.15 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Nacht >\x06304",
+];
+$PgCnt{0x304} = 1;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "        304\x07ARDtext\x07Mi 28.04.10\x0720:18:35",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mi 28.04.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x05290410                                 ",
+  "\x07  00.15  Nachtmagazin ............. 313",
+  "\x07 \x0600.35  Der Mann mit dem\x03HD\x06...... 329",
+  "\x07        \x06goldenen Arm (USA, 1955)      ",
+  "\x07  02.30  Tagesschau                    ",
+  "\x07 \x0602.35  Sturm der Liebe (1061)        ",
+  "\x07  03.25  Geboren im KZ                 ",
+  "\x07 \x0604.10  Tagesschau                    ",
+  "\x07  04.15  Hart aber fair\x03UT             ",
+  "\x07         bis 05.30 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Donnerstag >\x06305",
+];
+$PgCnt{0x329} = 1;
+$PgSub{0x329} = 0;
+$PgLang{0x329} = 1;
+$Pkg{0x329|(0x0000<<12)} =
+[
+  "        329\x07ARDtext\x07Mi 28.04.10\x0720:18:36",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mi 28.04.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0700.35 - 02.30 Uhr                      ",
+  "\x06Der Mann mit dem              \x07\x03 HD/s/w",
+  "\x06goldenen Arm (USA, 1955)               ",
+  "\x07                                       ",
+  "\x07Nach dem Verb}~en einer Haftstrafe     ",
+  "\x07kehrt Profi-Kartenspieler Frankie in   ",
+  "\x07sein Viertel zur}ck. Der ehemalige     ",
+  "\x07Heroinabh{ngige ist nun clean und will ",
+  "\x07es bleiben. Doch es dauert nicht lange,",
+  "\x07bis er unter dem Einfluss alter Kumpa- ",
+  "\x07ne r}ckf{llig wird. Immer tiefer ger{t ",
+  "\x07er in einen Strudel aus Drogensucht,   ",
+  "\x07Gl}cksspiel und Kriminalit{t ...       ",
+  "\x07                                       ",
+  "\x07Der Film geh|rt zu den wegweisenden    ",
+  "\x07Klassikern des US-Kinos der 1950er Jah-",
+  "\x07re. Sinatra lieferte hier die wom|glich",
+  "\x07beste Leistung seiner Karriere.        ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Darsteller >\x06330",
+];
+$PgCnt{0x330} = 1;
+$PgSub{0x330} = 0;
+$PgLang{0x330} = 1;
+$Pkg{0x330|(0x0000<<12)} =
+[
+  "        330\x07ARDtext\x07Mi 28.04.10\x0720:18:36",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mi 28.04.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0700.35 - 02.30 Uhr                      ",
+  "\x06Der Mann mit dem              \x07\x03 HD/s/w",
+  "\x06goldenen Arm (USA, 1955)               ",
+  "\x07                                       ",
+  "\x07Darsteller:                            ",
+  "\x07Frankie ............. Frank Sinatra    ",
+  "\x07Zosh ................ Eleanor Parker   ",
+  "\x07Molly ............... Kim Novak        ",
+  "\x07Sparrow ............. Arnold Stang     ",
+  "\x07Louie ............... Darren McGavin   ",
+  "\x07Schwiefka ........... Robert Strauss   ",
+  "\x07                                       ",
+  "\x07Regie: Otto Preminger                  ",
+  "\x07                                       ",
+  "\x07Dies war der erste Film, der mit einem ",
+  "\x07reinen Jazz-Score untermalt war und der",
+  "\x07Drogensucht und Entzug mit einem bis   ",
+  "\x07dahin ungekannten Realismus zeigte.    ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<      In aller Freundschaft >\x06332",
+];

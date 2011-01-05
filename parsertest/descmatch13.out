@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="SAT.1">
+	<display-name>SAT.1</display-name>
+</channel>
+
+<programme start="20100418030500 +0000" stop="20100418033500 +0000" channel="SAT.1">
+	<title>Lenßen &amp; Partner: Die</title>
+	<sub-title>Lenßen &amp; Partner: Die verruchte Nachbarin</sub-title>
+	<desc>(teletext 372)</desc>
+</programme>
+
+<programme start="20100418033500 +0000" stop="20100418035500 +0000" channel="SAT.1">
+	<title>Das Making of: Cop Out - Geladen und entsichert &amp; weitere Neustarts</title>
+</programme>
+
+<programme start="20100418035500 +0000" stop="20100418050000 +0000" channel="SAT.1">
+	<title>Kommissar Rex: Vollgas</title>
+	<desc>(teletext 348)</desc>
+</programme>
+
+<programme start="20100418050000 +0000" stop="20100418060000 +0000" channel="SAT.1">
+	<title>Kommissar Rex: Baby in</title>
+	<sub-title>Kommissar Rex: Baby in Gefahr</sub-title>
+	<desc>(teletext 348)</desc>
+</programme>
+
+<programme start="20100418060000 +0000" stop="20100418070500 +0000" channel="SAT.1">
+	<title>WECK UP: Thema: Tierisch</title>
+	<sub-title>WECK UP: Thema: Tierisch talentiert</sub-title>
+	<desc>(teletext 332)</desc>
+</programme>
+
+<programme start="20100418070500 +0000" stop="20100418080000 +0000" channel="SAT.1">
+	<title>Genial daneben - Die Comedy Arena</title>
+	<desc>(teletext 387)</desc>
+</programme>
+
+<programme start="20100418080000 +0000" stop="20100418090000 +0000" channel="SAT.1">
+	<title>CLEVER - Die Show, die</title>
+	<sub-title>CLEVER - Die Show, die Wissen schafft</sub-title>
+	<desc>(teletext 362)</desc>
+</programme>
+
+<programme start="20100418090000 +0000" channel="SAT.1">
+	<title>Schillerstraße: Die Einrichtungsprofis</title>
+	<!-- TTX 380 -->
+	<desc>Schillerstraße Die Einrichtungsprofis
+Nach einer anstrengenden Umzugswoche ist Jürgen mit den Nerven ziemlich am Ende. Sein neues Zuhause ist fast fertig - aber auch nur fast. Das wäre alles halb so wild, würde er heute nicht noch Besuch von einer Frau erwarten, die er sehr gern näher kennen lernen würde. Und für diese Frau muss die neue Wohnung unbedingt perfekt sein.</desc>
+</programme>
+</tv>

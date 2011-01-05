@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_feat.h,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_feat.h,v 1.2 2011/01/05 12:58:14 tom Exp $
  */
 #if !defined (__TTX_FEAT_H)
 #define __TTX_FEAT_H
@@ -24,10 +24,9 @@
 class TV_FEAT
 {
 public:
-   TV_FEAT();
-   void set_tip(bool v) { if (v) m_is_tip = true; };
+   TV_FEAT() : m_flags(0) {}
+   void set_tip(bool v) { if (v) m_flags |= (1 << TV_FEAT_TIP); };
    void ParseTrailingFeat(string& title);
-   static void RemoveTrailingFeat(string& title);
 
 private:
    enum TV_FEAT_TYPE
@@ -35,7 +34,6 @@ private:
       TV_FEAT_SUBTITLES,
       TV_FEAT_2CHAN,
       TV_FEAT_ASPECT_16_9,
-      TV_FEAT_HDTV,
       TV_FEAT_BW,
       TV_FEAT_HD,
       TV_FEAT_DOLBY,
@@ -54,17 +52,20 @@ private:
 
    void MapTrailingFeat(const char * feat, int len, const string& title);
 
+private:
+   uint m_flags;
+
 public:
-   bool         m_has_subtitles;
-   bool         m_is_2chan;
-   bool         m_is_aspect_16_9;
-   bool         m_is_video_hd;
-   bool         m_is_video_bw;
-   bool         m_is_dolby;
-   bool         m_is_mono;
-   bool         m_is_omu;
-   bool         m_is_stereo;
-   bool         m_is_tip;
+   bool has_subtitles()  const { return ((m_flags & (1 << TV_FEAT_SUBTITLES)) != 0); }
+   bool is_2chan()       const { return ((m_flags & (1 << TV_FEAT_2CHAN)) != 0); }
+   bool is_aspect_16_9() const { return ((m_flags & (1 << TV_FEAT_ASPECT_16_9)) != 0); }
+   bool is_video_bw()    const { return ((m_flags & (1 << TV_FEAT_BW)) != 0); }
+   bool is_video_hd()    const { return ((m_flags & (1 << TV_FEAT_HD)) != 0); }
+   bool is_dolby()       const { return ((m_flags & (1 << TV_FEAT_DOLBY)) != 0); }
+   bool is_mono()        const { return ((m_flags & (1 << TV_FEAT_MONO)) != 0); }
+   bool is_omu()         const { return ((m_flags & (1 << TV_FEAT_OMU)) != 0); }
+   bool is_stereo()      const { return ((m_flags & (1 << TV_FEAT_STEREO)) != 0); }
+   bool is_tip()         const { return ((m_flags & (1 << TV_FEAT_TIP)) != 0); }
 };
 
 #endif // __TTX_FEAT_H

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="Tele 5">
+	<display-name>Tele 5</display-name>
+</channel>
+
+<programme start="20100326171000 +0000" stop="20100326180600 +0000" channel="Tele 5">
+	<title>Andromeda</title>
+	<sub-title>Andromeda Erzengel Gabriel</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20100326180600 +0000" stop="20100326190200 +0000" channel="Tele 5">
+	<title>Stargate</title>
+	<sub-title>Stargate Kiannas Symbiont</sub-title>
+	<desc>(teletext 356)</desc>
+</programme>
+
+<programme start="20100326190200 +0000" stop="20100326191500 +0000" channel="Tele 5">
+	<title>Making-of</title>
+	<sub-title>Making-of Sonstige</sub-title>
+</programme>
+
+<programme start="20100326191500 +0000" stop="20100326211500 +0000" channel="Tele 5">
+	<title>Invincible - Krieger des Lichts</title>
+	<sub-title>Invincible - Krieger des Lichts Science-Fiction USA/CDN 2001</sub-title>
+	<!-- TTX 312 -->
+	<desc>Invincible - Krieger des Lichts Fr 20:15-22:15 auf Sendung Science-Fiction USA/CDN 2001
+Der unsterbliche Os will die Erde vor dem Angriff finsterer Mächte beschützen. Um die "Schattenmänner" besiegen zu können, rekrutiert er vier normale Bürger. Jeder von ihnen hat das Zeug zum Superkrieger. Doch zuerst muss Os seine Kämpfer trainieren und ihnen zeigen, was sie können. Dazu hat er gerade mal sechs Tage Zeit.
+Aufwändig produzierter, actionreicher Fantasyfilm.
+(Invincible) Fr 20:15-22:15 auf Sendung Science-Fiction USA/CDN 2001
+Regie: Jefery Levy, Buch: Carey Hayes, Musik: John McCarthy Rupert Parkes Photek.
+Os: Billy Zane, Michael Fu: Byron Mann, Serena Blue: Stacy Oversier, Ray Jackson: Tory Kittles, Keith Grady: Dominic Purcell, Slate: David Field</desc>
+</programme>
+
+<programme start="20100326211500 +0000" stop="20100326225000 +0000" channel="Tele 5">
+	<title>Im Auge des Taifun</title>
+	<sub-title>Im Auge des Taifun Eastern HK 1981</sub-title>
+	<desc>(teletext 313)</desc>
+</programme>
+
+<programme start="20100326225000 +0000" stop="20100327005500 +0000" channel="Tele 5">
+	<title>Im Reich der Sinne</title>
+	<sub-title>Im Reich der Sinne Erotikdrama J/F 1976</sub-title>
+	<desc>(teletext 314)</desc>
+</programme>
+
+<programme start="20100327005500 +0000" stop="20100327031000 +0000" channel="Tele 5">
+	<title>Battlefield Earth - Kampf um die Erde</title>
+	<sub-title>Battlefield Earth - Kampf um die Erde Science Fiction USA 2000</sub-title>
+	<!-- TTX 315 -->
+	<desc>Battlefield Earth - Kampf um die Erde Sa 01:55-04:10 Science Fiction USA 2000
+Im Jahr 3000 wird die Erde von bösen Außerirdischen, den Psychlos, regiert. Deren Sicherheitschef Terl plant eine Plünderung des Planeten im großen Stil. Doch Johnny, einer von Terls menschlichen Sklaven, beginnt eine Widerstandsgruppe aufzubauen.
+Tolles Actionspektakel. Kultverdächtig: John Travolta als gruseliger Alien.
+(Battlefield Earth) Sa 01:55-04:10 Science Fiction USA 2000
+Regie: Roger Christian, Buch: Nach Ron L. Hubbard, Musik: Elia Cmiral.
+Terl: John Travolta, Jonnie Goodboy: Barry Pepper, Ker: Forest Whitaker, Carlo: Kim Coates, Chrissy: Sabine Karsenti, Robert the Fox: Richard Tyson.</desc>
+</programme>
+
+<programme start="20100327031000 +0000" stop="20100327043100 +0000" channel="Tele 5">
+	<title>Im Auge des Taifun</title>
+	<sub-title>Im Auge des Taifun Eastern HK 1981</sub-title>
+	<desc>(teletext 313)</desc>
+</programme>
+
+<programme start="20100327043100 +0000" stop="20100327050100 +0000" channel="Tele 5">
+	<title>Making Of</title>
+	<sub-title>Making Of Sonstige</sub-title>
+	<desc>(teletext 339)</desc>
+</programme>
+
+<programme start="20100327050100 +0000" stop="20100327054000 +0000" channel="Tele 5">
+	<title>Superman - Die Abenteuer</title>
+	<sub-title>Superman - Die Abenteuer von Lois &amp; Clark Noah Nummer zwei</sub-title>
+	<desc>(teletext 357)</desc>
+</programme>
+
+<programme start="20100327054000 +0000" stop="20100327055500 +0000" channel="Tele 5">
+	<title>Making-of</title>
+	<sub-title>Making-of Sonstige</sub-title>
+</programme>
+
+<programme start="20100327055500 +0000" stop="20100327090100 +0000" channel="Tele 5">
+	<title>One Piece</title>
+	<sub-title>One Piece Folge 330 - 336</sub-title>
+	<desc>(teletext 353)</desc>
+</programme>
+
+<programme start="20100327090100 +0000" channel="Tele 5">
+	<title>Homeshopping</title>
+	<sub-title>Homeshopping Sonstige</sub-title>
+</programme>
+</tv>

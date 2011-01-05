@@ -1,0 +1,70 @@
+#!/usr/bin/perl -w
+#
+# A description page follows the overview pages. The page carries
+# a date and has a time at the start of a line, in the same column
+# as the times on overview pages.  Test that the time is not
+# erronously appended to the overview.
+#
+# $Id: ovlist6b.in,v 1.1 2011/01/04 10:41:24 tom Exp $
+#
+$VbiCaptureTime = 1271441751;
+$PgCnt{0x306} = 1;
+$PgSub{0x306} = 3;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0003<<12)} =
+[
+  "        306\x07kabel eins\x0716.04.10\x0720:15:47",
+  "\x1354,4=4<45 <41<0<\$                      ",
+  "\x1374w5u5w1u w1555s5 \x03\x1D\x04Sa 11-17    \x1D\x031/1 ",
+  "\x13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " 11:27 The Biggest Loser - Abspe-       ",
+  "       cken im Doppelpack\x03          >324",
+  " 13:37 Das Fast Food-Duell - Spit-      ",
+  "       zenkoch gegen Lieferservice\x03 >381",
+  " 14:16 Mein Revier - Ordnungsh}ter      ",
+  "       r{umen auf\x03                  >323",
+  " 16:20 kabel eins news                  ",
+  " 16:27 Abenteuer Auto                   ",
+  "\x03      Thema u.a.: Fahrbericht          ",
+  "\x03      Porsche Cayenne              >321",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "\x03\x1D\x04305<06-11 Uhr          17-24 Uhr>307 ",
+  "\x01\x1D\x07\x0DSchnell und gesund Abnehmen >>> 701 ",
+  "                                        ",
+];
+$PgCnt{0x381} = 1;
+$PgSub{0x381} = 1;
+$PgLang{0x381} = 1;
+$Pkg{0x381|(0x0001<<12)} =
+[
+  "        381\x07kabel eins\x0716.04.10\x0720:15:49",
+  "\x1354,4=4<45 <41<0<\$                      ",
+  "\x1374w5u5w1u w1555s5\x03\x1D\x04KOCH-REALITY \x1D\x031/1 ",
+  "\x13,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x03Das Fast Food-Duell - Spitzenkoch gegen",
+  "\x03Lieferservice                          ",
+  "\x03Sa 17.04. 13:37-14:16                  ",
+  "                                        ",
+  " Drei K|che wollen es beweisen: Sie sind",
+  " schneller, g}nstiger und vor allem bes-",
+  " ser als jeder Lieferservice! Die Ster- ",
+  " nek|che Frank Rosin und Bj|rn Freitag  ",
+  " sowie Catering-Star Ole Plogstedt for- ",
+  " dern werkt{glich Deutschlands Bring-   ",
+  " dienste heraus. Montags bis freitags um",
+  " 18.45 Uhr schwingt das Starkoch-Trio im",
+  " Wechsel die L|ffel, l{sst die Schneebe-",
+  " sen tanzen und die Messer sausen, um   ",
+  " Fast Food-Junkies zu }berzeugen, dass  ",
+  " selber kochen mehr Spa~ und Genuss     ",
+  " bringt als jeder Bringdienst.          ",
+  "\x03\x1D\x04350<]bersicht Serie      weiter>388  ",
+  "\x02\x1D\x07\x0DJetzt verreisen!\x04Super Angebote 750 ",
+  "                                        ",
+];

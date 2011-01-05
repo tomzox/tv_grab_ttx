@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ZDF">
+	<display-name>ZDF</display-name>
+</channel>
+
+<programme start="20060501150000 +0000" stop="20060501151000 +0000" pdc-start="20060501170000 +0200" channel="ZDF">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060501151000 +0000" stop="20060501161000 +0000" pdc-start="20060501171000 +0200" channel="ZDF">
+	<title>Evelyn Hamanns Geschichten</title>
+	<sub-title>Evelyn Hamanns Geschichten aus dem Leben</sub-title>
+	<desc>(teletext 317)</desc>
+</programme>
+
+<programme start="20060501161000 +0000" stop="20060501170000 +0000" pdc-start="20060501181000 +0200" channel="ZDF">
+	<title>SOKO 5113: Piraten</title>
+	<!-- TTX 318 -->
+	<desc>SOKO 5113 Piraten Hörfilm
+Der SOKO-Beamte Theo Renner wird Opfer eines "Carjackings": Zwei Jugendliche lauern ihm auf und zwingen ihn zu einer rasanten Autofahrt durch München. Als die beiden merken, dass sie einen Polizisten entführt haben, macht sich Panik im Wagen breit.
+Theo baut absichtlich einen Unfall, bei dem allerdings ein Radfahrer verletzt wird - Theo wird beurlaubt. Als er erfährt, dass der SOKO wegen Befangenheit der Fall entzogen wird, ist der junge Beamte fest entschlossen, die Ermittlungen auf eigene Faust fortzusetzen.</desc>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+</programme>
+
+<programme start="20060501170000 +0000" stop="20060501171400 +0000" pdc-start="20060501190000 +0200" channel="ZDF">
+	<title>heute</title>
+	<desc>(teletext 310)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060501171400 +0000" stop="20060501171500 +0000" pdc-start="20060501191400 +0200" channel="ZDF">
+	<title>Wetter</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20060501171500 +0000" stop="20060501173000 +0000" pdc-start="20060501191500 +0200" channel="ZDF">
+	<title>Licht aus in Erichs Lampenladen</title>
+	<!-- TTX 319 -->
+	<desc>Licht aus in Erichs Lampenladen 16:9
+Der Palast der Republik, im Volksmund wegen der vielen Leuchter auch "Erichs Lampenladen" genannt, wird abgerissen. Das Haus steht tief im Grundwasser. Heftige Veränderungen im Boden könnten Schwingungen auslösen und benachbarte Gebäude, den Berliner Dom etwa, gefährden. Eine große Herausforderung für die Bauarbeiter und Ingenieure.</desc>
+	<video>
+		<aspect>16:9</aspect>
+	</video>
+</programme>
+
+<programme start="20060501173000 +0000" stop="20060501181500 +0000" pdc-start="20060501193000 +0200" channel="ZDF">
+	<title>ZDF Expedition</title>
+	<sub-title>ZDF Expedition Die Jagd nach Tutenchamun (2/2)</sub-title>
+	<!-- TTX 320 -->
+	<desc>ZDF Expedition Die Jagd nach Tutenchamun (2/2) 16:9 UT
+1922 im Tal der Könige bei Luxor. Howard Carter (Stuart Graham) wähnt sich am Ziel: Nach jahrelangen Ausgrabungen und Fehlschlägen stößt der britische Archäologe endlich auf die Grabstätte des Pharao Tutenchamun. Die Sensation ist perfekt. Doch mit der Entdeckung beginnen erst die Probleme.
+Im zweiten Teil des Dokudramas entwickelt sich der Fund im Tal der Könige zum Machtkampf zwischen zwei ehrgeizigen Männern. Dann erkrankt Lord Carnarvon an einer mysteriösen Infektion.</desc>
+	<video>
+		<aspect>16:9</aspect>
+	</video>
+</programme>
+
+<programme start="20060501181500 +0000" pdc-start="20060501201400 +0200" channel="ZDF">
+	<title>Dornröschens leiser Tod</title>
+	<sub-title>Dornröschens leiser Tod Psychokrimi D/2003</sub-title>
+	<!-- TTX 321 -->
+	<desc>Dornröschens leiser Tod Psychokrimi D/2003 16:9 UT
+Im beschaulichen Städtchen Königsrode wird die Leiche eines Kindes gefunden. Es stellt sich heraus, dass es sich um die vor fünf Jahren verschwundene Lilly handelt. Wieder gerät ihre Mutter Eva (Nadja Auermann) unter Verdacht und der Albtraum von Verdächtigung und Befragung scheint von vorne loszugehen.
+Bald wird Eva klar, dass im Dorf mehr über Lillys Tod bekannt ist, als man zugeben will. Eva beschließt, mit Hilfe der jungen Polizistin Claudia (Katharina Wackernagel) auf eigene Faust zu ermitteln.</desc>
+	<video>
+		<aspect>16:9</aspect>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+</tv>

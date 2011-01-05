@@ -1,0 +1,128 @@
+#!/usr/bin/perl -w
+#
+# Title on description page uses ": " instead of " - " as separator
+# in title text (at 12:35 on page 302 vs. page 352)
+#
+# $Id: descmatch12.in,v 1.1 2011/01/05 13:05:10 tom Exp $
+#
+$VbiCaptureTime = 1270918322;
+$PgCnt{0x301} = 2;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301\x03RTL II   \x07Sa 10 Apr\x0318:51:31",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Dein aktuelles ",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00Horoskop!..600 ",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x01",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0106:05\x00MythBusters                    ",
+  "\x07\x1D\x01     \x00Die Wissensj{ger               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0107:00\x00X-Factor: Das Unfassbare       ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0108:50\x00Lionheart..................351 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0110:50\x00Benji - Sein gr|~tes           ",
+  "\x07\x1D\x01     \x00Abenteuer..................351 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D                                      ",
+  "\x04\x1D\x07   Passen wir zusammen?   Seite 698  ",
+  "\x01\x1D\x03\x0D666<   Tausche Foto mit ihr!   >666\x07",
+  "                                        ",
+];
+$PgCnt{0x302} = 2;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302\x03RTL II   \x07Sa 10 Apr\x0318:51:31",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Chat und Flirt\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00 >>> 666 <<<  \x18",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
+  "\x07\x1D\x01                                     ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0112:35\x00Splash - Jungfrau am Haken.352 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0114:40\x00American Pie 4                 ",
+  "\x07\x1D\x01     \x00Die n{chste Generation.....353 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0116:20\x00Smallville.................324 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0117:10\x00Stargate...................322 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x0119:00\x00Big Brother................630 ",
+  "\x07\x1D\x01     \x00                               ",
+  "\x07\x1D\x01                                     ",
+  "\x03\x1D\x01      Fragen an das Universum! >698  ",
+  "\x01\x1D\x07\x0DAstro-Beratung & Karten legen > 600 ",
+  "                                        ",
+];
+$PgCnt{0x352} = 1;
+$PgSub{0x352} = 2;
+$PgLang{0x352} = 1;
+$Pkg{0x352|(0x0001<<12)} =
+[
+  "        352\x03RTL II   \x07Sa 10 Apr\x0318:50:56",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00Esoterik      \x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00LIVE !  >> 600\x18",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x001/2\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Splash: Jungfrau am Haken            ",
+  "\x07\x1D\x00Kult-Kom|die, USA 1984               ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Die Meerjungfrau Madison rettete Al- ",
+  "\x07\x1D\x00len Bauer einst als Kind das Leben.  ",
+  "\x07\x1D\x00Inzwischen ist er erwachsen und hat  ",
+  "\x07\x1D\x00das Erlebnis l{ngst vergessen. Als   ",
+  "\x07\x1D\x00er erneut ins Wasser f{llt, taucht   ",
+  "\x07\x1D\x00die geheimnisvolle Meeresbewohnerin  ",
+  "\x07\x1D\x00wieder auf und bewahrt Allen erneut  ",
+  "\x07\x1D\x00vor dem Ertrinken.                   ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Sie folgt ihm nach New York, wo sie  ",
+  "\x07\x1D\x00erst einmal f}r Aufregung sorgt ...  ",
+  "\x07\x1D\x00                                     ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Samstag, 10.04.10; 12:35 Uhr \x01\x1D\x07\x07   ",
+  "\x01\x1D\x07\x0DProfessionelle Astroberatung!  >600 ",
+  "                                        ",
+];
+$PgCnt{0x352} = 1;
+$PgSub{0x352} = 2;
+$PgLang{0x352} = 1;
+$Pkg{0x352|(0x0002<<12)} =
+[
+  "        352\x03RTL II   \x07Sa 10 Apr\x0318:51:33",
+  "\x17||l|4,||,h|4  h4h4   \x07\x1D\x00CHATS, DATES &\x18",
+  "\x17//+/\$ // */-, *\%*\%   \x07\x1D\x00FLIRTS!....666\x18",
+  "\x01\x1D\x07SPIELFILM-HIGHLIGHT             \x002/2\x07",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x01Splash: Jungfrau am Haken            ",
+  "\x07\x1D\x00Kult-Kom|die, USA 1984               ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Regie.............. Ron Howard       ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Madison............ Daryl Hannah     ",
+  "\x07\x1D\x00Allen Bauer........ Tom Hanks        ",
+  "\x07\x1D\x00Freddie Bauer...... John Candy       ",
+  "\x07\x1D\x00Walter Kornbluth... Eugene Levy      ",
+  "\x07\x1D\x00Mrs. Stimler....... Dody Goodman     ",
+  "\x07\x1D\x00Dr. Ross........... Richard B. Shull ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00Kinom{rchen, das mit Romantik und Ko-",
+  "\x07\x1D\x00mik vergn}glich unterh{lt. Durch-    ",
+  "\x07\x1D\x00bruch f}r Tom Hanks!                 ",
+  "\x17///////////////////////////////////////",
+  "\x01\x1D\x1C\x07Samstag, 10.04.10; 12:35 Uhr \x01\x1D\x07\x07   ",
+  "\x01\x1D\x07\x0DProfessionelle Astroberatung!  >600 ",
+  "                                        ",
+];

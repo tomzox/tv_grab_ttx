@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_feat.cc,v 1.2 2010/05/03 17:19:02 tom Exp $
+ * $Id: ttx_feat.cc,v 1.3 2011/01/05 12:58:14 tom Exp $
  */
 
 #include <stdio.h>
@@ -32,14 +32,6 @@ using namespace boost;
 
 #include "ttx_util.h"
 #include "ttx_feat.h"
-
-/* ------------------------------------------------------------------------------
- * This constructor sets all feature flags to "false", i.e. not present.
- */
-TV_FEAT::TV_FEAT()
-{
-   memset(this, 0, sizeof(*this));
-}
 
 /* ------------------------------------------------------------------------------
  * Parse feature indicators in the overview table
@@ -72,7 +64,6 @@ const TV_FEAT::TV_FEAT_STR TV_FEAT::FeatToFlagMap[] =
    { "hd", TV_FEAT_HD },
    { "breitbild", TV_FEAT_ASPECT_16_9 },
    { "16:9", TV_FEAT_ASPECT_16_9 },
-   { "hd", TV_FEAT_HDTV },
    { "°°", TV_FEAT_2CHAN }, // according to ARD page 395
    { "oo", TV_FEAT_STEREO },
    { "stereo", TV_FEAT_STEREO },
@@ -87,6 +78,7 @@ const TV_FEAT::TV_FEAT_STR TV_FEAT::FeatToFlagMap[] =
    { "stereo", TV_FEAT_STEREO },
    { "mono", TV_FEAT_MONO },
    { "tipp", TV_FEAT_TIP },
+   { "tipp!", TV_FEAT_TIP },
    // ORF
    //{ "°°", TV_FEAT_STEREO }, // conflicts with ARD
    { "°*", TV_FEAT_2CHAN },
@@ -102,7 +94,7 @@ void TV_FEAT::MapTrailingFeat(const char * feat, int len, const string& title)
    if ((len >= 2) && (strncasecmp(feat, "ut", 2) == 0)) // TV_FEAT_SUBTITLES
    {
       if (opt_debug) printf("FEAT \"%s\" -> on TITLE %s\n", feat, title.c_str());
-      m_has_subtitles = true;
+      m_flags |= 1 << TV_FEAT_SUBTITLES;
       return;
    }
 
@@ -110,20 +102,9 @@ void TV_FEAT::MapTrailingFeat(const char * feat, int len, const string& title)
    {
       if (strncasecmp(feat, FeatToFlagMap[idx].p_name, len) == 0)
       {
-         switch (FeatToFlagMap[idx].type)
-         {
-            case TV_FEAT_SUBTITLES:     m_has_subtitles = true; break;
-            case TV_FEAT_2CHAN:         m_is_2chan = true; break;
-            case TV_FEAT_ASPECT_16_9:   m_is_aspect_16_9 = true; break;
-            case TV_FEAT_HD:            m_is_video_hd = true; break;
-            case TV_FEAT_BW:            m_is_video_bw = true; break;
-            case TV_FEAT_DOLBY:         m_is_dolby = true; break;
-            case TV_FEAT_MONO:          m_is_mono = true; break;
-            case TV_FEAT_OMU:           m_is_omu = true; break;
-            case TV_FEAT_STEREO:        m_is_stereo = true; break;
-            case TV_FEAT_TIP:           m_is_tip = true; break;
-            default: assert(false); break;
-         }
+         assert(FeatToFlagMap[idx].type < TV_FEAT_COUNT);
+         m_flags |= (1 << FeatToFlagMap[idx].type);
+
          if (opt_debug) printf("FEAT \"%s\" -> on TITLE %s\n", feat, title.c_str());
          return;
       }
@@ -137,7 +118,7 @@ void TV_FEAT::MapTrailingFeat(const char * feat, int len, const string& title)
                      "s/?w|S/?W|tlw. s/w|oo|°°|°\\*|OmU|16:9|HD|[Bb]reitbild|" \
                      "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|" \
                      "DS|SS|DD|ZS|" \
-                     "Wh\\.?|Wdh\\.?|Whg\\.?|Tipp!?"
+                     "Wh\\.?|Wdh\\.?|Whg\\.?|Tipp!?|\\d{2,3} (MIN|Min|min)\\.?"
 
 void TV_FEAT::ParseTrailingFeat(string& title)
 {
@@ -151,7 +132,8 @@ void TV_FEAT::ParseTrailingFeat(string& title)
    // SWR: "(16:9/UT)", "UT 150", "UT auf 150"
    static const regex expr3("^(.*?)[ \\x00-\\x07\\x1D]"
                             "\\(((" FEAT_PAT_STR ")(( ?/ ?|, ?| )(" FEAT_PAT_STR "))*)\\)$");
-   static const regex expr4("^(.*?)(  +|[\\x00-\\x07\\x1D]+)((" FEAT_PAT_STR ")"
+   static const regex expr4("^(.*?)(  |[\\x00-\\x07\\x1D])[\\x00-\\x07\\x1D ]*"
+                            "((" FEAT_PAT_STR ")"
                             "((, ?|/ ?| |[,/]?[\\x00-\\x07\\x1D]+)(" FEAT_PAT_STR "))*)$");
 
    if (regex_search(title, whats, expr3)) {
@@ -194,31 +176,11 @@ void TV_FEAT::ParseTrailingFeat(string& title)
       } 
    } //else { print "NONE orig_title\n"; }
 
-   // compress adjecent white-space & remove special chars
+   // compress adjacent white-space & replace special chars with blanks
    static const regex expr8("[\\x00-\\x1F\\x7F ]+");
    title = regex_replace(title, expr8, " ");
 
    // remove leading and trailing space
-   static const regex expr10("^ +");
-   if (regex_search(title, whats, expr10)) {
-      title.erase(0, whats[0].length());
-   }
-   static const regex expr11(" +$");
-   if (regex_search(title, whats, expr11)) {
-      title.erase(whats.position());
-   }
-}
-
-void TV_FEAT::RemoveTrailingFeat(string& title)
-{
-   static const regex expr3("\\(((" FEAT_PAT_STR ")(( ?/ ?|, ?| )(" FEAT_PAT_STR "))*)\\)$");
-   static const regex expr4("((" FEAT_PAT_STR ")"
-                            "((, ?|/ ?| |[,/]?[\\x00-\\x07\\x1D]+)(" FEAT_PAT_STR "))*)$");
-   smatch whats;
-
-   if (   regex_search(title, whats, expr3)
-       || regex_search(title, whats, expr4) ) {
-      title.erase(whats.position());
-   }
+   str_chomp(title);
 }
 

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ZDF">
+	<display-name>ZDF</display-name>
+</channel>
+
+<programme start="20100417090500 +0000" stop="20100417110000 +0000" pdc-start="20100417110500 +0200" channel="ZDF">
+	<title>Die Küchenschlacht</title>
+	<sub-title>Die Küchenschlacht Der Wochenrückblick</sub-title>
+	<desc>(teletext 320)</desc>
+</programme>
+
+<programme start="20100417110000 +0000" stop="20100417110500 +0000" pdc-start="20100417130000 +0200" channel="ZDF">
+	<title>heute</title>
+</programme>
+
+<programme start="20100417110500 +0000" stop="20100417120000 +0000" pdc-start="20100417130500 +0200" channel="ZDF">
+	<title>ZDFwochen-journal</title>
+	<desc>(teletext 321)</desc>
+</programme>
+
+<programme start="20100417120000 +0000" stop="20100417133000 +0000" pdc-start="20100417140000 +0200" channel="ZDF">
+	<title>Im Tal der wilden Rosen</title>
+	<sub-title>Im Tal der wilden Rosen Fluss der Liebe Liebesfilm D/2007</sub-title>
+	<desc>(teletext 322)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417133000 +0000" stop="20100417141500 +0000" pdc-start="20100417153000 +0200" channel="ZDF">
+	<title>Hochzeitsfieber!</title>
+	<sub-title>Hochzeitsfieber! Traummann im Doppelpack</sub-title>
+	<desc>(teletext 323)</desc>
+</programme>
+
+<programme start="20100417141500 +0000" stop="20100417150000 +0000" pdc-start="20100417161500 +0200" channel="ZDF">
+	<title>Lafer!Lichter!Lecker!</title>
+	<desc>(teletext 324)</desc>
+</programme>
+
+<programme start="20100417150000 +0000" stop="20100417150500 +0000" pdc-start="20100417170000 +0200" channel="ZDF">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417150500 +0000" stop="20100417154500 +0000" pdc-start="20100417170500 +0200" channel="ZDF">
+	<title>Länderspiegel</title>
+	<desc>(teletext 325)</desc>
+</programme>
+
+<programme start="20100417154500 +0000" stop="20100417160000 +0000" pdc-start="20100417174500 +0200" channel="ZDF">
+	<title>Menschen - das Magazin</title>
+	<sub-title>Menschen - das Magazin Stark und weiblich!</sub-title>
+	<desc>(teletext 326)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417160000 +0000" stop="20100417163000 +0000" pdc-start="20100417180000 +0200" channel="ZDF">
+	<title>hallo deutschland</title>
+	<desc>(teletext 365)</desc>
+</programme>
+
+<programme start="20100417163000 +0000" stop="20100417170000 +0000" pdc-start="20100417183000 +0200" channel="ZDF">
+	<title>Leute heute</title>
+	<desc>(teletext 366)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417170000 +0000" stop="20100417172000 +0000" pdc-start="20100417190000 +0200" channel="ZDF">
+	<title>heute</title>
+	<sub-title>heute Wetter</sub-title>
+	<desc>(teletext 310)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417172000 +0000" stop="20100417174000 +0000" pdc-start="20100417192100 +0200" channel="ZDF">
+	<title>ZDF spezial</title>
+	<sub-title>ZDF spezial Vulkanwolke: Europa bleibt am Boden</sub-title>
+	<desc>(teletext 327)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417174000 +0000" stop="20100417183000 +0000" pdc-start="20100417192500 +0200" channel="ZDF">
+	<title>Unser Charly</title>
+	<sub-title>Unser Charly Männerwirtschaft</sub-title>
+	<desc>(teletext 328)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+</programme>
+
+<programme start="20100417183000 +0000" stop="20100417195500 +0000" pdc-start="20100417201500 +0200" channel="ZDF">
+	<title>Das Duo</title>
+	<sub-title>Das Duo Bestien</sub-title>
+	<desc>(teletext 329)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417195500 +0000" stop="20100417201300 +0000" pdc-start="20100417214500 +0200" channel="ZDF">
+	<title>heute-journal</title>
+	<desc>(teletext 315)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417201300 +0000" stop="20100417201500 +0000" pdc-start="20100417215800 +0200" channel="ZDF">
+	<title>Wetter</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100417201500 +0000" stop="20100417213000 +0000" pdc-start="20100417220000 +0200" channel="ZDF">
+	<title>das aktuelle</title>
+	<sub-title>das aktuelle sportstudio</sub-title>
+	<desc>(teletext 330)</desc>
+</programme>
+
+<programme start="20100417213000 +0000" stop="20100417231500 +0000" pdc-start="20100417231500 +0200" channel="ZDF">
+	<title>Boxen live im Zweiten</title>
+	<desc>(teletext 331)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+</programme>
+
+<programme start="20100417231500 +0000" stop="20100417235000 +0000" pdc-start="20100418005900 +0200" channel="ZDF">
+	<title>heute-show</title>
+	<desc>(teletext 332)</desc>
+</programme>
+
+<programme start="20100417235000 +0000" stop="20100418011500 +0000" pdc-start="20100418010000 +0200" channel="ZDF">
+	<title>Die Geier warten schon</title>
+	<sub-title>Die Geier warten schon Western USA/1972</sub-title>
+	<desc>(teletext 334)</desc>
+</programme>
+
+<programme start="20100418011500 +0000" pdc-start="20100418022500 +0200" channel="ZDF">
+	<title>heute</title>
+	<desc>(teletext 111)</desc>
+</programme>
+
+<programme start="20100418011500 +0000" stop="20100418022000 +0000" pdc-start="20100418023000 +0200" channel="ZDF">
+	<title>Sherlock Holmes</title>
+	<sub-title>Sherlock Holmes Die Frau in Grün Detektivfilm USA/1945</sub-title>
+	<desc>(teletext 335)</desc>
+	<video>
+		<colour>no</colour>
+	</video>
+</programme>
+
+<programme start="20100418022000 +0000" stop="20100418022500 +0000" pdc-start="20100418033500 +0200" channel="ZDF">
+	<title>heute</title>
+	<desc>(teletext 111)</desc>
+</programme>
+
+<programme start="20100418022500 +0000" stop="20100418025000 +0000" pdc-start="20100418041000 +0200" channel="ZDF">
+	<title>ZDF.reportage</title>
+	<sub-title>ZDF.reportage So geht's nicht weiter</sub-title>
+	<desc>(teletext 336)</desc>
+</programme>
+
+<programme start="20100418025000 +0000" stop="20100418025500 +0000" pdc-start="20100418043500 +0200" channel="ZDF">
+	<title>citydreams</title>
+	<sub-title>citydreams München, Venedig, Amsterdam</sub-title>
+</programme>
+
+<programme start="20100418025500 +0000" pdc-start="20100418045500 +0200" channel="ZDF">
+	<title>Länderspiegel</title>
+	<desc>(teletext 337)</desc>
+</programme>
+</tv>

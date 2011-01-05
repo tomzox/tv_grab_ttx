@@ -1,0 +1,161 @@
+#!/usr/bin/perl -w
+#
+# Line break on "Swissair" cannot be improved, as it's in the same position
+# on overview page 303 and description page 326. But feature attributes on
+# description title and sub-title lines should be ignored in title comparison.
+#
+# $Id: desc13.in,v 1.1 2011/01/05 13:05:10 tom Exp $
+#
+$VbiCaptureTime = 1269898367;
+$PkgCni{0xDC1} = 254;
+$PkgCni{0x4901} = 10;
+$PgCnt{0x301} = 1;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "\x02\x15\x15\x15\x15\x15\x15G301\x07ARDtext\x07Mo 29.03.10\x0722:32:44",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 29.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  05.30  ARD-Morgenmagazin ........ 309",
+  "\x07 \x0609.00  Tagesschau                    ",
+  "\x07  09.05  Rote Rosen (769)              ",
+  "\x07 \x0609.55  ARD-Wetterschau               ",
+  "\x07  10.00  Tagesschau                    ",
+  "\x07 \x0610.03  Brisant                       ",
+  "\x07  10.20  Hochzeitsnacht im ........ 314",
+  "\x07         Paradies (A, 1962)            ",
+  "\x07 \x0612.00  Tagesschau                    ",
+  "\x07  12.15  ARD-Buffet\x03HD\x07............ 315",
+  "\x07         Moderation: Evelin K|nig      ",
+  "\x07 \x0613.00  ARD-Mittagsmagazin ....... 312",
+  "\x07        \x06mit Tagesschau                ",
+  "\x07        \x06bis 14.00 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Nachmittag >\x06302",
+];
+$PgCnt{0x302} = 1;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x07ARDtext\x07Mo 29.03.10\x0722:32:44",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 29.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  14.00  Tagesschau                    ",
+  "\x07 \x0614.10  Rote Rosen (770) ......... 316",
+  "\x07  15.00  Tagesschau                    ",
+  "\x07 \x0615.10  Sturm der Liebe (1041) ... 317",
+  "\x07  16.00  Tagesschau\x03UT                 ",
+  "\x07 \x0616.10  Nashorn, Zebra & Co. ..... 318",
+  "\x07        \x06Tierpark Hellabrunn           ",
+  "\x07  17.00  Tagesschau\x03UT                 ",
+  "\x07 \x0617.15  Brisant\x03UT\x06............... 319",
+  "\x07        \x06Boulevardmagazin              ",
+  "\x07  18.00  Verbotene Liebe (3584) ... 320",
+  "\x07 \x0618.25  Marienhof (3786) ......... 321",
+  "\x07  18.50  Gro~stadtrevier .......... 322",
+  "\x07         Der Stra~enmusikant           ",
+  "\x07         Fernsehserie, D 2007          ",
+  "\x07         bis 19.50 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Abend >\x06303",
+];
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "^\x15\x15\x15\x15\x15\x15G303\x07ARDtext\x07Mo 29.03.10\x0722:32:44",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 29.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07 \x0619.50  Das Wetter im Ersten          ",
+  "\x07  19.55  B|rse im Ersten .......... 720",
+  "\x07\x06 20.00  Tagesschau\x03UT\x06............ 310",
+  "\x07  20.15  ARD-Brennpunkt: UT            ",
+  "\x07  \x052014\x07 Terror in Moskau              ",
+  "\x03!\x0620.25  Erlebnis Erde:\x03UT\x06........ 324",
+  "\x07\x06 \x052015\x06 Kaltbl}tig (4/4)              ",
+  "\x07\x06        Gepanzerte Riesen             ",
+  "\x03!\x0721.10  Der Todesflug von ........ 326",
+  "\x07  \x052100\x07 Swissair 330                  ",
+  "\x07         Terroranschlag ohne S}hne     ",
+  "\x03!\x0621.55  Report M}nchen\x03UT\x06........ 327",
+  "\x07\x06 \x052145\x06 Moderation: Claudia Schick    ",
+  "\x07\x03 22.25  Tagesthemen\x052215\x03......... 311",
+  "\x07 \x0622.53  Das Wetter im Ersten\x052243     ",
+  "\x03!\x0722.55  Beckmann\x052245\x07............ 328",
+  "\x07   \x05VPS\x07 bis 00.10 Uhr                 ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Nacht >\x06304",
+];
+$PgCnt{0x304} = 1;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "d\x15\x15\x15\x15\x15\x15G304\x07ARDtext\x07Mo 29.03.10\x0722:32:44",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 29.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x05300310                                 ",
+  "\x07 \x0600.10  Nachtmagazin\x050000\x06........ 313",
+  "\x03!\x0700.30  Dittsche\x03UT\x07.............. 329",
+  "\x07  \x050020\x07 Das wirklich wahre Leben      ",
+  "\x07 \x0601.00  Ein Elefant irrt sich .... 330",
+  "\x07  \x050050\x07\x06gewaltig (F, 1976)            ",
+  "\x07  02.40  Tagesschau\x050230               ",
+  "\x07 \x0602.45  Sturm der Liebe (1041)        ",
+  "\x07  \x050235\x07\x06Fernsehserie, D 2010          ",
+  "\x07  03.35  Der Todesflug von             ",
+  "\x07  \x050325\x07 Swissair 330                  ",
+  "\x07 \x0604.20  ARD-Ratgeber:                 ",
+  "\x07  \x050410\x07\x06Bauen + Wohnen                ",
+  "\x07  04.50  Deutschlandbilder\x050440        ",
+  "\x07 \x0604.55  Tagesschau                    ",
+  "\x07  05.00  Report M}nchen                ",
+  "\x07   \x05VPS\x07 bis 05.30 Uhr                 ",
+  "\x03!\x07= TV-Tipps                           ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                   Dienstag >\x06305",
+];
+$PgCnt{0x326} = 1;
+$PgSub{0x326} = 0;
+$PgLang{0x326} = 1;
+$Pkg{0x326|(0x0000<<12)} =
+[
+  "8I\x15\x15\x15\x15\x15G326\x07ARDtext\x07Mo 29.03.10\x0722:32:45",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x06      Mo 29.03.10\x07Das Erste ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0721.10 - 21.55 Uhr                      ",
+  "\x06Der Todesflug von             \x07\x03  Tipp!",
+  "\x06Swissair 330                  \x07\x03   16:9",
+  "\x07                                       ",
+  "\x07Seit 40 Jahren wartet die 95-j{hrige   ",
+  "\x07Doris Bosshard auf Gerechtigkeit. Ihr  ",
+  "\x07Mann, der Flugkapit{n Hans Kuhn, kam   ",
+  "\x071970 ums Leben, als Swissair Flug 330  ",
+  "\x07bei Z}rich abst}rzte, weil eine Paket- ",
+  "\x07bombe an Bord explodierte. Mit ihm     ",
+  "\x07starben bei dem Terroranschlag der PFLP",
+  "\x07weitere 47 Menschen.                   ",
+  "\x07                                       ",
+  "\x07Die Attent{ter wurden schnell ermit-   ",
+  "\x07telt. Aber weder die deutschen noch die",
+  "\x07Schweizer Beh|rden unternahmen genug,  ",
+  "\x07um der mutma~lichen T{ter habhaft zu   ",
+  "\x07werden.                                ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<             Report M}nchen >\x06327",
+];

@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.cc,v 1.2 2010/05/06 17:57:53 tom Exp $
+ * $Id: ttx_scrape.cc,v 1.3 2011/01/05 12:58:29 tom Exp $
  */
 
 #include <stdio.h>
@@ -496,96 +496,147 @@ void RemoveTrailingPageFooter(string& text)
 }
 
 /* ------------------------------------------------------------------------------
- * Search for the line which contains the title string and return the
- * line number. Additionally, extract feature attributes from the lines
- * holding the title. The title may span across two consecutive lines,
- * which are then concatenated in the same way as for overview pages.
- * The comparison is done case-insensitive as some networks write the
+ * Search for the line which contains the title string and return the line
+ * number. Additionally, extract feature attributes from the lines holding the
+ * title.  The comparison is done case-insensitive as some networks write the
  * titles in all upper-case.
+ *
+ * The title may span multiple lines, both in overview lists and the
+ * description pages.  Often line-breaks are positioned differently. The latter
+ * can be used to determine which lines actually hold the title and where
+ * sub-titles begin (e.g. episode title). The algorithm below independently
+ * adds lines from overview and description pages respectively until the
+ * concatenated strings match up at a line end. The overview title is then
+ * replaced with this corrected result. Examples:
+ *
+ *   Overview:                     Description page:
+ * - Licht aus in Erichs           Licht aus in Erichs Lampenladen
+ *   Lampenladen
+ * - Battlefield Earth - Kampf     Battlefield Earth - Kampf um die
+ *   um die Erde                   Erde
+ * - K 2                           K2 - Das letzte Abenteuer
+ *   Das letzte Abenteuer
  */
 int OV_SLOT::parse_desc_title(int page, int sub)
 {
    const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
-   string prev;
 
-   string title_lc = m_ext_title;
-   str_tolower_latin1(title_lc);
+   string title_ov;
+   uint first_subt = 1;
+   title_ov = m_ov_title[0];
+   while (   (m_ov_title.size() > first_subt)
+          && (str_concat_title(title_ov, m_ov_title[first_subt], true)) ) {
+      ++first_subt;
+   }
 
-   for (int idx = 1; idx <= 23/2; idx++) {
-      string text_lc = pgctrl->get_ctrl(idx);
-      str_tolower_latin1(text_lc);
+   for (uint idx = 1; idx <= 23/2; idx++)
+   {
+      string title_desc = pgctrl->get_ctrl(idx);
+      uint indent_desc = str_get_indent(title_desc);
+      str_chomp(title_desc);
 
-      unsigned off = str_get_indent(text_lc);
+      uint dpos_ov, dpos_desc;
+      if (str_len_alnum(title_desc) > 0)
+      {
+         str_cmp_alnum(title_ov, title_desc, &dpos_ov, &dpos_desc);
+         if ((dpos_ov >= title_ov.length()) || (dpos_desc >= title_desc.length()))
+         {
+            uint idx_ov = first_subt;
+            uint idx_desc = idx;
+            bool ok = false;
 
-      //if (str_find_word(text_lc, title_lc) != string::npos)
-      if (   (title_lc.length() <= text_lc.length() - off)
-          && (text_lc.compare(off, title_lc.length(), title_lc) == 0) ) {
-         // TODO: back up if there's text in the previous line with the same indentation
+            string title_ov_ext(title_ov);
 
-         // TODO remove the feature flags from the description text
-         string tmp = pgctrl->get_ctrl(idx);
-         m_ext_feat.ParseTrailingFeat(tmp);
+            m_ext_feat.ParseTrailingFeat(title_desc);
+            TV_FEAT ext_feat(m_ext_feat);
 
-         // correct title/sub-title split
-         if (!m_ext_subtitle.empty()) {
-            // check if the title line on the desc page contains 1st + 2nd title lines from overview
-            // Overview:                     Description page:
-            // Licht aus in Erichs           Licht aus in Erichs Lampenladen
-            // Lampenladen
-            string subtitle = m_ext_title + string(" ") +  m_ext_subtitle;
-            if (   (tmp.length() >= subtitle.length())
-                && str_is_right_word_boundary(tmp, subtitle.length())
-                && (tmp.compare(0, subtitle.length(), subtitle) == 0) ) {
-               if (opt_debug) printf("DESC title override \"%s\"\n", subtitle.c_str());
-               m_ext_title = subtitle;
-               m_ext_subtitle.clear();
-            }
-            else if (tmp.length() - off > m_ext_title.length()) {
-               string next = pgctrl->get_ctrl(idx + 1);
-               if (str_get_indent(next) == off) {
-                  str_concat_title(tmp, next, false);
-                  str_chomp(tmp);
-                  TV_FEAT::RemoveTrailingFeat(tmp);
-                  // Overview:                     Description page:
-                  // Battlefield Earth - Kampf     Battlefield Earth - Kampf um die
-                  // um die Erde                   Erde
-                  // Science Fiction USA 2000      Science Fiction USA 2000
-                  // FIXME instead of min() use "2nd line of title on overview page" as limit
-                  unsigned len = min(tmp.length(), subtitle.length());
-                  if (   str_is_right_word_boundary(tmp, len)
-                      && str_is_right_word_boundary(subtitle, len)
-                      && (tmp.compare(0, len, subtitle, 0, len) == 0) ) {
-                     if (opt_debug) printf("DESC title override \"%s\"\n", subtitle.c_str());
-                     m_ext_title.assign(subtitle, 0, len);
-                     m_ext_subtitle.assign(subtitle, len, subtitle.length() - len);
-                     str_chomp(m_ext_subtitle);
-                     m_ext_feat.ParseTrailingFeat(next);
+            do {
+               if (dpos_desc < title_desc.length()) {
+                  // title from overview page is shorter: try appending one more subtitle line
+                  if (idx_ov >= m_ov_title.size()) {
+                     // overview title is too short and no more sub-title lines following:
+                     // allow if the following text is separated by ":" or similar
+                     static const regex expr0("(\\: | \\- | \\& | \\()$");
+                     match_results<string::iterator> whati;
+                     if (regex_search(title_desc.begin(),
+                                      title_desc.begin() + dpos_desc, whati, expr0)) {
+                        // strip trailing non-alnum
+                        title_desc.erase(whati[0].first, title_desc.end());
+                        ok = true;
+                        break;
+                     }
+                     ok = false;
+                     break;
+                  }
+                  str_concat_title(title_ov_ext, m_ov_title[idx_ov++], false);
+                  while (   (m_ov_title.size() > idx_ov)
+                         && (str_concat_title(title_ov_ext, m_ov_title[idx_ov], true)) ) {
+                     ++idx_ov;
                   }
                }
+               else if (dpos_ov < title_ov_ext.length()) {
+                  // title from description page is shorter: try appending one more text line
+                  if (idx_desc >= 22) {
+                     ok = false;
+                     break;
+                  }
+                  string next = pgctrl->get_ctrl(++idx_desc);
+                  if (str_get_indent(next) != indent_desc) {
+                     ok = false;
+                     break;
+                  }
+                  // put found features in temprary buffer - apply only if extended title matches
+                  ext_feat.ParseTrailingFeat(next);
+                  str_concat_title(title_desc, next, false);
+               }
+
+               str_cmp_alnum(title_ov_ext, title_desc, &dpos_ov, &dpos_desc);
+               if ((dpos_ov < title_ov_ext.length()) && (dpos_desc < title_desc.length())) {
+                  ok = false;
+                  break;
+               }
+               ok = true;
+            } while ((dpos_ov < title_ov_ext.length()) || (dpos_desc < title_desc.length()));
+
+            if (ok) {
+               if (opt_debug && ((idx_ov > first_subt) || (idx_desc > idx)))
+                  printf("DESC title adjusted by %d sub-title and %d desc. page title lines: \"%s\"\n",
+                         idx_ov - first_subt, idx_desc - idx, title_ov_ext.c_str());
+               // replace the overview title with the longer one of the concatenated title strings
+               // because sometimes one of them is missing a " - " before title extentions
+               if (title_ov_ext.length() >= title_desc.length())
+                  m_ext_title.assign(title_ov_ext);
+               else
+                  m_ext_title.assign(title_desc);
+               // erase possible trailing ":" or "," (may be left from cutting off feature tags)
+               if (m_ext_title.length() > 0) {
+                  string::iterator p = m_ext_title.begin() + m_ext_title.length() - 1;
+                  if ((*p == ':') || (*p == ',') || (*p == '&') || (*p == '-')) {
+                     m_ext_title.erase(p, m_ext_title.end());
+                     str_chomp(m_ext_title);
+                  }
+               }
+               // re-build the sub-title string from unused overview lines
+               m_ext_subtitle.assign("");
+               for (uint idx2 = idx_ov; idx2 < m_ov_title.size(); idx2++) {
+                  str_concat_title(m_ext_subtitle, m_ov_title[idx2], false);
+               }
+               str_chomp(m_ext_subtitle);
+               m_ext_feat = ext_feat;
+            } else {
+               idx_desc = idx;
             }
-         }
+            // extract feature attributes from the next line too (may be sub-title text)
+            if (idx_desc < 23) {
+               string next = pgctrl->get_ctrl(idx_desc + 1);
+               if (str_get_indent(next) == indent_desc) {
+                  m_ext_feat.ParseTrailingFeat(next);
+               }
+            }
 
-         return idx;
-      }
-      else if (!prev.empty()) {
-         TV_FEAT::RemoveTrailingFeat(prev);
-         str_concat_title(prev, pgctrl->get_ctrl(idx), false);
-         str_tolower_latin1(prev);
-         //if (str_find_word(prev, title_lc) != string::npos)  // sub-string
-         if (   (title_lc.length() <= prev.length())
-             && (prev.compare(0, title_lc.length(), title_lc) == 0) ) {
-            string tmp = string(pgctrl->get_ctrl(idx - 1));
-            m_ext_feat.ParseTrailingFeat(tmp);
-
-            tmp = pgctrl->get_ctrl(idx);
-            m_ext_feat.ParseTrailingFeat(tmp);
-
-            //TODO: check if title/sub-title split can be corrected (see above)
-
-            return idx - 1;
+            return idx;
          }
       }
-      prev.assign(pgctrl->get_ctrl(idx), off, VT_PKG_RAW_LEN - off);
    }
    //print "NOT FOUND title\n";
    return 1;
@@ -1425,7 +1476,7 @@ vector<OV_PAGE*> ParseAllOvPages(int ov_start, int ov_end)
          ov_pages[idx]->extract_ttx_ref(ttx_ref_fmt);
       }
 
-      // retrieve descriptions from references teletext pages
+      // retrieve descriptions from referenced teletext pages
       for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
          ov_pages[idx]->extract_tv();
       }

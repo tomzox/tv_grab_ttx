@@ -41,6 +41,10 @@
 	<desc>Unser Charly Es spukt 16:9 HD
 Während eines Spaziergangs mit Katharina und Max findet Charly bunte Glasperlen im Garten der Tierklinik. Einige Meter weiter steht ein prächtiger Schimmel einsam auf der Koppel der Klinik. Katharina findet einen Zettel am Zaumzeug, auf dem steht: "Habe mir den Fuß verstaucht, bitte helft mir!"
 Erfreuliche Nachrichten gibt es für Katharinas Kinder Lilly und Jonas: Ihr Vater Thomas will ihnen näher sein und hat einen Job an der Musikhochschule in Berlin angenommen.</desc>
+	<video>
+		<aspect>16:9</aspect>
+		<quality>HDTV</quality>
+	</video>
 </programme>
 
 <programme start="20100320191500 +0000" stop="20100320204500 +0000" pdc-start="20100320201500 +0100" channel="ZDF">

@@ -1,0 +1,249 @@
+#!/usr/bin/perl -w
+#
+# One more case where the line-break in the title can be corrected by
+# using the description title, which has the line break at a different
+# position.
+#
+# $Id: desc02b.in,v 1.1 2011/01/05 13:05:10 tom Exp $
+#
+$VbiCaptureTime = 1269637910;
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0002<<12)} =
+[
+  "^\x15IP\x15\x15IG303\x01\x03Tele 5\x06\x06\x07Fr\x0726.03.\x0322:11:38",
+  "\x01\x1D\x07PROGRAMM \x00      \x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Fr 18:00-24:00  \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0718:10 Andromeda                \x07>344 ",
+  "\x115\x03      Erzengel Gabriel               ",
+  "\x115\x0719:06 Stargate                  >356 ",
+  "\x115\x03      Kiannas Symbiont               ",
+  "\x115\x0720:02 Making-of                      ",
+  "\x115\x03      Sonstige                       ",
+  "\x115\x0720:15 Invincible - Krieger des  >312 ",
+  "\x115\x07      Lichts                         ",
+  "\x115\x03      Science-Fiction USA/CDN        ",
+  "\x115\x03      2001                           ",
+  "\x115\x0722:15 Im Auge des Taifun       \x07>313 ",
+  "\x115\x03      Eastern HK 1981                ",
+  "\x115\x0723:50 Im Reich der Sinne        >314 ",
+  "\x115\x03      Erotikdrama J/F 1976           ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 304  ",
+  "\x01\x1D\x07\x0D     DAS LUSTSCHLOSS >>> 877        ",
+  undef,
+];
+$PgCnt{0x304} = 3;
+$PgSub{0x304} = 2;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0001<<12)} =
+[
+  "d\x15\x02P\x15\x15IG304\x01\x03Tele 5\x06\x06\x07Fr\x0726.03.\x0322:11:04",
+  "\x01\x1D\x07PROGRAMM \x00      \x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Sa 24:00-       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0701:55 Battlefield Earth - Kampf\x07>315 ",
+  "\x115\x07      um die Erde                    ",
+  "\x115\x03      Science Fiction USA 2000       ",
+  "\x115\x0704:10 Im Auge des Taifun        >313 ",
+  "\x115\x03      Eastern HK 1981                ",
+  "\x115\x0705:31 Making Of                \x07>339 ",
+  "\x115\x03      Sonstige                       ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 305  ",
+  "\x07\x1D\x01 \x0DErotik-Flatrate ........... 871    ",
+  undef,
+];
+$PgCnt{0x304} = 3;
+$PgSub{0x304} = 2;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0002<<12)} =
+[
+  "d\x15IP\x15\x15IG304\x01\x03Tele 5\x06\x06\x07Fr\x0726.03.\x0322 11:39",
+  "\x01\x1D\x07PROGRAMM \x00      \x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Sa 24:00-       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0701:55 Battlefield Earth - Kampf\x07>315 ",
+  "\x115\x07      um die Erde                    ",
+  "\x115\x03      Science Fiction USA 2000       ",
+  "\x115\x0704:10 Im Auge des Taifun        >313 ",
+  "\x115\x03      Eastern HK 1981                ",
+  "\x115\x0705:31 Making Of                \x07>339 ",
+  "\x115\x03      Sonstige                       ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 305  ",
+  "\x15\x1D\x03\x0DTolle Pics von Frauen........808    ",
+  undef,
+];
+$PgCnt{0x305} = 3;
+$PgSub{0x305} = 2;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0001<<12)} =
+[
+  "s\x15\x02P\x15\x15IG305\x01\x03Tele 5\x06\x06\x07Fr\x0726.03.\x0322:11:04",
+  "\x01\x1D\x07PROGRAMM \x00      \x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Sa 06:00-12:00  \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0706:01 Superman - Die Abenteuer \x07>357 ",
+  "\x115\x07      von Lois & Clark               ",
+  "\x115\x03      Noah Nummer zwei               ",
+  "\x115\x0706:40 Making-of                      ",
+  "\x115\x03      Sonstige                       ",
+  "\x115\x0706:55 One Piece                \x07>353 ",
+  "\x115\x03      Folge 330 - 336                ",
+  "\x115\x0710:01 Homeshopping                   ",
+  "\x115\x03      Sonstige                       ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 306  ",
+  "\x05\x1D\x07\x0DSeri|se Kontaktanzeigen.......580   ",
+  undef,
+];
+$PgCnt{0x312} = 3;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0001<<12)} =
+[
+  "I\x02\x02P\x15\x15IG312\x01\x03Tele 5\x06\x06\x07Fr\x0726.03.\x0322 11:05",
+  "\x01\x1D\x07PROGRAMM   \x001/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Invincible - Krieger des Lichts      ",
+  "\x115\x01\x1D\x07Fr 20:15-22:15       auf Sendung  \x1C",
+  "\x115\x07Science-Fiction USA/CDN 2001         ",
+  "\x115\x00                                     ",
+  "\x115\x07Der unsterbliche Os will die Erde    ",
+  "\x115\x07vor dem Angriff finsterer M{chte be- ",
+  "\x115\x07sch}tzen. Um die \"Schattenm{nner\"    ",
+  "\x115\x07besiegen zu k|nnen, rekrutiert er    ",
+  "\x115\x07vier normale B}rger. Jeder von ihnen ",
+  "\x115\x07hat das Zeug zum Superkrieger. Doch  ",
+  "\x115\x07zuerst muss Os seine K{mpfer trai-   ",
+  "\x115\x07nieren und ihnen zeigen, was sie     ",
+  "\x115\x07k|nnen. Dazu hat er gerade mal sechs ",
+  "\x115\x07Tage Zeit.                           ",
+  "\x115\x00                                     ",
+  "\x115\x06Aufw{ndig produzierter, actionrei-   ",
+  "\x115\x06cher Fantasyfilm.                    ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 313  ",
+];
+$PgCnt{0x312} = 3;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0002<<12)} =
+[
+  "I\x02IP\x15\x15IG312\x01\x03Tele 5\x06\x06\x07Fr\x0726.03.\x0322 11:39",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Invincible - Krieger des Lichts      ",
+  "\x115\x03(Invincible)                         ",
+  "\x115\x01\x1D\x07Fr 20:15-22:15       auf Sendung  \x1C",
+  "\x115\x07Science-Fiction USA/CDN 2001         ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Jefery Levy         ",
+  "\x115\x07Buch.............Carey Hayes         ",
+  "\x115\x07Musik............John McCarthy,      ",
+  "\x115\x07                 Rupert Parkes,      ",
+  "\x115\x07                 Photek              ",
+  "\x115\x00                                     ",
+  "\x115\x07Os...............Billy Zane          ",
+  "\x115\x07Michael Fu.......Byron Mann          ",
+  "\x115\x07Serena Blue......Stacy Oversier      ",
+  "\x115\x07Ray Jackson......Tory Kittles        ",
+  "\x115\x07Keith Grady......Dominic Purcell     ",
+  "\x115\x07Slate............David Field         ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 313  ",
+];
+$PgCnt{0x315} = 3;
+$PgSub{0x315} = 2;
+$PgLang{0x315} = 1;
+$Pkg{0x315|(0x0001<<12)} =
+[
+  "s\x02\x02P\x15\x15IG315\x01\x03Tele 5\x06\x06\x07Fr\x0726.03.\x0322 11:05",
+  "\x01\x1D\x07PROGRAMM   \x001/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Battlefield Earth - Kampf um die     ",
+  "\x115\x03Erde                                 ",
+  "\x115\x01\x1D\x07Sa 01:55-04:10                    \x1C",
+  "\x115\x07Science Fiction USA 2000             ",
+  "\x115\x00                                     ",
+  "\x115\x07Im Jahr 3000 wird die Erde von b|sen ",
+  "\x115\x07Au~erirdischen, den Psychlos, re-    ",
+  "\x115\x07giert. Deren Sicherheitschef Terl    ",
+  "\x115\x07plant eine Pl}nderung des Planeten   ",
+  "\x115\x07im gro~en Stil. Doch Johnny, einer   ",
+  "\x115\x07von Terls menschlichen Sklaven, be-  ",
+  "\x115\x07ginnt eine Widerstandsgruppe aufzu-  ",
+  "\x115\x07bauen.                               ",
+  "\x115\x00                                     ",
+  "\x115\x06Tolles Actionspektakel. Kultverd{ch- ",
+  "\x115\x06tig: John Travolta als gruseliger    ",
+  "\x115\x06Alien.                               ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 316  ",
+];
+$PgCnt{0x315} = 3;
+$PgSub{0x315} = 2;
+$PgLang{0x315} = 1;
+$Pkg{0x315|(0x0002<<12)} =
+[
+  "s\x02IP\x15\x15IG315\x01\x03Tele 5\x06\x06\x07Fr\x0726.03.\x0322 11:39",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Battlefield Earth - Kampf um die     ",
+  "\x115\x03Erde                                 ",
+  "\x115\x03(Battlefield Earth)                  ",
+  "\x115\x01\x1D\x07Sa 01:55-04:10                    \x1C",
+  "\x115\x07Science Fiction USA 2000             ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Roger Christian     ",
+  "\x115\x07Buch.............Nach Ron L. Hubbard ",
+  "\x115\x07Musik............Elia Cmiral         ",
+  "\x115\x00                                     ",
+  "\x115\x07Terl.............John Travolta       ",
+  "\x115\x07Jonnie Goodboy...Barry Pepper        ",
+  "\x115\x07Ker..............Forest Whitaker     ",
+  "\x115\x07Carlo............Kim Coates          ",
+  "\x115\x07Chrissy..........Sabine Karsenti     ",
+  "\x115\x07Robert the Fox...Richard Tyson       ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 316  ",
+];

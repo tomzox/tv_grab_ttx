@@ -1,0 +1,268 @@
+#!/usr/bin/perl -w
+#
+# Test parsing description titles: The identical lines on the 2nd sub-page of
+# 318 carrying air dates are not stripped because there's one mismatching line
+# in-between.
+#
+# $Id: desc16.in,v 1.1 2011/01/05 13:05:10 tom Exp $
+#
+$VbiCaptureTime = 1294085226;
+$PgCnt{0x309} = 1;
+$PgSub{0x309} = 4;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1294085196;
+$Pkg{0x309|(0x0003<<12)} =
+[
+  "        309\x06  TELE 5   03.01.11 21:06:41",
+  "\x01\x1D\x07]BERMORGEN \x003/4\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Mi 18:00-24:00  \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0718:15 Babylon 5                      ",
+  "\x115\x03      Ein Pakt mit dem Teufel        ",
+  "\x115\x0719:10 Star Trek - Das n{chste   >351 ",
+  "\x115\x07      Jahrhundert                    ",
+  "\x115\x03      Der Ehrenkodex                 ",
+  "\x115\x0720:15 Jennifer 8               \x07>318 ",
+  "\x115\x03      Thriller USA 1992              ",
+  "\x115\x0722:40 Cold Blood - DNA des           ",
+  "\x115\x07      Verbrechens                    ",
+  "\x115\x03      Sonstige CDN 2008/09           ",
+  "\x115\x0723:50 Rocky II                 \x07>315 ",
+  "\x115\x03      Action USA 1978                ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x01\x1D\x07SMS-Chat 730\x10 \x1D\x01           \x1D\x07>> 310  ",
+  "\x04\x1D\x03\x0D    Ihre Zukunft LIVE >>> 750       ",
+  "\x01\x1D                                      ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x309} = 1;
+$PgSub{0x309} = 4;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1294085226;
+$Pkg{0x309|(0x0004<<12)} =
+[
+  "        309\x06  TELE 5   03.01.11 21:07:12",
+  "\x01\x1D\x07]BERMORGEN \x004/4\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Do 24:00-       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0702:20 Jennifer 8               \x07>318 ",
+  "\x115\x03      Thriller USA 1992              ",
+  "\x115\x0704:55 Making-of                      ",
+  "\x115\x03      Sonstige                       ",
+  "\x115\x0705:30 Babylon 5                \x07>344 ",
+  "\x115\x03      Das Verh|r des Inquisi-        ",
+  "\x115\x03      tors                           ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x01\x1D\x07SMS-Chat 730\x10 \x1D\x01           \x1D\x07>> 310  ",
+  "\x04\x1D\x03\x0D    Ihre Zukunft LIVE >>> 750       ",
+  "\x01\x1D                                      ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x310} = 3;
+$PgSub{0x310} = 0;
+$PgLang{0x310} = 1;
+$PgTime{0x310} = 1294085226;
+$Pkg{0x310|(0x0000<<12)} =
+[
+  "        310\x06  TELE 5   03.01.11 21:07:12",
+  "\x01\x1D\x07PROGRAMM   \x00   \x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilme      \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Mo 20:15 Star Trek - Das n{chs-      ",
+  "\x115\x03         te Jahrhundert         >312 ",
+  "\x115\x07Mo 22:11 Outland - Planet der        ",
+  "\x115\x07         Verdammten             >313 ",
+  "\x115\x03Di 00:25 Die F}rsten der Dun-        ",
+  "\x115\x03         kelheit                >314 ",
+  "\x115\x07Di 20:15 Rocky II               >315 ",
+  "\x115\x03Di 22:45 Mit st{hlerner Faust   >316 ",
+  "\x115\x07Mi 00:25 Phantom Force          >317 ",
+  "\x115\x03Mi 20:15 Jennifer 8             >318 ",
+  "\x115\x07Fr 20:15 Tai Pan - Der Teufel        ",
+  "\x115\x07         mit der Drachenklaue   >319 ",
+  "\x115\x03Fr 22:05 Bittersweet Life       >320 ",
+  "\x115\x07Sa 00:15 The Call               >321 ",
+  "\x115\x03Sa 12:50 Star Kid               >322 ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07Jetzt 333\x10  \x1D\x11  \x1D\x07Mehr Filme >> 311  ",
+  "\x01-\x02 +\x03   Film-Magazin\x06  Serien-]bersicht",
+  "                                        ",
+  undef,
+  "\x15G\x15j/j^\x02\x02j/j^\x15^j/jj\x15dj/j^jjj/j\x1B\x15\x15j/j/jt ",
+  undef,
+  undef,
+];
+$PgCnt{0x318} = 1;
+$PgSub{0x318} = 2;
+$PgLang{0x318} = 1;
+$PgTime{0x318} = 1294085196;
+$Pkg{0x318|(0x0001<<12)} =
+[
+  "        318\x06  TELE 5   03.01.11 21:06:42",
+  "\x01\x1D\x07PROGRAMM   \x001/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Jennifer 8                           ",
+  "\x115\x01\x1D\x07Mi 20:15-22:40                    \x1C",
+  "\x115\x01\x1D\x07Do 02:20-04:55               Wh.  \x1C",
+  "\x115\x07Thriller USA 1992                    ",
+  "\x115\x00                                     ",
+  "\x115\x07Die blinde Helena hat schreckliche   ",
+  "\x115\x07Angst, denn sie wurde Zeugin eines   ",
+  "\x115\x07Mordes. Polizist John glaubt, sie    ",
+  "\x115\x07ist das n{chste Opfer, da es sich um ",
+  "\x115\x07einen Serienkiller handelt, der      ",
+  "\x115\x07blinde Frauen bevorzugt. John ver-   ",
+  "\x115\x07sucht alles um Helena zu besch}tzen  ",
+  "\x115\x07und den T{ter zu fassen, ger{t dabei ",
+  "\x115\x07jedoch selbst unter Tatverdacht ...  ",
+  "\x115\x00                                     ",
+  "\x115\x06Dieser Krimi }berzeugt mit guter     ",
+  "\x115\x06Story und Starbesetzung.             ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 319  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+  undef,
+  undef,
+  "\x15/\x02j/j^G\x02j/j^\x15\x02j/j^\x15^j/jjjjj/j\x1B\x15\x15j/j/jC ",
+  undef,
+  undef,
+];
+$PgCnt{0x318} = 2;
+$PgSub{0x318} = 2;
+$PgLang{0x318} = 1;
+$PgTime{0x318} = 1294085227;
+$Pkg{0x318|(0x0002<<12)} =
+[
+  "        318\x06  TELE 5   03.01.11 21:07:13",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Jennifer 8                           ",
+  "\x115\x03(Jennifer Eight)                     ",
+  "\x115\x01\x1D\x07Mi 20:15-22:40                    \x1C",
+  "\x115\x01\x1D\x07Do 02:20-04:55               Wh.  \x1C",
+  "\x115\x07Thriller USA 1992                    ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Bruce Robinson      ",
+  "\x115\x07Buch.............Bruce Robinson      ",
+  "\x115\x07Musik............Christopher Young   ",
+  "\x115\x00                                     ",
+  "\x115\x07John Berlin......Andy Garcia         ",
+  "\x115\x07Helena Roberts...Uma Thurman         ",
+  "\x115\x07Freddy Ross......Lance Henriksen     ",
+  "\x115\x07Margie Ross......Kathy Baker         ",
+  "\x115\x07John Taylor......Graham Beckel       ",
+  "\x115\x07Citrine..........Kevin Conway        ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 319  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+  undef,
+  undef,
+  "\x15/\x02j/j^G\x02j/j^\x15\x02j/j^\x15^j/jjjjj/j\x1B\x15\x15j/j/j3B",
+  undef,
+  undef,
+];
+$PgCnt{0x351} = 1;
+$PgSub{0x351} = 2;
+$PgLang{0x351} = 1;
+$PgTime{0x351} = 1294085199;
+$Pkg{0x351|(0x0001<<12)} =
+[
+  "        351\x06  TELE 5   03.01.11 21:06:44",
+  "\x01\x1D\x07PROGRAMM   \x001/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Serie           \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Star Trek - Das n{chste Jahrhundert  ",
+  "\x115\x07Gedankengift                         ",
+  "\x115\x01\x1D\x07Di 19:12-20:15                    \x1C",
+  "\x115\x01\x1D\x07Mi 15:20-16:20               Wh.  \x1C",
+  "\x115\x00                                     ",
+  "\x115\x07Seltsame Vergiftungserscheinungen,   ",
+  "\x115\x07die die Befallenen wie Betrunkene    ",
+  "\x115\x07wirken lassen, hat die Crew des For- ",
+  "\x115\x07schungsschiffs Tsiolkovsky befallen. ",
+  "\x115\x07Schuld ist ein Virus, der einen Koh- ",
+  "\x115\x07lenstoffmangel im K|rper hervorruft. ",
+  "\x115\x07Doch das Mittel, das in einem fr}he- ",
+  "\x115\x07ren Fall gut gegen die Infektion ge- ",
+  "\x115\x07holfen hatte, ist pl|tzlich wir-     ",
+  "\x115\x07kungslos. Da sucht die Krankheit     ",
+  "\x115\x07auch die Enterprise heim.            ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 352  ",
+  "\x01-\x02 +\x03  Film-]bersicht\x06 Serien-]bersicht",
+  undef,
+  undef,
+  "\x15\x15sj/j^Isj/j^\x15\x02j/j^\x15dj/j^jjj/j\x1B\x15\x15j/j/j\x7F ",
+  undef,
+  undef,
+];
+$PgCnt{0x351} = 2;
+$PgSub{0x351} = 2;
+$PgLang{0x351} = 1;
+$PgTime{0x351} = 1294085229;
+$Pkg{0x351|(0x0002<<12)} =
+[
+  "        351\x06  TELE 5   03.01.11 21:07:14",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Serie           \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Star Trek - Das n{chste Jahrhundert  ",
+  "\x115\x07Der Ehrenkodex                       ",
+  "\x115\x01\x1D\x07Mi 19:10-20:15                    \x1C",
+  "\x115\x01\x1D\x07Do 15:20-16:20               Wh.  \x1C",
+  "\x115\x00                                     ",
+  "\x115\x07Der Grund f}r den Besuch auf Ligon   ",
+  "\x115\x07II war eigentlich, von dort einen    ",
+  "\x115\x07wichtigen Impfstoff zu holen. Doch   ",
+  "\x115\x07die Mission der Enterprise artet in  ",
+  "\x115\x07einen t|dlichen Kampf aus. Zuerst    ",
+  "\x115\x07wird Tasha Yar von H{uptling Lugon   ",
+  "\x115\x07entf}hrt. Er ist hin und weg von ihr ",
+  "\x115\x07und will sie heiraten. Doch da tritt ",
+  "\x115\x07seine Frau auf den Plan und fordert  ",
+  "\x115\x07Tasha zum Duell ...                  ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 352  ",
+  "\x01-\x02 +\x03  Film-]bersicht\x06 Serien-]bersicht",
+  undef,
+  undef,
+  "\x15\x15sj/j^Isj/j^\x15\x02j/j^\x15dj/j^jjj/j\x1B\x15\x15j/j/j\x07 ",
+  undef,
+  undef,
+];

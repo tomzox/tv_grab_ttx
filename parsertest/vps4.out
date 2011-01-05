@@ -6,11 +6,10 @@
 </channel>
 
 <programme start="20060429222500 +0000" stop="20060430001000 +0000" pdc-start="20060430003000 +0200" channel="MDR">
-	<title>K 2</title>
-	<sub-title>K 2 Das letzte Abenteuer Spielfilm (GBR 1990)</sub-title>
+	<title>K2 - Das letzte Abenteuer</title>
+	<sub-title>K2 - Das letzte Abenteuer Spielfilm (GBR 1990)</sub-title>
 	<!-- TTX 317 -->
-	<desc>00 Sonntag, 30.04.06
-00.25 - 02.10 Uhr Stereo, Untertitel K2 - Das letzte Abenteuer Spielfilm (GBR 1990) Regie: Franc Roddam
+	<desc>K2 - Das letzte Abenteuer Spielfilm (GBR 1990) Regie: Franc Roddam
 Der K2 ist mit über 8.600 Metern Höhe einer der höchsten Berge der Welt. Der Versuch ihn zu besteigen, endete für zahllose Kletterer tödlich.
 Der ehrgeizige Taylor und der introvertierte Harold bekommen die Chance, an einer Expedition auf den K2 teilzunehmen. Der Preis ist höher, als sie denken: Ihre Freundschaft wird auf eine harte Probe gestellt und plötzlich geht es nur noch ums Überleben. Mit Michael Biehn, Matt Craven u.a.</desc>
 	<audio>

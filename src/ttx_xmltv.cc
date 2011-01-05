@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_xmltv.cc,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_xmltv.cc,v 1.2 2011/01/05 12:58:25 tom Exp $
  */
 
 #include <stdio.h>
@@ -172,43 +172,43 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
       }
       // video
       const TV_FEAT& feat = slot.get_feat();
-      if (   feat.m_is_video_bw
-          || feat.m_is_aspect_16_9
-          || feat.m_is_video_hd) {
+      if (   feat.is_video_bw()
+          || feat.is_aspect_16_9()
+          || feat.is_video_hd()) {
          fprintf(fp, "\t<video>\n");
-         if (feat.m_is_video_bw) {
+         if (feat.is_video_bw()) {
             fprintf(fp, "\t\t<colour>no</colour>\n");
          }
-         if (feat.m_is_aspect_16_9) {
+         if (feat.is_aspect_16_9()) {
             fprintf(fp, "\t\t<aspect>16:9</aspect>\n");
          }
-         if (feat.m_is_video_hd) {
+         if (feat.is_video_hd()) {
             fprintf(fp, "\t\t<quality>HDTV</quality>\n");
          }
          fprintf(fp, "\t</video>\n");
       }
       // audio
-      if (feat.m_is_dolby) {
+      if (feat.is_dolby()) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>surround</stereo>\n\t</audio>\n");
       }
-      else if (feat.m_is_stereo) {
+      else if (feat.is_stereo()) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>stereo</stereo>\n\t</audio>\n");
       }
-      else if (feat.m_is_mono) {
+      else if (feat.is_mono()) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>mono</stereo>\n\t</audio>\n");
       }
-      else if (feat.m_is_2chan) {
+      else if (feat.is_2chan()) {
          fprintf(fp, "\t<audio>\n\t\t<stereo>bilingual</stereo>\n\t</audio>\n");
       }
       // subtitles
-      if (feat.m_is_omu) {
+      if (feat.is_omu()) {
          fprintf(fp, "\t<subtitles type=\"onscreen\"/>\n");
       }
-      else if (feat.m_has_subtitles) {
+      else if (feat.has_subtitles()) {
          fprintf(fp, "\t<subtitles type=\"teletext\"/>\n");
       }
       // tip/highlight (ARD only)
-      if (feat.m_is_tip) {
+      if (feat.is_tip()) {
          fprintf(fp, "\t<star-rating>\n\t\t<value>1/1</value>\n\t</star-rating>\n");
       }
       fprintf(fp, "</programme>\n");

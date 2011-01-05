@@ -26,7 +26,7 @@
 #
 #  Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: verify.sh,v 1.8 2011/01/03 13:53:03 tom Exp $
+# $Id: verify.sh,v 1.9 2011/01/05 13:06:00 tom Exp $
 #
 
 DIR=parsertest
@@ -34,6 +34,7 @@ EXE=./tv_grab_ttx
 
 pass_cnt=0
 fail_cnt=0
+skip_cnt=0
 
 for v in $DIR/*.in ; do
    name=`echo $v | sed -e 's#\.in$##g'|sed -e "s#$DIR/##"`
@@ -61,8 +62,10 @@ for v in $DIR/*.in ; do
       rm -f out.verify
    else
       echo "SKIP: $v"
+      skip_cnt=`expr $skip_cnt + 1`
    fi
 done
 
-echo "TOTAL PASS: $pass_cnt"
-echo "TOTAL FAIL: $fail_cnt"
+echo "== TOTAL SKIP: $skip_cnt"
+echo "== TOTAL PASS: $pass_cnt"
+echo "== TOTAL FAIL: $fail_cnt"

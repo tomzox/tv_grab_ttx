@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ARD">
+	<display-name>ARD</display-name>
+</channel>
+
+<programme start="20100428175000 +0000" stop="20100428175500 +0000" channel="ARD">
+	<title>Das Wetter im Ersten</title>
+</programme>
+
+<programme start="20100428175500 +0000" stop="20100428180000 +0000" channel="ARD">
+	<title>Börse im Ersten</title>
+	<desc>(teletext 720)</desc>
+</programme>
+
+<programme start="20100428180000 +0000" stop="20100428181500 +0000" channel="ARD">
+	<title>Tagesschau</title>
+	<desc>(teletext 310)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20100428181500 +0000" stop="20100428194500 +0000" channel="ARD">
+	<title>Die Auflehnung HD/UT</title>
+	<sub-title>Die Auflehnung HD/UT Spielfilm, D 2009 FilmMittwoch im Ersten</sub-title>
+	<desc>(teletext 324)</desc>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100428194500 +0000" stop="20100428210000 +0000" channel="ARD">
+	<title>Hart aber fair</title>
+	<sub-title>Hart aber fair Moderation: Frank Plasberg</sub-title>
+	<desc>(teletext 326)</desc>
+	<subtitles type="teletext"/>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100428210000 +0000" stop="20100428212800 +0000" channel="ARD">
+	<title>Tagesthemen</title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20100428212800 +0000" stop="20100428213000 +0000" channel="ARD">
+	<title>Das Wetter im Ersten</title>
+</programme>
+
+<programme start="20100428213000 +0000" stop="20100428221500 +0000" channel="ARD">
+	<title>Geboren im KZ</title>
+	<sub-title>Geboren im KZ Film von Eva Gruberova und Martina Gawatz</sub-title>
+	<desc>(teletext 328)</desc>
+	<star-rating>
+		<value>1/1</value>
+	</star-rating>
+</programme>
+
+<programme start="20100428221500 +0000" stop="20100428223500 +0000" channel="ARD">
+	<title>Nachtmagazin</title>
+	<desc>(teletext 313)</desc>
+</programme>
+
+<programme start="20100428223500 +0000" stop="20100429003000 +0000" channel="ARD">
+	<title>Der Mann mit dem</title>
+	<sub-title>Der Mann mit dem goldenen Arm (USA, 1955)</sub-title>
+	<!-- TTX 329 -->
+	<desc>Der Mann mit dem HD/s/w goldenen Arm (USA, 1955)
+Nach dem Verbüßen einer Haftstrafe kehrt Profi-Kartenspieler Frankie in sein Viertel zurück. Der ehemalige Heroinabhängige ist nun clean und will es bleiben. Doch es dauert nicht lange, bis er unter dem Einfluss alter Kumpane rückfällig wird. Immer tiefer gerät er in einen Strudel aus Drogensucht, Glücksspiel und Kriminalität ...
+Der Film gehört zu den wegweisenden Klassikern des US-Kinos der 1950er Jahre. Sinatra lieferte hier die womöglich beste Leistung seiner Karriere.</desc>
+	<video>
+		<colour>no</colour>
+		<quality>HDTV</quality>
+	</video>
+</programme>
+
+<programme start="20100429003000 +0000" stop="20100429003500 +0000" channel="ARD">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100429003500 +0000" stop="20100429012500 +0000" channel="ARD">
+	<title>Sturm der Liebe (1061)</title>
+</programme>
+
+<programme start="20100429012500 +0000" stop="20100429021000 +0000" channel="ARD">
+	<title>Geboren im KZ</title>
+</programme>
+
+<programme start="20100429021000 +0000" stop="20100429021500 +0000" channel="ARD">
+	<title>Tagesschau</title>
+</programme>
+
+<programme start="20100429021500 +0000" stop="20100429033000 +0000" channel="ARD">
+	<title>Hart aber fair</title>
+	<subtitles type="teletext"/>
+</programme>
+</tv>

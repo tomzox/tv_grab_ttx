@@ -1,0 +1,100 @@
+#!/usr/bin/perl -w
+#
+# Some title lines contain only feature attributes and TTX reference.
+#
+# $Id: feat-ov4.in,v 1.1 2011/01/05 13:05:10 tom Exp $
+#
+$VbiCaptureTime = 1271535664;
+$PgCnt{0x302} = 3;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1271535664;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302\x03ZDFtext\x02Sa\x0217.04.10\x0322:20:55",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Samstag, 17. April        ",
+  "                       \x05\x181D102\x18170410\x18E6",
+  "\x0711.05\x05\x181105\x07\x07Die K}chenschlacht        ",
+  "              Der Wochenr}ckblick ..\x07320",
+  "\x0613.00\x05\x181300\x06\x06heute                     ",
+  "\x0713.05\x05\x181305\x07\x07ZDFwochen-journal ....\x07321",
+  "\x0614.00\x05\x181400\x06\x06Im Tal der wilden Rosen   ",
+  "            \x06\x06Fluss der Liebe           ",
+  "            \x06\x06Liebesfilm D/2007\x03HD      ",
+  "            \x03\x03UT\x06...................\x06322",
+  "\x0715.30\x05\x181530\x07\x07Hochzeitsfieber!          ",
+  "              Traummann im              ",
+  "              Doppelpack ...........\x07323",
+  "\x0616.15\x05\x181615\x06\x06Lafer!Lichter!Lecker! \x06324",
+  "\x0717.00\x05\x181700\x07\x07heute\x03UT                  ",
+  "\x0617.05\x05\x181705\x06\x06L{nderspiegel ........\x06325",
+  "\x0717.45\x05\x181745\x07\x07Menschen - das Magazin    ",
+  "              Stark und weiblich!\x03UT\x07326",
+  "\x0618.00\x05\x181800\x06\x06hallo deutschland ....\x06365",
+  undef,
+  "      \x05\x18VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0718.30\x07Uhr -> 303\x07 ",
+];
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1271535664;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x03ZDFtext\x02Sa\x0217.04.10\x0322:20:55",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Samstag, 17. April        ",
+  "                       \x05\x181D102\x18170410\x18E8",
+  "\x0718.30\x05\x181830\x07\x07Leute heute\x03UT\x07.......\x07366",
+  "\x0619.00\x05\x181900\x06\x06heute                     ",
+  "            \x06\x06Wetter\x03UT\x06............\x06310",
+  "\x0719.20\x05\x051921\x07\x07ZDF spezial               ",
+  "              Vulkanwolke: Europa bleibt",
+  "              am Boden\x03UT\x07..........\x07327",
+  "\x0619.40\x05\x051925\x06\x06Unser Charly              ",
+  "            \x06\x06M{nnerwirtschaft\x03HD\x06..\x06328",
+  "\x0720.30\x05\x052015\x07\x07Das Duo                   ",
+  "              Bestien\x03UT\x07...........\x07329",
+  "\x0621.55\x05\x052145\x06\x06heute-journal\x03UT\x06.....\x06315",
+  "\x0722.13\x05\x052158\x07\x07Wetter\x03UT                 ",
+  "\x0322.15\x05\x052200\x03\x03das aktuelle              ",
+  "            \x03\x03sportstudio ..........\x03330",
+  "\x0723.30\x05\x052315\x07\x07Boxen live im Zweiten     ",
+  "            \x03\x03HD\x07...................\x07331",
+  undef,
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0701.15\x07Uhr -> 304\x07 ",
+];
+$PgCnt{0x304} = 4;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$PgTime{0x304} = 1271535664;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "        304\x03ZDFtext\x02Sa\x0217.04.10\x0322:20:55",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Samstag, 17. April        ",
+  "                       \x05\x181D102\x05180410\x18BA",
+  "\x0701.15\x05\x050059\x07\x07heute-show\x03Wdh.\x07......\x07332",
+  "\x0601.50\x05\x050100\x06\x06Die Geier warten schon    ",
+  "            \x06\x06Western USA/1972 .....\x06334",
+  "\x0703.15\x05\x050225\x07\x07heute ................\x07111",
+  "\x0603.15\x05\x050230\x06\x06Sherlock Holmes           ",
+  "            \x06\x06Die Frau in Gr}n          ",
+  "            \x06\x06Detektivfilm USA/1945     ",
+  "            \x03\x03s/w\x06..................\x06335",
+  "\x0704.20\x05\x050335\x07\x07heute ................\x07111",
+  "\x0604.25\x05\x050410\x06\x06ZDF.reportage             ",
+  "            \x06\x06So geht's nicht weiter\x06336",
+  "\x0704.50\x05\x050435\x07\x07citydreams                ",
+  "              M}nchen, Venedig,         ",
+  "              Amsterdam                 ",
+  "\x0604.55\x05\x180455\x06\x06L{nderspiegel\x03Wdh.\x06...\x06337",
+  undef,
+  undef,
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0705.35\x07Uhr -> 305\x07 ",
+];

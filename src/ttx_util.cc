@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.cc,v 1.3 2011/01/03 13:56:56 tom Exp $
+ * $Id: ttx_util.cc,v 1.4 2011/01/05 12:58:04 tom Exp $
  */
 
 #include <stdio.h>
@@ -101,7 +101,7 @@ bool str_concat_title(string& title, const string& str2, bool if_cont_only)
       ++del1;
    }
 
-   // count whitespace at the start of the second string
+   // skip whitespace at the start of the second string
    string::const_iterator p_start = str2.begin();
    while (   (p_start != str2.end())
           && (uint8_t(*p_start) <= ' ') )
@@ -155,7 +155,7 @@ bool str_concat_title(string& title, const string& str2, bool if_cont_only)
  */
 bool str_is_left_word_boundary(const string& str, unsigned pos)
 {
-   return (pos == 0) || !isalnum(str[pos - 1]);
+   return (pos == 0) || !isalnum_latin1(str[pos - 1]);
 }
 
 /* Check if there's a word boundary in the given string before the
@@ -163,7 +163,7 @@ bool str_is_left_word_boundary(const string& str, unsigned pos)
  */
 bool str_is_right_word_boundary(const string& str, unsigned pos)
 {
-   return (pos >= str.length()) || !isalnum(str[pos]);
+   return (pos >= str.length()) || !isalnum_latin1(str[pos]);
 }
 
 /* Search for the string "word" inside of "str". The match must be
@@ -189,7 +189,72 @@ string::size_type str_find_word(const string& str, const string& word)
    return string::npos;
 }
 
-/* Count and return the number of blank (or control) characters at the beginnine
+/* Compare the two strings, but ignore differences in white-space and
+ * punctuation and case.  Returns TRUE if the strings are equivalent, else
+ * FALSE. If the pointers are non-null, the function also returns the indices
+ * of the first differing characters in either string.
+ */
+bool str_cmp_alnum(const string& str1, const string& str2, uint * p_pos1, uint * p_pos2)
+{
+   unsigned pos1 = 0;
+   unsigned pos2 = 0;
+   bool result = true;
+
+   while (1) {
+      // skip non-alnum chars
+      while ((pos1 < str1.length()) && !isalnum_latin1(str1[pos1]))
+         pos1++;
+      while ((pos2 < str2.length()) && !isalnum_latin1(str2[pos2]))
+         pos2++;
+      // terminate upon end of string: fail if only one string is ended
+      if (pos1 >= str1.length()) {
+         if (pos2 < str2.length())
+            result = false;
+         break;
+      }
+      else if (pos2 >= str2.length()) {
+         result = false;
+         break;
+      }
+      // compare the next character
+      uint8_t c1 = str1[pos1];
+      uint8_t c2 = str2[pos2];
+      if ((c1 != c2) && (tolower_latin1(c1) != tolower_latin1(c2))) {
+         result = false;
+         break;
+      }
+      pos1++;
+      pos2++;
+   }
+   if (p_pos1 != 0)
+      *p_pos1 = pos1;
+   if (p_pos2 != 0)
+      *p_pos2 = pos2;
+   return result;
+}
+
+/* Returns the length of the string, after skipping non-alphanumeric characters
+ * at the beginning and end.
+ */
+uint str_len_alnum(const string& str)
+{
+   uint off = 0;
+   uint del = 0;
+
+   while ((off < str.length()) && !isalnum_latin1(str[off]))
+      off++;
+
+   if (off < str.length()) {  // implies length > 0
+      del = str.length() - 1;
+      while ((del > off) && !isalnum_latin1(str[del]))
+         del--;
+      del = str.length() - 1 - del;
+   }
+
+   return str.length() - off - del;
+}
+
+/* Count and return the number of blank (or control) characters at the beginning
  * of the given string.
  */
 unsigned str_get_indent(const string& str)

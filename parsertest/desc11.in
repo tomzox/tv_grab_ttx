@@ -1,0 +1,158 @@
+#!/usr/bin/perl -w
+#
+# Test parsing description titles:
+# - pages 318, 320, 321 have a feature attribute on the subtitle line
+#
+# $Id: desc11.in,v 1.1 2011/01/05 13:05:10 tom Exp $
+#
+$VbiCaptureTime = 1146508993;
+$PgCnt{0x302} = 5;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "I\x15\x15\x15\x15\x15\x15G302\x03ZDFtext\x02Mo\x0201.05.06\x0320:42:56",
+  "\x04\x1D \x07ZDFtext  \x01\x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Montag, 1.Mai             ",
+  "                       \x05\x181D102\x18010506\x18D7",
+  "\x0717.00\x05\x181700\x07\x07heute\x03UT                  ",
+  "\x0617.10\x05\x181710\x06\x06Evelyn Hamanns Geschichten",
+  "            \x06\x06aus dem Leben ........\x06317",
+  "\x0718.10\x05\x181810\x07\x07SOKO 5113:                ",
+  "              Piraten...............\x07318",
+  "\x0619.00\x05\x181900\x06\x06heute\x03UT\x06.............\x06310",
+  "\x0719.14\x05\x181914\x07\x07Wetter\x03UT                 ",
+  "\x0619.15\x05\x181915\x06\x06Licht aus in Erichs       ",
+  "            \x06\x06Lampenladen ..........\x06319",
+  "\x0719.30\x05\x181930\x07\x07ZDF Expedition            ",
+  "              Die Jagd nach Tutenchamun ",
+  "              (2/2).................\x07320",
+  "\x0320.15\x05\x052014\x03\x03Dornr|schens leiser Tod   ",
+  "            \x03\x03Psychokrimi D/2003    \x03321",
+  undef,
+  undef,
+  undef,
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x04\x1D\x07300 <-          ab\x0722.05\x07Uhr -> 303\x07 ",
+];
+$PgCnt{0x318} = 6;
+$PgSub{0x318} = 0;
+$PgLang{0x318} = 1;
+$Pkg{0x318|(0x0000<<12)} =
+[
+  "P\x02\x15\x15\x15\x15\x15G318\x03ZDFtext\x02Mo\x0201.05.06\x0320:42:56",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Montag, 1.Mai             ",
+  "                       \x05\x181D102\x18010506\x183B",
+  " \x0718.10\x07-\x0719.00\x07Uhr          \x05\x18VPS\x181810\x07",
+  "\x06\x06SOKO 5113                             ",
+  "\x06\x06Piraten\x03H|rfilm                       ",
+  undef,
+  " Der SOKO-Beamte Theo Renner wird Opfer ",
+  " eines \"Carjackings\": Zwei Jugendliche  ",
+  " lauern ihm auf und zwingen ihn zu einer",
+  " rasanten Autofahrt durch M}nchen. Als  ",
+  " die beiden merken, dass sie einen Po-  ",
+  " lizisten entf}hrt haben, macht sich Pa-",
+  " nik im Wagen breit.                    ",
+  "                                        ",
+  "\x06Theo baut absichtlich einen Unfall, bei",
+  "\x06dem allerdings ein Radfahrer verletzt  ",
+  "\x06wird - Theo wird beurlaubt. Als er er- ",
+  "\x06f{hrt, dass der SOKO wegen Befangenheit",
+  "\x06der Fall entzogen wird, ist der junge  ",
+  "\x06Beamte fest entschlossen, die Ermitt-  ",
+  "\x06lungen auf eigene Faust fortzusetzen.  ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x319} = 6;
+$PgSub{0x319} = 0;
+$PgLang{0x319} = 1;
+$Pkg{0x319|(0x0000<<12)} =
+[
+  "G\x02\x15\x15\x15\x15\x15G319\x03ZDFtext\x02Mo\x0201.05.06\x0320:42:56",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Montag, 1.Mai             ",
+  "                       \x05\x181D102\x18010506\x184A",
+  " \x0719.15\x07-\x0719.30\x07Uhr          \x05\x18VPS\x181915\x07",
+  "\x06\x06Licht aus in Erichs Lampen-           ",
+  "\x06\x06laden                          \x0316:9  ",
+  undef,
+  " Der Palast der Republik, im Volksmund  ",
+  " wegen der vielen Leuchter auch \"Erichs ",
+  " Lampenladen\" genannt, wird abgerissen. ",
+  " Das Haus steht tief im Grundwasser.    ",
+  " Heftige Ver{nderungen im Boden k|nnten ",
+  " Schwingungen ausl|sen und benachbarte  ",
+  " Geb{ude, den Berliner Dom etwa, gef{hr-",
+  " den. Eine gro~e Herausforderung f}r die",
+  " Bauarbeiter und Ingenieure.            ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "                                        ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x320} = 6;
+$PgSub{0x320} = 0;
+$PgLang{0x320} = 1;
+$Pkg{0x320|(0x0000<<12)} =
+[
+  "\x15I\x15\x15\x15\x15\x15G320\x03ZDFtext\x02Mo\x0201.05.06\x0320:42:56",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Montag, 1.Mai             ",
+  "                       \x05\x181D102\x18010506\x183F",
+  " \x0719.30\x07-\x0720.15\x07Uhr          \x05\x18VPS\x181930\x07",
+  "\x06\x06ZDF Expedition                        ",
+  "\x06\x06Die Jagd nach Tutenchamun (2/2)\x0316:9  ",
+  "\x03\x03UT                                    ",
+  undef,
+  " 1922 im Tal der K|nige bei Luxor. How- ",
+  " ard Carter (Stuart Graham) w{hnt sich  ",
+  " am Ziel: Nach jahrelangen Ausgrabungen ",
+  " und Fehlschl{gen st|~t der britische   ",
+  " Arch{ologe endlich auf die Grabst{tte  ",
+  " des Pharao Tutenchamun. Die Sensation  ",
+  " ist perfekt. Doch mit der Entdeckung   ",
+  " beginnen erst die Probleme.            ",
+  undef,
+  "\x06Im zweiten Teil des Dokudramas ent-    ",
+  "\x06wickelt sich der Fund im Tal der K|ni- ",
+  "\x06ge zum Machtkampf zwischen zwei ehrgei-",
+  "\x06zigen M{nnern. Dann erkrankt Lord Car- ",
+  "\x06narvon an einer mysteri|sen Infektion. ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
+$PgCnt{0x321} = 6;
+$PgSub{0x321} = 0;
+$PgLang{0x321} = 1;
+$Pkg{0x321|(0x0000<<12)} =
+[
+  "\x02I\x15\x15\x15\x15\x15G321\x03ZDFtext\x02Mo\x0201.05.06\x0320:42:57",
+  "\x04\x1D\x07 ZDFtext\x01  \x1D\x07        Heute           ",
+  "\x04\x1D\x07 Programm  Montag, 1.Mai             ",
+  "                       \x05\x181D102\x18010506\x1835",
+  " \x0720.15\x07-\x0722.05\x07Uhr          \x05\x05VPS\x052014\x07",
+  "\x06\x06Dornr|schens leiser Tod               ",
+  "\x06\x06Psychokrimi D/2003\x0316:9 UT            ",
+  undef,
+  " Im beschaulichen St{dtchen K|nigsrode  ",
+  " wird die Leiche eines Kindes gefunden. ",
+  " Es stellt sich heraus, dass es sich um ",
+  " die vor f}nf Jahren verschwundene Lilly",
+  " handelt. Wieder ger{t ihre Mutter Eva  ",
+  " (Nadja Auermann) unter Verdacht und der",
+  " Albtraum von Verd{chtigung und Befra-  ",
+  " gung scheint von vorne loszugehen.     ",
+  undef,
+  "\x06Bald wird Eva klar, dass im Dorf mehr  ",
+  "\x06}ber Lillys Tod bekannt ist, als man   ",
+  "\x06zugeben will. Eva beschlie~t, mit Hilfe",
+  "\x06der jungen Polizistin Claudia (Katha-  ",
+  "\x06rina Wackernagel) auf eigene Faust zu  ",
+  "\x06ermitteln.                             ",
+  "\x04\x1D\x07300 <-                           ->  ",
+];
