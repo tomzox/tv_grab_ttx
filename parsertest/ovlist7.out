@@ -87,8 +87,7 @@ Aktuelle Sportmeldungen &gt;&gt; ab 200 Paralympics im ARD-Text &gt;&gt; ab 800<
 </programme>
 
 <programme start="20100320100500 +0000" stop="20100320140000 +0000" pdc-start="20100320100500 +0100" channel="ard.de">
-	<title>Sportschau live: WM Skifliegen, Snowboard-</title>
-	<sub-title>Sportschau live: WM Skifliegen, Snowboard- Weltcup, Paralympics, Langlauf-Weltcup, Shorttrack- WM, Biathlon-Weltcup</sub-title>
+	<title>Sportschau live: WM Skifliegen, Snowboard-Weltcup, Paralympics, Langlauf-Weltcup, Shorttrack-WM, Biathlon-Weltcup</title>
 	<desc>(teletext 390)</desc>
 	<video>
 		<quality>HDTV</quality>
@@ -104,8 +103,7 @@ Aktuelle Sportmeldungen &gt;&gt; ab 200 Paralympics im ARD-Text &gt;&gt; ab 800<
 </programme>
 
 <programme start="20100320140500 +0000" stop="20100320163000 +0000" pdc-start="20100320100500 +0100" channel="ard.de">
-	<title>Sportschau live: Langlauf-Weltcup, Biathlon-</title>
-	<sub-title>Sportschau live: Langlauf-Weltcup, Biathlon- Weltcup, Eisschnelllauf-WM</sub-title>
+	<title>Sportschau live: Langlauf-Weltcup, Biathlon-Weltcup, Eisschnelllauf-WM</title>
 	<!-- TTX 390 -->
 	<desc>Sa 20.03.10 Das Erste
 Wintersport live HD/UT 10.05 - 17.30 Uhr Ticker &gt;&gt; 666

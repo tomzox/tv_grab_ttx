@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_feat.cc,v 1.3 2011/01/05 12:58:14 tom Exp $
+ * $Id: ttx_feat.cc,v 1.4 2011/01/05 18:17:55 tom Exp $
  */
 
 #include <stdio.h>
@@ -115,7 +115,8 @@ void TV_FEAT::MapTrailingFeat(const char * feat, int len, const string& title)
 // note: must correct $n below if () are added to pattern
 #define FEAT_PAT_STR "UT(( auf | )?[1-8][0-9][0-9])?|" \
                      "[Uu]ntertitel|[Hh]örfilm(°°)?|HF|AD|" \
-                     "s/?w|S/?W|tlw. s/w|oo|°°|°\\*|OmU|16:9|HD|[Bb]reitbild|" \
+                     "s/?w|S/?W|tlw. s/w|oo|°°|°\\*|OmU|" \
+                     "4:3|16:9|HD|[Bb]reitbild|" \
                      "2K|2K-Ton|[Mm]ono|[Ss]tereo|[Dd]olby|[Ss]urround|" \
                      "DS|SS|DD|ZS|" \
                      "Wh\\.?|Wdh\\.?|Whg\\.?|Tipp!?|\\d{2,3} (MIN|Min|min)\\.?"

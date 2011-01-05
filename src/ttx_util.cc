@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.cc,v 1.5 2011/01/05 13:31:11 tom Exp $
+ * $Id: ttx_util.cc,v 1.6 2011/01/05 18:17:48 tom Exp $
  */
 
 #include <stdio.h>
@@ -116,7 +116,7 @@ bool str_concat_title(string& title, const string& str2, bool if_cont_only)
        && (title[title.length() - del1 - 1] == '-')
        && (title[title.length() - del1 - 2] != ' ')
        && (p_start != str2.end())
-       && islower(*p_start) )
+       && islower_latin1(*p_start) )
    {
       // remove (replace) the "-" and
       // append (replace) the second string, skipping whitespace
@@ -128,12 +128,16 @@ bool str_concat_title(string& title, const string& str2, bool if_cont_only)
             && (   (title[title.length() - del1 - 1] == ':')
                 || (title[title.length() - del1 - 1] == ',')
                 || (title[title.length() - del1 - 1] == '&')
-                || (   (title[title.length() - del1 - 1] == '-')
-                    && (title[title.length() - del1 - 2] == ' ')) )
+                || (title[title.length() - del1 - 1] == '-') )
             && (p_start != str2.end()) )
    {
       // keep the ':' plus a single whitespace, then append the second string
-      title.replace(title.end() - del1, title.end(), " ");
+      // unless there's a hyphen without leading space, then add no blank after
+      if (   (title[title.length() - del1 - 1] == '-')
+          && (title[title.length() - del1 - 2] != ' '))
+        title.erase(title.end() - del1, title.end());
+      else
+        title.replace(title.end() - del1, title.end(), " ");
       title.append(p_start, str2.end());
       result = true;
    }
