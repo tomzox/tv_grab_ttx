@@ -6,7 +6,7 @@
 </channel>
 
 <programme start="20100326120000 +0000" stop="20100326121500 +0000" pdc-start="20100326130000 +0100" channel="3sat">
-	<title>zib</title>
+	<title>Zib</title>
 	<video>
 		<aspect>16:9</aspect>
 	</video>

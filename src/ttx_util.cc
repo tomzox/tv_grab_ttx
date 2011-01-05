@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.cc,v 1.4 2011/01/05 12:58:04 tom Exp $
+ * $Id: ttx_util.cc,v 1.5 2011/01/05 13:31:11 tom Exp $
  */
 
 #include <stdio.h>
@@ -35,10 +35,12 @@ using namespace boost;
 
 /* Turn the entire given string into lower-case.
  */
-void str_tolower_latin1(string& str)
+void str_tolower_latin1(string& str, uint pos)
 {
-   for (string::iterator p = str.begin(); p < str.end(); p++) {
-      *p = tolower_latin1(*p);
+   if (pos < str.length()) {
+      for (string::iterator p = str.begin() + pos; p < str.end(); p++) {
+         *p = tolower_latin1(*p);
+      }
    }
 }
 

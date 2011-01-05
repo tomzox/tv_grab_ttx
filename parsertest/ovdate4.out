@@ -20,7 +20,7 @@
 </programme>
 
 <programme start="20060430205500 +0000" stop="20060430214500 +0000" channel="SAT.1">
-	<title>planetopia</title>
+	<title>Planetopia</title>
 	<desc>(teletext 331)</desc>
 </programme>
 
@@ -39,7 +39,7 @@
 </programme>
 
 <programme start="20060501002000 +0000" stop="20060501013000 +0000" channel="SAT.1">
-	<title>quiz night</title>
+	<title>Quiz night</title>
 	<desc>(teletext 375)</desc>
 </programme>
 

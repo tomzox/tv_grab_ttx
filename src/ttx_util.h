@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.h,v 1.3 2011/01/05 12:58:04 tom Exp $
+ * $Id: ttx_util.h,v 1.4 2011/01/05 13:31:11 tom Exp $
  */
 #if !defined (__TTX_UTIL_H)
 #define __TTX_UTIL_H
@@ -193,7 +193,7 @@ bool isalnum_latin1(char chr)
      return false;
 }
 
-void str_tolower_latin1(string& str);
+void str_tolower_latin1(string& str, uint pos);
 bool str_all_upper(string& str);
 void str_repl_ctrl(string& str);
 bool str_concat_title(string& title, const string& str2, bool if_cont_only);

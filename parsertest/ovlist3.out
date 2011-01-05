@@ -11,7 +11,7 @@
 </programme>
 
 <programme start="20060503033500 +0000" stop="20060503035500 +0000" channel="SAT.1">
-	<title>blitz</title>
+	<title>Blitz</title>
 </programme>
 
 <programme start="20060503035500 +0000" stop="20060503070000 +0000" channel="SAT.1">
@@ -19,7 +19,7 @@
 </programme>
 
 <programme start="20060503070000 +0000" stop="20060503080000 +0000" channel="SAT.1">
-	<title>shop tv</title>
+	<title>Shop tv</title>
 </programme>
 
 <programme start="20060503080000 +0000" stop="20060503083000 +0000" channel="SAT.1">
@@ -82,6 +82,6 @@
 </programme>
 
 <programme start="20060503165000 +0000" channel="SAT.1">
-	<title>blitz</title>
+	<title>Blitz</title>
 </programme>
 </tv>

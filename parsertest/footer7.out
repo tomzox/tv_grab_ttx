@@ -6,7 +6,7 @@
 </channel>
 
 <programme start="20100416040000 +0000" stop="20100416044500 +0000" pdc-start="20100416060000 +0200" channel="ARTE">
-	<title>folle journee 2009: schütz</title>
+	<title>Folle journee 2009: schütz</title>
 	<sub-title>FOLLE JOURNEE 2009: SCHÜTZ / BUXTEHUDE</sub-title>
 	<video>
 		<quality>HDTV</quality>
@@ -14,24 +14,24 @@
 </programme>
 
 <programme start="20100416044500 +0000" stop="20100416050000 +0000" pdc-start="20100416064500 +0200" channel="ARTE">
-	<title>karambolage</title>
+	<title>Karambolage</title>
 </programme>
 
 <programme start="20100416050000 +0000" stop="20100416053000 +0000" pdc-start="20100416070000 +0200" channel="ARTE">
-	<title>yourope</title>
+	<title>Yourope</title>
 </programme>
 
 <programme start="20100416053000 +0000" stop="20100416060000 +0000" pdc-start="20100416073000 +0200" channel="ARTE">
-	<title>künstler hautnah</title>
+	<title>Künstler hautnah</title>
 </programme>
 
 <programme start="20100416060000 +0000" stop="20100416064500 +0000" pdc-start="20100416080000 +0200" channel="ARTE">
-	<title>metropolis</title>
+	<title>Metropolis</title>
 	<desc>(teletext 307)</desc>
 </programme>
 
 <programme start="20100416064500 +0000" stop="20100416071000 +0000" pdc-start="20100416084500 +0200" channel="ARTE">
-	<title>x:enius</title>
+	<title>X:enius</title>
 	<desc>(teletext 308)</desc>
 </programme>
 
@@ -41,14 +41,14 @@
 </programme>
 
 <programme start="20100416071500 +0000" stop="20100416075600 +0000" pdc-start="20100416091500 +0200" channel="ARTE">
-	<title>die grossen sportduelle</title>
+	<title>Die grossen sportduelle</title>
 	<!-- TTX 309 -->
 	<desc>DIE GROSSEN SPORTDUELLE: 41 MIN. FECHTEN: FRANKREICH - ITALIEN Dokumentation von Frederic Delpla und Christian Seychal, F 2002, ARTE F
 Das Fechten war einst keine Sportart, sondern eine Kampftechnik zur Austragung von Duellen. Große Duelle gibt es im Fechten auch heute noch. Ein Wettkampf zwischen Frankreich und Italien ist schon längst ein Klassiker, in dem sich immer wieder aufs Neue zwei der besten Fechtsport-Nationen der Welt duellieren.</desc>
 </programme>
 
 <programme start="20100416080000 +0000" stop="20100416085500 +0000" pdc-start="20100416100000 +0200" channel="ARTE">
-	<title>sneakers: der kult der</title>
+	<title>Sneakers: der kult der</title>
 	<sub-title>SNEAKERS: DER KULT DER TURNSCHUHE</sub-title>
 	<!-- TTX 310 -->
 	<desc>SNEAKERS: DER KULT DER 52 MIN. TURNSCHUHE Dokumentation von Thibaut de Longeville und Lisa Leone, F / USA 2005, ARTE F
@@ -56,21 +56,21 @@ Wie die Jeans in den 70er Jahren ist der Sneaker spätestens seit den 90er Jahren
 </programme>
 
 <programme start="20100416085500 +0000" stop="20100416102500 +0000" pdc-start="20100416105500 +0200" channel="ARTE">
-	<title>mein avatar und ich</title>
+	<title>Mein avatar und ich</title>
 	<desc>(teletext 311)</desc>
 </programme>
 
 <programme start="20100416102500 +0000" stop="20100416104500 +0000" pdc-start="20100416122000 +0200" channel="ARTE">
-	<title>global</title>
+	<title>Global</title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20100416104500 +0000" stop="20100416110000 +0000" pdc-start="20100416124500 +0200" channel="ARTE">
-	<title>arte journal</title>
+	<title>Arte journal</title>
 </programme>
 
 <programme start="20100416110000 +0000" stop="20100416113000 +0000" pdc-start="20100416130000 +0200" channel="ARTE">
-	<title>zu tisch in ...</title>
+	<title>Zu tisch in ...</title>
 	<desc>(teletext 313)</desc>
 	<video>
 		<quality>HDTV</quality>
@@ -78,12 +78,12 @@ Wie die Jeans in den 70er Jahren ist der Sneaker spätestens seit den 90er Jahren
 </programme>
 
 <programme start="20100416113000 +0000" stop="20100416120000 +0000" pdc-start="20100416133000 +0200" channel="ARTE">
-	<title>zu tisch in ...</title>
+	<title>Zu tisch in ...</title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20100416120000 +0000" stop="20100416124500 +0000" pdc-start="20100416140000 +0200" channel="ARTE">
-	<title>zoo-babies (5/5)</title>
+	<title>Zoo-babies (5/5)</title>
 	<desc>(teletext 315)</desc>
 	<video>
 		<quality>HDTV</quality>
@@ -91,7 +91,7 @@ Wie die Jeans in den 70er Jahren ist der Sneaker spätestens seit den 90er Jahren
 </programme>
 
 <programme start="20100416124500 +0000" stop="20100416144000 +0000" pdc-start="20100416144500 +0200" channel="ARTE">
-	<title>die teuflischen</title>
+	<title>Die teuflischen</title>
 	<desc>(teletext 316)</desc>
 	<video>
 		<quality>HDTV</quality>
@@ -99,7 +99,7 @@ Wie die Jeans in den 70er Jahren ist der Sneaker spätestens seit den 90er Jahren
 </programme>
 
 <programme start="20100416144000 +0000" stop="20100416145200 +0000" pdc-start="20100416164000 +0200" channel="ARTE">
-	<title>o'moro</title>
+	<title>O'moro</title>
 	<video>
 		<quality>HDTV</quality>
 	</video>

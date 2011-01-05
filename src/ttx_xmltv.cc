@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_xmltv.cc,v 1.2 2011/01/05 12:58:25 tom Exp $
+ * $Id: ttx_xmltv.cc,v 1.3 2011/01/05 13:30:47 tom Exp $
  */
 
 #include <stdio.h>
@@ -139,7 +139,7 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
       // (unless only one consecutive letter, e.g. movie "K2" or "W.I.T.C.H.")
       // TODO move this into separate post-processing stage; make statistics for all titles first
       if (str_all_upper(title)) {
-         str_tolower_latin1(title);
+         str_tolower_latin1(title, 1);
       }
       Latin1ToXml(title);
 
