@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.h,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_scrape.h,v 1.2 2011/01/06 16:51:48 tom Exp $
  */
 #if !defined (__TTX_SCRAPE_H)
 #define __TTX_SCRAPE_H
@@ -52,8 +52,8 @@ public:
    bool calc_date_off(const OV_PAGE * prev);
    bool check_start_times();
    void calculate_start_times();
-   void extract_ttx_ref(const T_TRAIL_REF_FMT& fmt);
-   void extract_tv();
+   void extract_ttx_ref(const T_TRAIL_REF_FMT& fmt, map<int,int>& ttx_ref_map);
+   void extract_tv(map<int,int>& ttx_ref_map);
    static list<TV_SLOT> get_ov_slots(vector<OV_PAGE*> ov_pages);
    static T_TRAIL_REF_FMT detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages);
 private:
@@ -96,11 +96,11 @@ private:
    TV_FEAT      m_ext_feat;
 public:
    void add_title(string ctrl);
-   void parse_ttx_ref(const T_TRAIL_REF_FMT& fmt);
+   void parse_ttx_ref(const T_TRAIL_REF_FMT& fmt, map<int,int>& ttx_ref_map);
    void detect_ttx_ref_fmt(vector<T_TRAIL_REF_FMT>& fmt_list);
    void parse_feature_flags();
    void parse_ov_title();
-   void parse_desc_page(const T_PG_DATE * pg_date);
+   void parse_desc_page(const T_PG_DATE * pg_date, int ref_count);
    int parse_desc_title(int page, int sub);
    void merge_desc(const string& desc);
    time_t convert_start_t(const T_PG_DATE * pgdate, int date_off) const;

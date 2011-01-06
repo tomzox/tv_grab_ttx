@@ -1,0 +1,100 @@
+#!/usr/bin/perl -w
+#
+# Test of date format day/month/year
+#
+# $Id: ovdate10.in,v 1.1 2011/01/06 11:55:32 tom Exp $
+#
+$VbiCaptureTime = 1294312648;
+$PgCnt{0x301} = 1;
+$PgSub{0x301} = 2;
+$PgLang{0x301} = 1;
+$PgTime{0x301} = 1294312648;
+$Pkg{0x301|(0x0002<<12)} =
+[
+  "        \x06EUROSPORT  \x07301 06 Jan\x0312:17:31",
+  " \x1D\x04   TV     \x1D\x07             Do 03-12 Uhr",
+  " \x1D \x04         06/01/2011             1/1 ",
+  undef,
+  " 08:32 Motorsport: 32. Rallye Dakar 2011",
+  "       / 4. Etappe von San Salvador de  ",
+  "       Jujuy (ARG) nach Calama (CHI)    ",
+  "\x0609:06 Biathlon: IBU Weltcup 2010/11 / 4",
+  "\x06      x 7,5km Staffel der M{nner in    ",
+  "\x06      Oberhof                          ",
+  " 09:45 Rennrodeln: LIVE FIL Weltcup     ",
+  "       2010/11 / 1. Durchgang der M{nner",
+  "       in K|nigssee                     ",
+  "\x0610:54 Skispringen: Vierschanzentournee ",
+  "\x06      / Qualifikation in Bischofshofen ",
+  " 11:11 Rennrodeln: LIVE FIL Weltcup     ",
+  "       2010/11 / 2. Durchgang der M{nner",
+  "       in K|nigssee                     ",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x01\x1D\x07\x0D1000 Singles warten nur a. Dich 570 ",
+  undef,
+];
+$PgCnt{0x302} = 1;
+$PgSub{0x302} = 5;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1294312648;
+$Pkg{0x302|(0x0005<<12)} =
+[
+  "        \x06EUROSPORT  \x07302 06 Jan\x0312:17:31",
+  " \x1D\x04   TV     \x1D\x07             Do 12-15 Uhr",
+  " \x1D         \x04 06/01/2011             1/2 ",
+  undef,
+  " 12:16 Skilanglauf: LIVE Tour de Ski    ",
+  "       2010/11 / 3. Verfolgung in Dob-  ",
+  "       biaco-Toblach (ITA) / 36km Frei- ",
+  "       stil der M{nner (3. von 4 Tour-  ",
+  "       stationen)                       ",
+  "\x0612:58 Rennrodeln: LIVE FIL Weltcup     ",
+  "\x06      2010/11 / Team-Staffel in K|nigs-",
+  "\x06      see                              ",
+  " 13:55 Skilanglauf: LIVE Tour de Ski    ",
+  "       2010/11 / 3. Verfolgung in Dob-  ",
+  "       biaco-Toblach (ITA) / 17km Frei- ",
+  "       stil der Frauen (3. von 4 Tour-  ",
+  "       stationen)                       ",
+  "\x0614:40 Ski Alpin: LIVE FIS Weltcup      ",
+  "\x06      2010/11 / Slalom der M{nner in   ",
+  "\x06      Zagreb (CRO) / 1. Durchgang      ",
+  undef,
+  undef,
+  "\x03\x1D\x04\x0DDSL + Festnetz zum Sparpreis!   580 ",
+  undef,
+];
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1294312648;
+$Pkg{0x303|(0x0002<<12)} =
+[
+  "        \x06EUROSPORT  \x07303 06 Jan\x0312:17:31",
+  " \x1D\x04   TV     \x1D\x07             Do 18-21 Uhr",
+  " \x1D          \x0406/01/2011             1/1 ",
+  undef,
+  " 18:45 Skilanglauf: Tour de Ski 2010/11 ",
+  "       / 3. Verfolgung in Dobbiaco-To-  ",
+  "       blach (ITA) / 36km Freistil der  ",
+  "       M{nner (3. von 4 Tourstationen)  ",
+  "\x0619:25 Biathlon: LIVE IBU Weltcup       ",
+  "\x06      2010/11 / 4 x 6km Staffel der    ",
+  "\x06      Frauen in Oberhof                ",
+  " 20:45 Motorsport: LIVE 32. Rallye Dakar",
+  "       2011 / 5. Etappe von Calama (CHI)",
+  "       nach Iquique (CHI)               ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x04\x1D\x07\x0DFlirte mit attraktiven Singles! 600 ",
+  undef,
+];

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="EUROSPORT">
+	<display-name>EUROSPORT</display-name>
+</channel>
+
+<programme start="20110106073200 +0000" stop="20110106080600 +0000" channel="EUROSPORT">
+	<title>Motorsport: 32. Rallye Dakar 2011</title>
+	<sub-title>Motorsport: 32. Rallye Dakar 2011 / 4. Etappe von San Salvador de Jujuy (ARG) nach Calama (CHI)</sub-title>
+</programme>
+
+<programme start="20110106080600 +0000" stop="20110106084500 +0000" channel="EUROSPORT">
+	<title>Biathlon: IBU Weltcup 2010/11 / 4</title>
+	<sub-title>Biathlon: IBU Weltcup 2010/11 / 4 x 7,5km Staffel der Männer in Oberhof</sub-title>
+</programme>
+
+<programme start="20110106084500 +0000" stop="20110106095400 +0000" channel="EUROSPORT">
+	<title>Rennrodeln: LIVE FIL Weltcup</title>
+	<sub-title>Rennrodeln: LIVE FIL Weltcup 2010/11 / 1. Durchgang der Männer in Königssee</sub-title>
+</programme>
+
+<programme start="20110106095400 +0000" stop="20110106101100 +0000" channel="EUROSPORT">
+	<title>Skispringen: Vierschanzentournee</title>
+	<sub-title>Skispringen: Vierschanzentournee / Qualifikation in Bischofshofen</sub-title>
+</programme>
+
+<programme start="20110106101100 +0000" channel="EUROSPORT">
+	<title>Rennrodeln: LIVE FIL Weltcup</title>
+	<sub-title>Rennrodeln: LIVE FIL Weltcup 2010/11 / 2. Durchgang der Männer in Königssee</sub-title>
+</programme>
+
+<programme start="20110106111600 +0000" stop="20110106115800 +0000" channel="EUROSPORT">
+	<title>Skilanglauf: LIVE Tour de Ski</title>
+	<sub-title>Skilanglauf: LIVE Tour de Ski 2010/11 / 3. Verfolgung in Dobbiaco-Toblach (ITA) / 36km Freistil der Männer (3. von 4 Tourstationen)</sub-title>
+</programme>
+
+<programme start="20110106115800 +0000" stop="20110106125500 +0000" channel="EUROSPORT">
+	<title>Rennrodeln: LIVE FIL Weltcup</title>
+	<sub-title>Rennrodeln: LIVE FIL Weltcup 2010/11 / Team-Staffel in Königssee</sub-title>
+</programme>
+
+<programme start="20110106125500 +0000" stop="20110106134000 +0000" channel="EUROSPORT">
+	<title>Skilanglauf: LIVE Tour de Ski</title>
+	<sub-title>Skilanglauf: LIVE Tour de Ski 2010/11 / 3. Verfolgung in Dobbiaco-Toblach (ITA) / 17km Freistil der Frauen (3. von 4 Tourstationen)</sub-title>
+</programme>
+
+<programme start="20110106134000 +0000" channel="EUROSPORT">
+	<title>Ski Alpin: LIVE FIS Weltcup</title>
+	<sub-title>Ski Alpin: LIVE FIS Weltcup 2010/11 / Slalom der Männer in Zagreb (CRO) / 1. Durchgang</sub-title>
+</programme>
+
+<programme start="20110106174500 +0000" stop="20110106182500 +0000" channel="EUROSPORT">
+	<title>Skilanglauf: Tour de Ski 2010/11</title>
+	<sub-title>Skilanglauf: Tour de Ski 2010/11 / 3. Verfolgung in Dobbiaco-Toblach (ITA) / 36km Freistil der Männer (3. von 4 Tourstationen)</sub-title>
+</programme>
+
+<programme start="20110106182500 +0000" stop="20110106194500 +0000" channel="EUROSPORT">
+	<title>Biathlon: LIVE IBU Weltcup</title>
+	<sub-title>Biathlon: LIVE IBU Weltcup 2010/11 / 4 x 6km Staffel der Frauen in Oberhof</sub-title>
+</programme>
+
+<programme start="20110106194500 +0000" channel="EUROSPORT">
+	<title>Motorsport: LIVE 32. Rallye Dakar</title>
+	<sub-title>Motorsport: LIVE 32. Rallye Dakar 2011 / 5. Etappe von Calama (CHI) nach Iquique (CHI)</sub-title>
+</programme>
+</tv>

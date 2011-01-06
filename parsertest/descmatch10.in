@@ -7,7 +7,7 @@
 # Also note page 303 is a duplicate with the same programmes, just different
 # ads.
 #
-# $Id: descmatch10.in,v 1.1 2010/04/15 18:16:34 tom Exp $
+# $Id: descmatch10.in,v 1.2 2011/01/08 12:17:13 tom Exp $
 #
 $VbiCaptureTime = 1222090547;
 $PkgCni{0xD8F} = 90;
@@ -154,7 +154,7 @@ $Pkg{0x304|(0x0000<<12)} =
   "\x07\x1D\x0102:30\x00Blood & Wine                   ",
   "\x07\x1D\x01     \x00Ein t|dlicher Cocktail.....351 ",
   "\x07\x1D\x01     \x00                               ",
-  "\x07\x1D\x0104:15\x00Killer Instinct                ",
+  "\x07\x1D\x0104:15\x00Ein Direktor r{umt auf.....351 ",
   "\x07\x1D\x01     \x00                               ",
   "\x07\x1D                                      ",
   "\x07\x1D\x1C\x07Esoterische Lebensberatung >>> 700\x1D ",
@@ -277,7 +277,7 @@ $Pkg{0x351|(0x0003<<12)} =
   "\x07\x1D\x00ins Computersystem der Schule ein-   ",
   "\x07\x1D\x00drigen, um den Eintrag zu l|schen... ",
   "\x17///////////////////////////////////////",
-  "\x01\x1D\x1C\x07Samstag, 27.09.08; 12.35 Uhr \x01\x1D\x07\x07   ",
+  "\x01\x1D\x1C\x07Montag, 22.09.08; 04.15 Uhr \x01\x1D\x07\x07    ",
   "\x01\x1D\x07\x0D                                    ",
   "                                        ",
 ];
@@ -307,7 +307,7 @@ $Pkg{0x351|(0x0004<<12)} =
   "\x07\x1D\x00die RTL II-Erfolgs-Sitcom \"H|r' mal, ",
   "\x07\x1D\x00wer da h{mmert\".                     ",
   "\x17///////////////////////////////////////",
-  "\x01\x1D\x1C\x07Samstag, 27.09.08; 12.35 Uhr \x01\x1D\x07\x07   ",
+  "\x01\x1D\x1C\x07Montag, 22.09.08; 04.15 Uhr \x01\x1D\x07\x07    ",
   "\x01\x1D\x07\x0D                                    ",
   "                                        ",
 ];

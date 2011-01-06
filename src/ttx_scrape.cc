@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.cc,v 1.4 2011/01/06 11:11:07 tom Exp $
+ * $Id: ttx_scrape.cc,v 1.5 2011/01/06 16:51:48 tom Exp $
  */
 
 #include <stdio.h>
@@ -68,11 +68,13 @@ void OV_SLOT::merge_desc(const string& desc)
    m_ext_desc = desc;
 }
 
-void OV_SLOT::parse_ttx_ref(const T_TRAIL_REF_FMT& fmt)
+void OV_SLOT::parse_ttx_ref(const T_TRAIL_REF_FMT& fmt, map<int,int>& ttx_ref_map)
 {
    for (unsigned idx = 0; idx < m_ov_title.size(); idx++) {
-      if (fmt.parse_trailing_ttx_ref(m_ov_title[idx], m_ttx_ref))
+      if (fmt.parse_trailing_ttx_ref(m_ov_title[idx], m_ttx_ref)) {
+         ++ttx_ref_map[m_ttx_ref];
          break;
+      }
    }
 }
 
@@ -907,7 +909,7 @@ string ParseDescContent(int page, int sub, int head, int foot)
 /* TODO: check for all referenced text pages where no match was found if they
  *       describe a yet unknown programme (e.g. next instance of a weekly series)
  */
-void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date)
+void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date, int ref_count)
 {
    bool found = false;
    int first_sub = -1;
@@ -916,7 +918,8 @@ void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date)
    if (opt_debug) {
       char buf[100];
       strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M", localtime(&m_start_t));
-      printf("DESC parse page %03X: search match for %s \"%s\"\n", page, buf, m_ov_title[0].c_str());
+      printf("DESC parse page %03X: search match for %s \"%s\"\n",
+             page, buf, m_ov_title[0].c_str());
    }
 
    for (TTX_DB::const_iterator p = ttx_db.first_sub_page(page);
@@ -930,7 +933,8 @@ void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date)
 
       // TODO: bottom of desc pages may contain a 2nd date/time for repeats (e.g. SAT.1: "Whg. Fr 05.05. 05:10-05:35") - note the different BG color!
 
-      if (pg_date->ParseDescDate(page, sub, m_start_t, m_date_wrap)) {
+      if (   pg_date->ParseDescDate(page, sub, m_start_t, m_date_wrap)
+          || (ref_count <= 1)) {
 
          int head = parse_desc_title(page, sub);
          if (first_sub >= 0)
@@ -941,7 +945,7 @@ void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date)
          int foot = ParseFooterByColor(page, sub);
          int foot2 = ParseFooter(page, sub, head);
          foot = (foot2 < foot) ? foot2 : foot;
-         if (opt_debug) printf("DESC page %03X.%04X match found: lines %d-%d\n", page, sub, head, foot);
+         if (opt_debug) printf("DESC page %03X.%04X title matched: lines %d-%d\n", page, sub, head, foot);
 
          if (foot > head) {
             if (!m_ext_desc.empty())
@@ -951,7 +955,7 @@ void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date)
          found = true;
       }
       else {
-         if (opt_debug) printf("DESC page %03X.%04X no match found\n", page, sub);
+         if (opt_debug) printf("DESC page %03X.%04X no match found (%d references)\n", page, sub, ref_count);
          if (found)
             break;
       }
@@ -1380,15 +1384,15 @@ T_TRAIL_REF_FMT OV_PAGE::detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages)
    return T_TRAIL_REF_FMT::select_ttx_ref_fmt(fmt_list);
 }
 
-void OV_PAGE::extract_ttx_ref(const T_TRAIL_REF_FMT& fmt)
+void OV_PAGE::extract_ttx_ref(const T_TRAIL_REF_FMT& fmt, map<int,int>& ttx_ref_map)
 {
    for (unsigned idx = 0; idx < m_slots.size(); idx++) {
       OV_SLOT * slot = m_slots[idx];
-      slot->parse_ttx_ref(fmt);
+      slot->parse_ttx_ref(fmt, ttx_ref_map);
    }
 }
 
-void OV_PAGE::extract_tv()
+void OV_PAGE::extract_tv(map<int,int>& ttx_ref_map)
 {
    if (m_slots.size() > 0) {
       RemoveTrailingPageFooter(m_slots.back()->m_ov_title.back());
@@ -1402,7 +1406,7 @@ void OV_PAGE::extract_tv()
       slot->parse_ov_title();
 
       if (slot->m_ttx_ref != -1) {
-         slot->parse_desc_page(&m_date);
+         slot->parse_desc_page(&m_date, ttx_ref_map[slot->m_ttx_ref]);
       }
    }
 }
@@ -1472,13 +1476,14 @@ vector<OV_PAGE*> ParseAllOvPages(int ov_start, int ov_end)
 
       // retrieve TTX page references
       T_TRAIL_REF_FMT ttx_ref_fmt = OV_PAGE::detect_ov_ttx_ref_fmt(ov_pages);
+      map<int,int> ttx_ref_map;
       for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
-         ov_pages[idx]->extract_ttx_ref(ttx_ref_fmt);
+         ov_pages[idx]->extract_ttx_ref(ttx_ref_fmt, ttx_ref_map);
       }
 
       // retrieve descriptions from referenced teletext pages
       for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
-         ov_pages[idx]->extract_tv();
+         ov_pages[idx]->extract_tv(ttx_ref_map);
       }
    }
 
