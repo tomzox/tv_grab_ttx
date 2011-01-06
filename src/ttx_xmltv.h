@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_xmltv.h,v 1.1 2010/04/25 14:18:10 tom Exp $
+ * $Id: ttx_xmltv.h,v 1.2 2011/01/06 16:59:34 tom Exp $
  */
 #if !defined (__TTX_XMLTV_H)
 #define __TTX_XMLTV_H

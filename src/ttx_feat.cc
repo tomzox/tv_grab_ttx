@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_feat.cc,v 1.4 2011/01/05 18:17:55 tom Exp $
+ * $Id: ttx_feat.cc,v 1.5 2011/01/06 16:59:34 tom Exp $
  */
 
 #include <stdio.h>

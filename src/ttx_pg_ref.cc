@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_pg_ref.cc,v 1.2 2010/05/03 17:16:47 tom Exp $
+ * $Id: ttx_pg_ref.cc,v 1.3 2011/01/06 16:59:34 tom Exp $
  */
 
 #include <stdio.h>

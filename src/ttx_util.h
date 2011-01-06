@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.h,v 1.4 2011/01/05 13:31:11 tom Exp $
+ * $Id: ttx_util.h,v 1.5 2011/01/06 11:11:07 tom Exp $
  */
 #if !defined (__TTX_UTIL_H)
 #define __TTX_UTIL_H
@@ -193,12 +193,12 @@ bool isalnum_latin1(char chr)
      return false;
 }
 
-void str_tolower_latin1(string& str, uint pos);
+void str_tolower_latin1(string& str, unsigned pos);
 bool str_all_upper(string& str);
 void str_repl_ctrl(string& str);
 bool str_concat_title(string& title, const string& str2, bool if_cont_only);
-bool str_cmp_alnum(const string& str1, const string& str2, uint * p_pos1, uint * p_pos2);
-uint str_len_alnum(const string& str);
+bool str_cmp_alnum(const string& str1, const string& str2, unsigned * p_pos1, unsigned * p_pos2);
+unsigned str_len_alnum(const string& str);
 bool str_is_left_word_boundary(const string& str, unsigned pos);
 bool str_is_right_word_boundary(const string& str, unsigned pos);
 string::size_type str_find_word(const string& str, const string& word);

@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.cc,v 1.6 2011/01/05 18:17:48 tom Exp $
+ * $Id: ttx_util.cc,v 1.7 2011/01/06 11:11:07 tom Exp $
  */
 
 #include <stdio.h>
@@ -35,7 +35,7 @@ using namespace boost;
 
 /* Turn the entire given string into lower-case.
  */
-void str_tolower_latin1(string& str, uint pos)
+void str_tolower_latin1(string& str, unsigned pos)
 {
    if (pos < str.length()) {
       for (string::iterator p = str.begin() + pos; p < str.end(); p++) {
@@ -200,7 +200,7 @@ string::size_type str_find_word(const string& str, const string& word)
  * FALSE. If the pointers are non-null, the function also returns the indices
  * of the first differing characters in either string.
  */
-bool str_cmp_alnum(const string& str1, const string& str2, uint * p_pos1, uint * p_pos2)
+bool str_cmp_alnum(const string& str1, const string& str2, unsigned * p_pos1, unsigned * p_pos2)
 {
    unsigned pos1 = 0;
    unsigned pos2 = 0;
@@ -242,10 +242,10 @@ bool str_cmp_alnum(const string& str1, const string& str2, uint * p_pos1, uint *
 /* Returns the length of the string, after skipping non-alphanumeric characters
  * at the beginning and end.
  */
-uint str_len_alnum(const string& str)
+unsigned str_len_alnum(const string& str)
 {
-   uint off = 0;
-   uint del = 0;
+   unsigned off = 0;
+   unsigned del = 0;
 
    while ((off < str.length()) && !isalnum_latin1(str[off]))
       off++;

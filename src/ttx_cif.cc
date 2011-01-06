@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_cif.cc,v 1.2 2010/05/06 17:57:53 tom Exp $
+ * $Id: ttx_cif.cc,v 1.3 2011/01/06 16:57:11 tom Exp $
  */
 
 #include <stdio.h>
@@ -43,17 +43,29 @@ using namespace boost;
 #include "ttx_xmltv.h"
 #include "ttx_cif.h"
 
+/**
+ * This function must be called once during start-up and after each channel
+ * change to initialize the database for teletext acquisition.
+ */
 void ttx_db_init( void )
 {
    ttx_db.flush();
    ttx_chn_id.flush();
 }
 
+/**
+ * This function is called after capturing a packet 8/30 or VPS and extracting
+ * the enclosed CNI (channel identification code.)
+ */
 void ttx_db_add_cni(unsigned cni)
 {
    ttx_chn_id.add_cni(cni);
 }
 
+/**
+ * This function adds the given teletext packet to the database. The function
+ * should be called for each captured packet, filtering is done internally.
+ */
 bool ttx_db_add_pkg( int page, int ctrl, int pkgno, const uint8_t * p_data, time_t ts )
 {
    static int cur_page = -1;
@@ -77,6 +89,11 @@ bool ttx_db_add_pkg( int page, int ctrl, int pkgno, const uint8_t * p_data, time
    }
 }
 
+/**
+ * This function is called once when acquisition is complete to start grabbing
+ * EPG data from the previously captured teletext packets. The result is written
+ * to the given file.
+ */
 int ttx_db_parse( int pg_start, int pg_end, int expire_min,
                   const char * p_xml_in, const char * p_xml_out,
                   const char * p_ch_name, const char * p_ch_id )
@@ -121,6 +138,10 @@ int ttx_db_parse( int pg_start, int pg_end, int expire_min,
    return result;
 }
 
+/**
+ * This function may be called after acquisition to dump all captured teletext
+ * pages in the given page number range to the given file.
+ */
 void ttx_db_dump(const char * p_name, int pg_start, int pg_end)
 {
    DumpRawTeletext(p_name, pg_start, pg_end);

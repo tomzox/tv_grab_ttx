@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_db.h,v 1.3 2010/05/03 18:22:43 tom Exp $
+ * $Id: ttx_db.h,v 1.4 2011/01/06 16:59:34 tom Exp $
  */
 #if !defined (__TTX_DB_H)
 #define __TTX_DB_H

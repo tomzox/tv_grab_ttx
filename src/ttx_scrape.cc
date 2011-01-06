@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.cc,v 1.3 2011/01/05 12:58:29 tom Exp $
+ * $Id: ttx_scrape.cc,v 1.4 2011/01/06 11:11:07 tom Exp $
  */
 
 #include <stdio.h>
@@ -522,27 +522,27 @@ int OV_SLOT::parse_desc_title(int page, int sub)
    const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
 
    string title_ov;
-   uint first_subt = 1;
+   unsigned first_subt = 1;
    title_ov = m_ov_title[0];
    while (   (m_ov_title.size() > first_subt)
           && (str_concat_title(title_ov, m_ov_title[first_subt], true)) ) {
       ++first_subt;
    }
 
-   for (uint idx = 1; idx <= 23/2; idx++)
+   for (unsigned idx = 1; idx <= 23/2; idx++)
    {
       string title_desc = pgctrl->get_ctrl(idx);
-      uint indent_desc = str_get_indent(title_desc);
+      unsigned indent_desc = str_get_indent(title_desc);
       str_chomp(title_desc);
 
-      uint dpos_ov, dpos_desc;
+      unsigned dpos_ov, dpos_desc;
       if (str_len_alnum(title_desc) > 0)
       {
          str_cmp_alnum(title_ov, title_desc, &dpos_ov, &dpos_desc);
          if ((dpos_ov >= title_ov.length()) || (dpos_desc >= title_desc.length()))
          {
-            uint idx_ov = first_subt;
-            uint idx_desc = idx;
+            unsigned idx_ov = first_subt;
+            unsigned idx_desc = idx;
             bool ok = false;
 
             string title_ov_ext(title_ov);
@@ -618,7 +618,7 @@ int OV_SLOT::parse_desc_title(int page, int sub)
                }
                // re-build the sub-title string from unused overview lines
                m_ext_subtitle.assign("");
-               for (uint idx2 = idx_ov; idx2 < m_ov_title.size(); idx2++) {
+               for (unsigned idx2 = idx_ov; idx2 < m_ov_title.size(); idx2++) {
                   str_concat_title(m_ext_subtitle, m_ov_title[idx2], false);
                }
                str_chomp(m_ext_subtitle);

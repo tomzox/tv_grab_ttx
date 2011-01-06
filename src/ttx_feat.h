@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_feat.h,v 1.2 2011/01/05 12:58:14 tom Exp $
+ * $Id: ttx_feat.h,v 1.3 2011/01/06 11:11:07 tom Exp $
  */
 #if !defined (__TTX_FEAT_H)
 #define __TTX_FEAT_H
@@ -53,7 +53,7 @@ private:
    void MapTrailingFeat(const char * feat, int len, const string& title);
 
 private:
-   uint m_flags;
+   unsigned m_flags;
 
 public:
    bool has_subtitles()  const { return ((m_flags & (1 << TV_FEAT_SUBTITLES)) != 0); }
