@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_util.h,v 1.5 2011/01/06 11:11:07 tom Exp $
+ * $Id: ttx_util.h,v 1.6 2011/01/07 12:27:41 tom Exp $
  */
 #if !defined (__TTX_UTIL_H)
 #define __TTX_UTIL_H
@@ -163,7 +163,7 @@ bool islower_latin1(char chr)
 {
    uint8_t c = chr;
    return (   ((c <= 'z') && (c >= 'a'))
-           || ((c >= 0xE0) && (c <= 0xFE) && (c != 0xF7)) );
+           || ((c >= 0xDF) && (c <= 0xFE) && (c != 0xF7)) );
 }
 
 inline

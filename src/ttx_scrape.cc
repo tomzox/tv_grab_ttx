@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.cc,v 1.5 2011/01/06 16:51:48 tom Exp $
+ * $Id: ttx_scrape.cc,v 1.6 2011/01/07 12:36:41 tom Exp $
  */
 
 #include <stdio.h>
@@ -876,9 +876,8 @@ string ParseDescContent(int page, int sub, int head, int foot)
          if (is_nl)
             desc += "\n";
          static const regex expr12("\\S-$");
-         static const regex expr13("^[[:lower:]]");
          if (   regex_search(desc, whats, expr12)
-             && regex_search(line, whats, expr13) )
+             && (line.size() > 0) && islower_latin1(line[0]))
          {
             desc.erase(desc.end() - 1);
             desc += line;
