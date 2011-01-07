@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_feat.h,v 1.3 2011/01/06 11:11:07 tom Exp $
+ * $Id: ttx_feat.h,v 1.4 2011/01/07 18:38:18 tom Exp $
  */
 #if !defined (__TTX_FEAT_H)
 #define __TTX_FEAT_H
@@ -51,6 +51,7 @@ private:
    static const TV_FEAT_STR FeatToFlagMap[];
 
    void MapTrailingFeat(const char * feat, int len, const string& title);
+   friend TV_FEAT GetXmltvFeat(const string& xml);
 
 private:
    unsigned m_flags;

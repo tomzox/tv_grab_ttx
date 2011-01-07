@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.h,v 1.2 2011/01/06 16:51:48 tom Exp $
+ * $Id: ttx_scrape.h,v 1.3 2011/01/07 18:37:22 tom Exp $
  */
 #if !defined (__TTX_SCRAPE_H)
 #define __TTX_SCRAPE_H
@@ -102,7 +102,9 @@ public:
    void parse_ov_title();
    void parse_desc_page(const T_PG_DATE * pg_date, int ref_count);
    int parse_desc_title(int page, int sub);
+   void merge_feat(const TV_FEAT& feat);
    void merge_desc(const string& desc);
+   void merge_title(const string& title, const string& sub_title);
    time_t convert_start_t(const T_PG_DATE * pgdate, int date_off) const;
    bool is_same_prog(const OV_SLOT& v) const;
 };
@@ -123,7 +125,11 @@ public:
    const string& get_vps_date() const { return mp_ov_page->m_slots[m_slot_idx]->m_vps_date; }
    const TV_FEAT& get_feat() const { return mp_ov_page->m_slots[m_slot_idx]->m_ext_feat; }
    int get_ttx_ref() const { return mp_ov_page->m_slots[m_slot_idx]->m_ttx_ref; }
+   void merge_feat(const TV_FEAT& feat) { mp_ov_page->m_slots[m_slot_idx]->merge_feat(feat); }
    void merge_desc(const string& desc) { mp_ov_page->m_slots[m_slot_idx]->merge_desc(desc); }
+   void merge_title(const string& title, const string& sub_title) {
+      mp_ov_page->m_slots[m_slot_idx]->merge_title(title, sub_title);
+   }
 private:
    OV_PAGE *    mp_ov_page;
    int          m_slot_idx;

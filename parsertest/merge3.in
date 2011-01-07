@@ -1,0 +1,181 @@
+#!/usr/bin/perl -w
+#
+# Test merge of descriptions: The first acquisition captured both description
+# sub-pages of 313, the second pass just the second one. Merge result should
+# contain data from both. Further, the second acquisition didn't capture 312,
+# so the title didn't get corrected. The result should still contain the
+# description of the first acquisition. In essence: The data captured first was
+# superior. The result of the merge should deliver the same result as before
+# without losing data.
+#
+# $Id: merge3.in,v 1.1 2011/01/08 12:08:07 tom Exp $
+#
+$VbiCaptureTime = 1294403841;
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 1;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1294403841;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "        303\x06  TELE 5   07.01.11 13:37:24",
+  "\x01\x1D\x07HEUTE      \x00   \x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Fr 18:00-24:00  \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0718:06 Babylon 5                \x07>343 ",
+  "\x115\x03      Bombenterror                   ",
+  "\x115\x0719:01 Star Trek - Das n{chste   >350 ",
+  "\x115\x07      Jahrhundert                    ",
+  "\x115\x03      Der Reisende                   ",
+  "\x115\x0720:00 Gottschalk extra               ",
+  "\x115\x03      Unterhaltung                   ",
+  "\x115\x0720:02 Wir lieben Kino - Extra        ",
+  "\x115\x03      Kinomagazin                    ",
+  "\x115\x0720:15 Tai Pan & Der Teufel mit \x07>312 ",
+  "\x115\x07      der Drachenklaue               ",
+  "\x115\x03      Eastern TAI 1971               ",
+  "\x115\x0722:04 Bittersweet Life          >313 ",
+  "\x115\x03      Action ROK 2005                ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 304  ",
+  "\x04\x1D\x03\x0D    Ihre Zukunft LIVE >>> 750       ",
+];
+$PgCnt{0x312} = 1;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$PgTime{0x312} = 1294405292;
+$Pkg{0x312|(0x0001<<12)} =
+[
+  "        312\x06  TELE 5   07.01.11 14:01:34",
+  "\x01\x1D\x07PROGRAMM   \x001/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Tai Pan & Der Teufel mit der Dra-    ",
+  "\x115\x03chenklaue\x07oo                         ",
+  "\x115\x01\x1D\x07Fr 20:15-22:04                    \x1C",
+  "\x115\x07Eastern TAI 1971                     ",
+  "\x115\x00                                     ",
+  "\x115\x07Als der junge, noble K{mpfer Tai Pan ",
+  "\x115\x07erf{hrt, dass ein Gangster seinen    ",
+  "\x115\x07Namen missbraucht, macht er sich     ",
+  "\x115\x07auf, um den Schurken zur Strecke zu  ",
+  "\x115\x07bringen. Au~erdem versucht er, dem   ",
+  "\x115\x07M{dchen Yu Shen zu helfen, das nach  ",
+  "\x115\x07dem Mord an ihrem Vater auf Rache    ",
+  "\x115\x07sinnt. Als der M|rder gefunden ist,  ",
+  "\x115\x07stellt sich jedoch heraus, dass er   ",
+  "\x115\x07der wahre Vater der jungen Dame ist  ",
+  "\x115\x07...                                  ",
+  "\x115\x06Asia Action mit viel Gef}hl.         ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 313  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+  undef,
+  undef,
+  "\x15\x02\x02j/j^^\x02j/j^\x15\x02j/j^\x15^j/jjjjj/j\x1B\x15\x15j/j/j 6",
+  undef,
+  undef,
+];
+$PgCnt{0x312} = 1;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$PgTime{0x312} = 1294405322;
+$Pkg{0x312|(0x0002<<12)} =
+[
+  "        312\x06  TELE 5   07.01.11 14:02:04",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Tai Pan & Der Teufel mit der Dra-    ",
+  "\x115\x03chenklaue\x07oo                         ",
+  "\x115\x03(Duel With the Devil)                ",
+  "\x115\x01\x1D\x07Fr 20:15-22:04                    \x1C",
+  "\x115\x07Eastern TAI 1971                     ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Chien Lung          ",
+  "\x115\x00                                     ",
+  "\x115\x07.................Kong Ban            ",
+  "\x115\x07.................Cheung Ching Ching  ",
+  "\x115\x07.................Yee Yuen            ",
+  "\x115\x07.................Ma Kei              ",
+  "\x115\x07.................O Yau Man           ",
+  "\x115\x07.................Wong Fei-Lung       ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 313  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+  undef,
+  undef,
+  "\x15\x02\x02j/j^^\x02j/j^\x15\x02j/j^\x15^j/jjjjj/j\x1B\x15\x15j/j/j _",
+  undef,
+  undef,
+];
+$PgCnt{0x313} = 1;
+$PgSub{0x313} = 1;
+$PgLang{0x313} = 1;
+$PgTime{0x313} = 1294405475;
+$Pkg{0x313|(0x0001<<12)} =
+[
+  "        313\x06  TELE 5   07.01.11 14:04:37",
+  "\x01\x1D\x07PROGRAMM   \x001/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Bittersweet Life                     ",
+  "\x115\x01\x1D\x07Fr 22:04-00:15                    \x1C",
+  "\x115\x01\x1D\x07Sa 02:41-04:46               Wh.  \x1C",
+  "\x115\x07Action ROK 2005                      ",
+  "\x115\x00                                     ",
+  "\x115\x07Sun-woo ist der ganze Stolz seines   ",
+  "\x115\x07Chefs Kang. Egal ob als Auftragskil- ",
+  "\x115\x07ler oder Restaurantinhaber - er er-  ",
+  "\x115\x07f}llt alle W}nsche des Gangsterbos-  ",
+  "\x115\x07ses perfekt. Bis auf einen: Als er   ",
+  "\x115\x07die Freundin Kangs wegen Fremdgehens ",
+  "\x115\x07exekutieren soll, versagt er. Zur    ",
+  "\x115\x07Strafe l{sst Kang ihn fast zu Tode   ",
+  "\x115\x07foltern. Doch er hat nicht mit Sun-  ",
+  "\x115\x07woos grausamer Rache gerechnet ...   ",
+  "\x115\x06Hartes Gangsterepos   brillant       ",
+  "\x115\x06inszeniert.                          ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 314  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+];
+$PgCnt{0x313} = 1;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$PgTime{0x313} = 1294403842;
+$Pkg{0x313|(0x0002<<12)} =
+[
+  "        313\x06  TELE 5   07.01.11 13:37:24",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Bittersweet Life                     ",
+  "\x115\x03(Dalkomhan insaeng)                  ",
+  "\x115\x01\x1D\x07Fr 22:04-00:15                    \x1C",
+  "\x115\x01\x1D\x07Sa 02:41-04:46               Wh.  \x1C",
+  "\x115\x07Action ROK 2005                      ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Ji-woon Kim         ",
+  "\x115\x07Buch.............Ji-woon Kim         ",
+  "\x115\x00                                     ",
+  "\x115\x07Sun-woo..........Byung-hun Lee       ",
+  "\x115\x07Kang.............Yeong-cheol Kim     ",
+  "\x115\x07Hee-soo..........Min-ah Shin         ",
+  "\x115\x07President Baek...Jeong-min Hwang     ",
+  "\x115\x07Min-gi...........Ku Jin              ",
+  "\x115\x07Waffenschmuggl...Hae-gon Kim         ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 314  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+];

@@ -1,0 +1,97 @@
+#!/usr/bin/perl -w
+#
+# Time-shift
+#
+# $Id: merge2.in,v 1.1 2011/01/08 12:11:30 tom Exp $
+#
+$VbiCaptureTime = 1294167018;
+$PgCnt{0x305} = 1;
+$PgSub{0x305} = 2;
+$PgLang{0x305} = 1;
+$PgTime{0x305} = 1294166997;
+$Pkg{0x305|(0x0001<<12)} =
+[
+  "        305\x06 DMAX.de  \x0704.01.11\x0619:49:59",
+  "\x17\x7F\x7F}0\x7F}h\x7F5h\x7F} +\x7F?!\x14\x1D\x07PROGRAMM           ",
+  "\x17\x7F\x7F?!\x7F\x7F\x7F\x7F5~\x7F\x7F4x\x7F}0\x14\x1D\x07MORGEN             ",
+  "\x14||||||||||||||||||\x1D\x0706:00-10:00        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x0106:20 D MOTOR                   >372 ",
+  "\x07\x1D\x0407:07 Infomercial               >373 ",
+  "\x07\x1D\x0107:22 Infomercial               >374 ",
+  "\x07\x1D\x0407:37 Infomercial               >375 ",
+  "\x07\x1D\x0107:52 Infomercial               >376 ",
+  "\x07\x1D\x0408:07 Infomercial               >377 ",
+  "\x07\x1D\x0108:22 Infomercial               >378 ",
+  "\x07\x1D\x0408:37 Infomercial               >379 ",
+  "\x07\x1D\x0108:52 Infomercial               >380 ",
+  "\x07\x1D\x0409:15 Die Modellbauer           >381 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x04\x1D\x07DMAX jetzt 333                  306> ",
+  "\x02\x1D\x01\x0DEsoterik: Unser Tageshoroskop 450   ",
+];
+$PgCnt{0x306} = 1;
+$PgSub{0x306} = 2;
+$PgLang{0x306} = 1;
+$PgTime{0x306} = 1294166997;
+$Pkg{0x306|(0x0001<<12)} =
+[
+  "        306\x06 DMAX.de  \x0704.01.11\x0619:49:59",
+  "\x17\x7F\x7F}0\x7F}h\x7F5h\x7F} +\x7F?!\x14\x1D\x07PROGRAMM           ",
+  "\x17\x7F\x7F?!\x7F\x7F\x7F\x7F5~\x7F\x7F4x\x7F}0\x14\x1D\x07MORGEN             ",
+  "\x14||||||||||||||||||\x1D\x0710:00-18:00        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x0110:13 Infomercial               >382 ",
+  "\x07\x1D\x0410:30 Die Gebrauchtwagen-Profis >383 ",
+  "\x07\x1D\x0110:55 Die Gebrauchtwagen-Profis >384 ",
+  "\x07\x1D\x01      - Neuer Glanz f}r alte         ",
+  "\x07\x1D\x01      Kisten                         ",
+  "\x07\x1D\x0411:25 Rides - Hei~e \\fen, coole >385 ",
+  "\x07\x1D\x04      Kisten                         ",
+  "\x07\x1D\x0112:30 Die Ludolfs - 4 Br}der    >386 ",
+  "\x07\x1D\x01      auf'm Schrottplatz             ",
+  "\x07\x1D\x0413:35 Verdammt lecker! Nach-    >387 ",
+  "\x07\x1D\x04      schlag f}r Adam Richman        ",
+  "\x07\x1D\x0114:00 Holzf{ller extrem         >388 ",
+  "\x07\x1D\x0415:00 Mythbusters - Die Wis-    >389 ",
+  "\x07\x1D\x04      sensj{ger                      ",
+  "\x07\x1D\x0116:05 DMAX DOKU                 >390 ",
+  "\x07\x1D\x0417:05 American Chopper          >391 ",
+  "\x04\x1D\x07DMAX jetzt 333                  307> ",
+  "\x01\x1D\x03\x0DNeu verlieben im SMS-Flirt >> 575   ",
+];
+$PgCnt{0x307} = 1;
+$PgSub{0x307} = 3;
+$PgLang{0x307} = 1;
+$PgTime{0x307} = 1294166963;
+$Pkg{0x307|(0x0002<<12)} =
+[
+  "        307\x06 DMAX.de  \x0704.01.11\x0619:49:26",
+  "\x17\x7F\x7F}0\x7F}h\x7F5h\x7F} +\x7F?!\x14\x1D\x07PROGRAMM           ",
+  "\x17\x7F\x7F?!\x7F\x7F\x7F\x7F5~\x7F\x7F4x\x7F}0\x14\x1D\x07MORGEN             ",
+  "\x14||||||||||||||||||\x1D\x0718:00-24:00        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x0118:15 LA Ink - Tattoos f}rs     >392 ",
+  "\x07\x1D\x01      Leben                          ",
+  "\x07\x1D\x0419:15 Der Checker - Viel Auto,  >393 ",
+  "\x07\x1D\x04      wenig Geld                     ",
+  "\x07\x1D\x0120:15 Die Ludolfs - 4 Br}der    >394 ",
+  "\x07\x1D\x01      auf'm Schrottplatz             ",
+  "\x07\x1D\x0421:15 Verdammt lecker! Nach-    >395 ",
+  "\x07\x1D\x04      schlag f}r Adam Richman        ",
+  "\x07\x1D\x0121:45 Verdammt lecker! Nach-    >396 ",
+  "\x07\x1D\x01      schlag f}r Adam Richman        ",
+  "\x07\x1D\x0422:15 LA Ink - Tattoos f}rs     >397 ",
+  "\x07\x1D\x04      Leben                          ",
+  "\x07\x1D\x0123:15 DMAX - Der Tag            >398 ",
+  "\x07\x1D\x0423:20 Das Gesetz der Stra~e -   >399 ",
+  "\x07\x1D\x04      Die Verbrechen der \"Ari-       ",
+  "\x07\x1D\x04      schen Bruderschaft\"            ",
+  "\x04\x1D\x07DMAX jetzt 333                  308> ",
+  "\x03\x1D\x00\x0DUnser Kleinanzeigenmarkt......290   ",
+];

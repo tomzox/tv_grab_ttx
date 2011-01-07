@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="TELE 5">
+	<display-name>TELE 5</display-name>
+</channel>
+
+<programme start="20110107170600 +0000" stop="20110107180100 +0000" channel="TELE 5">
+	<title>Babylon 5</title>
+	<sub-title>Babylon 5 Bombenterror</sub-title>
+	<desc>(teletext 343)</desc>
+</programme>
+
+<programme start="20110107180100 +0000" stop="20110107190000 +0000" channel="TELE 5">
+	<title>Star Trek - Das nächste</title>
+	<sub-title>Star Trek - Das nächste Jahrhundert Der Reisende</sub-title>
+	<desc>(teletext 350)</desc>
+</programme>
+
+<programme start="20110107190000 +0000" stop="20110107190200 +0000" channel="TELE 5">
+	<title>Gottschalk extra</title>
+	<sub-title>Gottschalk extra Unterhaltung</sub-title>
+</programme>
+
+<programme start="20110107190200 +0000" stop="20110107191500 +0000" channel="TELE 5">
+	<title>Wir lieben Kino - Extra</title>
+	<sub-title>Wir lieben Kino - Extra Kinomagazin</sub-title>
+</programme>
+
+<programme start="20110107191500 +0000" stop="20110107210400 +0000" channel="TELE 5">
+	<title>Tai Pan &amp; Der Teufel mit der Drachenklaue</title>
+	<sub-title>Tai Pan &amp; Der Teufel mit der Drachenklaue Eastern TAI 1971</sub-title>
+	<!-- TTX 312 -->
+	<desc>Tai Pan &amp; Der Teufel mit der Drachenklaue oo Fr 20:15-22:04 Eastern TAI 1971
+Als der junge, noble Kämpfer Tai Pan erfährt, dass ein Gangster seinen Namen missbraucht, macht er sich auf, um den Schurken zur Strecke zu bringen. Außerdem versucht er, dem Mädchen Yu Shen zu helfen, das nach dem Mord an ihrem Vater auf Rache sinnt. Als der Mörder gefunden ist, stellt sich jedoch heraus, dass er der wahre Vater der jungen Dame ist ... Asia Action mit viel Gefühl.
+(Duel With the Devil) Fr 20:15-22:04 Eastern TAI 1971
+Regie: Chien Lung.
+.: Kong Ban, .: Cheung Ching Ching, .: Yee Yuen, .: Ma Kei, .: O Yau Man, .: Wong Fei-Lung.</desc>
+	<audio>
+		<stereo>stereo</stereo>
+	</audio>
+</programme>
+
+<programme start="20110107210400 +0000" channel="TELE 5">
+	<title>Bittersweet Life</title>
+	<sub-title>Bittersweet Life Action ROK 2005</sub-title>
+	<!-- TTX 313 -->
+	<desc>Bittersweet Life Fr 22:04-00:15 Sa 02:41-04:46 Wh. Action ROK 2005
+Sun-woo ist der ganze Stolz seines Chefs Kang. Egal ob als Auftragskiller oder Restaurantinhaber - er erfüllt alle Wünsche des Gangsterbosses perfekt. Bis auf einen: Als er die Freundin Kangs wegen Fremdgehens exekutieren soll, versagt er. Zur Strafe lässt Kang ihn fast zu Tode foltern. Doch er hat nicht mit Sunwoos grausamer Rache gerechnet ... Hartes Gangsterepos brillant inszeniert.
+(Dalkomhan insaeng) Fr 22:04-00:15 Sa 02:41-04:46 Wh. Action ROK 2005
+Regie: Ji-woon Kim, Buch: Ji-woon Kim.
+Sun-woo: Byung-hun Lee, Kang: Yeong-cheol Kim, Hee-soo: Min-ah Shin, President Baek: Jeong-min Hwang, Min-gi: Ku Jin, Waffenschmuggl: Hae-gon Kim.</desc>
+</programme>
+</tv>

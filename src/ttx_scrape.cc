@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.cc,v 1.6 2011/01/07 12:36:41 tom Exp $
+ * $Id: ttx_scrape.cc,v 1.7 2011/01/07 18:37:12 tom Exp $
  */
 
 #include <stdio.h>
@@ -63,9 +63,20 @@ void OV_SLOT::add_title(string subt)
    m_ov_title.push_back(subt);
 }
 
+void OV_SLOT::merge_feat(const TV_FEAT& feat)
+{
+  m_ext_feat = feat;
+}
+
 void OV_SLOT::merge_desc(const string& desc)
 {
    m_ext_desc = desc;
+}
+
+void OV_SLOT::merge_title(const string& title, const string& sub_title)
+{
+   m_ext_title = title;
+   m_ext_subtitle = sub_title;
 }
 
 void OV_SLOT::parse_ttx_ref(const T_TRAIL_REF_FMT& fmt, map<int,int>& ttx_ref_map)

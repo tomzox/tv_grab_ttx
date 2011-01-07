@@ -1,0 +1,157 @@
+#!/usr/bin/perl -w
+#
+# Line-break in title
+#
+# $Id: merge2.in2,v 1.1 2011/01/08 12:11:30 tom Exp $
+#
+$VbiCaptureTime = 1294245630;
+$PgCnt{0x301} = 2;
+$PgSub{0x301} = 2;
+$PgLang{0x301} = 1;
+$PgTime{0x301} = 1294245621;
+$Pkg{0x301|(0x0001<<12)} =
+[
+  "        301\x06 DMAX.de  \x0705.01.11\x0617:40:23",
+  "\x17\x7F\x7F}0\x7F}h\x7F5h\x7F} +\x7F?!\x14\x1D\x07PROGRAMM           ",
+  "\x17\x7F\x7F?!\x7F\x7F\x7F\x7F5~\x7F\x7F4x\x7F}0\x14\x1D\x07HEUTE              ",
+  "\x14||||||||||||||||||\x1D\x0706:00-10:00        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x0106:20 D MOTOR                   >334 ",
+  "\x07\x1D\x0407:07 Infomercial               >335 ",
+  "\x07\x1D\x0107:22 Infomercial               >336 ",
+  "\x07\x1D\x0407:37 Infomercial               >337 ",
+  "\x07\x1D\x0107:52 Infomercial               >338 ",
+  "\x07\x1D\x0408:07 Infomercial               >339 ",
+  "\x07\x1D\x0108:22 Infomercial               >340 ",
+  "\x07\x1D\x0408:37 Infomercial               >341 ",
+  "\x07\x1D\x0108:52 Infomercial               >342 ",
+  "\x07\x1D\x0409:15 Die Modellbauer           >343 ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x04\x1D\x07DMAX morgen 305                 302> ",
+  "\x06\x1D\x01\x0DEsoterik: Unser Tageshoroskop 450   ",
+];
+$PgCnt{0x302} = 2;
+$PgSub{0x302} = 2;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1294245621;
+$Pkg{0x302|(0x0001<<12)} =
+[
+  "        302\x06 DMAX.de  \x0705.01.11\x0617:40:23",
+  "\x17\x7F\x7F}0\x7F}h\x7F5h\x7F} +\x7F?!\x14\x1D\x07PROGRAMM           ",
+  "\x17\x7F\x7F?!\x7F\x7F\x7F\x7F5~\x7F\x7F4x\x7F}0\x14\x1D\x07HEUTE              ",
+  "\x14||||||||||||||||||\x1D\x0710:00-18:00        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x0110:13 Infomercial               >344 ",
+  "\x07\x1D\x0410:30 Die Gebrauchtwagen-Profis >345 ",
+  "\x07\x1D\x0110:55 Die Gebrauchtwagen-Profis >346 ",
+  "\x07\x1D\x01      - Neuer Glanz f}r alte         ",
+  "\x07\x1D\x01      Kisten                         ",
+  "\x07\x1D\x0411:25 Rides - Hei~e \\fen, coole >347 ",
+  "\x07\x1D\x04      Kisten                         ",
+  "\x07\x1D\x0112:30 Die Ludolfs - 4 Br}der    >348 ",
+  "\x07\x1D\x01      auf'm Schrottplatz             ",
+  "\x07\x1D\x0413:35 Verdammt lecker! Nach-    >349 ",
+  "\x07\x1D\x04      schlag f}r Adam Richman        ",
+  "\x07\x1D\x0114:00 Holzf{ller extrem         >350 ",
+  "\x07\x1D\x0415:00 Mythbusters - Die Wis-    >351 ",
+  "\x07\x1D\x04      sensj{ger                      ",
+  "\x07\x1D\x0116:05 DMAX DOKU                 >352 ",
+  "\x07\x1D\x0417:05 American Chopper          >353 ",
+  "\x04\x1D\x07]bersicht 300                        ",
+  "\x0D\x01 Heisse Vorlagen auf's Handy....757   ",
+];
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 3;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1294245553;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "        303\x06 DMAX.de  \x0705.01.11\x0617:39:15",
+  "\x17\x7F\x7F}0\x7F}h\x7F5h\x7F} +\x7F?!\x14\x1D\x07PROGRAMM           ",
+  "\x17\x7F\x7F?!\x7F\x7F\x7F\x7F5~\x7F\x7F4x\x7F}0\x14\x1D\x07HEUTE              ",
+  "\x14||||||||||||||||||\x1D\x0718:00-24:00        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x0118:15 LA Ink - Tattoos f}rs     >354 ",
+  "\x07\x1D\x01      Leben                          ",
+  "\x07\x1D\x0419:15 Der Checker - Viel Auto,  >355 ",
+  "\x07\x1D\x04      wenig Geld                     ",
+  "\x07\x1D\x0120:15 Die Ludolfs - 4 Br}der    >356 ",
+  "\x07\x1D\x01      auf'm Schrottplatz             ",
+  "\x07\x1D\x0421:15 Verdammt lecker! Nach-    >357 ",
+  "\x07\x1D\x04      schlag f}r Adam Richman        ",
+  "\x07\x1D\x0121:45 Verdammt lecker! Nach-    >358 ",
+  "\x07\x1D\x01      schlag f}r Adam Richman        ",
+  "\x07\x1D\x0422:15 LA Ink - Tattoos f}rs     >359 ",
+  "\x07\x1D\x04      Leben                          ",
+  "\x07\x1D\x0123:15 DMAX - Der Tag            >360 ",
+  "\x07\x1D\x0423:20 Das Gesetz der Stra~e -   >361 ",
+  "\x07\x1D\x04      Die Verbrechen der \"Ari-       ",
+  "\x07\x1D\x04      schen Bruderschaft\"            ",
+  "\x04\x1D\x07DMAX morgen 305                 304> ",
+  "\x01\x1D\x00\x0D  INTIME FREIZ]GIGE PICS >> 759     ",
+];
+$PgCnt{0x349} = 3;
+$PgSub{0x349} = 0;
+$PgLang{0x349} = 1;
+$PgTime{0x349} = 1294245623;
+$Pkg{0x349|(0x0000<<12)} =
+[
+  "        349\x06 DMAX.de  \x0705.01.11\x0617:40:25",
+  "\x17\x7F\x7F}0\x7F}h\x7F5h\x7F} +\x7F?!\x14\x1D\x07PROGRAMM           ",
+  "\x17\x7F\x7F?!\x7F\x7F\x7F\x7F5~\x7F\x7F4x\x7F}0\x14\x1D\x07MITTWOCH           ",
+  "\x14||||||||||||||||||\x1D\x0713:35-14:00        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x01Verdammt lecker! Nachschlag f}r Adam ",
+  "\x07\x1D\x01Richman                              ",
+  "\x07\x1D\x04Burger in Ohio                       ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x04Wenn es eines gibt, was die Einwoh-  ",
+  "\x07\x1D\x04ner von Columbus, Ohio, noch mehr    ",
+  "\x07\x1D\x04lieben als American Football, dann   ",
+  "\x07\x1D\x04sind es saftige Burger. Am besten    ",
+  "\x07\x1D\x04mit gebratenen Zwiebeln, Schinken,   ",
+  "\x07\x1D\x04Pilzen und Unmengen geschmolzenem    ",
+  "\x07\x1D\x04K{se - so wie sie im \"Thurman Cafe\"  ",
+  "\x07\x1D\x04serviert werden. Nach der Er|ffnung  ",
+  "\x07\x1D\x04im Jahr 1942 hat sich das einst als  ",
+  "\x07\x1D\x04Bar konzipierte Lokal zum echten     ",
+  "\x07\x1D\x04Mekka f}r Burger-Fans entwickelt.    ",
+  "\x07\x1D\x00                                     ",
+  "\x04\x1D\x07]bersicht 300                   350> ",
+  "\x03\x1D\x01 \x0DNeu verlieben im SMS-Flirt > 575   ",
+];
+$PgCnt{0x351} = 3;
+$PgSub{0x351} = 0;
+$PgLang{0x351} = 1;
+$PgTime{0x351} = 1294245624;
+$Pkg{0x351|(0x0000<<12)} =
+[
+  "        351\x06 DMAX.de  \x0705.01.11\x0617:40:26",
+  "\x17\x7F\x7F}0\x7F}h\x7F5h\x7F} +\x7F?!\x14\x1D\x07PROGRAMM           ",
+  "\x17\x7F\x7F?!\x7F\x7F\x7F\x7F5~\x7F\x7F4x\x7F}0\x14\x1D\x07MITTWOCH           ",
+  "\x14||||||||||||||||||\x1D\x0715:00-16:05        ",
+  "\x07\x1D                                      ",
+  "\x07\x1D\x01Mythbusters - Die Wissensj{ger       ",
+  "\x07\x1D\x04Hollywood Handgranaten-Helden / Cola ",
+  "\x07\x1D\x04und Kaubonbons lassen den Magen      ",
+  "\x07\x1D\x04explodieren / Selbsthypnose          ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x04Von Hollywood-Blockbustern, }ber das ",
+  "\x07\x1D\x04Internet, bis hin zu Anregungen der  ",
+  "\x07\x1D\x04Fangemeinde: Die Themensuche ist f}r ",
+  "\x07\x1D\x04die \"Mythbusters\" das geringste Pro- ",
+  "\x07\x1D\x04blem. Alltagsmythen mit mehr als     ",
+  "\x07\x1D\x04fraglichem Wahrheitsgehalt, denen    ",
+  "\x07\x1D\x04wir trotzdem leichtfertig Glauben    ",
+  "\x07\x1D\x04schenken, gibt es schlie~lich wie    ",
+  "\x07\x1D\x04Sand am Meer.                        ",
+  "\x07\x1D\x00                                     ",
+  "\x07\x1D\x00                                     ",
+  "\x04\x1D\x07]bersicht 300                   352> ",
+  "\x02\x1D\x04 \x0DIhre Zukunft LIVE: Horoskope 450   ",
+];

@@ -1,0 +1,64 @@
+#!/usr/bin/perl -w
+$VbiCaptureTime = 1294403841;
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 1;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1294403841;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "        303\x06  TELE 5   07.01.11 13:37:24",
+  "\x01\x1D\x07HEUTE      \x00   \x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Fr 18:00-24:00  \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0718:06 Babylon 5                \x07>343 ",
+  "\x115\x03      Bombenterror                   ",
+  "\x115\x0719:01 Star Trek - Das n{chste   >350 ",
+  "\x115\x07      Jahrhundert                    ",
+  "\x115\x03      Der Reisende                   ",
+  "\x115\x0720:00 Gottschalk extra               ",
+  "\x115\x03      Unterhaltung                   ",
+  "\x115\x0720:02 Wir lieben Kino - Extra        ",
+  "\x115\x03      Kinomagazin                    ",
+  "\x115\x0720:15 Tai Pan & Der Teufel mit \x07>312 ",
+  "\x115\x07      der Drachenklaue               ",
+  "\x115\x03      Eastern TAI 1971               ",
+  "\x115\x0722:04 Bittersweet Life          >313 ",
+  "\x115\x03      Action ROK 2005                ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 304  ",
+  "\x04\x1D\x03\x0D    Ihre Zukunft LIVE >>> 750       ",
+];
+$PgCnt{0x313} = 1;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$PgTime{0x313} = 1294403842;
+$Pkg{0x313|(0x0002<<12)} =
+[
+  "        313\x06  TELE 5   07.01.11 13:37:24",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Bittersweet Life                     ",
+  "\x115\x03(Dalkomhan insaeng)                  ",
+  "\x115\x01\x1D\x07Fr 22:04-00:15                    \x1C",
+  "\x115\x01\x1D\x07Sa 02:41-04:46               Wh.  \x1C",
+  "\x115\x07Action ROK 2005                      ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Ji-woon Kim         ",
+  "\x115\x07Buch.............Ji-woon Kim         ",
+  "\x115\x00                                     ",
+  "\x115\x07Sun-woo..........Byung-hun Lee       ",
+  "\x115\x07Kang.............Yeong-cheol Kim     ",
+  "\x115\x07Hee-soo..........Min-ah Shin         ",
+  "\x115\x07President Baek...Jeong-min Hwang     ",
+  "\x115\x07Min-gi...........Ku Jin              ",
+  "\x115\x07Waffenschmuggl...Hae-gon Kim         ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 314  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+];

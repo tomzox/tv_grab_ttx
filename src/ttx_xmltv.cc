@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_xmltv.cc,v 1.4 2011/01/06 16:59:34 tom Exp $
+ * $Id: ttx_xmltv.cc,v 1.5 2011/01/07 18:37:29 tom Exp $
  */
 
 #include <stdio.h>
@@ -170,6 +170,8 @@ void ExportTitle(FILE * fp, const TV_SLOT& slot, const string& ch_id)
             fprintf(fp, "\t<desc>(teletext %03X)</desc>\n", slot.get_ttx_ref());
          }
       }
+
+      // remember to adapt GetXmltvFeat() when adding below
       // video
       const TV_FEAT& feat = slot.get_feat();
       if (   feat.is_video_bw()
@@ -269,6 +271,32 @@ string GetXmltvTitle(const string& xml)
    return title;
 }
 
+string GetXmltvSubTitle(const string& xml)
+{
+   smatch whats;
+   string subtitle;
+
+   static const regex expr1("<sub-title>(.*)</sub-title>");
+   if (regex_search(xml, whats, expr1)) {
+      subtitle.assign(whats[1]);
+      XmlToLatin1(subtitle);
+   }
+   return subtitle;
+}
+
+string GetXmltvDescription(const string& xml)
+{
+   smatch whats;
+   string desc;
+
+   static const regex expr1("<desc>(.*)</desc>");
+   if (regex_search(xml, whats, expr1)) {
+      desc.assign(whats[1]);
+      XmlToLatin1(desc);
+   }
+   return desc;
+}
+
 time_t GetXmltvStopTime(const string& xml, time_t old_ts)
 {
    smatch whats;
@@ -280,6 +308,55 @@ time_t GetXmltvStopTime(const string& xml, time_t old_ts)
    else {
       return old_ts;
    }
+}
+
+// This is the inverse of feature description in ExportTitle()
+TV_FEAT GetXmltvFeat(const string& xml)
+{
+   TV_FEAT feat;
+   smatch whats;
+
+   static const regex expr01("<video>.*<colour>no</colour>.*</video>");
+   if (regex_search(xml, whats, expr01))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_BW);
+
+   static const regex expr02("<video>.*<aspect>16:9</aspect>.*</video>");
+   if (regex_search(xml, whats, expr02))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_ASPECT_16_9);
+
+   static const regex expr03("<video>.*<quality>HDTV</quality>.*</video>");
+   if (regex_search(xml, whats, expr03))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_HD);
+
+   static const regex expr04("<audio>.*<stereo>surround</stereo>.*</audio>");
+   if (regex_search(xml, whats, expr04))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_DOLBY);
+
+   static const regex expr05("<audio>.*<stereo>stereo</stereo>.*</audio>");
+   if (regex_search(xml, whats, expr05))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_STEREO);
+
+   static const regex expr06("<audio>.*<stereo>mono</stereo>.*</audio>");
+   if (regex_search(xml, whats, expr06))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_MONO);
+
+   static const regex expr07("<audio>.*<stereo>bilingual</stereo>.*</audio>");
+   if (regex_search(xml, whats, expr07))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_2CHAN);
+
+   static const regex expr08("<subtitles type=\"onscreen\"/>");
+   if (regex_search(xml, whats, expr08))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_OMU);
+
+   static const regex expr09("<subtitles type=\"teletext\"/>");
+   if (regex_search(xml, whats, expr09))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_SUBTITLES);
+
+   static const regex expr10("<star-rating>\\s*<value>\\s*1/1\\s*</value>\\s*</star-rating>");
+   if (regex_search(xml, whats, expr10))
+      feat.m_flags |= (1 << TV_FEAT::TV_FEAT_TIP);
+
+   return feat;
 }
 
 class TV_SLOT_cmp_start_t
@@ -432,34 +509,46 @@ void MergeSlotDesc(TV_SLOT& slot, const string& old_xml,
                    time_t new_start, time_t new_stop,
                    time_t old_start, time_t old_stop)
 {
-   if ((old_start == new_start) && (old_stop == new_stop))
+   if (   (old_start == new_start)
+       && (   (old_stop == new_stop)
+           || (old_stop == old_start) || (new_stop == new_start)))
    {
       string old_title = GetXmltvTitle(old_xml);
+      const string& new_title = slot.get_title();
+      unsigned dpos_new;
+      unsigned dpos_old;
 
       // FIXME allow for parity errors (& use redundancy to correct them)
-      if (slot.get_title() == old_title)
+      if (   str_cmp_alnum(new_title, old_title, &dpos_new, &dpos_old)
+          || (dpos_new >= new_title.size()) )
       {
-         static const regex expr1("^\\(teletext [1-8][0-9][0-9]\\)$");
-         smatch whats;
-
-         if (   (slot.get_desc().length() == 0)
-             || regex_search(slot.get_desc(), whats, expr1) )
+         if (new_title.size() < old_title.size())
          {
-            string old_desc;
-            static const regex expr2("<desc>(.*)</desc>");
+            string old_subtitle = GetXmltvSubTitle(old_xml);
+            // undo concatenation, i.e. remove title text from the front of the sub-title
+            str_cmp_alnum(old_title, old_subtitle, &dpos_new, &dpos_old);
+            old_subtitle.erase(old_subtitle.begin(), old_subtitle.begin() + dpos_old);
 
-            if (regex_search(old_xml, whats, expr2))
-            {
-               old_desc.assign(whats[1]);
-               XmlToLatin1(old_desc);
-            }
+            slot.merge_title(old_title, old_subtitle);
+         }
 
-            if (   (old_desc.length() > 0)
-                && !regex_search(old_desc, whats, expr1))
-            {
-               // copy description
-               slot.merge_desc(old_desc);
-            }
+         string old_desc = GetXmltvDescription(old_xml);
+         const string& new_desc = slot.get_desc();
+
+         // select the longer description text among new and old versions
+         // ignore empty descriptions with only a TTX page reference
+         static const regex expr2("^\\(teletext [1-8][0-9][0-9]\\)$");
+         smatch whats;
+         if (   (old_desc.length() > 0)
+             && !regex_search(old_desc, whats, expr2)
+             && (   (old_desc.length() > new_desc.length())
+                 || regex_search(new_desc, whats, expr2) ))
+         {
+            // copy old description
+            slot.merge_desc(old_desc);
+
+            // also copy older feature flags (some may come from description page)
+            slot.merge_feat(GetXmltvFeat(old_xml));
          }
       }
    }
@@ -528,7 +617,7 @@ int MergeNextSlot( list<TV_SLOT>& NewSlotList,
       }
       if ((old_start == -1) || (new_start <= old_start)) {
          // new programme starts earlier -> choose data from new source
-         // discard old programmes which are overlapped the next new one
+         // discard old programmes which overlap the next new one
          while (!OldSlotList.empty() && (OldSlotList.front() < new_stop)) {
             if (opt_debug) printf("MERGE DISCARD2 OLD %ld ovl STOP %ld\n",
                                   (long)OldSlotList.front(), (long)new_stop);
