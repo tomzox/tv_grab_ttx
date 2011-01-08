@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="TELE 5">
+	<display-name>TELE 5</display-name>
+</channel>
+
+<programme start="20110108115000 +0000" stop="20110108133500 +0000" channel="TELE 5">
+	<title>Star Kid</title>
+	<sub-title>Star Kid Science-Fiction USA 1997</sub-title>
+	<!-- TTX 315 -->
+	<desc>Star Kid Sa 12:50-14:35 So 16:25-18:20 Wh. Science-Fiction USA 1997 Das Leben des kleinen Spencer verändert sich komplett, als er einen außerirdischen Cyber-Anzug findet. Das Beste: Das Teil ist ein Roboter namens Cy und wird schnell der beste Freund des schüchternen Jungen. Doch Ärger zieht auf: Aliens wollen das Outfit zurück und die Erde vernichten. Tolles Superhelden-Abenteuer für die ganze Familie mit Spielberg-Entdeckung Joseph Mazzello ("Jurassic Park").
+(The Warrior of Waverly Street) Sa 12:50-14:35 So 16:25-18:20 Wh. Science-Fiction USA 1997
+Regie: Manny Coto, Buch: Manny Coto.
+Spencer Griffi: Joseph Mazzello, Cybersuit: Alex Daniels, Broodwarrior: Brian Simpson, Michelle: Lauren Eckstrom, Roland Griffit: Richard Gilliland, Stacey Griffit: Ashlee Levitch.</desc>
+</programme>
+
+<programme start="20110108133500 +0000" channel="TELE 5">
+	<title>Goliath - Sensation nach 40 Jahren</title>
+	<sub-title>Goliath - Sensation nach 40 Jahren Action USA 1981</sub-title>
+	<!-- TTX 316 -->
+	<desc>Goliath - Sensation nach 40 Jahren Sa 14:35-18:35 Action USA 1981
+Der englische Luxusliner Goliath wurde während des zweiten Weltkrieges versenkt. 40 Jahre später dringt ein Bergungsteam zum Meeresgrund vor und entdeckt eine Sensation. 300 Menschen überlebten die Katastrophe und leben unter der Leitung eines Ingenieurs im Schiffsrumpf in einer eigenen Parallel-Gesellschaft zusammen ...
+Abenteuerliche Unterwasser-Utopie mit Christopher Lee.
+(Goliath Awaits) Sa 14:35-18:35 Action USA 1981
+Regie: Kevin Connor, Buch: Richard M. Bluel, Musik: George Duning.
+Peter Cabot: Mark Harmon, Jeff Selkirk: Robert Forster, John McKenzie: Christopher Lee, Admiral Wiley: Eddie Albert, Dr. Sam Marlow: Alex Cord, Lea McKenzie: Emma Samms.</desc>
+</programme>
+</tv>

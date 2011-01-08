@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_scrape.cc,v 1.7 2011/01/07 18:37:12 tom Exp $
+ * $Id: ttx_scrape.cc,v 1.8 2011/01/08 13:28:24 tom Exp $
  */
 
 #include <stdio.h>
@@ -779,6 +779,7 @@ bool DescFormatCastTable(vector<string>& Lines)
                             Tabs[tab_max], off, spc1, spc2, spc3, expr2.str().c_str());
 
       // step #2: find all lines with dots ending at the right column and right amount of spaces
+      int first_row = -1;
       int last_row = -1;
       for (unsigned row = 0; row < Lines.size(); row++) {
          if (spc3 == 0x3F) {
@@ -794,8 +795,16 @@ bool DescFormatCastTable(vector<string>& Lines)
                // match -> replace dots with colon
                tab1 = regex_replace(tab1, regex("[ :]*$"), "");
                tab2 = regex_replace(tab2, regex("[ ,]*$"), "");
-               Lines[row] = tab1 + string(": ") + tab2 + string(",");
+               if (tab1 == ".") {
+                  // left column is empty
+                  Lines[row] = tab2 + string(",");
+               }
+               else {
+                  Lines[row] = tab1 + string(": ") + tab2 + string(",");
+               }
                last_row = row;
+               if (first_row == -1)
+                  first_row = row;
             }
             else if (last_row != -1) {
                static const regex expr5("^ +[^ ]$");
@@ -817,8 +826,16 @@ bool DescFormatCastTable(vector<string>& Lines)
                // match -> replace dots with colon
                tab1 = regex_replace(tab1, regex(" *:$"), "");
                tab2 = regex_replace(tab2, regex(",? +$"), "");
-               Lines[row] = tab1 + string(": ") + tab2 + string(",");
+               if (tab1 == ".") {
+                  // left column is empty
+                  Lines[row] = tab2 + string(",");
+               }
+               else {
+                  Lines[row] = tab1 + string(": ") + tab2 + string(",");
+               }
                last_row = row;
+               if (first_row == -1)
+                  first_row = row;
             }
          }
 
@@ -830,6 +847,16 @@ bool DescFormatCastTable(vector<string>& Lines)
       }
       if (last_row != -1) {
          Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), "");
+      }
+      if (first_row >= 2) {
+         // remove paragraph break after table header (e.g. "Cast:")
+         static const regex expr6("^\\s*$");
+         static const regex expr7(":\\s*$");
+         if (   regex_search(Lines[first_row - 1], whats, expr6)
+             && regex_search(Lines[first_row - 2], whats, expr7)) {
+            // remove the empty line (Warning: this invalidates line index ref's)
+            Lines.erase(Lines.begin() + first_row - 1);
+         }
       }
       result = true;
    }

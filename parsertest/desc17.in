@@ -1,0 +1,186 @@
+#!/usr/bin/perl -w
+#
+# Check that line-break in hyphenaated "au-ßerirdischen" is removed even with
+# Umlaut as first letter after the break.
+#
+# $Id: desc17.in,v 1.1 2011/01/08 12:09:31 tom Exp $
+#
+$VbiCaptureTime = 1294402118;
+$PgCnt{0x306} = 2;
+$PgSub{0x306} = 2;
+$PgLang{0x306} = 1;
+$PgTime{0x306} = 1294402118;
+$Pkg{0x306|(0x0001<<12)} =
+[
+  "        306\x06  TELE 5   07.01.11 13:08:41",
+  "\x01\x1D\x07MORGEN     \x00   \x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Sa 12:00-18:00  \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115\x01                  \x08                  ",
+  "\x115\x0712:50 Star Kid                 \x07>315 ",
+  "\x115\x03      Science-Fiction USA 1997       ",
+  "\x115\x0714:35 Goliath - Sensation nach  >316 ",
+  "\x115\x07      40 Jahren                      ",
+  "\x115\x03      Action USA 1981                ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x11\x1D\x07SMS-Chat 730\x10 \x1D\x11           \x1D\x07>> 307  ",
+  "\x03\x1D\x01\x0DTOP-AKTUELLE KLINGELT\\NE:.....747   ",
+];
+$PgCnt{0x315} = 1;
+$PgSub{0x315} = 2;
+$PgLang{0x315} = 1;
+$PgTime{0x315} = 1294402089;
+$Pkg{0x315|(0x0001<<12)} =
+[
+  "        315\x06  TELE 5   07.01.11 13:08:11",
+  "\x01\x1D\x07PROGRAMM   \x001/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Star Kid                             ",
+  "\x115\x01\x1D\x07Sa 12:50-14:35                    \x1C",
+  "\x115\x01\x1D\x07So 16:25-18:20               Wh.  \x1C",
+  "\x115\x07Science-Fiction USA 1997             ",
+  "\x115\x07Das Leben des kleinen Spencer ver{n- ",
+  "\x115\x07dert sich komplett, als er einen au- ",
+  "\x115\x07~erirdischen Cyber-Anzug findet. Das ",
+  "\x115\x07Beste: Das Teil ist ein Roboter na-  ",
+  "\x115\x07mens Cy und wird schnell der beste   ",
+  "\x115\x07Freund des sch}chternen Jungen. Doch ",
+  "\x115\x07[rger zieht auf: Aliens wollen das   ",
+  "\x115\x07Outfit zur}ck und die Erde vernich-  ",
+  "\x115\x07ten.                                 ",
+  "\x115\x06Tolles Superhelden-Abenteuer f}r die ",
+  "\x115\x06ganze Familie mit Spielberg-Entde-   ",
+  "\x115\x06ckung Joseph Mazzello (\"Jurassic     ",
+  "\x115\x06Park\").                              ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 316  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+  undef,
+  undef,
+  "\x15d\x02j/j^8\x02j/j^\x15\x02j/j^\x15^j/jjjjj/j\x1B\x15\x15j/j/j e",
+  undef,
+  undef,
+];
+$PgCnt{0x315} = 2;
+$PgSub{0x315} = 2;
+$PgLang{0x315} = 1;
+$PgTime{0x315} = 1294402119;
+$Pkg{0x315|(0x0002<<12)} =
+[
+  "        315\x06  TELE 5   07.01.11 13:08:41",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Star Kid                             ",
+  "\x115\x03(The Warrior of Waverly Street)      ",
+  "\x115\x01\x1D\x07Sa 12:50-14:35                    \x1C",
+  "\x115\x01\x1D\x07So 16:25-18:20               Wh.  \x1C",
+  "\x115\x07Science-Fiction USA 1997             ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Manny Coto          ",
+  "\x115\x07Buch.............Manny Coto          ",
+  "\x115\x00                                     ",
+  "\x115\x07Spencer Griffi...Joseph Mazzello     ",
+  "\x115\x07Cybersuit........Alex Daniels        ",
+  "\x115\x07Broodwarrior.....Brian Simpson       ",
+  "\x115\x07Michelle.........Lauren Eckstrom     ",
+  "\x115\x07Roland Griffit...Richard Gilliland   ",
+  "\x115\x07Stacey Griffit...Ashlee Levitch      ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 316  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+  undef,
+  undef,
+  "\x15d\x02j/j^8\x02j/j^\x15\x02j/j^\x15^j/jjjjj/j\x1B\x15\x15j/j/j\x0C ",
+  undef,
+  undef,
+];
+$PgCnt{0x316} = 1;
+$PgSub{0x316} = 2;
+$PgLang{0x316} = 1;
+$PgTime{0x316} = 1294402089;
+$Pkg{0x316|(0x0001<<12)} =
+[
+  "        316\x06  TELE 5   07.01.11 13:08:11",
+  "\x01\x1D\x07PROGRAMM   \x001/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Goliath - Sensation nach 40 Jahren   ",
+  "\x115\x01\x1D\x07Sa 14:35-18:35                    \x1C",
+  "\x115\x07Action USA 1981                      ",
+  "\x115\x00                                     ",
+  "\x115\x07Der englische Luxusliner Goliath     ",
+  "\x115\x07wurde w{hrend des zweiten Weltkrie-  ",
+  "\x115\x07ges versenkt. 40 Jahre sp{ter dringt ",
+  "\x115\x07ein Bergungsteam zum Meeresgrund vor ",
+  "\x115\x07und entdeckt eine Sensation. 300     ",
+  "\x115\x07Menschen }berlebten die Katastrophe  ",
+  "\x115\x07und leben unter der Leitung eines    ",
+  "\x115\x07Ingenieurs im Schiffsrumpf in einer  ",
+  "\x115\x07eigenen Parallel-Gesellschaft zusam- ",
+  "\x115\x07men ...                              ",
+  "\x115\x00                                     ",
+  "\x115\x06Abenteuerliche Unterwasser-Utopie    ",
+  "\x115\x06mit Christopher Lee.                 ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 317  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+  undef,
+  undef,
+  "\x15s\x02j/j^/\x02j/j^\x15\x02j/j^\x15^j/jjjjj/j\x1B\x15\x15j/j/j\x19 ",
+  undef,
+  undef,
+];
+$PgCnt{0x316} = 2;
+$PgSub{0x316} = 2;
+$PgLang{0x316} = 1;
+$PgTime{0x316} = 1294402119;
+$Pkg{0x316|(0x0002<<12)} =
+[
+  "        316\x06  TELE 5   07.01.11 13:08:41",
+  "\x01\x1D\x07PROGRAMM   \x002/2\x09\x1C\x11\x1D\x17,<\$<,h  <,\x10j\x17h,\$ ",
+  "\x01\x1D\x07Spielfilm       \x1C\x11\x1D\x17 5 wqjp0wq\x10j\x17bs5 ",
+  "\x11ssssssssssssssssss \x11#############!#####",
+  "\x115                                      ",
+  "\x115\x03Goliath - Sensation nach 40 Jahren   ",
+  "\x115\x03(Goliath Awaits)                     ",
+  "\x115\x01\x1D\x07Sa 14:35-18:35                    \x1C",
+  "\x115\x07Action USA 1981                      ",
+  "\x115\x00                                     ",
+  "\x115\x07Regie............Kevin Connor        ",
+  "\x115\x07Buch.............Richard M. Bluel    ",
+  "\x115\x07Musik............George Duning       ",
+  "\x115\x00                                     ",
+  "\x115\x07Peter Cabot......Mark Harmon         ",
+  "\x115\x07Jeff Selkirk.....Robert Forster      ",
+  "\x115\x07John McKenzie....Christopher Lee     ",
+  "\x115\x07Admiral Wiley ...Eddie Albert        ",
+  "\x115\x07Dr. Sam Marlow...Alex Cord           ",
+  "\x115\x07Lea McKenzie.....Emma Samms          ",
+  "\x115\x00                                     ",
+  "\x115\x00                                     ",
+  "\x115                                      ",
+  "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 317  ",
+  "\x01-\x02 +\x03    Film-]bersicht\x06  Film-Magazin ",
+  undef,
+  undef,
+  "\x15s\x02j/j^/\x02j/j^\x15\x02j/j^\x15^j/jjjjj/j\x1B\x15\x15j/j/j1d",
+  undef,
+  undef,
+];

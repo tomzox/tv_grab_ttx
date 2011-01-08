@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="ProSieben">
+	<display-name>ProSieben</display-name>
+</channel>
+
+<programme start="20110106040300 +0000" stop="20110106045800 +0000" channel="ProSieben">
+	<title>Galileo</title>
+	<desc>(teletext 408)</desc>
+</programme>
+
+<programme start="20110106045800 +0000" stop="20110106052400 +0000" channel="ProSieben">
+	<title>Meine Frau, ihr Vater und</title>
+	<sub-title>Meine Frau, ihr Vater und ich</sub-title>
+</programme>
+
+<programme start="20110106052400 +0000" stop="20110106054900 +0000" channel="ProSieben">
+	<title>Freddie</title>
+	<desc>(teletext 347)</desc>
+</programme>
+
+<programme start="20110106054900 +0000" stop="20110106061300 +0000" channel="ProSieben">
+	<title>Freddie</title>
+	<desc>(teletext 347)</desc>
+</programme>
+
+<programme start="20110106061300 +0000" stop="20110106063800 +0000" channel="ProSieben">
+	<title>How I Met Your Mother</title>
+	<sub-title>How I Met Your Mother Das Super-Date</sub-title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20110106063800 +0000" stop="20110106070400 +0000" channel="ProSieben">
+	<title>How I Met Your Mother</title>
+	<sub-title>How I Met Your Mother Letzter Versuch</sub-title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20110106070400 +0000" stop="20110106073000 +0000" channel="ProSieben">
+	<title>Malcolm mittendrin</title>
+	<sub-title>Malcolm mittendrin Reese kommt nach Hause</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20110106073000 +0000" stop="20110106075900 +0000" channel="ProSieben">
+	<title>Malcolm mittendrin</title>
+	<sub-title>Malcolm mittendrin Hal und die Bodybuilder</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20110106075900 +0000" stop="20110106082500 +0000" channel="ProSieben">
+	<title>Scrubs - Die Anfänger</title>
+	<sub-title>Scrubs - Die Anfänger Meine Nebendarsteller</sub-title>
+	<desc>(teletext 345)</desc>
+</programme>
+
+<programme start="20110106082500 +0000" stop="20110106084800 +0000" channel="ProSieben">
+	<title>Scrubs - Die Anfänger</title>
+	<sub-title>Scrubs - Die Anfänger Meine Eifersucht</sub-title>
+	<desc>(teletext 345)</desc>
+</programme>
+
+<programme start="20110106084800 +0000" stop="20110106112300 +0000" channel="ProSieben">
+	<title>Sex and the City - Der Film</title>
+</programme>
+
+<programme start="20110106112300 +0000" stop="20110106114900 +0000" channel="ProSieben">
+	<title>How I Met Your Mother</title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20110106114900 +0000" stop="20110106121500 +0000" channel="ProSieben">
+	<title>How I Met Your Mother</title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20110106121500 +0000" stop="20110106124000 +0000" channel="ProSieben">
+	<title>Malcolm mittendrin</title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20110106124000 +0000" stop="20110106130700 +0000" channel="ProSieben">
+	<title>Malcolm mittendrin</title>
+	<sub-title>Malcolm mittendrin Pearl Harbor</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20110106130700 +0000" stop="20110106133200 +0000" channel="ProSieben">
+	<title>Scrubs - Die Anfänger</title>
+	<sub-title>Scrubs - Die Anfänger Meine kalte Dusche</sub-title>
+	<desc>(teletext 345)</desc>
+</programme>
+
+<programme start="20110106133200 +0000" stop="20110106140100 +0000" channel="ProSieben">
+	<title>Scrubs - Die Anfänger</title>
+	<sub-title>Scrubs - Die Anfänger Meine Reise nach Phoenix</sub-title>
+	<!-- TTX 345 -->
+	<desc>Scrubs - Die Anfänger Meine Reise nach Phoenix
+Do 06.01. 14:32-15:01 Fr 07.01. 10:07-10:37
+Auf einer Chirurgen-Tagung in Phoenix trifft J.D. unerwartet auf seine Ex- Freundin Kim. Zu seiner Verwunderung ist sie, entgegen ihrer früheren Behauptung, eine Fehlgeburt erlitten zu haben, hochschwanger. Als sie ihn um Hilfe bittet, ist J. D. völlig überfordert - und macht sich heimlich aus dem Staub ...</desc>
+</programme>
+
+<programme start="20110106140100 +0000" stop="20110106155700 +0000" channel="ProSieben">
+	<title>We are Family! So lebt</title>
+	<sub-title>We are Family! So lebt Deutschland. Vaterschaftstest auf den Philippinen - für meinen Ex setze ich meine Familie aufs Spiel (3)</sub-title>
+	<desc>(teletext 414)</desc>
+</programme>
+
+<programme start="20110106155700 +0000" stop="20110106170800 +0000" channel="ProSieben">
+	<title>taff</title>
+	<sub-title>taff Thema u. a.: Keime im Krankenhaus</sub-title>
+	<desc>(teletext 405)</desc>
+</programme>
+
+<programme start="20110106170800 +0000" stop="20110106173700 +0000" channel="ProSieben">
+	<title>Die Simpsons</title>
+	<sub-title>Die Simpsons Homie und Neddie</sub-title>
+	<desc>(teletext 341)</desc>
+</programme>
+
+<programme start="20110106173700 +0000" stop="20110106180500 +0000" channel="ProSieben">
+	<title>Die Simpsons</title>
+	<sub-title>Die Simpsons Bart gewinnt Elefant!</sub-title>
+	<desc>(teletext 341)</desc>
+</programme>
+
+<programme start="20110106180500 +0000" stop="20110106191400 +0000" channel="ProSieben">
+	<title>Galileo</title>
+	<sub-title>Galileo Thema u. a.: Duell Frisch vs. Tiefkühlkost</sub-title>
+	<desc>(teletext 408)</desc>
+</programme>
+
+<programme start="20110106191400 +0000" stop="20110106210100 +0000" channel="ProSieben">
+	<title>Go West - Freiheit um jeden</title>
+	<sub-title>Go West - Freiheit um jeden Preis - Teil 1</sub-title>
+</programme>
+
+<programme start="20110106210100 +0000" stop="20110106220400 +0000" channel="ProSieben">
+	<title>Galileo Spezial: Freiheit um</title>
+	<sub-title>Galileo Spezial: Freiheit um jeden Preis - die spektakulärsten Fluchtversuche aus der DDR</sub-title>
+</programme>
+
+<programme start="20110106220400 +0000" stop="20110106230100 +0000" channel="ProSieben">
+	<title>Obama hautnah - Unterwegs</title>
+	<sub-title>Obama hautnah - Unterwegs mit dem Präsidenten</sub-title>
+</programme>
+
+<programme start="20110106230100 +0000" stop="20110106234400 +0000" channel="ProSieben">
+	<title>talk talk talk - Die Late</title>
+	<sub-title>talk talk talk - Die Late Show Best of (41)</sub-title>
+	<desc>(teletext 400)</desc>
+</programme>
+
+<programme start="20110106234400 +0000" stop="20110107003600 +0000" channel="ProSieben">
+	<title>talk talk talk</title>
+	<desc>(teletext 400)</desc>
+</programme>
+
+<programme start="20110107003600 +0000" stop="20110107010700 +0000" channel="ProSieben">
+	<title>Bully &amp; Rick</title>
+	<sub-title>Bully &amp; Rick Best of (1)</sub-title>
+	<desc>(teletext 377)</desc>
+</programme>
+
+<programme start="20110107010700 +0000" stop="20110107013100 +0000" channel="ProSieben">
+	<title>TRAMITZ and friends</title>
+</programme>
+
+<programme start="20110107013100 +0000" stop="20110107021700 +0000" channel="ProSieben">
+	<title>superspots - die besten</title>
+	<sub-title>superspots - die besten Clips im Umlauf</sub-title>
+</programme>
+
+<programme start="20110107021700 +0000" stop="20110107022000 +0000" channel="ProSieben">
+	<title>ProSieben Spätnachrichten</title>
+	<desc>(teletext 110)</desc>
+</programme>
+
+<programme start="20110107022000 +0000" stop="20110107024600 +0000" channel="ProSieben">
+	<title>Bully &amp; Rick</title>
+	<sub-title>Bully &amp; Rick Best of (1)</sub-title>
+	<desc>(teletext 377)</desc>
+</programme>
+
+<programme start="20110107024600 +0000" stop="20110107031000 +0000" channel="ProSieben">
+	<title>TRAMITZ and friends</title>
+</programme>
+
+<programme start="20110107031000 +0000" stop="20110107034100 +0000" channel="ProSieben">
+	<title>Freddie</title>
+	<sub-title>Freddie Zwei sind eine zu viel</sub-title>
+	<desc>(teletext 347)</desc>
+</programme>
+
+<programme start="20110107034100 +0000" stop="20110107043200 +0000" channel="ProSieben">
+	<title>taff</title>
+	<sub-title>taff Thema u. a.: Keime im Krankenhaus</sub-title>
+	<desc>(teletext 405)</desc>
+</programme>
+
+<programme start="20110107043200 +0000" stop="20110107053800 +0000" channel="ProSieben">
+	<title>Galileo</title>
+	<desc>(teletext 408)</desc>
+</programme>
+
+<programme start="20110107053800 +0000" stop="20110107060300 +0000" channel="ProSieben">
+	<title>Meine Frau, ihr Vater und</title>
+	<sub-title>Meine Frau, ihr Vater und ich Schlüssel zum Herz</sub-title>
+</programme>
+
+<programme start="20110107060300 +0000" stop="20110107062900 +0000" channel="ProSieben">
+	<title>Freddie</title>
+	<sub-title>Freddie Ehemann Nummer vier</sub-title>
+	<desc>(teletext 347)</desc>
+</programme>
+
+<programme start="20110107062900 +0000" stop="20110107065500 +0000" channel="ProSieben">
+	<title>Freddie</title>
+	<sub-title>Freddie Ob blond, ob braun ...</sub-title>
+	<desc>(teletext 347)</desc>
+</programme>
+
+<programme start="20110107065500 +0000" stop="20110107072000 +0000" channel="ProSieben">
+	<title>How I Met Your Mother</title>
+	<sub-title>How I Met Your Mother Das große Baby</sub-title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20110107072000 +0000" stop="20110107074900 +0000" channel="ProSieben">
+	<title>How I Met Your Mother</title>
+	<sub-title>How I Met Your Mother Neues Leben, alte Fehler</sub-title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20110107074900 +0000" stop="20110107081400 +0000" channel="ProSieben">
+	<title>Malcolm mittendrin</title>
+	<sub-title>Malcolm mittendrin Die Macht des Müllmanns</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20110107081400 +0000" stop="20110107084100 +0000" channel="ProSieben">
+	<title>Malcolm mittendrin</title>
+	<sub-title>Malcolm mittendrin Pearl Harbor</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20110107084100 +0000" stop="20110107090700 +0000" channel="ProSieben">
+	<title>Scrubs - Die Anfänger</title>
+	<sub-title>Scrubs - Die Anfänger Meine kalte Dusche</sub-title>
+	<!-- TTX 345 -->
+	<desc>Scrubs - Die Anfänger Meine kalte Dusche
+Fr 07.01. 09:41-10:07
+Elliot und Carla suchen verzweifelt nach der Ursache für die Symptome zweier reizender älterer Patienten. Wenig später kommen Dr. Cox und Dr. Kelso darauf, dass die beiden ob ihrer regen sexuellen Aktivitäten an Syphilis erkrankt sind ... Elliot bittet Keith, noch einmal um ihre Hand anzuhalten, damit alles genau so läuft, wie sie es sich erträumt hat, während J.D. nach wie vor versucht, bei Melody zu landen. Doch sie weist ihn hartnäckig ab ...</desc>
+</programme>
+
+<programme start="20110107090700 +0000" stop="20110107093700 +0000" channel="ProSieben">
+	<title>Scrubs - Die Anfänger</title>
+	<!-- TTX 345 -->
+	<desc>Scrubs - Die Anfänger Meine Reise nach Phoenix
+Do 06.01. 14:32-15:01 Fr 07.01. 10:07-10:37
+Auf einer Chirurgen-Tagung in Phoenix trifft J.D. unerwartet auf seine Ex- Freundin Kim. Zu seiner Verwunderung ist sie, entgegen ihrer früheren Behauptung, eine Fehlgeburt erlitten zu haben, hochschwanger. Als sie ihn um Hilfe bittet, ist J. D. völlig überfordert - und macht sich heimlich aus dem Staub ...</desc>
+</programme>
+
+<programme start="20110107093700 +0000" stop="20110107112300 +0000" channel="ProSieben">
+	<title>Schwer verknallt</title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20110107112300 +0000" stop="20110107114900 +0000" channel="ProSieben">
+	<title>How I Met Your Mother</title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20110107114900 +0000" stop="20110107121500 +0000" channel="ProSieben">
+	<title>How I Met Your Mother</title>
+	<desc>(teletext 346)</desc>
+</programme>
+
+<programme start="20110107121500 +0000" stop="20110107124200 +0000" channel="ProSieben">
+	<title>Malcolm mittendrin</title>
+	<sub-title>Malcolm mittendrin Die Preisverleihung</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20110107124200 +0000" stop="20110107130800 +0000" channel="ProSieben">
+	<title>Malcolm mittendrin</title>
+	<sub-title>Malcolm mittendrin Der Familienausflug</sub-title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20110107130800 +0000" stop="20110107133300 +0000" channel="ProSieben">
+	<title>Scrubs - Die Anfänger</title>
+	<sub-title>Scrubs - Die Anfänger Mein Kaninchen</sub-title>
+	<desc>(teletext 345)</desc>
+</programme>
+
+<programme start="20110107133300 +0000" stop="20110107140000 +0000" channel="ProSieben">
+	<title>Scrubs - Die Anfänger</title>
+	<sub-title>Scrubs - Die Anfänger Meine Zukunft</sub-title>
+	<desc>(teletext 345)</desc>
+</programme>
+
+<programme start="20110107140000 +0000" stop="20110107155800 +0000" channel="ProSieben">
+	<title>We are Family! So lebt</title>
+	<sub-title>We are Family! So lebt Deutschland. Mama und Papa sind arbeitslos - was nun?</sub-title>
+	<desc>(teletext 414)</desc>
+</programme>
+
+<programme start="20110107155800 +0000" channel="ProSieben">
+	<title>taff</title>
+	<sub-title>taff Thema u. a.: Hängebauch</sub-title>
+	<desc>(teletext 405)</desc>
+</programme>
+</tv>

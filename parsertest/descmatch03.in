@@ -1,9 +1,10 @@
 #!/usr/bin/perl -w
 #
-# Test of series description across 2 subpages,
-# 2nd page doesn't contain time and date.
+# Test of series description across 2 subpages, 2nd page doesn't contain time
+# and date. Since no other slot references the description, both pages should
+# be included.
 #
-# $Id$
+# $Id: descmatch03.in,v 1.1 2011/01/08 12:10:40 tom Exp $
 #
 $VbiCaptureTime = 1147371369;
 $PgCnt{0x302} = 8;

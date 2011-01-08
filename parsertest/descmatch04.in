@@ -3,126 +3,254 @@
 # Yet another multi-subpage description page for different episodes
 # of a series.
 #
-# $Id$
+# $Id: descmatch04.in,v 1.1 2011/01/08 12:11:10 tom Exp $
 #
-$VbiCaptureTime = 1147371369;
-$PgCnt{0x309} = 8;
-$PgSub{0x309} = 4;
-$PgLang{0x309} = 1;
-$Pkg{0x309|(0x0003<<12)} =
+$VbiCaptureTime = 1294322201;
+$PgCnt{0x301} = 1;
+$PgSub{0x301} = 2;
+$PgLang{0x301} = 1;
+$PgTime{0x301} = 1294322189;
+$Pkg{0x301|(0x0000<<12)} =
 [
-  "G\x15^P\x15\x15IG309 ProSieben  11.05.06 20:15:21",
-  "\x11|||4             \x1D\x07ProSieben           ",
-  "\x11 p|4             \x1D\x07]bermorgen      3/4 ",
+  "        301\x07 ProSieben\x0706.01.11\x0714:56:32",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07heute           1/1 ",
   "\x11.//\%             ######################",
-  "\x0617.59 Relic Hunter - Die Schatzj{-     ",
-  "\x06      gerin                            ",
-  "\x06      Wettlauf mit dem Tod         >351",
-  "\x0718.59 talk talk talk                   ",
-  "\x0619.59 NEWSTIME                         ",
-  "\x0720.15 24 Stunden Angst                 ",
-  "\x0622.19 Identit{t                        ",
-  undef,
-  undef,
-  undef,
-  undef,
-  undef,
-  undef,
-  undef,
-  undef,
-  undef,
-  undef,
-  undef,
-  undef,
-  "\x01\x1D\x07Was gleich anf{ngt 315 Filmtipps 320 ",
+  "\x0605:03 Galileo                      >408",
+  " 05:58 Meine Frau, ihr Vater und        ",
+  "       ich                              ",
+  "\x0606:24 Freddie                      >347",
+  " 06:49 Freddie                      >347",
+  "\x0607:13 How I Met Your Mother            ",
+  "\x06      Das Super-Date               >346",
+  " 07:38 How I Met Your Mother            ",
+  "       Letzter Versuch              >346",
+  "\x0608:04 Malcolm mittendrin               ",
+  "\x06      Reese kommt nach Hause       >344",
+  " 08:30 Malcolm mittendrin               ",
+  "       Hal und die Bodybuilder      >344",
+  "\x0608:59 Scrubs - Die Anf{nger            ",
+  "\x06      Meine Nebendarsteller        >345",
+  " 09:25 Scrubs - Die Anf{nger            ",
+  "       Meine Eifersucht             >345",
+  "\x0609:48 Sex and the City - Der Film      ",
+  "\x06                                       ",
+  "\x02\x1D\x04Lenormand, Skat und Tarot Karten 467 ",
 ];
-$PgCnt{0x351} = 8;
-$PgSub{0x351} = 3;
-$PgLang{0x351} = 1;
-$Pkg{0x351|(0x0001<<12)} =
+$PgCnt{0x302} = 1;
+$PgSub{0x302} = 2;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1294322189;
+$Pkg{0x302|(0x0000<<12)} =
 [
-  "\x02s\x02P\x15\x15IG351 ProSieben  11.05.06 20:16:11",
-  "\x11|||4             \x1D\x07ProSieben           ",
-  "\x11 p|4             \x1D\x07Serie           1/3 ",
+  "        302\x07 ProSieben\x0706.01.11\x0714:56:32",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07heute           1/1 ",
   "\x11.//\%             ######################",
-  "\x06Relic Hunter - Die Schatzj{gerin       ",
-  "\x07Der magische Handschuh                 ",
-  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
-  "\x07Sa 06.05 18:01-18:59           (vorbei)",
-  "\x07So 07.05 05:10-05:57           (vorbei)",
-  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
-  undef,
-  "\x07Nigel reist zusammen mit Sydney nach   ",
-  "\x07Ungarn, um nach dem Schwert des legen- ",
-  "\x07d{ren Sankt Gabriel zu suchen. Mit die-",
-  "\x07sem soll der Heilige einst Belisle, den",
-  "\x07F}rsten der Finsternis, get|tet haben. ",
-  "\x07Eine Spur f}hrt die beiden in ein Klos-",
-  "\x07ter, wo das Schwert in einem Stein ste-",
-  "\x07cken soll und nur mit Hilfe eines magi-",
-  "\x07schen Handschuhs herausgezogen werden  ",
-  "\x07kann.                                  ",
-  undef,
-  undef,
-  "\x01\x1D\x07SMS Chat im Teletext!!! ...\x04ab 470   ",
+  "\x0612:23 How I Met Your Mother        >346",
+  " 12:49 How I Met Your Mother        >346",
+  "\x0613:15 Malcolm mittendrin           >344",
+  " 13:40 Malcolm mittendrin               ",
+  "       Pearl Harbor                 >344",
+  "\x0614:07 Scrubs - Die Anf{nger            ",
+  "\x06      Meine kalte Dusche           >345",
+  "\x0114:32 Scrubs - Die Anf{nger            ",
+  "\x01      Meine Reise nach Phoenix     >345",
+  "\x0615:01 We are Family! So lebt           ",
+  "\x06      Deutschland.                     ",
+  "\x06      Vaterschaftstest auf den         ",
+  "\x06      Philippinen - f}r meinen Ex      ",
+  "\x06      setze ich meine Familie aufs     ",
+  "\x06      Spiel (3)                    >414",
+  " 16:57 taff                             ",
+  "       Thema u. a.: Keime im Kran-      ",
+  "       kenhaus                      >405",
+  "\x06                                       ",
+  "\x05\x1D\x03Sehen Sie Ihre Wintersterne..... 468 ",
 ];
-$PgCnt{0x351} = 8;
-$PgSub{0x351} = 3;
-$PgLang{0x351} = 1;
-$Pkg{0x351|(0x0002<<12)} =
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1294322189;
+$Pkg{0x303|(0x0000<<12)} =
 [
-  "\x02sIP\x15\x15IG351 ProSieben  11.05.06 20:15:22",
-  "\x11|||4             \x1D\x07ProSieben           ",
-  "\x11 p|4             \x1D\x07Serie           2/3 ",
+  "        303\x07 ProSieben\x0706.01.11\x0714:56:32",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07heute           1/1 ",
   "\x11.//\%             ######################",
-  "\x06Relic Hunter - Die Schatzj{gerin       ",
-  "\x07Wettlauf mit dem Tod                   ",
-  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
-  "\x07Sa 13.05 17:59-18:59                   ",
-  "\x07Mo 15.05 04:24-05:14                   ",
-  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
-  "\x07Sydneys Freund Alan wurde von dem Er-  ",
-  "\x07presser Chabot mit einem t|dlichen Vi- ",
-  "\x07rus infiziert - das einzig wirksame Ge-",
-  "\x07genmittel befindet sich ebenfalls in   ",
-  "\x07Chabots Hand. Alan soll es bekommen,   ",
-  "\x07wenn er innerhalb von zw|lf Stunden das",
-  "\x07legend{re Tau-Kreuz, das {lteste       ",
-  "\x07christliche Kreuz, Chabot aush{ndigt.  ",
-  "\x07Zusammen mit Sydney und Nigel sucht    ",
-  "\x07Alan fieberhaft in Frankreich nach dem ",
-  "\x07Kreuz.                                 ",
-  undef,
-  undef,
-  "\x01\x1D\x07SMS Chat im Teletext!!! ...\x04ab 470   ",
+  "\x0618:08 Die Simpsons                     ",
+  "\x06      Homie und Neddie             >341",
+  " 18:37 Die Simpsons                     ",
+  "       Bart gewinnt Elefant!        >341",
+  "\x0619:05 Galileo                          ",
+  "\x06      Thema u. a.: Duell Frisch        ",
+  "\x06      vs. Tiefk}hlkost             >408",
+  " 20:14 Go West - Freiheit um jeden      ",
+  "       Preis - Teil 1                   ",
+  "\x0622:01 Galileo Spezial: Freiheit um     ",
+  "\x06      jeden Preis - die spekta-        ",
+  "\x06      kul{rsten Fluchtversuche aus     ",
+  "\x06      der DDR                          ",
+  " 23:04 Obama hautnah - Unterwegs        ",
+  "       mit dem Pr{sidenten              ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x04\x1D\x03Neue Runde SMS BULI Tippspiel! > 290 ",
 ];
-$PgCnt{0x351} = 8;
-$PgSub{0x351} = 3;
-$PgLang{0x351} = 1;
-$Pkg{0x351|(0x0003<<12)} =
+$PgCnt{0x304} = 1;
+$PgSub{0x304} = 3;
+$PgLang{0x304} = 1;
+$PgTime{0x304} = 1294322189;
+$Pkg{0x304|(0x0000<<12)} =
 [
-  "\x02s^P\x15\x15IG351 ProSieben  11.05.06 20:15:46",
-  "\x11|||4             \x1D\x07ProSieben           ",
-  "\x11 p|4             \x1D\x07Serie           3/3 ",
+  "        304\x07 ProSieben\x0706.01.11\x0714:56:32",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07heute           1/1 ",
   "\x11.//\%             ######################",
-  "\x06Relic Hunter - Die Schatzj{gerin       ",
-  "\x07Das Ei des Drachen                     ",
+  "\x0600:01 talk talk talk - Die Late        ",
+  "\x06      Show                             ",
+  "\x06      Best of (41)                 >400",
+  " 00:44 talk talk talk               >400",
+  "\x0601:36 Bully & Rick                     ",
+  "\x06      Best of (1)                  >377",
+  " 02:07 TRAMITZ and friends              ",
+  "\x0602:31 superspots - die besten          ",
+  "\x06      Clips im Umlauf                  ",
+  " 03:17 ProSieben Sp{tnachrichten    >110",
+  "\x0603:20 Bully & Rick                     ",
+  "\x06      Best of (1)                  >377",
+  " 03:46 TRAMITZ and friends              ",
+  "\x0604:10 Freddie                          ",
+  "\x06      Zwei sind eine zu viel       >347",
+  " 04:41 taff                             ",
+  "       Thema u. a.: Keime im Kran-      ",
+  "       kenhaus                      >405",
+  "\x06                                       ",
+  "\x05\x1D\x03Sehen Sie Ihre Wintersterne..... 468 ",
+];
+$PgCnt{0x305} = 1;
+$PgSub{0x305} = 3;
+$PgLang{0x305} = 1;
+$PgTime{0x305} = 1294322189;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "        305\x07 ProSieben\x0706.01.11\x0714:56:32",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07Morgen          1/1 ",
+  "\x11.//\%             ######################",
+  "\x0605:32 Galileo                      >408",
+  " 06:38 Meine Frau, ihr Vater und        ",
+  "       ich                              ",
+  "       Schl}ssel zum Herz               ",
+  "\x0607:03 Freddie                          ",
+  "\x06      Ehemann Nummer vier          >347",
+  " 07:29 Freddie                          ",
+  "       Ob blond, ob braun ...       >347",
+  "\x0607:55 How I Met Your Mother            ",
+  "\x06      Das gro~e Baby               >346",
+  " 08:20 How I Met Your Mother            ",
+  "       Neues Leben, alte Fehler     >346",
+  "\x0608:49 Malcolm mittendrin               ",
+  "\x06      Die Macht des M}llmanns      >344",
+  " 09:14 Malcolm mittendrin               ",
+  "       Pearl Harbor                 >344",
+  "\x0609:41 Scrubs - Die Anf{nger            ",
+  "\x06      Meine kalte Dusche           >345",
+  "\x06                                       ",
+  "\x01\x1D\x07Kaufen, Verkaufen Gr}~e per SMS! 180 ",
+];
+$PgCnt{0x306} = 1;
+$PgSub{0x306} = 3;
+$PgLang{0x306} = 1;
+$PgTime{0x306} = 1294322189;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "        306\x07 ProSieben\x0706.01.11\x0714:56:32",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07Morgen          1/1 ",
+  "\x11.//\%             ######################",
+  "\x0610:07 Scrubs - Die Anf{nger        >345",
+  " 10:37 Schwer verknallt             >311",
+  "\x0612:23 How I Met Your Mother        >346",
+  " 12:49 How I Met Your Mother        >346",
+  "\x0613:15 Malcolm mittendrin               ",
+  "\x06      Die Preisverleihung          >344",
+  " 13:42 Malcolm mittendrin               ",
+  "       Der Familienausflug          >344",
+  "\x0614:08 Scrubs - Die Anf{nger            ",
+  "\x06      Mein Kaninchen               >345",
+  " 14:33 Scrubs - Die Anf{nger            ",
+  "       Meine Zukunft                >345",
+  "\x0615:00 We are Family! So lebt           ",
+  "\x06      Deutschland.                     ",
+  "\x06      Mama und Papa sind arbeits-      ",
+  "\x06      los - was nun?               >414",
+  " 16:58 taff                             ",
+  "       Thema u. a.: H{ngebauch      >405",
+  "\x06                                       ",
+  "\x02\x1D\x04Lenormand, Skat und Tarot Karten 467 ",
+];
+$PgCnt{0x345} = 1;
+$PgSub{0x345} = 2;
+$PgLang{0x345} = 1;
+$PgTime{0x345} = 1294322190;
+$Pkg{0x345|(0x0001<<12)} =
+[
+  "        345\x07 ProSieben\x0706.01.11\x0714:56:33",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07Serie           1/2 ",
+  "\x11.//\%             ######################",
+  "\x06Scrubs - Die Anf{nger                  ",
+  " Meine Reise nach Phoenix               ",
   "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
-  "\x07Sa 20.05 17:59-18:59                   ",
-  "\x07So 21.05 04:27-05:07                   ",
+  " Do 06.01. 14:32-15:01                  ",
+  " Fr 07.01. 10:07-10:37                  ",
   "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
-  undef,
-  "\x07Sydney und Nigel sind auf der Suche    ",
-  "\x07nach einer Karte, auf der das Versteck ",
-  "\x07des \"Dracheneis von Quan Shu\" verzeich-",
-  "\x07net ist. Dieses Ei wurde mit Spreng-   ",
-  "\x07stoff gef}llt und den Feinden des Rei- ",
-  "\x07ches }bergeben. Doch bei ihrer Suche   ",
-  "\x07werden Sydney und Nigel von dem dubio- ",
-  "\x07sen Schatzsucher Kane ausgetrickst,    ",
-  "\x07woraufhin dieser in den Besitz der Kar-",
-  "\x07te kommt.                              ",
-  undef,
-  undef,
-  "\x01\x1D\x07SMS Chat im Teletext!!! ...\x04ab 470   ",
+  "\x06                                       ",
+  " Auf einer Chirurgen-Tagung in Phoenix  ",
+  " trifft J.D. unerwartet auf seine Ex-   ",
+  " Freundin Kim. Zu seiner Verwunderung   ",
+  " ist sie, entgegen ihrer fr}heren Be-   ",
+  " hauptung, eine Fehlgeburt erlitten zu  ",
+  " haben, hochschwanger. Als sie ihn um   ",
+  " Hilfe bittet, ist J. D. v|llig }berfor-",
+  " dert - und macht sich heimlich aus dem ",
+  " Staub ...                              ",
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  "\x01\x1D\x07NEU!! Wechsle Deine Krankenvers. 279 ",
+];
+$PgCnt{0x345} = 2;
+$PgSub{0x345} = 2;
+$PgLang{0x345} = 1;
+$PgTime{0x345} = 1294320891;
+$Pkg{0x345|(0x0002<<12)} =
+[
+  "        345\x07 ProSieben\x0706.01.11\x0714:34:54",
+  "\x11|||4            \x01\x1D\x07ProSieben           ",
+  "\x11 p|4            \x01\x1D\x07Serie           2/2 ",
+  "\x11.//\%             ######################",
+  "\x06Scrubs - Die Anf{nger                  ",
+  " Meine kalte Dusche                     ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  " Fr 07.01. 09:41-10:07                  ",
+  "\x11,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06                                       ",
+  " Elliot und Carla suchen verzweifelt    ",
+  " nach der Ursache f}r die Symptome zwei-",
+  " er reizender {lterer Patienten. Wenig  ",
+  " sp{ter kommen Dr. Cox und Dr. Kelso    ",
+  " darauf, dass die beiden ob ihrer regen ",
+  " sexuellen Aktivit{ten an Syphilis er-  ",
+  " krankt sind ... Elliot bittet Keith,   ",
+  " noch einmal um ihre Hand anzuhalten,   ",
+  " damit alles genau so l{uft, wie sie es ",
+  " sich ertr{umt hat, w{hrend J.D. nach   ",
+  " wie vor versucht, bei Melody zu landen.",
+  " Doch sie weist ihn hartn{ckig ab ...   ",
+  "                                        ",
+  "\x04\x1D\x03Neue Runde SMS BULI Tippspiel! > 290 ",
 ];

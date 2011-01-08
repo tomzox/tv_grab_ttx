@@ -2,10 +2,11 @@
 #
 # Description page has no time or date and even the title is rendered
 # using mosaic graphics (only the episode number matches the title.)
+#
 # The description should still be included since it's a single subpage
 # (also no mismatching date is found and page not claimed by other titles)
 #
-# $Id$
+# $Id: descmatch02.in,v 1.1 2011/01/08 12:09:56 tom Exp $
 #
 $VbiCaptureTime = 1146914553;
 $PgCnt{0x304} = 9;
