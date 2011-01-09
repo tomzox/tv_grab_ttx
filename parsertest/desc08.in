@@ -1,8 +1,9 @@
 #!/usr/bin/perl -w
 #
-# Test title parsing:
-# - 331 can be used to correct title/subtitle line break
-# - 316 contains unrelated page ref above page footer
+# Test title parsing: Page 331 omits sequal index "3" from title.
+# Currently this prevents a match.
+#
+# Also 316 contains unrelated page ref above page footer
 #
 # $Id$
 #

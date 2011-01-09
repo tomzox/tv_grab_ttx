@@ -14,9 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+ * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_acq.cc,v 1.3 2010/05/03 18:22:43 tom Exp $
+ * $Id: ttx_acq.cc,v 1.4 2011/01/09 18:20:56 tom Exp $
  */
 
 #include <stdio.h>
@@ -549,7 +549,7 @@ void ReadVbi(const char * p_infile, const char * p_dumpfile,
       if ((cap_duration == 0) && (pkg_buf.m_pkg == 0)) {
          intv += 1;
          if (intv >= 50) {
-            if (ttx_db.get_acq_rep_stats() >= 10.0)
+            if (ttx_db.get_acq_rep_stats() >= 4.0)
                break;
             intv = 0;
          }

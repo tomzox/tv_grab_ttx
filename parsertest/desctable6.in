@@ -1,0 +1,99 @@
+#!/usr/bin/perl -w
+#
+# Error in table format: missing space before dots in last line.
+# For lines with that many dots the parser may be more tolerant.
+#
+# $Id$
+#
+$VbiCaptureTime = 1269720456;
+$PkgCni{0xDCB} = 90;
+$PgCnt{0x306} = 3;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "8\x15\x15\x15\x15\x15\x15G306\x06Bayerntext  \x0727.03. 21:07:14",
+  "\x14|4|4|4                \x05\x181D111\x18270310\x18AC",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen Sa,27.03.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "                                        ",
+  "\x0619.00\x06\x06\x06natur exclusiv\x03UT              ",
+  "\x05\x181900\x07\x06\x06Der Fjord in den Bergen - Ein  ",
+  "       \x06\x06Jahr am Vilsalpsee ........\x06342",
+  "\x0719.45\x07\x07\x07Kunst & Krempel                ",
+  "\x05\x181945\x07\x07\x07Familiensch{tze neu            ",
+  "         entdecken .................\x07382",
+  "\x0320.15\x03\x03\x03Der Mann aus dem Westen UT     ",
+  "\x05\x182015\x07\x03\x03Spielfilm, USA 1958 .......\x03343",
+  "\x0721.50\x07\x07\x07Rundschau                      ",
+  "\x05\x182150\x07                                 ",
+  "\x0621.55\x06\x06\x06Pat Garrett jagt Billy the Kid ",
+  "\x05\x182155\x07\x03\x03UT                             ",
+  "       \x06\x06Spielfilm, USA 1973 .......\x06344",
+  "\x0723.50\x07\x07\x07Das passende Leben des Billy   ",
+  "\x05\x182350\x07\x07\x07the Kid                        ",
+  "         Dokumentarfilm, D 1980 ....\x07345",
+  undef,
+  "\x05\x18VPS\x07            ab\x0700.33\x07Uhr >>> 307  ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x344} = 3;
+$PgSub{0x344} = 2;
+$PgLang{0x344} = 1;
+$Pkg{0x344|(0x0001<<12)} =
+[
+  "dd\x02P\x15\x15IG344\x06Bayerntext  \x0727.03. 21:06:49",
+  "\x14|4|4|4                \x05\x18270310\x181D111\x181E",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen Sa,27.03.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "   21.55-23.50\x05\x18VPS\x182155          \x07  1/2",
+  "   Pat Garrett jagt Billy the Kid\x03UT    ",
+  "   Spielfilm, USA 1973                  ",
+  undef,
+  "\x06Der alternde Revolverheld Pat Garrett  ",
+  "\x06wird zum Sheriff ernannt. Einer seiner ",
+  "\x06ersten Aufgaben ist es, seinen alten   ",
+  "\x06Freund, den Outlaw Billy the Kid, un-  ",
+  "\x06sch{dlich zu machen.                   ",
+  undef,
+  "\x06Mit den beiden Titelhelden des Sp{t-   ",
+  "\x06westerns von Sam Peckinpah stehen zwei ",
+  "\x06der legend{rsten Gestalten des Wilden  ",
+  "\x06Westens im Mittelpunkt. Der Outlaw     ",
+  "\x06Billy the Kid, und sein Freund, der zum",
+  "\x06Sheriff ernannte Ex-Gesetzlose Pat     ",
+  "\x06Garrett, der ihn erschoss.             ",
+  undef,
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];
+$PgCnt{0x344} = 3;
+$PgSub{0x344} = 2;
+$PgLang{0x344} = 1;
+$Pkg{0x344|(0x0002<<12)} =
+[
+  "ddIP\x15\x15IG344\x06Bayerntext  \x0727.03. 21:07:15",
+  "\x14|4|4|4                \x05\x18270310\x181D111\x181E",
+  "\x14\x7F5\x7F5\x7F5\x1D\x06Bayerisches Fernsehen Sa,27.03.",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  undef,
+  "   21.55-23.50\x05\x18VPS\x182155          \x07  2/2",
+  "   Pat Garrett jagt Billy the Kid\x03UT    ",
+  "   Spielfilm, USA 1973                  ",
+  undef,
+  "\x06Regie: Sam Peckinpah                   ",
+  undef,
+  "\x06Pat Garrett .............. James Coburn",
+  "\x06Billy the Kid ...... Kris Kristofferson",
+  "\x06Alias ....................... Bob Dylan",
+  "\x06Kip McKinney .......... Richard Jaeckel",
+  "\x06Mrs. Baker ................ Katy Jurado",
+  "\x06Lew Wallace ............. Jason Robards",
+  "\x06Paco ................. Emilio Fernandez",
+  "\x06John Chisum ............ Barry Sullivan",
+  "\x06Lemuel..................... Chill Wills",
+  undef,
+  undef,
+  undef,
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+];

@@ -19,7 +19,7 @@
 #
 #  Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pod,v 1.1 2011/01/03 14:38:56 tom Exp $
+#  $Id: tv_grab_ttx.pod,v 1.2 2011/01/09 18:43:41 tom Exp $
 # ---------------------------------------------------------------------------
 
 =head1 NAME
@@ -28,7 +28,7 @@ tv_grab_ttx - Grab TV listings from teletext through a TV card
 
 =head1 SYNOPSIS
 
-tv_grab_ttx [options] [file]
+tv_grab_ttx [options] [file-or-device]
 
 =head1 DESCRIPTION
 
@@ -42,12 +42,11 @@ overviews to extract description texts. The grabber needs to be
 started separately for each TV channel from which EPG data shall be
 collected.
 
-Teletext data is captured directly from I</dev/vbi0> or the device
-given by the I<-dev> command line parameter, unless an input I<file>
-is named on the command line. In case of the latter, the grabber expects
-a stream of pre-processed VBI packets as generated when using
-option I<-dumpvbi>.  Use file name C<-> to read from standard input
-(i.e. from a pipe.)
+Teletext data is captured directly from I</dev/vbi0> or another device
+given as command line parameter. Alternatively, a file containing
+previously "dumped" VBI or raw teletext page data can be specified as
+input source.  Use file name C<-> to read from standard input (i.e.
+from a pipe)
 
 The XMLTV output is written to standard out unless redirected to a
 file by use of the I<-outfile> option. There are also "dump" options
@@ -64,12 +63,21 @@ be imported into L<nxtvepg(1)> and merged with I<Nextview EPG>.
 
 =over 4
 
+=item B<-duration> I<seconds>
+
+This option can be used to limit capturing from the VBI device to the
+given number of seconds. EPG grabbing will start afterwards.
+
+If this option is not present, capturing stops automatically after
+reading approximately 4 complete page cycles.  This option has no
+effect when reading VBI data from a file.
+
 =item B<-page> NNN-MMM
 
-This limits the range of the teletext page numbers which are extracted
-from the input stream. At the same time this defines the range of pages
-which are scanned for programme schedule tables. The default page range
-is 300 to 399.
+This option specifies the range of the teletext page numbers in which
+the grabber searches for overview time tables. (Note the option does
+not limit the page range for description pages referenced by overviews.)
+The default page range is 301 to 399.
 
 =item B<-outfile> path
 
@@ -128,7 +136,7 @@ PDC/NI packets, 32 for VPS) and finally the last 40 bytes the payload
 data (only 16-bit CNI value in case of VPS/PDC/NI) Note the byte-order
 of 16-bit values is platform-dependent.
 
-=item B<-dump>
+=item B<-dumptext>
 
 This option can be used to omit grabbing and instead print all
 teletext pages received in the input stream as text
@@ -140,24 +148,26 @@ option is intended for debugging purposes only.
 
 This option can be used to disable grabbing and instead write all
 teletext pages in the given page range to the output stream in a
-specific format which can later be imported again via option I<-verify>.
+specific format which can later be imported again by specifying
+the file as input file on the command line.
+
 The output includes the raw teletext packets for each page including
-all control characters. Additionally, the output contains VPS/PDC
-packets and a timestamp which indicates the capture time. (The latter
-is required when parsing relative time and date specifications.)
+all control characters. Additionally, the output contains the most a
+channel identification code and a timestamp which indicates the
+capture time. (Which are required to generate a channel name and
+parsing relative time and date specifications.)
 
 =item B<-verify>
 
-This option can be used to read input data in the format as written
-by use of option I<dumpraw> instead of the standard VBI packet stream.
-As the name indicates, this mode is used in regression testing to
-compare the grabber output for pre-defined input page sequences with
-stored output files.
+This option is only intended for use in verifying the teletext grabber
+functionality against previously captured reference input and output
+data. As such the option is not of interest for the general user.
 
 =item B<-dev> I<path>
 
 This option can be used to specify the VBI device from which teletext
-is captured. By default F</dev/vbi0> is used.
+is captured. By default F</dev/vbi0> is used. Note the device can also
+simply be specified in place of an input file.
 
 =item B<-dvbpid> I<PID>
 
@@ -166,14 +176,6 @@ the PID which is the identifier of the data stream which contains
 teletext data. The PID must be determined by external means. Likewise
 to analog sources, the TV channel also must be tuned with an external
 application.
-
-=item B<-duration> I<seconds>
-
-This option can be used to limit capturing from the VBI device to the
-given number of seconds. EPG grabbing will start afterwards.
-If this option is not present, capturing stops automatically after a
-sufficient number of pages have been read.
-This option has no effect when reading VBI data from a file.
 
 =item B<-verbose>
 
@@ -187,6 +189,7 @@ This option can be used to enable output of debugging information
 to standard output. You can use this to get additional diagnostic
 messages in case of trouble with the capture device. (Note most of
 these messages originate directly from the "ZVBI" library I<libzvbi>.)
+
 Additionally this option enables messages during parsing teletext
 pages; these are probably only helpful for developers.
 
@@ -199,6 +202,11 @@ This option prints version and license information, then exits.
 This option prints the command line syntax, then exits.
 
 =back
+
+After all options a file name can be specified. The file can either
+refer to a VBI device, or a file generated by I<-dumpvbi> or
+I<-dumpraw>. The parser automatically detects the type of the input
+file.
 
 =head1 GRABBING PROCESS
 

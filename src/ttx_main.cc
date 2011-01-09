@@ -18,7 +18,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_main.cc,v 1.3 2011/01/03 14:12:55 tom Exp $
+ * $Id: ttx_main.cc,v 1.4 2011/01/09 19:42:08 tom Exp $
  */
 
 #include <stdio.h>
@@ -80,11 +80,11 @@ void ParseArgv(int argc, char *argv[])
                "  -outfile <path>\t: Redirect XMLTV or dump output into the given file\n"
                "  -merge <path>\t\t: Merge output with programmes from an XML file\n"
                "  -expire <N>\t\t: Omit programmes which ended at least N minutes ago\n"
-               "  -dumpvbi\t\t: Dump captured VBI data; no grabbing\n"
-               "  -dump\t\t\t: Dump teletext pages as clear text; no grabbing\n"
+               "  -dumpvbi\t\t: Continuously dump captured VBI data; no grabbing\n"
+               "  -dumptext\t\t: Dump teletext pages as clear text; no grabbing\n"
                "  -dumpraw <NNN>-<MMM>\t: Dump teletext packets in given range; no grabbing\n"
-               "  -verify\t\t: Load previously dumped \"raw\" packets from input file\n"
                "  -verbose\t\t: Print teletext page numbers during capturing\n"
+               "  -verify\t\t: Enable grabber verification mode\n"
                "  -debug\t\t: Emit debug messages during grabbing and device access\n"
                "  -version\t\t: Print version number only, then exit\n"
                "  -help\t\t\t: Print this text, then exit\n"
@@ -180,8 +180,8 @@ void ParseArgv(int argc, char *argv[])
          opt_debug = 1;
          idx += 1;
       }
-      // -dump: print all teletext pages, then exit (for debugging only)
-      else if (strcmp(argv[idx], "-dump") == 0) {
+      // -dumptext: print all teletext pages, then exit (for debugging only)
+      else if (strcmp(argv[idx], "-dumptext") == 0) {
          opt_dump = 1;
          idx += 1;
       }
@@ -285,11 +285,12 @@ void ParseArgv(int argc, char *argv[])
          opt_verbose = 1;
          idx += 1;
       }
-      else if (strcmp(argv[idx], "-version") == 0) {
-         fprintf(stderr, "%s\n%s"
-                         "\nThis is free software with ABSOLUTELY NO WARRANTY.\n"
-                         "Licensed under the GNU Public License version 3 or later.\n"
-                         "For details see <http://www.gnu.org/licenses/\n",
+      else if (   (strcmp(argv[idx], "-version") == 0)
+               || (strcmp(argv[idx], "-v") == 0) ) {
+         fprintf(stderr, "%s\n%s\n\n"
+                         "   This is free software with ABSOLUTELY NO WARRANTY.\n"
+                         "   Licensed under the GNU Public License version 3 or later.\n"
+                         "   For details see <http://www.gnu.org/licenses/>\n",
                          version, copyright);
          exit(0);
       }
@@ -309,12 +310,19 @@ void ParseArgv(int argc, char *argv[])
          exit(1);
       }
       else {
+         // no leading "-": no option and not stdin: input file name
          opt_infile = argv[idx];
          if (idx + 1 < argc) {
             fprintf(stderr, "%s: no more than one input file expected.\n"
                             "Error after '%s'\n%s",
                             argv[0], argv[idx], usage);
             exit(1);
+         }
+         struct stat st;
+         if ((stat(opt_infile, &st) == 0) && S_ISCHR(st.st_mode)) {
+            // character device - treat same as -dev
+            opt_device = opt_infile;
+            opt_infile = 0;
          }
          break;
       }
@@ -334,12 +342,12 @@ int main( int argc, char *argv[] )
    // parse command line arguments
    ParseArgv(argc, argv);
 
-   // read teletext data into memory
-   if (!opt_verify) {
+   // read teletext data into memory from file or device
+   if (   (opt_infile == 0)
+       || !ImportRawDump(opt_infile) ) {
+
       ReadVbi(opt_infile, opt_outfile, opt_device, opt_dvbpid,
               opt_verbose, (opt_dump == 3), opt_duration);
-   } else {
-      ImportRawDump(opt_infile);
    }
 
    if (opt_dump == 1) {

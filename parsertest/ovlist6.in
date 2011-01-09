@@ -1,10 +1,10 @@
 #!/usr/bin/perl -w
 #
-# A description page follows the overview pages. The page carries
-# a date and has a time at the start of a line, in the same column
-# as the times on overview pages.  Test that the time is not
-# erronously appended to the overview.  This is esp. important as
-# this date is more than a month ahead of the rest pf the programmes.
+# A description page follows the overview pages. The page carries a date
+# and has a time at the start of a line, in the same column as the times
+# on overview pages.  Test that the time is not erronously appended to the
+# overview.  This is esp. important as this date is more than a month
+# ahead of the rest of the programmes.
 #
 # $Id$
 #
@@ -22,7 +22,7 @@ $Pkg{0x301|(0x0000<<12)} =
   "\x01\x1D\x1C\x07TV-PROGRAMM        Fr. 24.11.\x01\x1D\x071/1 ",
   "\x07\x1D\x04                                     ",
   "\x07\x1D\x0105:50 Schmeckt nicht, gibt's         ",
-  "\x07\x1D\x01      nicht......................320 ",
+  "\x07\x1D\x01      nicht......................303 ",
   "\x07\x1D\x0006:20 Dauerwerbesendung              ",
   "\x07\x1D\x01                                     ",
   "\x07\x1D\x0108:20 Everwood...................321 ",

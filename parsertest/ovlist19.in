@@ -1,0 +1,427 @@
+#!/usr/bin/perl -w
+#
+# Teletext reference on overview page is a range: "309-312"
+#
+# $Id$
+#
+$VbiCaptureTime = 1271276846;
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x03\x0318.00\x03\x03MDR aktuell                    ",
+  "\x07\x0718.05\x07\x07Brisant\x06UT                \x06>308",
+  "        \x07Boulevardmagazin               ",
+  undef,
+  "\x03\x0318.48\x03\x03MDR regional kompakt           ",
+  "\x07\x0718.50\x07\x07Unser Sandm{nnchen        \x06>680",
+  "        \x07Piggeldy und Frederick         ",
+  "        \x07Brief                          ",
+  "\x03\x0318.55\x03\x03Wetter f}r 3                   ",
+  undef,
+  "\x07\x0719.00\x07\x07MDR regional          \x06>309-312",
+  "\x03\x0319.30\x03\x03MDR aktuell                    ",
+  "        \x03anschlie~end: das MDR-Wetter   ",
+  undef,
+  "\x07\x0719.50\x07\x07Tierisch, tierisch        \x06>314",
+  "        \x07Das Tiermagazin des MDR        ",
+  "        \x07bis\x0720.15\x07Uhr\x07                 ",
+  "                                        ",
+  undef,
+  "\x04\x1D\x06 Die Woche 360  \x06 \x1C            \x06>304 ",
+];
+$PgCnt{0x304} = 4;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "        304\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x03\x0320.15\x03\x03Lene kommt - (2/2)        \x06>315",
+  "        \x03S{chsischer Humor vom Feinsten!",
+  "                                        ",
+  "\x07\x0721.15\x07\x07MDR regional          \x06>316-318",
+  "                                        ",
+  "\x03\x0321.45\x03\x03MDR aktuell               \x06>313",
+  "        \x03anschlie~end: das MDR-Wetter   ",
+  undef,
+  "\x07\x0722.05\x07\x07Polizeiruf 110:\x06AD UT     \x06>369",
+  "        \x07Vollgas                        ",
+  "        \x07Kriminalfilm (D 2005)          ",
+  undef,
+  "\x03\x0323.33\x03\x03MDR aktuell Eins30             ",
+  undef,
+  "\x07\x0723.35\x07\x07Russische Strandvergn}gen \x06>319",
+  "        \x07am Schwarzen Meer              ",
+  "        \x07Wild Wild Beach                ",
+  "        \x07bis\x0701.00\x07Uhr\x07                 ",
+  undef,
+  "\x04\x1D\x06 Die Woche 360  \x06 \x1C            \x06>305 ",
+];
+$PgCnt{0x309} = 4;
+$PgSub{0x309} = 0;
+$PgLang{0x309} = 1;
+$Pkg{0x309|(0x0000<<12)} =
+[
+  "        309\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0619.00 - 19.30 Uhr   \x06Stereo Breitbild  ",
+  undef,
+  "\x03SACHSENSPIEGEL                         ",
+  undef,
+  "\x06Themen:                                ",
+  undef,
+  "\x03Prozess                                ",
+  " Angeklagte gestehen                    ",
+  " Misshandlung eines Mith{ftlings        ",
+  "                                        ",
+  "\x03Sparmeister                            ",
+  " Wie Gemeinden ihre                     ",
+  " Schulden im Zaum halten                ",
+  undef,
+  "\x03Nachtschicht                           ",
+  " Arbeiten, wenn andere schlafen         ",
+  undef,
+  "\x06Moderation: Uta Georgi                 ",
+  undef,
+  "\x04\x1D\x06Mehr Infos 780  \x1C              \x06>310 ",
+];
+$PgCnt{0x310} = 4;
+$PgSub{0x310} = 0;
+$PgLang{0x310} = 1;
+$Pkg{0x310|(0x0000<<12)} =
+[
+  "        310\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0619.00 - 19.30 Uhr   \x06Stereo Breitbild  ",
+  undef,
+  "\x03SACHSEN-ANHALT HEUTE                   ",
+  undef,
+  "\x06Themen:                                ",
+  undef,
+  "\x03\"Augenspaziergang\"\x07- Entspannungstipps ",
+  " in der ersten Augenschule              ",
+  " Sachsen-Anhalts                        ",
+  "                                        ",
+  "\x03Baustelle Kirche\x07- aufw{ndige Sanierung",
+  " im Salzlandkreis                       ",
+  "                                        ",
+  "\x03Freikarten gewinnen\x07- die Kinotipps bei",
+  " Sachsen-Anhalt heute                   ",
+  undef,
+  "\x06Moderation: Susi Brandt                ",
+  undef,
+  undef,
+  "\x04\x1D\x06Nachrichten 170  \x1C             \x06>311 ",
+];
+$PgCnt{0x311} = 4;
+$PgSub{0x311} = 0;
+$PgLang{0x311} = 1;
+$Pkg{0x311|(0x0000<<12)} =
+[
+  "        311\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0619.00 - 19.30 Uhr   \x06Stereo Breitbild  ",
+  "                                        ",
+  "\x03TH]RINGEN JOURNAL                      ",
+  undef,
+  undef,
+  "\x06Themen:                                ",
+  undef,
+  undef,
+  "\x03*\x07US-Botschafter in Th}ringen          ",
+  undef,
+  undef,
+  "\x03*\x07Altlastensanierung Kaserne           ",
+  undef,
+  undef,
+  "\x03*\x07Adoption                             ",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x04\x1D\x06Nachrichten 180  \x1C             \x06>312 ",
+];
+$PgCnt{0x312} = 4;
+$PgSub{0x312} = 0;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0000<<12)} =
+[
+  "        312\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0619.00 - 19.30 Uhr                      ",
+  "                                        ",
+  "\x03L{nderzeit                             ",
+  undef,
+  undef,
+  "\x03Verschuldung                           ",
+  " Grimma ist Sparmeister: Pro-Kopf-Ver-  ",
+  " schuldung liegt bei 800 Euro           ",
+  undef,
+  "\x03Stra~enbau                             ",
+  " Br}cke f}r Umgehungsstra~e Bad K|sen/  ",
+  " Naumburg ger{t in die Kritik           ",
+  undef,
+  "\x03Evakuierung                            ",
+  " 4.000 Menschen mussten in Nordhausen   ",
+  " wegen einer Bombe in Sicherheit ge-    ",
+  " bracht werden                          ",
+  undef,
+  undef,
+  "\x04\x1D\x06Nachrichten 115 \x1C              \x06>313 ",
+];
+$PgCnt{0x313} = 4;
+$PgSub{0x313} = 0;
+$PgLang{0x313} = 1;
+$Pkg{0x313|(0x0000<<12)} =
+[
+  "        313\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0621.45 - 22.05 Uhr   \x06Stereo Breitbild  ",
+  undef,
+  "\x03MDR aktuell                            ",
+  "\x06anschlie~end: das MDR-Wetter           ",
+  undef,
+  undef,
+  "\x03Nach dem Beben:                        ",
+  " Suche nach ]berlebenden in China       ",
+  undef,
+  "\x03Nach dem Winter:                       ",
+  " Wie stopft man Stra~enl|cher mit       ",
+  " Haushaltsl|chern?                      ",
+  undef,
+  "\x03Nach der Sanierung:                    ",
+  " M}llauto zerst|rt neues altes Stadttor.",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x04\x1D\x06Nachrichten 112  \x1C             \x06>314 ",
+];
+$PgCnt{0x314} = 4;
+$PgSub{0x314} = 0;
+$PgLang{0x314} = 1;
+$Pkg{0x314|(0x0000<<12)} =
+[
+  "        314\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0619.50 - 20.15 Uhr   \x06Stereo Breitbild  ",
+  undef,
+  "\x03Tierisch tierisch                      ",
+  "\x06Das Tiermagazin des MDR                ",
+  "\x06Aus dem Tierheim Langenberg            ",
+  undef,
+  " Witziges, Kurioses und Wissenswertes   ",
+  " zum Thema Tiere aus aller Welt bietet  ",
+  " diese Tiersendung. Der Hund mit dem    ",
+  " l{ngsten Stammbaum oder die Katze mit  ",
+  " dem teuersten K|rbchen spielen in      ",
+  " \"Tierisch, tierisch\" allerdings nur    ",
+  " eine Nebenrolle. Im Mittelpunkt stehen ",
+  " vielmehr die Vierbeiner, die ein neues ",
+  " Zuhause suchen.                        ",
+  undef,
+  "\x06Moderation: Uta Bresan                 ",
+  undef,
+  undef,
+  "\x04\x1D\x06Mehr Infos 373  \x1C              \x06>315 ",
+];
+$PgCnt{0x315} = 4;
+$PgSub{0x315} = 0;
+$PgLang{0x315} = 1;
+$Pkg{0x315|(0x0000<<12)} =
+[
+  "        315\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0620.15 - 21.15 Uhr             \x06Stereo  ",
+  undef,
+  "\x03Lene kommt - S{chsischer Humor         ",
+  "\x03vom Feinsten! (2/2)                    ",
+  "\x06Mit Tom Pauls, Katrin Weber, Dieter    ",
+  "\x06Bellmann, Uwe Steimle, Bernd-Lutz      ",
+  "\x06Lange, Gunter B|hnke u.v.a.            ",
+  undef,
+  " Leni Statz, Olaf B|hme, Katrin Weber,  ",
+  " J}rgen Hart, Wolfgang Stumph, Eberhard ",
+  " Cohrs, Uwe Steimle huldigen ihm und    ",
+  " schlie~en sich auf ihre Weise der Lie- ",
+  " beserkl{rung an den s{chsischen Humor  ",
+  " an. Die pr{sentieren Tom Pauls, Bernd- ",
+  " Lutz Lange und Gunter B|hnke im Leip-  ",
+  " ziger academixer-Keller mit Hingabe,   ",
+  " Spielfreude und vor allem im Sinne von ",
+  " Lene Voigt, der einzigartigen s{chsi-  ",
+  " schen Mundartdichterin.                ",
+  "\x04\x1D\x06Jetzt im MDR 333\x06 \x1C            \x06>316 ",
+];
+$PgCnt{0x316} = 4;
+$PgSub{0x316} = 0;
+$PgLang{0x316} = 1;
+$Pkg{0x316|(0x0000<<12)} =
+[
+  "        316\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0621.15 - 21.45 Uhr   \x06Stereo Breitbild  ",
+  undef,
+  "\x03SachsenSpiegel Reportage               ",
+  "\x06Nachteulen - Von Menschen, die         ",
+  "\x06arbeiten, wenn andere schlafen         ",
+  " Wenn in Oederan }berall die Lichter    ",
+  " ausgehen, werden sie in der B{ckerei   ",
+  " M|bius angeschaltet. Zwischen 20 Uhr   ",
+  " abends und 4 Uhr morgens sind hier 40  ",
+  " Mitarbeiter voll im Stress.            ",
+  undef,
+  " In der Rettungsleitstelle Zwickau      ",
+  " sitzen nur zwei Sanit{ter am Telefon.  ",
+  " Sie nehmen alle Notrufe aus Westsachsen",
+  " entgegen.                              ",
+  undef,
+  " Um Mitternacht ist Rushhour auf dem    ",
+  " Flughafen Leipzig-Halle. Innerhalb von ",
+  " zwei Stunden landen hier 50 Flugzeuge. ",
+  "\x04\x1D\x06Jetzt im MDR 333\x06 \x1C            \x06>317 ",
+];
+$PgCnt{0x317} = 4;
+$PgSub{0x317} = 0;
+$PgLang{0x317} = 1;
+$Pkg{0x317|(0x0000<<12)} =
+[
+  "        317\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0621.15 - 21.45 Uhr   \x06Stereo Breitbild  ",
+  undef,
+  "\x03Sachsen-Anhalt spezial - Die Reportage ",
+  "\x06Martinshorn und k}hle K|pfe -          ",
+  "\x06Freiwillige Feuerwehr im Einsatz       ",
+  undef,
+  " Im Laufschritt eilen die Kameraden der ",
+  " Freiwilligen Feuerwehr aus R|blingen am",
+  " See auf die Feuerwache. 46 Kameraden   ",
+  " und Kameradinnen stehen Tag und Nacht  ",
+  " bereit, um innerhalb weniger Minuten am",
+  " Einsatzort zu sein. Das erfordert viel ",
+  " Disziplin und jahrelanges Training.    ",
+  undef,
+  " In R|blingen wird der Grundstein f}r   ",
+  " die Arbeit bei der Feuerwehr schon bei ",
+  " den Kleinsten gelegt. Ob Kinderfeuer-  ",
+  " wehr oder Jugendfeuerwehr - die Ange-  ",
+  " bote ziehen die Jungen und M{dchen an. ",
+  "\x04\x1D\x06Jetzt im MDR 333\x06 \x1C            \x06>318 ",
+];
+$PgCnt{0x318} = 4;
+$PgSub{0x318} = 0;
+$PgLang{0x318} = 1;
+$Pkg{0x318|(0x0000<<12)} =
+[
+  "        318\x01MDR    \x07Mi 14.04.10\x0322:27:06",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0621.15 - 21.45 Uhr   \x06Stereo Breitbild  ",
+  undef,
+  "\x03Th}ringen exklusiv - Das Magazin       ",
+  "\x06Adoption in Th}ringen -                ",
+  "\x06Familie geht auch anders               ",
+  " Elke M. lebt bei S|mmerda. Die eigene  ",
+  " Tochter ist l{ngst aus dem Haus. Trotz-",
+  " dem hat sie sich entschieden, drei Kin-",
+  " der zwischen 6 und 13 Jahren bei sich  ",
+  " aufzunehmen, die so etwas wie ein Zu-  ",
+  " hause bisher nicht kannten.            ",
+  undef,
+  "\x03G{ste:                                 ",
+  "\x03*\x07Vera Schade, Verband der Pflege- und ",
+  "\x07\x07\x07Adoptivfamilien Th}ringen e.V.       ",
+  "\x03*\x07Andrea Schreiber, Leiterin und       ",
+  "\x07\x07\x07Erzieherin, AWO Kinderheim Erfurt    ",
+  "\x06Moderation: Peggy Patzschke und Dr.    ",
+  "\x06\x06\x06\x06\x06\x06\x06\x06\x06\x06\x06\x06\x06Andreas Menzel             ",
+  "\x04\x1D\x06Jetzt im MDR 333\x06 \x1C            \x06>319 ",
+];
+$PgCnt{0x319} = 4;
+$PgSub{0x319} = 0;
+$PgLang{0x319} = 1;
+$Pkg{0x319|(0x0000<<12)} =
+[
+  "        319\x01MDR    \x07Mi 14.04.10\x0322:27:07",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0623.35 - 01.00 Uhr   \x06Stereo Breitbild  ",
+  undef,
+  "\x03Russische Strandvergn}gen              ",
+  "\x03am Schwarzen Meer                      ",
+  "\x06Wild Wild Beach                        ",
+  "\x06Film von Vitaly Mansky und Alexander   ",
+  "\x06Rastorguev                             ",
+  undef,
+  " Ein sommerlicher Badestrand an der     ",
+  " Schwarzmeerk}ste ist B}hne f}r russi-  ",
+  " sche Exzesse jeder Art. \"Russische     ",
+  " Strandvergn}gen am Schwarzen Meer\"     ",
+  " zeigt eigenwillige Portr{ts von Men-   ",
+  " schen am Meer, deren Leben von Wodka,  ",
+  " Karaoke und Gewalt bestimmt ist. Der   ",
+  " Film l{sst tief in die Abgr}nde der    ",
+  " menschlichen Seele blicken.            ",
+  undef,
+  undef,
+  "\x04\x1D\x06Jetzt im MDR 333\x06 \x1C            \x06>320 ",
+];
+$PgCnt{0x320} = 4;
+$PgSub{0x320} = 0;
+$PgLang{0x320} = 1;
+$Pkg{0x320|(0x0000<<12)} =
+[
+  "        320\x01MDR    \x07Mi 14.04.10\x0322:27:07",
+  "\x17 \x16pp0p5p                               ",
+  "\x04\x1D\x16555555\x0400\x06       Mittwoch, 14.04.10  ",
+  "\x17 \x16!!!#!!                               ",
+  "\x0612.30 - 13.15 Uhr   \x06Stereo Breitbild  ",
+  "                           \x06Untertitel  ",
+  "\x03Das Buchenwaldkind oder: Was vom       ",
+  "\x03Antifaschismus bleibt                  ",
+  "\x06Film von Dr. Ute Gebhardt              ",
+  " Ein ]berlebender des KZs Buchenwald war",
+  " der kaum vier Jahre alte Kinderh{ftling",
+  " Stefan Jerzy Zweig. Die Geschichte sei-",
+  " ner Rettung wurde in der DDR Symbol des",
+  " antifaschistischen Widerstandskampfes. ",
+  " 1958 wurde die Nationale Mahn- und Ge- ",
+  " denkst{tte Buchenwald er|ffnet und es  ",
+  " erschien der Roman \"Nackt unter W|lfen\"",
+  " von Bruno Apitz. Er war ein literari-  ",
+  " sches Werk, aber er wurde als Tatsa-   ",
+  " chenbericht rezipiert und propagiert.  ",
+  " Autorin Dr. Ute Gebhardt f|rdert die   ",
+  " wahre Geschichte des Stefan Jerzy Zweig",
+  " zutage.                                ",
+  "\x04\x1D\x06Jetzt im MDR 333\x06 \x1C            \x06>321 ",
+];

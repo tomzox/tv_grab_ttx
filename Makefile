@@ -16,9 +16,9 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2006-2010 by Tom Zoerner (tomzo at users.sf.net)
+# Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: Makefile,v 1.1 2010/04/25 14:22:49 tom Exp $
+# $Id: Makefile,v 1.2 2011/01/09 18:41:34 tom Exp $
 #
 
 all: build_dir tv_grab_ttx tv_grab_ttx.1
@@ -26,7 +26,7 @@ all: build_dir tv_grab_ttx tv_grab_ttx.1
 MODS = ttx_main ttx_scrape ttx_ov_fmt ttx_feat ttx_pg_ref ttx_date \
        ttx_xmltv ttx_db ttx_acq ttx_util
 
-CFLAGS  = -Wall -pipe -O2 -ggdb -MMD -DUSE_LIBZVBI -Isrc
+CFLAGS  = -Wall -pipe -O3 -ggdb -MMD -DUSE_LIBZVBI -Isrc
 LDFLAGS =
 
 SRC_DIR = src
@@ -53,13 +53,13 @@ tv_grab_ttx: $(OBJS)
 
 tv_grab_ttx.1: tv_grab_ttx.pod
 	pod2man -date " " -center "Teletext EPG grabber" -section "1" \
-	        -release "tv_grab_ttx (C) 2006-2010 Th. Zoerner" \
+	        -release "tv_grab_ttx (C) 2006-2011 Th. Zoerner" \
 	        tv_grab_ttx.pod > tv_grab_ttx.1; \
 
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f tv_grab_ttx *.o core core.* vgcore.*
+	rm -f tv_grab_ttx tv_grab_ttx.1 *.o core core.* vgcore.*
 
 # include automatically generated dependency list
 -include $(BUILD_DIR)/*.d

@@ -16,7 +16,7 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_db.h,v 1.4 2011/01/06 16:59:34 tom Exp $
+ * $Id: ttx_db.h,v 1.5 2011/01/09 18:23:54 tom Exp $
  */
 #if !defined (__TTX_DB_H)
 #define __TTX_DB_H
@@ -160,7 +160,7 @@ private:
 extern TTX_DB ttx_db;
 extern TTX_CHN_ID ttx_chn_id;
 
-void ImportRawDump(const char * p_name);
+bool ImportRawDump(const char * p_name);
 void DumpTextPages(const char * p_name);
 void DumpRawTeletext(const char * p_name, int pg_start, int pg_end);
 

@@ -38,7 +38,7 @@ close(CTRL);
 
 open(CTRL, ">deb/usr/share/doc/$name/copyright") || die;
 print CTRL <<EoF;
-Copyright (C) 2006-2010 Tom Zoerner. All rights reserved.
+Copyright (C) 2006-2011 Tom Zoerner. All rights reserved.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

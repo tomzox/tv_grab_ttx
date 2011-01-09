@@ -1,0 +1,101 @@
+#!/usr/bin/perl -w
+#
+# The left column of several table rows is completely empty. In this case
+# the ":" should be omitted in the generated output.
+#
+# $Id$
+#
+$VbiCaptureTime = 1294488206;
+$PgCnt{0x302} = 1;
+$PgSub{0x302} = 2;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1294491004;
+$Pkg{0x302|(0x0001<<12)} =
+[
+  "        302\x07   SAT.1  \x0708.01.11\x0313:49:56",
+  "\x17     #7!e`\%   \x03\x1D\x04Zahncheck Budapest   \x1C",
+  "\x17      \% \"&    \x03\x1D\x04f}r 179EUR...... 688 \x1C",
+  "\x01\x1D\x07   HEUTE    \x13####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0412:00 Richter Hold              >369 ",
+  " \x1D\x0113:00 Britt: Gnadenlos: Deinen       ",
+  " \x1D\x01      Seitensprung verzeihe ich      ",
+  " \x1D\x01      nicht!                    >365 ",
+  " \x1D\x0414:00 K}ss mich, Genosse!       >311 ",
+  " \x1D\x0115:50 Ab durch die Hecke        >312 ",
+  " \x1D\x0417:29 So gesehen                     ",
+  " \x1D\x0117:30 Niedrig und Kuhnt - Kom-       ",
+  " \x1D\x01      missare ermitteln: Eine        ",
+  " \x1D\x01      verh{ngnisvolle Nacht     >371 ",
+  " \x1D\x0418:00 K 11 - Kommissare im Ein-      ",
+  " \x1D\x04      satz: Dem Tode geweiht    >374 ",
+  " \x1D\x0118:30 Len~en - der Film         >313 ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x06\x1D\x04Neue Runde SMS BULI Tippspiel!!! 297 ",
+];
+$PgCnt{0x313} = 2;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$PgTime{0x313} = 1294488207;
+$Pkg{0x313|(0x0001<<12)} =
+[
+  "        313\x07   SAT.1  \x0708.01.11\x0313:03:19",
+  "\x17   #7!e`\%   \x07\x1D\x01                   1/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Samstag 08.01.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  18:30-20:00      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Len~en - der Film                    ",
+  " \x1D\x04TV-Film D 2009                       ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Der neunj{hrige \"M}cke\" wird von ei- ",
+  " \x1D\x04nem Auto angefahren und schwebt in   ",
+  " \x1D\x04Lebensgefahr. Der Junge ist der Sohn ",
+  " \x1D\x04von Ingo Len~ens ehemaligem Kollegen ",
+  " \x1D\x04Tekin und au~erdem Len~ens Paten-    ",
+  " \x1D\x04kind. Au~er sich vor Wut und Sorge   ",
+  " \x1D\x04droht Tekin dem Unfallfahrer mit     ",
+  " \x1D\x04Vergeltung. Als dann ein Anschlag    ",
+  " \x1D\x04auf diesen ver}bt wird, ger{t Tekin  ",
+  " \x1D\x04unter Verdacht. Len~en und sein Team ",
+  " \x1D\x04wollen ihren ehemaligen Kollegen     ",
+  " \x1D\x04sch}tzen und beginnen mit der umfas- ",
+  " \x1D\x04senden Recherche ...                 ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Wdh. 15.01. 07:35 - 09:30            ",
+  "\x02\x1D\x0424h live Chatten im Teletext.... 800 ",
+];
+$PgCnt{0x313} = 2;
+$PgSub{0x313} = 2;
+$PgLang{0x313} = 1;
+$PgTime{0x313} = 1294488178;
+$Pkg{0x313|(0x0002<<12)} =
+[
+  "        313\x07   SAT.1  \x0708.01.11\x0313:02:51",
+  "\x17   #7!e`\%   \x07\x1D\x01                   2/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Samstag 08.01.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  18:30-20:00      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Len~en - der Film                    ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Regie..............Andy Klein        ",
+  " \x1D\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  " \x1D\x04                                     ",
+  " \x1D\x04...................Ingo Len~en       ",
+  " \x1D\x04...................Christian Storm   ",
+  " \x1D\x04Sandra Nitka.......S. Z. Kowalski    ",
+  " \x1D\x04Katja Hansen.......Sandra Corzilius  ",
+  " \x1D\x04...................Tekin Kurtulus    ",
+  " \x1D\x04Sebastian Thiele...Sebastian J{ger   ",
+  " \x1D\x04Markus Berger......D. Tiefenthaler   ",
+  " \x1D\x04M}cke..............Bosse Len~en      ",
+  " \x1D\x04Hans...............Hubert Burczek    ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Wdh. 15.01. 07:35 - 09:30            ",
+  "\x06\x1D\x04Ab in die Sonne zu Traumpreisen: 400 ",
+];

@@ -1,0 +1,113 @@
+#!/usr/bin/perl -w
+#
+# A single all-upper-case title in a page with all other titles in
+# correct case should not be converted to lower-case.
+#
+# $Id$
+#
+$VbiCaptureTime = 1294230798;
+$PgCnt{0x301} = 4;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$PgTime{0x301} = 1294231258;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301 \x013satText \x0705.01.11\x0213:41:02",
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute in 3sat    ",
+  "\x11\x7F\x7F5\x1D\x07Mittwoch, 5. Januar               ",
+  "                       \x05\x181D107\x18050111\x180E",
+  "\x0705.20\x05\x180520\x07\x07Hirte in H}lm             ",
+  "\x0606.05\x05\x180605\x06\x063satTextVision            ",
+  "\x0706.20\x05\x180620\x07\x07Kulturzeit\x03Wh.\x07.......\x07305",
+  "\x0607.00\x05\x180700\x06\x06nano\x03Wh.\x06.............\x06306",
+  "\x0707.30\x05\x180730\x07\x07Alpenpanorama             ",
+  "\x0609.00\x05\x180900\x06\x06ZIB                       ",
+  "\x0709.05\x05\x180905\x07\x07Kulturzeit\x03Wh.\x07.......\x07305",
+  "\x0609.45\x05\x180945\x06\x06nano\x03Wh.\x06.............\x06306",
+  "\x0710.15\x05\x181015\x07\x07K|nigin einer Nacht       ",
+  "              Spielfilm, BRD 1951       ",
+  "            \x03\x03s/w\x07..................\x07307",
+  "\x0611.45\x05\x181145\x06\x06R}ckenwind und schr{ge    ",
+  "            \x06\x06V|gel                     ",
+  "            \x06\x06Mit dem Rad durch         ",
+  "            \x06\x06Kalifornien ..........\x06314",
+  "\x0712.15\x05\x181215\x07\x07Tief im Regenwald         ",
+  "              (2/2) ................\x07315",
+  "\x0613.00\x05\x181300\x06\x06ZIB                       ",
+  "      \x05\x18VPS\x07                            ",
+  "\x01\x1D\x07300 <-          ab\x0713.15\x07Uhr -> 302\x07 ",
+];
+$PgCnt{0x302} = 4;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1294231258;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302 \x013satText \x0705.01.11\x0213:41:02",
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute in 3sat    ",
+  "\x11\x7F\x7F5\x1D\x07Mittwoch, 5. Januar               ",
+  "                       \x05\x181D107\x18050111\x1814",
+  "\x0113.15\x05\x181315\x01\x01Sketchup (6/10)           ",
+  "            \x01\x01Lachen mit Beatrice       ",
+  "            \x01\x01Richter und Diether       ",
+  "            \x01\x01Krebs ................\x01316",
+  "\x0613.45\x05\x181345\x06\x06Sketchup (7/10) ......\x06317",
+  "\x0714.15\x05\x181415\x07\x07Fernweh: Karibik (5/7)\x07318",
+  "\x0615.00\x05\x181500\x06\x06Fernweh: Karibik (6/7)\x06319",
+  "\x0715.45\x05\x181545\x07\x07Diesseits von Afrika -    ",
+  "              Entdeckung Lesachtal      ",
+  "            \x03\x03UT\x07...................\x07320",
+  "\x0616.35\x05\x181635\x06\x06Kraftort Salzburg\x03UT  \x06321",
+  "\x0717.00\x05\x181700\x07\x07CSI: NY                   ",
+  " >>>>>>>>>>>> (Taken from RTL)          ",
+  "\x0617.45\x05\x181745\x06\x06Reisen in ferne Welten:   ",
+  "            \x06\x06Koh Samui ............\x06323",
+  "\x0718.30\x05\x181830\x07\x07nano .................\x07308",
+  "\x0619.00\x05\x181900\x06\x06heute                     ",
+  "            \x06\x06anschl. 3sat-Wetter\x03UT\x06309",
+  "      \x05\x18VPS\x07                            ",
+  "\x01\x1D\x07300 <-          ab\x0719.20\x07Uhr -> 303\x07 ",
+  undef,
+  undef,
+  "\x02j\x185 +  \x18  +   E +  \x18   \x19 \x18 h/\x19    \x7F  \x7F ",
+  undef,
+  "\x15\x0B\x08\x08\x02  E   W  \@  \x0C  |   G w W\x13) \x7F D   \x00 ",
+  undef,
+];
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1294231258;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303 \x013satText \x0705.01.11\x0213:41:02",
+  "\x11\x7F\x7F5\x1D\x07Programm       \x1D\x01Heute in 3sat    ",
+  "\x11\x7F\x7F5\x1D\x07Mittwoch, 5. Januar               ",
+  "                       \x05\x181D107\x18050111\x1887",
+  "\x0719.20\x05\x181920\x07\x07SOKO 5113.............\x07310",
+  "  >>>>>>>>> \x06\x06(Taken from ZDF)          ",
+  "\x0620.00\x05\x182000\x06\x06Tagesschau\x03UT\x06........\x06311",
+  "\x0720.15\x05\x182015\x07\x07Satire Gipfel -           ",
+  "              Jahresr}ckblick           ",
+  "              von und mit Mathias       ",
+  "              Richling .............\x07324",
+  "\x0621.00\x05\x182100\x06\x06Nachts allein mit         ",
+  "            \x06\x06Nofretete                 ",
+  "            \x06\x06Museumsinsel .........\x06325",
+  "\x0721.30\x05\x182130\x07\x07Bauerfeind ...........\x07326",
+  "\x0622.00\x05\x182200\x06\x06ZIB 2 ................\x06312",
+  "\x0722.25\x05\x182225\x07\x07Secretary - Womit kann ich",
+  "              dienen?                   ",
+  "              Spielfilm, USA 2002\x03DS\x07327",
+  "\x0600.10\x05\x052150\x06\x06WISO                      ",
+  " >>>>>>>>>> \x06\x06(Taken from ZDF)          ",
+  undef,
+  "      \x05\x05VPS\x07                            ",
+  "\x01\x1D\x07300 <-          ab\x0700.40\x07Uhr -> 304\x07 ",
+  undef,
+  "                                        ",
+  "\x02 \x18  + c    \x00  \x10 + i\x18PT      \x7F  \x7F  \x7F  \x7F ",
+  "\x15jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\x15&\x0F",
+  "\x15\x0B\x08\x08\x02  E   W  \@  \x0C  |   G w W\x13) \x7F D   \x00 ",
+  undef,
+];

@@ -1,0 +1,108 @@
+#!/usr/bin/perl -w
+#
+# Table has spaces only, no dots between columns.
+#
+# Also title match on 325 fails due to abbreviation in the overview page.
+#
+# $Id$
+#
+$VbiCaptureTime = 1294242127;
+$PgCnt{0x322} = 1;
+$PgSub{0x322} = 0;
+$PgLang{0x322} = 1;
+$PgTime{0x322} = 1294242130;
+$Pkg{0x322|(0x0000<<12)} =
+[
+  "        322\x02SWR Text\x03Mit.05.Jan\x0716:42:12",
+  "\x01\x1D                                      ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04DONNERSTAG, 06. JAN.\x05\x181D133\x18060111\x18D9",
+  "\x0712.40\x05\x181240\x07\x07Rote Rosen                ",
+  "\x07           \x07\x07Fernsehserie (ARD-Wh)     ",
+  "\x0613.30\x05\x181330\x06\x06U.Danella: Der blaue Vogel",
+  "\x06           \x06\x06(2)/Spielf. D 2001\x03UT\x06.325",
+  "\x0715.00\x05\x181500\x07\x07Schw{bische Geschichten   ",
+  "\x07           \x07\x07Der Dienstwagen........326",
+  "\x0615.50\x05\x181550\x06\x06Reiseziel Kalabrien       ",
+  "\x0716.00\x05\x181600\x07\x07Baden-W}rttemberg aktuell ",
+  "\x0616.05\x05\x181605\x06\x06Kaffee oder Tee?.......361",
+  "\x06                                       ",
+  "\x0717.00\x05\x181700\x07\x07Baden-W}rttemberg aktuell ",
+  "\x0617.05\x05\x051605\x06\x06Kaffee oder Tee?.......361",
+  "\x07                                       ",
+  "\x0718.00\x05\x181800\x07\x07Baden-W}rttemberg aktuell ",
+  "\x06                                       ",
+  "\x0618.05\x05\x181805\x06\x06Zugabe ...!: R}ckblick auf",
+  "\x06           \x06\x06Musik- u.Konzerte 2010    ",
+  "\x06     \x05\x05VPS \x06\x06(bis\x0618.30\x06Uhr)           ",
+  "\x07\x1D\x04                       weiter auf\x01322",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x325} = 1;
+$PgSub{0x325} = 2;
+$PgLang{0x325} = 1;
+$PgTime{0x325} = 1294244870;
+$Pkg{0x325|(0x0001<<12)} =
+[
+  "        325\x02SWR Text\x03Mit.05.Jan\x0717:27:53",
+  "\x01\x1D                                  \x071/2",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x0406. Januar, 13.30 - 15.00 Uhr        ",
+  "\x06                                       ",
+  "\x06\x0DUTTA DANELLA: DER BLAUE VOGEL (2/2)   ",
+  "\x06                                       ",
+  "\x06 Spielfilm D 2001                      ",
+  "\x06                                       ",
+  "\x07 Christine Kamphovens gro~es Liebes-   ",
+  "\x07 gl}ck mit dem Journalisten Julian Ja- ",
+  "\x07 blonka w{hrt nur kurz. Julian kommt   ",
+  "\x07 bei einem Flugzeugabsturz ums Leben,  ",
+  "\x07 worauf die Schwangere wieder alleine  ",
+  "\x07 ist.                                  ",
+  "\x07                                       ",
+  "\x07 Als Christines Gro~vater Jon einen    ",
+  "\x07 Herzinfarkt erleidet und obendrein    ",
+  "\x07 auch noch das Gut Breedenkamp vor dem ",
+  "\x07 Konkurs steht, bietet der Nachbarsohn ",
+  "\x07 Oliver Jensen gro~z}gig seine Hilfe   ",
+  "\x07 an.                                   ",
+  "\x07\x1D\x04Untertitel auf\x01150     \x04Darsteller >>",
+];
+$PgCnt{0x325} = 1;
+$PgSub{0x325} = 2;
+$PgLang{0x325} = 1;
+$PgTime{0x325} = 1294242130;
+$Pkg{0x325|(0x0002<<12)} =
+[
+  "        325\x02SWR Text\x03Mit.05.Jan\x0716:42:12",
+  "\x01\x1D                                  \x072/2",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x0406. Januar, 13.30 - 15.00 Uhr        ",
+  "\x06                                       ",
+  "\x06\x0DUTTA DANELLA: DER BLAUE VOGEL (2/2)   ",
+  "\x06                                       ",
+  "\x06 Spielfilm D 2001                      ",
+  "\x07                                       ",
+  "\x06 Darsteller u.a.:                      ",
+  "\x07                                       ",
+  "\x07 Christine Kamphoven Annett Renneberg  ",
+  "\x07 Jon Kamphoven       Dietmar Sch|nherr ",
+  "\x07 Winnie Henning      Jenny-Marie Muck  ",
+  "\x07 Mara Kamphoven      Alexandra Schiffer",
+  "\x07 Gerhard Ehlers      Oliver Bootz      ",
+  "\x07 Oliver Jensen       Timothy Peach     ",
+  "\x07 Julian Jablonka     Daniel Friedrich  ",
+  "\x07 Telse Henning       Eva Maria Bauer   ",
+  "\x07                                       ",
+  "\x06 Regie:\x07Dietmar Klein                  ",
+  "\x07                                       ",
+  "\x07\x1D\x04Untertitel auf\x01150\x04               \x04>>",
+];

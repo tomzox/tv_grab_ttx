@@ -1,17 +1,22 @@
 libxmltv-ttx (2.0) unstable; urgency=medium
 
+  * Complete re-implemenation in C++
   * Added support for new "HD" feature attribute
   * Updated XMLTV output to DTD 0.5.56: "bilingual", "HDTV"
-  * Map audio-descriptive to bilingual
+  * Map "audio-descriptive" feature flag to bilingual
   * Remove redundancy from descriptions on multiple sub-pages
   * Improved fuzzy-matching on dates on description page dates
-  * Repair line-break in programme titles using descriptions
+  * Include description text even upon missing or unreadable date
+    of the page is referenced by a single programme
+  * Improve separation between programme titles and sub-titles in
+    overwiew pages using lin-breaks found on description pages
   * Bug-fix end-time parser for ARTE
   * Fixed TTX page ref matching: avoid false matches
-  * Extended cast table parser
+  * Improved rubustness of cast table parser and support more table formats
   * Implementation switched from Perl to C++ (code design improvement)
+  * Improved merge to avoid losing descriptions or feature flags
 
- -- Tom Zoerner <tomzo@users.sourceforge.net>  Thu, 06 May 2010 20:18:13 +0200
+ -- Tom Zoerner <tomzo@users.sourceforge.net>  Sun, 09 Jan 2011 19:38:01 +0100
 
 libxmltv-ttx (1.1) unstable; urgency=low
 

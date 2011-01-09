@@ -1,0 +1,129 @@
+#!/usr/bin/perl -w
+#
+# Time & Date is at the bootom of both description sub-pages. One instance
+# should be discarded. ??????? Dangerous: may also be coincidence (two
+# sentences ending with the same words.)
+#
+# $Id$
+#
+$VbiCaptureTime = 1271533996;
+$PgCnt{0x303} = 2;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0001<<12)} =
+[
+  "        303\x07   SAT.1  \x0717.04.10\x0321:52:53",
+  "\x17   #7!e`\%     \x05\x1D\x07Fr}hlingsgef}hle?    \x1C",
+  "\x17    \% \"&      \x05\x1D\x03Mehr ab Seite 620    \x1C",
+  "\x01\x1D\x07   HEUTE    \x15####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0420:00 SAT.1 Nachrichten              ",
+  " \x1D\x0120:15 Hidalgo - 3000 Meilen zum      ",
+  " \x1D\x01      Ruhm                      >311 ",
+  " \x1D\x0422:55 The Sixth Sense           >312 ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x06\x1D\x01Kaufen, Verkaufen, Gr}~e per SMS 490 ",
+];
+$PgCnt{0x303} = 1;
+$PgSub{0x303} = 2;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0002<<12)} =
+[
+  "        303\x07   SAT.1  \x0717.04.10\x0321:52:24",
+  "\x17   #7!e`\%     \x02\x1D\x04Reiselust?\x07Top-      \x1C",
+  "\x17    \% \"&      \x02\x1D\x07Angebote + Infos\x04400 \x1C",
+  "\x01\x1D\x07   HEUTE    \x14####################### ",
+  " \x1D\x04                                 1/1 ",
+  " \x1D\x0420:00 SAT.1 Nachrichten              ",
+  " \x1D\x0120:15 Hidalgo - 3000 Meilen zum      ",
+  " \x1D\x01      Ruhm                      >311 ",
+  " \x1D\x0422:55 The Sixth Sense           >312 ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  "\x06\x1D\x04Die besten DSL+Telefon Angebote! 530 ",
+];
+$PgCnt{0x312} = 1;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0001<<12)} =
+[
+  "        312\x07   SAT.1  \x0717.04.10\x0321:52:24",
+  "\x17   #7!e`\%   \x07\x1D\x01                   1/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Samstag 17.04.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  22:55-00:50      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01The Sixth Sense                      ",
+  " \x1D\x04Thriller USA 1999                    ",
+  " \x1D\x04                                     ",
+  " \x1D\x04Den acht{hrigen Cole qu{lt ein d}s-  ",
+  " \x1D\x04teres Geheimnis: Er sieht tote Men-  ",
+  " \x1D\x04schen. Der Junge wird regelm{~ig von ",
+  " \x1D\x04Verstorbenen aufgesucht, die keine   ",
+  " \x1D\x04Ruhe finden und ihn mit ihrem ver-   ",
+  " \x1D\x04gangenen Leben und ihren Schicksalen ",
+  " \x1D\x04belasten. Zun{chst ist Cole zu ver-  ",
+  " \x1D\x04{ngstigt, um jemandem von den Furcht ",
+  " \x1D\x04erregenden Begegnungen mit den Wesen ",
+  " \x1D\x04aus dem Jenseits zu erz{hlen, doch   ",
+  " \x1D\x04dann fasst er Vertrauen zu dem Kin-  ",
+  " \x1D\x04derpsychologen Dr. Malcolm Crowe ... ",
+  " \x1D\x04                                     ",
+  " \x1D\x04                                     ",
+  " \x1D\x01Wdh. 18.04. 00:50 - 02:30            ",
+  "\x06\x1D\x04Die besten DSL+Telefon Angebote! 530 ",
+];
+$PgCnt{0x312} = 2;
+$PgSub{0x312} = 2;
+$PgLang{0x312} = 1;
+$Pkg{0x312|(0x0002<<12)} =
+[
+  "        312\x07   SAT.1  \x0717.04.10\x0321:52:53",
+  "\x17   #7!e`\%   \x07\x1D\x01                   2/2  ",
+  "\x17    \% \"&    \x07\x1D\x03\x1D\x04  Samstag 17.04.   \x07\x1D ",
+  "\x01\x1D\x07  MOVIE    \x1D\x03\x1D\x04  22:55-00:50      \x07\x1D ",
+  " \x1D\x04                                     ",
+  " \x1D\x01The Sixth Sense                      ",
+  " \x1D\x04(The Sixth Sense)                    ",
+  " \x1D\x04Regie..............M. Night Shyama-  ",
+  " \x1D\x04                   lan               ",
+  " \x1D\x04Produktion.........Kathleen Kennedy, ",
+  " \x1D\x04                   Frank Marshall,   ",
+  " \x1D\x04                   Barry Mendel      ",
+  " \x1D\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  " \x1D\x04Malcolm Crowe......Bruce Willis      ",
+  " \x1D\x04Cole Sear..........Haley Joel Osment ",
+  " \x1D\x04Lynn Sear..........Toni Collette     ",
+  " \x1D\x04Anna Crowe.........Olivia Williams   ",
+  " \x1D\x04Kyra Collins.......Mischa Barton     ",
+  " \x1D\x04Vincent Gray.......Donnie Wahlberg   ",
+  " \x1D\x04Sean...............Glenn Fitzgerald  ",
+  " \x1D\x04S. Cunningham......Bruce Norris      ",
+  " \x1D\x04Tommy Tammisimo....Trevor Morgan     ",
+  " \x1D\x01Wdh. 18.04. 00:50 - 02:30            ",
+  "\x05\x1D\x03Auf jede Frage eine Antwort..... 536 ",
+];

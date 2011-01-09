@@ -1,0 +1,76 @@
+#!/usr/bin/perl -w
+#
+# Title on decription page cannot be identified as the upper-case version
+# replaces Umlaut "ß" with "SS"
+#
+# $Id$
+#
+$VbiCaptureTime = 1294242127;
+$PgCnt{0x323} = 1;
+$PgSub{0x323} = 0;
+$PgLang{0x323} = 1;
+$PgTime{0x323} = 1294242130;
+$Pkg{0x323|(0x0000<<12)} =
+[
+  "        323\x02SWR Text\x03Mit.05.Jan\x0716:42:12",
+  "\x01\x1D                                      ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x04DONNERSTAG, 06. JAN.\x05\x181D133\x18060111\x18F2",
+  "\x0718.30\x05\x181830\x07\x07Unser Wetter im Jahres-   ",
+  "\x07           \x07\x07r}ckblick..............328",
+  "\x0619.00\x05\x181900\x06\x06Die Vogelmutter........329",
+  "\x07                                       ",
+  "\x0719.45\x05\x181945\x07\x07Baden-W}rttemberg         ",
+  "\x07           \x07\x07aktuell\x03UT 150            ",
+  "\x0619.58\x05\x181958\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x07                                       ",
+  "\x0720.00\x05\x182000\x07\x07Tagesschau\x03(UT 150)       ",
+  "\x06                                       ",
+  "\x0620.15\x05\x182015\x06\x06Die gro~e Show der        ",
+  "\x06           \x06\x06Naturwunder............334",
+  "\x0721.45\x05\x182145\x07\x07Baden-W}rttemberg         ",
+  "\x07           \x07\x07aktuell                   ",
+  "\x0621.58\x05\x182158\x06\x06Baden-W}rttemberg Wetter  ",
+  "\x0722.00\x05\x182200\x07\x07Ein Abend f}r den legend{-",
+  "\x07           \x07\x07ren Diether Krebs......335",
+  "\x07     \x05\x05VPS \x07\x07(bis\x0723.30\x07Uhr)           ",
+  "\x07\x1D\x04                       weiter auf\x01324",
+];
+$PgCnt{0x334} = 1;
+$PgSub{0x334} = 0;
+$PgLang{0x334} = 1;
+$PgTime{0x334} = 1294242130;
+$Pkg{0x334|(0x0000<<12)} =
+[
+  "        334\x02SWR Text\x03Mit.05.Jan\x0716:42:12",
+  "\x01\x1D\x07                                     ",
+  "\x01\x1D\x07\x0D S W R   F E R N S E H E N   BW     ",
+  "\x01\x1D\x17-/\"-'*-'\"--'*-\$-/ / x\x7F\x7F\x7F\x1D\x11/.!+..!    ",
+  "\x07\x1D\x0406. Januar, 20.15 - 21.45 Uhr        ",
+  "\x07                                       ",
+  "\x06\x0DDIE GROSSE SHOW DER NATURWUNDER       ",
+  "\x07                                       ",
+  "\x06                                       ",
+  "\x07 \"Die gro~e Show der Naturwunder\" bie- ",
+  "\x07 tet faszinierende Einblicke in die    ",
+  "\x07 Welt der Tiere und Pflanzen, die Wis- ",
+  "\x07 senschaftler immer wieder aufs Neue zu",
+  "\x07 genialen Erfindungen inspiriert.      ",
+  "\x07                                       ",
+  "\x07 Diesmal begr}~en Frank Elstner und    ",
+  "\x07 Ranga Yogeshwar mit den Bibern Caro   ",
+  "\x07 und Bibi zwei wahre Landschaftsarchi- ",
+  "\x07 tekten im Studio. Au~erdem wird es    ",
+  "\x07 brandgef{hrlich: Die erfolgreiche     ",
+  "\x07 Wissenschaftsshow wagt den Kampf der  ",
+  "\x07 Extremtemperaturen.                   ",
+  "\x07                                       ",
+  "\x07\x1D\x04                                     ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

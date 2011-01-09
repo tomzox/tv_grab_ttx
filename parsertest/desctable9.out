@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="SAT.1">
+	<display-name>SAT.1</display-name>
+</channel>
+
+<programme start="20110108110000 +0000" stop="20110108120000 +0000" channel="SAT.1">
+	<title>Richter Hold</title>
+	<desc>(teletext 369)</desc>
+</programme>
+
+<programme start="20110108120000 +0000" stop="20110108130000 +0000" channel="SAT.1">
+	<title>Britt: Gnadenlos: Deinen</title>
+	<sub-title>Britt: Gnadenlos: Deinen Seitensprung verzeihe ich nicht!</sub-title>
+	<desc>(teletext 365)</desc>
+</programme>
+
+<programme start="20110108130000 +0000" stop="20110108145000 +0000" channel="SAT.1">
+	<title>Küss mich, Genosse!</title>
+	<desc>(teletext 311)</desc>
+</programme>
+
+<programme start="20110108145000 +0000" stop="20110108162900 +0000" channel="SAT.1">
+	<title>Ab durch die Hecke</title>
+	<desc>(teletext 312)</desc>
+</programme>
+
+<programme start="20110108162900 +0000" stop="20110108163000 +0000" channel="SAT.1">
+	<title>So gesehen</title>
+</programme>
+
+<programme start="20110108163000 +0000" stop="20110108170000 +0000" channel="SAT.1">
+	<title>Niedrig und Kuhnt - Kommissare ermitteln: Eine</title>
+	<sub-title>Niedrig und Kuhnt - Kommissare ermitteln: Eine verhängnisvolle Nacht</sub-title>
+	<desc>(teletext 371)</desc>
+</programme>
+
+<programme start="20110108170000 +0000" stop="20110108173000 +0000" channel="SAT.1">
+	<title>K 11 - Kommissare im Einsatz: Dem Tode geweiht</title>
+	<desc>(teletext 374)</desc>
+</programme>
+
+<programme start="20110108173000 +0000" channel="SAT.1">
+	<title>Lenßen - der Film</title>
+	<!-- TTX 313 -->
+	<desc>Lenßen - der Film TV-Film D 2009
+Der neunjährige "Mücke" wird von einem Auto angefahren und schwebt in Lebensgefahr. Der Junge ist der Sohn von Ingo Lenßens ehemaligem Kollegen Tekin und außerdem Lenßens Patenkind. Außer sich vor Wut und Sorge droht Tekin dem Unfallfahrer mit Vergeltung. Als dann ein Anschlag auf diesen verübt wird, gerät Tekin unter Verdacht. Lenßen und sein Team wollen ihren ehemaligen Kollegen schützen und beginnen mit der umfassenden Recherche ...
+Wdh. 15.01. 07:35 - 09:30
+Regie: Andy Klein.
+Ingo Lenßen, Christian Storm, Sandra Nitka: S. Z. Kowalski, Katja Hansen: Sandra Corzilius, Tekin Kurtulus, Sebastian Thiele: Sebastian Jäger, Markus Berger: D. Tiefenthaler, Mücke: Bosse Lenßen, Hans: Hubert Burczek.
+Wdh. 15.01. 07:35 - 09:30</desc>
+</programme>
+</tv>

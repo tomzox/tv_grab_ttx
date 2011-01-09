@@ -1,0 +1,228 @@
+#!/usr/bin/perl -w
+#
+# Keyword "VPS" is in different line from the respective label and the time
+# label format time has normal time format with "." separator and time is in
+# same column as normal start time -> VPS label can be mistaken as end time.
+#
+# TODO: VPS label in page 301 at 06.10
+# TODO: sub-title line starts with blank, holds only TTX reference 303 9.25
+#
+# $Id$
+#
+$VbiCaptureTime = 1270490137;
+$PgCnt{0x301} = 6;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301\x06KI.KA  \x07Mo 05.04.10\x0319 47:47",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~\x06Montag, 5. April 2010           ",
+  "\x04\x1D\x17+y}'\x05Ostermontag                     ",
+  "\x14#######################################",
+  "\x0206.00\x15/\x02logo! Special - Backstage >334 ",
+  "\x0706.10\x16/\x07WordGirl - Shorts              ",
+  "\x05VPS                                    ",
+  "\x0506.09                                  ",
+  "\x0206.15\x16/\x02Corneil & Bernie (18)          ",
+  "\x02        Hochmut kommt vor dem Fall     ",
+  "\x0706.25\x16/\x07Clifford, der gro~e rote Hund  ",
+  "\x07        (21)                           ",
+  "\x07        Der bunte Clifford/ Ich kann   ",
+  "\x07        das nicht                      ",
+  "\x0206.50\x13/\x02KiKANiNCHEN               >400 ",
+  "\x0706.55\x13/\x07Pocoyo (27)                    ",
+  "\x07        Elefantenp}nktchen             ",
+  "\x0207.00\x13/\x02Pingu (15)                     ",
+  "\x02        Pingu und die                  ",
+  "\x02        Schneeballschlacht             ",
+  "\x0707.05\x13/\x07KiKANiNCHEN               >400 ",
+  undef,
+  "\x04\x1D\x07300 <<< ]bersicht \x1C \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x302} = 6;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302\x06KI.KA  \x07Mo 05.04.10\x0319 47:47",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~\x06Montag, 5. April 2010           ",
+  "\x04\x1D\x17+y}'\x05Ostermontag                     ",
+  "\x14#######################################",
+  "\x0207.10\x13/\x02Claude (3+4)                   ",
+  "\x02        Es stinkt/ Abfall              ",
+  "\x0707.35\x13/\x07Die Sendung mit dem Elefanten  ",
+  "\x07        \x03UT\x07                           ",
+  "\x07        Osterspecial                   ",
+  "\x0208.00\x13/\x02Sesamstra~e                    ",
+  "\x0708.25\x13/\x07Kleine Prinzessin (36)         ",
+  "\x07        Ich will eine                  ",
+  "\x07        Geburtstags}berraschung        ",
+  "\x0208.35\x13/\x02KiKANiNCHEN - Osterspecial     ",
+  "\x05        Neu\x02                      >334 ",
+  "\x0708.50\x13/\x07Kleiner Roter Traktor          ",
+  "\x07        (36+37+38)                     ",
+  "\x07        Immer [rger mit der Technik/   ",
+  "\x07        Vom Winde verweht/ Das Drama   ",
+  "\x07        mit dem Lama                   ",
+  "                                        ",
+  "                                        ",
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x303} = 6;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x06KI.KA  \x07Mo 05.04.10\x0319 47:47",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~\x06Montag, 5. April 2010           ",
+  "\x04\x1D\x17+y}'\x05Ostermontag                     ",
+  "\x14#######################################",
+  "\x0209.25\x13/\x02Roary, der Rennwagen (39+40)   ",
+  "\x02                                  >424 ",
+  "\x02        Ein allzu schneller Hase/      ",
+  "\x02        Sonnenflitzer                  ",
+  "\x0709.45\x13/\x07Mit-Mach-M}hle            >386 ",
+  "\x0209.55\x13/\x02Au Schwarte! (27)              ",
+  "\x02        Der Bestimmer                  ",
+  "\x0710.18\x13/\x07KiKANiNCHEN               >400 ",
+  "\x0210.20\x16/\x02TANZALARM!                     ",
+  "\x02        Der TANZALARM! auf             ",
+  "\x02        Flusskreuzfahrt                ",
+  "\x0710.30\x16/\x07Jane und der Drache (11+12)    ",
+  "\x07                                  >466 ",
+  "\x07        Drei sind einer zuviel/ Das    ",
+  "\x07        Schweine-Problem               ",
+  "\x0211.15\x16/\x02Marsupilami (18)               ",
+  "\x02        Hektor, der Marsu-Sitter       ",
+  undef,
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  "\x15 \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F ",
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x304} = 6;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "        304\x06KI.KA  \x07Mo 05.04.10\x0319:47 48",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~\x06Montag, 5. April 2010           ",
+  "\x04\x1D\x17+y}'\x05Ostermontag                     ",
+  "\x14#######################################",
+  "\x0711.40\x16/\x07Die Meeresprinzessinnen (1+2)  ",
+  "\x05        Serienstart                    ",
+  "\x07        Verirrt                   >335 ",
+  "\x07        Die Perle                      ",
+  "\x0212.05\x16/\x02Yakari (9+10)                  ",
+  "\x02        Der gro~e Wirbelsturm/ Der     ",
+  "\x02        Fluss des Vergessens           ",
+  "\x0712.30\x16/\x07Die Sendung mit der Maus       ",
+  "\x07        \x03UT\x07                      >565 ",
+  "\x0212.55\x16/\x02Garfield (27+28)               ",
+  "\x02        Katzenwelten/ Der              ",
+  "\x02        Katzenfl}sterer                ",
+  "\x0713.20\x16/\x07Jacob 2/2 (14)                 ",
+  "\x07        ...und der Nachtschleim        ",
+  "\x0213.45\x16/\x02Gloria und ihre Familie (14)   ",
+  "\x02        Bill ist weg                   ",
+  "\x0714.05\x15/\x07Mini Ah!                       ",
+  "\x0214.08\x15/\x02logo! Die Welt und ich.   >331 ",
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x305} = 6;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "        305\x06KI.KA  \x07Mo 05.04.10\x0319:47 48",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~\x06Montag, 5. April 2010           ",
+  "\x04\x1D\x17+y}'\x05Ostermontag                     ",
+  "\x14#######################################",
+  "\x0714.10\x16/\x07Prinz und Bottel (2)           ",
+  "\x07        2. Teil                   >335 ",
+  "\x0215.25\x16/\x02Der Gl|ckner von Notre Dame    ",
+  "\x02                                  >336 ",
+  "\x0716.18\x15/\x07logo! Die Welt und ich.   >331 ",
+  "\x0216.20\x16/\x02Jibber Jabber (13)             ",
+  "\x02        Mars zu verkaufen/ Doppeltes   ",
+  "\x02        Spiel                          ",
+  "\x0716.40\x16/\x07Die Schule der kleinen Vampire ",
+  "\x07        (40+41+42)                >550 ",
+  "\x07        Durchgehend ge|ffnet/ Da       ",
+  "\x07        pfeif ich drauf/ Ehrensache    ",
+  "\x0217.10\x16/\x02Marsupilami (19)               ",
+  "\x02        Ein seltener Vogel             ",
+  "\x0717.35\x16/\x07Altair im Sternenland (11+12)  ",
+  "\x07        Der Rettungsstern/ Die gro~e   ",
+  "\x07        Putzaktion                     ",
+  undef,
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x306} = 6;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "        306\x06KI.KA  \x07Mo 05.04.10\x0319:47 48",
+  "\x04\x1D\x17`||0                                 ",
+  "\x04\x1D\x17\x7Fvg~\x06Montag, 5. April 2010           ",
+  "\x04\x1D\x17+y}'\x05Ostermontag                     ",
+  "\x14#######################################",
+  "\x0218.05\x13/\x02Tauch, Timmy, Tauch! (34)      ",
+  "\x05VPS    \x02Fast ein Held                  ",
+  "\x0518.00                                  ",
+  "\x0718.15\x13/\x07Au Schwarte! (3)               ",
+  "\x07        Der verzauberte Freund         ",
+  "\x0218.40\x13/\x02Zigby, das Zebra (32)          ",
+  "\x02        Zigbys Wunderblumen            ",
+  "\x0718.50\x13/\x07Unser Sandm{nnchen        >380 ",
+  "\x07        Miffy: Miffy und das blaue Ei  ",
+  "\x0219.00\x16/\x02Yakari (11+12)                 ",
+  "\x02        Yakari und die Schneeziege/    ",
+  "\x02        Pilipi, der wei~e Wal          ",
+  "\x0719.25\x15/\x07pur+                      >347 ",
+  "\x07        Einmal Ritter...!         >336 ",
+  "\x0219.50\x15/\x02logo! Die Welt und ich.   >331 ",
+  "\x0720.00\x15/\x07KI.KA LIVE                >200 ",
+  "\x07        Thema: Beste Stimme 2010       ",
+  undef,
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  "                                        ",
+  "                                        ",
+  "\x15 \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F ",
+  "\x15jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\x15x ",
+  undef,
+  undef,
+];
