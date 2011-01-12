@@ -1,0 +1,69 @@
+#
+# Makefile for compilation on MS Windows
+#
+#   This program is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
+#
+# $Id: Makefile.win32,v 1.1 2011/01/12 19:53:35 tom Exp $
+#
+
+all: build_dir tv_grab_ttx tv_grab_ttx.1
+
+MODS = ttx_main ttx_scrape ttx_ov_fmt ttx_feat ttx_pg_ref ttx_date \
+       ttx_xmltv ttx_db ttx_acq ttx_util
+
+GCC_ROOT = /usr/i586-mingw32msvc
+AR      = $(GCC_ROOT)/bin/ar
+AS      = $(GCC_ROOT)/bin/as
+NM      = $(GCC_ROOT)/bin/nm
+STRIP   = i586-mingw32msvc-strip
+CC      = i586-mingw32msvc-gcc
+CPP     = i586-mingw32msvc-g++
+LD      = i586-mingw32msvc-g++
+
+CFLAGS  = -Wall -pipe -O2 -DWIN32 -ggdb -MMD \
+          -mno-cygwin -Isrc -I$(GCC_ROOT)/include \
+          -I/tom/work/boost-win32/include
+LDFLAGS = -mwindows -mno-cygwin -Wl,--subsystem,windows
+
+SRC_DIR = src
+BUILD_DIR = obj
+OBJS = $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(MODS)))
+
+LIBS = -L. -lboost_regex
+
+.PHONY: build_dir
+build_dir:
+	@mkdir -p $(BUILD_DIR)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cc
+	$(CPP) $(CFLAGS) -c -o $@ $<
+
+tv_grab_ttx: $(OBJS)
+	@rm -f $@
+	$(CPP) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+
+tv_grab_ttx.1: tv_grab_ttx.pod
+	pod2man -date " " -center "Teletext EPG grabber" -section "1" \
+	        -release "tv_grab_ttx (C) 2006-2011 Th. Zoerner" \
+	        tv_grab_ttx.pod > tv_grab_ttx.1; \
+
+.PHONY: clean
+clean:
+	rm -rf $(BUILD_DIR)
+	rm -f tv_grab_ttx tv_grab_ttx.1 *.o core core.* vgcore.*
+
+# include automatically generated dependency list
+-include $(BUILD_DIR)/*.d

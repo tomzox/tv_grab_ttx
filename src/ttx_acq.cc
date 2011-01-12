@@ -16,14 +16,16 @@
  *
  * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
  *
- * $Id: ttx_acq.cc,v 1.4 2011/01/09 18:20:56 tom Exp $
+ * $Id: ttx_acq.cc,v 1.5 2011/01/12 19:22:56 tom Exp $
  */
 
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#if !defined (WIN32)
 #include <sys/select.h>
+#endif
 #include <sys/time.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -31,7 +33,10 @@
 
 #include <string>
 
+#if defined (USE_LIBZVBI)
 #include "libzvbi.h"
+#endif
+
 #include "boost/regex.h"
 #include "boost/regex.hpp"
 
@@ -95,6 +100,7 @@ public:
    virtual bool read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts) = 0;
 };
 
+#if defined (USE_LIBZVBI)
 class TTX_ACQ_ZVBI : public TTX_ACQ_SRC
 {
 public:
@@ -110,6 +116,7 @@ private:
    int m_line_idx;
    time_t m_timestamp;
 };
+#endif /* USE_LIBZVBI */
 
 class TTX_ACQ_FILE : public TTX_ACQ_SRC
 {
@@ -122,6 +129,7 @@ private:
    time_t m_timestamp;
 };
 
+#if defined (USE_LIBZVBI)
 /* ------------------------------------------------------------------------------
  * Decoding of teletext packets (esp. hamming decoding)
  * - for page header (packet 0) the page number is derived
@@ -215,6 +223,7 @@ bool TTX_ACQ_PKG::feed_vps_pkg(const uint8_t * data)
    }
    return result;
 }
+#endif /* USE_LIBZVBI */
 
 /* ------------------------------------------------------------------------------
  * Write a single TTX packet or CNI to STDOUT in a packed binary format
@@ -300,6 +309,7 @@ bool TTX_ACQ_FILE::read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts)
    return ret_buf.read_raw_pkg(m_fd);
 }
 
+#if defined (USE_LIBZVBI)
 /* ------------------------------------------------------------------------------
  * Open the VBI device for capturing, using the ZVBI library
  */
@@ -392,6 +402,7 @@ bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts)
    *ts = m_timestamp;
    return result;
 }
+#endif /* USE_LIBZVBI */
 
 class TTX_ACQ
 {
@@ -511,6 +522,7 @@ void ReadVbi(const char * p_infile, const char * p_dumpfile,
       acq_src = new TTX_ACQ_FILE(p_infile);
    }
    else {
+#ifdef USE_LIBZVBI
       // capture input data from a VBI device
       acq_src = new TTX_ACQ_ZVBI(p_dev_name, dvb_pid);
 
@@ -521,6 +533,10 @@ void ReadVbi(const char * p_infile, const char * p_dumpfile,
             exit(1);
          }
       }
+#else /* !USE_LIBZVBI */
+      fprintf(stderr, "Cannot capture from device without ZVBI library\n");
+      exit(1);
+#endif /* USE_LIBZVBI */
    }
    time_t time_limit = (cap_duration > 0) ? (time(NULL) + cap_duration) : -1;
 
