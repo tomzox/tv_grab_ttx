@@ -29,6 +29,9 @@ MODS = ttx_main ttx_scrape ttx_ov_fmt ttx_feat ttx_pg_ref ttx_date \
 CFLAGS  = -Wall -pipe -O3 -ggdb -MMD -DUSE_LIBZVBI -Isrc
 LDFLAGS =
 
+# use self-compiled version of libzvbi with debug symbols
+#LDFLAGS = -L/home/tom/work/zvbi/cvs/vbi/src/.libs -Wl,-rpath=/home/tom/work/zvbi/cvs/vbi/src/.libs
+
 SRC_DIR = src
 BUILD_DIR = obj
 OBJS = $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(MODS)))

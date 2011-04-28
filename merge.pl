@@ -48,7 +48,7 @@ sub ReadXmlFile {
       # handling XML header
       if ($state == 0) {
          if (/^\s*\<(\?xml|\!)[^>]*\>\s*$/i) {
-         } elsif (/^\s*\<tv>\s*$/i) {
+         } elsif (/^\s*\<tv[^>]*>\s*$/i) {
             $state = 2;
          } elsif (/\S/) {
             chomp;

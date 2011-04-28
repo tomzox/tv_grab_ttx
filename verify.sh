@@ -26,7 +26,7 @@
 #
 #  Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
 #
-# $Id: verify.sh,v 1.9 2011/01/05 13:06:00 tom Exp $
+# $Id: verify.sh,v 1.9 2011/01/05 13:06:00 tom Exp tom $
 #
 
 DIR=parsertest
@@ -49,11 +49,11 @@ for v in $DIR/*.in ; do
          cmp -s $DIR/$name.out out.verify
          if [ $? -eq 0 ] ; then
             rm -f $name.diff
-            echo "OK:   $v"
+            echo "\033[32mOK\033[0m:   $v"
             pass_cnt=`expr $pass_cnt + 1`
          else
             diff -u $DIR/$name.out out.verify > $name.diff
-            echo "FAIL: $v"
+            echo "\033[41mFAIL\033[0m: $v"
             fail_cnt=`expr $fail_cnt + 1`
          fi
       else
