@@ -17,9 +17,8 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
+#  Copyright 2006-2011, 2020 by T. Zoerner (tomzo at users.sf.net)
 #
-#  $Id: tv_grab_ttx.pod,v 1.2 2011/01/09 18:43:41 tom Exp $
 # ---------------------------------------------------------------------------
 
 =head1 NAME
@@ -42,11 +41,11 @@ overviews to extract description texts. The grabber needs to be
 started separately for each TV channel from which EPG data shall be
 collected.
 
-Teletext data is captured directly from I</dev/vbi0> or another device
-given as command line parameter. Alternatively, a file containing
-previously "dumped" VBI or raw teletext page data can be specified as
-input source.  Use file name C<-> to read from standard input (i.e.
-from a pipe)
+Teletext data is captured directly from I</dev/dvb/adapter0/demux0> or
+another device given as command line parameter. Alternatively, a file
+containing previously "dumped" VBI or raw teletext page data can be
+specified as input source.  Use file name C<-> to read from standard input
+(i.e.  from a pipe)
 
 The XMLTV output is written to standard out unless redirected to a
 file by use of the I<-outfile> option. There are also "dump" options
@@ -62,6 +61,23 @@ be imported into L<nxtvepg(1)> and merged with I<Nextview EPG>.
 =head1 OPTIONS
 
 =over 4
+
+=item B<-dev> I<path>
+
+This option can be used to specify the device from which teletext
+is captured. By default F</dev/dvb/adapter0/demux0> is used. Note the
+device can also be specified in place of an input file (i.e. without
+preceding C<-dev>, if it is the last word on the command line).
+
+=item B<-dvbpid> I<PID>
+
+This option implies that the input device is Digital TV and specifies the
+PID of the data stream which contains teletext data. Note this parameter
+is B<required for DVB devices>, else no data will be captured.
+
+The teletext PID value can often be derived from the PID for video in
+C<channels.conf> by adding offsets in range 3 to 30. Alternatively you can
+look up the PID via Internet services such as L<https://www.satindex.de/>.
 
 =item B<-duration> I<seconds>
 
@@ -118,7 +134,7 @@ more than the given number of minutes ago. Note for programmes
 for which the stop time is unknown the start time plus 120 minutes
 is used. By default the expire time is 120 minutes.
 
-This option is particularily intended for use together with
+This option is particularly intended for use together with
 the I<-merge> option.
 
 =item B<-dumpvbi>
@@ -162,20 +178,6 @@ parsing relative time and date specifications.)
 This option is only intended for use in verifying the teletext grabber
 functionality against previously captured reference input and output
 data. As such the option is not of interest for the general user.
-
-=item B<-dev> I<path>
-
-This option can be used to specify the VBI device from which teletext
-is captured. By default F</dev/vbi0> is used. Note the device can also
-simply be specified in place of an input file.
-
-=item B<-dvbpid> I<PID>
-
-This option enables data acquisition from a DVB device and specifies
-the PID which is the identifier of the data stream which contains
-teletext data. The PID must be determined by external means. Likewise
-to analog sources, the TV channel also must be tuned with an external
-application.
 
 =item B<-verbose>
 
@@ -248,7 +250,7 @@ but allowing for exceptions such as markers or hidden VPS labels:
 
 Of course there may be unrelated rows which also start with a
 time value. Hence the grabber builds statistics about the number
-of occurences of lines where the time and title start in the same
+of occurrences of lines where the time and title start in the same
 column. In the end, the format found most often is selected as the
 one used for detecting time tables.
 
@@ -262,7 +264,7 @@ start of subsequent programmes as the stop time of the previous
 one, unless a specific end time is given at the end of a page.
 
 Finally the date is derived. In some cases the data is printed
-unambigously on top of the page, but often the data is just given
+unambiguously on top of the page, but often the data is just given
 as "Today", "Tomorrow" etc. or a weekday name. Even more
 difficult, a day on these pages sometimes is considered to span
 until apx. 6:00 on the next day, so finding "today" after midnight
@@ -333,20 +335,19 @@ output file.
 
 =over 4
 
-=item B</dev/vbi0>, B</dev/v4l/vbi0>
+=item B</dev/vbi0>
 
-Device files from which teletext data is being read during acquisition
+Device file from which teletext can be captured
 when using an analog TV card on Linux.  Different paths can be selected
 with the B<-dev> command line option.  Depending on your Linux version,
 the device files may be located directly beneath C</dev> or inside
-C</dev/v4l>. Other operating systems may use different names.
+C</dev/v4l>. Other operating systems such as BSD may use different names.
 
 =item B</dev/dvb/adapter0/demux0>
 
-Device files from which teletext data is being read during acquisition
-when using a DVB device, i.e. when the B<-dvbpid> option is present.
-Different paths can be selected with the B<-dev> command line option.
-(If you have multiple DVB cards, increment the device index after
+Device file from which teletext can be captured when using a Digital TV
+device. Different paths can be selected with the B<-dev> command line
+option. (If you have multiple TV cards, increment the device index after
 I<adapter> to get the second card etc.)
 
 =back
@@ -362,16 +363,24 @@ L<alevt(1)>.
 
 =head1 AUTHOR
 
-Written by Tom Zoerner (tomzo at users.sourceforge.net) since 2006
-as part of the nxtvepg project. The program was initially implemented
-in Perl, but translated to C++ in 2010, heavily based on the "regex"
-library released via the "Boost" project.
+The application was developed by T. Zoerner (tomzo at users.sourceforge.net)
+between 2006 and 2011 as part of the nxtvepg project
+(L<http://nxtvepg.sourceforge.net>).  The official homepage is
+L<https://github.com/tomzox/tv_grab_ttx>.
 
-The official homepage is L<http://nxtvepg.sourceforge.net/tv_grab_ttx>
+The application was initially implemented in Perl, using the specially
+developed I<Video::ZVBI> Perl extension module
+(L<https://metacpan.org/pod/Video::ZVBI>) for capturing teletext. In 2010
+it was translated to C++, heavily based on the I<regex> regular expression
+library of the "Boost" project (L<https://www.boost.org/>). The latter was
+replaced in 2020 by I<std::regex> which is part of C++ since release C++11.
+
+The "ZVBI" library (L<http://zapping.sourceforge.net/ZVBI/index.html>) is
+used for capturing and decoding teletext.
 
 =head1 COPYRIGHT
 
-Copyright 2006-2011 Tom Zoerner.
+Copyright 2006-2011, 2020 T. Zoerner.
 
 This is free software. You may redistribute copies of it under the terms
 of the GNU General Public License version 3 or later

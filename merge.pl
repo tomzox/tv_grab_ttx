@@ -16,9 +16,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
-#
-#  $Id: merge.pl,v 1.3 2008/03/08 17:18:38 tom Exp tom $
+#  Copyright 2006-2008,2011 by T. Zoerner (tomzo at users.sf.net)
 #
 
 use strict;

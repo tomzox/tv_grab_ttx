@@ -14,9 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
- *
- * $Id: ttx_scrape.cc,v 1.8 2011/01/08 13:28:24 tom Exp $
+ * Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
  */
 
 #include <stdio.h>
@@ -25,12 +23,9 @@
 #include <sstream>
 #include <string>
 #include <algorithm>
-
-#include <boost/regex.h>
-#include <boost/regex.hpp>
+#include <regex>
 
 using namespace std;
-using namespace boost;
 
 #include "ttx_db.h"
 #include "ttx_util.h"
@@ -422,9 +417,10 @@ int ParseFooterByColor(int page, int sub)
 
    // TODO: merge with other footer function: require TTX ref in every skipped segment with the same bg color
 
-   // ignore last line if completely empty (e.g. ARTE: in-between double-hirhgt footer and FLOF)
+   // ignore last line if completely empty (e.g. ARTE: in-between double-height footer and FLOF)
    int last_line = 23;
-   static const regex expr4("[\\x21-\\xff]");
+   // NOTE regex [\x21-\xFF] traps with "invalid range", hence splitting at \x7F
+   static const regex expr4("[\\x21-\\x7F\\x80-\\xFF]");
    if (!regex_search(pgtext->get_ctrl(last_line), whats, expr4)) {
       --last_line;
    }
@@ -462,7 +458,7 @@ void RemoveTrailingPageFooter(string& text)
    match_results<string::iterator> whati;
 
    // look for a page reference or ">>" at line end
-   static const regex expr1("^(.*[^[:alnum:]])([1-8][0-9][0-9]|>{1,4})[^\\x1D\\x21-\\xFF]*$");
+   static const regex expr1("^(.*[^[:alnum:]])([1-8][0-9][0-9]|>{1,4})[^\\x1D\\x21-\\x7F\\x80-\\xFF]*$");
    if (regex_search(text.begin(), text.end(), whati, expr1)) {
       int ref_off = whati[1].length();
       // check if the background color is changed
@@ -485,7 +481,7 @@ void RemoveTrailingPageFooter(string& text)
                int txt_col = text[whati.position(2)];
                //print "       TXTCOL:$txt_col\n";
                // check if there's any text with this color
-               static const regex expr4("[\\x21-\\xff]");
+               static const regex expr4("[\\x21-\\x7F\\x80-\\xFF]");
                if (regex_search(text.begin() + tmp_off, text.begin() + ref_off, whati, expr4)) {
                   matched = (txt_col != ref_col);
                   txt_off = tmp_off;
@@ -494,7 +490,7 @@ void RemoveTrailingPageFooter(string& text)
          }
          // check for text at the default BG color (unless ref. has default too)
          if (!matched && (ref_col != 7)) {
-            static const regex expr5("[\\x21-\\xff]");
+            static const regex expr5("[\\x21-\\x7F\\x80-\\xFF]");
             matched = regex_search(text.begin(), text.begin() + txt_off, whati, expr5);
             //if (matched) print "       DEFAULT TXTCOL:7\n";
          }
@@ -760,23 +756,23 @@ bool DescFormatCastTable(vector<string>& Lines)
       const unsigned spc2 = (tab_max >> 18) & 0x3F;
       const unsigned spc3 = tab_max >> 24;
 
-      regex expr2;
-      if (spc3 == 0x3F) {
-         expr2.assign(string("^") + string(spc0, ' ') +
+      string expr2_str =
+                (spc3 == 0x3F)
+                   ? (string("^") + string(spc0, ' ') +
                       string("([^ ].*?)") + string(spc1, ' ') +
-                      string("(\\.*)") + string(spc2, ' ') + "[^ \\.]$");
-      } else {
-         expr2.assign(string("^(.*?)") + string(spc1, ' ') +
+                      string("(\\.*)") + string(spc2, ' ') + "[^ \\.]$")
+                   : (string("^(.*?)") + string(spc1, ' ') +
                       string("(\\.+)") + string(spc2, ' ') +
                       string("([^ \\.].*?)") + string(spc3, ' ') + "$");
-      }
+      regex expr2(expr2_str);
+
       // Special handling for lines with overlong names on left or right side:
       // only for lines inside of table; accept anything which looks like a separator
       static const regex expr3("^(.*?)\\.\\.+ ?[^ \\.]");
       static const regex expr4("^(.*?[^ ]) \\. [^ \\.]");  // must not match "Mr. X"
 
       if (opt_debug) printf("DESC reformat table into list: %d rows, FMT:%d,%d %d,%d EXPR:%s\n",
-                            Tabs[tab_max], off, spc1, spc2, spc3, expr2.str().c_str());
+                            Tabs[tab_max], off, spc1, spc2, spc3, expr2_str.c_str());
 
       // step #2: find all lines with dots ending at the right column and right amount of spaces
       int first_row = -1;
@@ -786,7 +782,8 @@ bool DescFormatCastTable(vector<string>& Lines)
             //
             // 2nd column is left-aligned
             //
-            if (   (   regex_search(Lines[row].substr(0, off + 1), whats, expr2)
+            const string subs1 = Lines[row].substr(0, off + 1);
+            if (   (   regex_search(subs1, whats, expr2)
                     && ((last_row != -1) || (whats[2].length() > 0)) )
                 || ((last_row != -1) && regex_search(Lines[row], whats, expr3))
                 || ((last_row != -1) && regex_search(Lines[row], whats, expr4)) ) {
@@ -808,7 +805,8 @@ bool DescFormatCastTable(vector<string>& Lines)
             }
             else if (last_row != -1) {
                static const regex expr5("^ +[^ ]$");
-               if (regex_search(Lines[row].substr(0, off + 1), whats, expr5)) {
+               const string subs2 = Lines[row].substr(0, off + 1);
+               if (regex_search(subs2, whats, expr5)) {
                   // right-side table column continues (left side empty)
                   Lines[last_row] = regex_replace(Lines[last_row], regex(",$"), "");
                   string tab2 = regex_replace(Lines[row].substr(off), regex(",? +$"), "");
@@ -1094,7 +1092,7 @@ bool OV_PAGE::parse_slots(int foot_line, const T_OV_LINE_FMT& pgfmt)
          }
          //ov_slot->m_vps_cni = vps_data.m_vps_cni; // currently unused
 
-         //printf("ADD  %02d.%02d.%d %02d:%02d %s\n", ov_slot->m_mday, ov_slot->m_month, ov_slot->m_year, ov_slot->m_hour, ov_slot->m_min, ov_slot->m_ov_title.c_str());
+         //printf("ADD  %02d:%02d %s\n", ov_slot->m_hour, ov_slot->m_min, ov_slot->m_ov_title.c_str());
       }
       else if (ov_slot != 0) {
          // stop appending subtitles before page footer ads
@@ -1118,6 +1116,7 @@ bool OV_PAGE::parse_slots(int foot_line, const T_OV_LINE_FMT& pgfmt)
                ov_slot->m_vps_date = vps_data.m_vps_date;
                vps_data.m_new_vps_date = false;
             }
+            //printf("CNT        %s\n", ov_slot->m_ov_title.c_str());
          }
          else {
             ov_slot = 0;

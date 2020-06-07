@@ -1,3 +1,12 @@
+libxmltv-ttx (2.1) unstable; urgency=medium
+
+  * Replaced use of boost_regex library with C++11 std::regex
+  * Changed default from analog to digital TV capture device
+  * Added command line option "-pgstat" for monitoring capture progress
+  * Minor parser enhancements
+
+ -- T. Zoerner <tomzo@users.sourceforge.net>  Sun, 07 Jun 2020 18:03:37 +0200
+
 libxmltv-ttx (2.0) unstable; urgency=medium
 
   * Complete re-implemenation in C++
@@ -16,7 +25,7 @@ libxmltv-ttx (2.0) unstable; urgency=medium
   * Implementation switched from Perl to C++ (code design improvement)
   * Improved merge to avoid losing descriptions or feature flags
 
- -- Tom Zoerner <tomzo@users.sourceforge.net>  Sun, 09 Jan 2011 19:38:01 +0100
+ -- T. Zoerner <tomzo@users.sourceforge.net>  Sun, 09 Jan 2011 19:38:01 +0100
 
 libxmltv-ttx (1.1) unstable; urgency=low
 
@@ -27,7 +36,7 @@ libxmltv-ttx (1.1) unstable; urgency=low
 
   * Grabber parses and reformats "cast" tables on description tables
 
- -- Tom Zoerner <tomzo@users.sourceforge.net>  Sun, 05 Oct 2008 21:35:00 +0200
+ -- T. Zoerner <tomzo@users.sourceforge.net>  Sun, 05 Oct 2008 21:35:00 +0200
 
 libxmltv-ttx (1.0) unstable; urgency=low
 
@@ -36,4 +45,4 @@ libxmltv-ttx (1.0) unstable; urgency=low
   * Improved channel display name parsing;
     fall back to using channel name on failure instead of "???"
 
- -- Tom Zoerner <tomzo@users.sourceforge.net>  Sat, 08 Mar 2008 00:00:00 +0200
+ -- T. Zoerner <tomzo@users.sourceforge.net>  Sat, 08 Mar 2008 00:00:00 +0200

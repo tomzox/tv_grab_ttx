@@ -16,9 +16,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
- *
- * $Id: ttx_main.cc,v 1.4 2011/01/09 19:42:08 tom Exp $
+ * Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
  */
 
 #include <stdio.h>
@@ -30,24 +28,22 @@
 
 #include <sstream>
 #include <string>
-
-#include <boost/regex.hpp>
+#include <regex>
 
 using namespace std;
-using namespace boost;
 
 #include "ttx_db.h"
 #include "ttx_acq.h"
 #include "ttx_xmltv.h"
 #include "ttx_scrape.h"
 
-const char version[] = "Teletext EPG grabber, v2.0";
-const char copyright[] = "Copyright 2006-2011 Tom Zoerner";
-const char home_url[] = "http://nxtvepg.sourceforge.net/tv_grab_ttx";
+const char version[] = "Teletext EPG grabber, v2.1";
+const char copyright[] = "Copyright 2006-2011,2020 T. Zoerner";
+const char home_url[] = "https://github.com/tomzox/tv_grab_ttx";
 
 // command line options for capturing from device
 int opt_duration = 0;
-const char * opt_device = "/dev/vbi0";
+const char * opt_device = "/dev/dvb/adapter0/demux0";
 int opt_dvbpid = -1;
 int opt_verbose = 0;
 int opt_debug = 0;

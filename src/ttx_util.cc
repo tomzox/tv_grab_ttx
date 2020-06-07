@@ -14,9 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
- *
- * $Id: ttx_util.cc,v 1.7 2011/01/06 11:11:07 tom Exp $
+ * Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
  */
 
 #include <stdio.h>
@@ -24,12 +22,9 @@
 
 #include <string>
 #include <algorithm>
-
-#include "boost/regex.h"
-#include "boost/regex.hpp"
+#include <regex>
 
 using namespace std;
-using namespace boost;
 
 #include "ttx_util.h"
 

@@ -14,9 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
- *
- * $Id: ttx_cif.cc,v 1.3 2011/01/06 16:57:11 tom Exp $
+ * Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
  */
 
 #include <stdio.h>
@@ -29,12 +27,9 @@
 #include <string>
 #include <map>
 #include <vector>
-
-#include <boost/regex.h>
-#include <boost/regex.hpp>
+#include <regex.h>
 
 using namespace std;
-using namespace boost;
 
 #include "epgctl/epgversion.h"
 

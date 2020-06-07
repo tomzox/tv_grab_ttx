@@ -14,9 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
- *
- * $Id: ttx_util.h,v 1.6 2011/01/07 12:27:41 tom Exp $
+ * Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
  */
 #if !defined (__TTX_UTIL_H)
 #define __TTX_UTIL_H
@@ -192,6 +190,32 @@ bool isalnum_latin1(char chr)
    else
      return false;
 }
+
+inline
+bool is_regex_special(char chr)
+{
+   switch (chr)
+   {
+      case '\\':
+      case '.':
+      case '*':
+      case '+':
+      case '?':
+      case '(':
+      case ')':
+      case '[':
+      case ']':
+      case '{':
+      case '}':
+      case '^':
+      case '$':
+      case '|':
+         return true;
+      default:
+         return false;
+   }
+}
+
 
 void str_tolower_latin1(string& str, unsigned pos);
 bool str_all_upper(string& str);

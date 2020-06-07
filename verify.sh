@@ -24,9 +24,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
-#
-# $Id: verify.sh,v 1.9 2011/01/05 13:06:00 tom Exp tom $
+#  Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
 #
 
 DIR=parsertest

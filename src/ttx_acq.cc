@@ -14,9 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
- *
- * $Id: ttx_acq.cc,v 1.5 2011/01/12 19:22:56 tom Exp $
+ * Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
  */
 
 #include <stdio.h>
@@ -32,16 +30,14 @@
 #include <errno.h>
 
 #include <string>
+#include <deque>
+#include <regex>
 
 #if defined (USE_LIBZVBI)
 #include "libzvbi.h"
 #endif
 
-#include "boost/regex.h"
-#include "boost/regex.hpp"
-
 using namespace std;
-using namespace boost;
 
 #include "ttx_db.h"
 #include "ttx_util.h"
@@ -525,6 +521,10 @@ void ReadVbi(const char * p_infile, const char * p_dumpfile,
 #ifdef USE_LIBZVBI
       // capture input data from a VBI device
       acq_src = new TTX_ACQ_ZVBI(p_dev_name, dvb_pid);
+
+      if ((dvb_pid <= 0) && (strstr(p_dev_name, "dvb") != NULL)) {
+         fprintf(stderr, "WARNING: DVB devices require -dvbpid parameter\n");
+      }
 
       if (p_dumpfile != 0) {
          close(1);

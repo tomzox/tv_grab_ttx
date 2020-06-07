@@ -16,9 +16,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
-#
-# $Id: Makefile,v 1.2 2011/01/09 18:41:34 tom Exp $
+# Copyright 2006-2011, 2020 by T. Zoerner (tomzo at users.sf.net)
 #
 
 all: build_dir tv_grab_ttx tv_grab_ttx.1
@@ -36,12 +34,25 @@ SRC_DIR = src
 BUILD_DIR = obj
 OBJS = $(addprefix $(BUILD_DIR)/,$(addsuffix .o,$(MODS)))
 
-LIBS = -lzvbi -lboost_regex
+LIBS = -lzvbi
 
 #CFLAGS += -ftest-coverage -fprofile-arcs
 #LDFLAGS += -ftest-coverage -fprofile-arcs
 #CFLAGS += -pg -O1
 #LDFLAGS += -pg
+
+ROOT    =
+prefix  = /usr/local
+exec_prefix = ${prefix}
+bindir  = $(ROOT)${exec_prefix}/bin
+mandir  = $(ROOT)${prefix}/man/man1
+
+.PHONY: install
+install: all
+	test -d $(bindir) || install -d $(bindir)
+	test -d $(mandir) || install -d $(mandir)
+	install -c -m 0755 tv_grab_ttx $(bindir)
+	install -c -m 0644 tv_grab_ttx.1 $(mandir)
 
 .PHONY: build_dir
 build_dir:
@@ -56,13 +67,14 @@ tv_grab_ttx: $(OBJS)
 
 tv_grab_ttx.1: tv_grab_ttx.pod
 	pod2man -date " " -center "Teletext EPG grabber" -section "1" \
-	        -release "tv_grab_ttx (C) 2006-2011 Th. Zoerner" \
+	        -release "tv_grab_ttx (C) 2006-2011,2020 T. Zoerner" \
 	        tv_grab_ttx.pod > tv_grab_ttx.1; \
 
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
 	rm -f tv_grab_ttx tv_grab_ttx.1 *.o core core.* vgcore.*
+	rm -rf deb
 
 # include automatically generated dependency list
 -include $(BUILD_DIR)/*.d

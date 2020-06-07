@@ -1,10 +1,10 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 #
 # Script to automatically generate Debian binary package
 #
 use strict;
 
-my $version = "2.0";
+my $version = "2.1";
 my $name = "libxmltv-ttx";
 my $arch = "amd64";
 
@@ -21,24 +21,24 @@ mkdir "deb/usr/bin";
 open(CTRL, ">deb/DEBIAN/control") || die;
 print CTRL <<EoF;
 Package: $name
-Priority: extra
+Priority: optional
 Section: utils
-Maintainer: Tom Zoerner <tomzo\@users.sourceforge.net>
+Maintainer: T. Zoerner <tomzo\@users.sourceforge.net>
+Homepage: https://github.com/tomzox/tv_grab_ttx
 Architecture: $arch
 Version: $version
-Depends: libzvbi0, libboost-regex, libstdc++6, libc6
-Recommends: xawtv, xmltv-util
+Depends: libzvbi0, libstdc++6, libc6
+Recommends: dvb-tools
 Description: Grab TV listings from teletext via a TV card
- This EPG grabber allows to extract TV programme listings in XMLTV
+ This EPG grabber allows extracting TV programme listings in XMLTV
  format from teletext pages as broadcast by most European TV networks.
- Note the current parser only supports German networks.
- Homepage: http://nxtvepg.sourceforge.net/tv_grab_ttx
+ Note the current parser only supports German and few French networks.
 EoF
 close(CTRL);
 
 open(CTRL, ">deb/usr/share/doc/$name/copyright") || die;
 print CTRL <<EoF;
-Copyright (C) 2006-2011 Tom Zoerner. All rights reserved.
+Copyright (C) 2006-2011,2020 T. Zoerner. All rights reserved.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -58,22 +58,19 @@ EoF
 close CTRL;
 
 # copy doc files
-system "cp", "README", "deb/usr/share/doc/$name/README";
-system "cp", "changelog", "deb/usr/share/doc/$name/changelog";
-system "gzip", "-9f", "deb/usr/share/doc/$name/changelog";
+system "cp", "README.md", "deb/usr/share/doc/$name/README.md";
+system "gzip -n -9 -c changelog > deb/usr/share/doc/$name/changelog.gz";
 
-# copy / rename script files to bin dir
-die "executable missing - forgot to make?" unless -e "tv_grab_ttx";
-system qw(strip tv_grab_ttx);
+# copy executable to bin dir
+die "executable missing - forgot to run 'make'?" unless -e "tv_grab_ttx";
 system qw(cp tv_grab_ttx deb/usr/bin/tv_grab_ttx);
+system qw(strip deb/usr/bin/tv_grab_ttx);
 
-# tv_grab_ttx manual page
-system "pod2man -section 1 -center \"Teletext EPG grabber\" -release v$version ".
-       "tv_grab_ttx.pod > deb/usr/share/man/man1/tv_grab_ttx.1";
-system qw(gzip -9f deb/usr/share/man/man1/tv_grab_ttx.1);
+# copy & compress manual page
+die "manual page missing - 'make' not run through?" unless -e "tv_grab_ttx.1";
+system "gzip -n -9 -c tv_grab_ttx.1 > deb/usr/share/man/man1/tv_grab_ttx.1.gz";
 
 # build package
 system "cd deb; find usr -type f | xargs md5sum > DEBIAN/md5sums";
 system "fakeroot dpkg-deb --build deb ${name}_${version}_${arch}.deb";
 system "lintian ${name}_${version}_${arch}.deb";
-

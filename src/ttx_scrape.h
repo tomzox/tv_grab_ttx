@@ -14,9 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
- *
- * $Id: ttx_scrape.h,v 1.3 2011/01/07 18:37:22 tom Exp $
+ * Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
  */
 #if !defined (__TTX_SCRAPE_H)
 #define __TTX_SCRAPE_H
@@ -25,6 +23,8 @@
 #include "ttx_pg_ref.h"
 #include "ttx_ov_fmt.h"
 #include "ttx_date.h"
+
+#include <list>
 
 class T_VPS_TIME
 {
@@ -54,7 +54,7 @@ public:
    void calculate_start_times();
    void extract_ttx_ref(const T_TRAIL_REF_FMT& fmt, map<int,int>& ttx_ref_map);
    void extract_tv(map<int,int>& ttx_ref_map);
-   static list<TV_SLOT> get_ov_slots(vector<OV_PAGE*> ov_pages);
+   static std::list<TV_SLOT> get_ov_slots(vector<OV_PAGE*> ov_pages);
    static T_TRAIL_REF_FMT detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages);
 private:
    friend class TV_SLOT;
@@ -136,6 +136,6 @@ private:
 };
 
 vector<OV_PAGE*> ParseAllOvPages(int ov_start, int ov_end);
-void FilterExpiredSlots(list<TV_SLOT>& Slots, int expire_min);
+void FilterExpiredSlots(std::list<TV_SLOT>& Slots, int expire_min);
 
 #endif // __TTX_SCRAPE_H

@@ -14,21 +14,17 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright 2006-2011 by Tom Zoerner (tomzo at users.sf.net)
- *
- * $Id: ttx_feat.cc,v 1.5 2011/01/06 16:59:34 tom Exp $
+ * Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
  */
 
 #include <stdio.h>
 #include <string.h>
+#include <assert.h>
 
 #include <string>
-
-#include <boost/regex.h>
-#include <boost/regex.hpp>
+#include <regex>
 
 using namespace std;
-using namespace boost;
 
 #include "ttx_util.h"
 #include "ttx_feat.h"
@@ -112,7 +108,7 @@ void TV_FEAT::MapTrailingFeat(const char * feat, int len, const string& title)
    if (opt_debug) printf("FEAT dropping \"%s\" on TITLE %s\n", feat, title.c_str());
 }
 
-// note: must correct $n below if () are added to pattern
+// note: must correct whats[] indices below if "()" are added to pattern
 #define FEAT_PAT_STR "UT(( auf | )?[1-8][0-9][0-9])?|" \
                      "[Uu]ntertitel|[Hh]örfilm(°°)?|HF|AD|" \
                      "s/?w|S/?W|tlw. s/w|oo|°°|°\\*|OmU|" \
