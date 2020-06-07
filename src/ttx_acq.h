@@ -21,6 +21,6 @@
 
 void ReadVbi(const char * p_infile, const char * p_dumpfile,
              const char * p_dev_name, int dvb_pid,
-             bool do_verbose, bool do_dump, int cap_duration);
+             int do_verbose, bool do_dump, int cap_duration);
 
 #endif // __TTX_ACQ_H

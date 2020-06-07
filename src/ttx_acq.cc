@@ -400,21 +400,28 @@ bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts)
 }
 #endif /* USE_LIBZVBI */
 
+/* ------------------------------------------------------------------------------
+ * This class keeps track of the state of the teletext stream and assigns
+ * incoming packets to pages in the database.
+ */
 class TTX_ACQ
 {
 public:
-   TTX_ACQ();
+   TTX_ACQ(bool pgstat);
    ~TTX_ACQ();
    void add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts);
+   void add_page_stats(int page, time_t ts);
 private:
    int m_cur_page[8];
    int m_cur_sub[8];
    int m_prev_pkg[8];
    int m_prev_mag;
    bool m_is_mag_serial;
+   deque<int> m_pg_queue;
+   bool m_pgstat;
 };
 
-TTX_ACQ::TTX_ACQ()
+TTX_ACQ::TTX_ACQ(bool pgstat)
 {
    for (int idx = 0; idx < 8; idx++) {
       m_cur_page[idx] = -1;
@@ -424,10 +431,35 @@ TTX_ACQ::TTX_ACQ()
 
    m_prev_mag = 0;
    m_is_mag_serial = false;
+   m_pgstat = pgstat;
 }
 
 TTX_ACQ::~TTX_ACQ()
 {
+}
+
+void TTX_ACQ::add_page_stats(int page, time_t ts)
+{
+   m_pg_queue.push_back(page);
+
+   if (m_pg_queue.size() > 25) {
+      m_pg_queue.erase(m_pg_queue.begin(),
+                       m_pg_queue.begin() + m_pg_queue.size() - 25 - 1);
+   }
+   int mag[8] = {0};
+   int sum = 0;
+   int sum3 = 0;
+   for (unsigned idx = 0; idx < m_pg_queue.size(); idx++) {
+      mag[(m_pg_queue[idx] >>8)&7] ++;
+      if ((m_pg_queue[idx] >= 0x300) && (m_pg_queue[idx] <= 0x399))
+      {
+         sum3++;
+      }
+      sum++;
+   }
+   fprintf(stderr, "pgstat: %03X all:%2d range:%2d -- %3d,%3d,%3d,%3d,%3d,%3d,%3d,%3d,\n",
+          page, sum, sum3,
+          mag[0], mag[1], mag[2], mag[3], mag[4], mag[5], mag[6], mag[7]);
 }
 
 void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
@@ -475,6 +507,9 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
       else {
          ttx_db.add_page_data(page, sub, 0, p_data);
       }
+      if (m_pgstat) {
+         add_page_stats(p_pkg_buf->m_page_no, ts);
+      }
 
       m_cur_page[mag] = page;
       m_cur_sub[mag] = sub;
@@ -505,11 +540,11 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
  */
 void ReadVbi(const char * p_infile, const char * p_dumpfile,
              const char * p_dev_name, int dvb_pid,
-             bool do_verbose, bool do_dump, int cap_duration)
+             int do_verbose, bool do_dump, int cap_duration)
 {
    TTX_ACQ_SRC * acq_src = 0;
    TTX_ACQ_PKG pkg_buf;
-   TTX_ACQ acq;
+   TTX_ACQ acq(do_verbose > 1);
    int last_pg = -1;
    int intv = 0;
 
@@ -549,7 +584,7 @@ void ReadVbi(const char * p_infile, const char * p_dumpfile,
          pkg_buf.dump_raw_pkg(1);
       }
 
-      if (do_verbose && (pkg_buf.m_pkg == 0)) {
+      if ((do_verbose == 1) && (pkg_buf.m_pkg == 0)) {
          int page = pkg_buf.m_page_no;
          if (page < 0x100)
             page += 0x800;

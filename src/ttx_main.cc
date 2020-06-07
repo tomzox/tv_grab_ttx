@@ -80,6 +80,7 @@ void ParseArgv(int argc, char *argv[])
                "  -dumptext\t\t: Dump teletext pages as clear text; no grabbing\n"
                "  -dumpraw <NNN>-<MMM>\t: Dump teletext packets in given range; no grabbing\n"
                "  -verbose\t\t: Print teletext page numbers during capturing\n"
+               "  -pgstat\t\t: Print teletext page statistics during capturing\n"
                "  -verify\t\t: Enable grabber verification mode\n"
                "  -debug\t\t: Emit debug messages during grabbing and device access\n"
                "  -version\t\t: Print version number only, then exit\n"
@@ -279,6 +280,11 @@ void ParseArgv(int argc, char *argv[])
       // -verbose: print page numbers during capturing, progress info during grabbing
       else if (strcmp(argv[idx], "-verbose") == 0) {
          opt_verbose = 1;
+         idx += 1;
+      }
+      // -pgstat: print page statistics during capturing
+      else if (strcmp(argv[idx], "-pgstat") == 0) {
+         opt_verbose = 2;
          idx += 1;
       }
       else if (   (strcmp(argv[idx], "-version") == 0)

@@ -181,9 +181,17 @@ data. As such the option is not of interest for the general user.
 
 =item B<-verbose>
 
-This option can be used to enable output of the number of each
-teletext page when capturing from a VBI device. This allows monitoring
-the capture progress.
+This option can be used for enabling output of the number of each received
+page while capturing teletext. This allows monitoring capture progress.
+Output is written to the I<stderr> stream, so it will not corrupt XMLTV
+output when redirecting I<stdout> into a file.
+
+=item B<-pgstat>
+
+This option can be used for enabling output of page reception statistics
+while capturing teletext. This allows monitoring capture progress. Output
+is written to the I<stderr> stream, so it will not corrupt XMLTV output
+when redirecting I<stdout> into a file.
 
 =item B<-debug>
 
@@ -192,8 +200,10 @@ to standard output. You can use this to get additional diagnostic
 messages in case of trouble with the capture device. (Note most of
 these messages originate directly from the "ZVBI" library I<libzvbi>.)
 
-Additionally this option enables messages during parsing teletext
-pages; these are probably only helpful for developers.
+Additionally this option enables messages during parsing teletext pages;
+these are probably only helpful for developers.  Note many of these
+messages go to I<stdout> and thus will corrupt the generated XMLTV output
+when using redirection into a file.
 
 =item B<-version>
 
