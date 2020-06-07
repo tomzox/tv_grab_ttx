@@ -677,6 +677,34 @@ int CorrelateDescTitles(int page, int sub1, int sub2, int head)
 }
 
 /* ------------------------------------------------------------------------------
+ * Search page index markers in description pages and return the sub-page count
+ * - see next function for details
+ */
+int MatchSubPageCnt(int page, int sub)
+{
+   const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
+   smatch whats;
+   int result = -1;
+
+   for (int row = 1; row <= 6; row++) {
+      string ctrl = pgctrl->get_ctrl(row);
+      static const regex expr1("[ \\x00-\\x07\\x1D](\\d+)/(\\d+)[ \\x00-\\x07\\x1D]{0,2}$");
+      if (regex_search(ctrl, whats, expr1)) {
+         int sub_idx = atoi_substr(whats[1]);
+         int sub_cnt = atoi_substr(whats[2]);
+         if ((sub == 0)
+               ? ((sub_idx == 1) && (sub_cnt == 1))
+               : ((sub_idx == sub) && (sub_cnt > 1)) )
+         {
+            result = sub_cnt;
+            break;
+         }
+      }
+   }
+   return result;
+}
+
+/* ------------------------------------------------------------------------------
  * Replace page index markers in description pages with space; the marker
  * is expected at the end of one of the top lines of the page only
  * (e.g. "...     2/2 "). Note currently not handled: providers
@@ -1448,7 +1476,61 @@ void OV_PAGE::extract_tv(map<int,int>& ttx_ref_map)
 }
 
 /* ------------------------------------------------------------------------------
- * Retrieve programme data from an overview page
+ * This function returns a list of likely missing teletext pages for the slots
+ * on the overview page. Additionally the function includes missing overview
+ * pages, if there is a gap in time coverage between the previous and current
+ * overview page.
+ */
+void OV_PAGE::check_continuity(vector<TTX_PG_HANDLE>& pg_list, OV_PAGE * prev)
+{
+   if (prev != 0) {
+      assert(m_slots.size() > 0);
+      assert(prev->m_slots.size() > 0);
+      if (prev->m_slots.back()->m_stop_t < m_slots.front()->m_start_t) {
+         // TODO
+      }
+   }
+   for (unsigned idx = 0; idx < m_slots.size(); idx++) {
+      OV_SLOT * slot = m_slots[idx];
+
+      if (slot->m_ttx_ref != -1) {
+         int page = slot->m_ttx_ref;
+         int last_sub = ttx_db.get_sub_page_cnt(page);
+         if (last_sub < 0) {
+            TTX_DB::const_iterator p = ttx_db.first_sub_page(page);
+            if (p != ttx_db.end()) {
+               last_sub = MatchSubPageCnt(page, p->first.sub());
+               if (last_sub == 1)
+                  last_sub = 0;
+            }
+            else {
+               if (opt_debug) printf("MISSING DESC %03X (for OV %03X.%d)\n", page, m_page, m_sub);
+               pg_list.push_back(TTX_PG_HANDLE(page, 0));
+            }
+         }
+         if (last_sub == 0) {
+            // pages labelled "1/1" may still have sub-pages, hence search for any, not sub-page #0
+            TTX_DB::const_iterator p = ttx_db.first_sub_page(page);
+            if (p == ttx_db.end()) {
+               if (opt_debug) printf("MISSING DESC %03X.0 (for OV %03X.%d)\n", page, m_page, m_sub);
+               pg_list.push_back(TTX_PG_HANDLE(page, 0));
+           }
+         }
+         else if (last_sub > 0) {
+            for (int sub = 1; sub <= last_sub; sub++) {
+               if (!ttx_db.sub_page_exists(page, sub)) {
+                  if (opt_debug) printf("MISSING DESC %03X.%d of %d (for OV %03X.%d)\n",
+                                        page, sub, last_sub, m_page, m_sub);
+                  pg_list.push_back(TTX_PG_HANDLE(page, sub));
+              }
+            }
+         }
+      }
+   }
+}
+
+/* ------------------------------------------------------------------------------
+ * Retrieve programme schedule from all overview pages
  * - 1: compare several overview pages to identify the layout
  * - 2: parse all overview pages, retrieving titles and ttx references
  *   + a: retrieve programme list (i.e. start times and titles)
@@ -1502,30 +1584,55 @@ vector<OV_PAGE*> ParseAllOvPages(int ov_start, int ov_end)
             ov_pages.erase(ov_pages.begin() + idx);
          }
       }
-
-      // guess missing stop times for the current page
-      // (requires start times for the next page)
-      for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
-         OV_PAGE * next = (idx + 1 < ov_pages.size()) ? ov_pages[idx + 1] : 0;
-         ov_pages[idx]->calc_stop_times(next);
-      }
-
-      // retrieve TTX page references
-      T_TRAIL_REF_FMT ttx_ref_fmt = OV_PAGE::detect_ov_ttx_ref_fmt(ov_pages);
-      map<int,int> ttx_ref_map;
-      for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
-         ov_pages[idx]->extract_ttx_ref(ttx_ref_fmt, ttx_ref_map);
-      }
-
-      // retrieve descriptions from referenced teletext pages
-      for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
-         ov_pages[idx]->extract_tv(ttx_ref_map);
-      }
    }
-
    return ov_pages;
 }
 
+/* ------------------------------------------------------------------------------
+ * Function to be called on the page list returned by ParseAllOvPages() for
+ * scraping from referenced description pages.
+ */
+void ParseAllContent(vector<OV_PAGE*>& ov_pages)
+{
+   // guess missing stop times for the current page
+   // (requires start times for the next page)
+   for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
+      OV_PAGE * next = (idx + 1 < ov_pages.size()) ? ov_pages[idx + 1] : 0;
+      ov_pages[idx]->calc_stop_times(next);
+   }
+
+   // retrieve TTX page references
+   T_TRAIL_REF_FMT ttx_ref_fmt = OV_PAGE::detect_ov_ttx_ref_fmt(ov_pages);
+   map<int,int> ttx_ref_map;
+   for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
+      ov_pages[idx]->extract_ttx_ref(ttx_ref_fmt, ttx_ref_map);
+   }
+
+   // retrieve descriptions from referenced teletext pages
+   for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
+      ov_pages[idx]->extract_tv(ttx_ref_map);
+   }
+}
+
+/* ------------------------------------------------------------------------------
+ * This function returns a list of missing overview and description pages
+ */
+vector<TTX_PG_HANDLE> CheckMissingPages(vector<OV_PAGE*>& ov_pages)
+{
+   vector<TTX_PG_HANDLE> pg_list;
+
+   for (unsigned idx = 0; idx < ov_pages.size(); idx++) {
+      OV_PAGE * prev = (idx > 0) ? ov_pages[idx - 1] : 0;
+      ov_pages[idx]->check_continuity(pg_list, prev);
+   }
+   return pg_list;
+}
+
+/* ------------------------------------------------------------------------------
+ * Returns a combined list containing slots on all of the given overview pages.
+ * The result list actually consists of wrapper classes referring to slots on
+ * the given pages.
+ */
 list<TV_SLOT> OV_PAGE::get_ov_slots(vector<OV_PAGE*> ov_pages)
 {
    list<TV_SLOT> tv_slots;
@@ -1568,5 +1675,3 @@ void FilterExpiredSlots(list<TV_SLOT>& Slots, int expire_min)
       }
    }
 }
-
-

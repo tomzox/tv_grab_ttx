@@ -427,6 +427,11 @@ int TTX_DB::last_sub_page_no(unsigned page) const
    return last_sub;
 }
 
+int TTX_DB::get_sub_page_cnt(unsigned page) const
+{
+  return m_btt.get_last_sub(page);
+}
+
 // Decides if the page is acceptable for addition to the database.
 bool TTX_DB::page_acceptable(unsigned page) const
 {

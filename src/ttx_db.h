@@ -121,6 +121,7 @@ public:
    const_iterator first_sub_page(unsigned page) const;
    const_iterator& next_sub_page(unsigned page, const_iterator& p) const;
    int last_sub_page_no(unsigned page) const;
+   int get_sub_page_cnt(unsigned page) const;
 
    TTX_DB_PAGE* add_page(unsigned page, unsigned sub, unsigned ctrl, const uint8_t * p_data, time_t ts);
    void add_page_data(unsigned page, unsigned sub, unsigned idx, const uint8_t * p_data);

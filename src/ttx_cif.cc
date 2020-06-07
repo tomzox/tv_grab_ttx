@@ -99,6 +99,8 @@ int ttx_db_parse( int pg_start, int pg_end, int expire_min,
    // grab new XML data from teletext
    vector<OV_PAGE*> ov_pages = ParseAllOvPages(pg_start, pg_end);
 
+   ParseAllContent(ov_pages);
+
    // retrieve descriptions from references teletext pages
    list<TV_SLOT> NewSlots = OV_PAGE::get_ov_slots(ov_pages);
 

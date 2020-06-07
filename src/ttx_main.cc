@@ -368,6 +368,8 @@ int main( int argc, char *argv[] )
       // grab new XML data from teletext
       vector<OV_PAGE*> ov_pages = ParseAllOvPages(opt_tv_start, opt_tv_end);
 
+      ParseAllContent(ov_pages);
+
       // retrieve descriptions from references teletext pages
       list<TV_SLOT> NewSlots = OV_PAGE::get_ov_slots(ov_pages);
 
