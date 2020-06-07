@@ -289,3 +289,61 @@ void str_chomp(string& str)
    str.erase(str.begin(), begin);
 }
 
+#if 0 /* unused code */
+/* Return TRUE if all visible characters have the same foreground color,
+ * else FALSE.
+ */
+bool str_is_single_fg_col(string& str)
+{
+   int text_fg = -1;
+   int next_fg = 7;
+
+   for (string::iterator p = str.begin(); p != str.end(); ++p) {
+      unsigned char c = *p;
+      if (c <= 7) {
+         next_fg = (unsigned int) c;
+      }
+      else if ((c > 0x20) && (c < 0x7F)) {
+        if ((text_fg != -1) && (next_fg != text_fg)) {
+          return false;
+        }
+        text_fg = next_fg;
+      }
+   }
+   return true;
+}
+#endif /* unused code */
+
+/* Returns foreground and background color of visible text, if unchanged for
+ * all text within the line (foreground in low-byte, background in 2nd byte).
+ * Returns -1 else.
+ */
+int str_text_fg_bg_col(string& str)
+{
+   int text_bg = -1;
+   int text_fg = -1;
+   int next_fg = 7;
+   int next_bg = 0;
+
+   for (string::iterator p = str.begin(); p != str.end(); ++p) {
+      unsigned char c = *p;
+      if (c <= 7) {
+         next_fg = (unsigned int) c;
+      }
+      else if (c == 0x1D) {
+         next_bg = next_fg;
+      }
+      else if ((c > 0x20) && (c < 0x7F)) {
+        if ((text_fg != -1) && (next_fg != text_fg)) {
+          return -1;
+        }
+        if ((text_bg != -1) && (next_bg != text_bg)) {
+          return -1;
+        }
+        text_fg = next_fg;
+        text_bg = next_bg;
+      }
+   }
+   return text_fg | (text_bg << 8);
+}
+

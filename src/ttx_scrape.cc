@@ -897,12 +897,19 @@ string ParseDescContent(int page, int sub, int head, int foot)
 
    const TTX_DB_PAGE * pgctrl = ttx_db.get_sub_page(page, sub);
    bool is_nl = 0;
+   int fg_bg = -1;
    string desc;
 
    for (int idx = head; idx <= foot; idx++) {
       string ctrl = pgctrl->get_ctrl(idx);
 
       // TODO parse features behind date, title or subtitle
+
+      // add paragraph break upon text color change at line start
+      int fg_bg_cur = str_text_fg_bg_col(ctrl);
+      if ((fg_bg != -1) && (fg_bg != fg_bg_cur) && (fg_bg_cur != -1))
+        Lines.push_back("");
+      fg_bg = fg_bg_cur;
 
       // extract and remove VPS labels and all concealed text
       ParseVpsLabel(ctrl, pgctrl->get_ctrl(idx - 1), vps_data, true);
@@ -915,6 +922,12 @@ string ParseDescContent(int page, int sub, int head, int foot)
       static const regex expr4(" +VPS \\d{4} *$");
       ctrl = regex_replace(ctrl, expr3, "");
       ctrl = regex_replace(ctrl, expr4, "");
+
+      // add a paragraph break upon lines starting with "-" and upper-case
+      static const regex expr5a("^ *- [A-Z0-9]");
+      if (regex_search(ctrl, whats, expr5a)) {
+        Lines.push_back("");
+      }
 
       Lines.push_back(ctrl);
    }

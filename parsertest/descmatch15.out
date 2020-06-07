@@ -29,7 +29,9 @@
 <programme start="20100419201500 +0000" stop="20100419220500 +0000" channel="VOX">
 	<title>Burn Notice</title>
 	<!-- TTX 340 -->
-	<desc>BURN NOTICE Mo 22:15 Uhr 1 + 2/I Kaltgestellt Dem Undercover-Agenten Michael Westen geschieht das Schlimmste, was in seinem Beruf passieren kann: Er wird mit einer so genannten "Burn Notice" belegt - und kalt gestellt. Die CIA friert seine Kontakte und Konten ein, so dass Michael mittellos und ohne Dach über dem Kopf auf sich allein gestellt ist. Doch statt klein beizugeben, macht Michael sich daran, die Gründe und die Verantwortlichen für den Rausschmiss zu finden. (Wh. um 01:20)</desc>
+	<desc>BURN NOTICE Mo 22:15 Uhr
+1 + 2/I Kaltgestellt
+Dem Undercover-Agenten Michael Westen geschieht das Schlimmste, was in seinem Beruf passieren kann: Er wird mit einer so genannten "Burn Notice" belegt - und kalt gestellt. Die CIA friert seine Kontakte und Konten ein, so dass Michael mittellos und ohne Dach über dem Kopf auf sich allein gestellt ist. Doch statt klein beizugeben, macht Michael sich daran, die Gründe und die Verantwortlichen für den Rausschmiss zu finden. (Wh. um 01:20)</desc>
 </programme>
 
 <programme start="20100419220500 +0000" stop="20100419222500 +0000" channel="VOX">
@@ -45,7 +47,9 @@
 <programme start="20100419232500 +0000" channel="VOX">
 	<title>Burn Notice</title>
 	<!-- TTX 343 -->
-	<desc>BURN NOTICE Mo 01:25 Uhr 1 + 2/I Kaltgestellt Dem Undercover-Agenten Michael Westen geschieht das Schlimmste, was in seinem Beruf passieren kann: Er wird mit einer so genannten "Burn Notice" belegt - und kalt gestellt. Die CIA friert seine Kontakte und Konten ein, so dass Michael mittellos und ohne Dach über dem Kopf auf sich allein gestellt ist.
+	<desc>BURN NOTICE Mo 01:25 Uhr
+1 + 2/I Kaltgestellt
+Dem Undercover-Agenten Michael Westen geschieht das Schlimmste, was in seinem Beruf passieren kann: Er wird mit einer so genannten "Burn Notice" belegt - und kalt gestellt. Die CIA friert seine Kontakte und Konten ein, so dass Michael mittellos und ohne Dach über dem Kopf auf sich allein gestellt ist.
 Doch statt klein beizugeben, macht Michael sich daran, die Gründe und die Verantwortlichen für den Rausschmiss zu finden. (Wh. von 22:15)</desc>
 </programme>
 </tv>

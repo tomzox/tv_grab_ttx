@@ -1,0 +1,106 @@
+#!/usr/bin/perl -w
+#
+# Test of conversion of enumeration with "-" at line starts on description
+# page: Paragraph breaks should be added to separate the list items.
+#
+# $Id$
+#
+$VbiCaptureTime = 1304006145;
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1304006146;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x06Bayerntext  \x0728.04. 17:55:33",
+  "\x16ppppp ppppppppppppppppppppppppppppppppp",
+  "\x06\x1D\x04BR\x16\x1C\x1D\x04Bayerisches Fernsehen Do,28.04.",
+  "\x16##### #################################",
+  "                       \x05\x181D111\x18280411\x18A7",
+  "\x0610.05\x06\x06\x06Seehund, Puma & Co             ",
+  "\x05\x181005\x07\x06\x06Zoogeschichten von der         ",
+  "       \x06\x06K}ste .....................\x06335",
+  "\x0710.55\x07\x07\x07Rote Rosen                     ",
+  "\x05\x181055\x07                                 ",
+  "\x0611.45\x06\x06\x06Stationen.Magazin\x03UT\x06......\x06336",
+  "\x05\x181145\x07                                 ",
+  "\x0712.30\x07\x07\x07Planet Wissen                  ",
+  "\x05\x181230\x07\x07\x07Allg{u, Eifel, Bodensee -      ",
+  "         Deutschland regional ......\x07337",
+  "\x0613.30\x06\x06\x06Willi wills wissen von A-Z     ",
+  "\x05\x181330\x07\x06\x06Buchstabe S ...............\x06338",
+  "\x0713.40\x07\x07\x07Aktion Schulstreich!           ",
+  "\x05\x181340\x07\x07\x07\"Ein Land des L{chelns f}r die ",
+  "         Schule\" ...................\x07339",
+  "\x0614.05\x06\x06\x06Das Wirtschaftsmagazin.....\x06379",
+  "\x05\x181405\x07                                 ",
+  "\x05\x18VPS\x07            ab\x0714.29\x07Uhr >>> 304  ",
+  "\x06\x1D\x04                                     ",
+];
+$PgCnt{0x336} = 3;
+$PgSub{0x336} = 0;
+$PgLang{0x336} = 1;
+$PgTime{0x336} = 1304006147;
+$Pkg{0x336|(0x0000<<12)} =
+[
+  "        336\x06Bayerntext  \x0728.04. 17:55:34",
+  "\x16ppppp ppppppppppppppppppppppppppppppppp",
+  "\x06\x1D\x04BR\x16\x1C\x1D\x04Bayerisches Fernsehen Do,28.04.",
+  "\x16##### #################################",
+  "                       \x05\x1828041101D111\x1800",
+  "   11.45-12.30\x05\x18VPS\x181145          \x07     ",
+  "   Stationen.Magazin\x03UT                 ",
+  undef,
+  "\x06Themen u.a.:                           ",
+  "\x06- Rom vor dem Pilgeransturm            ",
+  "\x06- Der Friseur des Papstes              ",
+  "\x06- Das Papstmuseum in Rom               ",
+  "\x06- Alltagsheilige in Rom                ",
+  "\x06- Regensburg in Rom                    ",
+  "\x06- Pralinenmacher mit Herz              ",
+  "\x06- Christchurch - die vergessene        ",
+  "  \x06Katastrophe                          ",
+  "\x06- Markus L}pertz                       ",
+  undef,
+  "                           \x06Mehr >>> 380",
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x379} = 1;
+$PgSub{0x379} = 0;
+$PgLang{0x379} = 1;
+$PgTime{0x379} = 1304006871;
+$Pkg{0x379|(0x0000<<12)} =
+[
+  "        379\x06Bayerntext  \x0728.04. 18:07:38",
+  "\x16ppppp ppppppppppppppppppppppppppppppppp",
+  "\x16\x1D\x04BR\x06\x1C\x1D\x04     \x04            Geld & Leben ",
+  "\x16##### #################################",
+  " FAKE TIME 14.05 28.04.                 ",
+  "\x06Das Wirtschaftsmagazin                 ",
+  undef,
+  "\x06Themen u.a.:                           ",
+  undef,
+  " - Vorsicht Hausverwaltung: Wenn Eigen- ",
+  "   t}mer }ber den Tisch gezogen werden  ",
+  " - Vorsicht Altenbetrug: Die fiesen     ",
+  "   Tricks der \"Versicherungs-Onkel\"     ",
+  " - Vorsicht Goldrausch: Der Schmuck-    ",
+  "   verkauf boomt                        ",
+  " - Vorsicht Preisschock: Warum im Bier- ",
+  "   garten die Preise steigen, und wo in ",
+  "   Bayern die Ma~ noch erschwinglich ist",
+  " - Jobmacher: Wie ein Heilsbronner      ",
+  "   Outdoor-Spezialist vom Trend zum     ",
+  "   Zweirad profitiert                   ",
+  undef,
+  "\x06Moderation: Karin Kekule               ",
+  "\x16\x1Dlle Spiele }bertragen werden.   \x04     ",
+  undef,
+  undef,
+  "\x15  \x18  e \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F ",
+  undef,
+  "\x15\x0B\x08\x08  \x00 \"  ! O  q  s\x7F\x7F_  /  }   V [  t\x00\x00",
+  undef,
+];

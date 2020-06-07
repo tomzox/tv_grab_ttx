@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="Bayern">
+	<display-name>Bayern</display-name>
+</channel>
+
+<programme start="20110428080500 +0000" stop="20110428085500 +0000" pdc-start="20110428100500 +0200" channel="Bayern">
+	<title>Seehund, Puma &amp; Co</title>
+	<sub-title>Seehund, Puma &amp; Co Zoogeschichten von der Küste</sub-title>
+	<desc>(teletext 335)</desc>
+</programme>
+
+<programme start="20110428085500 +0000" stop="20110428094500 +0000" pdc-start="20110428105500 +0200" channel="Bayern">
+	<title>Rote Rosen</title>
+</programme>
+
+<programme start="20110428094500 +0000" stop="20110428103000 +0000" pdc-start="20110428114500 +0200" channel="Bayern">
+	<title>Stationen.Magazin</title>
+	<!-- TTX 336 -->
+	<desc>Stationen.Magazin UT
+Themen u.a.:
+- Rom vor dem Pilgeransturm
+- Der Friseur des Papstes
+- Das Papstmuseum in Rom
+- Alltagsheilige in Rom
+- Regensburg in Rom
+- Pralinenmacher mit Herz
+- Christchurch - die vergessene Katastrophe
+- Markus Lüpertz
+Mehr &gt;&gt;&gt; 380</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20110428103000 +0000" stop="20110428113000 +0000" pdc-start="20110428123000 +0200" channel="Bayern">
+	<title>Planet Wissen</title>
+	<sub-title>Planet Wissen Allgäu, Eifel, Bodensee - Deutschland regional</sub-title>
+	<desc>(teletext 337)</desc>
+</programme>
+
+<programme start="20110428113000 +0000" stop="20110428114000 +0000" pdc-start="20110428133000 +0200" channel="Bayern">
+	<title>Willi wills wissen von A-Z</title>
+	<sub-title>Willi wills wissen von A-Z Buchstabe S</sub-title>
+	<desc>(teletext 338)</desc>
+</programme>
+
+<programme start="20110428114000 +0000" stop="20110428120500 +0000" pdc-start="20110428134000 +0200" channel="Bayern">
+	<title>Aktion Schulstreich!</title>
+	<sub-title>Aktion Schulstreich! "Ein Land des Lächelns für die Schule"</sub-title>
+	<desc>(teletext 339)</desc>
+</programme>
+
+<programme start="20110428120500 +0000" pdc-start="20110428140500 +0200" channel="Bayern">
+	<title>Das Wirtschaftsmagazin</title>
+	<!-- TTX 379 -->
+	<desc>Das Wirtschaftsmagazin
+Themen u.a.:
+- Vorsicht Hausverwaltung: Wenn Eigentümer über den Tisch gezogen werden
+- Vorsicht Altenbetrug: Die fiesen Tricks der "Versicherungs-Onkel"
+- Vorsicht Goldrausch: Der Schmuckverkauf boomt
+- Vorsicht Preisschock: Warum im Biergarten die Preise steigen, und wo in Bayern die Maß noch erschwinglich ist
+- Jobmacher: Wie ein Heilsbronner Outdoor-Spezialist vom Trend zum Zweirad profitiert
+Moderation: Karin Kekule</desc>
+</programme>
+</tv>

@@ -147,6 +147,60 @@ int str_bg_col(const MATCH& match)
    return str_bg_col(match.first, match.second);
 }
 
+#if 0 /* unused code */
+// return the background color of the first visible character
+template<class IT>
+int str_first_bg_col(const IT& first, const IT& second)
+{
+   int fg = 7;
+   int bg = 0;
+
+   for (IT p = first; p != second; p++) {
+      unsigned char c = *p;
+      if ((c > 0x20) && (c < 0x7F)) {
+        break;
+      } else if (c <= 7) {
+         fg = (unsigned int) c;
+      }
+      else if ((c >= 0x10) && (c <= 0x17)) {
+         fg = (unsigned int) c - 0x10;
+      }
+      else if (c == 0x1D) {
+         bg = fg;
+      }
+   }
+   return bg;
+}
+
+template<class MATCH>
+int str_first_bg_col(const MATCH& match)
+{
+   return str_first_bg_col(match.first, match.second);
+}
+
+// return the foreground color of the first visible character
+template<class IT>
+int str_first_fg_col(const IT& first, const IT& second)
+{
+   int fg = 7;
+
+   for (IT p = first; p != second; p++) {
+      unsigned char c = *p;
+      if ((c > 0x20) && (c <= 0x7F)) {
+        break;
+      } else if (c <= 7) {
+         fg = (unsigned int) c;
+      }
+   }
+   return fg;
+}
+
+template<class MATCH>
+int str_first_fg_col(const MATCH& match)
+{
+   return str_first_fg_col(match.first, match.second);
+}
+#endif /* unused code */
 
 inline
 bool isupper_latin1(char chr)
@@ -228,6 +282,8 @@ bool str_is_right_word_boundary(const string& str, unsigned pos);
 string::size_type str_find_word(const string& str, const string& word);
 unsigned str_get_indent(const string& str);
 void str_chomp(string& str);
+bool str_is_single_fg_col(string& str);
+int str_text_fg_bg_col(string& str);
 
 #if defined (USE_TTX_GRABBER) // nxtvepg
 #define opt_debug false
