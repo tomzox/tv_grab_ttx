@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # The table starts in the first line following the title header. Also page
 # 351.2 contains a separate line with a dot inside of the right-side text,

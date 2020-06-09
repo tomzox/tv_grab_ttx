@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Page 333 should be discarded as it carries no date and adjacent pages
 # have a different date.
@@ -260,4 +260,3 @@ $Pkg{0x351|(0x0004<<12)} =
 ];
 $PkgCni{0xDC1} = 4501;
 $PkgCni{0x4901} = 180;
-1;

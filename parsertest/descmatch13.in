@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # - Title in overview list concatenates sub-title via ":" while description
 #   page 380 contains them in separate lines without separator.

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Title line ends in ':', ',' or '&': Concatenate the second line,
 # if one exists
@@ -37,4 +37,3 @@ $Pkg{0x364|(0x0001<<12)} =
   undef,
   "\x04\x1D\x06 Die Woche 360  \x06 \x1C       \x06weiter >> ",
 ];
-1;

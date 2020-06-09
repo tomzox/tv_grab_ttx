@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Typical example of a description consisting of two subpages with a
 # 2nd page containing a cast table. Additionally, the description page

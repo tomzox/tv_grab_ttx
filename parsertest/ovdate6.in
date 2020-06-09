@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test parsing the various date header formats
 #
@@ -699,4 +699,3 @@ $Pkg{0x323|(0x0000<<12)} =
   undef,
   undef,
 ];
-1;

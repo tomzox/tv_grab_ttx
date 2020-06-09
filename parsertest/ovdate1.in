@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # This test checks if a wrong date in the header is handled correctly:
 # The header date stays unchanged on a new page which has programmes

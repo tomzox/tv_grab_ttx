@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Check that line-break in hyphenaated "au-ßerirdischen" is removed even with
 # Umlaut as first letter after the break.

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Repetition of test #05: Description page has multiple subpages all
 # belonging to the same title. Title and date are repeated; the text

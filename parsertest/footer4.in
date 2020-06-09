@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test footer detection in overview pages which use different
 # background colors for different titles. The last title must

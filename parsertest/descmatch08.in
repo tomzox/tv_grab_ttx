@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test description page date match: date is at bottom of page and has
 # a different background color. Test that it's not chopped off (to

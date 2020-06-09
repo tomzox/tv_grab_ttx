@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test for reformatting cast tables on description pages, especially:
 # - no dots between some table columns (314, 319)
@@ -402,4 +402,3 @@ $Pkg{0x319|(0x0002<<12)} =
   undef,
   "\x04\x1D\x07300 <-                           ->  ",
 ];
-1;

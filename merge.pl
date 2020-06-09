@@ -16,7 +16,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2008,2011 by T. Zoerner (tomzo at users.sf.net)
+#  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
+#
+#  $Id: merge.pl,v 1.3 2008/03/08 17:18:38 tom Exp tom $
 #
 
 use strict;
@@ -123,6 +125,10 @@ sub ParseTimestamp {
 sub ParseArgv {
    my $usage = "Usage: $0 [-expire <days>] <file> ...\n";
 
+   if ($#ARGV < 0) {
+      die "$0: no input files given\n";
+   }
+
    while ($ARGV[0] =~ /^-/) {
       $_ = shift @ARGV;
 
@@ -132,8 +138,10 @@ sub ParseArgv {
          $opt_expire = shift @ARGV;
          die "$_ requires a numerical argument\n$usage" unless $opt_expire =~ /^\d+$/;
 
+      } elsif (/^-h(elp)?$/) {
+         die $usage;
       } else {
-         die "$_: unknown argument\n";
+         die "$_: unknown argument\n$usage";
       }
    }
 }

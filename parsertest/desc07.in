@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # One description page has multiple sub-pages with different episodes
 # of the same series.  Also each description page has two air times.

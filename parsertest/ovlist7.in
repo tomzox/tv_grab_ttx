@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test of the new "HD" feature flag on ARD introduced apx. March/2010
 # both in overview pages and descriptions.
@@ -248,4 +248,3 @@ $Pkg{0x391|(0x0002<<12)} =
   "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
   "\x06300\x07<<           2/2    H.Schmidt >\x06393",
 ];
-1;

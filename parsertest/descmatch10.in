@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test #2 of match on description page (351, ref'ed by 304) with wrong dates,
 # i.e. date of the previous day.  Note the same date offset is present in the

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Time & Date is at the bootom of both description sub-pages. One instance
 # should be discarded. ??????? Dangerous: may also be coincidence (two

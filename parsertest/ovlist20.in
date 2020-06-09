@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Last line of page contains reference to next page at the same position
 # as references to description pages in overview lists.  Check that the

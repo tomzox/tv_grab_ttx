@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Ads within the overview list must be ignored.
 #
@@ -35,4 +35,3 @@ $Pkg{0x303|(0x0001<<12)} =
   "\x04\x1D\x07\x0DDSL+200EUR / Handy schufafrei..162  ",
   "\x01\x1D\x07                                     ",
 ];
-1;

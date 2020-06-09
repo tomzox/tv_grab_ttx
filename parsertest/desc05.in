@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Description page has 5 subpages all belonging to the same title
 # (all subpages carry the same date and time)  All description pages

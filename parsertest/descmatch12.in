@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Title on description page uses ": " instead of " - " as separator
 # in title text (at 12:35 on page 302 vs. page 352)

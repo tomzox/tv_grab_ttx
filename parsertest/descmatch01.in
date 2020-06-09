@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test date format parsing on description page: BR-alpha
 # - single-digit date format

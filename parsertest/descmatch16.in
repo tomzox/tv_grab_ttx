@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Title on decription page cannot be identified as the upper-case version
 # replaces Umlaut "ß" with "SS"

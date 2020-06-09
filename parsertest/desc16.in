@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test parsing description titles: The identical lines on the 2nd sub-page of
 # 318 carrying air dates are not stripped because there's one mismatching line

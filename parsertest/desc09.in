@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Description page has title only at top and date at bottom.
 # Test if advertisement at the top of the page is cut off.

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Check parsing of overview pages which include VPS times
 # for all programmes.

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # VPS test: Differing VPS start time is printed after the title.
 # Test that it's not included in the title string.

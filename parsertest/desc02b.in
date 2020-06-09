@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # One more case where the line-break in the title can be corrected by
 # using the description title, which has the line break at a different

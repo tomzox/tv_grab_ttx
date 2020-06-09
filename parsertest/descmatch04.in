@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Yet another multi-subpage description page for different episodes
 # of a series.

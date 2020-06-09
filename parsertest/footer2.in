@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test footer detection in overview pages. Make sure footers are
 # not appended to titles or subtitles. This is never the case if

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Line break on "Swissair" cannot be improved, as it's in the same position
 # on overview page 303 and description page 326. But feature attributes on

@@ -568,15 +568,12 @@ void DumpRawTeletext(const char * p_name, int pg_start, int pg_end)
       }
    }
 
-   fprintf(fp, "#!/usr/bin/perl -w\n");
+   fprintf(fp, "#!tv_grab_ttx -verify\n");
 
    // return TRUE to allow to "require" the file
    ttx_db.dump_db_as_raw(fp, pg_start, pg_end);
 
    ttx_chn_id.dump_as_raw(fp);
-
-   // return TRUE to allow to "require" the file in Perl
-   fprintf(fp, "1;\n");
 
    if (fp != stdout) {
       fclose(fp);
@@ -666,7 +663,7 @@ bool ImportRawDump(const char * p_name)
    }
 
    cmatch what;
-   static const regex expr1("#!/usr/bin/perl( -w)?\\s*");
+   static const regex expr1("#!tv_grab_ttx -verify\\s*");
    static const regex expr2("\\$VbiCaptureTime\\s*=\\s*(\\d+);\\s*");
    static const regex expr3("\\$PkgCni\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");
    static const regex expr4("\\$PgCnt\\{0x([0-9A-Za-z]+)\\}\\s*=\\s*(\\d+);\\s*");

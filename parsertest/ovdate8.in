@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # - single-digit month on description page on BR3 Jan/2008
 # - description page with two dates

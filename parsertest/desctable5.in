@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Yet another test for parsing a cast table where the 2nd column
 # is aligned to the right side.
@@ -96,4 +96,3 @@ $Pkg{0x359|(0x0002<<12)} =
   "\x06Bankdirektor .......... Barbara Trommer",
   "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
 ];
-1;

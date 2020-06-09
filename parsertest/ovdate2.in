@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Missing date on an intermediate page (date replaced with advertisment)
 # Also the following page still claims to list today's programme, but

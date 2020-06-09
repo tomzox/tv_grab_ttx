@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Don't believe everything they say: date jumps from 30.8 to 31.9
 # from one page to the next

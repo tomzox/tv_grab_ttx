@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Yet another example where the overview page date is corret, but titles
 # wrap into the next date. Description pages of titles on the next day

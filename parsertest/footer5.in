@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test footer detection in description pages with double-height
 # text in footer. Make sure footers are not appended.
@@ -96,4 +96,3 @@ $Pkg{0x335|(0x0002<<12)} =
   "\x03\x1D\x04\x0DStrom wechseln - Geld sparen!!! 294 ",
   "                                        ",
 ];
-1;

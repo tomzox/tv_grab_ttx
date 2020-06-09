@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Error in table format: missing space before dots in last line.
 # For lines with that many dots the parser may be more tolerant.

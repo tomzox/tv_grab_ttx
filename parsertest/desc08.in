@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test title parsing: Page 331 omits sequal index "3" from title.
 # Currently this prevents a match.

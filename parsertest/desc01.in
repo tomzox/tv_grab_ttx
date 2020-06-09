@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test parsing description titles:
 # - line break in title 19.15 can be corrected with title from pg 319

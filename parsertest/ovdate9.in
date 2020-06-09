@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Yet another example with "today" for a page starting after midnight
 # Test if the last entry on page 304 gets a stop time, derived from
@@ -191,4 +191,3 @@ $Pkg{0x306|(0x0000<<12)} =
   "\x04\x1D\x03\x0D  Die besten Kartenleger!   > 600   ",
   "\x01\x1D\x07                                     ",
 ];
-1;

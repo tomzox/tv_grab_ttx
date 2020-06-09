@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Overview is on pages with multiple subpages which all have the same content.
 # Should not include the same programme twice in the output.

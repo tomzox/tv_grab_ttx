@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Keyword "VPS" is in different line from the respective label and the time
 # label format time has normal time format with "." separator and time is in

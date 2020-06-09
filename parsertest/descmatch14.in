@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Description date for title after midnight carries date of the previous
 # date.  Overview page 304 also has a wrong date. The overview date on

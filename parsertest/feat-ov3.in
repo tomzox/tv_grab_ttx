@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Feature-string "UT 150" near the end of an overview line must not be
 # mistaken for a teletext reference ("Brisant 9.45).

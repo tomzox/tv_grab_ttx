@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # A single all-upper-case title in a page with all other titles in
 # correct case should not be converted to lower-case.

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Overview pages uses the full page, i.e. down to line 23. The last
 # line includes a reference to the following page appended to a title.

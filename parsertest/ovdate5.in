@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Artificial example: several consecutive pages with programmes
 # referring to the same day, divided by category.  In this case

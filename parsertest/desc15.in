@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Description page has feature attribute between first and second line of the
 # title. These should be removed from the title and sub-title. TODO? Would be

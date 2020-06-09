@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Title which starts with non-ASCII char.
 #
@@ -93,4 +93,3 @@ $Pkg{0x322|(0x0000<<12)} =
   undef,
   "\x11\x1D\x07300 <-                           ->  ",
 ];
-1;

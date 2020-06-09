@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Double-Height ads at the bottom of multiple description pages.
 # Description sub-pages only differ in ad lines. Hence these pages

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test of conversion of enumeration with "-" at line starts on description
 # page: Paragraph breaks should be added to separate the list items.

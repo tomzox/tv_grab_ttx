@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # VPS test: a programme was inserted at 23:00, shifting the following
 # programmes by 15 minutes; one programme's start is shifted to the

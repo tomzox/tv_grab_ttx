@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 $VbiCaptureTime = 1294403841;
 $PgCnt{0x303} = 1;
 $PgSub{0x303} = 1;

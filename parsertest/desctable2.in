@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test for reformatting cast tables on description pages, especially:
 # - very short table (311)
@@ -459,4 +459,3 @@ $Pkg{0x314|(0x0001<<12)} =
   " \x1D\x01Wdh. 06.10. 02:05 - 03:45            ",
   "\x02\x1D\x04Schn{ppchen im Shopping-Bereich. 680 ",
 ];
-1;

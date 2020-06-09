@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Description page has no time or date and even the title is rendered
 # using mosaic graphics (only the episode number matches the title.)

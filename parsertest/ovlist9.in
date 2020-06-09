@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test of feature flag "°°": redefined from "stereo" to "2-channel" 2010
 #
@@ -186,4 +186,3 @@ $Pkg{0x315|(0x0002<<12)} =
   "\x07                                       ",
   "\x07\x1D\x04H|rfilm                       \x04    >>",
 ];
-1;

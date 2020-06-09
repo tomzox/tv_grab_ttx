@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test date match on description page: Two-line combined date/time:
 # The date is given only as week-day name, but time is directly below.

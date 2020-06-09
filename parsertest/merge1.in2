@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 $VbiCaptureTime = 1269111999;
 $PkgCni{0xDC1} = 4501;
 $PkgCni{0x4901} = 180;
@@ -152,4 +152,3 @@ $Pkg{0x327|(0x0000<<12)} =
   "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
   "\x06300\x07<<     Die Letzten bei~en ... >\x06328",
 ];
-1;

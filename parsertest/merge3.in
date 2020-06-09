@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test merge of descriptions: The first acquisition captured both description
 # sub-pages of 313, the second pass just the second one. Merge result should

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # The left column of several table rows is completely empty. In this case
 # the ":" should be omitted in the generated output.

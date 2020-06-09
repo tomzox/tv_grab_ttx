@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Merge verification: Both TTX input files are the same datam but modified:
 # - removed description page 326-327 in input #1

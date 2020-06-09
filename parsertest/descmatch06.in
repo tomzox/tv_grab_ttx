@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # - Test #2 for daily show: date "Mo - Fr" (page 399)
 # - Also test of two programmes sharing the same descriptions (page 322)

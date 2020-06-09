@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test footer detection in overview pages with double-height lines
 # Yet again, the content of the last line has been shifted so that

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test #1 of match on description pages with wrong dates, i.e. date of the
 # previous day.  Note the same date offset is present in the overview pages.

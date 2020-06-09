@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Pages "MEDIENDATEN" contain times in reverse order, causing massive
 # overlap due to titles spanning 22-23 hours each. Such pages should be

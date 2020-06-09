@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test for reformatting cast tables on description pages.
 # Table format: first column left aligned, second one right-aligned
@@ -217,4 +217,3 @@ $Pkg{0x322|(0x0002<<12)} =
   "\x07\x1D\x1CNewsroom:Ern{hrung & Gesundheit.600\x07\x1D",
   "\x01\x1D\x07<321                           323>  ",
 ];
-1;

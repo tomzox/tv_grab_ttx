@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test of series description across 2 subpages, 2nd page doesn't contain time
 # and date. This is a fake example where the description is referenced by two

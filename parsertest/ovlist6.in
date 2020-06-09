@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # A description page follows the overview pages. The page carries a date
 # and has a time at the start of a line, in the same column as the times

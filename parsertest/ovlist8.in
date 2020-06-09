@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test of the new "HD" feature flag on ZDF introduced apx. March/2010
 # both in overview pages and descriptions.
@@ -66,4 +66,3 @@ $Pkg{0x329|(0x0000<<12)} =
   undef,
   "\x04\x1D\x07300 <-                           ->  ",
 ];
-1;

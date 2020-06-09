@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # @2010-03-22: Replaced "°°" (raw "``") with "oo" as the meaning of the
 # former was redefined from "stereo" to "2-kanal" by ARD.

@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Check removal of VPS tags and concealed text from description page
 # Note there's a "00" on the description page which is conceled by

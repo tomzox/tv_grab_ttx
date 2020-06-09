@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!tv_grab_ttx -verify
 #
 # Test for reformatting cast tables on description pages.
 #
@@ -157,4 +157,3 @@ $Pkg{0x312|(0x0002<<12)} =
   "\x115\x00                                     ",
   "\x11\x1D\x07SMS-Flirt 565\x10 \x1D\x11          \x1D\x07>> 313  ",
 ];
-1;
