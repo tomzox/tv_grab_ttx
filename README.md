@@ -8,9 +8,9 @@ and starting times from programme tables (e.g. in Germany usually pages
 301-304) and finally adding description texts from pages which are
 referenced in the overviews.
 
-The grabber can be used stand-alone, but is best used as addition to the
+The grabber can be used stand-alone, but is best used as part of the
 Nextview EPG grabber [nxtvepg](http://nxtvepg.sourceforge.net) (version
-2.8.0 or later), which can also be used for immediately browsing the
+2.9.0 or later), which can also be used for immediately browsing the
 programme listings in the generated XMLTV files. The grabber is integrated
 into the nxtvepg acquisition control and can be activated via the
 configuration menus. (Currently nxtvepg still defaults to acquisition via
@@ -42,6 +42,10 @@ Alternatively, you can compile and install the package from sources directly by
 typing `make install prefix=/usr/local` (optionally replacing `/usr/local` with
 another directory which contains bin/ and man/, where to install the executable
 and manual page respectively.)
+
+For use with nxtvepg: The grabber is actually compiled into the nxtvepg
+executable: nxtvepg-2.9.0 includes the current latest grabber release 2.1.
+See [nxtvepg grabber documentation](http://nxtvepg.sourceforge.net/ttx_grab.html)
 
 # Dependencies
 
@@ -88,8 +92,11 @@ For additional options invoke the grabber with command line option "`-help`".
 Using the above will produce a separate XMLTV file per channel, which is not
 practical for browsing. Use script `merge.pl` for merging XML files of all
 channels into a single XMLTV file. See script `capall.pl` for an example how to
-automate capturing and merging EPG data from multiple channels. When using the
-grabber from within nxtvepg, the merge can be configured to be done automatically.
+automate capturing and merging EPG data from multiple channels. (Note this
+script requires `make tune_dvb` for tuning into channels and you will have to
+edit it for your `channels.conf` path and channel names used therein.) When
+using the grabber from within nxtvepg, the merge can be configured to be done
+automatically.
 
 # Copyright
 
@@ -105,5 +112,5 @@ merchantability or fitness for a particular purpose.
 
 **Content copyright**: Please note that content providers do hold a copyright
 on the programme schedules which can be extracted by means of this software.
-The data is free for personal use, but must not by publicly redistributed (e.g.
+The data is free for personal use, but must not be publicly redistributed (e.g.
 made available on the Internet) without prior permission.

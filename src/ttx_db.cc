@@ -477,6 +477,9 @@ void TTX_DB::add_page_data(unsigned page, unsigned sub, unsigned idx, const uint
 
 void TTX_DB::flush()
 {
+   for (iterator p = m_db.begin(); p != m_db.end(); p++) {
+      delete p->second;
+   }
    m_db.clear();
    m_btt.flush();
 }

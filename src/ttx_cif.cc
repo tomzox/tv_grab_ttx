@@ -27,7 +27,7 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <regex.h>
+#include <regex>
 
 using namespace std;
 

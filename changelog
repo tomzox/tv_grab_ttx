@@ -2,10 +2,11 @@ libxmltv-ttx (2.1) unstable; urgency=medium
 
   * Replaced use of boost_regex library with C++11 std::regex
   * Changed default from analog to digital TV capture device
+  * Added optional tool for tuning DVB channels
   * Added command line option "-pgstat" for monitoring capture progress
   * Minor parser enhancements
 
- -- T. Zoerner <tomzo@users.sourceforge.net>  Tue, 09 Jun 2020 17:15:45 +0200
+ -- T. Zoerner <tomzo@users.sourceforge.net>  Wed, 24 Jun 2020 08:03:06 +0200
 
 libxmltv-ttx (2.0) unstable; urgency=medium
 

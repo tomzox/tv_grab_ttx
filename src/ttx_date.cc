@@ -732,8 +732,8 @@ bool T_PG_DATE::ParseDescDate(int page, int sub, time_t ov_start_t, int date_off
                if (opt_debug) {
                   char t1[100];
                   char t2[100];
-                  strftime(t1, sizeof(t1), "%Y-%M-%D.%H:%M", localtime(&start_t));
-                  strftime(t2, sizeof(t2), "%Y-%M-%D.%H:%M", localtime(&ov_start_t));
+                  strftime(t1, sizeof(t1), "%Y-%m-%d.%H:%M", localtime(&start_t));
+                  strftime(t2, sizeof(t2), "%Y-%m-%d.%H:%M", localtime(&ov_start_t));
                   printf("MISMATCH[date_off:%d+%d]: %s %s\n", m_date_off, date_off, t1, t2);
                }
                //lend_hour = -1;
@@ -820,8 +820,8 @@ string ParseChannelName()
    string mname_match;
    smatch whats;
    int lang = -1;
-   regex expr3[8];
-   regex expr4[8];
+   static regex expr3[8];
+   static regex expr4[8];
 
    for (TTX_DB::const_iterator p = ttx_db.begin(); p != ttx_db.end(); p++) {
       int page = p->first.page();

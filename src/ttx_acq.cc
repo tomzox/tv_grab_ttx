@@ -43,6 +43,9 @@ using namespace std;
 #include "ttx_util.h"
 #include "ttx_acq.h"
 
+// This invalid value is used by several networks in DE
+#define CNI_IS_BLOCKED(cni) (cni == 0x1234)
+
 class TTX_ACQ_PKG
 {
    typedef uint8_t vt_pkg_raw[VT_PKG_RAW_LEN];
@@ -104,7 +107,7 @@ public:
    virtual bool read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts);
    virtual ~TTX_ACQ_ZVBI();
 private:
-   void device_read();
+   void device_read(long timeout);
 
    vbi_capture * mp_cap;
    vbi_capture_buffer * mp_buf;
@@ -164,7 +167,7 @@ bool TTX_ACQ_PKG::feed_ttx_pkg(uint8_t * data)
       if (dc == 0) {
          // packet 8/30/1
          int cni = vbi_rev16p(data + 2+7);
-         if ((cni != 0) && (cni != 0xffff)) {
+         if ((cni != 0) && (cni != 0xffff) && !CNI_IS_BLOCKED(cni)) {
             set_cni(mag, 30, cni);
             result = true;
          }
@@ -183,7 +186,7 @@ bool TTX_ACQ_PKG::feed_ttx_pkg(uint8_t * data)
                    ((c8 & 0xf0) >> 4);
          if ((cni & 0xF000) == 0xF000)
             cni &= 0x0FFF;
-         if ((cni != 0) && (cni != 0xffff)) {
+         if ((cni != 0) && (cni != 0xffff) && !CNI_IS_BLOCKED(cni)) {
             set_cni(mag, 30, cni);
             result = true;
          }
@@ -213,7 +216,7 @@ bool TTX_ACQ_PKG::feed_vps_pkg(const uint8_t * data)
       // special case: "ARD/ZDF Gemeinsames Vormittagsprogramm"
       cni = (cd_02 & 0x20) ? 0xDC1 : 0xDC2;
    }
-   if ((cni != 0) && (cni != 0xfff)) {
+   if ((cni != 0) && (cni != 0xfff) && !CNI_IS_BLOCKED(cni)) {
       set_cni(0, 32, cni);
       result = true;
    }
@@ -342,18 +345,24 @@ TTX_ACQ_ZVBI::~TTX_ACQ_ZVBI()
  * Read one frame's worth of teletext and VPS packets
  * - blocks until the device delivers the next packet
  */
-void TTX_ACQ_ZVBI::device_read()
+void TTX_ACQ_ZVBI::device_read(long timeout)
 {
    int fd_ttx = vbi_capture_fd(mp_cap);
+   struct timeval to;
    fd_set rd_fd;
    FD_ZERO(&rd_fd);
    FD_SET(fd_ttx, &rd_fd);
 
-   select(fd_ttx + 1, &rd_fd, NULL, NULL, NULL);
+   if (timeout == 0)
+   {
+      // use select to wait for data as ZVBI does not support blocking indefinitly
+      to.tv_sec = 0;
+      to.tv_usec = 0;
+      select(fd_ttx + 1, &rd_fd, NULL, NULL, (timeout != 0) ? &to : NULL);
+   }
 
    vbi_capture_buffer * buf = NULL;
-   struct timeval to;
-   to.tv_sec = 0;
+   to.tv_sec = timeout;
    to.tv_usec = 0;
    int ret = vbi_capture_pull_sliced(mp_cap, &buf, &to);
    if (ret > 0) {
@@ -373,12 +382,13 @@ bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts)
    bool result = false;
 
    do {
-      if ((time_limit > 0) && (time(NULL) > time_limit)) {
+      time_t now = time(NULL);
+      if ((time_limit > 0) && (now > time_limit)) {
          // capture duration limit reached -> terminate loop
          break;
       }
       if (m_line_idx >= m_line_count) {
-         device_read();
+         device_read((time_limit > 0) ? (time_limit + 1 - now) : 0);
       }
 
       if (m_line_idx < m_line_count) {
@@ -554,12 +564,12 @@ void ReadVbi(const char * p_infile, const char * p_dumpfile,
    }
    else {
 #ifdef USE_LIBZVBI
-      // capture input data from a VBI device
-      acq_src = new TTX_ACQ_ZVBI(p_dev_name, dvb_pid);
-
       if ((dvb_pid <= 0) && (strstr(p_dev_name, "dvb") != NULL)) {
          fprintf(stderr, "WARNING: DVB devices require -dvbpid parameter\n");
       }
+
+      // capture input data from a VBI device
+      acq_src = new TTX_ACQ_ZVBI(p_dev_name, dvb_pid);
 
       if (p_dumpfile != 0) {
          close(1);

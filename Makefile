@@ -1,7 +1,5 @@
 #
-# This program captures teletext from a VBI device, scrapes TV programme
-# schedules and descriptions from captured pages and exports them in
-# XMLTV format (DTD version 0.5)
+# Makefile for compilation on Linux or BSD
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -16,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2006-2011, 2020 by T. Zoerner (tomzo at users.sf.net)
+# Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
 #
 
 all: build_dir tv_grab_ttx tv_grab_ttx.1
@@ -70,10 +68,13 @@ tv_grab_ttx.1: tv_grab_ttx.pod
 	        -release "tv_grab_ttx (C) 2006-2011,2020 T. Zoerner" \
 	        tv_grab_ttx.pod > tv_grab_ttx.1; \
 
+tune_dvb: util/tune_dvb.c
+	gcc -Wall -O -g $(LDFLAGS) -o $@ util/tune_dvb.c $(LIBS)
+
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f tv_grab_ttx tv_grab_ttx.1 *.o core core.* vgcore.*
+	rm -f tv_grab_ttx tune_dvb tv_grab_ttx.1 core core.* vgcore.*
 	rm -rf deb
 
 # include automatically generated dependency list

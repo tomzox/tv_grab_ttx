@@ -16,9 +16,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2008 by Tom Zoerner (tomzo at users.sf.net)
-#
-#  $Id: merge.pl,v 1.3 2008/03/08 17:18:38 tom Exp tom $
+#  Copyright 2006-2008, 2020 by Tom Zoerner (tomzo at users.sf.net)
 #
 
 use strict;
@@ -62,7 +60,7 @@ sub ReadXmlFile {
          if (/^\s*\<\/tv>\s*$/i) {
             $state = 1;
          } elsif (/^\s*\<channel/i) {
-            die "More than one channel in $fname\n" if defined($chn_id);
+            die "$0: More than one channel in $fname\n" if defined($chn_id);
             if (/id=\"([^"]*)\"/i) {
                $chn_id = $1;
             } else {
@@ -174,9 +172,8 @@ print "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n".
       "<tv>\n";
 print join "", @ChnTable;
 #foreach (sort SortXmlData keys(%XmlData)) {
-foreach (keys(%XmlData)) {
+foreach (sort keys(%XmlData)) {
    print "\n";
    print $XmlData{$_};
 }
 print "</tv>\n";
-

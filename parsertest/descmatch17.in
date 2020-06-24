@@ -1,0 +1,196 @@
+#!tv_grab_ttx -verify
+#
+# Title is wrapped across two lines on overview page. Title is not wrapped on
+# description page. Generated programm title should be the longer one, not the
+# one from overview page truncated by line wrap.
+#
+# Only works if all feature flags are stripped from the dscription page
+# title. Did not work for "Und wer nimmt den Hund?" because of new flag "db".
+#
+$VbiCaptureTime = 1593459904;
+$PkgCni{0x4901} = 98;
+$PgCnt{0x300} = 4;
+$PgSub{0x300} = 2;
+$PgLang{0x300} = 1;
+$PgTime{0x300} = 1593459891;
+$Pkg{0x300|(0x0000<<12)} =
+[
+  "        300\x06ARD Text\x07Mo.29.06. \x0721:44:40",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D\x07        Das Erste:\x06Programm ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07Programm heute ................ 301/309",
+  "\x03Tipps f}r heute:                       ",
+  "\x07  Kampf gegen Schwarzarbeit........\x03328",
+  "\x07  Wie die D-Mark in den Osten kam..\x03330",
+  "\x07  \"Tatort\"-Sommer: Zuschauer-Voting\x03450",
+  "\x07  Wunsch-\"Tatort\" vom Sonntag..\x03331/450",
+  "\x07                                       ",
+  "\x06Programm morgen\x07...............\x06305/340",
+  "\x06Wochenvorschau\x07................\x06360-367",
+  "\x06Sendungsdetails / Spielregeln\x07.\x06370-379",
+  "\x07                                       ",
+  "\x07Sportsendungen \x06394\x07Untertitel ....\x06398",
+  "\x07H|rfilme ......\x06397\x07Neu im Programm\x06399",
+  "\x07                                       ",
+  "\x03Zurzeit im Ersten                      ",
+  "\x06 \x0621.45  Exclusiv im Ersten\x03UT\x06.... 326",
+  "\x06         Boeing - Das t|dliche System  ",
+  "\x07 \x0722.15  Tagesthemen\x03UT\x07........... 311",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06100 <<             Programm heute >\x06301",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x301} = 5;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$PgTime{0x301} = 1593459891;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301\x06ARD Text\x07Mo.29.06. \x0721:44:40",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D     \x07Das Erste:\x06Mo 29.06.20 ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  05.30  ZDF-Morgenmagazin\x03UT\x07..... 309",
+  "\x06  09.00  Tagesschau\x03UT                 ",
+  "\x07  09.05  Live nach Neun\x07........... 314",
+  "\x07         Raus ins Leben                ",
+  "\x06  09.55  In aller Freundschaft -\x06.. 322",
+  "\x06         Die jungen [rzte\x03AD/UT        ",
+  "\x06         Beruflich und privat (D, 2017)",
+  "\x07  10.45  Meister des Alltags\x03UT\x07... 373",
+  "\x07         mit Florian Weber             ",
+  "\x06  11.15  Gefragt - Gejagt\x03UT\x06...... 375",
+  "\x06         mit Alexander Bommes          ",
+  "\x07  12.00  Tagesschau\x03UT                 ",
+  "\x06  12.15  ARD-Buffet\x03UT\x06............ 315",
+  "\x06         Moderation: Evelin K|nig      ",
+  "\x07  13.00  ARD-Mittagsmagazin\x03UT\x07.... 312",
+  "         \x07bis 14.00 Uhr                 ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Nachmittag >\x06302",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x302} = 6;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1593459891;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302\x06ARD Text\x07Mo.29.06. \x0721:44:40",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D     \x07Das Erste:\x06Mo 29.06.20 ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x06  14.00  Tagesschau\x03UT                 ",
+  "\x07  14.10  Rote Rosen (26)\x03UT\x07....... 316",
+  "\x07         Fernsehserie, D 2006          ",
+  "\x06  15.00  Tagesschau\x03UT                 ",
+  "\x07  15.10  Sturm der Liebe (3395)\x03UT\x07 317",
+  "\x06  16.00  Tagesschau\x03UT                 ",
+  "\x07  16.10  Verr}ckt nach Meer\x03UT\x07.... 318",
+  "\x07         Die wilden V|gel der          ",
+  "\x07         Norfolkinsel                  ",
+  "\x06  17.00  Tagesschau\x03UT                 ",
+  "\x07  17.15  Brisant\x03UT\x07............... 319",
+  "\x06  18.00  Gefragt - Gejagt\x03UT\x06...... 320",
+  "\x06         mit Alexander Bommes          ",
+  "\x07  18.50  Morden im Norden\x03AD/UT\x07... 321",
+  "\x07         Zweite Chance (D, 2018)       ",
+  "\x06  19.45  Wissen vor acht - Zukunft     ",
+  "\x06         Das wahre L|schpapier\x03AD/UT   ",
+  "         \x06bis 19.50 Uhr                 ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Abend >\x06303",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x303} = 5;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1593459891;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x06ARD Text\x07Mo.29.06. \x0721:44:40",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D     \x07Das Erste:\x06Mo 29.06.20 ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x07  19.50  Wetter vor acht\x03UT            ",
+  "\x06  19.55  B|rse vor acht\x03UT\x06........ 720",
+  "\x07  20.00  Tagesschau\x03UT\x07............ 310",
+  "\x06  20.15  Und wer nimmt den\x06........ 324",
+  "\x06         Hund?\x03AD/UT                   ",
+  "\x06         Spielfilm, D 2019             ",
+  "\x06         SommerKino im Ersten          ",
+  "\x03  21.45  Exclusiv im Ersten\x03UT\x03.... 326",
+  "\x03         Boeing - Das t|dliche System  ",
+  "\x06  22.15  Tagesthemen\x03UT\x06........... 311",
+  "\x07  22.45  Die Story im Ersten\x03UT\x07... 328",
+  "\x07         Kampf gegen Schwarzarbeit -   ",
+  "\x07         teuer und wirkungslos?        ",
+  "\x06  23.30  Geschichte im Ersten: Wie\x06 330",
+  "\x06         die D-Mark in den Osten kam - ",
+  "\x06         Der gr|~te Geldtransport der  ",
+  "\x06         deutschen Geschichte\x03UT       ",
+  "         \x06bis 00.15 Uhr                 ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                      Nacht >\x06304",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x324} = 4;
+$PgSub{0x324} = 0;
+$PgLang{0x324} = 1;
+$PgTime{0x324} = 1593459892;
+$Pkg{0x324|(0x0000<<12)} =
+[
+  "        324\x06ARD Text\x07Mo.29.06. \x0721:44:41",
+  "\x16p\x1Eppppp\x14`pppppppppppppppppppppppppppppp",
+  "\x16\x7F\x1E\x7F\x7F\x7F\x7F\x7F\x14j\x1D     \x07Das Erste:\x06Mo 29.06.20 ",
+  "\x16#\x1E#####\x14\"##############################",
+  "\x0720.15 - 21.45 Uhr                      ",
+  "\x06Und wer nimmt den Hund?    \x03HD/db/AD/UT",
+  "\x06Spielfilm, D 2019                      ",
+  "\x07                                       ",
+  "\x07Es ist vorbei - oder vielleicht doch   ",
+  "\x07noch nicht? Martina Gedeck und Ulrich  ",
+  "\x07Tukur spielen in der bissigen Ehekom|- ",
+  "\x07die das wohlsituierte Paar Doris und   ",
+  "\x07Georg, das vor den Tr}mmern seiner }ber",
+  "\x0720-j{hrigen Ehe steht und auf die Hilfe",
+  "\x07einer Trennungstherapeutin hofft.      ",
+  "\x07                                       ",
+  "\x07Die Stunden bei der Therapeutin l|sen  ",
+  "\x07eine ungeahnte Beziehungsdynamik aus,  ",
+  "\x07die Georgs neue Liebe br|ckeln l{sst,  ",
+  "\x07w{hrend Doris nach einer schmerzhaften ",
+  "\x07Anlaufphase beruflich und privat neu   ",
+  "\x07durchstartet ...                       ",
+  "\x14,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+  "\x06300\x07<<                 Darsteller >\x06325",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
