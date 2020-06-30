@@ -29,6 +29,15 @@ every network formats tables, dates, times and descriptions slightly
 differently, so that the parser will have trouble locating the EPG data among
 all the advertisements and other content in teletext. 
 
+# Latest news: June/2020: Release of version 2.1
+
+Development was resumed after a 9 year gap. The new release mainly focuses on
+enhancing working with digital TV capture cards (e.g. by adapting the `capall.pl`
+example automatisation script). Also tools have been updated (e.g. removed the
+need for the Boost regex library by requiring C++11) and the parser was
+slightly enhanced and adapted to changes in teletext content by networks.
+This new release will be included in nxtvepg pre-release 2.9.0pre5.
+
 # Installation
 
 If you got the Debian package (or created one yourself using shell script
@@ -91,12 +100,15 @@ For additional options invoke the grabber with command line option "`-help`".
 
 Using the above will produce a separate XMLTV file per channel, which is not
 practical for browsing. Use script `merge.pl` for merging XML files of all
-channels into a single XMLTV file. See script `capall.pl` for an example how to
-automate capturing and merging EPG data from multiple channels. (Note this
-script requires `make tune_dvb` for tuning into channels and you will have to
-edit it for your `channels.conf` path and channel names used therein.) When
-using the grabber from within nxtvepg, the merge can be configured to be done
-automatically.
+channels into a single XMLTV file. When using the grabber from within nxtvepg,
+the merge can be configured to be done automatically.
+
+See script `capall.pl` for an example how to automate capturing and merging EPG
+data from multiple channels. (Note this script requires `make tune_dvb` for
+tuning into channels and you will have to edit it for your `channels.conf` path
+and channel names used therein.) In particular the script speeds-up grabbing
+significantly by running `tv_grab_ttx` multiple times concurrently for all DVB
+channels sharing a transponder.
 
 # Copyright
 
