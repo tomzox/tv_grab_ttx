@@ -1,0 +1,158 @@
+#!tv_grab_ttx -verify
+#
+# Description page title has lower quality, as it is all-caps (so that
+# upper-case info is lost from titles). Also, hyphen "-" at line end
+# within all-upper-case words should be removed, equiv. lower-case.
+#
+# TODO
+#
+$VbiCaptureTime = 1594062227;
+$PkgCni{0x1D00} = 62;
+$PgCnt{0x304} = 1;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$PgTime{0x304} = 1594062221;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "        304\x06NDR Text \x07Mo.06.07.\x0621:03:27",
+  "\x07\x1D\x14  5                                  ",
+  "\x07\x1D\x14thi,0<d                              ",
+  "\x07\x1D\x145kjp\%7i    \x04NDR FERNSEHEN            ",
+  "\x06\x1D\x14  \%        \x04Montag 06.07.2020        ",
+  undef,
+  "\x0720:00 \x07Tagesschau\x03UT\x03HD\x07               ",
+  "\x0620:15 \x06Dieter Hallervorden - Ein\x06..\x06357",
+  "\x06      \x06Mann mit Humor und              ",
+  "\x06      \x06Tiefgang\x03UT\x03HD                  ",
+  "\x0721:45 \x07NDR Info\x03UT\x03HD\x07.............\x07323",
+  "\x0622:00 \x06Die besten Komiker des\x06.....\x06358",
+  "\x06      \x06Nordens\x03UT\x03HD                   ",
+  "\x0723:45 \x07Brokenwood - Mord in\x07.......\x07359",
+  "\x07      \x07Neuseeland: Der letzte          ",
+  "\x07      \x07Abschlag\x03UT\x03AD\x03HD\x03DS            ",
+  "\x07      \x07Spielfilm, 2014                 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x06\x1D\x04300<              TV HEUTE NACHT >305",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x305} = 1;
+$PgSub{0x305} = 0;
+$PgLang{0x305} = 1;
+$PgTime{0x305} = 1594062221;
+$Pkg{0x305|(0x0000<<12)} =
+[
+  "        305\x06NDR Text \x07Mo.06.07.\x0621:03:27",
+  "\x07\x1D\x14  5                                  ",
+  "\x07\x1D\x14thi,0<d                              ",
+  "\x07\x1D\x145kjp\%7i    \x04NDR FERNSEHEN            ",
+  "\x06\x1D\x14  \%        \x04Montag 06.07.2020        ",
+  "\x05070720                                 ",
+  "\x0701:10 \x07Carlo tauscht... sich durch\x07\x07360",
+  "\x07      \x07den Jachthafen\x03HD               ",
+  "\x0601:35 \x06Gartenzeit\x03HD\x06..............\x06331",
+  "\x0702:05 \x07Treckerfahrer d}rfen das!:\x07.\x07361",
+  "\x07      \x07Voll neben der Spur\x03UT\x03HD       ",
+  "\x0602:45 \x06Hallo Niedersachsen\x03UT\x03HD\x06..\x06322",
+  "\x0703:15 \x07Nordmagazin\x03UT\x03HD\x07..........\x07319",
+  "\x0603:45 \x06Schleswig-Holstein\x06.........\x06321",
+  "\x06      \x06Magazin\x03UT\x03HD                   ",
+  "\x0704:15 \x07Hamburg Journal\x03UT\x03HD\x07......\x07320",
+  "\x0604:45 \x06buten un binnen /\x06..........\x06551",
+  "\x06      \x06regionalmagazin\x03HD              ",
+  "\x0705:15 \x07DAS!\x03UT\x03HD\x07.................\x07318",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x06\x1D\x04300<               TV MORGEN >306-310",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x357} = 1;
+$PgSub{0x357} = 0;
+$PgLang{0x357} = 1;
+$PgTime{0x357} = 1594062223;
+$Pkg{0x357|(0x0000<<12)} =
+[
+  "        357\x06NDR Text \x07Mo.06.07.\x0621:03:29",
+  "\x07\x1D\x14  5                                  ",
+  "\x07\x1D\x14thi,0<d                              ",
+  "\x07\x1D\x145kjp\%7i    \x04NDR FERNSEHEN            ",
+  "\x06\x1D\x14  \%        \x04                         ",
+  "\x07Montag     06.07.20   20:15 - 21:45 Uhr",
+  "\x07DIETER HALLERVORDEN - EIN MANN MIT HU- ",
+  "\x07MOR UND TIEFGANG                       ",
+  undef,
+  "\x06\"Didi\" Hallervorden ist am 5.September ",
+  "\x0680 Jahre alt geworden. Der Film zeigt  ",
+  "\x06den sympathischen Schauspieler und Men-",
+  "\x06schen und sein mehr als 50 Jahre umfas-",
+  "\x06sendes k}nstlerisches Werk.            ",
+  "\x07                                       ",
+  "\x07Zu Wort kommen Kollegen und Weggef{hr- ",
+  "\x07ten wie Dr.Eckart von Hirschhausen, Til",
+  "\x07Schweiger, die Kabarettisten Gabi      ",
+  "\x07Decker, Frank L}decke und Hans         ",
+  "\x07Scheibner und sein j}ngster Sohn Johan-",
+  "\x07nes Hallervorden.                      ",
+  undef,
+  undef,
+  "\x06\x1D\x04300<       TV-PROGRAMM HEUTE >301-305",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x360} = 1;
+$PgSub{0x360} = 0;
+$PgLang{0x360} = 1;
+$PgTime{0x360} = 1594062224;
+$Pkg{0x360|(0x0000<<12)} =
+[
+  "        360\x06NDR Text \x07Mo.06.07.\x0621:03:29",
+  "\x07\x1D\x14  5                                  ",
+  "\x07\x1D\x14thi,0<d                              ",
+  "\x07\x1D\x145kjp\%7i    \x04NDR FERNSEHEN            ",
+  "\x06\x1D\x14  \%        \x04                         ",
+  "\x07Sonntag    05.07.20   15:00 - 15:30 Uhr",
+  "\x07Dienstag   07.07.20   01:10 - 01:35 Uhr",
+  "\x07CARLO TAUSCHT... SICH DURCH DEN JACHT- ",
+  "\x07HAFEN                                  ",
+  undef,
+  "\x06Von einem kleinen Wodkafass bis zum    ",
+  "\x06neuwertigen \\lzeug f}r Segler in XXL:  ",
+  "\x06Das ist das Ziel f}r die Tauschaktion  ",
+  "\x06von Carlo von Tiedemann, die ihn durch ",
+  "\x06die Jachth{fen in Heiligenhafen und    ",
+  "\x06Neustadt in Schleswig-Holstein f}hrt.  ",
+  "\x07                                       ",
+  "\x07Er geht an einem Wochenende von Boot zu",
+  "\x07Boot und versucht dort, seine Dinge zu ",
+  "\x07tauschen.                              ",
+  undef,
+  undef,
+  "                                        ",
+  "\x06\x1D\x04300<       TV-PROGRAMM HEUTE >301-305",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

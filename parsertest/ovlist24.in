@@ -1,0 +1,716 @@
+#!tv_grab_ttx -verify
+#
+# Line break within title appendix with multiple series indices. Second line
+# shall be concatenated to the title, instead of added as sub-title:
+#
+#   Der kleine Drache Kokosnuss (7+
+#   8) HD UT
+#
+#   Wir Kinder aus dem M|wenweg (23
+#   +24) HD UT
+#
+$VbiCaptureTime = 1593936661;
+$PkgCni{0x49C9} = 31;
+$PgCnt{0x303} = 3;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1593936656;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm  \x02\x1D\x04Sonntag                 ",
+  "\x04\x1D\x07Heute     \x02\x1D\x0405.07.2020              ",
+  "\x14#######################################",
+  "\x0211:05\x16/\x02L|wenzahn\x03AD UT                ",
+  "        \x02Wiese - Gr}ne Wildnis in Gefahr",
+  "                                   \x02>335",
+  "\x0711:30\x13/\x07Die Sendung mit der Maus\x03HD AD ",
+  "        \x03UT                        \x07>571",
+  "\x0212:00\x16/\x02Schneewittchen und das    \x02>346",
+  "        \x02Geheimnis der Zwerge           ",
+  "        \x05Sonntagsm{rchen                ",
+  "\x0713:30\x16/\x07Vater hoch vier - Auf hoher See",
+  "        \x03HD                        \x07>335",
+  "\x0214:45\x16/\x02Wir Kinder aus dem M|wenweg (23",
+  "        \x02+24)\x03HD UT                     ",
+  "        \x02Wir sind fast zerstritten/ Wir ",
+  "        \x02legen uns rein                 ",
+  "\x0715:10\x16/\x07Nils Holgersson (25+26+27+28)\x03 ",
+  "        \x03HD                             ",
+  "        \x07Das Korn der Macht/ Die        ",
+  "        \x07Flugschule/ Der B{renmarder/   ",
+  "        \x07Das Zauberlicht                ",
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x308} = 3;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$PgTime{0x308} = 1593936656;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "        308\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm  \x02\x1D\x04Montag                  ",
+  "\x04\x1D\x07Morgen    \x02\x1D\x0406.07.2020              ",
+  "\x14#######################################",
+  "\x0206:00\x13/\x02KiKANiNCHEN\x03HD            \x02>400",
+  "\x0706:05\x16/\x07Shaun das Schaf (49+48)\x03HD     ",
+  "        \x07Supersize Timmy/ Ein neuer     ",
+  "        \x07Freund                         ",
+  "\x0206:20\x16/\x02Mascha und der B{r (29+30)\x03HD  ",
+  "        \x03UT                             ",
+  "        \x02Die Macht der Musik/ Der       ",
+  "        \x02wundersame Trank               ",
+  "\x0706:35\x13/\x07Feuerwehrmann Sam (59+131)\x03HD  ",
+  "        \x03UT                             ",
+  "        \x07Norris, das Meerschweinchen/   ",
+  "        \x07Monster-Alarm                  ",
+  "\x0206:55\x13/\x02Die Sendung mit dem Elefanten  ",
+  "        \x02(182)                     \x02>570",
+  "        \x02Folge                          ",
+  "\x0707:20\x13/\x07Der kleine Drache Kokosnuss (7+",
+  "        \x078)\x03HD UT                       ",
+  "        \x07Die Fressfalle/ Einmal und nie ",
+  "        \x07wieder                         ",
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x309} = 3;
+$PgSub{0x309} = 0;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1593936656;
+$Pkg{0x309|(0x0000<<12)} =
+[
+  "        309\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm  \x02\x1D\x04Montag                  ",
+  "\x04\x1D\x07Morgen    \x02\x1D\x0406.07.2020              ",
+  "\x14#######################################",
+  "\x0207:45\x13/\x02Sesamstra~e\x03HD                 ",
+  "\x0708:05\x13/\x07KiKANiNCHEN\x03HD            \x07>400",
+  "        \x07/                              ",
+  "\x0208:10\x13/\x02Wissper (68+69)\x03HD             ",
+  "        \x02Ein Hippo in der Hitze/        ",
+  "        \x02Plagegeister                   ",
+  "\x0708:25\x13/\x07Zacki und die Zoobande (1+2+3)\x03",
+  "        \x03HD UT                          ",
+  "        \x05Serienstart!                   ",
+  "        \x07Federlesen/ Lionels Anzug/\x07>337",
+  "        \x07Kaiserin Emily                 ",
+  "\x0209:00\x13/\x02N|-N| Schnabeltier (1+2+3)\x03HD  ",
+  "        \x05Serienstart!                   ",
+  "        \x02Ich will mehr Muskeln!/ Ich    ",
+  "        \x02bringe den Mond zu uns!/ Ich   ",
+  "        \x02will Musik machen!        \x02>337",
+  undef,
+  undef,
+  undef,
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x310} = 3;
+$PgSub{0x310} = 0;
+$PgLang{0x310} = 1;
+$PgTime{0x310} = 1593936656;
+$Pkg{0x310|(0x0000<<12)} =
+[
+  "        310\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm  \x02\x1D\x04Montag                  ",
+  "\x04\x1D\x07Morgen    \x02\x1D\x0406.07.2020              ",
+  "\x14#######################################",
+  "\x0709:20\x16/\x07Die Sendung mit der Maus\x03HD UT ",
+  "                                   \x07>571",
+  "        \x07Griechenland-Maus - \"Die       ",
+  "        \x07Sendung mit der Maus\" zeigt    ",
+  "        \x07Sachgeschichten aus Athen      ",
+  "\x0209:50\x16/\x02SimsalaGrimm (27+28)           ",
+  "        \x05Serienstart!                   ",
+  "        \x02Hans und die Bohnenranke/ \x02>338",
+  "        \x02Allerleirauh                   ",
+  "\x0710:40\x16/\x07Hexe Lilli (27+28)\x03HD UT       ",
+  "        \x05Serienstart!                   ",
+  "        \x07Lilli und das geheime Zimmer/  ",
+  "        \x07Lilli und das Wildpferd   \x07>338",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x311} = 3;
+$PgSub{0x311} = 0;
+$PgLang{0x311} = 1;
+$PgTime{0x311} = 1593936656;
+$Pkg{0x311|(0x0000<<12)} =
+[
+  "        311\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm  \x02\x1D\x04Montag                  ",
+  "\x04\x1D\x07Morgen    \x02\x1D\x0406.07.2020              ",
+  "\x14#######################################",
+  "\x0211:25\x16/\x02Arthur und die Freunde der     ",
+  "        \x02Tafelrunde (1+2+3+4)\x03HD UT     ",
+  "        \x05Serienstart!                   ",
+  "        \x02Leichtfertige Versprechen/ Die ",
+  "        \x02versteinerten Greifen/ Die Jagd",
+  "        \x02auf den Drachenwolf/ Der Geist ",
+  "        \x02aus der K{lte             \x02>339",
+  "\x0712:15\x16/\x07F}nf in der Wildnis\x03HD UT \x07>339",
+  "\x0213:30\x15/\x02logo! Die Welt und ich.\x03HD UT  ",
+  "                                   \x02>331",
+  "\x0713:40\x15/\x07Tiere bis unters Dach (75)\x03HD  ",
+  "        \x03UT                             ",
+  "        \x07Ein Freund f}rs Leben          ",
+  "\x0214:10\x15/\x02Schloss Einstein (845+846)\x03HD  ",
+  "                                   \x02>348",
+  "        \x02Folge/ Folge                   ",
+  undef,
+  undef,
+  "                                        ",
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x312} = 3;
+$PgSub{0x312} = 0;
+$PgLang{0x312} = 1;
+$PgTime{0x312} = 1593936656;
+$Pkg{0x312|(0x0000<<12)} =
+[
+  "        312\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm  \x02\x1D\x04Montag                  ",
+  "\x04\x1D\x07Morgen    \x02\x1D\x0406.07.2020              ",
+  "\x14#######################################",
+  "\x0715:00\x15/\x07Sam Fox: Extreme Adventures (9+",
+  "        \x0710)\x03HD                         ",
+  "        \x07Der Vulkanausbruch/ Leg dich   ",
+  "        \x07nicht mit Elefanten an         ",
+  "\x0215:50\x15/\x02Stoked (30)                    ",
+  "        \x02Broseph und Noseph             ",
+  "\x0716:10\x16/\x07Ein Fall f}r TKKG (9+10)\x03HD UT ",
+  "        \x07Der blinde Hellseher/ R{tsel um",
+  "        \x07die alte Villa                 ",
+  "\x0217:00\x16/\x02Mirette ermittelt (40+41+43)\x03HD",
+  "        \x02Panik vor Paaren/ Lachanf{lle  ",
+  "        \x02in Paris/ Schlaflos in New York",
+  "\x0717:30\x16/\x07The Garfield Show (31+32+33)\x03HD",
+  "        \x07Hund }ber Bord/ Der            ",
+  "        \x07Fischfresser/ Odie und der Wolf",
+  "\x0218:05\x13/\x02Bobby & Bill (66)\x03HD           ",
+  "        \x02H|r mal, wer da spricht!       ",
+  undef,
+  undef,
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x313} = 3;
+$PgSub{0x313} = 0;
+$PgLang{0x313} = 1;
+$PgTime{0x313} = 1593936656;
+$Pkg{0x313|(0x0000<<12)} =
+[
+  "        313\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm  \x02\x1D\x04Montag                  ",
+  "\x04\x1D\x07Morgen    \x02\x1D\x0406.07.2020              ",
+  "\x14#######################################",
+  "\x0718:20\x13/\x07Die Ollie & Moon Show (39+40)\x03 ",
+  "        \x03HD                             ",
+  "        \x07Falter-Fotos in Malaysia/ Der  ",
+  "        \x07Neujahrsfest-Nachtisch         ",
+  "\x0218:40\x13/\x02Lieselotte (37)\x03HD             ",
+  "        \x02Lieselotte als Wachhund        ",
+  "\x0718:47\x13/\x07Baumhaus (188)\x03HD         \x07>370",
+  "        \x07Fidi, die Sommerpiratin        ",
+  "\x0218:50\x13/\x02Unser Sandm{nnchen\x03HD     \x02>380",
+  "        \x02Meine Schmusedecke: Fliege     ",
+  "\x0719:00\x16/\x07Das Dschungelbuch (87+88)\x03HD UT",
+  "        \x07Verschnupfte Dschungeltiere/   ",
+  "        \x07Die verlorene Stimme           ",
+  "\x0219:25\x15/\x02Wissen macht Ah!\x03HD UT         ",
+  "        \x02Clarissa und Ralph: Zutritt    ",
+  "        \x02verweigert                     ",
+  "\x0719:50\x15/\x07logo! Die Welt und ich.\x03HD UT  ",
+  "                                   \x07>331",
+  undef,
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04  Weiter >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x314} = 3;
+$PgSub{0x314} = 0;
+$PgLang{0x314} = 1;
+$PgTime{0x314} = 1593936656;
+$Pkg{0x314|(0x0000<<12)} =
+[
+  "        314\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm  \x02\x1D\x04Montag                  ",
+  "\x04\x1D\x07Morgen    \x02\x1D\x0406.07.2020              ",
+  "\x14#######################################",
+  "\x0220:00\x15/\x02KiKA LIVE\x03HD UT           \x02>200",
+  "        \x02Outdoor-Spiele, Tag 1          ",
+  "\x0720:10\x15/\x07Athena (17+18)\x03HD              ",
+  "        \x07Das Winterm{rchen/ Das perfekte",
+  "        \x07Jackett                        ",
+  "\x0221:00\x15/\x02Sendeschluss                   ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x04\x1D\x07<<< Zur}ck    \x1C     \x1D\x04Vorschau >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x315} = 3;
+$PgSub{0x315} = 0;
+$PgLang{0x315} = 1;
+$PgTime{0x315} = 1593936656;
+$Pkg{0x315|(0x0000<<12)} =
+[
+  "        315\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm   \x1D\x04Dienstag                ",
+  "\x04\x1D\x07Vorschau   \x1D\x0407.07.2020              ",
+  "\x14#######################################",
+  "\x0206:00\x13/\x02KiKANiNCHEN\x03HD                 ",
+  "\x0706:05\x16/\x07Shaun das Schaf (45+55)\x03HD     ",
+  "\x0206:20\x16/\x02Mascha und der B{r (31+33)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0706:35\x13/\x07Feuerwehrmann Sam (61+132)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0206:55\x13/\x02Die Sendung mit dem Elefanten  ",
+  "        \x02(183)                          ",
+  "\x0707:20\x13/\x07Der kleine Drache Kokosnuss (9+",
+  "        \x0710)\x03HD UT                      ",
+  "\x0207:45\x13/\x02Sesamstra~e\x03HD                 ",
+  "\x0708:05\x13/\x07KiKANiNCHEN\x03HD                 ",
+  "\x0208:10\x13/\x02Wissper (70+71)\x03HD             ",
+  "\x0708:25\x13/\x07Zacki und die Zoobande (4+5+6)\x03",
+  "        \x03HD UT                          ",
+  "\x0209:00\x13/\x02N|-N| Schnabeltier (4+5+6)\x03HD  ",
+  "\x0709:20\x13/\x07Die Sendung mit der Maus\x03HD UT ",
+  "\x0209:50\x16/\x02Yakari (105+106+107+108+109)\x03HD",
+  "        \x03UT                             ",
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x316} = 3;
+$PgSub{0x316} = 0;
+$PgLang{0x316} = 1;
+$PgTime{0x316} = 1593936656;
+$Pkg{0x316|(0x0000<<12)} =
+[
+  "        316\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm   \x1D\x04Dienstag                ",
+  "\x04\x1D\x07Vorschau   \x1D\x0407.07.2020              ",
+  "\x14#######################################",
+  "\x0710:50\x16/\x07Wickie und die starken M{nner  ",
+  "        \x07(1+2+3+4+5)\x03HD UT              ",
+  "\x0211:50\x16/\x02Tib & Tumtum (1+2+3+4)\x03HD UT   ",
+  "\x0712:40\x16/\x07Mascha und der B{r (9+12+13+15+",
+  "        \x0716+17+18+19)\x03HD UT             ",
+  "\x0213:30\x15/\x02logo! Die Welt und ich.\x03HD UT  ",
+  "\x0713:40\x15/\x07Tiere bis unters Dach (76)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0214:10\x15/\x02Schloss Einstein (847+848)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0715:00\x15/\x07Sam Fox: Extreme Adventures (11",
+  "        \x07+12)\x03HD                        ",
+  "\x0215:50\x15/\x02Stoked (31)                    ",
+  "\x0716:10\x16/\x07Ein Fall f}r TKKG (11+12)\x03HD UT",
+  "\x0217:00\x16/\x02Mirette ermittelt (44+45+46)\x03HD",
+  "\x0717:30\x16/\x07The Garfield Show (34+35+36)\x03HD",
+  "\x0218:05\x13/\x02Bobby & Bill (67)\x03HD           ",
+  "\x0718:20\x13/\x07Die Ollie & Moon Show (41+42)\x03 ",
+  "        \x03HD                             ",
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x317} = 3;
+$PgSub{0x317} = 0;
+$PgLang{0x317} = 1;
+$PgTime{0x317} = 1593936656;
+$Pkg{0x317|(0x0000<<12)} =
+[
+  "        317\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm   \x1D\x04Dienstag                ",
+  "\x04\x1D\x07Vorschau   \x1D\x0407.07.2020              ",
+  "\x14#######################################",
+  "\x0218:40\x13/\x02Lieselotte (38)\x03HD             ",
+  "\x0718:47\x13/\x07Baumhaus (189)\x03HD              ",
+  "\x0218:50\x13/\x02Unser Sandm{nnchen             ",
+  "\x0719:00\x16/\x07Das Dschungelbuch (89+90)\x03HD UT",
+  "\x0219:25\x15/\x02pur+\x03HD UT                     ",
+  "\x0719:50\x15/\x07logo! Die Welt und ich.\x03HD UT  ",
+  "\x0220:00\x15/\x02KiKA LIVE\x03HD UT                ",
+  "\x0720:10\x15/\x07Athena (19+20)\x03HD              ",
+  "\x0221:00\x15/\x02Sendeschluss                   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x318} = 3;
+$PgSub{0x318} = 0;
+$PgLang{0x318} = 1;
+$PgTime{0x318} = 1593936656;
+$Pkg{0x318|(0x0000<<12)} =
+[
+  "        318\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm   \x1D\x04Mittwoch                ",
+  "\x04\x1D\x07Vorschau   \x1D\x0408.07.2020              ",
+  "\x14#######################################",
+  "\x0206:00\x13/\x02KiKANiNCHEN\x03HD                 ",
+  "\x0706:05\x16/\x07Shaun das Schaf (54+56)\x03HD     ",
+  "\x0206:20\x16/\x02Mascha und der B{r (34+35)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0706:35\x13/\x07Feuerwehrmann Sam (62+133)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0206:55\x13/\x02Die Sendung mit dem Elefanten  ",
+  "        \x02(184)                          ",
+  "\x0707:20\x13/\x07Der kleine Drache Kokosnuss (11",
+  "        \x07+12)\x03HD UT                     ",
+  "\x0207:45\x13/\x02Sesamstra~e\x03HD                 ",
+  "\x0708:05\x13/\x07KiKANiNCHEN\x03HD                 ",
+  "\x0208:10\x13/\x02Wissper (72+73)\x03HD             ",
+  "\x0708:25\x13/\x07Zacki und die Zoobande (7+8+9)\x03",
+  "        \x03HD UT                          ",
+  "\x0209:00\x13/\x02N|-N| Schnabeltier (7+8+9)\x03HD  ",
+  "\x0709:20\x16/\x07Die Sendung mit der Maus\x03HD UT ",
+  "\x0209:50\x16/\x02Lassie (18+20+21+22)\x03HD UT     ",
+  undef,
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x319} = 3;
+$PgSub{0x319} = 0;
+$PgLang{0x319} = 1;
+$PgTime{0x319} = 1593936656;
+$Pkg{0x319|(0x0000<<12)} =
+[
+  "        319\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm   \x1D\x04Mittwoch                ",
+  "\x04\x1D\x07Vorschau   \x1D\x0408.07.2020              ",
+  "\x14#######################################",
+  "\x0711:20\x16/\x07H2O - Abenteuer Meerjungfrau (1",
+  "        \x07+2+3)\x03HD UT                    ",
+  "\x0212:35\x16/\x02Zoom (4+5+6+7)\x03HD              ",
+  "\x0713:30\x15/\x07logo! Die Welt und ich.\x03HD UT  ",
+  "\x0213:40\x15/\x02Tiere bis unters Dach (79)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0714:10\x15/\x07Schloss Einstein (849+850)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0215:00\x15/\x02Sam Fox: Extreme Adventures (13",
+  "        \x02+14)\x03HD                        ",
+  "\x0715:50\x15/\x07Stoked (32)                    ",
+  "\x0216:10\x16/\x02Ein Fall f}r TKKG (13+14)\x03HD UT",
+  "\x0717:00\x16/\x07Mirette ermittelt (47+48+49)\x03HD",
+  "\x0217:30\x16/\x02The Garfield Show (37+41+42)\x03HD",
+  "\x0718:05\x13/\x07Bobby & Bill (68)\x03HD           ",
+  "\x0218:20\x13/\x02Die Ollie & Moon Show (43+44)\x03 ",
+  "        \x03HD                             ",
+  "\x0718:40\x13/\x07Lieselotte (39)\x03HD             ",
+  "\x0218:47\x13/\x02Baumhaus (190)\x03HD              ",
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x320} = 3;
+$PgSub{0x320} = 0;
+$PgLang{0x320} = 1;
+$PgTime{0x320} = 1593936656;
+$Pkg{0x320|(0x0000<<12)} =
+[
+  "        320\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm   \x1D\x04Mittwoch                ",
+  "\x04\x1D\x07Vorschau   \x1D\x0408.07.2020              ",
+  "\x14#######################################",
+  "\x0718:50\x13/\x07Unser Sandm{nnchen             ",
+  "\x0219:00\x16/\x02Das Dschungelbuch (91+92)\x03HD UT",
+  "\x0719:25\x16/\x07Anna und die wilden Tiere\x03HD UT",
+  "\x0219:50\x15/\x02logo! Die Welt und ich.\x03HD UT  ",
+  "\x0720:00\x15/\x07KiKA LIVE\x03HD UT                ",
+  "\x0220:10\x15/\x02Athena (21+22)\x03HD              ",
+  "\x0721:00\x15/\x07Sendeschluss                   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "                                        ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x321} = 3;
+$PgSub{0x321} = 0;
+$PgLang{0x321} = 1;
+$PgTime{0x321} = 1593936656;
+$Pkg{0x321|(0x0000<<12)} =
+[
+  "        321\x06KI.KA  \x07So 05.07.20\x0310:10 44",
+  "\x04\x1D\x07Programm   \x1D\x04Donnerstag              ",
+  "\x04\x1D\x07Vorschau   \x1D\x0409.07.2020              ",
+  "\x14#######################################",
+  "\x0206:00\x13/\x02KiKANiNCHEN\x03HD                 ",
+  "\x0706:05\x16/\x07Shaun das Schaf (57+52)\x03HD     ",
+  "\x0206:20\x16/\x02Mascha und der B{r (36+37)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0706:35\x13/\x07Feuerwehrmann Sam (63+134)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0206:55\x13/\x02Die Sendung mit dem Elefanten  ",
+  "        \x02(192)                          ",
+  "\x0707:20\x13/\x07Der kleine Drache Kokosnuss (13",
+  "        \x07+14)\x03HD UT                     ",
+  "\x0207:45\x13/\x02Sesamstra~e\x03HD                 ",
+  "\x0708:05\x13/\x07KiKANiNCHEN\x03HD                 ",
+  "\x0208:10\x13/\x02Wissper (74+75)\x03HD             ",
+  "\x0708:25\x13/\x07Zacki und die Zoobande (10+13+ ",
+  "        \x0714)\x03HD UT                      ",
+  "\x0209:00\x13/\x02N|-N| Schnabeltier (10+11+12)\x03 ",
+  "        \x03HD                             ",
+  "\x0709:20\x16/\x07Die Sendung mit der Maus\x03UT    ",
+  "\x0209:50\x16/\x02Das Dschungelbuch (1+2+3)\x03HD UT",
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x322} = 3;
+$PgSub{0x322} = 0;
+$PgLang{0x322} = 1;
+$PgTime{0x322} = 1593936657;
+$Pkg{0x322|(0x0000<<12)} =
+[
+  "        322\x06KI.KA  \x07So 05.07.20\x0310 10:45",
+  "\x04\x1D\x07Programm   \x1D\x04Donnerstag              ",
+  "\x04\x1D\x07Vorschau   \x1D\x0409.07.2020              ",
+  "\x14#######################################",
+  "\x0710:20\x16/\x07Tashi (16+17+18+19)\x03HD UT      ",
+  "\x0211:10\x16/\x02Sherazade (1+2+3)\x03HD           ",
+  "\x0712:20\x16/\x07Der kleine Prinz (5+6+7)\x03HD UT ",
+  "\x0213:30\x15/\x02logo! Die Welt und ich.\x03HD UT  ",
+  "\x0713:40\x15/\x07Tiere bis unters Dach (80)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0214:10\x15/\x02Schloss Einstein (851+852)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0715:00\x15/\x07Sam Fox: Extreme Adventures (15",
+  "        \x07+16)\x03HD                        ",
+  "\x0215:50\x15/\x02Stoked (33)                    ",
+  "\x0716:10\x16/\x07Ein Fall f}r TKKG (15+16)\x03HD UT",
+  "\x0217:00\x16/\x02Mirette ermittelt (9+10+12)\x03HD ",
+  "        \x03UT                             ",
+  "\x0717:30\x16/\x07The Garfield Show (43+44+45)\x03HD",
+  "\x0218:05\x13/\x02Bobby & Bill (69)\x03HD           ",
+  "\x0718:20\x13/\x07Die Ollie & Moon Show (45+46)\x03 ",
+  "        \x03HD                             ",
+  "\x0218:40\x13/\x02Lieselotte (40)\x03HD             ",
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x323} = 3;
+$PgSub{0x323} = 0;
+$PgLang{0x323} = 1;
+$PgTime{0x323} = 1593936657;
+$Pkg{0x323|(0x0000<<12)} =
+[
+  "        323\x06KI.KA  \x07So 05.07.20\x0310 10:45",
+  "\x04\x1D\x07Programm   \x1D\x04Donnerstag              ",
+  "\x04\x1D\x07Vorschau   \x1D\x0409.07.2020              ",
+  "\x14#######################################",
+  "\x0718:47\x13/\x07Baumhaus (191)\x03HD              ",
+  "\x0218:50\x13/\x02Unser Sandm{nnchen             ",
+  "\x0719:00\x16/\x07Das Dschungelbuch (93+94)\x03HD UT",
+  "\x0219:25\x16/\x02L|wenzahn\x03HD AD UT             ",
+  "\x0719:50\x15/\x07logo! Die Welt und ich.\x03HD UT  ",
+  "\x0220:00\x15/\x02KiKA LIVE\x03HD UT                ",
+  "\x0720:10\x15/\x07Athena (23+24)\x03HD              ",
+  "\x0221:00\x15/\x02Sendeschluss                   ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x324} = 3;
+$PgSub{0x324} = 0;
+$PgLang{0x324} = 1;
+$PgTime{0x324} = 1593936657;
+$Pkg{0x324|(0x0000<<12)} =
+[
+  "        324\x06KI.KA  \x07So 05.07.20\x0310 10:45",
+  "\x04\x1D\x07Programm   \x1D\x04Freitag                 ",
+  "\x04\x1D\x07Vorschau   \x1D\x0410.07.2020              ",
+  "\x14#######################################",
+  "\x0206:00\x13/\x02KiKANiNCHEN\x03HD                 ",
+  "\x0706:05\x16/\x07Shaun das Schaf (53+58)\x03HD     ",
+  "\x0206:20\x16/\x02Mascha und der B{r (38+39)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0706:35\x13/\x07Feuerwehrmann Sam (65+135)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0206:55\x13/\x02Die Sendung mit dem Elefanten  ",
+  "        \x02(193)                          ",
+  "\x0707:20\x13/\x07Der kleine Drache Kokosnuss (15",
+  "        \x07+16)\x03HD UT                     ",
+  "\x0207:45\x13/\x02Sesamstra~e\x03HD                 ",
+  "\x0708:05\x13/\x07KiKANiNCHEN\x03HD                 ",
+  "\x0208:10\x13/\x02Wissper (76+78)\x03HD             ",
+  "\x0708:25\x13/\x07Zacki und die Zoobande (15+16+ ",
+  "        \x0717)\x03HD UT                      ",
+  "\x0209:00\x13/\x02N|-N| Schnabeltier (13+14+15)\x03 ",
+  "        \x03HD                             ",
+  "\x0709:20\x16/\x07Die Sendung mit der Maus\x03UT    ",
+  undef,
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x325} = 3;
+$PgSub{0x325} = 0;
+$PgLang{0x325} = 1;
+$PgTime{0x325} = 1593936657;
+$Pkg{0x325|(0x0000<<12)} =
+[
+  "        325\x06KI.KA  \x07So 05.07.20\x0310 10:45",
+  "\x04\x1D\x07Programm   \x1D\x04Freitag                 ",
+  "\x04\x1D\x07Vorschau   \x1D\x0410.07.2020              ",
+  "\x14#######################################",
+  "\x0209:50\x16/\x02Horseland, die Pferderanch (7+8",
+  "        \x02+9+10)                         ",
+  "\x0711:10\x16/\x07Wendy (1+2+3)\x03HD               ",
+  "\x0212:25\x16/\x02Lenas Ranch (27+28+29)\x03HD UT   ",
+  "\x0713:30\x15/\x07logo! Die Welt und ich.\x03HD UT  ",
+  "\x0213:40\x15/\x02Tiere bis unters Dach (81)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0714:10\x15/\x07Schloss Einstein (853+854)\x03HD  ",
+  "        \x03UT                             ",
+  "\x0215:00\x15/\x02Sam Fox: Extreme Adventures (17",
+  "        \x02+18)\x03HD                        ",
+  "\x0715:50\x15/\x07Stoked (34)                    ",
+  "\x0216:10\x16/\x02Ein Fall f}r TKKG (17+18)\x03HD UT",
+  "\x0717:00\x16/\x07Mirette ermittelt (50+51+52)\x03HD",
+  "\x0217:30\x16/\x02The Garfield Show (46+47+48)\x03HD",
+  "\x0718:05\x13/\x07Bobby & Bill (70)\x03HD           ",
+  "\x0218:20\x13/\x02Die Ollie & Moon Show (47+48)\x03 ",
+  "        \x03HD                             ",
+  "\x0718:40\x13/\x07Lieselotte (41)\x03HD             ",
+  "                      \x04\x1D\x07Weiter   >>>   ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+];
