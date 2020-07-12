@@ -344,21 +344,23 @@ int main( int argc, char *argv[] )
    // parse command line arguments
    ParseArgv(argc, argv);
 
+   TTX_DB ttx_db;
+
    // read teletext data into memory from file or device
    if (   (opt_infile == 0)
-       || !ImportRawDump(opt_infile) ) {
+       || !ImportRawDump(&ttx_db, opt_infile) ) {
 
-      ReadVbi(opt_infile, opt_outfile, opt_device, opt_dvbpid,
+      ReadVbi(&ttx_db, opt_infile, opt_outfile, opt_device, opt_dvbpid,
               opt_verbose, (opt_dump == 3), opt_duration);
    }
 
    if (opt_dump == 1) {
       // debug only: dump teletext pages into file (text only)
-      DumpTextPages(opt_outfile);
+      DumpTextPages(&ttx_db, opt_outfile);
    }
    else if (opt_dump == 2) {
       // dump teletext pages into file, including all control chars
-      DumpRawTeletext(opt_outfile, opt_tv_start, opt_tv_end);
+      DumpRawTeletext(&ttx_db, opt_outfile, opt_tv_start, opt_tv_end);
    }
    else if (opt_dump == 3) {
       // dump each VBI packet: already done while capturing
@@ -366,7 +368,7 @@ int main( int argc, char *argv[] )
    else {
       // parse and export programme data
       // grab new XML data from teletext
-      vector<OV_PAGE*> ov_pages = ParseAllOvPages(opt_tv_start, opt_tv_end);
+      vector<OV_PAGE*> ov_pages = ParseAllOvPages(&ttx_db.page_db, opt_tv_start, opt_tv_end);
 
       ParseAllContent(ov_pages);
 
@@ -382,7 +384,7 @@ int main( int argc, char *argv[] )
       if (!NewSlots.empty()) {
          XMLTV xmltv;
 
-         xmltv.SetChannelName(opt_chname, opt_chid);
+         xmltv.SetChannelName(&ttx_db, opt_chname, opt_chid);
 
          if (!opt_verify) {
             xmltv.SetExpireTime(opt_expire);

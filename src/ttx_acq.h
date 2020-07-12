@@ -19,7 +19,7 @@
 #if !defined (__TTX_ACQ_H)
 #define __TTX_ACQ_H
 
-void ReadVbi(const char * p_infile, const char * p_dumpfile,
+void ReadVbi(TTX_DB * db, const char * p_infile, const char * p_dumpfile,
              const char * p_dev_name, int dvb_pid,
              int do_verbose, bool do_dump, int cap_duration);
 

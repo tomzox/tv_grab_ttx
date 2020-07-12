@@ -97,6 +97,10 @@ class TTX_ACQ_SRC
 public:
    virtual ~TTX_ACQ_SRC() {};
    virtual bool read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts) = 0;
+
+protected:
+   TTX_PAGE_DB ttx_db;
+   TTX_CHN_ID ttx_chn_id;
 };
 
 #if defined (USE_LIBZVBI)
@@ -417,11 +421,12 @@ bool TTX_ACQ_ZVBI::read_pkg(TTX_ACQ_PKG& ret_buf, time_t time_limit, time_t *ts)
 class TTX_ACQ
 {
 public:
-   TTX_ACQ(bool pgstat);
+   TTX_ACQ(TTX_PAGE_DB * db, bool pgstat);
    ~TTX_ACQ();
    void add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts);
    void add_page_stats(int page, time_t ts);
 private:
+   TTX_PAGE_DB * const mp_db;
    int m_cur_page[8];
    int m_cur_sub[8];
    int m_prev_pkg[8];
@@ -431,7 +436,8 @@ private:
    bool m_pgstat;
 };
 
-TTX_ACQ::TTX_ACQ(bool pgstat)
+TTX_ACQ::TTX_ACQ(TTX_PAGE_DB * db, bool pgstat)
+   : mp_db(db)
 {
    for (int idx = 0; idx < 8; idx++) {
       m_cur_page[idx] = -1;
@@ -490,7 +496,7 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
    if (pkg == 0) {
       // erase page control bit (C4) - ignored, some channels abuse this
       //if ((p_pkg_buf->m_ctrl_lo & 0x80) && (p_pkg_buf->m_ctrl_hi & 0x02)) {  // C4 & C8
-      //   ttx_db.erase_page_c4(page, sub);
+      //   mp_db->erase_page_c4(page, sub);
       //}
       // inhibit display control bit (C10)
       //if (p_pkg_buf->m_ctrl_hi & 0x08) {
@@ -503,19 +509,19 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
          p_data = reinterpret_cast<const uint8_t*>(blank_line);
       }
       // drop all non-decimal pages
-      if (!ttx_db.page_acceptable(page)) {
+      if (!mp_db->page_acceptable(page)) {
          m_cur_page[mag] = -1;
          return;
       }
       // magazine serial mode (C11: 1=serial 0=parallel)
       m_is_mag_serial = ((p_pkg_buf->m_ctrl_hi & 0x10) != 0);
       if ((page != m_cur_page[mag]) || (sub != m_cur_sub[mag])) {
-         ttx_db.add_page(page, sub,
+         mp_db->add_page(page, sub,
                          p_pkg_buf->m_ctrl_lo | (p_pkg_buf->m_ctrl_hi << 16),
                          p_data, ts);
       }
       else {
-         ttx_db.add_page_data(page, sub, 0, p_data);
+         mp_db->add_page_data(page, sub, 0, p_data);
       }
       if (m_pgstat) {
          add_page_stats(p_pkg_buf->m_page_no, ts);
@@ -537,7 +543,7 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
          else {
             if (pkg < 26)
                m_prev_pkg[mag] = pkg;
-            ttx_db.add_page_data(page, sub, pkg, p_data);
+            mp_db->add_page_data(page, sub, pkg, p_data);
          }
       }
    }
@@ -548,13 +554,13 @@ void TTX_ACQ::add_pkg(const TTX_ACQ_PKG * p_pkg_buf, time_t ts)
  * - when reading from a file, each record has a small header plus 40 bytes payload
  * - TODO: use MIP to find TV overview pages
  */
-void ReadVbi(const char * p_infile, const char * p_dumpfile,
+void ReadVbi(TTX_DB * db, const char * p_infile, const char * p_dumpfile,
              const char * p_dev_name, int dvb_pid,
              int do_verbose, bool do_dump, int cap_duration)
 {
    TTX_ACQ_SRC * acq_src = 0;
    TTX_ACQ_PKG pkg_buf;
-   TTX_ACQ acq(do_verbose > 1);
+   TTX_ACQ acq(&db->page_db, do_verbose > 1);
    int last_pg = -1;
    int intv = 0;
 
@@ -610,7 +616,7 @@ void ReadVbi(const char * p_infile, const char * p_dumpfile,
       if ((cap_duration == 0) && (pkg_buf.m_pkg == 0)) {
          intv += 1;
          if (intv >= 50) {
-            if (ttx_db.get_acq_rep_stats() >= 4.0)
+            if (db->page_db.get_acq_rep_stats() >= 4.0)
                break;
             intv = 0;
          }
@@ -622,7 +628,7 @@ void ReadVbi(const char * p_infile, const char * p_dumpfile,
       else if ((pkg_buf.m_pkg == 30) || (pkg_buf.m_pkg == 32)) {
          uint16_t cni;
          memcpy(&cni, pkg_buf.m_data, sizeof(cni));
-         ttx_chn_id.add_cni(cni);
+         db->chn_id.add_cni(cni);
       }
    }
    delete acq_src;
