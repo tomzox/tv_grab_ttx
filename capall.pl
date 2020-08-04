@@ -46,7 +46,7 @@ my $def_pages = "300-399";
 my @Nets = (
    ["Das Erste", "ard"],
    ["ZDF", "zdf"],
-   ["arte", "arte"],
+   ["arte", "arte", "300-699"],    # today on 300-300, next 600-699
    ["KiKA", "kika"],
    ["3sat", "3sat"],
    ["ONE", "ard-one"],
@@ -141,7 +141,9 @@ while (@Nets) {
                # - merge output with previous XML file of same name, if one exists
                open(STDOUT, '>', "${out_file}.tmp") or die "Can't redirect STDOUT >${out_file}.tmp: $!";
 
-               my @cmd  = ("./tv_grab_ttx", "-dev", $device, "-duration", $duration);
+               my @cmd  = ("./tv_grab_ttx", "-dev", $device,
+                                            "-duration", $duration,
+                                            "-page", $pages);
                push(@cmd, "-dvbpid", $tid);
                push(@cmd, "-merge", $out_file) if -e $out_file && !-z $out_file;
                exec @cmd;
@@ -187,4 +189,5 @@ while (@Nets) {
    }
 }
 
+print "Finally merging all captured XMLTV files into tv.xml\n";
 system "./merge.pl ttx-*.xml > tv.xml";

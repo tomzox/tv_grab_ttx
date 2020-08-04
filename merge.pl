@@ -39,9 +39,10 @@ sub ReadXmlFile {
    my $tag_data;
    my $chn_id;
    my $start_t;
-   my $exp_thresh = time - $opt_expire * 24*60*60;
+   my %CurChnMap;
+   #my $exp_thresh = time - $opt_expire * 24*60*60;
 
-   open(XML, "<$fname") || die "cannot open $fname: $!\n";
+   open(XML, "<$fname") || die "$0: cannot open $fname: $!\n";
    while ($_ = <XML>) {
       # handling XML header
       if ($state == 0) {
@@ -50,54 +51,71 @@ sub ReadXmlFile {
             $state = 2;
          } elsif (/\S/) {
             chomp;
-            warn "Unexpected line '$_' in $fname\n";
+            die "$0: FATAL: Unexpected line '$_' in $fname\n";
          }
       } elsif ($state == 1) {
-         warn "Unexpected line '$_' following </tv> in $fname\n";
+         die "$0: FATAL: Unexpected line '$_' following </tv> in $fname\n";
 
       # handling main section in-between <tv> </tv>
       } elsif ($state == 2) {
          if (/^\s*\<\/tv>\s*$/i) {
             $state = 1;
          } elsif (/^\s*\<channel/i) {
-            die "$0: More than one channel in $fname\n" if defined($chn_id);
-            if (/id=\"([^"]*)\"/i) {
-               $chn_id = $1;
-            } else {
-               warn "Missing 'id' attribute in '$_' in $fname\n";
-            }
             $tag_data = $_;
+            if ($tag_data =~ /id=\"([^"]*)\"/i) {
+               $chn_id = $1;
+               die "$0: FATAL: duplicate channel ID $chn_id within $fname\n" if defined($CurChnMap{$chn_id});
+               $CurChnMap{$chn_id} = $chn_id;
+            } else {
+               die "$0: FATAL: Missing 'id' attribute in '$_' in $fname\n";
+            }
+            if (defined($ChnOrder{$chn_id})) {
+               warn "$0: Warning: channel ID $chn_id seen 2nd time in $fname\n" if defined($ChnOrder{$chn_id});
+               my $apx = 2;
+               ++$apx while defined($ChnOrder{$chn_id . "__$apx"});
+               $CurChnMap{$chn_id} = $chn_id . "__$apx";
+               $chn_id .= "__$apx";
+               $tag_data =~ s/id=\"([^"]*)\"/id="$chn_id"/i
+            }
             $state = 3;
          } elsif (/^\s*\<programme/i) {
+            $tag_data = $_;
             if (/start=\"([^"]*)\".*channel=\"([^"]*)\"/i) {
                $start_t = ParseTimestamp($1);
             } else {
-               warn "Missing 'start' and 'channel' attributes in '$_' in $fname\n";
+               die "$0: FATAL: Missing 'start' and 'channel' attributes in '$_' in $fname\n";
             }
-            die "Unknown channel $2 in $fname (expect $chn_id)\n" if $2 ne $chn_id;
-            $tag_data = $_;
+            $chn_id = $2;
+            die "$0: Fatal: programme with unknown channel ID $chn_id in $fname\n" if !defined($ChnOrder{$chn_id});
+            # replace duplicate IDs, where necessary
+            if ($CurChnMap{$chn_id} ne $chn_id) {
+               $chn_id = $CurChnMap{$chn_id};
+               $tag_data =~ s/channel=\"([^"]*)\"/channel=\"$chn_id\"/i;
+            }
             $state = 4;
          } elsif (/\S/) {
-            warn "Unexpected tag '$_' in $fname; expect <channel> or <programme>\n";
+            die "$0: FATAL: Unexpected tag '$_' in $fname; expect <channel> or <programme>\n";
          }
 
       # handling channel data
       } elsif ($state == 3) {
          $tag_data .= $_;
          if (/^\s*\<\/channel>\s*$/i) {
+            # FIXME? multiple channels in same XML file get same index
             $ChnOrder{$chn_id} = $fidx;
             push @ChnTable, $tag_data;
             $ChnOrder{$chn_id} = $tag_data;
             $state = 2;
+            undef $chn_id;
          }
 
       # handling programme data
       } elsif ($state == 4) {
          $tag_data .= $_;
          if (/^\s*\<\/programme>\s*$/i) {
-            if ($start_t >= $exp_thresh) {
+            #if ($start_t >= $exp_thresh) {
                $XmlData{"$start_t;$chn_id"} = $tag_data;
-            }
+            #}
             $state = 2;
          }
       }
