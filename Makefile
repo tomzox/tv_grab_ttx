@@ -45,6 +45,10 @@ exec_prefix = ${prefix}
 bindir  = $(ROOT)${exec_prefix}/bin
 mandir  = $(ROOT)${prefix}/man/man1
 
+.PHONY: test
+test: all
+	./verify.sh
+
 .PHONY: install
 install: all
 	test -d $(bindir) || install -d $(bindir)

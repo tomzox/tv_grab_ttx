@@ -67,3 +67,5 @@ done
 echo "== TOTAL SKIP: $skip_cnt"
 echo "== TOTAL PASS: $pass_cnt"
 echo "== TOTAL FAIL: $fail_cnt"
+
+exit $fail_cnt

@@ -1,3 +1,13 @@
+libxmltv-ttx (2.2) unstable; urgency=medium
+
+  * Adapted internal C interface used by nxtvepg branch "devel_3_0_0" for
+    allowing capturing concurrently from multiple DVB channels
+  * Bugfix "capall" to use TTX page numbers given in config
+  * Enhanced robustness of merge script (e.g. duplicate channel names)
+  * Enhanced parsing of series indices in programme titles
+
+ -- T. Zoerner <tomzo@users.sourceforge.net>  Tue, 22 Dec 2020 14:41:00 +0200
+
 libxmltv-ttx (2.1) unstable; urgency=medium
 
   * Replaced use of boost_regex library with C++11 std::regex

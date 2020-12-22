@@ -13,30 +13,35 @@ Nextview EPG grabber [nxtvepg](http://nxtvepg.sourceforge.net) (version
 2.9.0 or later), which can also be used for immediately browsing the
 programme listings in the generated XMLTV files. The grabber is integrated
 into the nxtvepg acquisition control and can be activated via the
-configuration menus. (Currently nxtvepg still defaults to acquisition via
-Nextview EPG, but that service is defunct now.)
+configuration menus. (Version 2.9 of nxtvepg still defaults to acquisition
+via Nextview EPG, but that service is defunct now; use nxtvepg version 3.0
+or later for optimized support.)
 
 Since the grabber has to read each individual network's teletext stream and
-many networks use sub-pages at least for descriptions, the process
-unfortunately takes relatively long. For full EPG grabbing, at least 90 seconds
-per network are required. There's a fast scan mode which requires only 10-20
-seconds per network in average, however in this mode overview and descriptions
-may be incomplete if sub-pages are used by the respective network.
+many networks use sub-pages at least for descriptions, the process if done
+sequentially takes relatively long, namely at least 90-120 seconds per network
+for grabbing all data including description texts.  However, when capturing
+from DVB, it is possible to capture from all channels sharing a transponder,
+which in average speeds up acquisition by more than factor 5 (see description
+of script `capall.sh` below). There is also a fast scan mode which requires
+only 10-20 seconds per network in average, however in this mode overview and
+descriptions may be incomplete if sub-pages are used by the respective network.
 
-For now, only nation-wide German networks are supported. For other networks the
-parser will need to be adapted to different page formats. That's because almost
-every network formats tables, dates, times and descriptions slightly
-differently, so that the parser will have trouble locating the EPG data among
-all the advertisements and other content in teletext. 
+For now, only nation-wide German networks are supported well. For other
+networks, the parser would need to be adapted to different page formats. That's
+because almost every network formats tables, dates, times and descriptions
+slightly differently, so that the parser will have trouble locating the EPG
+data among all the advertisements and other content in teletext.
 
-# Latest news: June/2020: Release of version 2.1
+# Latest news: December/2020: Release of version 2.2
 
-Development was resumed after a 9 year gap. The new release mainly focuses on
-enhancing working with digital TV capture cards (e.g. by adapting the `capall.pl`
-example automatisation script). Also tools have been updated (e.g. removed the
-need for the Boost regex library by requiring C++11) and the parser was
-slightly enhanced and adapted to changes in teletext content by networks.
-This new release will be included in nxtvepg pre-release 2.9.0pre5.
+Development was resumed with release 2.0 after a 9 year gap. The first release
+mainly focused on enhancing working with digital TV capture cards (e.g. by
+adapting the `capall.pl` example automation script). Also tools have been
+updated (e.g. removed the need for the Boost regex library by requiring C++11)
+and the parser was slightly enhanced and adapted to changes in teletext content
+by networks. Subsequent releases provided further enhancements and fixes in
+parser and tools, as well as interface adaption for integration in nxtvepg.
 
 # Installation
 
@@ -53,8 +58,9 @@ another directory which contains bin/ and man/, where to install the executable
 and manual page respectively.)
 
 For use with nxtvepg: The grabber is actually compiled into the nxtvepg
-executable: nxtvepg-2.9.0 includes the current latest grabber release 2.1.
-See [nxtvepg grabber documentation](http://nxtvepg.sourceforge.net/ttx_grab.html)
+executable: nxtvepg-2.9.0 (branch `devel_3_0_0`) includes the current latest
+grabber release 2.2. See
+[nxtvepg grabber documentation](http://nxtvepg.sourceforge.net/ttx_grab.html).
 
 # Dependencies
 

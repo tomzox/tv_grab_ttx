@@ -4,7 +4,7 @@
 #
 use strict;
 
-my $version = "2.1";
+my $version = "2.2";
 my $name = "libxmltv-ttx";
 my $arch = "amd64";
 
