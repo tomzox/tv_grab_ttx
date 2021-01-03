@@ -68,7 +68,7 @@ void ttx_db_add_cni(void * db, unsigned cni)
  * This function adds the given teletext packet to the database. The function
  * should be called for each captured packet, filtering is done internally.
  */
-bool ttx_db_add_pkg( void * db, int page, int ctrl, int pkgno, const uint8_t * p_data, time_t ts )
+void ttx_db_add_pkg( void * db, int page, int ctrl, int pkgno, const uint8_t * p_data, time_t ts )
 {
    TTX_DB * const ttx_db = (TTX_DB*) db;
    static int cur_page = -1;
@@ -96,6 +96,10 @@ bool ttx_db_add_pkg( void * db, int page, int ctrl, int pkgno, const uint8_t * p
  * This function is called once when acquisition is complete to start grabbing
  * EPG data from the previously captured teletext packets. The result is written
  * to the given file.
+ *
+ * Note page numbers specify the range for overview pages (i.e. more pages may
+ * be used when referenced by programme entries on overview pages). Page
+ * numbers are expected in form of HEX BCD (i.e. 0x100 for page "100").
  */
 int ttx_db_parse( void * db, int pg_start, int pg_end, int expire_min,
                   const char * p_xml_in, const char * p_xml_out,
