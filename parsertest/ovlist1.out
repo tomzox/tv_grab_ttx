@@ -6,6 +6,7 @@
 </channel>
 
 <programme start="20060429103000 +0000" stop="20060429110000 +0000" pdc-start="20060429123000 +0200" channel="MDR">
+	<!-- TTX 302.0000 ACQTS:1146302512 -->
 	<title>Lindenstraﬂe</title>
 	<sub-title>Lindenstraﬂe 1064. Das Eheversprechen Fernsehserie</sub-title>
 	<video>
@@ -18,6 +19,7 @@
 </programme>
 
 <programme start="20060429110000 +0000" stop="20060429122500 +0000" pdc-start="20060429130000 +0200" channel="MDR">
+	<!-- TTX 302.0000 ACQTS:1146302512 -->
 	<title>Die</title>
 	<sub-title>Die Schokoladenkˆnigin Spielfilm (D 2005)</sub-title>
 	<video>
@@ -30,21 +32,25 @@
 </programme>
 
 <programme start="20060429122500 +0000" stop="20060429123000 +0000" pdc-start="20060429142500 +0200" channel="MDR">
+	<!-- TTX 302.0000 ACQTS:1146302512 -->
 	<title>Schlager-Charts</title>
 	<desc>(teletext 395)</desc>
 </programme>
 
 <programme start="20060429123000 +0000" stop="20060429140000 +0000" pdc-start="20060429143000 +0200" channel="MDR">
+	<!-- TTX 302.0000 ACQTS:1146302512 -->
 	<title>Ausgetrickst - Die unglaubliche Show</title>
 </programme>
 
 <programme start="20060429140000 +0000" stop="20060429143000 +0000" pdc-start="20060429160000 +0200" channel="MDR">
+	<!-- TTX 302.0000 ACQTS:1146302512 -->
 	<title>Cafe trend</title>
 	<sub-title>CAFE TREND Tipps &amp; Talk mit Katrin Huﬂ</sub-title>
 	<desc>(teletext 306)</desc>
 </programme>
 
 <programme start="20060429143000 +0000" stop="20060429160000 +0000" pdc-start="20060429163000 +0200" channel="MDR">
+	<!-- TTX 302.0000 ACQTS:1146302512 -->
 	<title>Sport im Osten</title>
 	<sub-title>Sport im Osten Aktueller Sport vom Tage</sub-title>
 	<desc>(teletext 292)</desc>

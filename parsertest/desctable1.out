@@ -6,29 +6,34 @@
 </channel>
 
 <programme start="20081003030500 +0000" stop="20081003033500 +0000" pdc-start="20081003050500 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>hallo deutschland</title>
 	<desc>(teletext 365)</desc>
 </programme>
 
 <programme start="20081003033500 +0000" stop="20081003040500 +0000" pdc-start="20081003053500 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>Henry der Schreckliche</title>
 	<desc>(teletext 309)</desc>
 </programme>
 
 <programme start="20081003040500 +0000" stop="20081003052000 +0000" pdc-start="20081003060500 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>Pippi in der Südsee</title>
 	<desc>(teletext 311)</desc>
 </programme>
 
 <programme start="20081003052000 +0000" stop="20081003064000 +0000" pdc-start="20081003072000 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>Wickie</title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20081003064000 +0000" stop="20081003080000 +0000" pdc-start="20081003084000 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>Rotkäppchen</title>
 	<sub-title>Rotkäppchen Märchenfilm D/2005</sub-title>
-	<!-- TTX 313 -->
+	<!-- TTX 313.0001 -->
 	<desc>Rotkäppchen Märchenfilm D/2005 16:9
 Die elfjährige Leonie fährt nur widerwillig mit ihren Eltern und dem kleinen Bruder Simon übers Wochenende zur Großmutter. Auf der Fahrt nervt Simon sie mit seinem Märchenbuch. Er will, dass sie ihm "Rotkäppchen" vorliest.
 Auf einer gottverlassenen Landstraße haben sie plötzlich eine Autopanne. Der Vater macht sich zu Fuß auf den Weg, um Hilfe zu holen. Plötzlich wird Leonies Aufmerksamkeit von einem "roten Etwas" in Anspruch genommen. Leonie geht dem "Rot" entgegen und kommt zu einem Höhleneingang.
@@ -40,18 +45,21 @@ Regie: Klaus Gietinger Drehbuch: Ralph Martin, Armin Toerkell</desc>
 </programme>
 
 <programme start="20081003080000 +0000" stop="20081003090000 +0000" pdc-start="20081003100000 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>Ökum. Gottesdienst</title>
 	<desc>(teletext 550)</desc>
 </programme>
 
 <programme start="20081003090000 +0000" stop="20081003090500 +0000" pdc-start="20081003110000 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>heute</title>
 </programme>
 
 <programme start="20081003090500 +0000" stop="20081003104500 +0000" pdc-start="20081003110500 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>Liebe, Jazz und Übermut</title>
 	<sub-title>Liebe, Jazz und Übermut Komödie D/1957</sub-title>
-	<!-- TTX 314 -->
+	<!-- TTX 314.0001 -->
 	<desc>Liebe, Jazz und Übermut Komödie D/1957
 Das Barockschloss Tiefenstein ist dank der großherzigen Stiftung eines Amerikaners ein Internat für musikbegabte Waisenkinder geworden. Als Dr.Parker, einer der Treuhänder der Stiftung, in einem Telegramm seinen Besuch ankündigt, versetzt dies die gewitzte Leiterin des Internats, Clothilde Himmelreich, in Panik, denn sie hat ihr Lehrpersonal aus Sparsamkeitsgründen reduziert.
 In diesem Musikfilm spielen die Orchester Kurt Edelhagen und Erwin Lehn Lieder von Heinz Gietz.
@@ -60,19 +68,22 @@ Regie: Erik Ode Buch/Autor: Bobby E.Lüthge, Rudolf Dortenwald Musik: Heinz Gietz
 </programme>
 
 <programme start="20081003104500 +0000" stop="20081003111500 +0000" pdc-start="20081003124400 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>So isst Berlin</title>
 	<sub-title>So isst Berlin Kulinarische "Esskapaden" am Einheitstag</sub-title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20081003111500 +0000" stop="20081003112000 +0000" pdc-start="20081003131500 +0200" channel="zdf.de">
+	<!-- TTX 301.0000 ACQTS:1223032188 -->
 	<title>heute</title>
 </programme>
 
 <programme start="20081003112000 +0000" stop="20081003115000 +0000" pdc-start="20081003132000 +0200" channel="zdf.de">
+	<!-- TTX 302.0000 ACQTS:1223032188 -->
 	<title>Salto Speziale</title>
 	<sub-title>Salto Speziale Wiedersehen</sub-title>
-	<!-- TTX 317 -->
+	<!-- TTX 317.0001 -->
 	<desc>Salto Speziale Wiedersehen
 Zehn Jahre nach Schließung des Postamtes in Potsdam-Niederbörnicke inspizieren Stankoweit und Reschke die heruntergekommene Immobilie, weil sie für einen Euro zum Verkauf steht. Während beide noch über ihre zurückliegenden Erlebnisse philosophieren, hat ihr ehemaliger Chef Mäßig das Haus gekauft. Er will hier eine Arbeitsagentur aufbauen.
 Als sich seine früheren Mitarbeiter schweren Herzens bei ihm bewerben, bietet Mäßig ihnen völlig unterbezahlte Jobs an. Damit sind die alten Fronten neu eröffnet. (Erstsendung: 05.02.2006)
@@ -82,9 +93,10 @@ Regie: Ralf Gregan Buch/Autor: Gunter Antrak Musik: Detlef Rothe</desc>
 </programme>
 
 <programme start="20081003115000 +0000" stop="20081003132000 +0000" pdc-start="20081003135000 +0200" channel="zdf.de">
+	<!-- TTX 302.0000 ACQTS:1223032188 -->
 	<title>Das Schwalbennest</title>
 	<sub-title>Das Schwalbennest Komödie D/2005</sub-title>
-	<!-- TTX 318 -->
+	<!-- TTX 318.0001 -->
 	<desc>Das Schwalbennest Komödie D/2005 16:9 UT
 Eisenhüttenstadt: Stahlwerker Armin Stützler ist neuerdings ohne Job. Sein Kumpel Harry und der Lehrling Ronny leben ebenfalls von der Stütze. Durch einen Zufall entsteht die Idee, eine "Erotikbar mit Niveau" zu eröffnen. Den nötigen Kredit und unternehmerische Tipps erhalten sie von dem windigen Bordellkönig Nestor.
 Schnell wird klar, dass Nestor nicht uneigennützig handelt. Die Puffidee endet in einer handfesten Auseinandersetzung, zugleich aber auch wie ein Märchen.
@@ -97,9 +109,10 @@ Regie: Maris Pfeiffer Buch/Autor: Michael Illner Buch/Autor: Alfred Roesler-Klei
 </programme>
 
 <programme start="20081003132000 +0000" stop="20081003145500 +0000" pdc-start="20081003152000 +0200" channel="zdf.de">
+	<!-- TTX 302.0000 ACQTS:1223032188 -->
 	<title>Der brave Soldat Schwejk</title>
 	<sub-title>Der brave Soldat Schwejk Satire D/1960</sub-title>
-	<!-- TTX 319 -->
+	<!-- TTX 319.0001 -->
 	<desc>Der brave Soldat Schwejk Satire D/1960 UT s/w
 Der ebenso gutmütige wie naive, jedoch mit einer gesunden Portion Bauernschläue gesegnete Prager Hundehändler Josef Schwejk wird - obwohl amtlich für schwachsinnig erklärt - zu Beginn des Ersten Weltkriegs in die österreichische Armee einberufen.
 Als Bursche des im Umgang mit Frauen wie Geld leichtsinnigen Oberleutnants Lukasch muss Schwejk eine Reihe haarsträubend absurder Situationen meistern.
@@ -112,17 +125,20 @@ Regie: Axel von Ambesser Buch/Autor: Hans Jacoby Musik: Bernhard Eichhorn</desc>
 </programme>
 
 <programme start="20081003145500 +0000" stop="20081003150000 +0000" pdc-start="20081003165500 +0200" channel="zdf.de">
+	<!-- TTX 302.0000 ACQTS:1223032188 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20081003150000 +0000" stop="20081003153000 +0000" pdc-start="20081003170000 +0200" channel="zdf.de">
+	<!-- TTX 302.0000 ACQTS:1223032188 -->
 	<title>Das Berliner Schloss</title>
 	<sub-title>Das Berliner Schloss Eine deutsche Geschichte</sub-title>
 	<desc>(teletext 320)</desc>
 </programme>
 
 <programme start="20081003153000 +0000" stop="20081003170000 +0000" pdc-start="20081003173000 +0200" channel="zdf.de">
+	<!-- TTX 302.0000 ACQTS:1223032188 -->
 	<title>Ein Fall für zwei</title>
 	<sub-title>Ein Fall für zwei Blutige Liebesgrüße</sub-title>
 	<desc>(teletext 321)</desc>
@@ -130,28 +146,33 @@ Regie: Axel von Ambesser Buch/Autor: Hans Jacoby Musik: Bernhard Eichhorn</desc>
 </programme>
 
 <programme start="20081003170000 +0000" stop="20081003171400 +0000" pdc-start="20081003190000 +0200" channel="zdf.de">
+	<!-- TTX 302.0000 ACQTS:1223032188 -->
 	<title>heute</title>
 	<desc>(teletext 310)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20081003171400 +0000" stop="20081003171500 +0000" pdc-start="20081003191400 +0200" channel="zdf.de">
+	<!-- TTX 302.0000 ACQTS:1223032188 -->
 	<title>Wetter</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20081003171500 +0000" stop="20081003173000 +0000" pdc-start="20081003124500 +0200" channel="zdf.de">
+	<!-- TTX 303.0000 ACQTS:1223032188 -->
 	<title>Geboren am 3.Oktober</title>
 	<sub-title>Geboren am 3.Oktober Kinder der Einheit</sub-title>
 	<desc>(teletext 322)</desc>
 </programme>
 
 <programme start="20081003173000 +0000" stop="20081003181500 +0000" pdc-start="20081003193000 +0200" channel="zdf.de">
+	<!-- TTX 303.0000 ACQTS:1223032188 -->
 	<title>Lafer!Lichter!Lecker!</title>
 	<desc>(teletext 323)</desc>
 </programme>
 
 <programme start="20081003181500 +0000" stop="20081003194500 +0000" pdc-start="20081003201500 +0200" channel="zdf.de">
+	<!-- TTX 303.0000 ACQTS:1223032188 -->
 	<title>Der Kommissar und das Meer</title>
 	<sub-title>Der Kommissar und das Meer An einem einsamen Ort</sub-title>
 	<desc>(teletext 324)</desc>
@@ -159,17 +180,20 @@ Regie: Axel von Ambesser Buch/Autor: Hans Jacoby Musik: Bernhard Eichhorn</desc>
 </programme>
 
 <programme start="20081003194500 +0000" stop="20081003195800 +0000" pdc-start="20081003214500 +0200" channel="zdf.de">
+	<!-- TTX 303.0000 ACQTS:1223032188 -->
 	<title>heute-journal</title>
 	<desc>(teletext 315)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20081003195800 +0000" stop="20081003200000 +0000" pdc-start="20081003215800 +0200" channel="zdf.de">
+	<!-- TTX 303.0000 ACQTS:1223032188 -->
 	<title>Wetter</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20081003200000 +0000" stop="20081003213000 +0000" pdc-start="20081003220000 +0200" channel="zdf.de">
+	<!-- TTX 303.0000 ACQTS:1223032188 -->
 	<title>SOKO Leipzig</title>
 	<sub-title>SOKO Leipzig Istanbul Connection</sub-title>
 	<desc>(teletext 325)</desc>
@@ -177,6 +201,7 @@ Regie: Axel von Ambesser Buch/Autor: Hans Jacoby Musik: Bernhard Eichhorn</desc>
 </programme>
 
 <programme start="20081003213000 +0000" stop="20081003233000 +0000" pdc-start="20081003233000 +0200" channel="zdf.de">
+	<!-- TTX 303.0000 ACQTS:1223032188 -->
 	<title>Arsene Lupin</title>
 	<sub-title>Arsene Lupin Abenteuerkomödie F/E/GB/I/2004</sub-title>
 	<desc>(teletext 326)</desc>
@@ -184,6 +209,7 @@ Regie: Axel von Ambesser Buch/Autor: Hans Jacoby Musik: Bernhard Eichhorn</desc>
 </programme>
 
 <programme start="20081003233000 +0000" pdc-start="20081004013000 +0200" channel="zdf.de">
+	<!-- TTX 303.0000 ACQTS:1223032188 -->
 	<title>heute</title>
 	<desc>(teletext 111)</desc>
 </programme>

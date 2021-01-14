@@ -6,27 +6,32 @@
 </channel>
 
 <programme start="20100410103500 +0000" stop="20100410124000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270895715 -->
 	<title>Splash - Jungfrau am Haken</title>
 	<desc>(teletext 352)</desc>
 </programme>
 
 <programme start="20100410124000 +0000" stop="20100410142000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270895715 -->
 	<title>American Pie 4</title>
 	<sub-title>American Pie 4 Die nächste Generation</sub-title>
 	<desc>(teletext 353)</desc>
 </programme>
 
 <programme start="20100410142000 +0000" stop="20100410151000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270895715 -->
 	<title>Smallville</title>
 	<desc>(teletext 324)</desc>
 </programme>
 
 <programme start="20100410151000 +0000" stop="20100410170000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270895715 -->
 	<title>Stargate</title>
 	<desc>(teletext 322)</desc>
 </programme>
 
 <programme start="20100410170000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270895715 -->
 	<title>Big Brother</title>
 	<desc>(teletext 630)</desc>
 </programme>

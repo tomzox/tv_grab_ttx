@@ -6,59 +6,70 @@
 </channel>
 
 <programme start="20081003040000 +0000" stop="20081003042100 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>Making-of</title>
 </programme>
 
 <programme start="20081003042100 +0000" stop="20081003051100 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>Earth: Final Conflict</title>
 	<sub-title>Earth: Final Conflict Gefühlstransfer</sub-title>
 	<desc>(teletext 343)</desc>
 </programme>
 
 <programme start="20081003051100 +0000" stop="20081003053300 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>Digimon</title>
 </programme>
 
 <programme start="20081003053300 +0000" stop="20081003055500 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>One Piece</title>
 </programme>
 
 <programme start="20081003055500 +0000" stop="20081003061800 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>One Piece</title>
 	<sub-title>One Piece Die Teufelsfrucht</sub-title>
 </programme>
 
 <programme start="20081003061800 +0000" stop="20081003064200 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>One Piece</title>
 	<sub-title>One Piece Lügenpirat Lysop</sub-title>
 </programme>
 
 <programme start="20081003064200 +0000" stop="20081003071000 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>One Piece</title>
 	<sub-title>One Piece Die macht der Hypnose</sub-title>
 	<desc>(teletext 344)</desc>
 </programme>
 
 <programme start="20081003071000 +0000" stop="20081003085500 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>... und Hoffnung auf</title>
 	<sub-title>... und Hoffnung auf Liebe Melodram USA 1994</sub-title>
 	<desc>(teletext 323)</desc>
 </programme>
 
 <programme start="20081003085500 +0000" stop="20081003104000 +0000" channel="tele5.de">
+	<!-- TTX 301.0000 ACQTS:1223033342 -->
 	<title>König Wenceslas</title>
 	<sub-title>König Wenceslas Fantasy USA 1994</sub-title>
 </programme>
 
 <programme start="20081003104000 +0000" stop="20081003111500 +0000" channel="tele5.de">
+	<!-- TTX 302.0000 ACQTS:1223033342 -->
 	<title>Dauerwerbesendung</title>
 	<sub-title>Dauerwerbesendung Sonstige</sub-title>
 </programme>
 
 <programme start="20081003111500 +0000" stop="20081003130500 +0000" channel="tele5.de">
+	<!-- TTX 302.0000 ACQTS:1223033342 -->
 	<title>Zwei irre Spaßvögel</title>
 	<sub-title>Zwei irre Spaßvögel Komödie F 1983</sub-title>
-	<!-- TTX 312 -->
+	<!-- TTX 312.0001 -->
 	<desc>Zwei irre Spaßvögel
 Fr 13:15-15:05 auf Sendung
 Komödie F 1983
@@ -72,24 +83,28 @@ Francois Pigno: Pierre Richard, Jean Lucas: Gerard Depardieu, Christine Mart: An
 </programme>
 
 <programme start="20081003130500 +0000" stop="20081003152500 +0000" channel="tele5.de">
+	<!-- TTX 302.0000 ACQTS:1223033342 -->
 	<title>City Slickers - Die Großstadthelden</title>
 	<sub-title>City Slickers - Die Großstadthelden Komödie USA 1991</sub-title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20081003152500 +0000" stop="20081003181500 +0000" channel="tele5.de">
+	<!-- TTX 302.0000 ACQTS:1223033342 -->
 	<title>sonnenklar TV</title>
 	<sub-title>sonnenklar TV Sonstige</sub-title>
 	<desc>(teletext 490)</desc>
 </programme>
 
 <programme start="20081003181500 +0000" stop="20081003202000 +0000" channel="tele5.de">
+	<!-- TTX 303.0000 ACQTS:1223033342 -->
 	<title>Die Rückkehr des Sandokan</title>
 	<sub-title>Die Rückkehr des Sandokan Mini-Serie I/BRD 1996</sub-title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20081003202000 +0000" channel="tele5.de">
+	<!-- TTX 303.0000 ACQTS:1223033342 -->
 	<title>Die Rückkehr des Sandokan</title>
 	<sub-title>Die Rückkehr des Sandokan Mini-Serie I/BRD 1996</sub-title>
 	<desc>(teletext 315)</desc>

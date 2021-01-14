@@ -93,6 +93,7 @@ private:
    string       m_vps_time;
    string       m_vps_date;
    int          m_ttx_ref;
+   int          m_ttx_ref_sub;
    bool         m_is_tip;
    std::vector<string> m_ov_title;
 
@@ -131,6 +132,7 @@ public:
    const string& get_vps_date() const { return mp_ov_page->m_slots[m_slot_idx]->m_vps_date; }
    const TV_FEAT& get_feat() const { return mp_ov_page->m_slots[m_slot_idx]->m_ext_feat; }
    int get_ttx_ref() const { return mp_ov_page->m_slots[m_slot_idx]->m_ttx_ref; }
+   int get_ttx_ref_sub() const { return mp_ov_page->m_slots[m_slot_idx]->m_ttx_ref_sub; }
    void merge_feat(const TV_FEAT& feat) { mp_ov_page->m_slots[m_slot_idx]->merge_feat(feat); }
    void merge_desc(const string& desc) { mp_ov_page->m_slots[m_slot_idx]->merge_desc(desc); }
    void merge_title(const string& title, const string& sub_title) {

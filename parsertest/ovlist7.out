@@ -6,42 +6,50 @@
 </channel>
 
 <programme start="20100320043000 +0000" stop="20100320045500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Felix und die wilden Tiere</title>
 </programme>
 
 <programme start="20100320045500 +0000" stop="20100320052000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Karen in Action</title>
 </programme>
 
 <programme start="20100320052000 +0000" stop="20100320061000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Die wunderbare Reise des</title>
 	<sub-title>Die wunderbare Reise des kleinen Nils Holgersson (1+2)</sub-title>
 </programme>
 
 <programme start="20100320061000 +0000" stop="20100320063500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Shaun, das Schaf</title>
 </programme>
 
 <programme start="20100320063500 +0000" stop="20100320070500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Willi wills wissen</title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20100320070500 +0000" stop="20100320073000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Wissen macht Ah!</title>
 	<desc>(teletext 313)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100320073000 +0000" stop="20100320074000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>neuneinhalb</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100320074000 +0000" stop="20100320081000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Tiere bis unters</title>
 	<sub-title>Tiere bis unters Dach (9/13)</sub-title>
-	<!-- TTX 314 -->
+	<!-- TTX 314.0000 -->
 	<desc>Tiere bis unters HD Dach (9/13)
 Waldläufer
 Im Wald unterwegs, treffen Jonas und seine Freunde scheinbar auf seltsame Fabelwesen. Sie gehen mit ihren Zwillen auf die Jagd, und dabei erwischt ein Stein von Jonas ein krankes Reh am Kopf.
@@ -52,22 +60,26 @@ Als Greta und Jonas das verletzte Tier im Wald finden, wird ihre Freundschaft au
 </programme>
 
 <programme start="20100320081000 +0000" stop="20100320083500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Ein Fall für B.A.R.Z.</title>
 	<desc>(teletext 315)</desc>
 </programme>
 
 <programme start="20100320083500 +0000" stop="20100320090000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Ein Fall für B.A.R.Z.</title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20100320090000 +0000" stop="20100320090500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100320090500 +0000" stop="20100320100000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Sportschau live: WM Skifliegen</title>
-	<!-- TTX 390 -->
+	<!-- TTX 390.0000 -->
 	<desc>Sa 20.03.10 Das Erste
 Wintersport live HD/UT 10.05 - 17.30 Uhr Ticker &gt;&gt; 666
 - ca. 15.05 Uhr aus Falun (S):
@@ -87,10 +99,12 @@ Aktuelle Sportmeldungen &gt;&gt; ab 200 Paralympics im ARD-Text &gt;&gt; ab 800<
 </programme>
 
 <programme start="20100320100000 +0000" stop="20100320100500 +0000" pdc-start="20100320111000 +0100" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269111999 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100320100500 +0000" stop="20100320140000 +0000" pdc-start="20100320100500 +0100" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269111999 -->
 	<title>Sportschau live: WM Skifliegen, Snowboard-Weltcup, Paralympics, Langlauf-Weltcup, Shorttrack-WM, Biathlon-Weltcup</title>
 	<desc>(teletext 390)</desc>
 	<video>
@@ -103,12 +117,14 @@ Aktuelle Sportmeldungen &gt;&gt; ab 200 Paralympics im ARD-Text &gt;&gt; ab 800<
 </programme>
 
 <programme start="20100320140000 +0000" stop="20100320140500 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269111999 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100320140500 +0000" stop="20100320163000 +0000" pdc-start="20100320100500 +0100" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269111999 -->
 	<title>Sportschau live: Langlauf-Weltcup, Biathlon-Weltcup, Eisschnelllauf-WM</title>
-	<!-- TTX 390 -->
+	<!-- TTX 390.0000 -->
 	<desc>Sa 20.03.10 Das Erste
 Wintersport live HD/UT 10.05 - 17.30 Uhr Ticker &gt;&gt; 666
 - ca. 15.05 Uhr aus Falun (S):
@@ -128,22 +144,26 @@ Aktuelle Sportmeldungen &gt;&gt; ab 200 Paralympics im ARD-Text &gt;&gt; ab 800<
 </programme>
 
 <programme start="20100320163000 +0000" stop="20100320164700 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269111999 -->
 	<title>Brisant</title>
 	<desc>(teletext 319)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100320164700 +0000" stop="20100320165000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269111999 -->
 	<title>Das Wetter im Ersten</title>
 </programme>
 
 <programme start="20100320165000 +0000" stop="20100320170000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269111999 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100320170000 +0000" stop="20100320173000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269111999 -->
 	<title>Sportschau: 3.Liga</title>
-	<!-- TTX 322 -->
+	<!-- TTX 322.0000 -->
 	<desc>Sa 20.03.10 Das Erste
 18.00 - 18.30 Uhr Sportschau: HD/UT
 - 2.Bundesliga:
@@ -159,9 +179,10 @@ Aktuelle Sportmeldungen &gt;&gt; ab 200 Internet: www.sportschau.de</desc>
 </programme>
 
 <programme start="20100320173000 +0000" stop="20100320175400 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269111999 -->
 	<title>Sportschau</title>
 	<sub-title>Sportschau Fußball-Bundesliga</sub-title>
-	<!-- TTX 323 -->
+	<!-- TTX 323.0000 -->
 	<desc>Sportschau HD/UT Tipp!
 - Fußball-Bundesliga, 27.Spieltag
 SC Freiburg - Mainz 05 VfB Stuttgart - Hannover 96 1.FC Nürnberg - 1899 Hoffenheim Werder Bremen - VfL Bochum Eintr.Frankfurt - FC Bayern München Rückblick 1.FC Köln - Bor. M'gladbach

@@ -6,30 +6,36 @@
 </channel>
 
 <programme start="20060610091500 +0000" stop="20060610100000 +0000" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>ARD-Buffet</title>
 	<sub-title>ARD-Buffet mit Evelin König</sub-title>
 	<desc>(teletext 315)</desc>
 </programme>
 
 <programme start="20060610100000 +0000" stop="20060610101500 +0000" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20060610101500 +0000" stop="20060610110000 +0000" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live: DFB-Pressekonferenz</title>
 </programme>
 
 <programme start="20060610110000 +0000" stop="20060610120000 +0000" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>ARD-Mittagsmagazin</title>
 	<sub-title>ARD-Mittagsmagazin mit WM-Tour</sub-title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20060610120000 +0000" stop="20060610120300 +0000" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20060610120300 +0000" stop="20060610130000 +0000" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live: Aktuelle Berichte</title>
 	<desc>(teletext 316)</desc>
 	<subtitles type="teletext"/>
@@ -39,6 +45,7 @@
 </programme>
 
 <programme start="20060610130000 +0000" stop="20060610150500 +0000" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live: UT</title>
 	<sub-title>FIFA WM 2006 live: UT England - Paraguay Vorrunde Gruppe B</sub-title>
 	<desc>(teletext 317)</desc>
@@ -48,10 +55,12 @@
 </programme>
 
 <programme start="20060610150500 +0000" stop="20060610150800 +0000" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20060610150800 +0000" stop="20060610160000 +0000" pdc-start="20060610150000 +0200" channel="ARD">
+	<!-- TTX 302.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live</title>
 	<subtitles type="teletext"/>
 	<star-rating>
@@ -60,6 +69,7 @@
 </programme>
 
 <programme start="20060610160000 +0000" stop="20060610180000 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live: Trinidad&amp;Tobago - Schweden</title>
 	<sub-title>FIFA WM 2006 live: Trinidad&amp;Tobago - Schweden Vorrunde Gruppe B</sub-title>
 	<desc>(teletext 318)</desc>
@@ -70,17 +80,20 @@
 </programme>
 
 <programme start="20060610180000 +0000" stop="20060610181500 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1149946245 -->
 	<title>Tagesschau</title>
 	<desc>(teletext 310)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060610181500 +0000" stop="20060610182200 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1149946245 -->
 	<title>Ziehung der Lottozahlen</title>
 	<desc>(teletext 581)</desc>
 </programme>
 
 <programme start="20060610182200 +0000" stop="20060610190000 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live: Aktuelle Berichte</title>
 	<desc>(teletext 324)</desc>
 	<subtitles type="teletext"/>
@@ -90,6 +103,7 @@
 </programme>
 
 <programme start="20060610190000 +0000" stop="20060610195000 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live: Argentinien - Elfenbeinküste</title>
 	<sub-title>FIFA WM 2006 live: Argentinien - Elfenbeinküste Vorrunde Gruppe C</sub-title>
 	<desc>(teletext 326)</desc>
@@ -100,11 +114,13 @@
 </programme>
 
 <programme start="20060610195000 +0000" stop="20060610195700 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1149946245 -->
 	<title>Tagesthemen</title>
 	<desc>(teletext 311)</desc>
 </programme>
 
 <programme start="20060610195700 +0000" stop="20060610213000 +0000" pdc-start="20060610210000 +0200" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live: Argentinien - Elfenbeinküste</title>
 	<subtitles type="teletext"/>
 	<star-rating>
@@ -113,6 +129,7 @@
 </programme>
 
 <programme start="20060610213000 +0000" stop="20060610220000 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1149946245 -->
 	<title>FIFA WM 2006 live: Waldis WM-Club</title>
 	<desc>(teletext 327)</desc>
 	<star-rating>
@@ -121,51 +138,60 @@
 </programme>
 
 <programme start="20060610220000 +0000" stop="20060610220800 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20060610220800 +0000" stop="20060610221000 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Das Wetter im Ersten</title>
 </programme>
 
 <programme start="20060610221000 +0000" stop="20060610221500 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Das Wort zum Sonntag</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060610221500 +0000" stop="20060611000000 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Payoff - Die Abrechnung</title>
 	<sub-title>Payoff - Die Abrechnung Spielfilm, F 2003</sub-title>
-	<!-- TTX 328 -->
+	<!-- TTX 328.0000 -->
 	<desc>Payoff - Die Abrechnung Spielfilm, F 2003
 Max Tavares ist ein korrupter Polizist. Er sieht bei kleinen Betrügereien auch mal weg, wenn die Kasse stimmt. Als ihm der unbestechliche Carlos Gomez zugeteilt wird, ist Tavares genervt. Auf der Suche nach der verschwundenen Strip-Tänzerin Paulina, Tochter eines ermordeten Mafia-Buchhalters, überschlagen sich dann die Ereignisse.
 Mediterran-beschwingte, actiongeladene Gangsterkomödie, die US-Genrevorbilder parodiert und sich weder um politische Korrektheit, noch um Tabus schert.</desc>
 </programme>
 
 <programme start="20060611000000 +0000" stop="20060611000500 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20060611000500 +0000" stop="20060611020000 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Ein dreckiger Haufen</title>
 	<sub-title>Ein dreckiger Haufen Spielfilm, GB 1969</sub-title>
-	<!-- TTX 330 -->
+	<!-- TTX 330.0000 -->
 	<desc>Ein dreckiger Haufen Spielfilm, GB 1969
 Nordafrika, 1942. Während des Afrikafeldzugs soll eine britische Spezialeinheit hinter den deutschen Linien Rommels wichtigstes Treibstofflager zerstören. Captain Douglas übernimmt das Kommando. Die sieben Männer, die ihn begleiten, sind verwegene Söldnernaturen. Doch schon bald erweist sich das abenteuerliche Unternehmen als Himmelfahrtskommando.
 Spannender Actionfilm mit Michael Caine und Nigel Davenport. Das Drehbuch schrieben Melvyn Bragg und Lotte Colin.</desc>
 </programme>
 
 <programme start="20060611020000 +0000" stop="20060611031500 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Steckbrief 7-73</title>
 	<sub-title>Steckbrief 7-73 Spielfilm, USA 1951</sub-title>
 	<desc>(teletext 332)</desc>
 </programme>
 
 <programme start="20060611031500 +0000" stop="20060611032000 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20060611032000 +0000" stop="20060611033000 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1149946245 -->
 	<title>Die schönsten Bahnstrecken</title>
 	<sub-title>Die schönsten Bahnstrecken Deutschlands Eifelbahn: Trier - Köln</sub-title>
 </programme>

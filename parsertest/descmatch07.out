@@ -6,35 +6,41 @@
 </channel>
 
 <programme start="20060615061500 +0000" stop="20060615080000 +0000" pdc-start="20060615081500 +0200" channel="hr">
+	<!-- TTX 302.0000 ACQTS:1150362522 -->
 	<title>Ivanhoe, der schwarze Ritter</title>
 	<sub-title>Ivanhoe, der schwarze Ritter Spielfilm, USA 1952</sub-title>
 </programme>
 
 <programme start="20060615080000 +0000" stop="20060615083000 +0000" pdc-start="20060615100000 +0200" channel="hr">
+	<!-- TTX 302.0000 ACQTS:1150362522 -->
 	<title>Fronleichnam - Worum geht's hier eigentlich?</title>
-	<!-- TTX 308 -->
+	<!-- TTX 308.0000 -->
 	<desc>FRONLEICHNAM - WORUM GEHT'S HIER EIGENTLICH
 Am heutigen Tag wird von der katholischen Kirche das Fest Fronleichnam gefeiert. Seit dem Mittelalter gilt dieser Festtag der Verehrung der Eucharistie.
 Welche Bedeutung hat dieses Fest in der heutigen Zeit? Zu dieser und weiteren Fragen sendet das hr-Fernsehen ein Gespräch mit Meinhard Schmidt- Degenhard und dem im August 2001 verstorbenen Theologen und Bibelwissenschaftler Herbert Haag.</desc>
 </programme>
 
 <programme start="20060615083000 +0000" stop="20060615091500 +0000" pdc-start="20060615103000 +0200" channel="hr">
+	<!-- TTX 302.0000 ACQTS:1150362522 -->
 	<title>Petrus und die Päpste</title>
 </programme>
 
 <programme start="20060615091500 +0000" stop="20060615100000 +0000" pdc-start="20060615111500 +0200" channel="hr">
+	<!-- TTX 302.0000 ACQTS:1150362522 -->
 	<title>Geht hin zu den Inseln</title>
 	<sub-title>Geht hin zu den Inseln Chiemsee-Klöster und ihre Musik</sub-title>
 </programme>
 
 <programme start="20060615100000 +0000" stop="20060615110000 +0000" pdc-start="20060615120000 +0200" channel="hr">
+	<!-- TTX 303.0000 ACQTS:1150362522 -->
 	<title>Die Inselärztin von Baltrum</title>
 </programme>
 
 <programme start="20060615110000 +0000" stop="20060615123500 +0000" pdc-start="20060615130000 +0200" channel="hr">
+	<!-- TTX 303.0000 ACQTS:1150362522 -->
 	<title>Musketier mit Hieb und Stich</title>
 	<sub-title>Musketier mit Hieb und Stich Spielfilm, F/RO/I 1970</sub-title>
-	<!-- TTX 309 -->
+	<!-- TTX 309.0000 -->
 	<desc>Musketier mit Hieb Donnerstag Stich UT 13.00-14.35 Uhr Spielfilm, F/RO/I 1970
 Der junge Franzose Nicolas Philibert kehrt im Jahre 1793 aus Amerika nach Frankreich zurück, um sich scheiden zu lassen. Er möchte die reichste Erbin von South Carolina heiraten.
 In seiner alten Heimat gerät er in die Wirren der Revolutionszeit und zwischen alle Fronten. Vor allem mit seiner aufregenden Frau Charlotte hat er seine liebe Not. Nach wie vor ist er sehr von ihren Reizen beindruckt.</desc>
@@ -42,11 +48,13 @@ In seiner alten Heimat gerät er in die Wirren der Revolutionszeit und zwischen a
 </programme>
 
 <programme start="20060615123500 +0000" stop="20060615140500 +0000" pdc-start="20060615143500 +0200" channel="hr">
+	<!-- TTX 303.0000 ACQTS:1150362522 -->
 	<title>Wunderschönes Kreta</title>
 	<sub-title>Wunderschönes Kreta Mit Tamina Kallert</sub-title>
 </programme>
 
 <programme start="20060615140500 +0000" stop="20060615152000 +0000" pdc-start="20060615160500 +0200" channel="hr">
+	<!-- TTX 303.0000 ACQTS:1150362522 -->
 	<title>Auf dem Nockherberg</title>
 	<sub-title>Auf dem Nockherberg Die Starkbierprobe 2006</sub-title>
 </programme>

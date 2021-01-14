@@ -6,17 +6,20 @@
 </channel>
 
 <programme start="20060501150000 +0000" stop="20060501151000 +0000" pdc-start="20060501170000 +0200" channel="ZDF">
+	<!-- TTX 302.0000 ACQTS:1146508993 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060501151000 +0000" stop="20060501161000 +0000" pdc-start="20060501171000 +0200" channel="ZDF">
+	<!-- TTX 302.0000 ACQTS:1146508993 -->
 	<title>Evelyn Hamanns Geschichten</title>
 	<sub-title>Evelyn Hamanns Geschichten aus dem Leben</sub-title>
 	<desc>(teletext 317)</desc>
 </programme>
 
 <programme start="20060501161000 +0000" stop="20060501170000 +0000" pdc-start="20060501181000 +0200" channel="ZDF">
+	<!-- TTX 302.0000 ACQTS:1146508993 -->
 	<title>Soko 5113</title>
 	<sub-title>SOKO 5113 Piraten</sub-title>
 	<desc>(teletext 318)</desc>
@@ -26,19 +29,22 @@
 </programme>
 
 <programme start="20060501170000 +0000" stop="20060501171400 +0000" pdc-start="20060501190000 +0200" channel="ZDF">
+	<!-- TTX 302.0000 ACQTS:1146508993 -->
 	<title>heute</title>
 	<desc>(teletext 310)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060501171400 +0000" stop="20060501171500 +0000" pdc-start="20060501191400 +0200" channel="ZDF">
+	<!-- TTX 302.0000 ACQTS:1146508993 -->
 	<title>Wetter</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060501171500 +0000" stop="20060501173000 +0000" pdc-start="20060501191500 +0200" channel="ZDF">
+	<!-- TTX 302.0000 ACQTS:1146508993 -->
 	<title>Licht aus in Erichs Lampenladen</title>
-	<!-- TTX 319 -->
+	<!-- TTX 319.0000 -->
 	<desc>Licht aus in Erichs Lampenladen 16:9
 Der Palast der Republik, im Volksmund wegen der vielen Leuchter auch "Erichs Lampenladen" genannt, wird abgerissen. Das Haus steht tief im Grundwasser. Heftige Veränderungen im Boden könnten Schwingungen auslösen und benachbarte Gebäude, den Berliner Dom etwa, gefährden. Eine große Herausforderung für die Bauarbeiter und Ingenieure.
 Die Reportage berichtet über den Abriss des Palastes, erzählt von den Glanzzeiten des Vorzeigebaus, seiner Geschichte und den Besonderheiten der wohl prominentesten Baustelle der Hauptstadt.</desc>
@@ -48,6 +54,7 @@ Die Reportage berichtet über den Abriss des Palastes, erzählt von den Glanzzeite
 </programme>
 
 <programme start="20060501173000 +0000" stop="20060501181500 +0000" pdc-start="20060501193000 +0200" channel="ZDF">
+	<!-- TTX 302.0000 ACQTS:1146508993 -->
 	<title>ZDF Expedition</title>
 	<sub-title>ZDF Expedition Die Jagd nach Tutenchamun (2/2)</sub-title>
 	<desc>(teletext 320)</desc>
@@ -55,6 +62,7 @@ Die Reportage berichtet über den Abriss des Palastes, erzählt von den Glanzzeite
 </programme>
 
 <programme start="20060501181500 +0000" pdc-start="20060501201400 +0200" channel="ZDF">
+	<!-- TTX 302.0000 ACQTS:1146508993 -->
 	<title>Dornröschens leiser Tod</title>
 	<sub-title>Dornröschens leiser Tod Psychokrimi D/2003 UT</sub-title>
 	<desc>(teletext 321)</desc>

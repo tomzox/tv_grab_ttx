@@ -6,42 +6,50 @@
 </channel>
 
 <programme start="20100404033000 +0000" stop="20100404045000 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Die Erschaffung der Welt</title>
 	<sub-title>Die Erschaffung der Welt Zeichentrickfilm, CSSR 1957</sub-title>
 	<desc>(teletext 309)</desc>
 </programme>
 
 <programme start="20100404045000 +0000" stop="20100404051500 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Die wunderbare Reise des</title>
 	<sub-title>Die wunderbare Reise des kleinen Nils Holgersson mit den Wildgänsen</sub-title>
 </programme>
 
 <programme start="20100404051500 +0000" stop="20100404054000 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Sesamstraße</title>
 </programme>
 
 <programme start="20100404054000 +0000" stop="20100404055000 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Ernie und Bert im Land</title>
 	<sub-title>Ernie und Bert im Land der Träume</sub-title>
 </programme>
 
 <programme start="20100404055000 +0000" stop="20100404061500 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Meister Eder und sein Pumuckl</title>
 	<sub-title>Meister Eder und sein Pumuckl Pumuckl im Zoo</sub-title>
 </programme>
 
 <programme start="20100404061500 +0000" stop="20100404064000 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Meister Eder und sein Pumuckl</title>
 	<sub-title>Meister Eder und sein Pumuckl Die geheimnisvollen Briefe</sub-title>
 </programme>
 
 <programme start="20100404064000 +0000" stop="20100404074000 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Tigerenten Club</title>
 	<sub-title>Tigerenten Club Revolverheld</sub-title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20100404074000 +0000" stop="20100404081000 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Die Sendung mit der</title>
 	<sub-title>Die Sendung mit der Maus</sub-title>
 	<desc>(teletext 313)</desc>
@@ -49,6 +57,7 @@
 </programme>
 
 <programme start="20100404081000 +0000" stop="20100404081500 +0000" channel="ARD">
+	<!-- TTX 301.0000 ACQTS:1270412338 -->
 	<title>Tagesschau</title>
 </programme>
 </tv>

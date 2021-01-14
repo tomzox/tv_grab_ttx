@@ -6,41 +6,49 @@
 </channel>
 
 <programme start="20100324150000 +0000" stop="20100324160000 +0000" channel="RTL II">
+	<!-- TTX 303.0001 ACQTS:1269423222 -->
 	<title>Immer wieder Jim</title>
 	<desc>(teletext 335)</desc>
 </programme>
 
 <programme start="20100324160000 +0000" stop="20100324170000 +0000" channel="RTL II">
+	<!-- TTX 303.0001 ACQTS:1269423222 -->
 	<title>Still Standing</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20100324170000 +0000" stop="20100324180000 +0000" channel="RTL II">
+	<!-- TTX 303.0001 ACQTS:1269423222 -->
 	<title>Der Trödeltrupp</title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20100324180000 +0000" stop="20100324190000 +0000" channel="RTL II">
+	<!-- TTX 303.0001 ACQTS:1269423222 -->
 	<title>Big Brother</title>
 	<desc>(teletext 630)</desc>
 </programme>
 
 <programme start="20100324190000 +0000" stop="20100324191500 +0000" channel="RTL II">
+	<!-- TTX 303.0001 ACQTS:1269423222 -->
 	<title>RTL II News</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20100324191500 +0000" stop="20100324201000 +0000" channel="RTL II">
+	<!-- TTX 303.0001 ACQTS:1269423222 -->
 	<title>Stargate Universe</title>
 	<desc>(teletext 322)</desc>
 </programme>
 
 <programme start="20100324201000 +0000" stop="20100324210500 +0000" channel="RTL II">
+	<!-- TTX 303.0001 ACQTS:1269423222 -->
 	<title>Stargate Atlantis</title>
 	<desc>(teletext 321)</desc>
 </programme>
 
 <programme start="20100324210500 +0000" channel="RTL II">
+	<!-- TTX 303.0001 ACQTS:1269423222 -->
 	<title>Bionic Woman</title>
 	<desc>(teletext 331)</desc>
 </programme>

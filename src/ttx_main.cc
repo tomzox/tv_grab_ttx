@@ -386,9 +386,9 @@ int main( int argc, char *argv[] )
 
       // make sure to never write an empty file
       if (!NewSlots.empty()) {
-         XMLTV xmltv;
+         XMLTV xmltv(&ttx_db);
 
-         xmltv.SetChannelName(&ttx_db, opt_chname, opt_chid);
+         xmltv.SetChannelName(opt_chname, opt_chid);
 
          if (!opt_verify) {
             xmltv.SetExpireTime(opt_expire);

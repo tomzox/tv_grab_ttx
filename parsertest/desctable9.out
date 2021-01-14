@@ -6,44 +6,52 @@
 </channel>
 
 <programme start="20110108110000 +0000" stop="20110108120000 +0000" channel="SAT.1">
+	<!-- TTX 302.0001 ACQTS:1294491004 -->
 	<title>Richter Hold</title>
 	<desc>(teletext 369)</desc>
 </programme>
 
 <programme start="20110108120000 +0000" stop="20110108130000 +0000" channel="SAT.1">
+	<!-- TTX 302.0001 ACQTS:1294491004 -->
 	<title>Britt: Gnadenlos: Deinen</title>
 	<sub-title>Britt: Gnadenlos: Deinen Seitensprung verzeihe ich nicht!</sub-title>
 	<desc>(teletext 365)</desc>
 </programme>
 
 <programme start="20110108130000 +0000" stop="20110108145000 +0000" channel="SAT.1">
+	<!-- TTX 302.0001 ACQTS:1294491004 -->
 	<title>Küss mich, Genosse!</title>
 	<desc>(teletext 311)</desc>
 </programme>
 
 <programme start="20110108145000 +0000" stop="20110108162900 +0000" channel="SAT.1">
+	<!-- TTX 302.0001 ACQTS:1294491004 -->
 	<title>Ab durch die Hecke</title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20110108162900 +0000" stop="20110108163000 +0000" channel="SAT.1">
+	<!-- TTX 302.0001 ACQTS:1294491004 -->
 	<title>So gesehen</title>
 </programme>
 
 <programme start="20110108163000 +0000" stop="20110108170000 +0000" channel="SAT.1">
+	<!-- TTX 302.0001 ACQTS:1294491004 -->
 	<title>Niedrig und Kuhnt - Kommissare ermitteln: Eine</title>
 	<sub-title>Niedrig und Kuhnt - Kommissare ermitteln: Eine verhängnisvolle Nacht</sub-title>
 	<desc>(teletext 371)</desc>
 </programme>
 
 <programme start="20110108170000 +0000" stop="20110108173000 +0000" channel="SAT.1">
+	<!-- TTX 302.0001 ACQTS:1294491004 -->
 	<title>K 11 - Kommissare im Einsatz: Dem Tode geweiht</title>
 	<desc>(teletext 374)</desc>
 </programme>
 
 <programme start="20110108173000 +0000" channel="SAT.1">
+	<!-- TTX 302.0001 ACQTS:1294491004 -->
 	<title>Lenßen - der Film</title>
-	<!-- TTX 313 -->
+	<!-- TTX 313.0001 -->
 	<desc>Lenßen - der Film
 TV-Film D 2009
 Der neunjährige "Mücke" wird von einem Auto angefahren und schwebt in Lebensgefahr. Der Junge ist der Sohn von Ingo Lenßens ehemaligem Kollegen Tekin und außerdem Lenßens Patenkind. Außer sich vor Wut und Sorge droht Tekin dem Unfallfahrer mit Vergeltung. Als dann ein Anschlag auf diesen verübt wird, gerät Tekin unter Verdacht. Lenßen und sein Team wollen ihren ehemaligen Kollegen schützen und beginnen mit der umfassenden Recherche ...

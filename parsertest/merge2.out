@@ -6,153 +6,181 @@
 </channel>
 
 <programme start="20110105052000 +0000" stop="20110105060700 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>D motor</title>
 	<desc>(teletext 334)</desc>
 </programme>
 
 <programme start="20110105060700 +0000" stop="20110105062200 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 335)</desc>
 </programme>
 
 <programme start="20110105062200 +0000" stop="20110105063700 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 336)</desc>
 </programme>
 
 <programme start="20110105063700 +0000" stop="20110105065200 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20110105065200 +0000" stop="20110105070700 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 338)</desc>
 </programme>
 
 <programme start="20110105070700 +0000" stop="20110105072200 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 339)</desc>
 </programme>
 
 <programme start="20110105072200 +0000" stop="20110105073700 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 340)</desc>
 </programme>
 
 <programme start="20110105073700 +0000" stop="20110105075200 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 341)</desc>
 </programme>
 
 <programme start="20110105075200 +0000" stop="20110105081500 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 342)</desc>
 </programme>
 
 <programme start="20110105081500 +0000" stop="20110105091300 +0000" channel="DMAX.de">
+	<!-- TTX 301.0001 ACQTS:1294245621 -->
 	<title>Die Modellbauer</title>
 	<desc>(teletext 343)</desc>
 </programme>
 
 <programme start="20110105091300 +0000" stop="20110105093000 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Infomercial</title>
 	<desc>(teletext 344)</desc>
 </programme>
 
 <programme start="20110105093000 +0000" stop="20110105095500 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Die Gebrauchtwagen-Profis</title>
 	<desc>(teletext 345)</desc>
 </programme>
 
 <programme start="20110105095500 +0000" stop="20110105102500 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Die Gebrauchtwagen-Profis</title>
 	<sub-title>Die Gebrauchtwagen-Profis - Neuer Glanz für alte Kisten</sub-title>
 	<desc>(teletext 346)</desc>
 </programme>
 
 <programme start="20110105102500 +0000" stop="20110105113000 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Rides - Heiße Öfen, coole</title>
 	<sub-title>Rides - Heiße Öfen, coole Kisten</sub-title>
 	<desc>(teletext 347)</desc>
 </programme>
 
 <programme start="20110105113000 +0000" stop="20110105123500 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Die Ludolfs - 4 Brüder</title>
 	<sub-title>Die Ludolfs - 4 Brüder auf'm Schrottplatz</sub-title>
 	<desc>(teletext 348)</desc>
 </programme>
 
 <programme start="20110105123500 +0000" stop="20110105130000 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Verdammt lecker! Nachschlag für Adam Richman</title>
-	<!-- TTX 349 -->
+	<!-- TTX 349.0000 -->
 	<desc>Verdammt lecker! Nachschlag für Adam Richman
 Burger in Ohio
 Wenn es eines gibt, was die Einwohner von Columbus, Ohio, noch mehr lieben als American Football, dann sind es saftige Burger. Am besten mit gebratenen Zwiebeln, Schinken, Pilzen und Unmengen geschmolzenem Käse - so wie sie im "Thurman Cafe" serviert werden. Nach der Eröffnung im Jahr 1942 hat sich das einst als Bar konzipierte Lokal zum echten Mekka für Burger-Fans entwickelt.</desc>
 </programme>
 
 <programme start="20110105130000 +0000" stop="20110105140000 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Holzfäller extrem</title>
 	<desc>(teletext 350)</desc>
 </programme>
 
 <programme start="20110105140000 +0000" stop="20110105150500 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Mythbusters - Die Wissensjäger</title>
-	<!-- TTX 351 -->
+	<!-- TTX 351.0000 -->
 	<desc>Mythbusters - Die Wissensjäger
 Hollywood Handgranaten-Helden / Cola und Kaubonbons lassen den Magen explodieren / Selbsthypnose
 Von Hollywood-Blockbustern, über das Internet, bis hin zu Anregungen der Fangemeinde: Die Themensuche ist für die "Mythbusters" das geringste Problem. Alltagsmythen mit mehr als fraglichem Wahrheitsgehalt, denen wir trotzdem leichtfertig Glauben schenken, gibt es schließlich wie Sand am Meer.</desc>
 </programme>
 
 <programme start="20110105150500 +0000" stop="20110105160500 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>Dmax doku</title>
 	<desc>(teletext 352)</desc>
 </programme>
 
 <programme start="20110105160500 +0000" stop="20110105171500 +0000" channel="DMAX.de">
+	<!-- TTX 302.0001 ACQTS:1294245621 -->
 	<title>American Chopper</title>
 	<desc>(teletext 353)</desc>
 </programme>
 
 <programme start="20110105171500 +0000" stop="20110105181500 +0000" channel="DMAX.de">
+	<!-- TTX 303.0001 ACQTS:1294245553 -->
 	<title>LA Ink - Tattoos fürs</title>
 	<sub-title>LA Ink - Tattoos fürs Leben</sub-title>
 	<desc>(teletext 354)</desc>
 </programme>
 
 <programme start="20110105181500 +0000" stop="20110105191500 +0000" channel="DMAX.de">
+	<!-- TTX 303.0001 ACQTS:1294245553 -->
 	<title>Der Checker - Viel Auto, wenig Geld</title>
 	<desc>(teletext 355)</desc>
 </programme>
 
 <programme start="20110105191500 +0000" stop="20110105201500 +0000" channel="DMAX.de">
+	<!-- TTX 303.0001 ACQTS:1294245553 -->
 	<title>Die Ludolfs - 4 Brüder</title>
 	<sub-title>Die Ludolfs - 4 Brüder auf'm Schrottplatz</sub-title>
 	<desc>(teletext 356)</desc>
 </programme>
 
 <programme start="20110105201500 +0000" stop="20110105204500 +0000" channel="DMAX.de">
+	<!-- TTX 303.0001 ACQTS:1294245553 -->
 	<title>Verdammt lecker! Nachschlag für Adam Richman</title>
 	<desc>(teletext 357)</desc>
 </programme>
 
 <programme start="20110105204500 +0000" stop="20110105211500 +0000" channel="DMAX.de">
+	<!-- TTX 303.0001 ACQTS:1294245553 -->
 	<title>Verdammt lecker! Nachschlag für Adam Richman</title>
 	<desc>(teletext 358)</desc>
 </programme>
 
 <programme start="20110105211500 +0000" stop="20110105221500 +0000" channel="DMAX.de">
+	<!-- TTX 303.0001 ACQTS:1294245553 -->
 	<title>LA Ink - Tattoos fürs</title>
 	<sub-title>LA Ink - Tattoos fürs Leben</sub-title>
 	<desc>(teletext 359)</desc>
 </programme>
 
 <programme start="20110105221500 +0000" stop="20110105222000 +0000" channel="DMAX.de">
+	<!-- TTX 303.0001 ACQTS:1294245553 -->
 	<title>DMAX - Der Tag</title>
 	<desc>(teletext 360)</desc>
 </programme>
 
 <programme start="20110105222000 +0000" channel="DMAX.de">
+	<!-- TTX 303.0001 ACQTS:1294245553 -->
 	<title>Das Gesetz der Straße - Die Verbrechen der "Arischen Bruderschaft"</title>
 	<desc>(teletext 361)</desc>
 </programme>

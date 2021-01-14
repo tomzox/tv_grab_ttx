@@ -6,22 +6,27 @@
 </channel>
 
 <programme start="20100404022500 +0000" stop="20100404025500 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>Lokalzeit aus Dortmund</title>
 </programme>
 
 <programme start="20100404025500 +0000" stop="20100404032500 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>Lokalzeit Münsterland</title>
 </programme>
 
 <programme start="20100404032500 +0000" stop="20100404035000 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>Lokalzeit OWL aktuell</title>
 </programme>
 
 <programme start="20100404035000 +0000" stop="20100404042000 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>Lokalzeit Südwestfalen</title>
 </programme>
 
 <programme start="20100404042000 +0000" stop="20100404043500 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>Tagesschau vor 20 Jahren</title>
 	<audio>
 		<stereo>mono</stereo>
@@ -29,18 +34,21 @@
 </programme>
 
 <programme start="20100404043500 +0000" stop="20100404050500 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>Die Anrheiner</title>
 	<sub-title>Die Anrheiner 568. Entscheidungsprozesse</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100404050500 +0000" stop="20100404053500 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>Lindenstraße</title>
 	<sub-title>Lindenstraße 1269. Ausgekevint</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100404053500 +0000" stop="20100404060500 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>Süße Erlebnistour durchs</title>
 	<sub-title>Süße Erlebnistour durchs Münsterland</sub-title>
 	<desc>(teletext 307)</desc>
@@ -48,6 +56,7 @@
 </programme>
 
 <programme start="20100404060500 +0000" stop="20100404073600 +0000" channel="WDR">
+	<!-- TTX 301.0000 ACQTS:1270412983 -->
 	<title>plasberg persönlich</title>
 	<desc>(teletext 379)</desc>
 	<subtitles type="teletext"/>

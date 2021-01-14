@@ -6,9 +6,10 @@
 </channel>
 
 <programme start="20100324204500 +0000" stop="20100324221500 +0000" pdc-start="20100324214500 +0100" channel="Bayern">
+	<!-- TTX 316.0000 ACQTS:1269374416 -->
 	<title>Ein Fall von Liebe</title>
 	<sub-title>Ein Fall von Liebe Spielfilm, D/A 2009</sub-title>
-	<!-- TTX 359 -->
+	<!-- TTX 359.0001 -->
 	<desc>Ein Fall von Liebe UT Spielfilm, D/A 2009
 Der herzlose Staranwalt Florian Faber gewinnt einfach jeden Prozess und gefällt sich in der Rolle des kühlen, erfolgreichen Siegers. Als er bei einem schweren Autounfall beinahe umkommt, beginnt er sein Leben zu überdenken.
 Das kann die impulsive Journalistin Sarah Pohl, die ihn in ihren Artikeln immer wieder provoziert, kaum glauben. Wandelt sich ihr selbstgefälliger Lieblingsfeind tatsächlich zum "weißen Ritter", der für das Recht der kleinen Leute kämpft?
@@ -20,27 +21,32 @@ Mäuser: Stephan Korves, Kant: Chajim Koenigshofen, Thomas Linde: Thomas Wehling,
 </programme>
 
 <programme start="20100324221500 +0000" stop="20100324223000 +0000" pdc-start="20100324231500 +0100" channel="Bayern">
+	<!-- TTX 316.0000 ACQTS:1269374416 -->
 	<title>Kino Kino</title>
 	<sub-title>Kino Kino Das Filmmagazin des Bayerischen Fernsehens</sub-title>
 	<desc>(teletext 410)</desc>
 </programme>
 
 <programme start="20100324223000 +0000" stop="20100324224000 +0000" pdc-start="20100324233000 +0100" channel="Bayern">
+	<!-- TTX 316.0000 ACQTS:1269374416 -->
 	<title>Rundschau-Nacht</title>
 	<desc>(teletext 361)</desc>
 </programme>
 
 <programme start="20100324224000 +0000" stop="20100324232500 +0000" pdc-start="20100324234000 +0100" channel="Bayern">
+	<!-- TTX 316.0000 ACQTS:1269374416 -->
 	<title>Live Stream</title>
 	<sub-title>Live Stream Kurzspielfilm, D 2009</sub-title>
 </programme>
 
 <programme start="20100324232500 +0000" stop="20100325002500 +0000" pdc-start="20100325002500 +0100" channel="Bayern">
+	<!-- TTX 316.0000 ACQTS:1269374416 -->
 	<title>Suza - Leben auf der Kippe</title>
 	<sub-title>Suza - Leben auf der Kippe Dokumentarfilm, D 2008</sub-title>
 </programme>
 
 <programme start="20100325002500 +0000" stop="20100325005500 +0000" pdc-start="20100325012500 +0100" channel="Bayern">
+	<!-- TTX 316.0000 ACQTS:1269374416 -->
 	<title>Dahoam is Dahoam</title>
 	<sub-title>Dahoam is Dahoam 487. Guter Mond...</sub-title>
 	<desc>(teletext 402)</desc>
@@ -48,6 +54,7 @@ Mäuser: Stephan Korves, Kant: Chajim Koenigshofen, Thomas Linde: Thomas Wehling,
 </programme>
 
 <programme start="20100325005500 +0000" pdc-start="20100325015500 +0100" channel="Bayern">
+	<!-- TTX 316.0000 ACQTS:1269374416 -->
 	<title>Planet Erde</title>
 	<sub-title>Planet Erde Monument Valley</sub-title>
 </programme>

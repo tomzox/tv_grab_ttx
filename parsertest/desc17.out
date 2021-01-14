@@ -6,9 +6,10 @@
 </channel>
 
 <programme start="20110108115000 +0000" stop="20110108133500 +0000" channel="TELE 5">
+	<!-- TTX 306.0001 ACQTS:1294402118 -->
 	<title>Star Kid</title>
 	<sub-title>Star Kid Science-Fiction USA 1997</sub-title>
-	<!-- TTX 315 -->
+	<!-- TTX 315.0001 -->
 	<desc>Star Kid
 Sa 12:50-14:35 So 16:25-18:20 Wh.
 Science-Fiction USA 1997 Das Leben des kleinen Spencer verändert sich komplett, als er einen außerirdischen Cyber-Anzug findet. Das Beste: Das Teil ist ein Roboter namens Cy und wird schnell der beste Freund des schüchternen Jungen. Doch Ärger zieht auf: Aliens wollen das Outfit zurück und die Erde vernichten.
@@ -21,9 +22,10 @@ Spencer Griffi: Joseph Mazzello, Cybersuit: Alex Daniels, Broodwarrior: Brian Si
 </programme>
 
 <programme start="20110108133500 +0000" channel="TELE 5">
+	<!-- TTX 306.0001 ACQTS:1294402118 -->
 	<title>Goliath - Sensation nach 40 Jahren</title>
 	<sub-title>Goliath - Sensation nach 40 Jahren Action USA 1981</sub-title>
-	<!-- TTX 316 -->
+	<!-- TTX 316.0001 -->
 	<desc>Goliath - Sensation nach 40 Jahren
 Sa 14:35-18:35
 Action USA 1981

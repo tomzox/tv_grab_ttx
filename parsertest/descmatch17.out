@@ -6,23 +6,27 @@
 </channel>
 
 <programme start="20200629033000 +0000" stop="20200629070000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>ZDF-Morgenmagazin</title>
 	<desc>(teletext 309)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629070000 +0000" stop="20200629070500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629070500 +0000" stop="20200629075500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>Live nach Neun</title>
 	<sub-title>Live nach Neun Raus ins Leben</sub-title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20200629075500 +0000" stop="20200629084500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>In aller Freundschaft - Die jungen Ärzte</title>
 	<sub-title>In aller Freundschaft - Die jungen Ärzte Beruflich und privat (D, 2017)</sub-title>
 	<desc>(teletext 322)</desc>
@@ -33,6 +37,7 @@
 </programme>
 
 <programme start="20200629084500 +0000" stop="20200629091500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>Meister des Alltags</title>
 	<sub-title>Meister des Alltags mit Florian Weber</sub-title>
 	<desc>(teletext 373)</desc>
@@ -40,6 +45,7 @@
 </programme>
 
 <programme start="20200629091500 +0000" stop="20200629100000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>Gefragt - Gejagt</title>
 	<sub-title>Gefragt - Gejagt mit Alexander Bommes</sub-title>
 	<desc>(teletext 375)</desc>
@@ -47,11 +53,13 @@
 </programme>
 
 <programme start="20200629100000 +0000" stop="20200629101500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629101500 +0000" stop="20200629110000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>ARD-Buffet</title>
 	<sub-title>ARD-Buffet Moderation: Evelin König</sub-title>
 	<desc>(teletext 315)</desc>
@@ -59,17 +67,20 @@
 </programme>
 
 <programme start="20200629110000 +0000" stop="20200629120000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1593459891 -->
 	<title>ARD-Mittagsmagazin</title>
 	<desc>(teletext 312)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629120000 +0000" stop="20200629121000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629121000 +0000" stop="20200629130000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Rote Rosen (26)</title>
 	<sub-title>Rote Rosen (26) Fernsehserie, D 2006</sub-title>
 	<desc>(teletext 316)</desc>
@@ -77,22 +88,26 @@
 </programme>
 
 <programme start="20200629130000 +0000" stop="20200629131000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629131000 +0000" stop="20200629140000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Sturm der Liebe (3395)</title>
 	<desc>(teletext 317)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629140000 +0000" stop="20200629141000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629141000 +0000" stop="20200629150000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Verrückt nach Meer</title>
 	<sub-title>Verrückt nach Meer Die wilden Vögel der Norfolkinsel</sub-title>
 	<desc>(teletext 318)</desc>
@@ -100,17 +115,20 @@
 </programme>
 
 <programme start="20200629150000 +0000" stop="20200629151500 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629151500 +0000" stop="20200629160000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Brisant</title>
 	<desc>(teletext 319)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629160000 +0000" stop="20200629165000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Gefragt - Gejagt</title>
 	<sub-title>Gefragt - Gejagt mit Alexander Bommes</sub-title>
 	<desc>(teletext 320)</desc>
@@ -118,6 +136,7 @@
 </programme>
 
 <programme start="20200629165000 +0000" stop="20200629174500 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Morden im Norden</title>
 	<sub-title>Morden im Norden Zweite Chance (D, 2018)</sub-title>
 	<desc>(teletext 321)</desc>
@@ -128,6 +147,7 @@
 </programme>
 
 <programme start="20200629174500 +0000" stop="20200629175000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1593459891 -->
 	<title>Wissen vor acht - Zukunft</title>
 	<sub-title>Wissen vor acht - Zukunft Das wahre Löschpapier</sub-title>
 	<audio>
@@ -137,26 +157,30 @@
 </programme>
 
 <programme start="20200629175000 +0000" stop="20200629175500 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1593459891 -->
 	<title>Wetter vor acht</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629175500 +0000" stop="20200629180000 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1593459891 -->
 	<title>Börse vor acht</title>
 	<desc>(teletext 720)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629180000 +0000" stop="20200629181500 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1593459891 -->
 	<title>Tagesschau</title>
 	<desc>(teletext 310)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629181500 +0000" stop="20200629194500 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1593459891 -->
 	<title>Und wer nimmt den Hund?</title>
 	<sub-title>Und wer nimmt den Hund? Spielfilm, D 2019 SommerKino im Ersten</sub-title>
-	<!-- TTX 324 -->
+	<!-- TTX 324.0000 -->
 	<desc>Und wer nimmt den Hund? HD/db/AD/UT Spielfilm, D 2019
 Es ist vorbei - oder vielleicht doch noch nicht? Martina Gedeck und Ulrich Tukur spielen in der bissigen Ehekomödie das wohlsituierte Paar Doris und Georg, das vor den Trümmern seiner über 20-jährigen Ehe steht und auf die Hilfe einer Trennungstherapeutin hofft.
 Die Stunden bei der Therapeutin lösen eine ungeahnte Beziehungsdynamik aus, die Georgs neue Liebe bröckeln lässt, während Doris nach einer schmerzhaften Anlaufphase beruflich und privat neu durchstartet ...</desc>
@@ -170,6 +194,7 @@ Die Stunden bei der Therapeutin lösen eine ungeahnte Beziehungsdynamik aus, die 
 </programme>
 
 <programme start="20200629194500 +0000" stop="20200629201500 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1593459891 -->
 	<title>Exclusiv im Ersten</title>
 	<sub-title>Exclusiv im Ersten Boeing - Das tödliche System</sub-title>
 	<desc>(teletext 326)</desc>
@@ -177,12 +202,14 @@ Die Stunden bei der Therapeutin lösen eine ungeahnte Beziehungsdynamik aus, die 
 </programme>
 
 <programme start="20200629201500 +0000" stop="20200629204500 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1593459891 -->
 	<title>Tagesthemen</title>
 	<desc>(teletext 311)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200629204500 +0000" stop="20200629213000 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1593459891 -->
 	<title>Die Story im Ersten</title>
 	<sub-title>Die Story im Ersten Kampf gegen Schwarzarbeit - teuer und wirkungslos?</sub-title>
 	<desc>(teletext 328)</desc>
@@ -190,6 +217,7 @@ Die Stunden bei der Therapeutin lösen eine ungeahnte Beziehungsdynamik aus, die 
 </programme>
 
 <programme start="20200629213000 +0000" stop="20200629221500 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1593459891 -->
 	<title>Geschichte im Ersten: Wie</title>
 	<sub-title>Geschichte im Ersten: Wie die D-Mark in den Osten kam - Der größte Geldtransport der deutschen Geschichte</sub-title>
 	<desc>(teletext 330)</desc>

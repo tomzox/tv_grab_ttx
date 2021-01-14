@@ -6,19 +6,22 @@
 </channel>
 
 <programme start="20060610090500 +0000" stop="20060610094500 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>Super Toy Club</title>
 	<desc>(teletext 322)</desc>
 </programme>
 
 <programme start="20060610094500 +0000" stop="20060610101500 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>Toggo united</title>
 	<sub-title>TOGGO UNITED Die Fußballshow</sub-title>
 	<desc>(teletext 323)</desc>
 </programme>
 
 <programme start="20060610101500 +0000" stop="20060610102000 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>Die Superköche</title>
-	<!-- TTX 324 -->
+	<!-- TTX 324.0002 -->
 	<desc>Die Superköche 'Hühnersuppe'
 HEUTE, 10.06.2006, 12:15 Uhr
 Das brauchst du: 1 Suppenhuhn, 1 Zwiebel, 1 Knoblauchzehe, 1 Rosmarinzweig, 1 Packung TK Möhren und Erbsen, 2 Selleriestangen, 1 Scheibe Speck, Olivenöl, Salz, Pfeffer und ein paar Pfefferkörner, 1 Ciabatta oder ein Stangenweißbrot, 100g Emmentaler oder anderen Käse zum Überbacken. Das Huhn innen und außen gründlich waschen und mit der halbierten Zwiebel, dem Knoblauch, dem in
@@ -26,73 +29,86 @@ Stücke geschnittenen Sellerie und der Scheibe Speck in einem Topf mit Salzwasser
 </programme>
 
 <programme start="20060610102000 +0000" stop="20060610103000 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>yoomiii: Das Star-Tagebuch</title>
 </programme>
 
 <programme start="20060610103000 +0000" stop="20060610110000 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>Chip und Chap</title>
 	<sub-title>Chip und Chap Die Ritter des Rechts</sub-title>
 </programme>
 
 <programme start="20060610110000 +0000" stop="20060610113000 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>Disneys neue Micky Maus</title>
 	<sub-title>Disneys neue Micky Maus Geschichten</sub-title>
 </programme>
 
 <programme start="20060610113000 +0000" stop="20060610120000 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>Disneys Kim Possible</title>
 </programme>
 
 <programme start="20060610120000 +0000" stop="20060610122500 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>Power Rangers Space Patrol</title>
 	<sub-title>Power Rangers Space Patrol Delta</sub-title>
 	<desc>(teletext 325)</desc>
 </programme>
 
 <programme start="20060610122500 +0000" stop="20060610133000 +0000" channel="???">
+	<!-- TTX 303.0000 ACQTS:1149947756 -->
 	<title>Power Rangers Space Patrol</title>
 	<sub-title>Power Rangers Space Patrol Delta</sub-title>
 	<desc>(teletext 326)</desc>
 </programme>
 
 <programme start="20060610133000 +0000" stop="20060610141000 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>A.T.O.M</title>
 	<sub-title>A.T.O.M Alpha Teens on Machines</sub-title>
 	<desc>(teletext 328)</desc>
 </programme>
 
 <programme start="20060610141000 +0000" stop="20060610144000 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>Dragon Hunters</title>
 	<sub-title>Dragon Hunters Die Drachenjäger</sub-title>
 	<desc>(teletext 329)</desc>
 </programme>
 
 <programme start="20060610144000 +0000" stop="20060610151500 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>WOW Die Entdeckerzone</title>
 	<desc>(teletext 330)</desc>
 </programme>
 
 <programme start="20060610151500 +0000" stop="20060610154500 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>Toggo united</title>
 	<sub-title>TOGGO UNITED Die Fußballshow</sub-title>
 	<desc>(teletext 331)</desc>
 </programme>
 
 <programme start="20060610154500 +0000" stop="20060610161500 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>Chip und Chap</title>
 	<sub-title>Chip und Chap Die Ritter des Rechts</sub-title>
 	<desc>(teletext 332)</desc>
 </programme>
 
 <programme start="20060610161500 +0000" stop="20060610163500 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>Disneys neue Micky Maus</title>
 	<sub-title>Disneys neue Micky Maus Geschichten</sub-title>
 	<desc>(teletext 334)</desc>
 </programme>
 
 <programme start="20060610163500 +0000" stop="20060610164500 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>yoomiii: Das Star-Tagebuch</title>
-	<!-- TTX 335 -->
+	<!-- TTX 335.0001 -->
 	<desc>yoomiii: Das Star-Tagebuch
 HEUTE, 10.06.2006, 18:35 Uhr
 Ihr Ziel sind die Charts: Die drei Mädchen von 'yoomiii' wollen mitmischen im Musikgeschäft. Das ist knochenharte Arbeit, setzt Fleiß und Disziplin voraus. Kristin, Nina und Bouchra lassen sich nicht beirren. Sie trainieren täglich: Stimme, Choreographie, Bühnenpräsenz und Interviewtechnik. Super RTL ist immer dabei, ob im Studio oder in der Kölner WG, in der die Mädchen zusammen wohnen. 'yoomiii: Das Star-
@@ -100,16 +116,19 @@ Tagebuch? fasst zusammen, was die drei Sängerinnen von 'yoomiii' in den vergange
 </programme>
 
 <programme start="20060610164500 +0000" stop="20060610172000 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>Disneys Kim Possible</title>
 	<desc>(teletext 336)</desc>
 </programme>
 
 <programme start="20060610172000 +0000" stop="20060610174500 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>Disneys Art Attack</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20060610174500 +0000" channel="???">
+	<!-- TTX 304.0000 ACQTS:1149947756 -->
 	<title>Upps! Die Pannenshow</title>
 	<desc>(teletext 338)</desc>
 </programme>

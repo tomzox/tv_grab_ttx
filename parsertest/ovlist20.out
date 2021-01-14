@@ -6,53 +6,64 @@
 </channel>
 
 <programme start="20100417212000 +0000" stop="20100417230000 +0000" channel="DAS VIERTE">
+	<!-- TTX 308.0000 ACQTS:1271441929 -->
 	<title>Heiße Girls</title>
 </programme>
 
 <programme start="20100417230000 +0000" stop="20100418040000 +0000" channel="DAS VIERTE">
+	<!-- TTX 308.0000 ACQTS:1271441929 -->
 	<title>Secret Fruits</title>
 </programme>
 
 <programme start="20100418040000 +0000" stop="20100418050000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Die Zwei</title>
 	<desc>(teletext 342)</desc>
 </programme>
 
 <programme start="20100418050000 +0000" stop="20100418080000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Living Gospel - Antworten</title>
 	<sub-title>Living Gospel - Antworten aus Gottes Wort</sub-title>
 </programme>
 
 <programme start="20100418080000 +0000" stop="20100418090000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Teleshopping</title>
 </programme>
 
 <programme start="20100418090000 +0000" stop="20100418110000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Astro TV</title>
 	<desc>(teletext 150)</desc>
 </programme>
 
 <programme start="20100418110000 +0000" stop="20100418130000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Teleshopping</title>
 </programme>
 
 <programme start="20100418130000 +0000" stop="20100418153000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Astro TV</title>
 	<desc>(teletext 150)</desc>
 </programme>
 
 <programme start="20100418153000 +0000" stop="20100418163000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Teleshopping</title>
 </programme>
 
 <programme start="20100418163000 +0000" stop="20100418181500 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>sonnenklar.TV</title>
 	<desc>(teletext 460)</desc>
 </programme>
 
 <programme start="20100418181500 +0000" stop="20100418202000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Tödlicher Irrtum</title>
-	<!-- TTX 314 -->
+	<!-- TTX 314.0001 -->
 	<desc>Tödlicher Irrtum
 Western, Deutschland 1970
 So 18.04., 20:15 Uhr
@@ -60,19 +71,23 @@ Eine goldene Zukunft verspricht der Boss der Ölgesellschaft den Indianern, als i
 </programme>
 
 <programme start="20100418202000 +0000" stop="20100418212000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Teleshopping</title>
 </programme>
 
 <programme start="20100418212000 +0000" stop="20100418220500 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Ghost Hunters</title>
 	<sub-title>Ghost Hunters International</sub-title>
 </programme>
 
 <programme start="20100418220500 +0000" stop="20100418230000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Heiße Girls</title>
 </programme>
 
 <programme start="20100418230000 +0000" channel="DAS VIERTE">
+	<!-- TTX 309.0001 ACQTS:1271441929 -->
 	<title>Secret Fruits</title>
 </programme>
 </tv>

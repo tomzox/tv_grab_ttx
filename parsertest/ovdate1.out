@@ -6,35 +6,41 @@
 </channel>
 
 <programme start="20060429184500 +0000" stop="20060429185500 +0000" pdc-start="20060429204500 +0200" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1146300143 -->
 	<title>heute-journal</title>
 	<desc>(teletext 315)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060429185500 +0000" stop="20060429190000 +0000" pdc-start="20060429205500 +0200" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1146300143 -->
 	<title>Wetter</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060429190000 +0000" stop="20060429201500 +0000" pdc-start="20060429192500 +0200" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1146300143 -->
 	<title>DFB-Pokal, Finale</title>
 	<sub-title>DFB-Pokal, Finale 2.Halbzeit</sub-title>
 	<desc>(teletext 320)</desc>
 </programme>
 
 <programme start="20060429201500 +0000" stop="20060429204500 +0000" pdc-start="20060429221500 +0200" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1146300143 -->
 	<title>das aktuelle</title>
 	<sub-title>das aktuelle sportstudio</sub-title>
 	<desc>(teletext 321)</desc>
 </programme>
 
 <programme start="20060429204500 +0000" stop="20060429230000 +0000" pdc-start="20060429224500 +0200" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1146300143 -->
 	<title>Boxen live im Zweiten</title>
 	<sub-title>Boxen live im Zweiten Luan Krasniqi - Davic Bostice</sub-title>
 	<desc>(teletext 322)</desc>
 </programme>
 
 <programme start="20060429230000 +0000" stop="20060430002500 +0000" pdc-start="20060430010000 +0200" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1146300143 -->
 	<title>Disappearance - Spurlos</title>
 	<sub-title>Disappearance - Spurlos verschwunden Psychothriller USA/2002</sub-title>
 	<desc>(teletext 323)</desc>
@@ -42,31 +48,37 @@
 </programme>
 
 <programme start="20060430002500 +0000" stop="20060430003000 +0000" pdc-start="20060430022500 +0200" channel="ZDF">
+	<!-- TTX 304.0000 ACQTS:1146300143 -->
 	<title>heute</title>
 	<desc>(teletext 111)</desc>
 </programme>
 
 <programme start="20060430003000 +0000" stop="20060430020000 +0000" pdc-start="20060430023000 +0200" channel="ZDF">
+	<!-- TTX 304.0000 ACQTS:1146300143 -->
 	<title>Runaway Heart</title>
 	<sub-title>Runaway Heart Gangsterkomödie USA/1990</sub-title>
 	<desc>(teletext 324)</desc>
 </programme>
 
 <programme start="20060430020000 +0000" stop="20060430020500 +0000" pdc-start="20060430040000 +0200" channel="ZDF">
+	<!-- TTX 304.0000 ACQTS:1146300143 -->
 	<title>heute</title>
 	<desc>(teletext 111)</desc>
 </programme>
 
 <programme start="20060430020500 +0000" stop="20060430025000 +0000" pdc-start="20060430040500 +0200" channel="ZDF">
+	<!-- TTX 304.0000 ACQTS:1146300143 -->
 	<title>Blond am Freitag</title>
 	<desc>(teletext 325)</desc>
 </programme>
 
 <programme start="20060430025000 +0000" stop="20060430031000 +0000" pdc-start="20060430045000 +0200" channel="ZDF">
+	<!-- TTX 304.0000 ACQTS:1146300143 -->
 	<title>citydreams</title>
 </programme>
 
 <programme start="20060430031000 +0000" pdc-start="20060430051000 +0200" channel="ZDF">
+	<!-- TTX 304.0000 ACQTS:1146300143 -->
 	<title>Tauchfahrt in die</title>
 	<sub-title>Tauchfahrt in die Vergangenheit Sir Henry Morgan</sub-title>
 	<desc>(teletext 326)</desc>
@@ -74,17 +86,20 @@
 </programme>
 
 <programme start="20060501200500 +0000" stop="20060501201800 +0000" pdc-start="20060501214500 +0200" channel="ZDF">
+	<!-- TTX 310.0000 ACQTS:1146300143 -->
 	<title>heute-journal</title>
 	<desc>(teletext 315)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060501201800 +0000" stop="20060501202000 +0000" pdc-start="20060501215800 +0200" channel="ZDF">
+	<!-- TTX 310.0000 ACQTS:1146300143 -->
 	<title>Wetter</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060501202000 +0000" stop="20060501215000 +0000" pdc-start="20060501220000 +0200" channel="ZDF">
+	<!-- TTX 310.0000 ACQTS:1146300143 -->
 	<title>Showtime</title>
 	<sub-title>Showtime Actionkomödie USA/2002</sub-title>
 	<desc>(teletext 322)</desc>
@@ -92,21 +107,25 @@
 </programme>
 
 <programme start="20060501215000 +0000" stop="20060501215500 +0000" pdc-start="20060501233000 +0200" channel="ZDF">
+	<!-- TTX 310.0000 ACQTS:1146300143 -->
 	<title>heute</title>
 </programme>
 
 <programme start="20060501215500 +0000" stop="20060501231500 +0000" pdc-start="20060501233500 +0200" channel="ZDF">
+	<!-- TTX 310.0000 ACQTS:1146300143 -->
 	<title>Eierdiebe</title>
 	<sub-title>Eierdiebe Schwarze Komödie D/2002</sub-title>
 	<desc>(teletext 323)</desc>
 </programme>
 
 <programme start="20060501231500 +0000" stop="20060501232000 +0000" pdc-start="20060502005500 +0200" channel="ZDF">
+	<!-- TTX 310.0000 ACQTS:1146300143 -->
 	<title>heute</title>
 	<desc>(teletext 111)</desc>
 </programme>
 
 <programme start="20060501232000 +0000" pdc-start="20060502010000 +0200" channel="ZDF">
+	<!-- TTX 310.0000 ACQTS:1146300143 -->
 	<title>neues</title>
 	<sub-title>neues Sex und Spiele</sub-title>
 </programme>

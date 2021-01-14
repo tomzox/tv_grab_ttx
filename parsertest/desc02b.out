@@ -6,26 +6,30 @@
 </channel>
 
 <programme start="20100326171000 +0000" stop="20100326180600 +0000" channel="Tele 5">
+	<!-- TTX 303.0002 ACQTS:1269637910 -->
 	<title>Andromeda</title>
 	<sub-title>Andromeda Erzengel Gabriel</sub-title>
 	<desc>(teletext 344)</desc>
 </programme>
 
 <programme start="20100326180600 +0000" stop="20100326190200 +0000" channel="Tele 5">
+	<!-- TTX 303.0002 ACQTS:1269637910 -->
 	<title>Stargate</title>
 	<sub-title>Stargate Kiannas Symbiont</sub-title>
 	<desc>(teletext 356)</desc>
 </programme>
 
 <programme start="20100326190200 +0000" stop="20100326191500 +0000" channel="Tele 5">
+	<!-- TTX 303.0002 ACQTS:1269637910 -->
 	<title>Making-of</title>
 	<sub-title>Making-of Sonstige</sub-title>
 </programme>
 
 <programme start="20100326191500 +0000" stop="20100326211500 +0000" channel="Tele 5">
+	<!-- TTX 303.0002 ACQTS:1269637910 -->
 	<title>Invincible - Krieger des Lichts</title>
 	<sub-title>Invincible - Krieger des Lichts Science-Fiction USA/CDN 2001</sub-title>
-	<!-- TTX 312 -->
+	<!-- TTX 312.0001 -->
 	<desc>Invincible - Krieger des Lichts
 Fr 20:15-22:15 auf Sendung
 Science-Fiction USA/CDN 2001
@@ -39,21 +43,24 @@ Os: Billy Zane, Michael Fu: Byron Mann, Serena Blue: Stacy Oversier, Ray Jackson
 </programme>
 
 <programme start="20100326211500 +0000" stop="20100326225000 +0000" channel="Tele 5">
+	<!-- TTX 303.0002 ACQTS:1269637910 -->
 	<title>Im Auge des Taifun</title>
 	<sub-title>Im Auge des Taifun Eastern HK 1981</sub-title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20100326225000 +0000" stop="20100327005500 +0000" channel="Tele 5">
+	<!-- TTX 303.0002 ACQTS:1269637910 -->
 	<title>Im Reich der Sinne</title>
 	<sub-title>Im Reich der Sinne Erotikdrama J/F 1976</sub-title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20100327005500 +0000" stop="20100327031000 +0000" channel="Tele 5">
+	<!-- TTX 304.0001 ACQTS:1269637910 -->
 	<title>Battlefield Earth - Kampf um die Erde</title>
 	<sub-title>Battlefield Earth - Kampf um die Erde Science Fiction USA 2000</sub-title>
-	<!-- TTX 315 -->
+	<!-- TTX 315.0001 -->
 	<desc>Battlefield Earth - Kampf um die Erde
 Sa 01:55-04:10
 Science Fiction USA 2000
@@ -67,35 +74,41 @@ Terl: John Travolta, Jonnie Goodboy: Barry Pepper, Ker: Forest Whitaker, Carlo: 
 </programme>
 
 <programme start="20100327031000 +0000" stop="20100327043100 +0000" channel="Tele 5">
+	<!-- TTX 304.0001 ACQTS:1269637910 -->
 	<title>Im Auge des Taifun</title>
 	<sub-title>Im Auge des Taifun Eastern HK 1981</sub-title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20100327043100 +0000" stop="20100327050100 +0000" channel="Tele 5">
+	<!-- TTX 304.0001 ACQTS:1269637910 -->
 	<title>Making Of</title>
 	<sub-title>Making Of Sonstige</sub-title>
 	<desc>(teletext 339)</desc>
 </programme>
 
 <programme start="20100327050100 +0000" stop="20100327054000 +0000" channel="Tele 5">
+	<!-- TTX 305.0001 ACQTS:1269637910 -->
 	<title>Superman - Die Abenteuer</title>
 	<sub-title>Superman - Die Abenteuer von Lois &amp; Clark Noah Nummer zwei</sub-title>
 	<desc>(teletext 357)</desc>
 </programme>
 
 <programme start="20100327054000 +0000" stop="20100327055500 +0000" channel="Tele 5">
+	<!-- TTX 305.0001 ACQTS:1269637910 -->
 	<title>Making-of</title>
 	<sub-title>Making-of Sonstige</sub-title>
 </programme>
 
 <programme start="20100327055500 +0000" stop="20100327090100 +0000" channel="Tele 5">
+	<!-- TTX 305.0001 ACQTS:1269637910 -->
 	<title>One Piece</title>
 	<sub-title>One Piece Folge 330 - 336</sub-title>
 	<desc>(teletext 353)</desc>
 </programme>
 
 <programme start="20100327090100 +0000" channel="Tele 5">
+	<!-- TTX 305.0001 ACQTS:1269637910 -->
 	<title>Homeshopping</title>
 	<sub-title>Homeshopping Sonstige</sub-title>
 </programme>

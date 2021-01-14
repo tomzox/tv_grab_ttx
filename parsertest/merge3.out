@@ -6,31 +6,36 @@
 </channel>
 
 <programme start="20110107170600 +0000" stop="20110107180100 +0000" channel="TELE 5">
+	<!-- TTX 303.0001 ACQTS:1294403841 -->
 	<title>Babylon 5</title>
 	<sub-title>Babylon 5 Bombenterror</sub-title>
 	<desc>(teletext 343)</desc>
 </programme>
 
 <programme start="20110107180100 +0000" stop="20110107190000 +0000" channel="TELE 5">
+	<!-- TTX 303.0001 ACQTS:1294403841 -->
 	<title>Star Trek - Das nächste</title>
 	<sub-title>Star Trek - Das nächste Jahrhundert Der Reisende</sub-title>
 	<desc>(teletext 350)</desc>
 </programme>
 
 <programme start="20110107190000 +0000" stop="20110107190200 +0000" channel="TELE 5">
+	<!-- TTX 303.0001 ACQTS:1294403841 -->
 	<title>Gottschalk extra</title>
 	<sub-title>Gottschalk extra Unterhaltung</sub-title>
 </programme>
 
 <programme start="20110107190200 +0000" stop="20110107191500 +0000" channel="TELE 5">
+	<!-- TTX 303.0001 ACQTS:1294403841 -->
 	<title>Wir lieben Kino - Extra</title>
 	<sub-title>Wir lieben Kino - Extra Kinomagazin</sub-title>
 </programme>
 
 <programme start="20110107191500 +0000" stop="20110107210400 +0000" channel="TELE 5">
+	<!-- TTX 303.0001 ACQTS:1294403841 -->
 	<title>Tai Pan &amp; Der Teufel mit der Drachenklaue</title>
 	<sub-title>Tai Pan &amp; Der Teufel mit der Drachenklaue Eastern TAI 1971</sub-title>
-	<!-- TTX 312 -->
+	<!-- TTX 312.FFFFFFFF -->
 	<desc>Tai Pan &amp; Der Teufel mit der Drachenklaue oo Fr 20:15-22:04
 Eastern TAI 1971
 Als der junge, noble Kämpfer Tai Pan erfährt, dass ein Gangster seinen Namen missbraucht, macht er sich auf, um den Schurken zur Strecke zu bringen. Außerdem versucht er, dem Mädchen Yu Shen zu helfen, das nach dem Mord an ihrem Vater auf Rache sinnt. Als der Mörder gefunden ist, stellt sich jedoch heraus, dass er der wahre Vater der jungen Dame ist ...
@@ -46,9 +51,10 @@ Kong Ban, Cheung Ching Ching, Yee Yuen, Ma Kei, O Yau Man, Wong Fei-Lung.</desc>
 </programme>
 
 <programme start="20110107210400 +0000" channel="TELE 5">
+	<!-- TTX 303.0001 ACQTS:1294403841 -->
 	<title>Bittersweet Life</title>
 	<sub-title>Bittersweet Life Action ROK 2005</sub-title>
-	<!-- TTX 313 -->
+	<!-- TTX 313.0002 -->
 	<desc>Bittersweet Life
 Fr 22:04-00:15 Sa 02:41-04:46 Wh.
 Action ROK 2005

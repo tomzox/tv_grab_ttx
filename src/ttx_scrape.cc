@@ -55,6 +55,7 @@ OV_SLOT::OV_SLOT(TTX_PAGE_DB * db, int hour, int min, bool is_tip)
    m_end_min = -1;
    m_date_wrap = 0;
    m_ttx_ref = -1;
+   m_ttx_ref_sub = -1;
 }
 
 OV_SLOT::~OV_SLOT()
@@ -1036,6 +1037,9 @@ void OV_SLOT::parse_desc_page(const T_PG_DATE * pg_date, int ref_count)
             if (!m_ext_desc.empty())
                m_ext_desc += "\n";
             m_ext_desc += ParseDescContent(mp_db, page, sub, head, foot);
+
+            if (m_ttx_ref_sub == -1)
+               m_ttx_ref_sub = sub;
          }
          found = true;
       }
@@ -1237,7 +1241,6 @@ int GetNextPageNumber(int page)
 
 /* ------------------------------------------------------------------------------
  * Check if two given teletext pages are adjacent
- * - both page numbers must have decimal digits only (i.e. match /[1-8][1-9][1-9]/)
  */
 bool CheckIfPagesAdjacent(TTX_PAGE_DB * db, int page1, int sub1, int sub_skip, int page2, int sub2)
 {
@@ -1500,6 +1503,9 @@ T_TRAIL_REF_FMT OV_PAGE::detect_ov_ttx_ref_fmt(const vector<OV_PAGE*>& ov_pages)
    return T_TRAIL_REF_FMT::select_ttx_ref_fmt(fmt_list);
 }
 
+/* ------------------------------------------------------------------------------
+ * Retrieve TTX page references from all slots on an overview page
+ */
 void OV_PAGE::extract_ttx_ref(const T_TRAIL_REF_FMT& fmt, map<int,int>& ttx_ref_map)
 {
    for (unsigned idx = 0; idx < m_slots.size(); idx++) {
@@ -1508,6 +1514,9 @@ void OV_PAGE::extract_ttx_ref(const T_TRAIL_REF_FMT& fmt, map<int,int>& ttx_ref_
    }
 }
 
+/* ------------------------------------------------------------------------------
+ * Retrieve descriptions from teletext pages referenced on the overview page
+ */
 void OV_PAGE::extract_tv(map<int,int>& ttx_ref_map)
 {
    if (m_slots.size() > 0) {

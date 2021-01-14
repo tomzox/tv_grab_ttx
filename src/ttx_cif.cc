@@ -125,9 +125,9 @@ int ttx_db_parse( void * db, int pg_start, int pg_end, int expire_min,
 
    // make sure to never write an empty file
    if (!NewSlots.empty()) {
-      XMLTV xmltv;
+      XMLTV xmltv(ttx_db);
 
-      xmltv.SetChannelName(ttx_db, p_ch_name, p_ch_id);
+      xmltv.SetChannelName(p_ch_name, p_ch_id);
 
       xmltv.SetExpireTime(expire_min);
 

@@ -6,17 +6,20 @@
 </channel>
 
 <programme start="20100410040500 +0000" stop="20100410050000 +0000" channel="RTL II">
+	<!-- TTX 301.0000 ACQTS:1270918322 -->
 	<title>MythBusters</title>
 	<sub-title>MythBusters Die Wissensjäger</sub-title>
 </programme>
 
 <programme start="20100410050000 +0000" stop="20100410065000 +0000" channel="RTL II">
+	<!-- TTX 301.0000 ACQTS:1270918322 -->
 	<title>X-Factor: Das Unfassbare</title>
 </programme>
 
 <programme start="20100410065000 +0000" stop="20100410085000 +0000" channel="RTL II">
+	<!-- TTX 301.0000 ACQTS:1270918322 -->
 	<title>Lionheart</title>
-	<!-- TTX 351 -->
+	<!-- TTX 351.0001 -->
 	<desc>Lionheart
 Historien-Abenteuer, H, USA 1987
 Nachdem der junge Ritter Robert sich mit seiner Familie entzweit, beschließt er, nach Paris zu ziehen.
@@ -27,6 +30,7 @@ Aufwendiger Abenteuerfilm, der sich an die Ereignisse des "Kinderkreuzzugs" von 
 </programme>
 
 <programme start="20100410085000 +0000" channel="RTL II">
+	<!-- TTX 301.0000 ACQTS:1270918322 -->
 	<title>Benji - Sein größtes</title>
 	<sub-title>Benji - Sein größtes Abenteuer</sub-title>
 	<desc>(teletext 351)</desc>

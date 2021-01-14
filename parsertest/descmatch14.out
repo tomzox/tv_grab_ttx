@@ -6,29 +6,34 @@
 </channel>
 
 <programme start="20100418180000 +0000" stop="20100418181500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0000 ACQTS:1271618179 -->
 	<title>RTL II News</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20100418181500 +0000" stop="20100418211500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0000 ACQTS:1271618179 -->
 	<title>Der große deutsche 80er-Test</title>
 	<sub-title>Der große deutsche 80er-Test by RTL II</sub-title>
 	<desc>(teletext 371)</desc>
 </programme>
 
 <programme start="20100418211500 +0000" stop="20100418222000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0000 ACQTS:1271618179 -->
 	<title>Crime 360</title>
 	<desc>(teletext 338)</desc>
 </programme>
 
 <programme start="20100418222000 +0000" stop="20100418231000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0000 ACQTS:1271618179 -->
 	<title>Das Nachrichtenjournal</title>
 </programme>
 
 <programme start="20100418231000 +0000" stop="20100419001000 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1271618179 -->
 	<title>Ungeklärte Morde</title>
 	<sub-title>Ungeklärte Morde Dem Täter auf der Spur</sub-title>
-	<!-- TTX 339 -->
+	<!-- TTX 339.0000 -->
 	<desc>UNGEKLÄRTE MORDE
 DEM TÄTER AUF DER SPUR
 In dieser Sendung werden drei ungeklärte Mordfälle rekonstruiert. Die ermittelnden Beamten, Gerichtmediziner, Staatsanwälte und Juristen kommen zu Wort, Angehörige und Zeugen erinnern sich.
@@ -36,36 +41,43 @@ Für anonyme Hinweise der Zuschauer ist eine Telefon-Nr. freigeschaltet: 01378 - 
 </programme>
 
 <programme start="20100419001000 +0000" stop="20100419021000 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1271618179 -->
 	<title>Düsenjäger</title>
 	<desc>(teletext 347)</desc>
 </programme>
 
 <programme start="20100419021000 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1271618179 -->
 	<title>MythBusters</title>
 	<sub-title>MythBusters Die Wissensjäger</sub-title>
 </programme>
 
 <programme start="20100419211500 +0000" stop="20100419221500 +0000" channel="rtl2.de">
+	<!-- TTX 308.0000 ACQTS:1271618179 -->
 	<title>Fun Club: Comedystars live</title>
 	<desc>(teletext 390)</desc>
 </programme>
 
 <programme start="20100419221500 +0000" stop="20100419222500 +0000" channel="rtl2.de">
+	<!-- TTX 308.0000 ACQTS:1271618179 -->
 	<title>RTL II-Late News</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20100419222500 +0000" stop="20100419231500 +0000" channel="rtl2.de">
+	<!-- TTX 308.0000 ACQTS:1271618179 -->
 	<title>Grip - Das Motormagazin</title>
 </programme>
 
 <programme start="20100419231500 +0000" stop="20100420000500 +0000" channel="rtl2.de">
+	<!-- TTX 308.0000 ACQTS:1271618179 -->
 	<title>Ärger im Revier</title>
 </programme>
 
 <programme start="20100420000500 +0000" stop="20100420005500 +0000" channel="rtl2.de">
+	<!-- TTX 308.0000 ACQTS:1271618179 -->
 	<title>Dog - Der Kopfgeldjäger</title>
-	<!-- TTX 317 -->
+	<!-- TTX 317.0000 -->
 	<desc>DOG - DER KOPFGELDJÄGER
 Monalisa auf der Flucht
 Was Dog und sein Team immer wieder bei ihrer Arbeit feststellen ist: Frauen sind viel schwerer zu schnappen als Männer.
@@ -73,8 +85,9 @@ Monalisa Hartsock passt in dieses Muster: Denn sie ist wie vom Erdboden verschlu
 </programme>
 
 <programme start="20100420005500 +0000" stop="20100420022500 +0000" channel="rtl2.de">
+	<!-- TTX 308.0000 ACQTS:1271618179 -->
 	<title>Mit 17 bist Du tot</title>
-	<!-- TTX 348 -->
+	<!-- TTX 348.0001 -->
 	<desc>Mit 17 bist Du tot
 Mystery-Thriller, CDN 2008
 Alyssa Harris will nicht glauben, dass ihr 17-jähriger Sohn Selbstmord begangen hat.
@@ -82,6 +95,7 @@ Gemeinsam mit ihrer Tochter Danielle stellt sie eigene Ermittlungen an und kommt
 </programme>
 
 <programme start="20100420022500 +0000" channel="rtl2.de">
+	<!-- TTX 308.0000 ACQTS:1271618179 -->
 	<title>MythBusters</title>
 </programme>
 </tv>

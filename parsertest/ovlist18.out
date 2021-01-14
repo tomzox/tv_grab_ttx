@@ -6,18 +6,22 @@
 </channel>
 
 <programme start="20100404031500 +0000" stop="20100404041000 +0000" pdc-start="20100404051500 +0200" channel="ARTE">
+	<!-- TTX 301.0000 ACQTS:1270412608 -->
 	<title>Michelangelo superstar</title>
 </programme>
 
 <programme start="20100404041000 +0000" stop="20100404043500 +0000" pdc-start="20100404061000 +0200" channel="ARTE">
+	<!-- TTX 301.0000 ACQTS:1270412608 -->
 	<title>Künstler hautnah</title>
 </programme>
 
 <programme start="20100404043500 +0000" stop="20100404050500 +0000" pdc-start="20100404063500 +0200" channel="ARTE">
+	<!-- TTX 301.0000 ACQTS:1270412608 -->
 	<title>Kleider und leute</title>
 </programme>
 
 <programme start="20100404050500 +0000" stop="20100404060000 +0000" pdc-start="20100404070500 +0200" channel="ARTE">
+	<!-- TTX 301.0000 ACQTS:1270412608 -->
 	<title>Eine meisterklasse mit</title>
 	<sub-title>EINE MEISTERKLASSE MIT RAVI SHANKAR</sub-title>
 	<video>
@@ -26,17 +30,20 @@
 </programme>
 
 <programme start="20100404060000 +0000" stop="20100404062500 +0000" pdc-start="20100404080000 +0200" channel="ARTE">
+	<!-- TTX 301.0000 ACQTS:1270412608 -->
 	<title>Hallo spencer</title>
 	<desc>(teletext 307)</desc>
 </programme>
 
 <programme start="20100404062500 +0000" stop="20100404065500 +0000" pdc-start="20100404082500 +0200" channel="ARTE">
+	<!-- TTX 301.0000 ACQTS:1270412608 -->
 	<title>Es war einmal ... der</title>
 	<sub-title>ES WAR EINMAL ... DER WELTRAUM</sub-title>
 	<desc>(teletext 308)</desc>
 </programme>
 
 <programme start="20100404065500 +0000" stop="20100404070000 +0000" pdc-start="20100404085500 +0200" channel="ARTE">
+	<!-- TTX 301.0000 ACQTS:1270412608 -->
 	<title>Die sendung mit der katze</title>
 	<sub-title>DIE SENDUNG MIT DER KATZE (1)</sub-title>
 	<desc>(teletext 309)</desc>

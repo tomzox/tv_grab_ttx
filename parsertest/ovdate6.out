@@ -6,98 +6,122 @@
 </channel>
 
 <programme start="20060429080100 +0000" stop="20060429080200 +0000" channel="TEST">
+	<!-- TTX 301.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429080200 +0000" stop="20060429080300 +0000" channel="TEST">
+	<!-- TTX 302.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429080300 +0000" stop="20060429080400 +0000" channel="TEST">
+	<!-- TTX 303.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429080400 +0000" stop="20060429080500 +0000" channel="TEST">
+	<!-- TTX 304.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429080500 +0000" stop="20060429080600 +0000" channel="TEST">
+	<!-- TTX 305.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429080600 +0000" stop="20060429080700 +0000" channel="TEST">
+	<!-- TTX 306.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429080700 +0000" stop="20060429080800 +0000" channel="TEST">
+	<!-- TTX 307.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429080800 +0000" stop="20060429080900 +0000" channel="TEST">
+	<!-- TTX 308.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429080900 +0000" stop="20060429081000 +0000" channel="TEST">
+	<!-- TTX 309.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081000 +0000" stop="20060429081100 +0000" channel="TEST">
+	<!-- TTX 310.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081100 +0000" stop="20060429081200 +0000" channel="TEST">
+	<!-- TTX 311.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081200 +0000" stop="20060429081300 +0000" channel="TEST">
+	<!-- TTX 312.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081300 +0000" stop="20060429081400 +0000" channel="TEST">
+	<!-- TTX 313.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081400 +0000" stop="20060429081500 +0000" channel="TEST">
+	<!-- TTX 314.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081500 +0000" stop="20060429081600 +0000" channel="TEST">
+	<!-- TTX 315.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081600 +0000" stop="20060429081700 +0000" channel="TEST">
+	<!-- TTX 316.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081700 +0000" stop="20060429081800 +0000" channel="TEST">
+	<!-- TTX 317.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081800 +0000" stop="20060429081900 +0000" channel="TEST">
+	<!-- TTX 318.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429081900 +0000" stop="20060429082000 +0000" channel="TEST">
+	<!-- TTX 319.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429082000 +0000" stop="20060429082100 +0000" channel="TEST">
+	<!-- TTX 320.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429082100 +0000" stop="20060429082200 +0000" channel="TEST">
+	<!-- TTX 321.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429082200 +0000" stop="20060429082300 +0000" channel="TEST">
+	<!-- TTX 322.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060429082300 +0000" channel="TEST">
+	<!-- TTX 323.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 
 <programme start="20060430090000 +0000" channel="TEST">
+	<!-- TTX 330.0000 ACQTS:1146311273 -->
 	<title>Test Title</title>
 </programme>
 </tv>

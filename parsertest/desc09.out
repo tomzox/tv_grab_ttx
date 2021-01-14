@@ -6,38 +6,45 @@
 </channel>
 
 <programme start="20060830150000 +0000" stop="20060830160000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1156962810 -->
 	<title>Eine starke Familie</title>
 	<desc>(teletext 336)</desc>
 </programme>
 
 <programme start="20060830160000 +0000" stop="20060830170000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1156962810 -->
 	<title>Still Standing</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20060830170000 +0000" stop="20060830180000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1156962810 -->
 	<title>Immer wieder Jim</title>
 	<desc>(teletext 335)</desc>
 </programme>
 
 <programme start="20060830180000 +0000" stop="20060830181500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1156962810 -->
 	<title>RTL II News</title>
 	<desc>(teletext 114)</desc>
 </programme>
 
 <programme start="20060830181500 +0000" stop="20060830191000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1156962810 -->
 	<title>Stargate Atlantis</title>
 	<desc>(teletext 323)</desc>
 </programme>
 
 <programme start="20060830191000 +0000" stop="20060830200500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1156962810 -->
 	<title>Stargate</title>
 	<desc>(teletext 323)</desc>
 </programme>
 
 <programme start="20060830200500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1156962810 -->
 	<title>Dead Zone</title>
-	<!-- TTX 328 -->
+	<!-- TTX 328.0001 -->
 	<desc>DEAD ZONE
 Höllentrip
 Johnny hat Visionen von einer 16-jährigen Ausreißerin namens Jill. Das Gesehene lässt ihn vermuten, dass das Mädchen sich in einer alten Lagerhalle in Portland befinden könnte. Also macht er sich zusammen mit Walt und Officer Kohlan auf die Suche.

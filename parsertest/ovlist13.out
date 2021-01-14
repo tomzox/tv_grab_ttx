@@ -6,69 +6,83 @@
 </channel>
 
 <programme start="20100405082500 +0000" stop="20100405095600 +0000" channel="ProSieben">
+	<!-- TTX 306.0001 ACQTS:1270413523 -->
 	<title>Zwexies - Die Zwillingshexen</title>
 	<sub-title>Zwexies - Die Zwillingshexen zum Zweiten</sub-title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20100405095600 +0000" stop="20100405112600 +0000" channel="ProSieben">
+	<!-- TTX 306.0001 ACQTS:1270413523 -->
 	<title>Gefallene Engel</title>
 	<desc>(teletext 317)</desc>
 </programme>
 
 <programme start="20100405112600 +0000" stop="20100405125500 +0000" channel="ProSieben">
+	<!-- TTX 306.0001 ACQTS:1270413523 -->
 	<title>Gefallene Engel 2</title>
 	<desc>(teletext 318)</desc>
 </programme>
 
 <programme start="20100405125500 +0000" stop="20100405141900 +0000" channel="ProSieben">
+	<!-- TTX 306.0001 ACQTS:1270413523 -->
 	<title>Gefallene Engel 3</title>
 	<desc>(teletext 319)</desc>
 </programme>
 
 <programme start="20100405141900 +0000" stop="20100405155900 +0000" channel="ProSieben">
+	<!-- TTX 306.0001 ACQTS:1270413523 -->
 	<title>10.000 B.C.</title>
 </programme>
 
 <programme start="20100405155900 +0000" stop="20100405160900 +0000" channel="ProSieben">
+	<!-- TTX 307.0001 ACQTS:1270413523 -->
 	<title>Newstime</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20100405160900 +0000" stop="20100405164000 +0000" channel="ProSieben">
+	<!-- TTX 307.0001 ACQTS:1270413523 -->
 	<title>Die Simpsons</title>
 	<sub-title>Die Simpsons Homer einmal ganz woanders</sub-title>
 	<desc>(teletext 354)</desc>
 </programme>
 
 <programme start="20100405164000 +0000" stop="20100405170700 +0000" channel="ProSieben">
+	<!-- TTX 307.0001 ACQTS:1270413523 -->
 	<title>Die Simpsons</title>
 	<sub-title>Die Simpsons Drei nasse Geschichten</sub-title>
 	<desc>(teletext 354)</desc>
 </programme>
 
 <programme start="20100405170700 +0000" stop="20100405181400 +0000" channel="ProSieben">
+	<!-- TTX 307.0001 ACQTS:1270413523 -->
 	<title>Galileo History</title>
 	<sub-title>Galileo History Bahnbrechende Erfindungen aus 400 Jahren</sub-title>
 </programme>
 
 <programme start="20100405181400 +0000" stop="20100405201600 +0000" channel="ProSieben">
+	<!-- TTX 307.0001 ACQTS:1270413523 -->
 	<title>16 Blocks</title>
 </programme>
 
 <programme start="20100405201600 +0000" stop="20100405224600 +0000" channel="ProSieben">
+	<!-- TTX 307.0001 ACQTS:1270413523 -->
 	<title>Matrix Revolutions</title>
 </programme>
 
 <programme start="20100405224600 +0000" stop="20100406002800 +0000" channel="ProSieben">
+	<!-- TTX 308.0001 ACQTS:1270413523 -->
 	<title>16 Blocks</title>
 </programme>
 
 <programme start="20100406002800 +0000" stop="20100406022300 +0000" channel="ProSieben">
+	<!-- TTX 308.0001 ACQTS:1270413523 -->
 	<title>Matrix Revolutions</title>
 </programme>
 
 <programme start="20100406022300 +0000" channel="ProSieben">
+	<!-- TTX 308.0001 ACQTS:1270413523 -->
 	<title>Sol Goode</title>
 </programme>
 </tv>

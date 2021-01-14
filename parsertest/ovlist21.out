@@ -6,99 +6,118 @@
 </channel>
 
 <programme start="20100416030500 +0000" stop="20100416033000 +0000" channel="sat1.de">
+	<!-- TTX 301.0001 ACQTS:1271444729 -->
 	<title>K 11 - Kommissare im Einsatz: Christian Storm unter Verdacht</title>
 	<desc>(teletext 374)</desc>
 </programme>
 
 <programme start="20100416033000 +0000" stop="20100416080000 +0000" channel="sat1.de">
+	<!-- TTX 301.0001 ACQTS:1271444729 -->
 	<title>SAT.1-Frühstücksfernsehen</title>
 	<desc>(teletext 321)</desc>
 </programme>
 
 <programme start="20100416080000 +0000" stop="20100416090000 +0000" channel="sat1.de">
+	<!-- TTX 301.0001 ACQTS:1271444729 -->
 	<title>Zwei bei Kallwass</title>
 	<desc>(teletext 367)</desc>
 </programme>
 
 <programme start="20100416090000 +0000" stop="20100416100000 +0000" channel="sat1.de">
+	<!-- TTX 301.0001 ACQTS:1271444729 -->
 	<title>Richterin Salesch</title>
 	<desc>(teletext 368)</desc>
 </programme>
 
 <programme start="20100416100000 +0000" stop="20100416110000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Richter Hold</title>
 	<desc>(teletext 369)</desc>
 </programme>
 
 <programme start="20100416110000 +0000" stop="20100416120000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Britt: Falsches Spiel!</title>
 	<sub-title>Britt: Falsches Spiel! Heute stelle ich dich zur Rede</sub-title>
 	<desc>(teletext 365)</desc>
 </programme>
 
 <programme start="20100416120000 +0000" stop="20100416130000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Zwei bei Kallwass</title>
 	<desc>(teletext 367)</desc>
 </programme>
 
 <programme start="20100416130000 +0000" stop="20100416140000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Richterin Salesch</title>
 	<desc>(teletext 368)</desc>
 </programme>
 
 <programme start="20100416140000 +0000" stop="20100416150000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Richter Hold</title>
 	<desc>(teletext 369)</desc>
 </programme>
 
 <programme start="20100416150000 +0000" stop="20100416153000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Niedrig und Kuhnt - Kommissare ermitteln: Heißes</title>
 	<sub-title>Niedrig und Kuhnt - Kommissare ermitteln: Heißes Hobby</sub-title>
 	<desc>(teletext 371)</desc>
 </programme>
 
 <programme start="20100416153000 +0000" stop="20100416160000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Niedrig und Kuhnt - Kommissare ermitteln: Ich</title>
 	<sub-title>Niedrig und Kuhnt - Kommissare ermitteln: Ich würde alles für dich tun!</sub-title>
 	<desc>(teletext 371)</desc>
 </programme>
 
 <programme start="20100416160000 +0000" stop="20100416163000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Eine wie keine: Folge 104</title>
 	<desc>(teletext 349)</desc>
 </programme>
 
 <programme start="20100416163000 +0000" stop="20100416170000 +0000" channel="sat1.de">
+	<!-- TTX 302.0001 ACQTS:1271444729 -->
 	<title>Anna und die Liebe: Folge</title>
 	<sub-title>Anna und die Liebe: Folge 415</sub-title>
 	<desc>(teletext 585)</desc>
 </programme>
 
 <programme start="20100416170000 +0000" stop="20100416173000 +0000" channel="sat1.de">
+	<!-- TTX 303.0001 ACQTS:1271444729 -->
 	<title>Das SAT.1-Magazin</title>
 	<desc>(teletext 324)</desc>
 </programme>
 
 <programme start="20100416173000 +0000" stop="20100416180000 +0000" channel="sat1.de">
+	<!-- TTX 303.0001 ACQTS:1271444729 -->
 	<title>K 11 - Kommissare im Einsatz: Schleichendes Gift</title>
 	<desc>(teletext 374)</desc>
 </programme>
 
 <programme start="20100416180000 +0000" stop="20100416181500 +0000" channel="sat1.de">
+	<!-- TTX 303.0001 ACQTS:1271444729 -->
 	<title>SAT.1 Nachrichten</title>
 </programme>
 
 <programme start="20100416181500 +0000" stop="20100416203000 +0000" channel="sat1.de">
+	<!-- TTX 303.0001 ACQTS:1271444729 -->
 	<title>Die Comedy-Falle</title>
 	<desc>(teletext 370)</desc>
 </programme>
 
 <programme start="20100416203000 +0000" stop="20100416213000 +0000" channel="sat1.de">
+	<!-- TTX 303.0001 ACQTS:1271444729 -->
 	<title>Die Oliver Pocher Show</title>
 	<desc>(teletext 383)</desc>
 </programme>
 
 <programme start="20100416213000 +0000" channel="sat1.de">
+	<!-- TTX 303.0001 ACQTS:1271444729 -->
 	<title>ZACK! Comedy nach Maß</title>
 	<desc>(teletext 379)</desc>
 </programme>

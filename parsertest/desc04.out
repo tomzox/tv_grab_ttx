@@ -6,6 +6,7 @@
 </channel>
 
 <programme start="20100326120000 +0000" stop="20100326121500 +0000" pdc-start="20100326130000 +0100" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1269632909 -->
 	<title>Zib</title>
 	<video>
 		<aspect>16:9</aspect>
@@ -16,6 +17,7 @@
 </programme>
 
 <programme start="20100326121500 +0000" stop="20100326124500 +0000" pdc-start="20100326131500 +0100" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1269632909 -->
 	<title>Zapp</title>
 	<desc>(teletext 320)</desc>
 	<video>
@@ -27,8 +29,9 @@
 </programme>
 
 <programme start="20100326124500 +0000" stop="20100326131500 +0000" pdc-start="20100326134400 +0100" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1269632909 -->
 	<title>Über-Leben mit Hartz IV</title>
-	<!-- TTX 321 -->
+	<!-- TTX 321.0000 -->
 	<desc>Über-Leben mit Hartz IV oo 16:9 Film von Elle Langer (Erstsendung: 24. Februar 2010)
 Vor fünf Jahren wurde mit Hartz-IV die größte deutsche Sozialreform eingeführt. Seitdem kämpfen Bedürftige, Fallmanager in Jobcentern und Sozialrichter mit den Gesetzen und Regeln der Neuorganisation von Arbeits- und Sozialamt. Mehrfach wurden in den letzten Jahren Korrekturen vorgenommen. 25.118 Anträge sind bis heute unbearbeitet.
 Hat sich Hartz-IV bis heute bewährt? Ist die Sozial- und Arbeitsmarktreform ein Instrument, um die Arbeitslosenzahlen zu schönen? Was ist sinnvoll und was nicht?</desc>
@@ -41,8 +44,9 @@ Hat sich Hartz-IV bis heute bewährt? Ist die Sozial- und Arbeitsmarktreform ein 
 </programme>
 
 <programme start="20100326131500 +0000" stop="20100326140000 +0000" pdc-start="20100326141500 +0100" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1269632909 -->
 	<title>Bilderbuch: Hohenloher Land</title>
-	<!-- TTX 322 -->
+	<!-- TTX 322.0000 -->
 	<desc>Bilderbuch: Hohenloher Land oo UT 16:9 Film von Susanne Bausch (Erstsendung: 13. September 2009)
 "Starrsinn und Eigensinn sind eigentlich die Energie des Alters, aber wir Hohenloher werden schon so geboren", beschreibt Molle von der Mundartband "Annaweech" die Mentalität seiner Landsleute. Ein Grund dafür, dass viele Hohenloher unternehmerisch erfolgreich sind.
 In Gammesfeld zum Beispiel sitzt die kleinste Bank Deutschlands, bei der die Stürme der Finanzkrise nicht einmal als laues Lüftchen zu spüren waren.</desc>
@@ -56,6 +60,7 @@ In Gammesfeld zum Beispiel sitzt die kleinste Bank Deutschlands, bei der die Stü
 </programme>
 
 <programme start="20100326140000 +0000" stop="20100326155500 +0000" pdc-start="20100326150000 +0100" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1269632909 -->
 	<title>Die Ritter der Tafelrunde</title>
 	<sub-title>Die Ritter der Tafelrunde Spielfilm, USA 1953</sub-title>
 	<desc>(teletext 323)</desc>
@@ -65,12 +70,14 @@ In Gammesfeld zum Beispiel sitzt die kleinste Bank Deutschlands, bei der die Stü
 </programme>
 
 <programme start="20100326155500 +0000" stop="20100326161500 +0000" pdc-start="20100326165500 +0100" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1269632909 -->
 	<title>Georgien</title>
 	<sub-title>Georgien Menschen, Landschaften und Kulturen am Kaukasus</sub-title>
 	<desc>(teletext 324)</desc>
 </programme>
 
 <programme start="20100326161500 +0000" stop="20100326164500 +0000" pdc-start="20100326171500 +0100" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1269632909 -->
 	<title>Kunst &amp; Krempel</title>
 	<video>
 		<aspect>16:9</aspect>
@@ -81,6 +88,7 @@ In Gammesfeld zum Beispiel sitzt die kleinste Bank Deutschlands, bei der die Stü
 </programme>
 
 <programme start="20100326164500 +0000" pdc-start="20100326174500 +0100" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1269632909 -->
 	<title>ZDF-History</title>
 	<sub-title>ZDF-History Wahre Helden - Zivilcourage auf dem Prüfstand</sub-title>
 	<desc>(teletext 325)</desc>

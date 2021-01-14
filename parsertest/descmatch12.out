@@ -6,28 +6,33 @@
 </channel>
 
 <programme start="20100410040500 +0000" stop="20100410050000 +0000" channel="RTL II">
+	<!-- TTX 301.0000 ACQTS:1270918322 -->
 	<title>MythBusters</title>
 	<sub-title>MythBusters Die Wissensjäger</sub-title>
 </programme>
 
 <programme start="20100410050000 +0000" stop="20100410065000 +0000" channel="RTL II">
+	<!-- TTX 301.0000 ACQTS:1270918322 -->
 	<title>X-Factor: Das Unfassbare</title>
 </programme>
 
 <programme start="20100410065000 +0000" stop="20100410085000 +0000" channel="RTL II">
+	<!-- TTX 301.0000 ACQTS:1270918322 -->
 	<title>Lionheart</title>
 	<desc>(teletext 351)</desc>
 </programme>
 
 <programme start="20100410085000 +0000" stop="20100410103500 +0000" channel="RTL II">
+	<!-- TTX 301.0000 ACQTS:1270918322 -->
 	<title>Benji - Sein größtes</title>
 	<sub-title>Benji - Sein größtes Abenteuer</sub-title>
 	<desc>(teletext 351)</desc>
 </programme>
 
 <programme start="20100410103500 +0000" stop="20100410124000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270918322 -->
 	<title>Splash - Jungfrau am Haken</title>
-	<!-- TTX 352 -->
+	<!-- TTX 352.0001 -->
 	<desc>Splash: Jungfrau am Haken
 Kult-Komödie, USA 1984
 Die Meerjungfrau Madison rettete Allen Bauer einst als Kind das Leben. Inzwischen ist er erwachsen und hat das Erlebnis längst vergessen. Als er erneut ins Wasser fällt, taucht die geheimnisvolle Meeresbewohnerin wieder auf und bewahrt Allen erneut vor dem Ertrinken.
@@ -38,22 +43,26 @@ Kinomärchen, das mit Romantik und Komik vergnüglich unterhält. Durchbruch für To
 </programme>
 
 <programme start="20100410124000 +0000" stop="20100410142000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270918322 -->
 	<title>American Pie 4</title>
 	<sub-title>American Pie 4 Die nächste Generation</sub-title>
 	<desc>(teletext 353)</desc>
 </programme>
 
 <programme start="20100410142000 +0000" stop="20100410151000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270918322 -->
 	<title>Smallville</title>
 	<desc>(teletext 324)</desc>
 </programme>
 
 <programme start="20100410151000 +0000" stop="20100410170000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270918322 -->
 	<title>Stargate</title>
 	<desc>(teletext 322)</desc>
 </programme>
 
 <programme start="20100410170000 +0000" channel="RTL II">
+	<!-- TTX 302.0000 ACQTS:1270918322 -->
 	<title>Big Brother</title>
 	<desc>(teletext 630)</desc>
 </programme>

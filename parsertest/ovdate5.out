@@ -6,26 +6,32 @@
 </channel>
 
 <programme start="20060430080000 +0000" stop="20060430130000 +0000" channel="TEST">
+	<!-- TTX 303.0000 ACQTS:1146397673 -->
 	<title>Serie 1</title>
 </programme>
 
 <programme start="20060430130000 +0000" stop="20060430140000 +0000" channel="TEST">
+	<!-- TTX 303.0000 ACQTS:1146397673 -->
 	<title>Serie 2</title>
 </programme>
 
 <programme start="20060430140000 +0000" stop="20060430160000 +0000" channel="TEST">
+	<!-- TTX 303.0000 ACQTS:1146397673 -->
 	<title>Film 1</title>
 </programme>
 
 <programme start="20060430160000 +0000" stop="20060430170000 +0000" channel="TEST">
+	<!-- TTX 303.0000 ACQTS:1146397673 -->
 	<title>Serie 3</title>
 </programme>
 
 <programme start="20060430170000 +0000" stop="20060430181500 +0000" channel="TEST">
+	<!-- TTX 303.0000 ACQTS:1146397673 -->
 	<title>Serie 4</title>
 </programme>
 
 <programme start="20060430181500 +0000" channel="TEST">
+	<!-- TTX 303.0000 ACQTS:1146397673 -->
 	<title>Film 2</title>
 </programme>
 </tv>

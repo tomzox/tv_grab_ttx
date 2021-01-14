@@ -6,11 +6,13 @@
 </channel>
 
 <programme start="20210116042000 +0000" stop="20210116050500 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>Satire Battle</title>
 	<desc>(teletext 305)</desc>
 </programme>
 
 <programme start="20210116050500 +0000" stop="20210116052300 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>ÄTNA - Höllenschlund im</title>
 	<sub-title>ÄTNA - Höllenschlund im Mittelmeer</sub-title>
 	<desc>(teletext 306)</desc>
@@ -18,48 +20,57 @@
 </programme>
 
 <programme start="20210116052300 +0000" stop="20210116060000 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>Kulturzeit</title>
 	<desc>(teletext 307)</desc>
 </programme>
 
 <programme start="20210116060000 +0000" stop="20210116063000 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>nano</title>
 	<desc>(teletext 308)</desc>
 </programme>
 
 <programme start="20210116063000 +0000" stop="20210116080000 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>Alpenpanorama</title>
 	<desc>(teletext 310)</desc>
 </programme>
 
 <programme start="20210116080000 +0000" stop="20210116080600 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>Zib</title>
 	<desc>(teletext 312)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210116080600 +0000" stop="20210116083700 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>Kulturplatz</title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20210116083700 +0000" stop="20210116090200 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>Bilder aus Südtirol</title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20210116090200 +0000" stop="20210116094700 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>Thema</title>
 	<desc>(teletext 315)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210116094700 +0000" stop="20210116102600 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>In der Mitte ein Feuer</title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20210116102600 +0000" stop="20210116120000 +0000" channel="3sat">
+	<!-- TTX 301.0000 ACQTS:1610829606 -->
 	<title>Brüder III - Auf dem</title>
 	<sub-title>Brüder III - Auf dem Jakobsweg Fernsehfilm AUT/2006</sub-title>
 	<desc>(teletext 317)</desc>
@@ -67,29 +78,34 @@
 </programme>
 
 <programme start="20210116120000 +0000" stop="20210116121100 +0000" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1610829606 -->
 	<title>Zib</title>
 	<desc>(teletext 318)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210116121100 +0000" stop="20210116121700 +0000" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1610829606 -->
 	<title>Notizen aus dem Ausland</title>
 	<sub-title>Notizen aus dem Ausland Namibia: Geparden-Farm</sub-title>
 </programme>
 
 <programme start="20210116121700 +0000" stop="20210116130100 +0000" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1610829606 -->
 	<title>quer</title>
 	<desc>(teletext 319)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210116130100 +0000" stop="20210116133100 +0000" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1610829606 -->
 	<title>Ländermagazin</title>
 	<sub-title>Ländermagazin Heute aus Niedersachsen Niedersachsen von oben</sub-title>
 	<desc>(teletext 320)</desc>
 </programme>
 
 <programme start="20210116133100 +0000" stop="20210116135900 +0000" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1610829606 -->
 	<title>Kunst + Krempel</title>
 	<sub-title>Kunst + Krempel in der Kemptener Residenz</sub-title>
 	<desc>(teletext 321)</desc>
@@ -97,6 +113,7 @@
 </programme>
 
 <programme start="20210116135900 +0000" stop="20210116150000 +0000" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1610829606 -->
 	<title>Natur im Garten - Die Katze auf</title>
 	<sub-title>Natur im Garten - Die Katze auf dem heißen Dach</sub-title>
 	<desc>(teletext 322)</desc>
@@ -104,151 +121,185 @@
 </programme>
 
 <programme start="20210116150000 +0000" channel="3sat">
+	<!-- TTX 302.0000 ACQTS:1610829606 -->
 	<title>Erlebnisreisen: Italien</title>
 	<sub-title>Erlebnisreisen: Italien Der Gardasee zwischen Limone und Salo</sub-title>
 </programme>
 
 <programme start="20210118043500 +0000" stop="20210118052000 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Marokko - Land der Träume</title>
 </programme>
 
 <programme start="20210118052000 +0000" stop="20210118060000 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210118060000 +0000" stop="20210118063000 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210118063000 +0000" stop="20210118070000 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210118070000 +0000" stop="20210118070500 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210118070500 +0000" stop="20210118073000 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210118073000 +0000" stop="20210118073300 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210118073300 +0000" stop="20210118080000 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210118080000 +0000" stop="20210118080500 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210118080500 +0000" stop="20210118084500 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210118084500 +0000" stop="20210118091500 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210118091500 +0000" stop="20210118100000 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Italien, meine Liebe (1/5)</title>
 </programme>
 
 <programme start="20210118100000 +0000" stop="20210118104500 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Italien, meine Liebe (2/5)</title>
 </programme>
 
 <programme start="20210118104500 +0000" stop="20210118111000 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Zu Tisch ... in Luxemburg</title>
 </programme>
 
 <programme start="20210118111000 +0000" stop="20210118112500 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Erlebnisreisen: Usbekistan</title>
 </programme>
 
 <programme start="20210118112500 +0000" stop="20210118115500 +0000" channel="3sat">
+	<!-- TTX 391.0001 ACQTS:1610829567 -->
 	<title>Servicezeit</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210118115500 +0000" stop="20210118122500 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Tegernsee, da will ich hin!</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210118122500 +0000" stop="20210118130500 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Steffens entdeckt: Australien</title>
 	<sub-title>Steffens entdeckt: Australien (1/2)</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210118130500 +0000" stop="20210118135000 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Steffens entdeckt: Australien</title>
 	<sub-title>Steffens entdeckt: Australien (2/2)</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210118135000 +0000" stop="20210118143500 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Wilde Inseln: Sri Lanka</title>
 </programme>
 
 <programme start="20210118143500 +0000" stop="20210118152000 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Wilde Inseln: Karibik</title>
 </programme>
 
 <programme start="20210118152000 +0000" stop="20210118160000 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Wilde Inseln: Amazonas</title>
 </programme>
 
 <programme start="20210118160000 +0000" stop="20210118164500 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Wilde Inseln: Galapagos</title>
 </programme>
 
 <programme start="20210118164500 +0000" stop="20210118173000 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Wilde Inseln: Japan</title>
 </programme>
 
 <programme start="20210118173000 +0000" stop="20210118180000 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210118180000 +0000" stop="20210118182000 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210118182000 +0000" stop="20210118190000 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210118190000 +0000" stop="20210118191500 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210118191500 +0000" stop="20210118205000 +0000" channel="3sat">
+	<!-- TTX 391.0002 ACQTS:1610829595 -->
 	<title>Hoch hinaus - Die Kirgistan-Expedition</title>
 </programme>
 
 <programme start="20210118205000 +0000" stop="20210118210000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>Dem Himmel entgegen - Hochhäuser</title>
 	<sub-title>Dem Himmel entgegen - Hochhäuser der Welt</sub-title>
 </programme>
 
 <programme start="20210118210000 +0000" stop="20210118212500 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>Zib 2</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210118212500 +0000" stop="20210118213000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>Sebastian Pufpaff: Noch nicht</title>
 	<sub-title>Sebastian Pufpaff: Noch nicht Schicht!</sub-title>
 </programme>
 
 <programme start="20210118213000 +0000" stop="20210118230000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>Das Forum - Rettet Davos die</title>
 	<sub-title>Das Forum - Rettet Davos die Welt?</sub-title>
 	<audio>
@@ -258,6 +309,7 @@
 </programme>
 
 <programme start="20210118230000 +0000" stop="20210118233000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>37°: Auf der Spur der Täter</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -266,145 +318,179 @@
 </programme>
 
 <programme start="20210118233000 +0000" stop="20210119000000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>10 vor 10</title>
 </programme>
 
 <programme start="20210119000000 +0000" stop="20210119010000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>Anne Will</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210119010000 +0000" stop="20210119021000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>Rockpalast Crossroads (1/4)</title>
 </programme>
 
 <programme start="20210119021000 +0000" stop="20210119032000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>Rockpalast Crossroads (2/4)</title>
 </programme>
 
 <programme start="20210119032000 +0000" stop="20210119040000 +0000" channel="3sat">
+	<!-- TTX 391.0003 ACQTS:1610829609 -->
 	<title>Rockpalast Crossroads (3/4)</title>
 </programme>
 
 <programme start="20210119040000 +0000" stop="20210119052000 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Rockpalast Crossroads (4/4)</title>
 </programme>
 
 <programme start="20210119052000 +0000" stop="20210119060000 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210119060000 +0000" stop="20210119063000 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210119063000 +0000" stop="20210119070000 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210119070000 +0000" stop="20210119070500 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210119070500 +0000" stop="20210119073000 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210119073000 +0000" stop="20210119073300 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210119073300 +0000" stop="20210119080000 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210119080000 +0000" stop="20210119080500 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210119080500 +0000" stop="20210119084500 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210119084500 +0000" stop="20210119091500 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210119091500 +0000" stop="20210119100000 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Wilde Inseln: Amazonas</title>
 </programme>
 
 <programme start="20210119100000 +0000" stop="20210119104500 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Wilde Inseln: Karibik</title>
 </programme>
 
 <programme start="20210119104500 +0000" stop="20210119111500 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Hessen a la carte</title>
 </programme>
 
 <programme start="20210119111500 +0000" stop="20210119114500 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Servicezeit</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210119114500 +0000" stop="20210119121500 +0000" channel="3sat">
+	<!-- TTX 392.0001 ACQTS:1610829609 -->
 	<title>Die Bergdienstleister - Hinter</title>
 	<sub-title>Die Bergdienstleister - Hinter den Kulissen der Skigebiete</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210119121500 +0000" stop="20210119123500 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Der Klimaforscher</title>
 </programme>
 
 <programme start="20210119123500 +0000" stop="20210119132000 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Panamericana (1/7)</title>
 </programme>
 
 <programme start="20210119132000 +0000" stop="20210119140000 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Panamericana (2/7)</title>
 </programme>
 
 <programme start="20210119140000 +0000" stop="20210119144000 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Panamericana (3/7)</title>
 </programme>
 
 <programme start="20210119144000 +0000" stop="20210119152500 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Panamericana (4/7)</title>
 </programme>
 
 <programme start="20210119152500 +0000" stop="20210119160500 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Panamericana (5/7)</title>
 </programme>
 
 <programme start="20210119160500 +0000" stop="20210119164500 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Panamericana (6/7)</title>
 </programme>
 
 <programme start="20210119164500 +0000" stop="20210119173000 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Panamericana (7/7)</title>
 </programme>
 
 <programme start="20210119173000 +0000" stop="20210119180000 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210119180000 +0000" stop="20210119182000 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210119182000 +0000" stop="20210119190000 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210119190000 +0000" stop="20210119191500 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210119191500 +0000" stop="20210119204500 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>Wer Wind sät - Ein Taunuskrimi</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -413,177 +499,217 @@
 </programme>
 
 <programme start="20210119204500 +0000" stop="20210119210000 +0000" channel="3sat">
+	<!-- TTX 392.0002 ACQTS:1610829567 -->
 	<title>kinokino</title>
 </programme>
 
 <programme start="20210119210000 +0000" stop="20210119212500 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Zib 2</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210119212500 +0000" stop="20210119213000 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Sebastian Pufpaff: Noch nicht</title>
 	<sub-title>Sebastian Pufpaff: Noch nicht Schicht!</sub-title>
 </programme>
 
 <programme start="20210119213000 +0000" stop="20210119220000 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>makro: Arbeiten in der Zukunft</title>
 </programme>
 
 <programme start="20210119220000 +0000" stop="20210119225000 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Schmutzige Geschäfte - Der</title>
 	<sub-title>Schmutzige Geschäfte - Der Schweizer Finanzplatz</sub-title>
 </programme>
 
 <programme start="20210119225000 +0000" stop="20210119232500 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Ein Apotheker mit Nebenwirkungen</title>
 </programme>
 
 <programme start="20210119232500 +0000" stop="20210119235500 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>10 vor 10</title>
 </programme>
 
 <programme start="20210119235500 +0000" stop="20210120011000 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Hart aber fair</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120011000 +0000" stop="20210120015000 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Panamericana (2/7)</title>
 </programme>
 
 <programme start="20210120015000 +0000" stop="20210120023000 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Panamericana (3/7)</title>
 </programme>
 
 <programme start="20210120023000 +0000" stop="20210120031500 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Panamericana (4/7)</title>
 </programme>
 
 <programme start="20210120031500 +0000" stop="20210120035500 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Panamericana (5/7)</title>
 </programme>
 
 <programme start="20210120035500 +0000" stop="20210120044000 +0000" channel="3sat">
+	<!-- TTX 392.0003 ACQTS:1610829595 -->
 	<title>Panamericana (6/7)</title>
 </programme>
 
 <programme start="20210120044000 +0000" stop="20210120052000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Panamericana (7/7)</title>
 </programme>
 
 <programme start="20210120052000 +0000" stop="20210120060000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210120060000 +0000" stop="20210120063000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210120063000 +0000" stop="20210120070000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210120070000 +0000" stop="20210120071500 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210120071500 +0000" stop="20210120073000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210120073000 +0000" stop="20210120073300 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210120073300 +0000" stop="20210120080000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210120080000 +0000" stop="20210120082000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120082000 +0000" stop="20210120085500 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210120085500 +0000" stop="20210120093500 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210120093500 +0000" stop="20210120100000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Java - Im Schatten der Vulkane</title>
 </programme>
 
 <programme start="20210120100000 +0000" stop="20210120104500 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Wilde Inseln: Sri Lanka</title>
 </programme>
 
 <programme start="20210120104500 +0000" stop="20210120111500 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Mit Herz am Herd</title>
 </programme>
 
 <programme start="20210120111500 +0000" stop="20210120114500 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Servicezeit</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120114500 +0000" stop="20210120121500 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Bergauf-Bergab</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120121500 +0000" stop="20210120130000 +0000" channel="3sat">
+	<!-- TTX 393.0001 ACQTS:1610829595 -->
 	<title>Semmering - Über den Zauberberg</title>
 </programme>
 
 <programme start="20210120130000 +0000" stop="20210120143000 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Land der Berge - 9 Länder, 9</title>
 	<sub-title>Land der Berge - 9 Länder, 9 Gipfel</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120143000 +0000" stop="20210120151500 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Der Arlberg - Wiege des alpinen</title>
 	<sub-title>Der Arlberg - Wiege des alpinen Skilaufs</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120151500 +0000" stop="20210120160000 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Rund um den Hahnenkamm mit</title>
 	<sub-title>Rund um den Hahnenkamm mit Hermann Maier UT 5.1</sub-title>
 </programme>
 
 <programme start="20210120160000 +0000" stop="20210120164500 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Mythos Ausseerland UT 5.1</title>
 </programme>
 
 <programme start="20210120164500 +0000" stop="20210120173000 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Dolomiten - Sagenhaftes Juwel</title>
 	<sub-title>Dolomiten - Sagenhaftes Juwel der Alpen UT AD 5.1</sub-title>
 </programme>
 
 <programme start="20210120173000 +0000" stop="20210120180000 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210120180000 +0000" stop="20210120182000 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120182000 +0000" stop="20210120190000 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210120190000 +0000" stop="20210120191500 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120191500 +0000" stop="20210120204000 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Faszination Arktis - Tauchgang</title>
 	<sub-title>Faszination Arktis - Tauchgang unter dünnem Eis</sub-title>
 	<audio>
@@ -593,20 +719,24 @@
 </programme>
 
 <programme start="20210120204000 +0000" stop="20210120210000 +0000" channel="3sat">
+	<!-- TTX 393.0002 ACQTS:1610829609 -->
 	<title>Erlebnisreisen: Kanada</title>
 </programme>
 
 <programme start="20210120210000 +0000" stop="20210120212500 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Zib 2</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210120212500 +0000" stop="20210120213000 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Sebastian Pufpaff: Noch nicht</title>
 	<sub-title>Sebastian Pufpaff: Noch nicht Schicht!</sub-title>
 </programme>
 
 <programme start="20210120213000 +0000" stop="20210120221500 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Die verlorene Tochter (2/6)</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -615,6 +745,7 @@
 </programme>
 
 <programme start="20210120221500 +0000" stop="20210120235500 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Die Reste meines Lebens</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -623,360 +754,437 @@
 </programme>
 
 <programme start="20210120235500 +0000" stop="20210121002500 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>10 vor 10</title>
 </programme>
 
 <programme start="20210121002500 +0000" stop="20210121012500 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Stöckl.</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121012500 +0000" stop="20210121015000 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Slowenien Magazin</title>
 </programme>
 
 <programme start="20210121015000 +0000" stop="20210121024000 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Mythos Ausseerland UT 5.1</title>
 </programme>
 
 <programme start="20210121024000 +0000" stop="20210121032000 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Dolomiten - Sagenhaftes Juwel</title>
 	<sub-title>Dolomiten - Sagenhaftes Juwel der Alpen UT AD 5.1</sub-title>
 </programme>
 
 <programme start="20210121032000 +0000" stop="20210121045000 +0000" channel="3sat">
+	<!-- TTX 393.0003 ACQTS:1610829567 -->
 	<title>Land der Berge - 9 Länder, 9</title>
 	<sub-title>Land der Berge - 9 Länder, 9 Gipfel</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121045000 +0000" stop="20210121052000 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Ein Jahr am Wilden Berg</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121052000 +0000" stop="20210121060000 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210121060000 +0000" stop="20210121063000 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210121063000 +0000" stop="20210121070000 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210121070000 +0000" stop="20210121070500 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210121070500 +0000" stop="20210121073000 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210121073000 +0000" stop="20210121073300 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210121073300 +0000" stop="20210121080000 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210121080000 +0000" stop="20210121080500 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121080500 +0000" stop="20210121084500 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210121084500 +0000" stop="20210121091500 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210121091500 +0000" stop="20210121100000 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Steffens entdeckt: Australien</title>
 	<sub-title>Steffens entdeckt: Australien (1/2)</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121100000 +0000" stop="20210121104500 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Steffens entdeckt: Australien</title>
 	<sub-title>Steffens entdeckt: Australien (2/2)</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121104500 +0000" stop="20210121111500 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Eingeschenkt: Neusiedlersee</title>
 	<sub-title>Eingeschenkt: Neusiedlersee Hügelland - Mineralität</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121111500 +0000" stop="20210121114500 +0000" channel="3sat">
+	<!-- TTX 394.0001 ACQTS:1610829609 -->
 	<title>Servicezeit</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121114500 +0000" stop="20210121121500 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Unkraut</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121121500 +0000" stop="20210121130000 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Die Tierärzte vom Kilimanjaro</title>
 	<sub-title>Die Tierärzte vom Kilimanjaro (1/3)</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121130000 +0000" stop="20210121134500 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Die Tierärzte vom Kilimanjaro</title>
 	<sub-title>Die Tierärzte vom Kilimanjaro (2/3)</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121134500 +0000" stop="20210121143000 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Die Tierärzte vom Kilimanjaro</title>
 	<sub-title>Die Tierärzte vom Kilimanjaro (3/3)</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121143000 +0000" stop="20210121151500 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Ohne Pfeil und Bogen</title>
 </programme>
 
 <programme start="20210121151500 +0000" stop="20210121160000 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Die Löwen der Kalahari</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121160000 +0000" stop="20210121164500 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Mike und die Wege der Elefanten</title>
 </programme>
 
 <programme start="20210121164500 +0000" stop="20210121173000 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>mare TV: Wüste Küste Namibia</title>
 </programme>
 
 <programme start="20210121173000 +0000" stop="20210121180000 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210121180000 +0000" stop="20210121182000 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121182000 +0000" stop="20210121190000 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210121190000 +0000" stop="20210121191500 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121191500 +0000" stop="20210121210000 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>wissen aktuell: Rettet die</title>
 	<sub-title>wissen aktuell: Rettet die Wälder!</sub-title>
 </programme>
 
 <programme start="20210121210000 +0000" stop="20210121212500 +0000" channel="3sat">
+	<!-- TTX 394.0002 ACQTS:1610829567 -->
 	<title>Zib 2</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121212500 +0000" stop="20210121213000 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Sebastian Pufpaff: Noch nicht</title>
 	<sub-title>Sebastian Pufpaff: Noch nicht Schicht!</sub-title>
 </programme>
 
 <programme start="20210121213000 +0000" stop="20210121220000 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>auslandsjournal - die doku: Comeback für Amerika?</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121220000 +0000" stop="20210121224500 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Geheimnis Gletscher</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121224500 +0000" stop="20210121231500 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Zapp</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210121231500 +0000" stop="20210121234500 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>10 vor 10</title>
 </programme>
 
 <programme start="20210121234500 +0000" stop="20210122010000 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>maischberger. die woche</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122010000 +0000" stop="20210122013500 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Ein Apotheker mit Nebenwirkungen</title>
 </programme>
 
 <programme start="20210122013500 +0000" stop="20210122020500 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Ländermagazin</title>
 </programme>
 
 <programme start="20210122020500 +0000" stop="20210122021500 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>kinokino</title>
 </programme>
 
 <programme start="20210122021500 +0000" stop="20210122024500 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Generation Smartphone und der</title>
 	<sub-title>Generation Smartphone und der Suchtberater</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122024500 +0000" stop="20210122033000 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Italien, meine Liebe: Sardinien</title>
 </programme>
 
 <programme start="20210122033000 +0000" stop="20210122041500 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Italien, meine Liebe: Cilento</title>
 	<sub-title>Italien, meine Liebe: Cilento und Basilikata</sub-title>
 </programme>
 
 <programme start="20210122041500 +0000" stop="20210122050000 +0000" channel="3sat">
+	<!-- TTX 394.0003 ACQTS:1610829595 -->
 	<title>Italien, meine Liebe: Abruzzen</title>
 </programme>
 
 <programme start="20210122050000 +0000" stop="20210122052000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Usbekistan - Zwischen Tradition</title>
 	<sub-title>Usbekistan - Zwischen Tradition und Moderne</sub-title>
 </programme>
 
 <programme start="20210122052000 +0000" stop="20210122060000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210122060000 +0000" stop="20210122063000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210122063000 +0000" stop="20210122070000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210122070000 +0000" stop="20210122070500 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210122070500 +0000" stop="20210122073000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210122073000 +0000" stop="20210122073300 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 </programme>
 
 <programme start="20210122073300 +0000" stop="20210122080000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210122080000 +0000" stop="20210122080500 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122080500 +0000" stop="20210122084500 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210122084500 +0000" stop="20210122091500 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210122091500 +0000" stop="20210122100500 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Rundschau</title>
 </programme>
 
 <programme start="20210122100500 +0000" stop="20210122103000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Eco</title>
 </programme>
 
 <programme start="20210122103000 +0000" stop="20210122110000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Sehen statt Hören</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122110000 +0000" stop="20210122112500 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Heimwärts</title>
 </programme>
 
 <programme start="20210122112500 +0000" stop="20210122115000 +0000" channel="3sat">
+	<!-- TTX 395.0001 ACQTS:1610829609 -->
 	<title>Auroville oder ein Leben für die</title>
 	<sub-title>Auroville oder ein Leben für die Utopie</sub-title>
 </programme>
 
 <programme start="20210122115000 +0000" stop="20210122122000 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>sonntags</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122122000 +0000" stop="20210122130500 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Spione im Tierreich - Große</title>
 	<sub-title>Spione im Tierreich - Große Gefühle</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122130500 +0000" stop="20210122135000 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Spione im Tierreich - Schlaue</title>
 	<sub-title>Spione im Tierreich - Schlaue Köpfe</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122135000 +0000" stop="20210122143500 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Spione im Tierreich - Smarte</title>
 	<sub-title>Spione im Tierreich - Smarte Strategen</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122143500 +0000" stop="20210122151500 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Wie Elefanten denken</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122151500 +0000" stop="20210122160000 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Kielings wildes Afrika</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122160000 +0000" stop="20210122164500 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Steffens entdeckt: Südafrika</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122164500 +0000" stop="20210122173000 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Steffens entdeckt: Namibia</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122173000 +0000" stop="20210122180000 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210122180000 +0000" stop="20210122182000 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122182000 +0000" stop="20210122190000 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210122190000 +0000" stop="20210122191500 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122191500 +0000" stop="20210122204500 +0000" channel="3sat">
+	<!-- TTX 395.0002 ACQTS:1610829567 -->
 	<title>Ku'damm 56 (1/3)</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -985,90 +1193,110 @@
 </programme>
 
 <programme start="20210122204500 +0000" stop="20210122210000 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>Cornwall - Das echte Land der</title>
 	<sub-title>Cornwall - Das echte Land der Rosamunde Pilcher</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122210000 +0000" stop="20210122212500 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>Zib 2</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210122212500 +0000" stop="20210122232000 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>Im Auftrag des Drachen</title>
 </programme>
 
 <programme start="20210122232000 +0000" stop="20210122235000 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>10 vor 10</title>
 </programme>
 
 <programme start="20210122235000 +0000" stop="20210123002000 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>extra 3</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123002000 +0000" stop="20210123011500 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>Willkommen Österreich</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123011500 +0000" stop="20210123020000 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>Andreas Rebers: Ich helfe gern</title>
 </programme>
 
 <programme start="20210123020000 +0000" stop="20210123033000 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>Michael Mittermeier: Lucky Punch</title>
 	<sub-title>Michael Mittermeier: Lucky Punch - Die Todes-Wuchtl schlägt zurück</sub-title>
 </programme>
 
 <programme start="20210123033000 +0000" stop="20210123040000 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>Tahnee: Vulvarine</title>
 </programme>
 
 <programme start="20210123040000 +0000" stop="20210123043000 +0000" channel="3sat">
+	<!-- TTX 395.0003 ACQTS:1610829595 -->
 	<title>Simon &amp; Jan: Alles wird gut</title>
 </programme>
 
 <programme start="20210123043000 +0000" stop="20210123052000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Satire Battle (3/4)</title>
 </programme>
 
 <programme start="20210123052000 +0000" stop="20210123060000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Kulturzeit</title>
 </programme>
 
 <programme start="20210123060000 +0000" stop="20210123063000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20210123063000 +0000" stop="20210123080000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210123080000 +0000" stop="20210123080500 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123080500 +0000" stop="20210123083500 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Kulturplatz</title>
 </programme>
 
 <programme start="20210123083500 +0000" stop="20210123090000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Bilder aus Südtirol</title>
 </programme>
 
 <programme start="20210123090000 +0000" stop="20210123094500 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Thema</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123094500 +0000" stop="20210123102500 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Herrensitze - Rothschilds Wien</title>
 </programme>
 
 <programme start="20210123102500 +0000" stop="20210123120000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Wiener G'schichten</title>
 	<video>
 		<colour>no</colour>
@@ -1077,180 +1305,217 @@
 </programme>
 
 <programme start="20210123120000 +0000" stop="20210123121000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123121000 +0000" stop="20210123121500 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Notizen aus dem Ausland</title>
 </programme>
 
 <programme start="20210123121500 +0000" stop="20210123130000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>quer</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123130000 +0000" stop="20210123133000 +0000" channel="3sat">
+	<!-- TTX 396.0001 ACQTS:1610829609 -->
 	<title>Ländermagazin</title>
 </programme>
 
 <programme start="20210123133000 +0000" stop="20210123140000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Kunst + Krempel</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123140000 +0000" stop="20210123142000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Traumgärten auf La Reunion (1/2)</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123142000 +0000" stop="20210123143000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Hallstatt süß-sauer</title>
 </programme>
 
 <programme start="20210123143000 +0000" stop="20210123150000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Der unheimliche Untersberg</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123150000 +0000" stop="20210123163000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Bauernprinzessin</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123163000 +0000" stop="20210123180000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Bauernprinzessin - Kopf oder</title>
 	<sub-title>Bauernprinzessin - Kopf oder Herz</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123180000 +0000" stop="20210123182000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123182000 +0000" stop="20210123190000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Der Kniefall von Warschau - Die</title>
 	<sub-title>Der Kniefall von Warschau - Die Macht der Erinnerung</sub-title>
 </programme>
 
 <programme start="20210123190000 +0000" stop="20210123191500 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210123191500 +0000" stop="20210123205500 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Janis - Little Girl Blue 5.1</title>
 </programme>
 
 <programme start="20210123205500 +0000" stop="20210123222000 +0000" channel="3sat">
+	<!-- TTX 396.0002 ACQTS:1610829567 -->
 	<title>Blue Note Records - Beyond the</title>
 	<sub-title>Blue Note Records - Beyond the Notes</sub-title>
 </programme>
 
 <programme start="20210123222000 +0000" stop="20210124001000 +0000" channel="3sat">
+	<!-- TTX 396.0003 ACQTS:1610829595 -->
 	<title>A War 5.1</title>
 </programme>
 
 <programme start="20210124001000 +0000" stop="20210124011000 +0000" channel="3sat">
+	<!-- TTX 396.0003 ACQTS:1610829595 -->
 	<title>lebensArt</title>
 </programme>
 
 <programme start="20210124011000 +0000" stop="20210124023500 +0000" channel="3sat">
+	<!-- TTX 396.0003 ACQTS:1610829595 -->
 	<title>das aktuelle sportstudio</title>
 </programme>
 
 <programme start="20210124023500 +0000" stop="20210124032000 +0000" channel="3sat">
+	<!-- TTX 396.0003 ACQTS:1610829595 -->
 	<title>Der Arlberg - Wiege des alpinen</title>
 	<sub-title>Der Arlberg - Wiege des alpinen Skilaufs</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124032000 +0000" stop="20210124040500 +0000" channel="3sat">
+	<!-- TTX 396.0003 ACQTS:1610829595 -->
 	<title>Rund um den Hahnenkamm mit</title>
 	<sub-title>Rund um den Hahnenkamm mit Hermann Maier UT 5.1</sub-title>
 </programme>
 
 <programme start="20210124040500 +0000" stop="20210124045000 +0000" channel="3sat">
+	<!-- TTX 396.0003 ACQTS:1610829595 -->
 	<title>Semmering - Über den Zauberberg</title>
 </programme>
 
 <programme start="20210124045000 +0000" stop="20210124051500 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Faszination Fluss - Der</title>
 	<sub-title>Faszination Fluss - Der Tagliamento</sub-title>
 </programme>
 
 <programme start="20210124051500 +0000" stop="20210124054500 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>makro: Arbeiten in der Zukunft</title>
 </programme>
 
 <programme start="20210124054500 +0000" stop="20210124063000 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Tele-Akademie</title>
 </programme>
 
 <programme start="20210124063000 +0000" stop="20210124080000 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Alpenpanorama</title>
 </programme>
 
 <programme start="20210124080000 +0000" stop="20210124080500 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124080500 +0000" stop="20210124090500 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Bundesrat Alain Berset - Politik</title>
 	<sub-title>Bundesrat Alain Berset - Politik im Ausnahmezustand</sub-title>
 </programme>
 
 <programme start="20210124090500 +0000" stop="20210124093500 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>lesenswert</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124093500 +0000" stop="20210124102000 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Geheimnisse der Wiener</title>
 	<sub-title>Geheimnisse der Wiener Innenstadt (1/2)</sub-title>
 </programme>
 
 <programme start="20210124102000 +0000" stop="20210124110500 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Geheimnisse der Wiener</title>
 	<sub-title>Geheimnisse der Wiener Innenstadt (2/2)</sub-title>
 </programme>
 
 <programme start="20210124110500 +0000" stop="20210124120000 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Licht und Raum - Der Architekt</title>
 	<sub-title>Licht und Raum - Der Architekt Boris Podrecca</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124120000 +0000" stop="20210124120500 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>Zib</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124120500 +0000" stop="20210124123000 +0000" channel="3sat">
+	<!-- TTX 397.0001 ACQTS:1610829595 -->
 	<title>100 (Lebens)Jahre Burgenland</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124123000 +0000" stop="20210124130000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Mexiko - Dauerläufer in Sandalen</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124130000 +0000" stop="20210124134500 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Die gefährlichsten Schulwege der</title>
 	<sub-title>Die gefährlichsten Schulwege der Welt: Peru</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124134500 +0000" stop="20210124143000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Die gefährlichsten Schulwege der</title>
 	<sub-title>Die gefährlichsten Schulwege der Welt: Nepal</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124143000 +0000" stop="20210124160000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Krauses Kur</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -1259,6 +1524,7 @@
 </programme>
 
 <programme start="20210124160000 +0000" stop="20210124173000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Krauses Braut</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -1267,39 +1533,47 @@
 </programme>
 
 <programme start="20210124173000 +0000" stop="20210124180000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Museums-Check mit Markus Brock</title>
 </programme>
 
 <programme start="20210124180000 +0000" stop="20210124181000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>heute</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124181000 +0000" stop="20210124184000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Die letzten Venezianer? Leben</title>
 	<sub-title>Die letzten Venezianer? Leben und Widerstand in Venedig</sub-title>
 </programme>
 
 <programme start="20210124184000 +0000" stop="20210124190000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Schätze der Welt - Erbe der</title>
 	<sub-title>Schätze der Welt - Erbe der Menschheit</sub-title>
 </programme>
 
 <programme start="20210124190000 +0000" stop="20210124191500 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210124191500 +0000" stop="20210124200000 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Urban Priol: TILT 2020</title>
 </programme>
 
 <programme start="20210124200000 +0000" stop="20210124204500 +0000" channel="3sat">
+	<!-- TTX 397.0002 ACQTS:1610829609 -->
 	<title>Pufpaffs Happy Hour - Best of</title>
 	<sub-title>Pufpaffs Happy Hour - Best of 2020</sub-title>
 </programme>
 
 <programme start="20210124204500 +0000" stop="20210124221500 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Zweibettzimmer</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -1308,48 +1582,58 @@
 </programme>
 
 <programme start="20210124221500 +0000" stop="20210124235000 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Oldboy UT 5.1</title>
 </programme>
 
 <programme start="20210124235000 +0000" stop="20210125003500 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Die gefährlichsten Schulwege der</title>
 	<sub-title>Die gefährlichsten Schulwege der Welt: Nepal</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210125003500 +0000" stop="20210125011500 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Die gefährlichsten Schulwege der</title>
 	<sub-title>Die gefährlichsten Schulwege der Welt: Peru</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210125011500 +0000" stop="20210125014500 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Mexiko - Dauerläufer in Sandalen</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210125014500 +0000" stop="20210125023000 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Chile - Die Vulkanreiter</title>
 </programme>
 
 <programme start="20210125023000 +0000" stop="20210125030000 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Meine Traumreise nach Patagonien</title>
 </programme>
 
 <programme start="20210125030000 +0000" stop="20210125033000 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Dschungel am Fuß der Anden</title>
 </programme>
 
 <programme start="20210125033000 +0000" stop="20210125041500 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Mit dem Fahrrad über die Anden</title>
 </programme>
 
 <programme start="20210125041500 +0000" stop="20210125044500 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Auf Schienen durch die Anden</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20210125044500 +0000" channel="3sat">
+	<!-- TTX 397.0003 ACQTS:1610829567 -->
 	<title>Chile - Von der Wüste ins ewige</title>
 	<sub-title>Chile - Von der Wüste ins ewige Eis</sub-title>
 </programme>

@@ -6,74 +6,92 @@
 </channel>
 
 <programme start="20060509040000 +0000" stop="20060509040500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Tolle Sachen</title>
 </programme>
 
 <programme start="20060509040500 +0000" stop="20060509041500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>logo!</title>
 </programme>
 
 <programme start="20060509041500 +0000" stop="20060509044000 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Scooby-Doo, wo bist du? (25)</title>
 </programme>
 
 <programme start="20060509044000 +0000" stop="20060509050500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Landmaus und Stadtmaus (11)</title>
 </programme>
 
 <programme start="20060509050500 +0000" stop="20060509051000 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Pingu (76)</title>
 </programme>
 
 <programme start="20060509051000 +0000" stop="20060509052000 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Trotro (34 &amp; 35 &amp; 36)</title>
 </programme>
 
 <programme start="20060509052000 +0000" stop="20060509053000 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Angelina Ballerina (5)</title>
 </programme>
 
 <programme start="20060509053000 +0000" stop="20060509055500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Clifford, der kleine rote Hund</title>
 </programme>
 
 <programme start="20060509055500 +0000" stop="20060509060000 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Paradiso (3)</title>
 </programme>
 
 <programme start="20060509060000 +0000" stop="20060509063000 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Sesamstraﬂe</title>
 </programme>
 
 <programme start="20060509063000 +0000" stop="20060509064000 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Raumfahrer Jim (19)</title>
 </programme>
 
 <programme start="20060509064000 +0000" stop="20060509064500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Musik boxx</title>
 </programme>
 
 <programme start="20060509064500 +0000" stop="20060509065500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Kleiner Roter Traktor (8)</title>
 </programme>
 
 <programme start="20060509065500 +0000" stop="20060509070000 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Der Kleine B‰r (78)</title>
 </programme>
 
 <programme start="20060509070000 +0000" stop="20060509072500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Au Schwarte! (23)</title>
 </programme>
 
 <programme start="20060509072500 +0000" stop="20060509073500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Tanzalarm!</title>
 </programme>
 
 <programme start="20060509073500 +0000" stop="20060509074500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Franklin (46)</title>
 </programme>
 
 <programme start="20060509074500 +0000" channel="KI.KA">
+	<!-- TTX 319.0000 ACQTS:1146914553 -->
 	<title>Dragon (7)</title>
 </programme>
 </tv>

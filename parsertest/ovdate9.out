@@ -6,167 +6,201 @@
 </channel>
 
 <programme start="20100322120000 +0000" stop="20100322122500 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1269268658 -->
 	<title>Dinosaur King</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100322122500 +0000" stop="20100322125000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1269268658 -->
 	<title>Pokemon</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100322125000 +0000" stop="20100322131500 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1269268658 -->
 	<title>Pokemon</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100322131500 +0000" stop="20100322134500 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1269268658 -->
 	<title>Pokemon</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100322134500 +0000" stop="20100322141000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1269268658 -->
 	<title>Digimon Data Squad</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100322141000 +0000" stop="20100322144000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1269268658 -->
 	<title>One Piece</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100322144000 +0000" stop="20100322150000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1269268658 -->
 	<title>One Piece</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100322150000 +0000" stop="20100322160000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1269268658 -->
 	<title>Immer wieder Jim</title>
 	<desc>(teletext 335)</desc>
 </programme>
 
 <programme start="20100322160000 +0000" stop="20100322170000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1269268658 -->
 	<title>Still Standing</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20100322170000 +0000" stop="20100322180000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1269268658 -->
 	<title>Der Trödeltrupp</title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20100322180000 +0000" stop="20100322190000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1269268658 -->
 	<title>Big Brother Spezial</title>
 	<desc>(teletext 630)</desc>
 </programme>
 
 <programme start="20100322190000 +0000" stop="20100322191500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1269268658 -->
 	<title>RTL II News</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20100322191500 +0000" stop="20100322201500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1269268658 -->
 	<title>Die Mädchen-Gang</title>
 	<desc>(teletext 318)</desc>
 </programme>
 
 <programme start="20100322201500 +0000" stop="20100322221500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1269268658 -->
 	<title>Big Brother</title>
 	<sub-title>Big Brother Die Entscheidung</sub-title>
 	<desc>(teletext 630)</desc>
 </programme>
 
 <programme start="20100322221500 +0000" stop="20100322232000 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1269268658 -->
 	<title>Fun Club: Comedystars live</title>
 	<desc>(teletext 390)</desc>
 </programme>
 
 <programme start="20100322232000 +0000" stop="20100322232500 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1269268658 -->
 	<title>RTL II-Late News</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20100322232500 +0000" stop="20100323001500 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1269268658 -->
 	<title>Grip - Das Motormagazin</title>
 	<desc>(teletext 362)</desc>
 </programme>
 
 <programme start="20100323001500 +0000" stop="20100323010500 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1269268658 -->
 	<title>Ärger im Revier</title>
 </programme>
 
 <programme start="20100323010500 +0000" stop="20100323015000 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1269268658 -->
 	<title>Dog - Der Kopfgeldjäger</title>
 	<desc>(teletext 317)</desc>
 </programme>
 
 <programme start="20100323015000 +0000" stop="20100323031500 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1269268658 -->
 	<title>Jungfernfahrt in den Tod</title>
 	<desc>(teletext 348)</desc>
 </programme>
 
 <programme start="20100323031500 +0000" stop="20100323042000 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1269268658 -->
 	<title>MythBusters</title>
 </programme>
 
 <programme start="20100323042000 +0000" stop="20100323050000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1269268658 -->
 	<title>Immer wieder Jim</title>
 </programme>
 
 <programme start="20100323050000 +0000" stop="20100323060000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1269268658 -->
 	<title>Still Standing</title>
 </programme>
 
 <programme start="20100323060000 +0000" stop="20100323080000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1269268658 -->
 	<title>Infomercial</title>
 </programme>
 
 <programme start="20100323080000 +0000" stop="20100323100000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1269268658 -->
 	<title>Frauentausch</title>
 	<desc>(teletext 311)</desc>
 </programme>
 
 <programme start="20100323100000 +0000" stop="20100323110000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1269268658 -->
 	<title>Big Brother Spezial</title>
 	<desc>(teletext 660)</desc>
 </programme>
 
 <programme start="20100323110000 +0000" stop="20100323120000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1269268658 -->
 	<title>Der Trödeltrupp</title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20100323120000 +0000" stop="20100323122500 +0000" channel="rtl2.de">
+	<!-- TTX 306.0000 ACQTS:1269268658 -->
 	<title>Dinosaur King</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100323122500 +0000" stop="20100323125000 +0000" channel="rtl2.de">
+	<!-- TTX 306.0000 ACQTS:1269268658 -->
 	<title>Pokemon</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100323125000 +0000" stop="20100323131500 +0000" channel="rtl2.de">
+	<!-- TTX 306.0000 ACQTS:1269268658 -->
 	<title>Pokemon</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100323131500 +0000" stop="20100323134500 +0000" channel="rtl2.de">
+	<!-- TTX 306.0000 ACQTS:1269268658 -->
 	<title>Pokemon</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100323134500 +0000" stop="20100323141000 +0000" channel="rtl2.de">
+	<!-- TTX 306.0000 ACQTS:1269268658 -->
 	<title>Digimon Data Squad</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100323141000 +0000" stop="20100323144000 +0000" channel="rtl2.de">
+	<!-- TTX 306.0000 ACQTS:1269268658 -->
 	<title>One Piece</title>
 	<desc>(teletext 379)</desc>
 </programme>
 
 <programme start="20100323144000 +0000" channel="rtl2.de">
+	<!-- TTX 306.0000 ACQTS:1269268658 -->
 	<title>One Piece</title>
 	<desc>(teletext 379)</desc>
 </programme>

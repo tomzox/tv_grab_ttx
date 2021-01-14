@@ -6,82 +6,98 @@
 </channel>
 
 <programme start="20081003030000 +0000" stop="20081003044000 +0000" channel="sat1.de">
+	<!-- TTX 301.0000 ACQTS:1223032709 -->
 	<title>Man liebt sich immer</title>
 	<sub-title>Man liebt sich immer zweimal</sub-title>
 </programme>
 
 <programme start="20081003044000 +0000" stop="20081003063000 +0000" channel="sat1.de">
+	<!-- TTX 301.0000 ACQTS:1223032709 -->
 	<title>Ein Himmelhund von einem</title>
 	<sub-title>Ein Himmelhund von einem Schnüffler</sub-title>
 </programme>
 
 <programme start="20081003063000 +0000" stop="20081003070000 +0000" channel="sat1.de">
+	<!-- TTX 301.0000 ACQTS:1223032709 -->
 	<title>Das Making of: WALL E - Der Letzte räumt die Erde</title>
 	<sub-title>Das Making of: WALL E - Der Letzte räumt die Erde auf</sub-title>
 </programme>
 
 <programme start="20081003070000 +0000" stop="20081003084000 +0000" channel="sat1.de">
+	<!-- TTX 301.0000 ACQTS:1223032709 -->
 	<title>Familie auf Umwegen</title>
 </programme>
 
 <programme start="20081003084000 +0000" stop="20081003110000 +0000" channel="sat1.de">
+	<!-- TTX 301.0000 ACQTS:1223032709 -->
 	<title>Lost In Space</title>
 </programme>
 
 <programme start="20081003110000 +0000" stop="20081003120000 +0000" channel="sat1.de">
+	<!-- TTX 302.0000 ACQTS:1223032709 -->
 	<title>Britt: Beziehungsflop - Wenn aus Liebe Hass wird!</title>
 	<desc>(teletext 365)</desc>
 </programme>
 
 <programme start="20081003120000 +0000" stop="20081003130000 +0000" channel="sat1.de">
+	<!-- TTX 302.0000 ACQTS:1223032709 -->
 	<title>Zwei bei Kallwass</title>
 	<desc>(teletext 367)</desc>
 </programme>
 
 <programme start="20081003130000 +0000" stop="20081003140000 +0000" channel="sat1.de">
+	<!-- TTX 302.0000 ACQTS:1223032709 -->
 	<title>Richterin Salesch</title>
 	<desc>(teletext 368)</desc>
 </programme>
 
 <programme start="20081003140000 +0000" stop="20081003150000 +0000" channel="sat1.de">
+	<!-- TTX 302.0000 ACQTS:1223032709 -->
 	<title>Richter Hold</title>
 	<desc>(teletext 369)</desc>
 </programme>
 
 <programme start="20081003150000 +0000" stop="20081003153000 +0000" channel="sat1.de">
+	<!-- TTX 302.0000 ACQTS:1223032709 -->
 	<title>Niedrig und Kuhnt - Kommissare ermitteln: Verpufft</title>
 	<desc>(teletext 371)</desc>
 </programme>
 
 <programme start="20081003153000 +0000" stop="20081003160000 +0000" channel="sat1.de">
+	<!-- TTX 302.0000 ACQTS:1223032709 -->
 	<title>Niedrig und Kuhnt - Kommissare ermitteln: Bitte</title>
 	<sub-title>Niedrig und Kuhnt - Kommissare ermitteln: Bitte nicht stören!</sub-title>
 	<desc>(teletext 371)</desc>
 </programme>
 
 <programme start="20081003160000 +0000" stop="20081003163000 +0000" channel="sat1.de">
+	<!-- TTX 302.0000 ACQTS:1223032709 -->
 	<title>Lenßen &amp; Partner: Terror</title>
 	<sub-title>Lenßen &amp; Partner: Terror im Mietshaus</sub-title>
 	<desc>(teletext 372)</desc>
 </programme>
 
 <programme start="20081003163000 +0000" stop="20081003173000 +0000" channel="sat1.de">
+	<!-- TTX 302.0000 ACQTS:1223032709 -->
 	<title>Mensch Markus SPEZIAL: Episode</title>
 </programme>
 
 <programme start="20081003173000 +0000" stop="20081003180000 +0000" channel="sat1.de">
+	<!-- TTX 303.0000 ACQTS:1223032709 -->
 	<title>Das Sat.1-Magazin: Episode</title>
 	<desc>(teletext 324)</desc>
 </programme>
 
 <programme start="20081003180000 +0000" stop="20081003181500 +0000" channel="sat1.de">
+	<!-- TTX 303.0000 ACQTS:1223032709 -->
 	<title>Sat.1 Nachrichten: Episode</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20081003181500 +0000" stop="20081003201500 +0000" channel="sat1.de">
+	<!-- TTX 303.0000 ACQTS:1223032709 -->
 	<title>Findet Nemo</title>
-	<!-- TTX 311 -->
+	<!-- TTX 311.0001 -->
 	<desc>Findet Nemo
 Animation USA 2003
 Clownfisch Marlin macht sich große Sorgen um seinen Sprössling, denn der kleine Nemo ist in ein Fischernetz geraten. Marlin und die vergessliche Dory machen sich auf die Suche nach dem verlorenen Sohn. Eine abenteuerliche Reise quer durch den Ozean beginnt für die beiden kleinen Fische. Doch letztendlich ist die schwierige Suche von Erfolg gekrönt ...
@@ -92,8 +108,9 @@ Wdh. 04.10. 15:00 - 16:59</desc>
 </programme>
 
 <programme start="20081003201500 +0000" stop="20081003232000 +0000" channel="sat1.de">
+	<!-- TTX 303.0000 ACQTS:1223032709 -->
 	<title>Der Soldat James Ryan</title>
-	<!-- TTX 312 -->
+	<!-- TTX 312.0001 -->
 	<desc>Der Soldat James Ryan
 Antikrieg USA 1998
 Zweiter Weltkrieg, 1944: Die Alliierten bereiten ihre Landung an der Küste der Normandie vor. Dabei erhält der englische Captain John Miller einen höchst gefährlichen Auftrag: Er soll sich mit seiner Einheit hinter die feindlichen Linien durchschlagen, um dort den Soldaten James Ryan - letzter Überlebender von vier Brüdern - herauszuholen...
@@ -104,8 +121,9 @@ Wdh. 04.10. 01:20 - 04:10</desc>
 </programme>
 
 <programme start="20081003232000 +0000" stop="20081004021000 +0000" channel="sat1.de">
+	<!-- TTX 304.0000 ACQTS:1223032709 -->
 	<title>Der Soldat James Ryan</title>
-	<!-- TTX 312 -->
+	<!-- TTX 312.0001 -->
 	<desc>Der Soldat James Ryan
 Antikrieg USA 1998
 Zweiter Weltkrieg, 1944: Die Alliierten bereiten ihre Landung an der Küste der Normandie vor. Dabei erhält der englische Captain John Miller einen höchst gefährlichen Auftrag: Er soll sich mit seiner Einheit hinter die feindlichen Linien durchschlagen, um dort den Soldaten James Ryan - letzter Überlebender von vier Brüdern - herauszuholen...
@@ -116,80 +134,95 @@ Wdh. 04.10. 01:20 - 04:10</desc>
 </programme>
 
 <programme start="20081004021000 +0000" stop="20081004025000 +0000" channel="sat1.de">
+	<!-- TTX 304.0000 ACQTS:1223032709 -->
 	<title>Ed: Zwei Tage Freiheit</title>
 </programme>
 
 <programme start="20081004025000 +0000" stop="20081004031500 +0000" channel="sat1.de">
+	<!-- TTX 304.0000 ACQTS:1223032709 -->
 	<title>Alles dreht sich um Bonnie: Bin ich schön?</title>
 </programme>
 
 <programme start="20081004031500 +0000" stop="20081004040000 +0000" channel="sat1.de">
+	<!-- TTX 305.0000 ACQTS:1223032709 -->
 	<title>That's Life: Lydia und</title>
 	<sub-title>That's Life: Lydia und der Professor</sub-title>
 </programme>
 
 <programme start="20081004040000 +0000" stop="20081004050000 +0000" channel="sat1.de">
+	<!-- TTX 305.0000 ACQTS:1223032709 -->
 	<title>Für alle Fälle Stefanie: Zwei sind einer zu viel</title>
 	<desc>(teletext 354)</desc>
 </programme>
 
 <programme start="20081004050000 +0000" stop="20081004060000 +0000" channel="sat1.de">
+	<!-- TTX 305.0000 ACQTS:1223032709 -->
 	<title>alphateam: Glück im</title>
 	<sub-title>alphateam: Glück im Unglück</sub-title>
 </programme>
 
 <programme start="20081004060000 +0000" stop="20081004070000 +0000" channel="sat1.de">
+	<!-- TTX 305.0000 ACQTS:1223032709 -->
 	<title>Deal or no Deal</title>
 	<desc>(teletext 343)</desc>
 </programme>
 
 <programme start="20081004070000 +0000" stop="20081004090000 +0000" channel="sat1.de">
+	<!-- TTX 305.0000 ACQTS:1223032709 -->
 	<title>Sat.1-Frühstücksfernsehen</title>
 	<desc>(teletext 321)</desc>
 </programme>
 
 <programme start="20081004090000 +0000" stop="20081004093000 +0000" channel="sat1.de">
+	<!-- TTX 305.0000 ACQTS:1223032709 -->
 	<title>Anna und die Liebe: Folge</title>
 	<sub-title>Anna und die Liebe: Folge 24</sub-title>
 	<desc>(teletext 585)</desc>
 </programme>
 
 <programme start="20081004093000 +0000" stop="20081004100000 +0000" channel="sat1.de">
+	<!-- TTX 305.0000 ACQTS:1223032709 -->
 	<title>Anna und die Liebe: Folge</title>
 	<sub-title>Anna und die Liebe: Folge 25</sub-title>
 	<desc>(teletext 585)</desc>
 </programme>
 
 <programme start="20081004100000 +0000" stop="20081004103000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Anna und die Liebe</title>
 	<desc>(teletext 585)</desc>
 </programme>
 
 <programme start="20081004103000 +0000" stop="20081004110000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Anna und die Liebe</title>
 	<desc>(teletext 585)</desc>
 </programme>
 
 <programme start="20081004110000 +0000" stop="20081004113000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Anna und die Liebe: Folge</title>
 	<sub-title>Anna und die Liebe: Folge 28</sub-title>
 	<desc>(teletext 585)</desc>
 </programme>
 
 <programme start="20081004113000 +0000" stop="20081004120000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Anna und die Liebe: Folge</title>
 	<sub-title>Anna und die Liebe: Folge 29</sub-title>
 	<desc>(teletext 585)</desc>
 </programme>
 
 <programme start="20081004120000 +0000" stop="20081004130000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Zwei bei Kallwass</title>
 	<desc>(teletext 367)</desc>
 </programme>
 
 <programme start="20081004130000 +0000" stop="20081004145900 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Findet Nemo</title>
-	<!-- TTX 311 -->
+	<!-- TTX 311.0001 -->
 	<desc>Findet Nemo
 Animation USA 2003
 Clownfisch Marlin macht sich große Sorgen um seinen Sprössling, denn der kleine Nemo ist in ein Fischernetz geraten. Marlin und die vergessliche Dory machen sich auf die Suche nach dem verlorenen Sohn. Eine abenteuerliche Reise quer durch den Ozean beginnt für die beiden kleinen Fische. Doch letztendlich ist die schwierige Suche von Erfolg gekrönt ...
@@ -200,41 +233,49 @@ Wdh. 04.10. 15:00 - 16:59</desc>
 </programme>
 
 <programme start="20081004145900 +0000" stop="20081004150000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>So gesehen: Episode</title>
 </programme>
 
 <programme start="20081004150000 +0000" stop="20081004153000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>das sat.1 automagazin</title>
 	<desc>(teletext 331)</desc>
 </programme>
 
 <programme start="20081004153000 +0000" stop="20081004160000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Lenßen &amp; Partner: Das</title>
 	<sub-title>Lenßen &amp; Partner: Das entstellte Topmodel</sub-title>
 	<desc>(teletext 372)</desc>
 </programme>
 
 <programme start="20081004160000 +0000" stop="20081004163000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>AllesTester im Einsatz: Ein Fall für Yvonne - Der Familien-Check</title>
 </programme>
 
 <programme start="20081004163000 +0000" stop="20081004164000 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Sat.1 Nachrichten: Episode</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20081004164000 +0000" stop="20081004171500 +0000" channel="sat1.de">
+	<!-- TTX 306.0000 ACQTS:1223032709 -->
 	<title>Das Sat.1-Magazin: Episo-</title>
 </programme>
 
 <programme start="20081004171500 +0000" stop="20081004181500 +0000" channel="sat1.de">
+	<!-- TTX 307.0000 ACQTS:1223032709 -->
 	<title>Deal or no Deal</title>
 	<desc>(teletext 343)</desc>
 </programme>
 
 <programme start="20081004181500 +0000" stop="20081004202500 +0000" channel="sat1.de">
+	<!-- TTX 307.0000 ACQTS:1223032709 -->
 	<title>Doppelmord</title>
-	<!-- TTX 313 -->
+	<!-- TTX 313.0001 -->
 	<desc>Doppelmord
 Thriller USA 1999
 Libby Parsons' Leben ändert sich gänzlich, als ihr Mann Nick bei einem Segeltörn über Bord geht und sie wegen Mordes ins Gefängnis kommt. Ihren Sohn Matty überlässt sie der Obhut ihrer besten Freundin Angie. Doch nach ihrer Entlassung kommt sie einem Komplott auf die Spur: Nick hat seinen Tod vorgetäuscht und lebt zusammen mit Angie und Matty. Obwohl Bewährungshelfer Lehman nicht von ihrer Seite weicht, schwört Libby Rache ...
@@ -245,28 +286,33 @@ Wdh. 05.10. 01:50 - 03:35</desc>
 </programme>
 
 <programme start="20081004202500 +0000" stop="20081004205500 +0000" channel="sat1.de">
+	<!-- TTX 307.0000 ACQTS:1223032709 -->
 	<title>Mensch Markus</title>
 	<desc>(teletext 361)</desc>
 </programme>
 
 <programme start="20081004205500 +0000" stop="20081004215500 +0000" channel="sat1.de">
+	<!-- TTX 307.0000 ACQTS:1223032709 -->
 	<title>Genial daneben - Die Comedy Arena</title>
 	<desc>(teletext 387)</desc>
 </programme>
 
 <programme start="20081004215500 +0000" stop="20081004225500 +0000" channel="sat1.de">
+	<!-- TTX 307.0000 ACQTS:1223032709 -->
 	<title>Die Wochenshow: Episode</title>
 	<desc>(teletext 362)</desc>
 </programme>
 
 <programme start="20081004225500 +0000" stop="20081004235000 +0000" channel="sat1.de">
+	<!-- TTX 308.0000 ACQTS:1223032709 -->
 	<title>Die Niels Ruf Show: Episode</title>
 	<desc>(teletext 375)</desc>
 </programme>
 
 <programme start="20081004235000 +0000" stop="20081005013500 +0000" channel="sat1.de">
+	<!-- TTX 308.0000 ACQTS:1223032709 -->
 	<title>Doppelmord</title>
-	<!-- TTX 313 -->
+	<!-- TTX 313.0001 -->
 	<desc>Doppelmord
 Thriller USA 1999
 Libby Parsons' Leben ändert sich gänzlich, als ihr Mann Nick bei einem Segeltörn über Bord geht und sie wegen Mordes ins Gefängnis kommt. Ihren Sohn Matty überlässt sie der Obhut ihrer besten Freundin Angie. Doch nach ihrer Entlassung kommt sie einem Komplott auf die Spur: Nick hat seinen Tod vorgetäuscht und lebt zusammen mit Angie und Matty. Obwohl Bewährungshelfer Lehman nicht von ihrer Seite weicht, schwört Libby Rache ...
@@ -277,8 +323,9 @@ Wdh. 05.10. 01:50 - 03:35</desc>
 </programme>
 
 <programme start="20081005013500 +0000" channel="sat1.de">
+	<!-- TTX 308.0000 ACQTS:1223032709 -->
 	<title>Heart of Stone</title>
-	<!-- TTX 314 -->
+	<!-- TTX 314.0001 -->
 	<desc>Heart of Stone
 Actionfilm USA 1997
 Schleifen, schrauben, Öl wechseln, Ersatzteile besorgen - mit diesen Dingen muss sich Automechaniker Joe beschäftigen. Doch das war nicht immer so, noch vor ein paar Jahren war er ein erfolgreicher Polizist. Als er jedoch hinter die finsteren Machenschaften seines korrupten Vorgesetzten kam, wurde er unehrenhaft entlassen...

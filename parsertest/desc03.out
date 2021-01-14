@@ -6,6 +6,7 @@
 </channel>
 
 <programme start="20060505120000 +0000" stop="20060505123000 +0000" pdc-start="20060501140000 +0200" channel="ARTE">
+	<!-- TTX 303.0000 ACQTS:1146515528 -->
 	<title>Lola</title>
 	<desc>(teletext 309)</desc>
 	<audio>
@@ -14,6 +15,7 @@
 </programme>
 
 <programme start="20060505123000 +0000" stop="20060505125500 +0000" pdc-start="20060505143000 +0200" channel="ARTE">
+	<!-- TTX 303.0000 ACQTS:1146515528 -->
 	<title>Kaleidoskop</title>
 	<desc>(teletext 310)</desc>
 	<audio>
@@ -22,8 +24,9 @@
 </programme>
 
 <programme start="20060505125500 +0000" stop="20060505145000 +0000" pdc-start="20060505145500 +0200" channel="ARTE">
+	<!-- TTX 303.0000 ACQTS:1146515528 -->
 	<title>Plötzlich im letzten sommer</title>
-	<!-- TTX 311 -->
+	<!-- TTX 311.0000 -->
 	<desc>PLÖTZLICH IM LETZTEN SOMMER 109 MIN.
 Spielfilm, USA 1959, s/w Regie: Joseph L. Mankiewicz Mit: Katharine Hepburn, Elizabeth Taylor, Montgomery Clift u.a.
 Um die homosexuelle Veranlagung ihres grausam ermordeten Sohns zu vertuschen, lässt Mrs. Venable ihre Nichte, die einzige Augenzeugin des Verbrechens, in die Psychiatrie einweisen. Er soll durch eine waghalsige Gehirnoperation Catherines Erinnerungen auslöschen ...</desc>
@@ -33,6 +36,7 @@ Um die homosexuelle Veranlagung ihres grausam ermordeten Sohns zu vertuschen, lä
 </programme>
 
 <programme start="20060505145000 +0000" stop="20060505151500 +0000" pdc-start="20060505165000 +0200" channel="ARTE">
+	<!-- TTX 303.0000 ACQTS:1146515528 -->
 	<title>Chic</title>
 	<desc>(teletext 312)</desc>
 	<audio>
@@ -41,6 +45,7 @@ Um die homosexuelle Veranlagung ihres grausam ermordeten Sohns zu vertuschen, lä
 </programme>
 
 <programme start="20060505151500 +0000" stop="20060505152000 +0000" pdc-start="20060505171500 +0200" channel="ARTE">
+	<!-- TTX 303.0000 ACQTS:1146515528 -->
 	<title>Ebeil</title>
 	<audio>
 		<stereo>stereo</stereo>
@@ -48,6 +53,7 @@ Um die homosexuelle Veranlagung ihres grausam ermordeten Sohns zu vertuschen, lä
 </programme>
 
 <programme start="20060505152000 +0000" stop="20060505160300 +0000" pdc-start="20060505172000 +0200" channel="ARTE">
+	<!-- TTX 303.0000 ACQTS:1146515528 -->
 	<title>Rettet die liebesäpfel!</title>
 	<desc>(teletext 313)</desc>
 	<audio>
@@ -56,8 +62,9 @@ Um die homosexuelle Veranlagung ihres grausam ermordeten Sohns zu vertuschen, lä
 </programme>
 
 <programme start="20060508110500 +0000" pdc-start="20060508130500 +0200" channel="ARTE">
+	<!-- TTX 307.0000 ACQTS:1146515528 -->
 	<title>Wunderwelten</title>
-	<!-- TTX 308 -->
+	<!-- TTX 308.0000 -->
 	<desc>WUNDERWELTEN 53 MIN.
 Dokumentation von Didier Fassio Frankreich 2002, ARTE F
 Wh.: 08.05.

@@ -6,6 +6,7 @@
 </channel>
 
 <programme start="20200705090500 +0000" stop="20200705093000 +0000" channel="kika.de">
+	<!-- TTX 303.0000 ACQTS:1593936656 -->
 	<title>Löwenzahn</title>
 	<sub-title>Löwenzahn Wiese - Grüne Wildnis in Gefahr</sub-title>
 	<desc>(teletext 335)</desc>
@@ -16,6 +17,7 @@
 </programme>
 
 <programme start="20200705093000 +0000" stop="20200705100000 +0000" channel="kika.de">
+	<!-- TTX 303.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit der Maus</title>
 	<desc>(teletext 571)</desc>
 	<video>
@@ -28,12 +30,14 @@
 </programme>
 
 <programme start="20200705100000 +0000" stop="20200705113000 +0000" channel="kika.de">
+	<!-- TTX 303.0000 ACQTS:1593936656 -->
 	<title>Schneewittchen und das</title>
 	<sub-title>Schneewittchen und das Geheimnis der Zwerge Sonntagsmärchen</sub-title>
 	<desc>(teletext 346)</desc>
 </programme>
 
 <programme start="20200705113000 +0000" stop="20200705124500 +0000" channel="kika.de">
+	<!-- TTX 303.0000 ACQTS:1593936656 -->
 	<title>Vater hoch vier - Auf hoher See</title>
 	<desc>(teletext 335)</desc>
 	<video>
@@ -42,6 +46,7 @@
 </programme>
 
 <programme start="20200705124500 +0000" stop="20200705131000 +0000" channel="kika.de">
+	<!-- TTX 303.0000 ACQTS:1593936656 -->
 	<title>Wir Kinder aus dem Möwenweg (23+24)</title>
 	<sub-title>Wir Kinder aus dem Möwenweg (23+24) Wir sind fast zerstritten/ Wir legen uns rein</sub-title>
 	<video>
@@ -51,6 +56,7 @@
 </programme>
 
 <programme start="20200705131000 +0000" channel="kika.de">
+	<!-- TTX 303.0000 ACQTS:1593936656 -->
 	<title>Nils Holgersson (25+26+27+28)</title>
 	<sub-title>Nils Holgersson (25+26+27+28) Das Korn der Macht/ Die Flugschule/ Der Bärenmarder/ Das Zauberlicht</sub-title>
 	<video>
@@ -59,6 +65,7 @@
 </programme>
 
 <programme start="20200706040000 +0000" stop="20200706040500 +0000" channel="kika.de">
+	<!-- TTX 308.0000 ACQTS:1593936656 -->
 	<title>KiKANiNCHEN</title>
 	<desc>(teletext 400)</desc>
 	<video>
@@ -67,6 +74,7 @@
 </programme>
 
 <programme start="20200706040500 +0000" stop="20200706042000 +0000" channel="kika.de">
+	<!-- TTX 308.0000 ACQTS:1593936656 -->
 	<title>Shaun das Schaf (49+48)</title>
 	<sub-title>Shaun das Schaf (49+48) Supersize Timmy/ Ein neuer Freund</sub-title>
 	<video>
@@ -75,6 +83,7 @@
 </programme>
 
 <programme start="20200706042000 +0000" stop="20200706043500 +0000" channel="kika.de">
+	<!-- TTX 308.0000 ACQTS:1593936656 -->
 	<title>Mascha und der Bär (29+30)</title>
 	<sub-title>Mascha und der Bär (29+30) Die Macht der Musik/ Der wundersame Trank</sub-title>
 	<video>
@@ -84,6 +93,7 @@
 </programme>
 
 <programme start="20200706043500 +0000" stop="20200706045500 +0000" channel="kika.de">
+	<!-- TTX 308.0000 ACQTS:1593936656 -->
 	<title>Feuerwehrmann Sam (59+131)</title>
 	<sub-title>Feuerwehrmann Sam (59+131) Norris, das Meerschweinchen/ Monster-Alarm</sub-title>
 	<video>
@@ -93,12 +103,14 @@
 </programme>
 
 <programme start="20200706045500 +0000" stop="20200706052000 +0000" channel="kika.de">
+	<!-- TTX 308.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit dem Elefanten</title>
 	<sub-title>Die Sendung mit dem Elefanten (182) Folge</sub-title>
 	<desc>(teletext 570)</desc>
 </programme>
 
 <programme start="20200706052000 +0000" stop="20200706054500 +0000" channel="kika.de">
+	<!-- TTX 308.0000 ACQTS:1593936656 -->
 	<title>Der kleine Drache Kokosnuss (7+8)</title>
 	<sub-title>Der kleine Drache Kokosnuss (7+8) Die Fressfalle/ Einmal und nie wieder</sub-title>
 	<video>
@@ -108,6 +120,7 @@
 </programme>
 
 <programme start="20200706054500 +0000" stop="20200706060500 +0000" channel="kika.de">
+	<!-- TTX 309.0000 ACQTS:1593936656 -->
 	<title>Sesamstraße</title>
 	<video>
 		<quality>HDTV</quality>
@@ -115,6 +128,7 @@
 </programme>
 
 <programme start="20200706060500 +0000" stop="20200706061000 +0000" channel="kika.de">
+	<!-- TTX 309.0000 ACQTS:1593936656 -->
 	<title>KiKANiNCHEN</title>
 	<sub-title>KiKANiNCHEN /</sub-title>
 	<desc>(teletext 400)</desc>
@@ -124,6 +138,7 @@
 </programme>
 
 <programme start="20200706061000 +0000" stop="20200706062500 +0000" channel="kika.de">
+	<!-- TTX 309.0000 ACQTS:1593936656 -->
 	<title>Wissper (68+69)</title>
 	<sub-title>Wissper (68+69) Ein Hippo in der Hitze/ Plagegeister</sub-title>
 	<video>
@@ -132,6 +147,7 @@
 </programme>
 
 <programme start="20200706062500 +0000" stop="20200706070000 +0000" channel="kika.de">
+	<!-- TTX 309.0000 ACQTS:1593936656 -->
 	<title>Zacki und die Zoobande (1+2+3)</title>
 	<sub-title>Zacki und die Zoobande (1+2+3) Serienstart! Federlesen/ Lionels Anzug/ Kaiserin Emily</sub-title>
 	<desc>(teletext 337)</desc>
@@ -142,6 +158,7 @@
 </programme>
 
 <programme start="20200706070000 +0000" stop="20200706072000 +0000" channel="kika.de">
+	<!-- TTX 309.0000 ACQTS:1593936656 -->
 	<title>Nö-Nö Schnabeltier (1+2+3)</title>
 	<sub-title>Nö-Nö Schnabeltier (1+2+3) Serienstart! Ich will mehr Muskeln!/ Ich bringe den Mond zu uns!/ Ich will Musik machen!</sub-title>
 	<desc>(teletext 337)</desc>
@@ -151,6 +168,7 @@
 </programme>
 
 <programme start="20200706072000 +0000" stop="20200706075000 +0000" channel="kika.de">
+	<!-- TTX 310.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit der Maus</title>
 	<sub-title>Die Sendung mit der Maus Griechenland-Maus - "Die Sendung mit der Maus" zeigt Sachgeschichten aus Athen</sub-title>
 	<desc>(teletext 571)</desc>
@@ -161,12 +179,14 @@
 </programme>
 
 <programme start="20200706075000 +0000" stop="20200706084000 +0000" channel="kika.de">
+	<!-- TTX 310.0000 ACQTS:1593936656 -->
 	<title>SimsalaGrimm (27+28)</title>
 	<sub-title>SimsalaGrimm (27+28) Serienstart! Hans und die Bohnenranke/ Allerleirauh</sub-title>
 	<desc>(teletext 338)</desc>
 </programme>
 
 <programme start="20200706084000 +0000" stop="20200706092500 +0000" channel="kika.de">
+	<!-- TTX 310.0000 ACQTS:1593936656 -->
 	<title>Hexe Lilli (27+28)</title>
 	<sub-title>Hexe Lilli (27+28) Serienstart! Lilli und das geheime Zimmer/ Lilli und das Wildpferd</sub-title>
 	<desc>(teletext 338)</desc>
@@ -177,6 +197,7 @@
 </programme>
 
 <programme start="20200706092500 +0000" stop="20200706101500 +0000" channel="kika.de">
+	<!-- TTX 311.0000 ACQTS:1593936656 -->
 	<title>Arthur und die Freunde der</title>
 	<sub-title>Arthur und die Freunde der Tafelrunde (1+2+3+4) Serienstart! Leichtfertige Versprechen/ Die versteinerten Greifen/ Die Jagd auf den Drachenwolf/ Der Geist aus der Kälte</sub-title>
 	<desc>(teletext 339)</desc>
@@ -187,6 +208,7 @@
 </programme>
 
 <programme start="20200706101500 +0000" stop="20200706113000 +0000" channel="kika.de">
+	<!-- TTX 311.0000 ACQTS:1593936656 -->
 	<title>Fünf in der Wildnis</title>
 	<desc>(teletext 339)</desc>
 	<video>
@@ -196,6 +218,7 @@
 </programme>
 
 <programme start="20200706113000 +0000" stop="20200706114000 +0000" channel="kika.de">
+	<!-- TTX 311.0000 ACQTS:1593936656 -->
 	<title>logo! Die Welt und ich.</title>
 	<desc>(teletext 331)</desc>
 	<video>
@@ -205,6 +228,7 @@
 </programme>
 
 <programme start="20200706114000 +0000" stop="20200706121000 +0000" channel="kika.de">
+	<!-- TTX 311.0000 ACQTS:1593936656 -->
 	<title>Tiere bis unters Dach (75)</title>
 	<sub-title>Tiere bis unters Dach (75) Ein Freund fürs Leben</sub-title>
 	<video>
@@ -214,6 +238,7 @@
 </programme>
 
 <programme start="20200706121000 +0000" stop="20200706130000 +0000" channel="kika.de">
+	<!-- TTX 311.0000 ACQTS:1593936656 -->
 	<title>Schloss Einstein (845+846)</title>
 	<sub-title>Schloss Einstein (845+846) Folge/ Folge</sub-title>
 	<desc>(teletext 348)</desc>
@@ -223,6 +248,7 @@
 </programme>
 
 <programme start="20200706130000 +0000" stop="20200706135000 +0000" channel="kika.de">
+	<!-- TTX 312.0000 ACQTS:1593936656 -->
 	<title>Sam Fox: Extreme Adventures (9+10)</title>
 	<sub-title>Sam Fox: Extreme Adventures (9+10) Der Vulkanausbruch/ Leg dich nicht mit Elefanten an</sub-title>
 	<video>
@@ -231,11 +257,13 @@
 </programme>
 
 <programme start="20200706135000 +0000" stop="20200706141000 +0000" channel="kika.de">
+	<!-- TTX 312.0000 ACQTS:1593936656 -->
 	<title>Stoked (30)</title>
 	<sub-title>Stoked (30) Broseph und Noseph</sub-title>
 </programme>
 
 <programme start="20200706141000 +0000" stop="20200706150000 +0000" channel="kika.de">
+	<!-- TTX 312.0000 ACQTS:1593936656 -->
 	<title>Ein Fall für TKKG (9+10)</title>
 	<sub-title>Ein Fall für TKKG (9+10) Der blinde Hellseher/ Rätsel um die alte Villa</sub-title>
 	<video>
@@ -245,6 +273,7 @@
 </programme>
 
 <programme start="20200706150000 +0000" stop="20200706153000 +0000" channel="kika.de">
+	<!-- TTX 312.0000 ACQTS:1593936656 -->
 	<title>Mirette ermittelt (40+41+43)</title>
 	<sub-title>Mirette ermittelt (40+41+43) Panik vor Paaren/ Lachanfälle in Paris/ Schlaflos in New York</sub-title>
 	<video>
@@ -253,6 +282,7 @@
 </programme>
 
 <programme start="20200706153000 +0000" stop="20200706160500 +0000" channel="kika.de">
+	<!-- TTX 312.0000 ACQTS:1593936656 -->
 	<title>The Garfield Show (31+32+33)</title>
 	<sub-title>The Garfield Show (31+32+33) Hund über Bord/ Der Fischfresser/ Odie und der Wolf</sub-title>
 	<video>
@@ -261,6 +291,7 @@
 </programme>
 
 <programme start="20200706160500 +0000" stop="20200706162000 +0000" channel="kika.de">
+	<!-- TTX 312.0000 ACQTS:1593936656 -->
 	<title>Bobby &amp; Bill (66)</title>
 	<sub-title>Bobby &amp; Bill (66) Hör mal, wer da spricht!</sub-title>
 	<video>
@@ -269,6 +300,7 @@
 </programme>
 
 <programme start="20200706162000 +0000" stop="20200706164000 +0000" channel="kika.de">
+	<!-- TTX 313.0000 ACQTS:1593936656 -->
 	<title>Die Ollie &amp; Moon Show (39+40)</title>
 	<sub-title>Die Ollie &amp; Moon Show (39+40) Falter-Fotos in Malaysia/ Der Neujahrsfest-Nachtisch</sub-title>
 	<video>
@@ -277,6 +309,7 @@
 </programme>
 
 <programme start="20200706164000 +0000" stop="20200706164700 +0000" channel="kika.de">
+	<!-- TTX 313.0000 ACQTS:1593936656 -->
 	<title>Lieselotte (37)</title>
 	<sub-title>Lieselotte (37) Lieselotte als Wachhund</sub-title>
 	<video>
@@ -285,6 +318,7 @@
 </programme>
 
 <programme start="20200706164700 +0000" stop="20200706165000 +0000" channel="kika.de">
+	<!-- TTX 313.0000 ACQTS:1593936656 -->
 	<title>Baumhaus (188)</title>
 	<sub-title>Baumhaus (188) Fidi, die Sommerpiratin</sub-title>
 	<desc>(teletext 370)</desc>
@@ -294,6 +328,7 @@
 </programme>
 
 <programme start="20200706165000 +0000" stop="20200706170000 +0000" channel="kika.de">
+	<!-- TTX 313.0000 ACQTS:1593936656 -->
 	<title>Unser Sandmännchen</title>
 	<sub-title>Unser Sandmännchen Meine Schmusedecke: Fliege</sub-title>
 	<desc>(teletext 380)</desc>
@@ -303,6 +338,7 @@
 </programme>
 
 <programme start="20200706170000 +0000" stop="20200706172500 +0000" channel="kika.de">
+	<!-- TTX 313.0000 ACQTS:1593936656 -->
 	<title>Das Dschungelbuch (87+88)</title>
 	<sub-title>Das Dschungelbuch (87+88) Verschnupfte Dschungeltiere/ Die verlorene Stimme</sub-title>
 	<video>
@@ -312,6 +348,7 @@
 </programme>
 
 <programme start="20200706172500 +0000" stop="20200706175000 +0000" channel="kika.de">
+	<!-- TTX 313.0000 ACQTS:1593936656 -->
 	<title>Wissen macht Ah!</title>
 	<sub-title>Wissen macht Ah! Clarissa und Ralph: Zutritt verweigert</sub-title>
 	<video>
@@ -321,6 +358,7 @@
 </programme>
 
 <programme start="20200706175000 +0000" stop="20200706180000 +0000" channel="kika.de">
+	<!-- TTX 313.0000 ACQTS:1593936656 -->
 	<title>logo! Die Welt und ich.</title>
 	<desc>(teletext 331)</desc>
 	<video>
@@ -330,6 +368,7 @@
 </programme>
 
 <programme start="20200706180000 +0000" stop="20200706181000 +0000" channel="kika.de">
+	<!-- TTX 314.0000 ACQTS:1593936656 -->
 	<title>KiKA LIVE</title>
 	<sub-title>KiKA LIVE Outdoor-Spiele, Tag 1</sub-title>
 	<desc>(teletext 200)</desc>
@@ -340,6 +379,7 @@
 </programme>
 
 <programme start="20200706181000 +0000" stop="20200706190000 +0000" channel="kika.de">
+	<!-- TTX 314.0000 ACQTS:1593936656 -->
 	<title>Athena (17+18)</title>
 	<sub-title>Athena (17+18) Das Wintermärchen/ Das perfekte Jackett</sub-title>
 	<video>
@@ -348,10 +388,12 @@
 </programme>
 
 <programme start="20200706190000 +0000" channel="kika.de">
+	<!-- TTX 314.0000 ACQTS:1593936656 -->
 	<title>Sendeschluss</title>
 </programme>
 
 <programme start="20200707040000 +0000" stop="20200707040500 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>KiKANiNCHEN</title>
 	<video>
 		<quality>HDTV</quality>
@@ -359,6 +401,7 @@
 </programme>
 
 <programme start="20200707040500 +0000" stop="20200707042000 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Shaun das Schaf (45+55)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -366,6 +409,7 @@
 </programme>
 
 <programme start="20200707042000 +0000" stop="20200707043500 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Mascha und der Bär (31+33)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -374,6 +418,7 @@
 </programme>
 
 <programme start="20200707043500 +0000" stop="20200707045500 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Feuerwehrmann Sam (61+132)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -382,11 +427,13 @@
 </programme>
 
 <programme start="20200707045500 +0000" stop="20200707052000 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit dem Elefanten</title>
 	<sub-title>Die Sendung mit dem Elefanten (183)</sub-title>
 </programme>
 
 <programme start="20200707052000 +0000" stop="20200707054500 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Der kleine Drache Kokosnuss (9+10)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -395,6 +442,7 @@
 </programme>
 
 <programme start="20200707054500 +0000" stop="20200707060500 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Sesamstraße</title>
 	<video>
 		<quality>HDTV</quality>
@@ -402,6 +450,7 @@
 </programme>
 
 <programme start="20200707060500 +0000" stop="20200707061000 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>KiKANiNCHEN</title>
 	<video>
 		<quality>HDTV</quality>
@@ -409,6 +458,7 @@
 </programme>
 
 <programme start="20200707061000 +0000" stop="20200707062500 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Wissper (70+71)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -416,6 +466,7 @@
 </programme>
 
 <programme start="20200707062500 +0000" stop="20200707070000 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Zacki und die Zoobande (4+5+6)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -424,6 +475,7 @@
 </programme>
 
 <programme start="20200707070000 +0000" stop="20200707072000 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Nö-Nö Schnabeltier (4+5+6)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -431,6 +483,7 @@
 </programme>
 
 <programme start="20200707072000 +0000" stop="20200707075000 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit der Maus</title>
 	<video>
 		<quality>HDTV</quality>
@@ -439,6 +492,7 @@
 </programme>
 
 <programme start="20200707075000 +0000" stop="20200707085000 +0000" channel="kika.de">
+	<!-- TTX 315.0000 ACQTS:1593936656 -->
 	<title>Yakari (105+106+107+108+109)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -447,6 +501,7 @@
 </programme>
 
 <programme start="20200707085000 +0000" stop="20200707095000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Wickie und die starken Männer</title>
 	<sub-title>Wickie und die starken Männer (1+2+3+4+5)</sub-title>
 	<video>
@@ -456,6 +511,7 @@
 </programme>
 
 <programme start="20200707095000 +0000" stop="20200707104000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Tib &amp; Tumtum (1+2+3+4)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -464,6 +520,7 @@
 </programme>
 
 <programme start="20200707104000 +0000" stop="20200707113000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Mascha und der Bär (9+12+13+15+16+17+18+19)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -472,6 +529,7 @@
 </programme>
 
 <programme start="20200707113000 +0000" stop="20200707114000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>logo! Die Welt und ich.</title>
 	<video>
 		<quality>HDTV</quality>
@@ -480,6 +538,7 @@
 </programme>
 
 <programme start="20200707114000 +0000" stop="20200707121000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Tiere bis unters Dach (76)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -488,6 +547,7 @@
 </programme>
 
 <programme start="20200707121000 +0000" stop="20200707130000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Schloss Einstein (847+848)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -496,6 +556,7 @@
 </programme>
 
 <programme start="20200707130000 +0000" stop="20200707135000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Sam Fox: Extreme Adventures (11+12)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -503,10 +564,12 @@
 </programme>
 
 <programme start="20200707135000 +0000" stop="20200707141000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Stoked (31)</title>
 </programme>
 
 <programme start="20200707141000 +0000" stop="20200707150000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Ein Fall für TKKG (11+12)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -515,6 +578,7 @@
 </programme>
 
 <programme start="20200707150000 +0000" stop="20200707153000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Mirette ermittelt (44+45+46)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -522,6 +586,7 @@
 </programme>
 
 <programme start="20200707153000 +0000" stop="20200707160500 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>The Garfield Show (34+35+36)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -529,6 +594,7 @@
 </programme>
 
 <programme start="20200707160500 +0000" stop="20200707162000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Bobby &amp; Bill (67)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -536,6 +602,7 @@
 </programme>
 
 <programme start="20200707162000 +0000" stop="20200707164000 +0000" channel="kika.de">
+	<!-- TTX 316.0000 ACQTS:1593936656 -->
 	<title>Die Ollie &amp; Moon Show (41+42)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -543,6 +610,7 @@
 </programme>
 
 <programme start="20200707164000 +0000" stop="20200707164700 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>Lieselotte (38)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -550,6 +618,7 @@
 </programme>
 
 <programme start="20200707164700 +0000" stop="20200707165000 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>Baumhaus (189)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -557,10 +626,12 @@
 </programme>
 
 <programme start="20200707165000 +0000" stop="20200707170000 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>Unser Sandmännchen</title>
 </programme>
 
 <programme start="20200707170000 +0000" stop="20200707172500 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>Das Dschungelbuch (89+90)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -569,6 +640,7 @@
 </programme>
 
 <programme start="20200707172500 +0000" stop="20200707175000 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>pur+</title>
 	<video>
 		<quality>HDTV</quality>
@@ -577,6 +649,7 @@
 </programme>
 
 <programme start="20200707175000 +0000" stop="20200707180000 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>logo! Die Welt und ich.</title>
 	<video>
 		<quality>HDTV</quality>
@@ -585,6 +658,7 @@
 </programme>
 
 <programme start="20200707180000 +0000" stop="20200707181000 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>KiKA LIVE</title>
 	<video>
 		<quality>HDTV</quality>
@@ -593,6 +667,7 @@
 </programme>
 
 <programme start="20200707181000 +0000" stop="20200707190000 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>Athena (19+20)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -600,10 +675,12 @@
 </programme>
 
 <programme start="20200707190000 +0000" channel="kika.de">
+	<!-- TTX 317.0000 ACQTS:1593936656 -->
 	<title>Sendeschluss</title>
 </programme>
 
 <programme start="20200708040000 +0000" stop="20200708040500 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>KiKANiNCHEN</title>
 	<video>
 		<quality>HDTV</quality>
@@ -611,6 +688,7 @@
 </programme>
 
 <programme start="20200708040500 +0000" stop="20200708042000 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Shaun das Schaf (54+56)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -618,6 +696,7 @@
 </programme>
 
 <programme start="20200708042000 +0000" stop="20200708043500 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Mascha und der Bär (34+35)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -626,6 +705,7 @@
 </programme>
 
 <programme start="20200708043500 +0000" stop="20200708045500 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Feuerwehrmann Sam (62+133)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -634,11 +714,13 @@
 </programme>
 
 <programme start="20200708045500 +0000" stop="20200708052000 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit dem Elefanten</title>
 	<sub-title>Die Sendung mit dem Elefanten (184)</sub-title>
 </programme>
 
 <programme start="20200708052000 +0000" stop="20200708054500 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Der kleine Drache Kokosnuss (11+12)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -647,6 +729,7 @@
 </programme>
 
 <programme start="20200708054500 +0000" stop="20200708060500 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Sesamstraße</title>
 	<video>
 		<quality>HDTV</quality>
@@ -654,6 +737,7 @@
 </programme>
 
 <programme start="20200708060500 +0000" stop="20200708061000 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>KiKANiNCHEN</title>
 	<video>
 		<quality>HDTV</quality>
@@ -661,6 +745,7 @@
 </programme>
 
 <programme start="20200708061000 +0000" stop="20200708062500 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Wissper (72+73)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -668,6 +753,7 @@
 </programme>
 
 <programme start="20200708062500 +0000" stop="20200708070000 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Zacki und die Zoobande (7+8+9)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -676,6 +762,7 @@
 </programme>
 
 <programme start="20200708070000 +0000" stop="20200708072000 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Nö-Nö Schnabeltier (7+8+9)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -683,6 +770,7 @@
 </programme>
 
 <programme start="20200708072000 +0000" stop="20200708075000 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit der Maus</title>
 	<video>
 		<quality>HDTV</quality>
@@ -691,6 +779,7 @@
 </programme>
 
 <programme start="20200708075000 +0000" stop="20200708092000 +0000" channel="kika.de">
+	<!-- TTX 318.0000 ACQTS:1593936656 -->
 	<title>Lassie (18+20+21+22)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -699,6 +788,7 @@
 </programme>
 
 <programme start="20200708092000 +0000" stop="20200708103500 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>H2O - Abenteuer Meerjungfrau (1+2+3)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -707,6 +797,7 @@
 </programme>
 
 <programme start="20200708103500 +0000" stop="20200708113000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Zoom (4+5+6+7)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -714,6 +805,7 @@
 </programme>
 
 <programme start="20200708113000 +0000" stop="20200708114000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>logo! Die Welt und ich.</title>
 	<video>
 		<quality>HDTV</quality>
@@ -722,6 +814,7 @@
 </programme>
 
 <programme start="20200708114000 +0000" stop="20200708121000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Tiere bis unters Dach (79)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -730,6 +823,7 @@
 </programme>
 
 <programme start="20200708121000 +0000" stop="20200708130000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Schloss Einstein (849+850)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -738,6 +832,7 @@
 </programme>
 
 <programme start="20200708130000 +0000" stop="20200708135000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Sam Fox: Extreme Adventures (13+14)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -745,10 +840,12 @@
 </programme>
 
 <programme start="20200708135000 +0000" stop="20200708141000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Stoked (32)</title>
 </programme>
 
 <programme start="20200708141000 +0000" stop="20200708150000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Ein Fall für TKKG (13+14)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -757,6 +854,7 @@
 </programme>
 
 <programme start="20200708150000 +0000" stop="20200708153000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Mirette ermittelt (47+48+49)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -764,6 +862,7 @@
 </programme>
 
 <programme start="20200708153000 +0000" stop="20200708160500 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>The Garfield Show (37+41+42)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -771,6 +870,7 @@
 </programme>
 
 <programme start="20200708160500 +0000" stop="20200708162000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Bobby &amp; Bill (68)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -778,6 +878,7 @@
 </programme>
 
 <programme start="20200708162000 +0000" stop="20200708164000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Die Ollie &amp; Moon Show (43+44)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -785,6 +886,7 @@
 </programme>
 
 <programme start="20200708164000 +0000" stop="20200708164700 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Lieselotte (39)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -792,6 +894,7 @@
 </programme>
 
 <programme start="20200708164700 +0000" stop="20200708165000 +0000" channel="kika.de">
+	<!-- TTX 319.0000 ACQTS:1593936656 -->
 	<title>Baumhaus (190)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -799,10 +902,12 @@
 </programme>
 
 <programme start="20200708165000 +0000" stop="20200708170000 +0000" channel="kika.de">
+	<!-- TTX 320.0000 ACQTS:1593936656 -->
 	<title>Unser Sandmännchen</title>
 </programme>
 
 <programme start="20200708170000 +0000" stop="20200708172500 +0000" channel="kika.de">
+	<!-- TTX 320.0000 ACQTS:1593936656 -->
 	<title>Das Dschungelbuch (91+92)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -811,6 +916,7 @@
 </programme>
 
 <programme start="20200708172500 +0000" stop="20200708175000 +0000" channel="kika.de">
+	<!-- TTX 320.0000 ACQTS:1593936656 -->
 	<title>Anna und die wilden Tiere</title>
 	<video>
 		<quality>HDTV</quality>
@@ -819,6 +925,7 @@
 </programme>
 
 <programme start="20200708175000 +0000" stop="20200708180000 +0000" channel="kika.de">
+	<!-- TTX 320.0000 ACQTS:1593936656 -->
 	<title>logo! Die Welt und ich.</title>
 	<video>
 		<quality>HDTV</quality>
@@ -827,6 +934,7 @@
 </programme>
 
 <programme start="20200708180000 +0000" stop="20200708181000 +0000" channel="kika.de">
+	<!-- TTX 320.0000 ACQTS:1593936656 -->
 	<title>KiKA LIVE</title>
 	<video>
 		<quality>HDTV</quality>
@@ -835,6 +943,7 @@
 </programme>
 
 <programme start="20200708181000 +0000" stop="20200708190000 +0000" channel="kika.de">
+	<!-- TTX 320.0000 ACQTS:1593936656 -->
 	<title>Athena (21+22)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -842,10 +951,12 @@
 </programme>
 
 <programme start="20200708190000 +0000" channel="kika.de">
+	<!-- TTX 320.0000 ACQTS:1593936656 -->
 	<title>Sendeschluss</title>
 </programme>
 
 <programme start="20200709040000 +0000" stop="20200709040500 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>KiKANiNCHEN</title>
 	<video>
 		<quality>HDTV</quality>
@@ -853,6 +964,7 @@
 </programme>
 
 <programme start="20200709040500 +0000" stop="20200709042000 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Shaun das Schaf (57+52)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -860,6 +972,7 @@
 </programme>
 
 <programme start="20200709042000 +0000" stop="20200709043500 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Mascha und der Bär (36+37)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -868,6 +981,7 @@
 </programme>
 
 <programme start="20200709043500 +0000" stop="20200709045500 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Feuerwehrmann Sam (63+134)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -876,11 +990,13 @@
 </programme>
 
 <programme start="20200709045500 +0000" stop="20200709052000 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit dem Elefanten</title>
 	<sub-title>Die Sendung mit dem Elefanten (192)</sub-title>
 </programme>
 
 <programme start="20200709052000 +0000" stop="20200709054500 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Der kleine Drache Kokosnuss (13+14)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -889,6 +1005,7 @@
 </programme>
 
 <programme start="20200709054500 +0000" stop="20200709060500 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Sesamstraße</title>
 	<video>
 		<quality>HDTV</quality>
@@ -896,6 +1013,7 @@
 </programme>
 
 <programme start="20200709060500 +0000" stop="20200709061000 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>KiKANiNCHEN</title>
 	<video>
 		<quality>HDTV</quality>
@@ -903,6 +1021,7 @@
 </programme>
 
 <programme start="20200709061000 +0000" stop="20200709062500 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Wissper (74+75)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -910,6 +1029,7 @@
 </programme>
 
 <programme start="20200709062500 +0000" stop="20200709070000 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Zacki und die Zoobande (10+13+14)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -918,6 +1038,7 @@
 </programme>
 
 <programme start="20200709070000 +0000" stop="20200709072000 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Nö-Nö Schnabeltier (10+11+12)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -925,11 +1046,13 @@
 </programme>
 
 <programme start="20200709072000 +0000" stop="20200709075000 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Die Sendung mit der Maus</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200709075000 +0000" stop="20200709082000 +0000" channel="kika.de">
+	<!-- TTX 321.0000 ACQTS:1593936656 -->
 	<title>Das Dschungelbuch (1+2+3)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -938,6 +1061,7 @@
 </programme>
 
 <programme start="20200709082000 +0000" stop="20200709091000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Tashi (16+17+18+19)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -946,6 +1070,7 @@
 </programme>
 
 <programme start="20200709091000 +0000" stop="20200709102000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Sherazade (1+2+3)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -953,6 +1078,7 @@
 </programme>
 
 <programme start="20200709102000 +0000" stop="20200709113000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Der kleine Prinz (5+6+7)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -961,6 +1087,7 @@
 </programme>
 
 <programme start="20200709113000 +0000" stop="20200709114000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>logo! Die Welt und ich.</title>
 	<video>
 		<quality>HDTV</quality>
@@ -969,6 +1096,7 @@
 </programme>
 
 <programme start="20200709114000 +0000" stop="20200709121000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Tiere bis unters Dach (80)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -977,6 +1105,7 @@
 </programme>
 
 <programme start="20200709121000 +0000" stop="20200709130000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Schloss Einstein (851+852)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -985,6 +1114,7 @@
 </programme>
 
 <programme start="20200709130000 +0000" stop="20200709135000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Sam Fox: Extreme Adventures (15+16)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -992,10 +1122,12 @@
 </programme>
 
 <programme start="20200709135000 +0000" stop="20200709141000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Stoked (33)</title>
 </programme>
 
 <programme start="20200709141000 +0000" stop="20200709150000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Ein Fall für TKKG (15+16)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1004,6 +1136,7 @@
 </programme>
 
 <programme start="20200709150000 +0000" stop="20200709153000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Mirette ermittelt (9+10+12)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1012,6 +1145,7 @@
 </programme>
 
 <programme start="20200709153000 +0000" stop="20200709160500 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>The Garfield Show (43+44+45)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1019,6 +1153,7 @@
 </programme>
 
 <programme start="20200709160500 +0000" stop="20200709162000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Bobby &amp; Bill (69)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1026,6 +1161,7 @@
 </programme>
 
 <programme start="20200709162000 +0000" stop="20200709164000 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Die Ollie &amp; Moon Show (45+46)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1033,6 +1169,7 @@
 </programme>
 
 <programme start="20200709164000 +0000" stop="20200709164700 +0000" channel="kika.de">
+	<!-- TTX 322.0000 ACQTS:1593936657 -->
 	<title>Lieselotte (40)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1040,6 +1177,7 @@
 </programme>
 
 <programme start="20200709164700 +0000" stop="20200709165000 +0000" channel="kika.de">
+	<!-- TTX 323.0000 ACQTS:1593936657 -->
 	<title>Baumhaus (191)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1047,10 +1185,12 @@
 </programme>
 
 <programme start="20200709165000 +0000" stop="20200709170000 +0000" channel="kika.de">
+	<!-- TTX 323.0000 ACQTS:1593936657 -->
 	<title>Unser Sandmännchen</title>
 </programme>
 
 <programme start="20200709170000 +0000" stop="20200709172500 +0000" channel="kika.de">
+	<!-- TTX 323.0000 ACQTS:1593936657 -->
 	<title>Das Dschungelbuch (93+94)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1059,6 +1199,7 @@
 </programme>
 
 <programme start="20200709172500 +0000" stop="20200709175000 +0000" channel="kika.de">
+	<!-- TTX 323.0000 ACQTS:1593936657 -->
 	<title>Löwenzahn</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1070,6 +1211,7 @@
 </programme>
 
 <programme start="20200709175000 +0000" stop="20200709180000 +0000" channel="kika.de">
+	<!-- TTX 323.0000 ACQTS:1593936657 -->
 	<title>logo! Die Welt und ich.</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1078,6 +1220,7 @@
 </programme>
 
 <programme start="20200709180000 +0000" stop="20200709181000 +0000" channel="kika.de">
+	<!-- TTX 323.0000 ACQTS:1593936657 -->
 	<title>KiKA LIVE</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1086,6 +1229,7 @@
 </programme>
 
 <programme start="20200709181000 +0000" stop="20200709190000 +0000" channel="kika.de">
+	<!-- TTX 323.0000 ACQTS:1593936657 -->
 	<title>Athena (23+24)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1093,10 +1237,12 @@
 </programme>
 
 <programme start="20200709190000 +0000" channel="kika.de">
+	<!-- TTX 323.0000 ACQTS:1593936657 -->
 	<title>Sendeschluss</title>
 </programme>
 
 <programme start="20200710040000 +0000" stop="20200710040500 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>KiKANiNCHEN</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1104,6 +1250,7 @@
 </programme>
 
 <programme start="20200710040500 +0000" stop="20200710042000 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Shaun das Schaf (53+58)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1111,6 +1258,7 @@
 </programme>
 
 <programme start="20200710042000 +0000" stop="20200710043500 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Mascha und der Bär (38+39)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1119,6 +1267,7 @@
 </programme>
 
 <programme start="20200710043500 +0000" stop="20200710045500 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Feuerwehrmann Sam (65+135)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1127,11 +1276,13 @@
 </programme>
 
 <programme start="20200710045500 +0000" stop="20200710052000 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Die Sendung mit dem Elefanten</title>
 	<sub-title>Die Sendung mit dem Elefanten (193)</sub-title>
 </programme>
 
 <programme start="20200710052000 +0000" stop="20200710054500 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Der kleine Drache Kokosnuss (15+16)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1140,6 +1291,7 @@
 </programme>
 
 <programme start="20200710054500 +0000" stop="20200710060500 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Sesamstraße</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1147,6 +1299,7 @@
 </programme>
 
 <programme start="20200710060500 +0000" stop="20200710061000 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>KiKANiNCHEN</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1154,6 +1307,7 @@
 </programme>
 
 <programme start="20200710061000 +0000" stop="20200710062500 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Wissper (76+78)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1161,6 +1315,7 @@
 </programme>
 
 <programme start="20200710062500 +0000" stop="20200710070000 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Zacki und die Zoobande (15+16+17)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1169,6 +1324,7 @@
 </programme>
 
 <programme start="20200710070000 +0000" stop="20200710072000 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Nö-Nö Schnabeltier (13+14+15)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1176,15 +1332,18 @@
 </programme>
 
 <programme start="20200710072000 +0000" stop="20200710075000 +0000" channel="kika.de">
+	<!-- TTX 324.0000 ACQTS:1593936657 -->
 	<title>Die Sendung mit der Maus</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20200710075000 +0000" stop="20200710091000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Horseland, die Pferderanch (7+8+9+10)</title>
 </programme>
 
 <programme start="20200710091000 +0000" stop="20200710102500 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Wendy (1+2+3)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1192,6 +1351,7 @@
 </programme>
 
 <programme start="20200710102500 +0000" stop="20200710113000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Lenas Ranch (27+28+29)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1200,6 +1360,7 @@
 </programme>
 
 <programme start="20200710113000 +0000" stop="20200710114000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>logo! Die Welt und ich.</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1208,6 +1369,7 @@
 </programme>
 
 <programme start="20200710114000 +0000" stop="20200710121000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Tiere bis unters Dach (81)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1216,6 +1378,7 @@
 </programme>
 
 <programme start="20200710121000 +0000" stop="20200710130000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Schloss Einstein (853+854)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1224,6 +1387,7 @@
 </programme>
 
 <programme start="20200710130000 +0000" stop="20200710135000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Sam Fox: Extreme Adventures (17+18)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1231,10 +1395,12 @@
 </programme>
 
 <programme start="20200710135000 +0000" stop="20200710141000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Stoked (34)</title>
 </programme>
 
 <programme start="20200710141000 +0000" stop="20200710150000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Ein Fall für TKKG (17+18)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1243,6 +1409,7 @@
 </programme>
 
 <programme start="20200710150000 +0000" stop="20200710153000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Mirette ermittelt (50+51+52)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1250,6 +1417,7 @@
 </programme>
 
 <programme start="20200710153000 +0000" stop="20200710160500 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>The Garfield Show (46+47+48)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1257,6 +1425,7 @@
 </programme>
 
 <programme start="20200710160500 +0000" stop="20200710162000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Bobby &amp; Bill (70)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1264,6 +1433,7 @@
 </programme>
 
 <programme start="20200710162000 +0000" stop="20200710164000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Die Ollie &amp; Moon Show (47+48)</title>
 	<video>
 		<quality>HDTV</quality>
@@ -1271,6 +1441,7 @@
 </programme>
 
 <programme start="20200710164000 +0000" channel="kika.de">
+	<!-- TTX 325.0000 ACQTS:1593936657 -->
 	<title>Lieselotte (41)</title>
 	<video>
 		<quality>HDTV</quality>

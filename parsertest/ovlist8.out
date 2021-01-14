@@ -6,6 +6,7 @@
 </channel>
 
 <programme start="20100320164500 +0000" stop="20100320170000 +0000" pdc-start="20100320174500 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>Menschen - das Magazin</title>
 	<sub-title>Menschen - das Magazin Höhepunkte der Paralympics 2010</sub-title>
 	<desc>(teletext 328)</desc>
@@ -13,31 +14,36 @@
 </programme>
 
 <programme start="20100320170000 +0000" stop="20100320173000 +0000" pdc-start="20100320180000 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>hallo deutschland</title>
 	<desc>(teletext 365)</desc>
 </programme>
 
 <programme start="20100320173000 +0000" stop="20100320180000 +0000" pdc-start="20100320183000 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>Leute heute</title>
 	<desc>(teletext 366)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100320180000 +0000" stop="20100320182000 +0000" pdc-start="20100320190000 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>heute</title>
 	<desc>(teletext 310)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100320182000 +0000" stop="20100320182500 +0000" pdc-start="20100320192000 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>Wetter</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100320182500 +0000" stop="20100320191500 +0000" pdc-start="20100320192500 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>Unser Charly</title>
 	<sub-title>Unser Charly Es spukt HD</sub-title>
-	<!-- TTX 329 -->
+	<!-- TTX 329.0000 -->
 	<desc>Unser Charly Es spukt 16:9 HD
 Während eines Spaziergangs mit Katharina und Max findet Charly bunte Glasperlen im Garten der Tierklinik. Einige Meter weiter steht ein prächtiger Schimmel einsam auf der Koppel der Klinik. Katharina findet einen Zettel am Zaumzeug, auf dem steht: "Habe mir den Fuß verstaucht, bitte helft mir!"
 Erfreuliche Nachrichten gibt es für Katharinas Kinder Lilly und Jonas: Ihr Vater Thomas will ihnen näher sein und hat einen Job an der Musikhochschule in Berlin angenommen.</desc>
@@ -48,6 +54,7 @@ Erfreuliche Nachrichten gibt es für Katharinas Kinder Lilly und Jonas: Ihr Vater
 </programme>
 
 <programme start="20100320191500 +0000" stop="20100320204500 +0000" pdc-start="20100320201500 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>Wilsberg</title>
 	<sub-title>Wilsberg Gefahr im Verzug</sub-title>
 	<desc>(teletext 330)</desc>
@@ -58,17 +65,20 @@ Erfreuliche Nachrichten gibt es für Katharinas Kinder Lilly und Jonas: Ihr Vater
 </programme>
 
 <programme start="20100320204500 +0000" stop="20100320205800 +0000" pdc-start="20100320214500 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>heute-journal</title>
 	<desc>(teletext 315)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100320205800 +0000" stop="20100320210000 +0000" pdc-start="20100320215800 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>Wetter</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100320210000 +0000" pdc-start="20100320220000 +0100" channel="ZDF">
+	<!-- TTX 303.0000 ACQTS:1269111809 -->
 	<title>das aktuelle</title>
 	<sub-title>das aktuelle sportstudio</sub-title>
 	<desc>(teletext 331)</desc>

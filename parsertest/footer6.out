@@ -6,31 +6,36 @@
 </channel>
 
 <programme start="20100326155900 +0000" stop="20100326162700 +0000" channel="kabel eins">
+	<!-- TTX 303.0001 ACQTS:1269633629 -->
 	<title>Two and a Half Men</title>
 	<desc>(teletext 361)</desc>
 </programme>
 
 <programme start="20100326162700 +0000" stop="20100326165500 +0000" channel="kabel eins">
+	<!-- TTX 303.0001 ACQTS:1269633629 -->
 	<title>Two and a Half Men</title>
 	<desc>(teletext 361)</desc>
 </programme>
 
 <programme start="20100326165500 +0000" stop="20100326180100 +0000" channel="kabel eins">
+	<!-- TTX 303.0001 ACQTS:1269633629 -->
 	<title>Abenteuer Leben - täglich</title>
 	<sub-title>Abenteuer Leben - täglich Wissen</sub-title>
 	<desc>(teletext 330)</desc>
 </programme>
 
 <programme start="20100326180100 +0000" stop="20100326191500 +0000" channel="kabel eins">
+	<!-- TTX 303.0001 ACQTS:1269633629 -->
 	<title>Achtung Kontrolle! Einsatz</title>
 	<sub-title>Achtung Kontrolle! Einsatz für die Ordnungshüter</sub-title>
 	<desc>(teletext 327)</desc>
 </programme>
 
 <programme start="20100326191500 +0000" stop="20100326201600 +0000" channel="kabel eins">
+	<!-- TTX 303.0001 ACQTS:1269633629 -->
 	<title>Ghost Whisperer - Stimmen aus dem Jenseits</title>
 	<sub-title>Ghost Whisperer - Stimmen aus dem Jenseits Die Herzoperation</sub-title>
-	<!-- TTX 357 -->
+	<!-- TTX 357.0001 -->
 	<desc>Ghost Whisperer - Stimmen aus dem Jenseits
 Die Herzoperation
 Fr 26.03. 20:15-21:16 Sa 27.03. 00:11-01:09
@@ -38,18 +43,21 @@ Jim nimmt ein altes medizinisches Instrument mit nach Hause. Es stellt sich hera
 </programme>
 
 <programme start="20100326201600 +0000" stop="20100326211600 +0000" channel="kabel eins">
+	<!-- TTX 303.0001 ACQTS:1269633629 -->
 	<title>Cold Case - Kein Opfer ist</title>
 	<sub-title>Cold Case - Kein Opfer ist je vergessen Soul</sub-title>
 	<desc>(teletext 358)</desc>
 </programme>
 
 <programme start="20100326211600 +0000" stop="20100326221500 +0000" channel="kabel eins">
+	<!-- TTX 303.0001 ACQTS:1269633629 -->
 	<title>Medium - Nichts bleibt verborgen</title>
 	<sub-title>Medium - Nichts bleibt verborgen Eine Wagenladung Angst</sub-title>
 	<desc>(teletext 359)</desc>
 </programme>
 
 <programme start="20100326221500 +0000" channel="kabel eins">
+	<!-- TTX 303.0001 ACQTS:1269633629 -->
 	<title>Practice - Die Anwälte</title>
 	<sub-title>Practice - Die Anwälte Der Kopf an der Wand</sub-title>
 	<desc>(teletext 337)</desc>

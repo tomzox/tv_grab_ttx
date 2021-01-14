@@ -6,94 +6,110 @@
 </channel>
 
 <programme start="20100322050000 +0000" stop="20100322052800 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>Malcolm mittendrin</title>
 	<desc>(teletext 344)</desc>
 </programme>
 
 <programme start="20100322052800 +0000" stop="20100322055500 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>Scrubs - Die Anfänger</title>
 	<sub-title>Scrubs - Die Anfänger Meine Beförderung</sub-title>
 	<desc>(teletext 345)</desc>
 </programme>
 
 <programme start="20100322055500 +0000" stop="20100322062100 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>Scrubs - Die Anfänger</title>
 	<sub-title>Scrubs - Die Anfänger Meine Schmach</sub-title>
 	<desc>(teletext 345)</desc>
 </programme>
 
 <programme start="20100322062100 +0000" stop="20100322064900 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>Alle hassen Chris</title>
 	<sub-title>Alle hassen Chris Chris hasst Krach mit Mom</sub-title>
 	<desc>(teletext 343)</desc>
 </programme>
 
 <programme start="20100322064900 +0000" stop="20100322071500 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>Alle hassen Chris</title>
 	<sub-title>Alle hassen Chris Chris hasst das Mädchen von nebenan</sub-title>
 	<desc>(teletext 343)</desc>
 </programme>
 
 <programme start="20100322071500 +0000" stop="20100322074500 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>How I Met Your Mother</title>
 	<sub-title>How I Met Your Mother Die Kette des Anbrüllens</sub-title>
 	<desc>(teletext 346)</desc>
 </programme>
 
 <programme start="20100322074500 +0000" stop="20100322081300 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>How I Met Your Mother</title>
 	<sub-title>How I Met Your Mother Jugendliebe</sub-title>
 	<desc>(teletext 346)</desc>
 </programme>
 
 <programme start="20100322081300 +0000" stop="20100322083800 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>Malcolm mittendrin</title>
 	<sub-title>Malcolm mittendrin Das Experiment</sub-title>
 	<desc>(teletext 344)</desc>
 </programme>
 
 <programme start="20100322083800 +0000" channel="ProSieben">
+	<!-- TTX 301.0002 ACQTS:1269266550 -->
 	<title>Malcolm mittendrin</title>
 	<sub-title>Malcolm mittendrin Victors zweite Familie</sub-title>
 	<desc>(teletext 344)</desc>
 </programme>
 
 <programme start="20100322090700 +0000" stop="20100322093300 +0000" channel="ProSieben">
+	<!-- TTX 302.0002 ACQTS:1269266550 -->
 	<title>Scrubs - Die Anfänger</title>
 	<desc>(teletext 345)</desc>
 </programme>
 
 <programme start="20100322093300 +0000" stop="20100322100200 +0000" channel="ProSieben">
+	<!-- TTX 302.0002 ACQTS:1269266550 -->
 	<title>Scrubs - Die Anfänger</title>
 	<desc>(teletext 345)</desc>
 </programme>
 
 <programme start="20100322100200 +0000" stop="20100322101200 +0000" channel="ProSieben">
+	<!-- TTX 302.0002 ACQTS:1269266550 -->
 	<title>"Drachenzähmen leicht gemacht" - Das große ProSieben</title>
 	<sub-title>"Drachenzähmen leicht gemacht" - Das große ProSieben TV-Special zum Film</sub-title>
 </programme>
 
 <programme start="20100322101200 +0000" stop="20100322120000 +0000" channel="ProSieben">
+	<!-- TTX 302.0002 ACQTS:1269266550 -->
 	<title>Shrek 2 - Der tollkühne Held</title>
 	<sub-title>Shrek 2 - Der tollkühne Held kehrt zurück</sub-title>
 </programme>
 
 <programme start="20100322120000 +0000" stop="20100322125900 +0000" channel="ProSieben">
+	<!-- TTX 302.0002 ACQTS:1269266550 -->
 	<title>It's My Life</title>
 	<sub-title>It's My Life Ich werde die beste Friseurin der Welt</sub-title>
 	<desc>(teletext 417)</desc>
 </programme>
 
 <programme start="20100322125900 +0000" stop="20100322150000 +0000" channel="ProSieben">
+	<!-- TTX 302.0002 ACQTS:1269266550 -->
 	<title>We are Family! So lebt</title>
 	<sub-title>We are Family! So lebt Deutschland. Money Trap 8</sub-title>
 	<desc>(teletext 414)</desc>
 </programme>
 
 <programme start="20100322150000 +0000" stop="20100322155900 +0000" channel="ProSieben">
+	<!-- TTX 302.0002 ACQTS:1269266550 -->
 	<title>Die Jobretter</title>
 	<sub-title>Die Jobretter W + S Moden</sub-title>
-	<!-- TTX 335 -->
+	<!-- TTX 335.0002 -->
 	<desc>Die Jobretter
 W + S Moden
 Mo 22.03. 16:00-16:59
@@ -101,6 +117,7 @@ Viele Experten - eine Mission! Nicole Brückner, Bernd Stumm, die Drillinge Thoma
 </programme>
 
 <programme start="20100322155900 +0000" channel="ProSieben">
+	<!-- TTX 302.0002 ACQTS:1269266550 -->
 	<title>taff</title>
 	<sub-title>taff Thema u. a.: Projekt Paradies</sub-title>
 	<desc>(teletext 405)</desc>

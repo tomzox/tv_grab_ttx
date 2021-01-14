@@ -6,28 +6,33 @@
 </channel>
 
 <programme start="20100417092700 +0000" stop="20100417113700 +0000" channel="kabel eins">
+	<!-- TTX 306.0003 ACQTS:1271441751 -->
 	<title>The Biggest Loser - Abspecken im Doppelpack</title>
 	<desc>(teletext 324)</desc>
 </programme>
 
 <programme start="20100417113700 +0000" stop="20100417121600 +0000" channel="kabel eins">
+	<!-- TTX 306.0003 ACQTS:1271441751 -->
 	<title>Das Fast Food-Duell - Spitzenkoch gegen Lieferservice</title>
-	<!-- TTX 381 -->
+	<!-- TTX 381.0001 -->
 	<desc>Das Fast Food-Duell - Spitzenkoch gegen Lieferservice Sa 17.04. 13:37-14:16
 Drei Köche wollen es beweisen: Sie sind schneller, günstiger und vor allem besser als jeder Lieferservice! Die Sterneköche Frank Rosin und Björn Freitag sowie Catering-Star Ole Plogstedt fordern werktäglich Deutschlands Bringdienste heraus. Montags bis freitags um 18.45 Uhr schwingt das Starkoch-Trio im Wechsel die Löffel, lässt die Schneebesen tanzen und die Messer sausen, um Fast Food-Junkies zu überzeugen, dass selber kochen mehr Spaß und Genuss bringt als jeder Bringdienst.</desc>
 </programme>
 
 <programme start="20100417121600 +0000" stop="20100417142000 +0000" channel="kabel eins">
+	<!-- TTX 306.0003 ACQTS:1271441751 -->
 	<title>Mein Revier - Ordnungshüter</title>
 	<sub-title>Mein Revier - Ordnungshüter räumen auf</sub-title>
 	<desc>(teletext 323)</desc>
 </programme>
 
 <programme start="20100417142000 +0000" stop="20100417142700 +0000" channel="kabel eins">
+	<!-- TTX 306.0003 ACQTS:1271441751 -->
 	<title>kabel eins news</title>
 </programme>
 
 <programme start="20100417142700 +0000" channel="kabel eins">
+	<!-- TTX 306.0003 ACQTS:1271441751 -->
 	<title>Abenteuer Auto</title>
 	<sub-title>Abenteuer Auto Thema u.a.: Fahrbericht Porsche Cayenne</sub-title>
 	<desc>(teletext 321)</desc>

@@ -6,9 +6,10 @@
 </channel>
 
 <programme start="20060429222500 +0000" stop="20060430001000 +0000" pdc-start="20060430003000 +0200" channel="MDR">
+	<!-- TTX 305.0000 ACQTS:1146302512 -->
 	<title>K2 - Das letzte Abenteuer</title>
 	<sub-title>K2 - Das letzte Abenteuer Spielfilm (GBR 1990)</sub-title>
-	<!-- TTX 317 -->
+	<!-- TTX 317.0000 -->
 	<desc>K2 - Das letzte Abenteuer
 Spielfilm (GBR 1990) Regie: Franc Roddam
 Der K2 ist mit über 8.600 Metern Höhe einer der höchsten Berge der Welt. Der Versuch ihn zu besteigen, endete für zahllose Kletterer tödlich.
@@ -21,12 +22,14 @@ Mit Michael Biehn, Matt Craven u.a.</desc>
 </programme>
 
 <programme start="20060430001000 +0000" stop="20060430013500 +0000" pdc-start="20060430021500 +0200" channel="MDR">
+	<!-- TTX 305.0000 ACQTS:1146302512 -->
 	<title>Sagarmatha - Wagnis im ewigen Eis</title>
 	<sub-title>Sagarmatha - Wagnis im ewigen Eis Spielfilm (CSSR/NEP 1988)</sub-title>
 	<desc>(teletext 320)</desc>
 </programme>
 
 <programme start="20060430013500 +0000" stop="20060430015000 +0000" pdc-start="20060430034000 +0200" channel="MDR">
+	<!-- TTX 305.0000 ACQTS:1146302512 -->
 	<title>Tagesthemen</title>
 	<audio>
 		<stereo>stereo</stereo>
@@ -34,18 +37,22 @@ Mit Michael Biehn, Matt Craven u.a.</desc>
 </programme>
 
 <programme start="20060430015000 +0000" stop="20060430022000 +0000" pdc-start="20060430035500 +0200" channel="MDR">
+	<!-- TTX 305.0000 ACQTS:1146302512 -->
 	<title>Sachsenspiegel</title>
 </programme>
 
 <programme start="20060430022000 +0000" stop="20060430025000 +0000" pdc-start="20060430042500 +0200" channel="MDR">
+	<!-- TTX 305.0000 ACQTS:1146302512 -->
 	<title>Sachsen-anhalt heute</title>
 </programme>
 
 <programme start="20060430025000 +0000" stop="20060430032000 +0000" pdc-start="20060430045500 +0200" channel="MDR">
+	<!-- TTX 305.0000 ACQTS:1146302512 -->
 	<title>Thüringen Journal</title>
 </programme>
 
 <programme start="20060430032000 +0000" stop="20060430035500 +0000" pdc-start="20060430052000 +0200" channel="MDR">
+	<!-- TTX 305.0000 ACQTS:1146302512 -->
 	<title>Rundflug Thüringen</title>
 	<audio>
 		<stereo>stereo</stereo>

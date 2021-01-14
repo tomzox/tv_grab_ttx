@@ -6,136 +6,162 @@
 </channel>
 
 <programme start="20080922031000 +0000" stop="20080922035000 +0000" channel="rtl2.de">
+	<!-- TTX 301.0000 ACQTS:1222090547 -->
 	<title>Still Standing</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20080922035000 +0000" stop="20080922044500 +0000" channel="rtl2.de">
+	<!-- TTX 301.0000 ACQTS:1222090547 -->
 	<title>Immer wieder Jim</title>
 	<desc>(teletext 335)</desc>
 </programme>
 
 <programme start="20080922044500 +0000" stop="20080922070000 +0000" channel="rtl2.de">
+	<!-- TTX 301.0000 ACQTS:1222090547 -->
 	<title>Infomercial</title>
 </programme>
 
 <programme start="20080922070000 +0000" stop="20080922090000 +0000" channel="rtl2.de">
+	<!-- TTX 301.0000 ACQTS:1222090547 -->
 	<title>Frauentausch</title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20080922090000 +0000" stop="20080922110000 +0000" channel="rtl2.de">
+	<!-- TTX 301.0000 ACQTS:1222090547 -->
 	<title>Zuhause im Glück</title>
 	<sub-title>Zuhause im Glück Unser Einzug in ein neues Zuhause</sub-title>
 	<desc>(teletext 317)</desc>
 </programme>
 
 <programme start="20080922110000 +0000" stop="20080922112500 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>Magi-Nation</title>
 	<desc>(teletext 373)</desc>
 </programme>
 
 <programme start="20080922112500 +0000" stop="20080922115000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>Pokemon</title>
 	<desc>(teletext 373)</desc>
 </programme>
 
 <programme start="20080922115000 +0000" stop="20080922121500 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>Pokemon</title>
 	<desc>(teletext 373)</desc>
 </programme>
 
 <programme start="20080922121500 +0000" stop="20080922124500 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>Pokemon</title>
 	<desc>(teletext 373)</desc>
 </programme>
 
 <programme start="20080922124500 +0000" stop="20080922131000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>Storm Hawks</title>
 	<desc>(teletext 373)</desc>
 </programme>
 
 <programme start="20080922131000 +0000" stop="20080922133000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>Dinosaur King</title>
 	<desc>(teletext 373)</desc>
 </programme>
 
 <programme start="20080922133000 +0000" stop="20080922134000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>My Pokito</title>
 	<desc>(teletext 373)</desc>
 </programme>
 
 <programme start="20080922134000 +0000" stop="20080922141000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>Naruto</title>
 	<desc>(teletext 373)</desc>
 </programme>
 
 <programme start="20080922141000 +0000" stop="20080922143000 +0000" channel="rtl2.de">
+	<!-- TTX 302.0000 ACQTS:1222090547 -->
 	<title>Tom und Jerry</title>
 	<desc>(teletext 372)</desc>
 </programme>
 
 <programme start="20080922143000 +0000" stop="20080922150000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1222090547 -->
 	<title>Full House</title>
 	<desc>(teletext 332)</desc>
 </programme>
 
 <programme start="20080922150000 +0000" stop="20080922160000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1222090547 -->
 	<title>Still Standing</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20080922160000 +0000" stop="20080922170000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1222090547 -->
 	<title>Immer wieder Jim</title>
 	<desc>(teletext 335)</desc>
 </programme>
 
 <programme start="20080922170000 +0000" stop="20080922180000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1222090547 -->
 	<title>Hör' mal, wer da hämmert!</title>
 	<desc>(teletext 336)</desc>
 </programme>
 
 <programme start="20080922180000 +0000" stop="20080922181500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1222090547 -->
 	<title>RTL II News</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20080922181500 +0000" stop="20080922191500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1222090547 -->
 	<title>Die Kochprofis</title>
 	<sub-title>Die Kochprofis Einsatz am Herd</sub-title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20080922191500 +0000" stop="20080922211500 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1222090547 -->
 	<title>Frauentausch</title>
 	<sub-title>Frauentausch Das Aschenputtel-Experiment</sub-title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20080922211500 +0000" stop="20080922221000 +0000" channel="rtl2.de">
+	<!-- TTX 303.0001 ACQTS:1222090547 -->
 	<title>Cheaters</title>
 	<sub-title>Cheaters Beim Fremdgehen erwischt!</sub-title>
 	<desc>(teletext 319)</desc>
 </programme>
 
 <programme start="20080922221000 +0000" stop="20080922222500 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1222090547 -->
 	<title>RTL II News</title>
 	<desc>(teletext 110)</desc>
 </programme>
 
 <programme start="20080922222500 +0000" stop="20080922232500 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1222090547 -->
 	<title>Akte Mord</title>
 </programme>
 
 <programme start="20080922232500 +0000" stop="20080923003000 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1222090547 -->
 	<title>Autopsie</title>
 	<sub-title>Autopsie Mysteriöse Todesfälle</sub-title>
 	<desc>(teletext 338)</desc>
 </programme>
 
 <programme start="20080923003000 +0000" stop="20080923021500 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1222090547 -->
 	<title>Blood &amp; Wine: Ein tödlicher Cocktail</title>
-	<!-- TTX 351 -->
+	<!-- TTX 351.0001 -->
 	<desc>Blood &amp; Wine: Ein tödlicher Cocktail
 Krimi, GB 1996
 Mit Hilfe seiner Geliebten Gabriella und des englischen Safeknackers Victor Spansky raubt Weinhändler Alex Gates ein millionenschweres Diamantkollier.
@@ -146,8 +172,9 @@ Die skurrilen Charaktere und ihre spritzigen Dialoge kommen in der Star-Besetzun
 </programme>
 
 <programme start="20080923021500 +0000" stop="20080923031000 +0000" channel="rtl2.de">
+	<!-- TTX 304.0000 ACQTS:1222090547 -->
 	<title>Ein Direktor räumt auf</title>
-	<!-- TTX 351 -->
+	<!-- TTX 351.0003 -->
 	<desc>Ein Direktor räumt auf
 Turbulente Komödie, USA 1998
 Damit er sein letztes Jahr auf der High School ohne Verweis übersteht, stellen die Eltern eines notorischen Spaßvogels einen üppigen Scheck aus. Doch der Chaot hat bereits seinen ersten Streich in die Wege geleitet:
@@ -158,25 +185,30 @@ Bekannt wurde Zachery Ty Bryan durch die RTL II-Erfolgs-Sitcom "Hör' mal, wer da
 </programme>
 
 <programme start="20080923031000 +0000" stop="20080923035000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1222090547 -->
 	<title>Still Standing</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20080923035000 +0000" stop="20080923044500 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1222090547 -->
 	<title>Immer wieder Jim</title>
 	<desc>(teletext 335)</desc>
 </programme>
 
 <programme start="20080923044500 +0000" stop="20080923070000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1222090547 -->
 	<title>Infomercial</title>
 </programme>
 
 <programme start="20080923070000 +0000" stop="20080923090000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1222090547 -->
 	<title>Frauentausch</title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20080923090000 +0000" channel="rtl2.de">
+	<!-- TTX 305.0000 ACQTS:1222090547 -->
 	<title>Zuhause im Glück</title>
 	<sub-title>Zuhause im Glück Unser Einzug in ein neues Leben</sub-title>
 	<desc>(teletext 317)</desc>

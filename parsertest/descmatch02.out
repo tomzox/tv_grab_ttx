@@ -6,42 +6,50 @@
 </channel>
 
 <programme start="20060506142500 +0000" stop="20060506145000 +0000" channel="KI.KA">
+	<!-- TTX 304.0000 ACQTS:1146914553 -->
 	<title>KickerMania</title>
 </programme>
 
 <programme start="20060506145000 +0000" stop="20060506152000 +0000" channel="KI.KA">
+	<!-- TTX 304.0000 ACQTS:1146914553 -->
 	<title>Löwenzahn</title>
 	<sub-title>Löwenzahn Peter füttert seinen Kaktus</sub-title>
 </programme>
 
 <programme start="20060506152000 +0000" stop="20060506154500 +0000" channel="KI.KA">
+	<!-- TTX 304.0000 ACQTS:1146914553 -->
 	<title>Schloss Einstein (398)</title>
-	<!-- TTX 306 -->
+	<!-- TTX 306.0000 -->
 	<desc>Folge 398
 Konny hat Anton beim romantischen Ausflug zum See ihre Liebe gestanden und auch der smarte Skater ist angetan von der süßen Hobby-Imkerin. Die beiden verstehen sich richtig gut und könnten eigentlich ihr Glück genießen, wenn da nicht die beiden eifersüchtigen Neider, Kai und Sophie, wären... Die beiden lassen einfach nicht locker und graben weiter in Antons undurchsichtiger Vergangenheit.</desc>
 </programme>
 
 <programme start="20060506154500 +0000" stop="20060506160000 +0000" channel="KI.KA">
+	<!-- TTX 304.0000 ACQTS:1146914553 -->
 	<title>ReläXX</title>
 	<sub-title>ReläXX Thema: Lamm, Pferd &amp; Kuh</sub-title>
 </programme>
 
 <programme start="20060506160000 +0000" stop="20060506161500 +0000" channel="KI.KA">
+	<!-- TTX 304.0000 ACQTS:1146914553 -->
 	<title>Die Abenteuer von Paddington</title>
 	<sub-title>Die Abenteuer von Paddington Bär (84 &amp; 85)/P. und der kaputte Fernseher/Wer zu spät kommt, den bestraft das Leben - P. beim Pferderennen</sub-title>
 </programme>
 
 <programme start="20060506161500 +0000" stop="20060506164000 +0000" channel="KI.KA">
+	<!-- TTX 304.0000 ACQTS:1146914553 -->
 	<title>Flipper &amp; Lopaka (31)</title>
 	<sub-title>Flipper &amp; Lopaka (31) Puffy, der Rattenfänger</sub-title>
 </programme>
 
 <programme start="20060506164000 +0000" stop="20060506165000 +0000" channel="KI.KA">
+	<!-- TTX 304.0000 ACQTS:1146914553 -->
 	<title>Angelina Ballerina (3)</title>
 	<sub-title>Angelina Ballerina (3) Die Ballettkarten</sub-title>
 </programme>
 
 <programme start="20060506165000 +0000" channel="KI.KA">
+	<!-- TTX 304.0000 ACQTS:1146914553 -->
 	<title>Unser Sandmännchen/Tobias</title>
 	<sub-title>Unser Sandmännchen/Tobias Totz: Die Geschichte von Noah</sub-title>
 </programme>

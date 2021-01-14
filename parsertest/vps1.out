@@ -6,27 +6,32 @@
 </channel>
 
 <programme start="20060430164900 +0000" stop="20060430165000 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Ein Platz an der Sonne</title>
 </programme>
 
 <programme start="20060430165000 +0000" stop="20060430172000 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Lindenstraße: Anteile (D, 2006)</title>
 	<desc>(teletext 319)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060430172000 +0000" stop="20060430180000 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Weltspiegel</title>
 	<desc>(teletext 322)</desc>
 </programme>
 
 <programme start="20060430180000 +0000" stop="20060430181500 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Tagesschau</title>
 	<desc>(teletext 310)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20060430181500 +0000" stop="20060430194500 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Polizeiruf 110: Matrosenbraut (D, 2006)</title>
 	<desc>(teletext 324)</desc>
 	<subtitles type="teletext"/>
@@ -36,6 +41,7 @@
 </programme>
 
 <programme start="20060430194500 +0000" stop="20060430204500 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Sabine Christiansen</title>
 	<desc>(teletext 326)</desc>
 	<star-rating>
@@ -44,21 +50,25 @@
 </programme>
 
 <programme start="20060430204500 +0000" stop="20060430205800 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Tagesthemen</title>
 	<sub-title>Tagesthemen mit Sport</sub-title>
 	<desc>(teletext 311)</desc>
 </programme>
 
 <programme start="20060430205800 +0000" stop="20060430210000 +0000" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Das Wetter im Ersten</title>
 </programme>
 
 <programme start="20060430210000 +0000" stop="20060430211500 +0000" pdc-start="20060430225900 +0200" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>Sondersendung zum Tod</title>
 	<sub-title>Sondersendung zum Tod von Paul Spiegel</sub-title>
 </programme>
 
 <programme start="20060430211500 +0000" stop="20060430214500 +0000" pdc-start="20060430230000 +0200" channel="ARD">
+	<!-- TTX 303.0000 ACQTS:1146397378 -->
 	<title>ttt - titel thesen</title>
 	<sub-title>ttt - titel thesen temperamente</sub-title>
 	<desc>(teletext 328)</desc>
@@ -68,45 +78,54 @@
 </programme>
 
 <programme start="20060430214500 +0000" stop="20060430220000 +0000" pdc-start="20060430233000 +0200" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>Bericht vom Parteitag</title>
 	<sub-title>Bericht vom Parteitag Die Linkspartei.PDS</sub-title>
 </programme>
 
 <programme start="20060430220000 +0000" stop="20060430234000 +0000" pdc-start="20060430234500 +0200" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>Das Fest</title>
 	<sub-title>Das Fest Spielfilm, DK 1997</sub-title>
 	<desc>(teletext 329)</desc>
 </programme>
 
 <programme start="20060430234000 +0000" stop="20060430235000 +0000" pdc-start="20060501012500 +0200" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20060430235000 +0000" stop="20060501011500 +0000" pdc-start="20060501013500 +0200" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>Frühling für Hitler</title>
 	<sub-title>Frühling für Hitler Spielfilm, USA 1967</sub-title>
 	<desc>(teletext 331)</desc>
 </programme>
 
 <programme start="20060501011500 +0000" stop="20060501020000 +0000" pdc-start="20060501030000 +0200" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>Presseclub</title>
 </programme>
 
 <programme start="20060501020000 +0000" stop="20060501023000 +0000" pdc-start="20060501034500 +0200" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>ttt - titel thesen</title>
 	<sub-title>ttt - titel thesen temperamente</sub-title>
 </programme>
 
 <programme start="20060501023000 +0000" stop="20060501024500 +0000" pdc-start="20060501041500 +0200" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>Die schönsten Bahnstrecken</title>
 	<sub-title>Die schönsten Bahnstrecken Deutschlands ICE: Bonn - Berlin</sub-title>
 </programme>
 
 <programme start="20060501024500 +0000" stop="20060501025000 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20060501025000 +0000" stop="20060501033000 +0000" channel="ARD">
+	<!-- TTX 304.0000 ACQTS:1146397378 -->
 	<title>Weltspiegel</title>
 </programme>
 </tv>

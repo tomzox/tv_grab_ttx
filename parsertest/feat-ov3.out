@@ -6,79 +6,95 @@
 </channel>
 
 <programme start="20100417161200 +0000" stop="20100417161500 +0000" pdc-start="20100417181200 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>Baden-Württemberg</title>
 	<sub-title>Baden-Württemberg Wetter</sub-title>
 </programme>
 
 <programme start="20100417161500 +0000" stop="20100417164500 +0000" pdc-start="20100417181500 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>LS unterwegs: Einblicke</title>
 	<sub-title>LS unterwegs: Einblicke in die Jugendgewalt</sub-title>
 	<desc>(teletext 307)</desc>
 </programme>
 
 <programme start="20100417164500 +0000" stop="20100417171500 +0000" pdc-start="20100417184500 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>Landesschau Mobil</title>
 	<desc>(teletext 310)</desc>
 </programme>
 
 <programme start="20100417171500 +0000" stop="20100417174500 +0000" pdc-start="20100417191500 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>Vis-a-Vis</title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20100417174500 +0000" stop="20100417175800 +0000" pdc-start="20100417194500 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>Baden-Württemberg aktuell</title>
 	<sub-title>Baden-Württemberg aktuell mit Sport</sub-title>
 	<desc>(teletext 311)</desc>
 </programme>
 
 <programme start="20100417175800 +0000" stop="20100417180000 +0000" pdc-start="20100417195800 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>Baden-Württemberg Wetter</title>
 </programme>
 
 <programme start="20100417180000 +0000" stop="20100417181500 +0000" pdc-start="20100417200000 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100417181500 +0000" stop="20100417194500 +0000" pdc-start="20100417201500 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>SamstagAbend</title>
 	<sub-title>SamstagAbend Nachtschwärmer</sub-title>
 	<desc>(teletext 315)</desc>
 </programme>
 
 <programme start="20100417194500 +0000" stop="20100417195000 +0000" pdc-start="20100417214500 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>Baden-Württemberg</title>
 	<sub-title>Baden-Württemberg aktuell</sub-title>
 </programme>
 
 <programme start="20100417195000 +0000" stop="20100417201500 +0000" pdc-start="20100417215000 +0200" channel="bw.swr.de">
+	<!-- TTX 303.0000 ACQTS:1271536489 -->
 	<title>Loriot</title>
 	<sub-title>Loriot Von Mensch und Musik</sub-title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20100419040000 +0000" stop="20100419040500 +0000" pdc-start="20100419060000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Die faula Paula</title>
 </programme>
 
 <programme start="20100419040500 +0000" stop="20100419043000 +0000" pdc-start="20100419060500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Schloss Einstein</title>
 </programme>
 
 <programme start="20100419043000 +0000" stop="20100419045500 +0000" pdc-start="20100419063000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Schloss Einstein</title>
 </programme>
 
 <programme start="20100419045500 +0000" stop="20100419050000 +0000" pdc-start="20100419065500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Minitz</title>
 </programme>
 
 <programme start="20100419050000 +0000" stop="20100419053000 +0000" pdc-start="20100419070000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>nano</title>
 </programme>
 
 <programme start="20100419053000 +0000" stop="20100419054500 +0000" pdc-start="20100419073000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Städte und Landschaften</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -86,6 +102,7 @@
 </programme>
 
 <programme start="20100419054500 +0000" stop="20100419060000 +0000" pdc-start="20100419073000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Städte und Landschaften</title>
 	<audio>
 		<stereo>bilingual</stereo>
@@ -93,122 +110,148 @@
 </programme>
 
 <programme start="20100419060000 +0000" stop="20100419063000 +0000" pdc-start="20100419080000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Wie wird man</title>
 	<sub-title>Wie wird man Milliardär?</sub-title>
 </programme>
 
 <programme start="20100419063000 +0000" stop="20100419070000 +0000" pdc-start="20100419083000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>LS unterwegs</title>
 </programme>
 
 <programme start="20100419070000 +0000" stop="20100419074500 +0000" pdc-start="20100419090000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>ARD-Buffet (ARD-Wh)</title>
 	<sub-title>ARD-Buffet (ARD-Wh) Leben &amp; genießen</sub-title>
 </programme>
 
 <programme start="20100419074500 +0000" stop="20100419081500 +0000" pdc-start="20100419094500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Brisant (ARD-Wh)</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100419081500 +0000" stop="20100419090000 +0000" pdc-start="20100419101500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>In aller Freundschaft</title>
 	<sub-title>In aller Freundschaft Vollmond</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100419090000 +0000" stop="20100419095000 +0000" pdc-start="20100419110000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Sturm der Liebe (ARD-Wh)</title>
 </programme>
 
 <programme start="20100419095000 +0000" stop="20100419104000 +0000" pdc-start="20100419115000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0001 ACQTS:1271536489 -->
 	<title>Elefant, Tiger &amp; Co.</title>
 </programme>
 
 <programme start="20100419104000 +0000" stop="20100419113000 +0000" pdc-start="20100419124000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0002 ACQTS:1271536489 -->
 	<title>Rote Rosen</title>
 	<sub-title>Rote Rosen Fernsehserie (ARD-Wh)</sub-title>
 </programme>
 
 <programme start="20100419113000 +0000" stop="20100419130000 +0000" pdc-start="20100419133000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0002 ACQTS:1271536489 -->
 	<title>Sohn ohne Heimat</title>
 	<sub-title>Sohn ohne Heimat Spielfilm D 1955</sub-title>
 </programme>
 
 <programme start="20100419130000 +0000" stop="20100419140000 +0000" pdc-start="20100419150000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0002 ACQTS:1271536489 -->
 	<title>Planet Wissen: Milch - So gesund wie ihr Ruf?</title>
 </programme>
 
 <programme start="20100419140000 +0000" stop="20100419140500 +0000" pdc-start="20100419160000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0002 ACQTS:1271536489 -->
 	<title>Baden-Württemberg</title>
 	<sub-title>Baden-Württemberg aktuell</sub-title>
 </programme>
 
 <programme start="20100419140500 +0000" stop="20100419150000 +0000" pdc-start="20100419160500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0002 ACQTS:1271536489 -->
 	<title>Kaffee oder Tee?</title>
 </programme>
 
 <programme start="20100419150000 +0000" stop="20100419150500 +0000" pdc-start="20100419170000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0002 ACQTS:1271536489 -->
 	<title>Baden-Württemberg</title>
 	<sub-title>Baden-Württemberg aktuell</sub-title>
 </programme>
 
 <programme start="20100419150500 +0000" stop="20100419160000 +0000" pdc-start="20100419160500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0002 ACQTS:1271536489 -->
 	<title>Kaffee oder Tee?</title>
 </programme>
 
 <programme start="20100419160000 +0000" stop="20100419160900 +0000" pdc-start="20100419180000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0002 ACQTS:1271536489 -->
 	<title>Baden-Württemberg aktuell</title>
 </programme>
 
 <programme start="20100419160900 +0000" stop="20100419161200 +0000" pdc-start="20100419180900 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Wirtschaftsinformationen</title>
 	<sub-title>Wirtschaftsinformationen von der Stuttgarter Börse</sub-title>
 </programme>
 
 <programme start="20100419161200 +0000" stop="20100419161500 +0000" pdc-start="20100419181200 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Baden-Württemberg Wetter</title>
 </programme>
 
 <programme start="20100419161500 +0000" stop="20100419164500 +0000" pdc-start="20100419181500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Nahaufnahme</title>
 	<sub-title>Nahaufnahme SOS Wasenwache</sub-title>
 </programme>
 
 <programme start="20100419164500 +0000" stop="20100419174500 +0000" pdc-start="20100419184500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Landesschau BW</title>
 </programme>
 
 <programme start="20100419174500 +0000" stop="20100419175800 +0000" pdc-start="20100419194500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Baden-Württemberg</title>
 	<sub-title>Baden-Württemberg aktuell</sub-title>
 </programme>
 
 <programme start="20100419175800 +0000" stop="20100419180000 +0000" pdc-start="20100419195800 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Baden-Württemberg Wetter</title>
 </programme>
 
 <programme start="20100419180000 +0000" stop="20100419181500 +0000" pdc-start="20100419200000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100419181500 +0000" stop="20100419194500 +0000" pdc-start="20100419201500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Pfarrer Braun: Im Namen</title>
 	<sub-title>Pfarrer Braun: Im Namen von Rose: Spielf.D '09</sub-title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100419194500 +0000" stop="20100419195800 +0000" pdc-start="20100419214500 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Baden-Württemberg</title>
 	<sub-title>Baden-Württemberg aktuell</sub-title>
 </programme>
 
 <programme start="20100419195800 +0000" stop="20100419200000 +0000" pdc-start="20100419215800 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Baden-Württemberg Wetter</title>
 </programme>
 
 <programme start="20100419200000 +0000" stop="20100419203000 +0000" pdc-start="20100419220000 +0200" channel="bw.swr.de">
+	<!-- TTX 341.0003 ACQTS:1271536489 -->
 	<title>Sag die Wahrheit</title>
 	<sub-title>Sag die Wahrheit Ratespiel</sub-title>
 </programme>

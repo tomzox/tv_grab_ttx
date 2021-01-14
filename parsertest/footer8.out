@@ -6,13 +6,15 @@
 </channel>
 
 <programme start="20100326173000 +0000" stop="20100326191500 +0000" channel="das-vierte.de">
+	<!-- TTX 303.0001 ACQTS:1269634169 -->
 	<title>sonnenklar.TV</title>
 	<desc>(teletext 460)</desc>
 </programme>
 
 <programme start="20100326191500 +0000" stop="20100326205000 +0000" channel="das-vierte.de">
+	<!-- TTX 303.0001 ACQTS:1269634169 -->
 	<title>Airborne - Flügel aus Stahl</title>
-	<!-- TTX 312 -->
+	<!-- TTX 312.0001 -->
 	<desc>Airborne - Flügel aus Stahl
 Actionfilm, USA 1990
 Fr 26.03., 20:15 Uhr
@@ -24,22 +26,26 @@ Jake Preston: Nicolas Cage, Brad Little: Tommy Lee Jones, Billie Lee Guthr: Sean
 </programme>
 
 <programme start="20100326205000 +0000" stop="20100326215000 +0000" channel="das-vierte.de">
+	<!-- TTX 303.0001 ACQTS:1269634169 -->
 	<title>Teleshopping</title>
 </programme>
 
 <programme start="20100326215000 +0000" channel="das-vierte.de">
+	<!-- TTX 303.0001 ACQTS:1269634169 -->
 	<title>Making Of</title>
 	<sub-title>Making Of Making Of: Green Zone</sub-title>
 </programme>
 
 <programme start="20100327173000 +0000" stop="20100327191500 +0000" channel="das-vierte.de">
+	<!-- TTX 307.0000 ACQTS:1269634169 -->
 	<title>sonnenklar.TV</title>
 	<desc>(teletext 460)</desc>
 </programme>
 
 <programme start="20100327191500 +0000" stop="20100327211500 +0000" channel="das-vierte.de">
+	<!-- TTX 307.0000 ACQTS:1269634169 -->
 	<title>Drei Amigos</title>
-	<!-- TTX 313 -->
+	<!-- TTX 313.0001 -->
 	<desc>Drei Amigos
 Komödie, USA 1986
 Sa 27.03., 20:15 Uhr
@@ -51,6 +57,7 @@ Lucky Day: Steve Martin, Dusty Bottoms: Chevy Chase, Ned Nederlander: Martin Sho
 </programme>
 
 <programme start="20100327211500 +0000" channel="das-vierte.de">
+	<!-- TTX 307.0000 ACQTS:1269634169 -->
 	<title>Teleshopping</title>
 </programme>
 </tv>

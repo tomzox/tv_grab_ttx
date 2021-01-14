@@ -6,41 +6,50 @@
 </channel>
 
 <programme start="20100329033000 +0000" stop="20100329070000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>ARD-Morgenmagazin</title>
 	<desc>(teletext 309)</desc>
 </programme>
 
 <programme start="20100329070000 +0000" stop="20100329070500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100329070500 +0000" stop="20100329075500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>Rote Rosen (769)</title>
 </programme>
 
 <programme start="20100329075500 +0000" stop="20100329080000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>ARD-Wetterschau</title>
 </programme>
 
 <programme start="20100329080000 +0000" stop="20100329080300 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100329080300 +0000" stop="20100329082000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>Brisant</title>
 </programme>
 
 <programme start="20100329082000 +0000" stop="20100329100000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>Hochzeitsnacht im</title>
 	<sub-title>Hochzeitsnacht im Paradies (A, 1962)</sub-title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20100329100000 +0000" stop="20100329101500 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100329101500 +0000" stop="20100329110000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>ARD-Buffet</title>
 	<sub-title>ARD-Buffet Moderation: Evelin König</sub-title>
 	<desc>(teletext 315)</desc>
@@ -50,46 +59,55 @@
 </programme>
 
 <programme start="20100329110000 +0000" stop="20100329120000 +0000" channel="ard.de">
+	<!-- TTX 301.0000 ACQTS:1269898367 -->
 	<title>ARD-Mittagsmagazin</title>
 	<sub-title>ARD-Mittagsmagazin mit Tagesschau</sub-title>
 	<desc>(teletext 312)</desc>
 </programme>
 
 <programme start="20100329120000 +0000" stop="20100329121000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100329121000 +0000" stop="20100329130000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Rote Rosen (770)</title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20100329130000 +0000" stop="20100329131000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100329131000 +0000" stop="20100329140000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Sturm der Liebe (1041)</title>
 	<desc>(teletext 317)</desc>
 </programme>
 
 <programme start="20100329140000 +0000" stop="20100329141000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100329141000 +0000" stop="20100329150000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Nashorn, Zebra &amp; Co.</title>
 	<sub-title>Nashorn, Zebra &amp; Co. Tierpark Hellabrunn</sub-title>
 	<desc>(teletext 318)</desc>
 </programme>
 
 <programme start="20100329150000 +0000" stop="20100329151500 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100329151500 +0000" stop="20100329160000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Brisant</title>
 	<sub-title>Brisant Boulevardmagazin</sub-title>
 	<desc>(teletext 319)</desc>
@@ -97,42 +115,50 @@
 </programme>
 
 <programme start="20100329160000 +0000" stop="20100329162500 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Verbotene Liebe (3584)</title>
 	<desc>(teletext 320)</desc>
 </programme>
 
 <programme start="20100329162500 +0000" stop="20100329165000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Marienhof (3786)</title>
 	<desc>(teletext 321)</desc>
 </programme>
 
 <programme start="20100329165000 +0000" stop="20100329175000 +0000" channel="ard.de">
+	<!-- TTX 302.0000 ACQTS:1269898367 -->
 	<title>Großstadtrevier</title>
 	<sub-title>Großstadtrevier Der Straßenmusikant Fernsehserie, D 2007</sub-title>
 	<desc>(teletext 322)</desc>
 </programme>
 
 <programme start="20100329175000 +0000" stop="20100329175500 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Das Wetter im Ersten</title>
 </programme>
 
 <programme start="20100329175500 +0000" stop="20100329180000 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Börse im Ersten</title>
 	<desc>(teletext 720)</desc>
 </programme>
 
 <programme start="20100329180000 +0000" stop="20100329181500 +0000" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 	<desc>(teletext 310)</desc>
 	<subtitles type="teletext"/>
 </programme>
 
 <programme start="20100329181500 +0000" stop="20100329182500 +0000" pdc-start="20100329201400 +0200" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>ARD-Brennpunkt: UT</title>
 	<sub-title>ARD-Brennpunkt: UT Terror in Moskau</sub-title>
 </programme>
 
 <programme start="20100329182500 +0000" stop="20100329191000 +0000" pdc-start="20100329201500 +0200" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Erlebnis Erde: Kaltblütig (4/4)</title>
 	<sub-title>Erlebnis Erde: Kaltblütig (4/4) Gepanzerte Riesen</sub-title>
 	<desc>(teletext 324)</desc>
@@ -143,9 +169,10 @@
 </programme>
 
 <programme start="20100329191000 +0000" stop="20100329195500 +0000" pdc-start="20100329210000 +0200" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Der Todesflug von</title>
 	<sub-title>Der Todesflug von Swissair 330 Terroranschlag ohne Sühne</sub-title>
-	<!-- TTX 326 -->
+	<!-- TTX 326.0000 -->
 	<desc>Der Todesflug von Tipp! Swissair 330 16:9
 Seit 40 Jahren wartet die 95-jährige Doris Bosshard auf Gerechtigkeit. Ihr Mann, der Flugkapitän Hans Kuhn, kam 1970 ums Leben, als Swissair Flug 330 bei Zürich abstürzte, weil eine Paketbombe an Bord explodierte. Mit ihm starben bei dem Terroranschlag der PFLP weitere 47 Menschen.
 Die Attentäter wurden schnell ermittelt. Aber weder die deutschen noch die Schweizer Behörden unternahmen genug, um der mutmaßlichen Täter habhaft zu werden.</desc>
@@ -158,6 +185,7 @@ Die Attentäter wurden schnell ermittelt. Aber weder die deutschen noch die Schwe
 </programme>
 
 <programme start="20100329195500 +0000" stop="20100329202500 +0000" pdc-start="20100329214500 +0200" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Report München</title>
 	<sub-title>Report München Moderation: Claudia Schick</sub-title>
 	<desc>(teletext 327)</desc>
@@ -168,15 +196,18 @@ Die Attentäter wurden schnell ermittelt. Aber weder die deutschen noch die Schwe
 </programme>
 
 <programme start="20100329202500 +0000" stop="20100329205300 +0000" pdc-start="20100329221500 +0200" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Tagesthemen</title>
 	<desc>(teletext 311)</desc>
 </programme>
 
 <programme start="20100329205300 +0000" stop="20100329205500 +0000" pdc-start="20100329224300 +0200" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Das Wetter im Ersten</title>
 </programme>
 
 <programme start="20100329205500 +0000" stop="20100329221000 +0000" pdc-start="20100329224500 +0200" channel="ard.de">
+	<!-- TTX 303.0000 ACQTS:1269898367 -->
 	<title>Beckmann</title>
 	<desc>(teletext 328)</desc>
 	<star-rating>
@@ -185,11 +216,13 @@ Die Attentäter wurden schnell ermittelt. Aber weder die deutschen noch die Schwe
 </programme>
 
 <programme start="20100329221000 +0000" stop="20100329223000 +0000" pdc-start="20100330000000 +0200" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Nachtmagazin</title>
 	<desc>(teletext 313)</desc>
 </programme>
 
 <programme start="20100329223000 +0000" stop="20100329230000 +0000" pdc-start="20100330002000 +0200" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Dittsche</title>
 	<sub-title>Dittsche Das wirklich wahre Leben</sub-title>
 	<desc>(teletext 329)</desc>
@@ -200,38 +233,46 @@ Die Attentäter wurden schnell ermittelt. Aber weder die deutschen noch die Schwe
 </programme>
 
 <programme start="20100329230000 +0000" stop="20100330004000 +0000" pdc-start="20100330005000 +0200" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Ein Elefant irrt sich</title>
 	<sub-title>Ein Elefant irrt sich gewaltig (F, 1976)</sub-title>
 	<desc>(teletext 330)</desc>
 </programme>
 
 <programme start="20100330004000 +0000" stop="20100330004500 +0000" pdc-start="20100330023000 +0200" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100330004500 +0000" stop="20100330013500 +0000" pdc-start="20100330023500 +0200" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Sturm der Liebe (1041)</title>
 	<sub-title>Sturm der Liebe (1041) Fernsehserie, D 2010</sub-title>
 </programme>
 
 <programme start="20100330013500 +0000" stop="20100330022000 +0000" pdc-start="20100330032500 +0200" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Der Todesflug von</title>
 	<sub-title>Der Todesflug von Swissair 330</sub-title>
 </programme>
 
 <programme start="20100330022000 +0000" stop="20100330025000 +0000" pdc-start="20100330041000 +0200" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>ARD-Ratgeber: Bauen + Wohnen</title>
 </programme>
 
 <programme start="20100330025000 +0000" stop="20100330025500 +0000" pdc-start="20100330044000 +0200" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Deutschlandbilder</title>
 </programme>
 
 <programme start="20100330025500 +0000" stop="20100330030000 +0000" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Tagesschau</title>
 </programme>
 
 <programme start="20100330030000 +0000" stop="20100330033000 +0000" channel="ard.de">
+	<!-- TTX 304.0000 ACQTS:1269898367 -->
 	<title>Report München</title>
 </programme>
 </tv>

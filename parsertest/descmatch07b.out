@@ -6,54 +6,63 @@
 </channel>
 
 <programme start="20100404025500 +0000" stop="20100404032500 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>Lange Ohren, flinke Beine</title>
-	<!-- TTX 314 -->
+	<!-- TTX 314.0001 -->
 	<desc>LANGE OHREN, FLINKE BEINE Feldhasen und Kaninchen
 Im Frühjahr toben die Feldhasen boxend über die Felder. In der Zeitlupe wird deutlich: Die Häsin haut dem Rammler ordentlich was hinter die Löffel. Ihr Boxkampf ist Teil des turbulenten Paarungsvorspiels. Wie lange noch?
 Meister Lampe geht es nicht gut. Die Tiere finden auf landwirtschaftlich genutzter Fläche kaum noch Wildkräuter. Die sind jedoch für die Hasen lebensnotwendig. Anders ihre Verwandten, die Kaninchen: Die kommen ganz gut mit der veränderten Umwelt zurecht.</desc>
 </programme>
 
 <programme start="20100404032500 +0000" stop="20100404041000 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>Fabelhaftes Langohr</title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20100404041000 +0000" stop="20100404045500 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>Die Legende</title>
 	<sub-title>Die Legende vom Hasen und der Sonne</sub-title>
 	<desc>(teletext 314)</desc>
 </programme>
 
 <programme start="20100404045500 +0000" stop="20100404051000 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>Wandervolles Hessen</title>
 	<sub-title>Wandervolles Hessen Urwaldsteig am Edersee</sub-title>
 	<desc>(teletext 315)</desc>
 </programme>
 
 <programme start="20100404051000 +0000" stop="20100404064500 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>Faszination Berge</title>
 	<sub-title>Faszination Berge Allgäuer Alpen</sub-title>
 	<desc>(teletext 315)</desc>
 </programme>
 
 <programme start="20100404064500 +0000" stop="20100404081500 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>Hessens schönste Burgen</title>
 	<desc>(teletext 315)</desc>
 </programme>
 
 <programme start="20100404081500 +0000" stop="20100404084500 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>Das Sonntagsgespräch</title>
 	<sub-title>Das Sonntagsgespräch Gast: Nikolaus Schneider</sub-title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20100404084500 +0000" stop="20100404093000 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>Joseph Offenbach</title>
 	<sub-title>Joseph Offenbach Kleiner Mann ganz groß</sub-title>
 	<desc>(teletext 316)</desc>
 </programme>
 
 <programme start="20100404093000 +0000" stop="20100404110500 +0000" channel="hr">
+	<!-- TTX 301.0000 ACQTS:1270410640 -->
 	<title>13 kleine Esel</title>
 	<sub-title>13 kleine Esel und der Sonnenhof, D 1958</sub-title>
 	<desc>(teletext 318)</desc>

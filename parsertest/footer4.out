@@ -6,65 +6,80 @@
 </channel>
 
 <programme start="20060507023000 +0000" stop="20060507030000 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>5 sur 5</title>
 </programme>
 
 <programme start="20060507030000 +0000" stop="20060507032700 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Tv5monde le journal</title>
 </programme>
 
 <programme start="20060507032700 +0000" stop="20060507035500 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Palaces du monde, les gens...</title>
 </programme>
 
 <programme start="20060507035500 +0000" stop="20060507040200 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Le nidouille</title>
 </programme>
 
 <programme start="20060507040200 +0000" stop="20060507042800 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Bonjour madame croque-cerise</title>
 	<sub-title>BONJOUR MADAME CROQUE-CERISE Jeunesse</sub-title>
 </programme>
 
 <programme start="20060507042800 +0000" stop="20060507045700 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Bonjour madame croque-cerise</title>
 	<sub-title>BONJOUR MADAME CROQUE-CERISE Jeunesse</sub-title>
 </programme>
 
 <programme start="20060507045700 +0000" stop="20060507050900 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Petit vampire</title>
 </programme>
 
 <programme start="20060507050900 +0000" stop="20060507053000 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Petit vampire</title>
 </programme>
 
 <programme start="20060507053000 +0000" stop="20060507060000 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Jt radio canada</title>
 </programme>
 
 <programme start="20060507060000 +0000" stop="20060507060200 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Tv5monde l'info</title>
 </programme>
 
 <programme start="20060507060200 +0000" stop="20060507061900 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Les aventures de wambi</title>
 	<sub-title>LES AVENTURES DE WAMBI Fiction - é106</sub-title>
 </programme>
 
 <programme start="20060507061900 +0000" stop="20060507063300 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Jouons</title>
 </programme>
 
 <programme start="20060507063300 +0000" stop="20060507070000 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>C'est pas sorcier</title>
 </programme>
 
 <programme start="20060507070000 +0000" stop="20060507071600 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>Tv5monde le journal</title>
 </programme>
 
 <programme start="20060507071600 +0000" channel="TV5">
+	<!-- TTX 328.0000 ACQTS:1147009167 -->
 	<title>La terre et le sacre</title>
 	<desc>(teletext 331)</desc>
 </programme>

@@ -6,47 +6,55 @@
 </channel>
 
 <programme start="20100419170000 +0000" stop="20100419175000 +0000" channel="VOX">
+	<!-- TTX 303.0000 ACQTS:1271703432 -->
 	<title>Das perfekte Dinner</title>
 	<sub-title>Das perfekte Dinner Koch-Doku</sub-title>
 	<desc>(teletext 336)</desc>
 </programme>
 
 <programme start="20100419175000 +0000" stop="20100419181500 +0000" channel="VOX">
+	<!-- TTX 303.0000 ACQTS:1271703432 -->
 	<title>Prominent!</title>
 	<desc>(teletext 337)</desc>
 </programme>
 
 <programme start="20100419181500 +0000" stop="20100419191500 +0000" channel="VOX">
+	<!-- TTX 303.0000 ACQTS:1271703432 -->
 	<title>Csi: ny</title>
 	<desc>(teletext 338)</desc>
 </programme>
 
 <programme start="20100419191500 +0000" stop="20100419201500 +0000" channel="VOX">
+	<!-- TTX 303.0000 ACQTS:1271703432 -->
 	<title>Criminal Intent</title>
 	<desc>(teletext 339)</desc>
 </programme>
 
 <programme start="20100419201500 +0000" stop="20100419220500 +0000" channel="VOX">
+	<!-- TTX 303.0000 ACQTS:1271703432 -->
 	<title>Burn Notice</title>
-	<!-- TTX 340 -->
+	<!-- TTX 340.0000 -->
 	<desc>BURN NOTICE Mo 22:15 Uhr
 1 + 2/I Kaltgestellt
 Dem Undercover-Agenten Michael Westen geschieht das Schlimmste, was in seinem Beruf passieren kann: Er wird mit einer so genannten "Burn Notice" belegt - und kalt gestellt. Die CIA friert seine Kontakte und Konten ein, so dass Michael mittellos und ohne Dach über dem Kopf auf sich allein gestellt ist. Doch statt klein beizugeben, macht Michael sich daran, die Gründe und die Verantwortlichen für den Rausschmiss zu finden. (Wh. um 01:20)</desc>
 </programme>
 
 <programme start="20100419220500 +0000" stop="20100419222500 +0000" channel="VOX">
+	<!-- TTX 303.0000 ACQTS:1271703432 -->
 	<title>vox nachrichten</title>
 	<desc>(teletext 341)</desc>
 </programme>
 
 <programme start="20100419222500 +0000" stop="20100419232500 +0000" channel="VOX">
+	<!-- TTX 303.0000 ACQTS:1271703432 -->
 	<title>Criminal Intent</title>
 	<desc>(teletext 342)</desc>
 </programme>
 
 <programme start="20100419232500 +0000" channel="VOX">
+	<!-- TTX 303.0000 ACQTS:1271703432 -->
 	<title>Burn Notice</title>
-	<!-- TTX 343 -->
+	<!-- TTX 343.0000 -->
 	<desc>BURN NOTICE Mo 01:25 Uhr
 1 + 2/I Kaltgestellt
 Dem Undercover-Agenten Michael Westen geschieht das Schlimmste, was in seinem Beruf passieren kann: Er wird mit einer so genannten "Burn Notice" belegt - und kalt gestellt. Die CIA friert seine Kontakte und Konten ein, so dass Michael mittellos und ohne Dach über dem Kopf auf sich allein gestellt ist.

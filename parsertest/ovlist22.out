@@ -6,37 +6,45 @@
 </channel>
 
 <programme start="20110106053000 +0000" stop="20110106055500 +0000" channel="MDR">
+	<!-- TTX 364.0001 ACQTS:1294057859 -->
 	<title>Auf der Suche</title>
 	<sub-title>Auf der Suche nach der Schatzinsel (6/26) Abenteuerserie (AUS 1998)</sub-title>
 </programme>
 
 <programme start="20110106055500 +0000" stop="20110106062500 +0000" channel="MDR">
+	<!-- TTX 364.0001 ACQTS:1294057859 -->
 	<title>Länderzeit</title>
 </programme>
 
 <programme start="20110106062500 +0000" stop="20110106065000 +0000" channel="MDR">
+	<!-- TTX 364.0001 ACQTS:1294057859 -->
 	<title>Im Tiefflug zum Nordpol (3/4)</title>
 </programme>
 
 <programme start="20110106065000 +0000" stop="20110106072000 +0000" channel="MDR">
+	<!-- TTX 364.0001 ACQTS:1294057859 -->
 	<title>Mit dem Wind nach Westen</title>
 	<sub-title>Mit dem Wind nach Westen Auf der Kolumbusroute nach Amerika</sub-title>
 </programme>
 
 <programme start="20110106072000 +0000" stop="20110106074500 +0000" channel="MDR">
+	<!-- TTX 364.0001 ACQTS:1294057859 -->
 	<title>Johann Sebastian Bach: Weihnachtsoratorium BWV 248</title>
 	<sub-title>Johann Sebastian Bach: Weihnachtsoratorium BWV 248 Kantate 6</sub-title>
 </programme>
 
 <programme start="20110106074500 +0000" stop="20110106101800 +0000" channel="MDR">
+	<!-- TTX 364.0001 ACQTS:1294057859 -->
 	<title>Title test test test test &amp; test once more</title>
 </programme>
 
 <programme start="20110106101800 +0000" stop="20110106104500 +0000" channel="MDR">
+	<!-- TTX 364.0001 ACQTS:1294057859 -->
 	<title>Title test test test test test, test forever...</title>
 </programme>
 
 <programme start="20110106104500 +0000" stop="20110106113000 +0000" channel="MDR">
+	<!-- TTX 364.0001 ACQTS:1294057859 -->
 	<title>Title test test test test test:</title>
 </programme>
 </tv>
