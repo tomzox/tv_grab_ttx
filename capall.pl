@@ -13,9 +13,8 @@
 #  configuration variables at the top of the script as needed.
 #
 #  Tool "util/tune_dvb.c" is used for tuning the DVB front-end: use "make
-#  tune_dvb" for building the executable. Note currently the tool only
-#  supports channel tables in VDR format, as this is the only one that
-#  includes the teletext PID of each channel.
+#  tune_dvb" for building the executable. Note the tool only supports
+#  "channels.conf" tables mplayer/totem/xine/kaffeine and VDR formats.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -30,7 +29,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2008,2020 by Tom Zoerner (tomzo at users.sf.net)
+#  Copyright 2006-2008,2020-2021 by T. Zoerner (tomzo at users.sf.net)
 #
 
 use strict;
@@ -38,7 +37,7 @@ use strict;
 #
 # Configuration variables
 #
-my $channels_conf = "$ENV{HOME}/.vdr/channels.conf";
+my $channels_conf = "$ENV{HOME}/.mplayer/channels.conf";
 my $device = "/dev/dvb/adapter0/demux0";
 my $def_duration = 90;
 my $def_pages = "300-399";
@@ -56,17 +55,17 @@ my @Nets = (
    ["RTL", "rtl"],
    ["RTLplus", "rtl-plus"],
    ["ProSieben", "pro7"],
-   ["RTL II", "rtl2"],
+   ["RTLZWEI", "rtl2"],
    ["VOX", "vox"],
    ["VOXup", "vox-up"],
    ["sixx", "sixx"],
-   ["ServusTV", "servus"],
+   #["ServusTV", "servus"], # no teletext
    ["DMAX", "dmax"],
    #["MTV", "mtv"],    # no teletext
    ["MDR", "mdr"],
    ["NDR FS MV", "ndr"],
-   ["SWR RP", "swr"],
-   ["BR3", "br3"],
+   ["SWR Fernsehen RP", "swr"],
+   ["BR Fernsehen", "br3"],
    ["hr-fernsehen", "hr3", undef, 120],
    ["rbb Berlin", "rbb"],
    ["ARD-alpha", "bralpha"],
@@ -75,7 +74,7 @@ my @Nets = (
    ["SUPER RTL", "srtl"],
    ["Eurosport 1", "eurosport"],
    #["TV 5 Monde", "tv5"],       # no teletext
-   ["n-tv", "ntv", "500-599"],
+   ["ntv", "ntv", "500-599"],
    #["CNN", "cnni", "200-299"],  # no teletext
 );
 

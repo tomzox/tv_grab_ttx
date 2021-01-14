@@ -88,11 +88,10 @@ The following is a usage example: First the channel is switched to network ARD
 using `mplayer` (you could use other tools such as `dvb5-zap` for this purpose,
 depending on your DVB setup.) Then the grabber is run: With the shown options,
 it will capture pages 300-399 from DVB stream 104 (which is the teletext PID of
-channel ARD; you can try guessing it from the video PID in mplayer et.al.'s
-`channels.conf` as it's value usually in range of video PID plus 3 to 30, or
-via Internet search); capturing will stop after all sub-pages of the page range
-have been acquired. Afterwards the grabber extracts EPG data and generates an
-XMLTV file which is written to *stdout*, which is redirected to a file in the
+network "Das Erste", formerly known as "ARD"; you can obtain the PID using tool
+`tune_dvb` in this package). Capturing will stop after all sub-pages of the page
+range have been acquired. Afterwards the grabber extracts EPG data and generates
+an XMLTV file which is written to *stdout*, which is redirected to a file in the
 example.  Finally the XMLTV file is loaded into nxtvepg for browsing the
 programme schedules. (Any other XMLTV-capable browser will work, too.)
 
@@ -118,7 +117,7 @@ channels sharing a transponder.
 
 # Copyright
 
-**Copyright 2006-2011, 2020 by T. Zoerner**
+**Copyright 2006-2011, 2020-2021 by T. Zoerner**
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the

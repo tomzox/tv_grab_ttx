@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# Copyright 2006-2011,2020 by T. Zoerner (tomzo at users.sf.net)
+# Copyright 2006-2011,2020-2021 by T. Zoerner (tomzo at users.sf.net)
 #
 
 all: build_dir tv_grab_ttx tv_grab_ttx.1
@@ -69,11 +69,11 @@ tv_grab_ttx: $(OBJS)
 
 tv_grab_ttx.1: tv_grab_ttx.pod
 	pod2man -date " " -center "Teletext EPG grabber" -section "1" \
-	        -release "tv_grab_ttx (C) 2006-2011,2020 T. Zoerner" \
+	        -release "tv_grab_ttx (C) 2006-2011,2020-2021 T. Zoerner" \
 	        tv_grab_ttx.pod > tv_grab_ttx.1; \
 
-tune_dvb: util/tune_dvb.c
-	gcc -Wall -O -g $(LDFLAGS) -o $@ util/tune_dvb.c $(LIBS)
+tune_dvb: util/tune_dvb.c util/scan_pat_pmt.c util/scan_descriptors.h
+	gcc -Wall -O -g $(LDFLAGS) -o $@ util/tune_dvb.c util/scan_pat_pmt.c $(LIBS)
 
 .PHONY: clean
 clean:
