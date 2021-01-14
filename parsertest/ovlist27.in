@@ -1,0 +1,156 @@
+#!tv_grab_ttx -verify
+#
+# WDR is including differing start times (possibly VPS label?) in the
+# overview table in the same table as the actual start time, only marked
+# with magenta foreground color. These start times need at least to be
+# stripped to avoid being mistaken as additional title/slot.
+#
+$VbiCaptureTime = 1610708382;
+$PgCnt{0x301} = 4;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$PgTime{0x301} = 1610708366;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301 WDR Text  Fr 15.01.\x0711:59:15",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "\x03           Freitag, 15.01.21           ",
+  "\x0204.25\x02Lokalzeit Ruhr \x02.............\x02700",
+  "                                        ",
+  "\x0204.55\x02Lokalzeit aus Dortmund \x02.....\x02700",
+  "                                        ",
+  "\x0205.25\x02Lokalzeit M}nsterland \x02......\x02700",
+  undef,
+  "\x0205.50\x02Lokalzeit OWL \x02..............\x02700",
+  undef,
+  "\x0206.20\x02Lokalzeit S}dwestfalen \x02.....\x02700",
+  undef,
+  "\x0206.50\x02Lokalzeit aus Bonn \x02.........\x02700",
+  undef,
+  "\x0207.20\x02Planet Schule\x03UT \x02...........\x02307",
+  "      \x07Zur}ck in die Steinzeit          ",
+  "\x0208.30\x02Abenteuer Erde\x03AD, HD \x02......\x02308",
+  "\x0512.00\x07Norwegen - zwischen Fjorden      ",
+  "      \x07und Fjells                       ",
+  "      \x07bis 09.10 Uhr                    ",
+  "\x1D\x04300 < ]bersicht           weiter > 302",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x302} = 4;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1610708366;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302 WDR Text  Fr 15.01.\x0711:59:15",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "\x03           Freitag, 15.01.21           ",
+  "\x0209.10\x02Europamagazin                    ",
+  "      \x07Bericht aus Br}ssel              ",
+  "\x0209.40\x02Aktuelle Stunde\x03HD, UT \x02.....\x02362",
+  undef,
+  "\x0210.25\x02Planet Wissen\x03UT \x02...........\x02396",
+  "\x0510.55\x07Pendler - Was tun gegen          ",
+  "      \x07Staus, Stress und verpasste      ",
+  "      \x07Anschl}sse?                      ",
+  "\x0211.25\x02Die Sendung mit der Maus\x03HD,     ",
+  "      \x03UT \x02.........................\x02391",
+  "\x0211.55\x02Der etwas Andre Unterricht       ",
+  "\x0511.54\x03HD, UT \x02.....................\x02309",
+  "\x0212.45\x02WDR aktuell\x03HD, UT \x02.........\x02361",
+  undef,
+  "\x0213.05\x02Pinguin, L|we & Co.\x03UT \x02.....\x02310",
+  undef,
+  "\x0213.55\x02Zoobabies\x03HD, UT \x02...........\x02311",
+  "      \x07bis 14.20 Uhr                    ",
+  "\x1D\x04300 < ]bersicht           weiter > 303",
+  undef,
+  undef,
+  "\x15  \x00  e \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F ",
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x303} = 4;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1610708366;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303 WDR Text  Fr 15.01.\x0711:59:15",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "\x03           Freitag, 15.01.21           ",
+  "\x0214.20\x02In aller Freundschaft - Die      ",
+  "      \x02jungen [rzte\x03AD, HD, UT \x02....\x02312",
+  "      \x07153. Wunschtr{ume                ",
+  "\x0215.10\x02In aller Freundschaft - Die      ",
+  "      \x02jungen [rzte\x03AD, HD, UT \x02....\x02313",
+  "      \x07154. Stunde Null                 ",
+  "\x0216.00\x02WDR aktuell\x03HD, UT \x02.........\x02361",
+  undef,
+  "\x0216.15\x02Hier und heute\x03HD \x02..........\x02395",
+  undef,
+  "\x0218.00\x02WDR aktuell\x03UT \x02.............\x02361",
+  undef,
+  "\x0218.10\x02Lokalzeit \x02..................\x02700",
+  undef,
+  "\x0218.15\x02Ausgerechnet - Br|tchen\x03HD   \x02385",
+  "      \x07Servicetel. 0221 56789 999       ",
+  "\x0218.45\x02Aktuelle Stunde\x03HD, UT \x02.....\x02362",
+  "\x0218.44\x07bis 19.30 Uhr                    ",
+  "\x1D\x04300 < ]bersicht           weiter > 304",
+  undef,
+  undef,
+  "\x15 \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F ",
+  "\x15jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj\x15  ",
+  undef,
+  undef,
+];
+$PgCnt{0x304} = 4;
+$PgSub{0x304} = 0;
+$PgLang{0x304} = 1;
+$PgTime{0x304} = 1610708366;
+$Pkg{0x304|(0x0000<<12)} =
+[
+  "        304 WDR Text  Fr 15.01.\x0711:59:16",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "\x03           Freitag, 15.01.21           ",
+  "\x0219.30\x02Lokalzeit \x02..................\x02700",
+  undef,
+  "\x0220.00\x02Tagesschau\x03HD, UT \x02..........\x02363",
+  undef,
+  "\x0220.15\x02Die R|mer am Rhein\x03AD, HD,       ",
+  "      \x03UT \x02.........................\x02314",
+  "      \x07Eine Zeitreise                   ",
+  "\x0221.00\x02Unser Westen, Unsere             ",
+  "      \x02Wettergeschichten\x03HD \x02.......\x02315",
+  "\x0221.45\x02WDR aktuell\x03HD, UT \x02.........\x02361",
+  undef,
+  "\x0222.00\x02K|lner Treff\x03HD, UT \x02........\x02380",
+  undef,
+  "\x0223.30\x02Die letzte Instanz\x03HD, UT \x02..\x02316",
+  "      \x07Der Meinungstalk mit Steffen     ",
+  "      \x07Hallaschka                       ",
+  "      \x07bis 00.30 Uhr                    ",
+  "                                        ",
+  "\x1D\x04300 < ]bersicht           weiter > 305",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

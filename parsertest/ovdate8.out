@@ -93,12 +93,6 @@ Mehr &gt;&gt;&gt; 396</desc>
 	<desc>(teletext 298)</desc>
 </programme>
 
-<programme start="20080113220000 +0000" stop="20080113221500 +0000" pdc-start="20080113230000 +0100" channel="3.br-online.de">
-	<title>Sport in Bayern</title>
-	<sub-title>Sport in Bayern Aus Studio Franken</sub-title>
-	<desc>(teletext 298)</desc>
-</programme>
-
 <programme start="20080113221500 +0000" stop="20080113234500 +0000" pdc-start="20080113231500 +0100" channel="3.br-online.de">
 	<title>Echt krass, wa?</title>
 	<sub-title>Echt krass, wa? Dokumentarfilm, D 2007 Von Juliane Schuhler</sub-title>

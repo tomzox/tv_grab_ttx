@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="WDR">
+	<display-name>WDR</display-name>
+</channel>
+
+<programme start="20210101042000 +0000" stop="20210101050500 +0000" channel="WDR">
+	<title>Aktuelle Stunde</title>
+	<desc>(teletext 362)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101050500 +0000" stop="20210101063500 +0000" channel="WDR">
+	<title>10 Jahre "Der Vorkoster" HD,</title>
+	<sub-title>10 Jahre "Der Vorkoster" HD, Das Jubiläum!</sub-title>
+	<desc>(teletext 307)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101063500 +0000" stop="20210101070500 +0000" channel="WDR">
+	<title>Lokalzeit-Geschichten</title>
+	<sub-title>Lokalzeit-Geschichten Jahresrückblick 2020</sub-title>
+	<desc>(teletext 377)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101070500 +0000" stop="20210101080500 +0000" channel="WDR">
+	<title>Neujahrskonzert 2020 aus dem</title>
+	<sub-title>Neujahrskonzert 2020 aus dem Teatro La Fenice</sub-title>
+	<desc>(teletext 308)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+</programme>
+
+<programme start="20210101080500 +0000" stop="20210101085000 +0000" channel="WDR">
+	<title>Der geschenkte Tag</title>
+	<desc>(teletext 309)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101085000 +0000" stop="20210101102000 +0000" channel="WDR">
+	<title>Abenteuer Erde: Ein Jahr</title>
+	<sub-title>Abenteuer Erde: Ein Jahr unter Elefanten</sub-title>
+	<desc>(teletext 310)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101102000 +0000" stop="20210101115000 +0000" channel="WDR">
+	<title>Opa, ledig, jung</title>
+	<sub-title>Opa, ledig, jung Fernsehfilm, Deutschland 2015</sub-title>
+	<desc>(teletext 311)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101115000 +0000" stop="20210101114900 +0000" channel="WDR">
+	<title>Jürgen von der Lippe XL</title>
+	<desc>(teletext 312)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101132000 +0000" stop="20210101145000 +0000" channel="WDR">
+	<title>Die verrückten 68er</title>
+	<sub-title>Die verrückten 68er Ein Jahr verändert unsere Welt</sub-title>
+	<desc>(teletext 313)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101145000 +0000" stop="20210101153000 +0000" channel="WDR">
+	<title>Der Duft der großen weiten</title>
+	<sub-title>Der Duft der großen weiten Welt Unser Land in den 60ern</sub-title>
+	<desc>(teletext 314)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101153000 +0000" stop="20210101161500 +0000" channel="WDR">
+	<title>Eine Klasse für sich AD, HD,</title>
+	<sub-title>Eine Klasse für sich AD, HD, Unser Land in den 60ern</sub-title>
+	<desc>(teletext 315)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101161500 +0000" stop="20210101170000 +0000" channel="WDR">
+	<title>Weg mit dem Grauschleier AD,</title>
+	<sub-title>Weg mit dem Grauschleier AD, Unser Land in den 60ern</sub-title>
+	<desc>(teletext 316)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101170000 +0000" stop="20210101174500 +0000" channel="WDR">
+	<title>Wir können auch anders AD,</title>
+	<sub-title>Wir können auch anders AD, Unser Land in den 60ern</sub-title>
+	<desc>(teletext 317)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101174500 +0000" stop="20210101183000 +0000" channel="WDR">
+	<title>Aktuelle Stunde</title>
+	<desc>(teletext 362)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101183000 +0000" stop="20210101185500 +0000" channel="WDR">
+	<title>Lokalzeit-Geschichten</title>
+	<sub-title>Lokalzeit-Geschichten Auf ein gutes Neues!</sub-title>
+	<desc>(teletext 318)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101185500 +0000" stop="20210101190000 +0000" channel="WDR">
+	<title>Neujahrsansprache</title>
+	<sub-title>Neujahrsansprache des Ministerpräsidenten Armin Laschet</sub-title>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101190000 +0000" stop="20210101191500 +0000" channel="WDR">
+	<title>Tagesschau</title>
+	<desc>(teletext 363)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101191500 +0000" stop="20210101204500 +0000" channel="WDR">
+	<title>Made in Germany</title>
+	<sub-title>Made in Germany 70er Hits und ihre Geschichten</sub-title>
+	<desc>(teletext 319)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101204500 +0000" stop="20210101221500 +0000" channel="WDR">
+	<title>Verdamp lang her</title>
+	<sub-title>Verdamp lang her Die Hits der 80er und ihre Geschichten</sub-title>
+	<desc>(teletext 320)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210101221500 +0000" stop="20210101234500 +0000" channel="WDR">
+	<title>Die 90er-Hits</title>
+	<sub-title>Die 90er-Hits Von Matthias Reim bis Guns 'N Roses</sub-title>
+	<desc>(teletext 321)</desc>
+	<video>
+		<quality>HDTV</quality>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+</tv>

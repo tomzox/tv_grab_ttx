@@ -370,10 +370,14 @@ int main( int argc, char *argv[] )
       // grab new XML data from teletext
       vector<OV_PAGE*> ov_pages = ParseAllOvPages(&ttx_db.page_db, opt_tv_start, opt_tv_end);
 
+      // retrieve descriptions from references teletext pages
       ParseAllContent(ov_pages);
 
-      // retrieve descriptions from references teletext pages
+      // convert overview page list into a list of titles
       list<TV_SLOT> NewSlots = OV_PAGE::get_ov_slots(ov_pages);
+
+      // sort and remove titles with overlapping start/stop times
+      FilterOverlappingSlots(NewSlots);
 
       // remove programmes beyond the expiration threshold
       if (!opt_verify) {

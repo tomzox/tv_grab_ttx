@@ -355,15 +355,6 @@ TV_FEAT GetXmltvFeat(const string& xml)
    return feat;
 }
 
-class TV_SLOT_cmp_start_t
-{
-public:
-  bool operator() (const TV_SLOT a, const TV_SLOT b) const {
-     return a.get_start_t() < b.get_start_t();
-  }
-};
-
-
 /* ------------------------------------------------------------------------------
  * Read an XMLTV input file
  * - note this is NOT a full XML parser (not by far)
@@ -705,10 +696,9 @@ void XMLTV::ExportXmltv(list<TV_SLOT>& NewSlots, const char * p_file_name,
             p++;
          }
       }
-      // sort new programmes by start time
-      NewSlots.sort(TV_SLOT_cmp_start_t());
 
       // map holding old programmes is already sorted, as start time is used as key
+      // (also, new list is expected to be sorted by caller)
       list<time_t> OldSlotList;
       for (map<time_t,string>::iterator p = OldProgHash.begin(); p != OldProgHash.end(); p++)
          OldSlotList.push_back(p->first);
@@ -751,6 +741,9 @@ void XMLTV::ExportXmltv(list<TV_SLOT>& NewSlots, const char * p_file_name,
    fclose(fp);
 }
 
+/* ------------------------------------------------------------------------------
+ * Assign channel names for use during export
+ */
 void XMLTV::SetChannelName(TTX_DB * db, const char * user_chname, const char * user_chid)
 {
    // get channel name from teletext header packets
@@ -769,6 +762,10 @@ void XMLTV::SetChannelName(TTX_DB * db, const char * user_chname, const char * u
    }
 }
 
+/* ------------------------------------------------------------------------------
+ * Optionally assign expire threshold for use during import
+ * - given value must be in unit of minutes
+ */
 void XMLTV::SetExpireTime(int expire_min)
 {
    // must be set before import

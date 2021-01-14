@@ -9,20 +9,20 @@
 	<title>Serie 1</title>
 </programme>
 
-<programme start="20060430130000 +0000" stop="20060430160000 +0000" channel="TEST">
+<programme start="20060430130000 +0000" stop="20060430140000 +0000" channel="TEST">
 	<title>Serie 2</title>
+</programme>
+
+<programme start="20060430140000 +0000" stop="20060430160000 +0000" channel="TEST">
+	<title>Film 1</title>
 </programme>
 
 <programme start="20060430160000 +0000" stop="20060430170000 +0000" channel="TEST">
 	<title>Serie 3</title>
 </programme>
 
-<programme start="20060430170000 +0000" channel="TEST">
+<programme start="20060430170000 +0000" stop="20060430181500 +0000" channel="TEST">
 	<title>Serie 4</title>
-</programme>
-
-<programme start="20060430134000 +0000" stop="20060430181500 +0000" channel="TEST">
-	<title>Film 1</title>
 </programme>
 
 <programme start="20060430181500 +0000" channel="TEST">

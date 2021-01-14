@@ -135,12 +135,12 @@
 	<desc>(teletext 334)</desc>
 </programme>
 
-<programme start="20100418011500 +0000" pdc-start="20100418022500 +0200" channel="ZDF">
+<programme start="20100418011500 +0000" stop="20100418012000 +0000" pdc-start="20100418022500 +0200" channel="ZDF">
 	<title>heute</title>
 	<desc>(teletext 111)</desc>
 </programme>
 
-<programme start="20100418011500 +0000" stop="20100418022000 +0000" pdc-start="20100418023000 +0200" channel="ZDF">
+<programme start="20100418012000 +0000" stop="20100418022000 +0000" pdc-start="20100418023000 +0200" channel="ZDF">
 	<title>Sherlock Holmes</title>
 	<sub-title>Sherlock Holmes Die Frau in Grün Detektivfilm USA/1945</sub-title>
 	<desc>(teletext 335)</desc>

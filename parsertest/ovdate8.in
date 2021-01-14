@@ -3,6 +3,9 @@
 # - single-digit month on description page on BR3 Jan/2008
 # - description page with two dates
 # - TODO: no date match on description page (subpage #0)
+# - TODO: duplicate title "23.00 Sport in Bayern", apparently for
+#   different regional windows; currently second one is dropped;
+#   could be concatenated
 #
 # $Id: ovdate8.in,v 1.1 2008/01/13 20:48:08 tom Exp $
 #

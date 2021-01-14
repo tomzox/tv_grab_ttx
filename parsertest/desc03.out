@@ -5,7 +5,7 @@
 	<display-name>ARTE</display-name>
 </channel>
 
-<programme start="20060501120000 +0000" stop="20060501123000 +0000" pdc-start="20060501140000 +0200" channel="ARTE">
+<programme start="20060505120000 +0000" stop="20060505123000 +0000" pdc-start="20060501140000 +0200" channel="ARTE">
 	<title>Lola</title>
 	<desc>(teletext 309)</desc>
 	<audio>
@@ -13,7 +13,7 @@
 	</audio>
 </programme>
 
-<programme start="20060501123000 +0000" stop="20060501125500 +0000" pdc-start="20060501143000 +0200" channel="ARTE">
+<programme start="20060505123000 +0000" stop="20060505125500 +0000" pdc-start="20060505143000 +0200" channel="ARTE">
 	<title>Kaleidoskop</title>
 	<desc>(teletext 310)</desc>
 	<audio>
@@ -21,7 +21,7 @@
 	</audio>
 </programme>
 
-<programme start="20060501125500 +0000" stop="20060501145000 +0000" pdc-start="20060501145500 +0200" channel="ARTE">
+<programme start="20060505125500 +0000" stop="20060505145000 +0000" pdc-start="20060505145500 +0200" channel="ARTE">
 	<title>Plötzlich im letzten sommer</title>
 	<!-- TTX 311 -->
 	<desc>PLÖTZLICH IM LETZTEN SOMMER 109 MIN.
@@ -32,7 +32,7 @@ Um die homosexuelle Veranlagung ihres grausam ermordeten Sohns zu vertuschen, lä
 	</audio>
 </programme>
 
-<programme start="20060501145000 +0000" stop="20060501151500 +0000" pdc-start="20060501165000 +0200" channel="ARTE">
+<programme start="20060505145000 +0000" stop="20060505151500 +0000" pdc-start="20060505165000 +0200" channel="ARTE">
 	<title>Chic</title>
 	<desc>(teletext 312)</desc>
 	<audio>
@@ -40,14 +40,14 @@ Um die homosexuelle Veranlagung ihres grausam ermordeten Sohns zu vertuschen, lä
 	</audio>
 </programme>
 
-<programme start="20060501151500 +0000" stop="20060501152000 +0000" pdc-start="20060501171500 +0200" channel="ARTE">
+<programme start="20060505151500 +0000" stop="20060505152000 +0000" pdc-start="20060505171500 +0200" channel="ARTE">
 	<title>Ebeil</title>
 	<audio>
 		<stereo>stereo</stereo>
 	</audio>
 </programme>
 
-<programme start="20060501152000 +0000" stop="20060501160300 +0000" pdc-start="20060501172000 +0200" channel="ARTE">
+<programme start="20060505152000 +0000" stop="20060505160300 +0000" pdc-start="20060505172000 +0200" channel="ARTE">
 	<title>Rettet die liebesäpfel!</title>
 	<desc>(teletext 313)</desc>
 	<audio>

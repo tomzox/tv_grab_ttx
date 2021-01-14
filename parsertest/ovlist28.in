@@ -1,0 +1,45 @@
+#!tv_grab_ttx -verify
+#
+# Second example for WDR including differing start times (possibly VPS label?)
+# in the overview table in the same table as the actual start time, only marked
+# with magenta foreground color. If not correctly processed and not dropped
+# either at least no negative duration shall be produced: 11:55 - 11:54
+#
+$VbiCaptureTime = 1610824465;
+$PgCnt{0x356} = 1;
+$PgSub{0x356} = 5;
+$PgLang{0x356} = 1;
+$PgTime{0x356} = 1610824461;
+$Pkg{0x356|(0x0002<<12)} =
+[
+  "        356 WDR Text  Sa 16.01.\x0720:14:09",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03  2/5   ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x047-Tage-Vorschau           ",
+  "\x03           Montag, 18.01.21            ",
+  "\x0209.55\x02Westpol\x03HD, UT                   ",
+  "\x0510.25\x07Politik in NRW                   ",
+  "\x0210.25\x02Planet Wissen\x03UT                 ",
+  "\x0510.55\x07M{nner und ihre Gesundheit -     ",
+  "      \x07Was Mann daf}r tun kann          ",
+  "\x0211.25\x02Die Sendung mit der Maus\x03HD      ",
+  "      \x07Lach- und Sachgeschichten        ",
+  "\x0211.55\x02Der etwas Andre Unterricht       ",
+  "\x0511.54\x03HD, UT                           ",
+  "      \x07Moderation Andre Gatzke          ",
+  "\x0212.45\x02WDR aktuell\x03HD, UT               ",
+  undef,
+  "\x0213.05\x02Pinguin, L|we & Co.\x03UT           ",
+  undef,
+  "\x0213.55\x02Zoobabies\x03HD, UT                 ",
+  "      \x07bis 14.20 Uhr                    ",
+  undef,
+  undef,
+  "\x1D\x04300 < ]bersicht           weiter > 357",
+  undef,
+  undef,
+  "\x15  \x00  e2    e \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F  \x7F ",
+  undef,
+  undef,
+  undef,
+];

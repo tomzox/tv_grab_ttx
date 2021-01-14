@@ -57,11 +57,11 @@
 	<title>Test Title</title>
 </programme>
 
-<programme start="20060429081400 +0000" channel="TEST">
+<programme start="20060429081400 +0000" stop="20060429081500 +0000" channel="TEST">
 	<title>Test Title</title>
 </programme>
 
-<programme start="20060430081500 +0000" channel="TEST">
+<programme start="20060429081500 +0000" stop="20060429081600 +0000" channel="TEST">
 	<title>Test Title</title>
 </programme>
 
@@ -94,6 +94,10 @@
 </programme>
 
 <programme start="20060429082300 +0000" channel="TEST">
+	<title>Test Title</title>
+</programme>
+
+<programme start="20060430090000 +0000" channel="TEST">
 	<title>Test Title</title>
 </programme>
 </tv>

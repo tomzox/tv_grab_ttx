@@ -4,6 +4,9 @@
 # referring to the same day, divided by category.  In this case
 # the header date must not be overridden
 #
+# Update 2021-01-14: Added a page containing a regular time table (303),
+# so that all titles are duplicate.
+#
 # [Note that we currently don't support parsing such pages properly
 # since we assume the end time of each slot is defined by the start
 # of the next (e.g. "Film 1" in the example below runs 15:40-20:15)]
@@ -16,7 +19,24 @@ $PgSub{0x303} = 0;
 $PgLang{0x303} = 1;
 $Pkg{0x303|(0x0000<<12)} =
 [
-  "        303   TEST    30.04.06  13:47:44",
+  "        343   TEST    30.04.06  13:47:44",
+  undef,
+  " HEUTE                                  ",
+  undef,
+  undef,
+  " 10:00   Serie 1                        ",
+  " 15:00   Serie 2                        ",
+  " 16:00   Film 1                         ",
+  " 18:00   Serie 3                        ",
+  " 19:00   Serie 4                        ",
+  " 20:15   Film 2                         ",
+];
+$PgCnt{0x343} = 6;
+$PgSub{0x343} = 0;
+$PgLang{0x343} = 1;
+$Pkg{0x343|(0x0000<<12)} =
+[
+  "        343   TEST    30.04.06  13:47:44",
   undef,
   " HEUTE                                  ",
   " SERIEN                                 ",
@@ -26,17 +46,16 @@ $Pkg{0x303|(0x0000<<12)} =
   " 18:00   Serie 3                        ",
   " 19:00   Serie 4                        ",
 ];
-$PgCnt{0x304} = 5;
-$PgSub{0x304} = 0;
-$PgLang{0x304} = 1;
-$Pkg{0x304|(0x0000<<12)} =
+$PgCnt{0x344} = 5;
+$PgSub{0x344} = 0;
+$PgLang{0x344} = 1;
+$Pkg{0x344|(0x0000<<12)} =
 [
-  "        304   TEST    30.04.06  13:47:44",
+  "        344   TEST    30.04.06  13:47:44",
   undef,
   " HEUTE                                  ",
   " SPIELFILME                             ",
   undef,
-  " 15:40   Film 1                         ",
+  " 16:00   Film 1                         ",
   " 20:15   Film 2                         ",
 ];
-

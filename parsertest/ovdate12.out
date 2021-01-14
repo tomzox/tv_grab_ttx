@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="RTL II">
+	<display-name>RTL II</display-name>
+</channel>
+
+<programme start="20210115191500 +0000" stop="20210115213500 +0000" channel="RTL II">
+	<title>Criminal Squad</title>
+	<desc>(teletext 341)</desc>
+</programme>
+
+<programme start="20210115213500 +0000" stop="20210115232000 +0000" channel="RTL II">
+	<title>Hotel Artemis</title>
+	<desc>(teletext 342)</desc>
+</programme>
+
+<programme start="20210115232000 +0000" stop="20210116004000 +0000" channel="RTL II">
+	<title>Crank 2 - High Voltage</title>
+	<desc>(teletext 343)</desc>
+</programme>
+
+<programme start="20210116004000 +0000" stop="20210116020000 +0000" channel="RTL II">
+	<title>Hotel Artemis</title>
+	<desc>(teletext 342)</desc>
+</programme>
+
+<programme start="20210116020000 +0000" stop="20210116031500 +0000" channel="RTL II">
+	<title>Crank 2 - High Voltage</title>
+	<desc>(teletext 343)</desc>
+</programme>
+
+<programme start="20210116031500 +0000" channel="RTL II">
+	<title>Don't Knock Twice</title>
+	<!-- TTX 344 -->
+	<desc>Don't Knock Twice Fantasy-Thriller, GB 2017
+Um ein altes Haus ragt sich eine Legende. Wer hier zwei Mal klopft, wird von einer Hexe heimgesucht.
+Chloe und ihr Freund können der Versuchung nicht widerstehen und müssen erkennen, dass sie tatsächlich in tödlicher Gefahr schweben. Nachdem Danny spurlos verschwunden ist, sucht Chloe Schutz bei ihrer Mutter Jess. Aber kann die sie wirklich beschützen?
+/////////////////////////////////////
+Freitag, 15.01.21; 04:15 Uhr
+Regie: Caradog W. James.
+Jess: Katee Sackhoff, Chloe: Lucy Boynton, Ben: Richard Mylan, Tira: Pooneh Hajimohammadi, Danny: Jordan Bolger, Det: Boardman............ Nick Moran.
+Hauptdarstellerin Katee Sackhoff wurde mit der Sci-Fi-Serie "Battlestar Galactica" international bekannt.
+/////////////////////////////////////
+Freitag, 15.01.21; 04:15 Uhr</desc>
+</programme>
+</tv>

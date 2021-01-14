@@ -1,0 +1,229 @@
+#!tv_grab_ttx -verify
+#
+# Verify that duplicate programmes are removed. Here this occurs, because
+# a title is listed once in the regular time tables (308) and once in a
+# themed overview (340).
+#
+$VbiCaptureTime = 1610619027;
+$PgCnt{0x307} = 4;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$PgTime{0x307} = 1610619010;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "        307\x03RTL II  \x07Do 14.1.\x03  11:10:05",
+  "\x11wy\"7j  #{'j54\x7Fjw3j5  \x07\x1D\x00Echte Flirt-  \x18",
+  "\x11\%- \%*, .-, /+\%*-,*\%  \x07\x1D\x00kontakte > 491\x18",
+  "\x01\x1D\x07TV-PROGRAMM                          ",
+  "\x01\x1D\x03MORGEN                           1/1 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0320:15\x07Criminal Squad.............341 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x01     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0322:35\x07Hotel Artemis..............342 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x01\x1D\x07    ASTRO-Live Beratung > 610        ",
+  "\x03\x1D\x01\x0DEr sucht Ihn live am Telefon!   666\x07",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x308} = 4;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$PgTime{0x308} = 1610619010;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "        308\x03RTL II  \x07Do 14.1.\x03  11:10:05",
+  "\x11wy\"7j  #{'j54\x7Fjw3j5  \x04\x1D\x03Noch heute    \x18",
+  "\x11\%- \%*, .-, /+\%*-,*\%  \x04\x1D\x03verabreden 480\x18",
+  "\x01\x1D\x07TV-PROGRAMM                          ",
+  "\x01\x1D\x03MORGEN                           1/1 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0300:20\x07Crank 2 - High Voltage.....343 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0301:40\x07Hotel Artemis..............342 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x01     \x07                               ",
+  "\x11\x7F\x03 \x01\x1D\x07Wilde Frauen warten auf XXX..730 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0303:00\x07Crank 2 - High Voltage.....343 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0304:15\x07Don't Knock Twice..........344 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x01\x1D\x07Erfahrene Astrologen am Telefon..600 ",
+  "\x03\x1D\x04\x0DGratis 6 FFP2-Masken f}r alle > 452\x07",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x310} = 4;
+$PgSub{0x310} = 0;
+$PgLang{0x310} = 1;
+$PgTime{0x310} = 1610619010;
+$Pkg{0x310|(0x0000<<12)} =
+[
+  "        310\x03RTL II  \x07Do 14.1.\x03  11:10:05",
+  "\x11wy\"7j  #{'j54\x7Fjw3j5  \x01\x1D\x07Nette Sie such ",
+  "\x11\%- \%*, .-, /+\%*-,*\%  \x01\x1D\x07netten Ihn 480 ",
+  "\x1C                                       ",
+  "\x03DOKU-SOAPS                         1/1 ",
+  "\x03                                       ",
+  "\x03A\x07Armes Deutschland................312 ",
+  "\x03B\x07Das Berlin Projekt...............363 ",
+  "\x03E\x07Einfach hairlich.................318 ",
+  "\x03 \x07                                     ",
+  "\x03G\x07Die Geissens.....................313 ",
+  "\x03H\x07Hartes Deutschland...............368 ",
+  "\x03 \x07Hartz und herzlich...............365 ",
+  "\x03 \x07                                     ",
+  "\x03P\x07Privatdetektive im Einsatz.......377 ",
+  "\x03R\x07Reeperbahn privat!...............370 ",
+  "\x03 \x07Die Reimanns.....................314 ",
+  "\x03 \x07                                     ",
+  "\x03S\x07Die Schn{ppchenh{user............319 ",
+  "\x03 \x07Die Stra~encops..................373 ",
+  "\x03W\x07Die Wollnys......................315 ",
+  "\x03 \x07                              \x07\x1D\x00311>",
+  "\x01\x1D\x07\x0DSeri|se Astroberatung live!....600  ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x340} = 4;
+$PgSub{0x340} = 0;
+$PgLang{0x340} = 1;
+$PgTime{0x340} = 1610619011;
+$Pkg{0x340|(0x0000<<12)} =
+[
+  "        340\x03RTL II  \x07Do 14.1.\x03  11:10:06",
+  "\x11wy\"7j  #{'j54\x7Fjw3j5   \x01\x1D\x07Pikant!       ",
+  "\x11\%- \%*, .-, /+\%*-,*\%   \x01\x1D\x07733-739, 766  ",
+  "\x1C                                       ",
+  "\x01\x1D\x07SPIELFILME                      \x031/1\x07",
+  "\x11\x7F\x03                                     ",
+  "\x11\x7F\x03HIGHLIGHTS AM FREITAG, 15.01.21;     ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0320:15\x07Criminal Squad.............341 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0322:35\x07Hotel Artemis..............342 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0300:20\x07Crank 2 - High Voltage.....343 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x0304:15\x07Don't Knock Twice..........344 ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03     \x07                               ",
+  "\x11\x7F\x03                              \x07\x1D\x00341>",
+  "\x04\x1D\x07\x0DErotik-Kontakte................800  ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x344} = 2;
+$PgSub{0x344} = 2;
+$PgLang{0x344} = 1;
+$PgTime{0x344} = 1610619011;
+$Pkg{0x344|(0x0001<<12)} =
+[
+  "        344\x03RTL II  \x07Do 14.1.\x03  11:10:06",
+  "\x11wy\"7j  #{'j54\x7Fjw3j5  \x07\x1D\x00Astrologie und\x18",
+  "\x11\%- \%*, .-, /+\%*-,*\%  \x07\x1D\x00Esoterik...600\x18",
+  "\x01\x1D\x03SPIELFILM-HIGHLIGHT             \x001/2\x07",
+  "\x11\x7F/                                     ",
+  "\x11\x7F\x03Don't Knock Twice                    ",
+  "\x11\x7F\x03Fantasy-Thriller, GB 2017            ",
+  "\x11\x7F\x07                                     ",
+  "\x11\x7F\x07Um ein altes Haus ragt sich eine Le- ",
+  "\x11\x7F\x07gende. Wer hier zwei Mal klopft,     ",
+  "\x11\x7F\x07wird von einer Hexe heimgesucht.     ",
+  "\x11\x7F\x07                                     ",
+  "\x11\x7F\x07Chloe und ihr Freund k|nnen der Ver- ",
+  "\x11\x7F\x07suchung nicht widerstehen und m}ssen ",
+  "\x11\x7F\x07erkennen, dass sie tats{chlich in    ",
+  "\x11\x7F\x07t|dlicher Gefahr schweben. Nachdem   ",
+  "\x11\x7F\x07Danny spurlos verschwunden ist,      ",
+  "\x11\x7F\x07sucht Chloe Schutz bei ihrer Mutter  ",
+  "\x11\x7F\x07Jess. Aber kann die sie wirklich     ",
+  "\x11\x7F\x07besch}tzen?                          ",
+  "\x11\x7F\x00/////////////////////////////////////",
+  "\x11\x7F\x7F\x03Freitag, 15.01.21; 04:15 Uhr \x01\x1D\x07\x07   ",
+  "\x02\x1D\x00\x0DUnkomplizierte Sofortkontakte > 480 ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x344} = 2;
+$PgSub{0x344} = 2;
+$PgLang{0x344} = 1;
+$PgTime{0x344} = 1610618990;
+$Pkg{0x344|(0x0002<<12)} =
+[
+  "        344\x03RTL II  \x07Do 14.1.\x03  11:09:44",
+  "\x11wy\"7j  #{'j54\x7Fjw3j5  \x07\x1D\x01Ihr Tages-     ",
+  "\x11\%- \%*, .-, /+\%*-,*\%  \x07\x1D\x01horoskop > 600 ",
+  "\x01\x1D\x03SPIELFILM-HIGHLIGHT             \x002/2\x07",
+  "\x11\x7F/                                     ",
+  "\x11\x7F\x03Don't Knock Twice                    ",
+  "\x11\x7F\x03Fantasy-Thriller, GB 2017            ",
+  "\x11\x7F\x07                                     ",
+  "\x11\x7F\x07Regie.............. Caradog W. James ",
+  "\x11\x7F\x07                                     ",
+  "\x11\x7F\x07Jess................. Katee Sackhoff ",
+  "\x11\x7F\x07Chloe.................. Lucy Boynton ",
+  "\x11\x7F\x07Ben................... Richard Mylan ",
+  "\x11\x7F\x07Tira........... Pooneh Hajimohammadi ",
+  "\x11\x7F\x07Danny................. Jordan Bolger ",
+  "\x11\x7F\x07Det. Boardman............ Nick Moran ",
+  "\x11\x7F\x07                                     ",
+  "\x11\x7F\x07Hauptdarstellerin Katee Sackhoff wur-",
+  "\x11\x7F\x07de mit der Sci-Fi-Serie \"Battlestar  ",
+  "\x11\x7F\x07Galactica\" international bekannt.    ",
+  "\x11\x7F\x00/////////////////////////////////////",
+  "\x11\x7F\x7F\x03Freitag, 15.01.21; 04:15 Uhr \x01\x1D\x07\x07   ",
+  "\x01\x1D\x03\x0DKartenleger GRATIS am Telefon 610   ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

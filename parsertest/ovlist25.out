@@ -1,0 +1,1356 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="3sat">
+	<display-name>3sat</display-name>
+</channel>
+
+<programme start="20210116042000 +0000" stop="20210116050500 +0000" channel="3sat">
+	<title>Satire Battle</title>
+	<desc>(teletext 305)</desc>
+</programme>
+
+<programme start="20210116050500 +0000" stop="20210116052300 +0000" channel="3sat">
+	<title>ÄTNA - Höllenschlund im</title>
+	<sub-title>ÄTNA - Höllenschlund im Mittelmeer</sub-title>
+	<desc>(teletext 306)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210116052300 +0000" stop="20210116060000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+	<desc>(teletext 307)</desc>
+</programme>
+
+<programme start="20210116060000 +0000" stop="20210116063000 +0000" channel="3sat">
+	<title>nano</title>
+	<desc>(teletext 308)</desc>
+</programme>
+
+<programme start="20210116063000 +0000" stop="20210116080000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+	<desc>(teletext 310)</desc>
+</programme>
+
+<programme start="20210116080000 +0000" stop="20210116080600 +0000" channel="3sat">
+	<title>Zib</title>
+	<desc>(teletext 312)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210116080600 +0000" stop="20210116083700 +0000" channel="3sat">
+	<title>Kulturplatz</title>
+	<desc>(teletext 313)</desc>
+</programme>
+
+<programme start="20210116083700 +0000" stop="20210116090200 +0000" channel="3sat">
+	<title>Bilder aus Südtirol</title>
+	<desc>(teletext 314)</desc>
+</programme>
+
+<programme start="20210116090200 +0000" stop="20210116094700 +0000" channel="3sat">
+	<title>Thema</title>
+	<desc>(teletext 315)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210116094700 +0000" stop="20210116102600 +0000" channel="3sat">
+	<title>In der Mitte ein Feuer</title>
+	<desc>(teletext 316)</desc>
+</programme>
+
+<programme start="20210116102600 +0000" stop="20210116120000 +0000" channel="3sat">
+	<title>Brüder III - Auf dem</title>
+	<sub-title>Brüder III - Auf dem Jakobsweg Fernsehfilm AUT/2006</sub-title>
+	<desc>(teletext 317)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210116120000 +0000" stop="20210116121100 +0000" channel="3sat">
+	<title>Zib</title>
+	<desc>(teletext 318)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210116121100 +0000" stop="20210116121700 +0000" channel="3sat">
+	<title>Notizen aus dem Ausland</title>
+	<sub-title>Notizen aus dem Ausland Namibia: Geparden-Farm</sub-title>
+</programme>
+
+<programme start="20210116121700 +0000" stop="20210116130100 +0000" channel="3sat">
+	<title>quer</title>
+	<desc>(teletext 319)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210116130100 +0000" stop="20210116133100 +0000" channel="3sat">
+	<title>Ländermagazin</title>
+	<sub-title>Ländermagazin Heute aus Niedersachsen Niedersachsen von oben</sub-title>
+	<desc>(teletext 320)</desc>
+</programme>
+
+<programme start="20210116133100 +0000" stop="20210116135900 +0000" channel="3sat">
+	<title>Kunst + Krempel</title>
+	<sub-title>Kunst + Krempel in der Kemptener Residenz</sub-title>
+	<desc>(teletext 321)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210116135900 +0000" stop="20210116150000 +0000" channel="3sat">
+	<title>Natur im Garten - Die Katze auf</title>
+	<sub-title>Natur im Garten - Die Katze auf dem heißen Dach</sub-title>
+	<desc>(teletext 322)</desc>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210116150000 +0000" channel="3sat">
+	<title>Erlebnisreisen: Italien</title>
+	<sub-title>Erlebnisreisen: Italien Der Gardasee zwischen Limone und Salo</sub-title>
+</programme>
+
+<programme start="20210118043500 +0000" stop="20210118052000 +0000" channel="3sat">
+	<title>Marokko - Land der Träume</title>
+</programme>
+
+<programme start="20210118052000 +0000" stop="20210118060000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210118060000 +0000" stop="20210118063000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210118063000 +0000" stop="20210118070000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210118070000 +0000" stop="20210118070500 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210118070500 +0000" stop="20210118073000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210118073000 +0000" stop="20210118073300 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210118073300 +0000" stop="20210118080000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210118080000 +0000" stop="20210118080500 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118080500 +0000" stop="20210118084500 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210118084500 +0000" stop="20210118091500 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210118091500 +0000" stop="20210118100000 +0000" channel="3sat">
+	<title>Italien, meine Liebe (1/5)</title>
+</programme>
+
+<programme start="20210118100000 +0000" stop="20210118104500 +0000" channel="3sat">
+	<title>Italien, meine Liebe (2/5)</title>
+</programme>
+
+<programme start="20210118104500 +0000" stop="20210118111000 +0000" channel="3sat">
+	<title>Zu Tisch ... in Luxemburg</title>
+</programme>
+
+<programme start="20210118111000 +0000" stop="20210118112500 +0000" channel="3sat">
+	<title>Erlebnisreisen: Usbekistan</title>
+</programme>
+
+<programme start="20210118112500 +0000" stop="20210118115500 +0000" channel="3sat">
+	<title>Servicezeit</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118115500 +0000" stop="20210118122500 +0000" channel="3sat">
+	<title>Tegernsee, da will ich hin!</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118122500 +0000" stop="20210118130500 +0000" channel="3sat">
+	<title>Steffens entdeckt: Australien</title>
+	<sub-title>Steffens entdeckt: Australien (1/2)</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118130500 +0000" stop="20210118135000 +0000" channel="3sat">
+	<title>Steffens entdeckt: Australien</title>
+	<sub-title>Steffens entdeckt: Australien (2/2)</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118135000 +0000" stop="20210118143500 +0000" channel="3sat">
+	<title>Wilde Inseln: Sri Lanka</title>
+</programme>
+
+<programme start="20210118143500 +0000" stop="20210118152000 +0000" channel="3sat">
+	<title>Wilde Inseln: Karibik</title>
+</programme>
+
+<programme start="20210118152000 +0000" stop="20210118160000 +0000" channel="3sat">
+	<title>Wilde Inseln: Amazonas</title>
+</programme>
+
+<programme start="20210118160000 +0000" stop="20210118164500 +0000" channel="3sat">
+	<title>Wilde Inseln: Galapagos</title>
+</programme>
+
+<programme start="20210118164500 +0000" stop="20210118173000 +0000" channel="3sat">
+	<title>Wilde Inseln: Japan</title>
+</programme>
+
+<programme start="20210118173000 +0000" stop="20210118180000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210118180000 +0000" stop="20210118182000 +0000" channel="3sat">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118182000 +0000" stop="20210118190000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210118190000 +0000" stop="20210118191500 +0000" channel="3sat">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118191500 +0000" stop="20210118205000 +0000" channel="3sat">
+	<title>Hoch hinaus - Die Kirgistan-Expedition</title>
+</programme>
+
+<programme start="20210118205000 +0000" stop="20210118210000 +0000" channel="3sat">
+	<title>Dem Himmel entgegen - Hochhäuser</title>
+	<sub-title>Dem Himmel entgegen - Hochhäuser der Welt</sub-title>
+</programme>
+
+<programme start="20210118210000 +0000" stop="20210118212500 +0000" channel="3sat">
+	<title>Zib 2</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118212500 +0000" stop="20210118213000 +0000" channel="3sat">
+	<title>Sebastian Pufpaff: Noch nicht</title>
+	<sub-title>Sebastian Pufpaff: Noch nicht Schicht!</sub-title>
+</programme>
+
+<programme start="20210118213000 +0000" stop="20210118230000 +0000" channel="3sat">
+	<title>Das Forum - Rettet Davos die</title>
+	<sub-title>Das Forum - Rettet Davos die Welt?</sub-title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118230000 +0000" stop="20210118233000 +0000" channel="3sat">
+	<title>37°: Auf der Spur der Täter</title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210118233000 +0000" stop="20210119000000 +0000" channel="3sat">
+	<title>10 vor 10</title>
+</programme>
+
+<programme start="20210119000000 +0000" stop="20210119010000 +0000" channel="3sat">
+	<title>Anne Will</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210119010000 +0000" stop="20210119021000 +0000" channel="3sat">
+	<title>Rockpalast Crossroads (1/4)</title>
+</programme>
+
+<programme start="20210119021000 +0000" stop="20210119032000 +0000" channel="3sat">
+	<title>Rockpalast Crossroads (2/4)</title>
+</programme>
+
+<programme start="20210119032000 +0000" stop="20210119040000 +0000" channel="3sat">
+	<title>Rockpalast Crossroads (3/4)</title>
+</programme>
+
+<programme start="20210119040000 +0000" stop="20210119052000 +0000" channel="3sat">
+	<title>Rockpalast Crossroads (4/4)</title>
+</programme>
+
+<programme start="20210119052000 +0000" stop="20210119060000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210119060000 +0000" stop="20210119063000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210119063000 +0000" stop="20210119070000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210119070000 +0000" stop="20210119070500 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210119070500 +0000" stop="20210119073000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210119073000 +0000" stop="20210119073300 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210119073300 +0000" stop="20210119080000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210119080000 +0000" stop="20210119080500 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210119080500 +0000" stop="20210119084500 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210119084500 +0000" stop="20210119091500 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210119091500 +0000" stop="20210119100000 +0000" channel="3sat">
+	<title>Wilde Inseln: Amazonas</title>
+</programme>
+
+<programme start="20210119100000 +0000" stop="20210119104500 +0000" channel="3sat">
+	<title>Wilde Inseln: Karibik</title>
+</programme>
+
+<programme start="20210119104500 +0000" stop="20210119111500 +0000" channel="3sat">
+	<title>Hessen a la carte</title>
+</programme>
+
+<programme start="20210119111500 +0000" stop="20210119114500 +0000" channel="3sat">
+	<title>Servicezeit</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210119114500 +0000" stop="20210119121500 +0000" channel="3sat">
+	<title>Die Bergdienstleister - Hinter</title>
+	<sub-title>Die Bergdienstleister - Hinter den Kulissen der Skigebiete</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210119121500 +0000" stop="20210119123500 +0000" channel="3sat">
+	<title>Der Klimaforscher</title>
+</programme>
+
+<programme start="20210119123500 +0000" stop="20210119132000 +0000" channel="3sat">
+	<title>Panamericana (1/7)</title>
+</programme>
+
+<programme start="20210119132000 +0000" stop="20210119140000 +0000" channel="3sat">
+	<title>Panamericana (2/7)</title>
+</programme>
+
+<programme start="20210119140000 +0000" stop="20210119144000 +0000" channel="3sat">
+	<title>Panamericana (3/7)</title>
+</programme>
+
+<programme start="20210119144000 +0000" stop="20210119152500 +0000" channel="3sat">
+	<title>Panamericana (4/7)</title>
+</programme>
+
+<programme start="20210119152500 +0000" stop="20210119160500 +0000" channel="3sat">
+	<title>Panamericana (5/7)</title>
+</programme>
+
+<programme start="20210119160500 +0000" stop="20210119164500 +0000" channel="3sat">
+	<title>Panamericana (6/7)</title>
+</programme>
+
+<programme start="20210119164500 +0000" stop="20210119173000 +0000" channel="3sat">
+	<title>Panamericana (7/7)</title>
+</programme>
+
+<programme start="20210119173000 +0000" stop="20210119180000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210119180000 +0000" stop="20210119182000 +0000" channel="3sat">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210119182000 +0000" stop="20210119190000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210119190000 +0000" stop="20210119191500 +0000" channel="3sat">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210119191500 +0000" stop="20210119204500 +0000" channel="3sat">
+	<title>Wer Wind sät - Ein Taunuskrimi</title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210119204500 +0000" stop="20210119210000 +0000" channel="3sat">
+	<title>kinokino</title>
+</programme>
+
+<programme start="20210119210000 +0000" stop="20210119212500 +0000" channel="3sat">
+	<title>Zib 2</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210119212500 +0000" stop="20210119213000 +0000" channel="3sat">
+	<title>Sebastian Pufpaff: Noch nicht</title>
+	<sub-title>Sebastian Pufpaff: Noch nicht Schicht!</sub-title>
+</programme>
+
+<programme start="20210119213000 +0000" stop="20210119220000 +0000" channel="3sat">
+	<title>makro: Arbeiten in der Zukunft</title>
+</programme>
+
+<programme start="20210119220000 +0000" stop="20210119225000 +0000" channel="3sat">
+	<title>Schmutzige Geschäfte - Der</title>
+	<sub-title>Schmutzige Geschäfte - Der Schweizer Finanzplatz</sub-title>
+</programme>
+
+<programme start="20210119225000 +0000" stop="20210119232500 +0000" channel="3sat">
+	<title>Ein Apotheker mit Nebenwirkungen</title>
+</programme>
+
+<programme start="20210119232500 +0000" stop="20210119235500 +0000" channel="3sat">
+	<title>10 vor 10</title>
+</programme>
+
+<programme start="20210119235500 +0000" stop="20210120011000 +0000" channel="3sat">
+	<title>Hart aber fair</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120011000 +0000" stop="20210120015000 +0000" channel="3sat">
+	<title>Panamericana (2/7)</title>
+</programme>
+
+<programme start="20210120015000 +0000" stop="20210120023000 +0000" channel="3sat">
+	<title>Panamericana (3/7)</title>
+</programme>
+
+<programme start="20210120023000 +0000" stop="20210120031500 +0000" channel="3sat">
+	<title>Panamericana (4/7)</title>
+</programme>
+
+<programme start="20210120031500 +0000" stop="20210120035500 +0000" channel="3sat">
+	<title>Panamericana (5/7)</title>
+</programme>
+
+<programme start="20210120035500 +0000" stop="20210120044000 +0000" channel="3sat">
+	<title>Panamericana (6/7)</title>
+</programme>
+
+<programme start="20210120044000 +0000" stop="20210120052000 +0000" channel="3sat">
+	<title>Panamericana (7/7)</title>
+</programme>
+
+<programme start="20210120052000 +0000" stop="20210120060000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210120060000 +0000" stop="20210120063000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210120063000 +0000" stop="20210120070000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210120070000 +0000" stop="20210120071500 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210120071500 +0000" stop="20210120073000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210120073000 +0000" stop="20210120073300 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210120073300 +0000" stop="20210120080000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210120080000 +0000" stop="20210120082000 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120082000 +0000" stop="20210120085500 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210120085500 +0000" stop="20210120093500 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210120093500 +0000" stop="20210120100000 +0000" channel="3sat">
+	<title>Java - Im Schatten der Vulkane</title>
+</programme>
+
+<programme start="20210120100000 +0000" stop="20210120104500 +0000" channel="3sat">
+	<title>Wilde Inseln: Sri Lanka</title>
+</programme>
+
+<programme start="20210120104500 +0000" stop="20210120111500 +0000" channel="3sat">
+	<title>Mit Herz am Herd</title>
+</programme>
+
+<programme start="20210120111500 +0000" stop="20210120114500 +0000" channel="3sat">
+	<title>Servicezeit</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120114500 +0000" stop="20210120121500 +0000" channel="3sat">
+	<title>Bergauf-Bergab</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120121500 +0000" stop="20210120130000 +0000" channel="3sat">
+	<title>Semmering - Über den Zauberberg</title>
+</programme>
+
+<programme start="20210120130000 +0000" stop="20210120143000 +0000" channel="3sat">
+	<title>Land der Berge - 9 Länder, 9</title>
+	<sub-title>Land der Berge - 9 Länder, 9 Gipfel</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120143000 +0000" stop="20210120151500 +0000" channel="3sat">
+	<title>Der Arlberg - Wiege des alpinen</title>
+	<sub-title>Der Arlberg - Wiege des alpinen Skilaufs</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120151500 +0000" stop="20210120160000 +0000" channel="3sat">
+	<title>Rund um den Hahnenkamm mit</title>
+	<sub-title>Rund um den Hahnenkamm mit Hermann Maier UT 5.1</sub-title>
+</programme>
+
+<programme start="20210120160000 +0000" stop="20210120164500 +0000" channel="3sat">
+	<title>Mythos Ausseerland UT 5.1</title>
+</programme>
+
+<programme start="20210120164500 +0000" stop="20210120173000 +0000" channel="3sat">
+	<title>Dolomiten - Sagenhaftes Juwel</title>
+	<sub-title>Dolomiten - Sagenhaftes Juwel der Alpen UT AD 5.1</sub-title>
+</programme>
+
+<programme start="20210120173000 +0000" stop="20210120180000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210120180000 +0000" stop="20210120182000 +0000" channel="3sat">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120182000 +0000" stop="20210120190000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210120190000 +0000" stop="20210120191500 +0000" channel="3sat">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120191500 +0000" stop="20210120204000 +0000" channel="3sat">
+	<title>Faszination Arktis - Tauchgang</title>
+	<sub-title>Faszination Arktis - Tauchgang unter dünnem Eis</sub-title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120204000 +0000" stop="20210120210000 +0000" channel="3sat">
+	<title>Erlebnisreisen: Kanada</title>
+</programme>
+
+<programme start="20210120210000 +0000" stop="20210120212500 +0000" channel="3sat">
+	<title>Zib 2</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120212500 +0000" stop="20210120213000 +0000" channel="3sat">
+	<title>Sebastian Pufpaff: Noch nicht</title>
+	<sub-title>Sebastian Pufpaff: Noch nicht Schicht!</sub-title>
+</programme>
+
+<programme start="20210120213000 +0000" stop="20210120221500 +0000" channel="3sat">
+	<title>Die verlorene Tochter (2/6)</title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120221500 +0000" stop="20210120235500 +0000" channel="3sat">
+	<title>Die Reste meines Lebens</title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210120235500 +0000" stop="20210121002500 +0000" channel="3sat">
+	<title>10 vor 10</title>
+</programme>
+
+<programme start="20210121002500 +0000" stop="20210121012500 +0000" channel="3sat">
+	<title>Stöckl.</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121012500 +0000" stop="20210121015000 +0000" channel="3sat">
+	<title>Slowenien Magazin</title>
+</programme>
+
+<programme start="20210121015000 +0000" stop="20210121024000 +0000" channel="3sat">
+	<title>Mythos Ausseerland UT 5.1</title>
+</programme>
+
+<programme start="20210121024000 +0000" stop="20210121032000 +0000" channel="3sat">
+	<title>Dolomiten - Sagenhaftes Juwel</title>
+	<sub-title>Dolomiten - Sagenhaftes Juwel der Alpen UT AD 5.1</sub-title>
+</programme>
+
+<programme start="20210121032000 +0000" stop="20210121045000 +0000" channel="3sat">
+	<title>Land der Berge - 9 Länder, 9</title>
+	<sub-title>Land der Berge - 9 Länder, 9 Gipfel</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121045000 +0000" stop="20210121052000 +0000" channel="3sat">
+	<title>Ein Jahr am Wilden Berg</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121052000 +0000" stop="20210121060000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210121060000 +0000" stop="20210121063000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210121063000 +0000" stop="20210121070000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210121070000 +0000" stop="20210121070500 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210121070500 +0000" stop="20210121073000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210121073000 +0000" stop="20210121073300 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210121073300 +0000" stop="20210121080000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210121080000 +0000" stop="20210121080500 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121080500 +0000" stop="20210121084500 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210121084500 +0000" stop="20210121091500 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210121091500 +0000" stop="20210121100000 +0000" channel="3sat">
+	<title>Steffens entdeckt: Australien</title>
+	<sub-title>Steffens entdeckt: Australien (1/2)</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121100000 +0000" stop="20210121104500 +0000" channel="3sat">
+	<title>Steffens entdeckt: Australien</title>
+	<sub-title>Steffens entdeckt: Australien (2/2)</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121104500 +0000" stop="20210121111500 +0000" channel="3sat">
+	<title>Eingeschenkt: Neusiedlersee</title>
+	<sub-title>Eingeschenkt: Neusiedlersee Hügelland - Mineralität</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121111500 +0000" stop="20210121114500 +0000" channel="3sat">
+	<title>Servicezeit</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121114500 +0000" stop="20210121121500 +0000" channel="3sat">
+	<title>Unkraut</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121121500 +0000" stop="20210121130000 +0000" channel="3sat">
+	<title>Die Tierärzte vom Kilimanjaro</title>
+	<sub-title>Die Tierärzte vom Kilimanjaro (1/3)</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121130000 +0000" stop="20210121134500 +0000" channel="3sat">
+	<title>Die Tierärzte vom Kilimanjaro</title>
+	<sub-title>Die Tierärzte vom Kilimanjaro (2/3)</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121134500 +0000" stop="20210121143000 +0000" channel="3sat">
+	<title>Die Tierärzte vom Kilimanjaro</title>
+	<sub-title>Die Tierärzte vom Kilimanjaro (3/3)</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121143000 +0000" stop="20210121151500 +0000" channel="3sat">
+	<title>Ohne Pfeil und Bogen</title>
+</programme>
+
+<programme start="20210121151500 +0000" stop="20210121160000 +0000" channel="3sat">
+	<title>Die Löwen der Kalahari</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121160000 +0000" stop="20210121164500 +0000" channel="3sat">
+	<title>Mike und die Wege der Elefanten</title>
+</programme>
+
+<programme start="20210121164500 +0000" stop="20210121173000 +0000" channel="3sat">
+	<title>mare TV: Wüste Küste Namibia</title>
+</programme>
+
+<programme start="20210121173000 +0000" stop="20210121180000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210121180000 +0000" stop="20210121182000 +0000" channel="3sat">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121182000 +0000" stop="20210121190000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210121190000 +0000" stop="20210121191500 +0000" channel="3sat">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121191500 +0000" stop="20210121210000 +0000" channel="3sat">
+	<title>wissen aktuell: Rettet die</title>
+	<sub-title>wissen aktuell: Rettet die Wälder!</sub-title>
+</programme>
+
+<programme start="20210121210000 +0000" stop="20210121212500 +0000" channel="3sat">
+	<title>Zib 2</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121212500 +0000" stop="20210121213000 +0000" channel="3sat">
+	<title>Sebastian Pufpaff: Noch nicht</title>
+	<sub-title>Sebastian Pufpaff: Noch nicht Schicht!</sub-title>
+</programme>
+
+<programme start="20210121213000 +0000" stop="20210121220000 +0000" channel="3sat">
+	<title>auslandsjournal - die doku: Comeback für Amerika?</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121220000 +0000" stop="20210121224500 +0000" channel="3sat">
+	<title>Geheimnis Gletscher</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121224500 +0000" stop="20210121231500 +0000" channel="3sat">
+	<title>Zapp</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210121231500 +0000" stop="20210121234500 +0000" channel="3sat">
+	<title>10 vor 10</title>
+</programme>
+
+<programme start="20210121234500 +0000" stop="20210122010000 +0000" channel="3sat">
+	<title>maischberger. die woche</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122010000 +0000" stop="20210122013500 +0000" channel="3sat">
+	<title>Ein Apotheker mit Nebenwirkungen</title>
+</programme>
+
+<programme start="20210122013500 +0000" stop="20210122020500 +0000" channel="3sat">
+	<title>Ländermagazin</title>
+</programme>
+
+<programme start="20210122020500 +0000" stop="20210122021500 +0000" channel="3sat">
+	<title>kinokino</title>
+</programme>
+
+<programme start="20210122021500 +0000" stop="20210122024500 +0000" channel="3sat">
+	<title>Generation Smartphone und der</title>
+	<sub-title>Generation Smartphone und der Suchtberater</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122024500 +0000" stop="20210122033000 +0000" channel="3sat">
+	<title>Italien, meine Liebe: Sardinien</title>
+</programme>
+
+<programme start="20210122033000 +0000" stop="20210122041500 +0000" channel="3sat">
+	<title>Italien, meine Liebe: Cilento</title>
+	<sub-title>Italien, meine Liebe: Cilento und Basilikata</sub-title>
+</programme>
+
+<programme start="20210122041500 +0000" stop="20210122050000 +0000" channel="3sat">
+	<title>Italien, meine Liebe: Abruzzen</title>
+</programme>
+
+<programme start="20210122050000 +0000" stop="20210122052000 +0000" channel="3sat">
+	<title>Usbekistan - Zwischen Tradition</title>
+	<sub-title>Usbekistan - Zwischen Tradition und Moderne</sub-title>
+</programme>
+
+<programme start="20210122052000 +0000" stop="20210122060000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210122060000 +0000" stop="20210122063000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210122063000 +0000" stop="20210122070000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210122070000 +0000" stop="20210122070500 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210122070500 +0000" stop="20210122073000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210122073000 +0000" stop="20210122073300 +0000" channel="3sat">
+	<title>Zib</title>
+</programme>
+
+<programme start="20210122073300 +0000" stop="20210122080000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210122080000 +0000" stop="20210122080500 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122080500 +0000" stop="20210122084500 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210122084500 +0000" stop="20210122091500 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210122091500 +0000" stop="20210122100500 +0000" channel="3sat">
+	<title>Rundschau</title>
+</programme>
+
+<programme start="20210122100500 +0000" stop="20210122103000 +0000" channel="3sat">
+	<title>Eco</title>
+</programme>
+
+<programme start="20210122103000 +0000" stop="20210122110000 +0000" channel="3sat">
+	<title>Sehen statt Hören</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122110000 +0000" stop="20210122112500 +0000" channel="3sat">
+	<title>Heimwärts</title>
+</programme>
+
+<programme start="20210122112500 +0000" stop="20210122115000 +0000" channel="3sat">
+	<title>Auroville oder ein Leben für die</title>
+	<sub-title>Auroville oder ein Leben für die Utopie</sub-title>
+</programme>
+
+<programme start="20210122115000 +0000" stop="20210122122000 +0000" channel="3sat">
+	<title>sonntags</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122122000 +0000" stop="20210122130500 +0000" channel="3sat">
+	<title>Spione im Tierreich - Große</title>
+	<sub-title>Spione im Tierreich - Große Gefühle</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122130500 +0000" stop="20210122135000 +0000" channel="3sat">
+	<title>Spione im Tierreich - Schlaue</title>
+	<sub-title>Spione im Tierreich - Schlaue Köpfe</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122135000 +0000" stop="20210122143500 +0000" channel="3sat">
+	<title>Spione im Tierreich - Smarte</title>
+	<sub-title>Spione im Tierreich - Smarte Strategen</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122143500 +0000" stop="20210122151500 +0000" channel="3sat">
+	<title>Wie Elefanten denken</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122151500 +0000" stop="20210122160000 +0000" channel="3sat">
+	<title>Kielings wildes Afrika</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122160000 +0000" stop="20210122164500 +0000" channel="3sat">
+	<title>Steffens entdeckt: Südafrika</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122164500 +0000" stop="20210122173000 +0000" channel="3sat">
+	<title>Steffens entdeckt: Namibia</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122173000 +0000" stop="20210122180000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210122180000 +0000" stop="20210122182000 +0000" channel="3sat">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122182000 +0000" stop="20210122190000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210122190000 +0000" stop="20210122191500 +0000" channel="3sat">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122191500 +0000" stop="20210122204500 +0000" channel="3sat">
+	<title>Ku'damm 56 (1/3)</title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122204500 +0000" stop="20210122210000 +0000" channel="3sat">
+	<title>Cornwall - Das echte Land der</title>
+	<sub-title>Cornwall - Das echte Land der Rosamunde Pilcher</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122210000 +0000" stop="20210122212500 +0000" channel="3sat">
+	<title>Zib 2</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210122212500 +0000" stop="20210122232000 +0000" channel="3sat">
+	<title>Im Auftrag des Drachen</title>
+</programme>
+
+<programme start="20210122232000 +0000" stop="20210122235000 +0000" channel="3sat">
+	<title>10 vor 10</title>
+</programme>
+
+<programme start="20210122235000 +0000" stop="20210123002000 +0000" channel="3sat">
+	<title>extra 3</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123002000 +0000" stop="20210123011500 +0000" channel="3sat">
+	<title>Willkommen Österreich</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123011500 +0000" stop="20210123020000 +0000" channel="3sat">
+	<title>Andreas Rebers: Ich helfe gern</title>
+</programme>
+
+<programme start="20210123020000 +0000" stop="20210123033000 +0000" channel="3sat">
+	<title>Michael Mittermeier: Lucky Punch</title>
+	<sub-title>Michael Mittermeier: Lucky Punch - Die Todes-Wuchtl schlägt zurück</sub-title>
+</programme>
+
+<programme start="20210123033000 +0000" stop="20210123040000 +0000" channel="3sat">
+	<title>Tahnee: Vulvarine</title>
+</programme>
+
+<programme start="20210123040000 +0000" stop="20210123043000 +0000" channel="3sat">
+	<title>Simon &amp; Jan: Alles wird gut</title>
+</programme>
+
+<programme start="20210123043000 +0000" stop="20210123052000 +0000" channel="3sat">
+	<title>Satire Battle (3/4)</title>
+</programme>
+
+<programme start="20210123052000 +0000" stop="20210123060000 +0000" channel="3sat">
+	<title>Kulturzeit</title>
+</programme>
+
+<programme start="20210123060000 +0000" stop="20210123063000 +0000" channel="3sat">
+	<title>nano</title>
+</programme>
+
+<programme start="20210123063000 +0000" stop="20210123080000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210123080000 +0000" stop="20210123080500 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123080500 +0000" stop="20210123083500 +0000" channel="3sat">
+	<title>Kulturplatz</title>
+</programme>
+
+<programme start="20210123083500 +0000" stop="20210123090000 +0000" channel="3sat">
+	<title>Bilder aus Südtirol</title>
+</programme>
+
+<programme start="20210123090000 +0000" stop="20210123094500 +0000" channel="3sat">
+	<title>Thema</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123094500 +0000" stop="20210123102500 +0000" channel="3sat">
+	<title>Herrensitze - Rothschilds Wien</title>
+</programme>
+
+<programme start="20210123102500 +0000" stop="20210123120000 +0000" channel="3sat">
+	<title>Wiener G'schichten</title>
+	<video>
+		<colour>no</colour>
+	</video>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123120000 +0000" stop="20210123121000 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123121000 +0000" stop="20210123121500 +0000" channel="3sat">
+	<title>Notizen aus dem Ausland</title>
+</programme>
+
+<programme start="20210123121500 +0000" stop="20210123130000 +0000" channel="3sat">
+	<title>quer</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123130000 +0000" stop="20210123133000 +0000" channel="3sat">
+	<title>Ländermagazin</title>
+</programme>
+
+<programme start="20210123133000 +0000" stop="20210123140000 +0000" channel="3sat">
+	<title>Kunst + Krempel</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123140000 +0000" stop="20210123142000 +0000" channel="3sat">
+	<title>Traumgärten auf La Reunion (1/2)</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123142000 +0000" stop="20210123143000 +0000" channel="3sat">
+	<title>Hallstatt süß-sauer</title>
+</programme>
+
+<programme start="20210123143000 +0000" stop="20210123150000 +0000" channel="3sat">
+	<title>Der unheimliche Untersberg</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123150000 +0000" stop="20210123163000 +0000" channel="3sat">
+	<title>Bauernprinzessin</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123163000 +0000" stop="20210123180000 +0000" channel="3sat">
+	<title>Bauernprinzessin - Kopf oder</title>
+	<sub-title>Bauernprinzessin - Kopf oder Herz</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123180000 +0000" stop="20210123182000 +0000" channel="3sat">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123182000 +0000" stop="20210123190000 +0000" channel="3sat">
+	<title>Der Kniefall von Warschau - Die</title>
+	<sub-title>Der Kniefall von Warschau - Die Macht der Erinnerung</sub-title>
+</programme>
+
+<programme start="20210123190000 +0000" stop="20210123191500 +0000" channel="3sat">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210123191500 +0000" stop="20210123205500 +0000" channel="3sat">
+	<title>Janis - Little Girl Blue 5.1</title>
+</programme>
+
+<programme start="20210123205500 +0000" stop="20210123222000 +0000" channel="3sat">
+	<title>Blue Note Records - Beyond the</title>
+	<sub-title>Blue Note Records - Beyond the Notes</sub-title>
+</programme>
+
+<programme start="20210123222000 +0000" stop="20210124001000 +0000" channel="3sat">
+	<title>A War 5.1</title>
+</programme>
+
+<programme start="20210124001000 +0000" stop="20210124011000 +0000" channel="3sat">
+	<title>lebensArt</title>
+</programme>
+
+<programme start="20210124011000 +0000" stop="20210124023500 +0000" channel="3sat">
+	<title>das aktuelle sportstudio</title>
+</programme>
+
+<programme start="20210124023500 +0000" stop="20210124032000 +0000" channel="3sat">
+	<title>Der Arlberg - Wiege des alpinen</title>
+	<sub-title>Der Arlberg - Wiege des alpinen Skilaufs</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124032000 +0000" stop="20210124040500 +0000" channel="3sat">
+	<title>Rund um den Hahnenkamm mit</title>
+	<sub-title>Rund um den Hahnenkamm mit Hermann Maier UT 5.1</sub-title>
+</programme>
+
+<programme start="20210124040500 +0000" stop="20210124045000 +0000" channel="3sat">
+	<title>Semmering - Über den Zauberberg</title>
+</programme>
+
+<programme start="20210124045000 +0000" stop="20210124051500 +0000" channel="3sat">
+	<title>Faszination Fluss - Der</title>
+	<sub-title>Faszination Fluss - Der Tagliamento</sub-title>
+</programme>
+
+<programme start="20210124051500 +0000" stop="20210124054500 +0000" channel="3sat">
+	<title>makro: Arbeiten in der Zukunft</title>
+</programme>
+
+<programme start="20210124054500 +0000" stop="20210124063000 +0000" channel="3sat">
+	<title>Tele-Akademie</title>
+</programme>
+
+<programme start="20210124063000 +0000" stop="20210124080000 +0000" channel="3sat">
+	<title>Alpenpanorama</title>
+</programme>
+
+<programme start="20210124080000 +0000" stop="20210124080500 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124080500 +0000" stop="20210124090500 +0000" channel="3sat">
+	<title>Bundesrat Alain Berset - Politik</title>
+	<sub-title>Bundesrat Alain Berset - Politik im Ausnahmezustand</sub-title>
+</programme>
+
+<programme start="20210124090500 +0000" stop="20210124093500 +0000" channel="3sat">
+	<title>lesenswert</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124093500 +0000" stop="20210124102000 +0000" channel="3sat">
+	<title>Geheimnisse der Wiener</title>
+	<sub-title>Geheimnisse der Wiener Innenstadt (1/2)</sub-title>
+</programme>
+
+<programme start="20210124102000 +0000" stop="20210124110500 +0000" channel="3sat">
+	<title>Geheimnisse der Wiener</title>
+	<sub-title>Geheimnisse der Wiener Innenstadt (2/2)</sub-title>
+</programme>
+
+<programme start="20210124110500 +0000" stop="20210124120000 +0000" channel="3sat">
+	<title>Licht und Raum - Der Architekt</title>
+	<sub-title>Licht und Raum - Der Architekt Boris Podrecca</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124120000 +0000" stop="20210124120500 +0000" channel="3sat">
+	<title>Zib</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124120500 +0000" stop="20210124123000 +0000" channel="3sat">
+	<title>100 (Lebens)Jahre Burgenland</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124123000 +0000" stop="20210124130000 +0000" channel="3sat">
+	<title>Mexiko - Dauerläufer in Sandalen</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124130000 +0000" stop="20210124134500 +0000" channel="3sat">
+	<title>Die gefährlichsten Schulwege der</title>
+	<sub-title>Die gefährlichsten Schulwege der Welt: Peru</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124134500 +0000" stop="20210124143000 +0000" channel="3sat">
+	<title>Die gefährlichsten Schulwege der</title>
+	<sub-title>Die gefährlichsten Schulwege der Welt: Nepal</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124143000 +0000" stop="20210124160000 +0000" channel="3sat">
+	<title>Krauses Kur</title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124160000 +0000" stop="20210124173000 +0000" channel="3sat">
+	<title>Krauses Braut</title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124173000 +0000" stop="20210124180000 +0000" channel="3sat">
+	<title>Museums-Check mit Markus Brock</title>
+</programme>
+
+<programme start="20210124180000 +0000" stop="20210124181000 +0000" channel="3sat">
+	<title>heute</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124181000 +0000" stop="20210124184000 +0000" channel="3sat">
+	<title>Die letzten Venezianer? Leben</title>
+	<sub-title>Die letzten Venezianer? Leben und Widerstand in Venedig</sub-title>
+</programme>
+
+<programme start="20210124184000 +0000" stop="20210124190000 +0000" channel="3sat">
+	<title>Schätze der Welt - Erbe der</title>
+	<sub-title>Schätze der Welt - Erbe der Menschheit</sub-title>
+</programme>
+
+<programme start="20210124190000 +0000" stop="20210124191500 +0000" channel="3sat">
+	<title>Tagesschau</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124191500 +0000" stop="20210124200000 +0000" channel="3sat">
+	<title>Urban Priol: TILT 2020</title>
+</programme>
+
+<programme start="20210124200000 +0000" stop="20210124204500 +0000" channel="3sat">
+	<title>Pufpaffs Happy Hour - Best of</title>
+	<sub-title>Pufpaffs Happy Hour - Best of 2020</sub-title>
+</programme>
+
+<programme start="20210124204500 +0000" stop="20210124221500 +0000" channel="3sat">
+	<title>Zweibettzimmer</title>
+	<audio>
+		<stereo>bilingual</stereo>
+	</audio>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210124221500 +0000" stop="20210124235000 +0000" channel="3sat">
+	<title>Oldboy UT 5.1</title>
+</programme>
+
+<programme start="20210124235000 +0000" stop="20210125003500 +0000" channel="3sat">
+	<title>Die gefährlichsten Schulwege der</title>
+	<sub-title>Die gefährlichsten Schulwege der Welt: Nepal</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210125003500 +0000" stop="20210125011500 +0000" channel="3sat">
+	<title>Die gefährlichsten Schulwege der</title>
+	<sub-title>Die gefährlichsten Schulwege der Welt: Peru</sub-title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210125011500 +0000" stop="20210125014500 +0000" channel="3sat">
+	<title>Mexiko - Dauerläufer in Sandalen</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210125014500 +0000" stop="20210125023000 +0000" channel="3sat">
+	<title>Chile - Die Vulkanreiter</title>
+</programme>
+
+<programme start="20210125023000 +0000" stop="20210125030000 +0000" channel="3sat">
+	<title>Meine Traumreise nach Patagonien</title>
+</programme>
+
+<programme start="20210125030000 +0000" stop="20210125033000 +0000" channel="3sat">
+	<title>Dschungel am Fuß der Anden</title>
+</programme>
+
+<programme start="20210125033000 +0000" stop="20210125041500 +0000" channel="3sat">
+	<title>Mit dem Fahrrad über die Anden</title>
+</programme>
+
+<programme start="20210125041500 +0000" stop="20210125044500 +0000" channel="3sat">
+	<title>Auf Schienen durch die Anden</title>
+	<subtitles type="teletext"/>
+</programme>
+
+<programme start="20210125044500 +0000" channel="3sat">
+	<title>Chile - Von der Wüste ins ewige</title>
+	<sub-title>Chile - Von der Wüste ins ewige Eis</sub-title>
+</programme>
+</tv>

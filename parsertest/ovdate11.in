@@ -1,0 +1,233 @@
+#!tv_grab_ttx -verify
+#
+# Verify that data from yesterday is not mapped to a date almost one
+# year in the future. Here, this happens due to "Marktanteil" pages
+# which list programmes of previous days.
+#
+# TODO 2021-01-14: closing line "bis 14.20 Uhr" with prepended magenta
+# time correction (VPS?) is currently incorrectly detected as title
+# (but later discarded via overlap detection in this particular case)
+#
+$VbiCaptureTime = 1609525806;
+$PgCnt{0x301} = 5;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 1;
+$PgTime{0x301} = 1609525806;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301 WDR Text  Fr 01.01.\x0719:29:55",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "\x03           Freitag, 01.01.21           ",
+  "\x0205.20\x02Aktuelle Stunde\x03HD, UT \x02.....\x02362",
+  undef,
+  "\x0206.05\x0210 Jahre \"Der Vorkoster\"\x03HD,     ",
+  "      \x03UT \x02.........................\x02307",
+  "      \x07Das Jubil{um!                    ",
+  "\x0207.35\x02Lokalzeit-Geschichten\x03UT \x02...\x02377",
+  "      \x07Jahresr}ckblick 2020             ",
+  "\x0208.05\x02Neujahrskonzert 2020 aus dem     ",
+  "      \x02Teatro La Fenice\x03HD \x02........\x02308",
+  "\x0209.05\x02Der geschenkte Tag\x03HD, UT \x02..\x02309",
+  "                                        ",
+  "\x0209.50\x02Abenteuer Erde: Ein Jahr         ",
+  "      \x02unter Elefanten\x03AD, HD, UT   \x02310",
+  "\x0211.20\x02Opa, ledig, jung\x03AD, HD, UT  \x02311",
+  "      \x07Fernsehfilm, Deutschland 2015    ",
+  "\x0212.50\x02J}rgen von der Lippe XL\x03UT   \x02312",
+  "\x0512.49\x07bis 14.20 Uhr                    ",
+  undef,
+  "\x1D\x04300 < ]bersicht           weiter > 302",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x302} = 5;
+$PgSub{0x302} = 0;
+$PgLang{0x302} = 1;
+$PgTime{0x302} = 1609525806;
+$Pkg{0x302|(0x0000<<12)} =
+[
+  "        302 WDR Text  Fr 01.01.\x0719:29:55",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "\x03           Freitag, 01.01.21           ",
+  "\x0214.20\x02Die verr}ckten 68er\x03HD, UT   \x02313",
+  "      \x07Ein Jahr ver{ndert unsere        ",
+  "      \x07Welt                             ",
+  "\x0215.50\x02Der Duft der gro~en weiten       ",
+  "      \x02Welt\x03AD, HD, UT \x02............\x02314",
+  "      \x07Unser Land in den 60ern          ",
+  "\x0216.30\x02Eine Klasse f}r sich\x03AD, HD,     ",
+  "      \x03UT \x02.........................\x02315",
+  "      \x07Unser Land in den 60ern          ",
+  "\x0217.15\x02Weg mit dem Grauschleier\x03AD,     ",
+  "      \x03HD, UT \x02.....................\x02316",
+  "      \x07Unser Land in den 60ern          ",
+  "\x0218.00\x02Wir k|nnen auch anders\x03AD,       ",
+  "      \x03HD, UT \x02.....................\x02317",
+  "      \x07Unser Land in den 60ern          ",
+  "\x0218.45\x02Aktuelle Stunde\x03HD, UT \x02.....\x02362",
+  "      \x07bis 19.30 Uhr                    ",
+  undef,
+  "\x1D\x04300 < ]bersicht           weiter > 303",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x303} = 5;
+$PgSub{0x303} = 0;
+$PgLang{0x303} = 1;
+$PgTime{0x303} = 1609525806;
+$Pkg{0x303|(0x0000<<12)} =
+[
+  "        303 WDR Text  Fr 01.01.\x0719:29:55",
+  "\x1D\x04\x1D\x07        \x1D\x1D               \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04PROGRAMM       \x1D\x07\x03        ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04heute                     ",
+  "\x03           Freitag, 01.01.21           ",
+  "\x0219.30\x02Lokalzeit-Geschichten\x03UT \x02...\x02318",
+  "      \x07Auf ein gutes Neues!             ",
+  "\x0219.55\x02Neujahrsansprache\x03HD, UT         ",
+  "      \x07des Ministerpr{sidenten Armin    ",
+  "      \x07Laschet                          ",
+  "\x0220.00\x02Tagesschau\x03HD, UT \x02..........\x02363",
+  undef,
+  "\x0220.15\x02Made in Germany\x03AD, HD, UT   \x02319",
+  "      \x0770er Hits und ihre               ",
+  "      \x07Geschichten                      ",
+  "\x0221.45\x02Verdamp lang her\x03HD, UT \x02....\x02320",
+  "      \x07Die Hits der 80er und ihre       ",
+  "      \x07Geschichten                      ",
+  "\x0223.15\x02Die 90er-Hits\x03HD, UT \x02.......\x02321",
+  "      \x07Von Matthias Reim bis Guns 'N    ",
+  "      \x07Roses                            ",
+  "      \x07bis 00.45 Uhr                    ",
+  "                                        ",
+  "\x1D\x04300 < ]bersicht           weiter > 304",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x398} = 1;
+$PgSub{0x398} = 3;
+$PgLang{0x398} = 1;
+$PgTime{0x398} = 1609525762;
+$Pkg{0x398|(0x0001<<12)} =
+[
+  "        398 WDR Text  Fr 01.01.\x0719:29:11",
+  "\x1D\x04\x1D\x07        \x1D\x1D\x04Einschalt     \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04 Quoten        \x1D\x07\x03  1/3   ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04 \x04       vom 31. Dezember ",
+  "\x03Marktanteil NRW / \%\x02 Zuschauer / Tsd.  ",
+  undef,
+  "\x0207.22\x07ERLEBNISREISEN         \x03 2,1\x02  17",
+  "\x0207.29\x07Festlich k|stlich -    \x03 1,7\x02  14",
+  "      \x07Silvestermen} mit Bj|rn          ",
+  "      \x07Freitag & G{sten                 ",
+  "\x0208.14\x07B|ller, Blei und       \x03 3,7\x02  42",
+  "      \x07Brezel-Skat                      ",
+  "\x0208.58\x07Bl{ck F||ss: Sinfonisch\x03 4,7\x02  68",
+  "\x0210.14\x07Die sch|nsten          \x03 3,6\x02  70",
+  "      \x07TV-Familiengeschichten           ",
+  "      \x07- Von Ekel Alfred bis            ",
+  "      \x07zu den Mockridges                ",
+  "\x0211.44\x07LachGeschichten        \x03 5,3\x02 127",
+  "\x0213.13\x07LachGeschichten        \x03 5,6\x02 185",
+  "\x0213.58\x07Lachsalven & Juxraketen\x03 4,3\x02 170",
+  "\x0215.28\x07Best of Hape Kerkeling \x03 8,4\x02 351",
+  undef,
+  "    \x03   AGF/GfK, vorl{ufige Daten       ",
+  "\x1D\x04     \x04Marktanteile andere Sender > 399",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x398} = 2;
+$PgSub{0x398} = 3;
+$PgLang{0x398} = 1;
+$PgTime{0x398} = 1609525785;
+$Pkg{0x398|(0x0002<<12)} =
+[
+  "        398 WDR Text  Fr 01.01.\x0719:29:35",
+  "\x1D\x04\x1D\x07        \x1D\x1D\x04Einschalt     \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04 Quoten        \x1D\x07\x03  2/3   ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04 \x04       vom 31. Dezember ",
+  "\x03Marktanteil NRW / \%\x02 Zuschauer / Tsd.  ",
+  undef,
+  "\x0216.58\x07Stunksitzung: D|ner for\x03 6,3\x02 268",
+  "      \x07one                              ",
+  "\x0217.11\x07Dinner op K|lsch       \x0314,2\x02 647",
+  "\x0217.38\x07DER 90. GEBURTSTAG ODER\x0321,9\x021042",
+  "      \x07DINNERFOR ONE                    ",
+  "\x0217.56\x07EIN HERZ UND EINE SEELE\x0315,0\x02 715",
+  "\x0218.45\x07Aktuelle Stunde        \x0321,9\x021093",
+  "\x0219.30\x07Lokalzeit-Geschichten  \x0319,1\x02 970",
+  "\x0220.00\x07Tagesschau             \x0315,3\x02 786",
+  "\x0220.07\x07Neujahrsansprache der  \x0312,9\x02 673",
+  "      \x07Bundeskanzlerin                  ",
+  "\x0220.14\x07100 Silvester-Kracher -\x0310,4\x02 554",
+  "      \x07Die Countdown-Show               ",
+  "\x0223.54\x07Silvester am K|lner Dom\x0312,2\x02 725",
+  undef,
+  undef,
+  "    \x03   AGF/GfK, vorl{ufige Daten       ",
+  "\x1D\x04     \x04Marktanteile andere Sender > 399",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x398} = 1;
+$PgSub{0x398} = 3;
+$PgLang{0x398} = 1;
+$PgTime{0x398} = 1609525738;
+$Pkg{0x398|(0x0003<<12)} =
+[
+  "        398 WDR Text  Fr 01.01.\x0719:28:47",
+  "\x1D\x04\x1D\x07        \x1D\x1D\x04Einschalt     \x1C\x03FERNSEHEN",
+  "\x1D\x04\x1D\x07WDR     \x1D\x04 Quoten        \x1D\x07\x03  3/3   ",
+  "\x1D\x14\x7F\x7F\x7F\x7F\x7F5     \x04 \x04       vom 31. Dezember ",
+  "\x03Marktanteil NRW / \%\x02 Zuschauer / Tsd.  ",
+  undef,
+  "\x0200.11\x07Michael Patrick Kellys \x0310,5\x02 553",
+  "      \x07Lockdown-Konzert im              ",
+  "      \x07K|lner Dom                       ",
+  "\x0200.41\x07Unser Westen           \x03 7,5\x02 246",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "    \x03   AGF/GfK, vorl{ufige Daten       ",
+  "\x1D\x04     \x04Marktanteile andere Sender > 399",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

@@ -439,7 +439,7 @@ $Pkg{0x315|(0x0000<<12)} =
   undef,
   undef,
   undef,
-  "\x01\x1D\x07TV-PROGRAMM \x00MORGEN                 \x00",
+  "\x01\x1D\x07TV-PROGRAMM \x00HEUTE                  \x00",
   " 10:15  Test Title                      ",
   undef,
   undef,
@@ -683,6 +683,39 @@ $Pkg{0x323|(0x0000<<12)} =
   "\x04\x1D\x07 Programm  Samstag, 29.April         ",
   "                       \x05\x181D102\x18290406\x1829",
   " 10:23  Test Title                      ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+#
+# Next day
+#
+$PgCnt{0x330} = 1;
+$PgSub{0x330} = 0;
+$PgLang{0x330} = 1;
+$Pkg{0x330|(0x0000<<12)} =
+[
+  "        330   TEST    29.04.06  13:47:44",
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x01\x1D\x07TV-PROGRAMM \x00MORGEN                 \x00",
+  " 11:00  Test Title                      ",
+  undef,
+  undef,
   undef,
   undef,
   undef,
