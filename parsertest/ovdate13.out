@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="phoenix">
+	<display-name>phoenix</display-name>
+</channel>
+
+<programme start="20210122191500 +0000" stop="20210122200000 +0000" channel="phoenix">
+	<!-- TTX 306.0000 ACQTS:1611338546 -->
+	<title>Wasserwelten</title>
+	<sub-title>Wasserwelten Loango - Kronjuwelen Afrikas</sub-title>
+	<desc>(teletext 605)</desc>
+</programme>
+
+<programme start="20210122200000 +0000" stop="20210122204500 +0000" channel="phoenix">
+	<!-- TTX 306.0000 ACQTS:1611338546 -->
+	<title>Wasserwelten</title>
+	<sub-title>Wasserwelten Kinabatangan - Der Garten Eden Borneos</sub-title>
+	<desc>(teletext 606)</desc>
+</programme>
+
+<programme start="20210122204500 +0000" stop="20210122213000 +0000" channel="phoenix">
+	<!-- TTX 306.0000 ACQTS:1611338546 -->
+	<title>Wasserwelten</title>
+	<sub-title>Wasserwelten Pacaya - Samiria - Spiegelbilder der Natur</sub-title>
+	<desc>(teletext 607)</desc>
+</programme>
+
+<programme start="20210122213000 +0000" stop="20210122220000 +0000" channel="phoenix">
+	<!-- TTX 306.0000 ACQTS:1611338546 -->
+	<title>Geisterfluss und Lebensader</title>
+	<sub-title>Geisterfluss und Lebensader Unterwegs auf Perus Amazonas</sub-title>
+	<desc>(teletext 608)</desc>
+</programme>
+
+<programme start="20210122220000 +0000" stop="20210122230000 +0000" channel="phoenix">
+	<!-- TTX 306.0000 ACQTS:1611338546 -->
+	<title>phoenix der tag</title>
+	<sub-title>phoenix der tag u.a. Aktuelles zum Atomwaffenverbotsvertrag</sub-title>
+	<desc>(teletext 356)</desc>
+</programme>
+
+<programme start="20210122230000 +0000" stop="20210122233000 +0000" channel="phoenix">
+	<!-- TTX 307.0000 ACQTS:1611338546 -->
+	<title>phoenix persönlich</title>
+	<sub-title>phoenix persönlich Alice Schwarzer zu Gast bei Alfred Schier</sub-title>
+	<desc>(teletext 703)</desc>
+</programme>
+
+<programme start="20210122233000 +0000" stop="20210122234500 +0000" channel="phoenix">
+	<!-- TTX 307.0000 ACQTS:1611338546 -->
+	<title>bilder der geschichte</title>
+	<sub-title>bilder der geschichte Corona und Triage (VPS: 00:29)</sub-title>
+	<desc>(teletext 704)</desc>
+</programme>
+
+<programme start="20210122234500 +0000" stop="20210123003500 +0000" channel="phoenix">
+	<!-- TTX 307.0000 ACQTS:1611338546 -->
+	<title>Der Pazifikkrieg</title>
+	<sub-title>Der Pazifikkrieg Pearl Harbor</sub-title>
+	<desc>(teletext 609)</desc>
+</programme>
+
+<programme start="20210123003500 +0000" stop="20210123012500 +0000" channel="phoenix">
+	<!-- TTX 307.0000 ACQTS:1611338546 -->
+	<title>Der Pazifikkrieg</title>
+	<sub-title>Der Pazifikkrieg Kampf um jede Insel</sub-title>
+	<desc>(teletext 610)</desc>
+</programme>
+
+<programme start="20210123012500 +0000" stop="20210123021500 +0000" channel="phoenix">
+	<!-- TTX 307.0000 ACQTS:1611338546 -->
+	<title>Der Pazifikkrieg</title>
+	<sub-title>Der Pazifikkrieg Angriff auf Japan</sub-title>
+	<desc>(teletext 611)</desc>
+</programme>
+
+<programme start="20210123021500 +0000" stop="20210123030500 +0000" channel="phoenix">
+	<!-- TTX 307.0000 ACQTS:1611338546 -->
+	<title>Der Fall Japans - in Farbe</title>
+	<desc>(teletext 612)</desc>
+</programme>
+
+<programme start="20210123030500 +0000" stop="20210123031500 +0000" channel="phoenix">
+	<!-- TTX 308.0000 ACQTS:1611338546 -->
+	<title>Honigjäger im Himalaya</title>
+	<desc>(teletext 613)</desc>
+</programme>
+
+<programme start="20210123031500 +0000" stop="20210123040000 +0000" channel="phoenix">
+	<!-- TTX 308.0000 ACQTS:1611338546 -->
+	<title>Kultfoto</title>
+	<sub-title>Kultfoto Stars und Stripes auf Iwo Jima</sub-title>
+	<desc>(teletext 614)</desc>
+</programme>
+
+<programme start="20210123040000 +0000" stop="20210123050000 +0000" channel="phoenix">
+	<!-- TTX 308.0000 ACQTS:1611338546 -->
+	<title>ZDF-History</title>
+	<sub-title>ZDF-History Hiroshima - Chronik einer Tragödie</sub-title>
+	<desc>(teletext 615)</desc>
+</programme>
+
+<programme start="20210123050000 +0000" stop="20210123060000 +0000" channel="phoenix">
+	<!-- TTX 308.0000 ACQTS:1611338546 -->
+	<title>mein ausland</title>
+	<sub-title>mein ausland Safari am Sambesi</sub-title>
+	<desc>(teletext 616)</desc>
+</programme>
+
+<programme start="20210123060000 +0000" stop="20210123061500 +0000" channel="phoenix">
+	<!-- TTX 308.0000 ACQTS:1611338546 -->
+	<title>mein ausland</title>
+	<sub-title>mein ausland Im Luxuszug durch den Süden Afrikas</sub-title>
+	<desc>(teletext 617)</desc>
+</programme>
+
+<programme start="20210123061500 +0000" stop="20210123070000 +0000" channel="phoenix">
+	<!-- TTX 308.0000 ACQTS:1611338546 -->
+	<title>Wasserwelten</title>
+	<sub-title>Wasserwelten Loango - Kronjuwelen Afrikas</sub-title>
+	<desc>(teletext 618)</desc>
+</programme>
+
+<programme start="20210123070000 +0000" stop="20210123074500 +0000" channel="phoenix">
+	<!-- TTX 309.0000 ACQTS:1611338546 -->
+	<title>Wasserwelten</title>
+	<sub-title>Wasserwelten Kinabatangan - Der Garten Eden Borneos</sub-title>
+	<desc>(teletext 650)</desc>
+</programme>
+
+<programme start="20210123074500 +0000" stop="20210123083000 +0000" channel="phoenix">
+	<!-- TTX 309.0000 ACQTS:1611338546 -->
+	<title>Wasserwelten</title>
+	<sub-title>Wasserwelten Pacaya - Samiria - Spiegelbilder der Natur</sub-title>
+	<desc>(teletext 651)</desc>
+</programme>
+
+<programme start="20210123083000 +0000" stop="20210123090000 +0000" channel="phoenix">
+	<!-- TTX 309.0000 ACQTS:1611338546 -->
+	<title>Geisterfluss und Lebensader</title>
+	<sub-title>Geisterfluss und Lebensader Unterwegs auf Perus Amazonas</sub-title>
+	<desc>(teletext 652)</desc>
+</programme>
+
+<programme start="20210123090000 +0000" stop="20210123120000 +0000" channel="phoenix">
+	<!-- TTX 309.0000 ACQTS:1611338546 -->
+	<title>phoenix history</title>
+	<sub-title>phoenix history BLACK LIVES MATTER</sub-title>
+	<desc>(teletext 653)</desc>
+</programme>
+
+<programme start="20210123120000 +0000" channel="phoenix">
+	<!-- TTX 309.0000 ACQTS:1611338546 -->
+	<title>phoenix plus</title>
+	<sub-title>phoenix plus Trumps letztes Gefecht</sub-title>
+	<desc>(teletext 370)</desc>
+</programme>
+</tv>

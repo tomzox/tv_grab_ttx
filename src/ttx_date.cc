@@ -173,6 +173,8 @@ const T_DATE_NAME RelDateNames[] =
    {"morgen", (1<<1),1, DATE_NAME_FULL},
    {"übermorgen", (1<<1),2, DATE_NAME_FULL},
    {"Übermorgen", (1<<1),2, DATE_NAME_FULL},  // hack to work around mismatching locale
+   {"uebermorgen", (1<<1),2, DATE_NAME_FULL},
+   {"Uebermorgen", (1<<1),2, DATE_NAME_FULL},
    {"aujourd'hui", (1<<4),0, DATE_NAME_FULL},
    {"demain", (1<<4),1, DATE_NAME_FULL},
    {"aprés-demain", (1<<4),2, DATE_NAME_FULL},

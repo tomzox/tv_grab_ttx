@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv>
+<channel id="N24 DOKU">
+	<display-name>N24 DOKU</display-name>
+</channel>
+
+<programme start="20210128230300 +0000" stop="20210128235600 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Lost Places - Straßen ins</title>
+	<sub-title>Lost Places - Straßen ins Nirgendwo</sub-title>
+	<desc>(teletext 331)</desc>
+</programme>
+
+<programme start="20210128235600 +0000" stop="20210129003800 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Lost Places - Die Asbestmine</title>
+	<desc>(teletext 330)</desc>
+</programme>
+
+<programme start="20210129003800 +0000" stop="20210129011800 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Lost Places - Schiffe aus</title>
+	<sub-title>Lost Places - Schiffe aus Beton</sub-title>
+	<desc>(teletext 330)</desc>
+</programme>
+
+<programme start="20210129011800 +0000" stop="20210129015900 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Drama in der Luft: Technisches Versagen</title>
+	<desc>(teletext 347)</desc>
+</programme>
+
+<programme start="20210129015900 +0000" stop="20210129024000 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Drama in der Luft: Menschliches Versagen</title>
+	<desc>(teletext 394)</desc>
+</programme>
+
+<programme start="20210129024000 +0000" stop="20210129032100 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Drama in der Luft: Gefährliche Landungen</title>
+	<desc>(teletext 390)</desc>
+</programme>
+
+<programme start="20210129032100 +0000" stop="20210129035200 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Der ICE - Highspeed auf</title>
+	<sub-title>Der ICE - Highspeed auf Schienen</sub-title>
+	<desc>(teletext 322)</desc>
+</programme>
+
+<programme start="20210129035200 +0000" stop="20210129043300 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Lost Places - Straßen ins</title>
+	<sub-title>Lost Places - Straßen ins Nirgendwo</sub-title>
+	<desc>(teletext 331)</desc>
+</programme>
+
+<programme start="20210129043300 +0000" channel="N24 DOKU">
+	<!-- TTX 308.0003 ACQTS:1611853569 -->
+	<title>Lost Places - Die Asbestmine</title>
+	<desc>(teletext 330)</desc>
+</programme>
+
+<programme start="20210130051500 +0000" stop="20210130060500 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0005 ACQTS:1611853520 -->
+	<title>Lost Places - Geheime Atomwaffen</title>
+	<desc>(teletext 330)</desc>
+</programme>
+
+<programme start="20210130060500 +0000" stop="20210130065800 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0005 ACQTS:1611853520 -->
+	<title>Die geheimen Akten der NASA: Mondflug Plan B</title>
+	<desc>(teletext 361)</desc>
+</programme>
+
+<programme start="20210130065800 +0000" stop="20210130075100 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0005 ACQTS:1611853520 -->
+	<title>Die geheimen Akten der NASA: Gemini außer Kontrolle</title>
+	<desc>(teletext 364)</desc>
+</programme>
+
+<programme start="20210130075100 +0000" stop="20210130084400 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0005 ACQTS:1611853520 -->
+	<title>Die geheimen Akten der NASA: Die Apollo-10-Tonbänder</title>
+	<desc>(teletext 364)</desc>
+</programme>
+
+<programme start="20210130084400 +0000" stop="20210130092400 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0005 ACQTS:1611853520 -->
+	<title>Die UFO-Akten: Auf Tauchstation</title>
+	<desc>(teletext 360)</desc>
+</programme>
+
+<programme start="20210130092400 +0000" stop="20210130102100 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0005 ACQTS:1611853520 -->
+	<title>Superschiffe - Norwegian</title>
+	<sub-title>Superschiffe - Norwegian Breakaway: Bau eines Kreuzfahrt-Giganten</sub-title>
+	<desc>(teletext 356)</desc>
+</programme>
+
+<programme start="20210130102100 +0000" stop="20210130111500 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0005 ACQTS:1611853520 -->
+	<title>Superschiffe - Norwegian</title>
+	<sub-title>Superschiffe - Norwegian Breakaway: Jungfernfahrt eines Kreuzfahrt-Giganten</sub-title>
+	<desc>(teletext 343)</desc>
+</programme>
+
+<programme start="20210130111500 +0000" stop="20210130121400 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0006 ACQTS:1611853544 -->
+	<title>Das Mega-Hotel! Marina Bay</title>
+	<sub-title>Das Mega-Hotel! Marina Bay Sands</sub-title>
+	<desc>(teletext 351)</desc>
+</programme>
+
+<programme start="20210130121400 +0000" stop="20210130131200 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0006 ACQTS:1611853544 -->
+	<title>Quantum of the Seas - Freizeitpark auf hoher See</title>
+	<desc>(teletext 348)</desc>
+</programme>
+
+<programme start="20210130131200 +0000" stop="20210130141300 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0006 ACQTS:1611853544 -->
+	<title>140.000 Quadratmeter Wellness - Die größte Therme der</title>
+	<sub-title>140.000 Quadratmeter Wellness - Die größte Therme der Welt</sub-title>
+	<desc>(teletext 353)</desc>
+</programme>
+
+<programme start="20210130141300 +0000" stop="20210130151400 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0006 ACQTS:1611853544 -->
+	<title>Action nonstop - Freizeitspaß der Superlative</title>
+	<desc>(teletext 393)</desc>
+</programme>
+
+<programme start="20210130151400 +0000" stop="20210130161300 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0006 ACQTS:1611853544 -->
+	<title>Roller Coasters - Die Hightech-Achterbahnen</title>
+	<!-- TTX 398.0002 -->
+	<desc>Roller Coasters - Die Hightech-Achterbahnen Sa 30.01. 16:14-17:13 Mo 01.02. 07:05-08:00
+Achterbahnen sind meist das Herzstück eines Freizeitparks, denn der Adrenalinkick ist hier garantiert. Mit Geschwindigkeiten wie in einem Rennwagen rasen die Fahrgäste über die gigantischen Konstruktionen, deren Strecken von steilen Abgründen und Loopings geprägt sind. Die Stahlachterbahn Goudurix in Frankreich hält darin sogar einen Weltrekord: Sieben Loopings werden hier in 50 Sekunden zurückgelegt. Doch die Fahrgeschäfte sind weltweit beliebt - die Dokumentation besucht die beeindruckendsten.</desc>
+</programme>
+
+<programme start="20210130161300 +0000" stop="20210130171400 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0006 ACQTS:1611853544 -->
+	<title>Mega-Konstruktionen: Las Vegas High Roller</title>
+	<desc>(teletext 324)</desc>
+</programme>
+
+<programme start="20210130171400 +0000" stop="20210130181400 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0007 ACQTS:1611853569 -->
+	<title>Mega-Konstruktionen: Achterbahn Valkyria</title>
+	<desc>(teletext 324)</desc>
+</programme>
+
+<programme start="20210130181400 +0000" stop="20210130191500 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0007 ACQTS:1611853569 -->
+	<title>Antonov 124 - Megatransporter der Lüfte</title>
+	<desc>(teletext 392)</desc>
+</programme>
+
+<programme start="20210130191500 +0000" stop="20210130201000 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0007 ACQTS:1611853569 -->
+	<title>Das große Brauen - Deutschland und seine Biere</title>
+	<desc>(teletext 358)</desc>
+</programme>
+
+<programme start="20210130201000 +0000" stop="20210130210500 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0007 ACQTS:1611853569 -->
+	<title>Fast Food - Das Milliarden--Business</title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20210130210500 +0000" stop="20210130220600 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0007 ACQTS:1611853569 -->
+	<title>Vom Rind zum Steak - Europas</title>
+	<sub-title>Vom Rind zum Steak - Europas größter Rinder-Schlachthof</sub-title>
+	<desc>(teletext 352)</desc>
+</programme>
+
+<programme start="20210130220600 +0000" stop="20210130230700 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0007 ACQTS:1611853569 -->
+	<title>Hightech auf dem Acker - Einsatz für die Ernte-Giganten</title>
+	<desc>(teletext 344)</desc>
+</programme>
+
+<programme start="20210130230700 +0000" stop="20210131000700 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0008 ACQTS:1611853593 -->
+	<title>Die Plattmacher - Abrissprofis im Einsatz</title>
+	<desc>(teletext 345)</desc>
+</programme>
+
+<programme start="20210131000700 +0000" stop="20210131004800 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0008 ACQTS:1611853593 -->
+	<title>Die Recyclingprofis - Abfall</title>
+	<sub-title>Die Recyclingprofis - Abfall wird zum Rohstoff</sub-title>
+	<desc>(teletext 328)</desc>
+</programme>
+
+<programme start="20210131004800 +0000" stop="20210131012900 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0008 ACQTS:1611853593 -->
+	<title>Gigant aus Stahl - Die</title>
+	<sub-title>Gigant aus Stahl - Die größte bewegliche Maschine der Welt</sub-title>
+	<desc>(teletext 350)</desc>
+</programme>
+
+<programme start="20210131012900 +0000" stop="20210131022200 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0008 ACQTS:1611853593 -->
+	<title>Tödliche Brücken</title>
+	<desc>(teletext 376)</desc>
+</programme>
+
+<programme start="20210131022200 +0000" stop="20210131030400 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0008 ACQTS:1611853593 -->
+	<title>Mayday - Psychostress im</title>
+	<sub-title>Mayday - Psychostress im Cockpit</sub-title>
+	<desc>(teletext 399)</desc>
+</programme>
+
+<programme start="20210131030400 +0000" stop="20210131034600 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0008 ACQTS:1611853593 -->
+	<title>Mayday - Streit im Cockpit</title>
+	<desc>(teletext 391)</desc>
+</programme>
+
+<programme start="20210131034600 +0000" stop="20210131042800 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0008 ACQTS:1611853593 -->
+	<title>Mayday - Das verschwundene Flugzeug</title>
+	<!-- TTX 398.0001 -->
+	<desc>Mayday - Das verschwundene Flugzeug Do 28.01. 17:41-18:28 auf Sendung So 31.01. 04:46-05:28
+Es ist Sommer im Himalaya, Monsunzeit. Dichte Wolken hängen über der Berglandschaft. Thai-Airways-Flug-3-1-1 ist auf dem Weg nach Kathmandu. Kurz vor dem Landeanflug verschwindet das Flugzeug plötzlich. Tage später finden Suchtrupps das Wrack der Maschine nördlich der Stadt, zerschellt an einer Felswand. Für die über 100 Personen an Bord kommt jede Hilfe zu spät. Was ist über dem höchsten Gebirge der Welt mit dem Airbus A310 geschehen? War die gestörte Funkverbindung zum Tower schuld am Absturz?</desc>
+</programme>
+
+<programme start="20210131042800 +0000" channel="N24 DOKU">
+	<!-- TTX 309.0008 ACQTS:1611853593 -->
+	<title>Antonov 124 - Megatransporter der Lüfte</title>
+	<desc>(teletext 392)</desc>
+</programme>
+</tv>

@@ -1,0 +1,304 @@
+#!tv_grab_ttx -verify
+#
+# Overview specifies date using "UEBERMORGEN" (non-umlaut)
+#
+# Page 398 contains descriptions for 3 different programmes. Only two
+# are referenced by slots on overview pages.
+#
+$VbiCaptureTime = 1611853593;
+$PgCnt{0x308} = 1;
+$PgSub{0x308} = 3;
+$PgLang{0x308} = 1;
+$PgTime{0x308} = 1611853569;
+$Pkg{0x308|(0x0003<<12)} =
+[
+  "        308\x06 N24 DOKU\x07Do 28 Jan 18:05:58",
+  "\x04\x1D\x07N24   \x1D                              ",
+  "\x04\x1D\x07DOKU  MORGEN  00:00-06:00        1/1 ",
+  "                                        ",
+  "\x0600:03 Lost Places - Stra~en ins        ",
+  "\x06      Nirgendwo                    >331",
+  " 00:56 Lost Places - Die Asbestmine >330",
+  "\x0601:38 Lost Places - Schiffe aus        ",
+  "\x06      Beton                        >330",
+  " 02:18 Drama in der Luft: Techni-       ",
+  "       sches Versagen               >347",
+  "\x0602:59 Drama in der Luft: Menschli-     ",
+  "\x06      ches Versagen                >394",
+  " 03:40 Drama in der Luft: Gef{hrli-     ",
+  "       che Landungen                >390",
+  "\x0604:21 Der ICE - Highspeed auf          ",
+  "\x06      Schienen                     >322",
+  " 04:52 Lost Places - Stra~en ins        ",
+  "       Nirgendwo                    >331",
+  "\x0605:33 Lost Places - Die Asbestmine >330",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x04\x1D                                      ",
+  "\x01            \x02            \x03            \x06",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x309} = 1;
+$PgSub{0x309} = 9;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1611853520;
+$Pkg{0x309|(0x0005<<12)} =
+[
+  "        309\x06 N24 DOKU\x07Do 28 Jan 18:05:09",
+  "\x04\x1D\x07N24   \x1D                              ",
+  "\x04\x1D\x07DOKU  UEBERMORGEN  06:00-12:00   1/4 ",
+  "                                        ",
+  "\x0606:15 Lost Places - Geheime Atom-      ",
+  "\x06      waffen                       >330",
+  " 07:05 Die geheimen Akten der NASA:     ",
+  "       Mondflug Plan B              >361",
+  "\x0607:58 Die geheimen Akten der NASA:     ",
+  "\x06      Gemini au~er Kontrolle       >364",
+  " 08:51 Die geheimen Akten der NASA:     ",
+  "       Die Apollo-10-Tonb{nder      >364",
+  "\x0609:44 Die UFO-Akten: Auf Tauchsta-     ",
+  "\x06      tion                         >360",
+  " 10:24 Superschiffe - Norwegian         ",
+  "       Breakaway: Bau eines Kreuz-      ",
+  "       fahrt-Giganten               >356",
+  "\x0611:21 Superschiffe - Norwegian         ",
+  "\x06      Breakaway: Jungfernfahrt ei-     ",
+  "\x06      nes Kreuzfahrt-Giganten      >343",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x04\x1D                                      ",
+  "\x01            \x02            \x03            \x06",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x309} = 1;
+$PgSub{0x309} = 9;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1611853544;
+$Pkg{0x309|(0x0006<<12)} =
+[
+  "        309\x06 N24 DOKU\x07Do 28 Jan 18:05:34",
+  "\x04\x1D\x07N24   \x1D                              ",
+  "\x04\x1D\x07DOKU  UEBERMORGEN  12:00-18:00   2/4 ",
+  "                                        ",
+  "\x0612:15 Das Mega-Hotel! Marina Bay       ",
+  "\x06      Sands                        >351",
+  " 13:14 Quantum of the Seas - Frei-      ",
+  "       zeitpark auf hoher See       >348",
+  "\x0614:12 140.000 Quadratmeter Well-       ",
+  "\x06      ness - Die gr|~te Therme der     ",
+  "\x06      Welt                         >353",
+  " 15:13 Action nonstop - Freizeit-       ",
+  "       spa~ der Superlative         >393",
+  "\x0616:14 Roller Coasters - Die Hight-     ",
+  "\x06      ech-Achterbahnen             >398",
+  " 17:13 Mega-Konstruktionen: Las Ve-     ",
+  "       gas High Roller              >324",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x04\x1D                                      ",
+  "\x01            \x02            \x03            \x06",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x309} = 1;
+$PgSub{0x309} = 9;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1611853569;
+$Pkg{0x309|(0x0007<<12)} =
+[
+  "        309\x06 N24 DOKU\x07Do 28 Jan 18:05:58",
+  "\x04\x1D\x07N24   \x1D                              ",
+  "\x04\x1D\x07DOKU  UEBERMORGEN  18:00-24:00   3/4 ",
+  "                                        ",
+  "\x0618:14 Mega-Konstruktionen: Achter-     ",
+  "\x06      bahn Valkyria                >324",
+  " 19:14 Antonov 124 - Megatranspor-      ",
+  "       ter der L}fte                >392",
+  "\x0620:15 Das gro~e Brauen - Deutsch-      ",
+  "\x06      land und seine Biere         >358",
+  " 21:10 Fast Food - Das Milliarden-      ",
+  "       -Business                    >344",
+  "\x0622:05 Vom Rind zum Steak - Europas     ",
+  "\x06      gr|~ter Rinder-Schlachthof   >352",
+  " 23:06 Hightech auf dem Acker -         ",
+  "       Einsatz f}r die Ernte-Gigan-     ",
+  "       ten                          >344",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x04\x1D                                      ",
+  "\x01            \x02            \x03            \x06",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x309} = 1;
+$PgSub{0x309} = 9;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1611853593;
+$Pkg{0x309|(0x0008<<12)} =
+[
+  "        309\x06 N24 DOKU\x07Do 28 Jan 18:06:22",
+  "\x04\x1D\x07N24   \x1D                              ",
+  "\x04\x1D\x07DOKU  UEBERMORGEN  00:00-06:00   4/4 ",
+  "                                        ",
+  "\x0600:07 Die Plattmacher - Abrisspro-     ",
+  "\x06      fis im Einsatz               >345",
+  " 01:07 Die Recyclingprofis - Abfall     ",
+  "       wird zum Rohstoff            >328",
+  "\x0601:48 Gigant aus Stahl - Die           ",
+  "\x06      gr|~te bewegliche Maschine       ",
+  "\x06      der Welt                     >350",
+  " 02:29 T|dliche Br}cken             >376",
+  "\x0603:22 Mayday - Psychostress im         ",
+  "\x06      Cockpit                      >399",
+  " 04:04 Mayday - Streit im Cockpit   >391",
+  "\x0604:46 Mayday - Das verschwundene       ",
+  "\x06      Flugzeug                     >398",
+  " 05:28 Antonov 124 - Megatranspor-      ",
+  "       ter der L}fte                >392",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x06                                       ",
+  "\x04\x1D                                      ",
+  "\x01            \x02            \x03            \x06",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x398} = 1;
+$PgSub{0x398} = 3;
+$PgLang{0x398} = 1;
+$PgTime{0x398} = 1611853548;
+$Pkg{0x398|(0x0001<<12)} =
+[
+  "        398\x06 N24 DOKU\x07Do 28 Jan 18:05:37",
+  "\x04\x1D\x07N24   \x1D\x07                             ",
+  "\x04\x1D\x07DOKU                             1/3 ",
+  "                                        ",
+  "\x06Mayday - Das verschwundene Flugzeug    ",
+  "\x06Do 28.01. 17:41-18:28       auf Sendung",
+  "\x06So 31.01. 04:46-05:28                  ",
+  "\x06                                       ",
+  "\x07Es ist Sommer im Himalaya, Monsunzeit. ",
+  "\x07Dichte Wolken h{ngen }ber der Bergland-",
+  "\x07schaft. Thai-Airways-Flug-3-1-1 ist auf",
+  "\x07dem Weg nach Kathmandu. Kurz vor dem   ",
+  "\x07Landeanflug verschwindet das Flugzeug  ",
+  "\x07pl|tzlich. Tage sp{ter finden Such-    ",
+  "\x07trupps das Wrack der Maschine n|rdlich ",
+  "\x07der Stadt, zerschellt an einer Fels-   ",
+  "\x07wand. F}r die }ber 100 Personen an Bord",
+  "\x07kommt jede Hilfe zu sp{t. Was ist }ber ",
+  "\x07dem h|chsten Gebirge der Welt mit dem  ",
+  "\x07Airbus A310 geschehen? War die gest|rte",
+  "\x07Funkverbindung zum Tower schuld am Ab- ",
+  "\x07sturz?                                 ",
+  "\x07                                       ",
+  "\x04\x1D\x07Inhalt von A-Z im INDEX ab Seite 890 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x398} = 2;
+$PgSub{0x398} = 3;
+$PgLang{0x398} = 1;
+$PgTime{0x398} = 1611853572;
+$Pkg{0x398|(0x0002<<12)} =
+[
+  "        398\x06 N24 DOKU\x07Do 28 Jan 18:06:01",
+  "\x04\x1D\x07N24   \x1D\x07                             ",
+  "\x04\x1D\x07DOKU                             2/3 ",
+  "                                        ",
+  "\x06Roller Coasters - Die Hightech-Achter- ",
+  "\x06bahnen                                 ",
+  "\x06Sa 30.01. 16:14-17:13                  ",
+  "\x06Mo 01.02. 07:05-08:00                  ",
+  "\x06                                       ",
+  "\x07Achterbahnen sind meist das Herzst}ck  ",
+  "\x07eines Freizeitparks, denn der Adrena-  ",
+  "\x07linkick ist hier garantiert. Mit Ge-   ",
+  "\x07schwindigkeiten wie in einem Rennwagen ",
+  "\x07rasen die Fahrg{ste }ber die giganti-  ",
+  "\x07schen Konstruktionen, deren Strecken   ",
+  "\x07von steilen Abgr}nden und Loopings ge- ",
+  "\x07pr{gt sind. Die Stahlachterbahn Goudu- ",
+  "\x07rix in Frankreich h{lt darin sogar     ",
+  "\x07einen Weltrekord: Sieben Loopings wer- ",
+  "\x07den hier in 50 Sekunden zur}ckgelegt.  ",
+  "\x07Doch die Fahrgesch{fte sind weltweit   ",
+  "\x07beliebt - die Dokumentation besucht die",
+  "\x07beeindruckendsten.                     ",
+  "\x04\x1D\x07Inhalt von A-Z im INDEX ab Seite 890 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x398} = 2;
+$PgSub{0x398} = 3;
+$PgLang{0x398} = 1;
+$PgTime{0x398} = 1611853596;
+$Pkg{0x398|(0x0003<<12)} =
+[
+  "        398\x06 N24 DOKU\x07Do 28 Jan 18:06:25",
+  "\x04\x1D\x07N24   \x1D\x07                             ",
+  "\x04\x1D\x07DOKU                             3/3 ",
+  "                                        ",
+  "\x06Mega Shippers - Die Cargo-Profis (1.5) ",
+  "\x06So 07.02. 23:05-00:05                  ",
+  "\x06                                       ",
+  "\x07Ein Rallyewagen ist unterwegs von Mo-  ",
+  "\x07naco ins frostige Nordeuropa. Das Renn-",
+  "\x07auto soll in nur 76 Stunden p}nktlich  ",
+  "\x07bei einem Rennen in Schweden an den    ",
+  "\x07Start gehen. Mega Shipper Mike Stuart  ",
+  "\x07sorgt daf}r, dass beim Transport alles ",
+  "\x07glattgeht - im wahrsten Sinne. F}r den ",
+  "\x072.246 Kilometer langen Weg hat der Tru-",
+  "\x07cker seinen Laster mit Schneeketten und",
+  "\x07schaufeln ausger}stet, um sich in der  ",
+  "\x07skandinavischen Tundra im Ernstfall    ",
+  "\x07selbst den Weg freir{umen zu k|nnen.   ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x07                                       ",
+  "\x04\x1D\x07Inhalt von A-Z im INDEX ab Seite 890 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];

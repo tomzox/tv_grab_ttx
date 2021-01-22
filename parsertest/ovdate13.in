@@ -1,0 +1,155 @@
+#!tv_grab_ttx -verify
+#
+# There are two pages 307 and 308 with programmes starting past midnight but
+# labelled with the date of the previous date. Test that slots on both pages
+# are correctly assigned to the following day.
+#
+$VbiCaptureTime = 1611338543;
+$PgCnt{0x306} = 11;
+$PgSub{0x306} = 0;
+$PgLang{0x306} = 1;
+$PgTime{0x306} = 1611338546;
+$Pkg{0x306|(0x0000<<12)} =
+[
+  "        306\x06phoenix\x07Fr 22.01.21\x0619:02:15",
+  "\x07\x1D\x04Tages}bersicht                       ",
+  "\x06\x1D\x04Freitag, 22. Januar 2021             ",
+  "\x0620:15  Wasserwelten                    ",
+  "\x06       Loango - Kronjuwelen Afrikas 605",
+  "                                        ",
+  "\x0721:00  Wasserwelten                    ",
+  "\x07       Kinabatangan - Der Garten       ",
+  "\x07       Eden Borneos ............... 606",
+  undef,
+  "\x0621:45  Wasserwelten                    ",
+  "\x06       Pacaya - Samiria -              ",
+  "\x06       Spiegelbilder der Natur .... 607",
+  undef,
+  "\x0722:30  Geisterfluss und Lebensader     ",
+  "\x07       Unterwegs auf Perus Amazonas 608",
+  undef,
+  "\x0623:00  phoenix der tag                 ",
+  "\x06       u.a. Aktuelles zum              ",
+  "\x06       Atomwaffenverbotsvertrag ... 356",
+  undef,
+  undef,
+  undef,
+  "\x07\x1D\x04305 <-                        -> 307 ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x307} = 12;
+$PgSub{0x307} = 0;
+$PgLang{0x307} = 1;
+$PgTime{0x307} = 1611338546;
+$Pkg{0x307|(0x0000<<12)} =
+[
+  "        307\x06phoenix\x07Fr 22.01.21\x0619:02:15",
+  "\x07\x1D\x04Tages}bersicht                       ",
+  "\x06\x1D\x04Freitag, 22. Januar 2021             ",
+  "\x03Tageswechsel                           ",
+  "\x0700:00  phoenix pers|nlich              ",
+  "\x07       Alice Schwarzer zu Gast bei     ",
+  "\x07       Alfred Schier .............. 703",
+  " Mit einem Team von Wissenschaftlern er-",
+  "\x0600:30  bilder der geschichte           ",
+  "\x06       Corona und Triage               ",
+  "\x06      \x05(VPS: 00:29)\x06 .............. 704",
+  " John Wesley Powell im Jahre 1869.      ",
+  "\x0700:45  Der Pazifikkrieg                ",
+  "\x07       Pearl Harbor ............... 609",
+  "\x06f{hrliche Wildnis Nord-Arizonas, wo die",
+  "\x0601:35  Der Pazifikkrieg                ",
+  "\x06       Kampf um jede Insel ........ 610",
+  "\x06queren m}ssen. Der Film gew{hrt Ein-   ",
+  "\x0702:25  Der Pazifikkrieg                ",
+  "\x07       Angriff auf Japan .......... 611",
+  undef,
+  "\x0603:15  Der Fall Japans - in Farbe . 612",
+  "\x03Wdh. So. 24.01., 06:45, 18:30          ",
+  "\x07\x1D\x04306 <-                        -> 308 ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x308} = 12;
+$PgSub{0x308} = 0;
+$PgLang{0x308} = 1;
+$PgTime{0x308} = 1611338546;
+$Pkg{0x308|(0x0000<<12)} =
+[
+  "        308\x06phoenix\x07Fr 22.01.21\x0619:02:15",
+  "\x07\x1D\x04Tages}bersicht                       ",
+  "\x06\x1D\x04Freitag, 22. Januar 2021             ",
+  "\x0704:05  Honigj{ger im Himalaya ..... 613",
+  "                                        ",
+  "\x0604:15  Kultfoto                        ",
+  "\x06       Stars und Stripes auf Iwo       ",
+  "\x06       Jima ....................... 614",
+  undef,
+  "\x0705:00  ZDF-History                     ",
+  "\x07       Hiroshima - Chronik einer       ",
+  "\x07       Trag|die ................... 615",
+  undef,
+  "\x0606:00  mein ausland                    ",
+  "\x06       Safari am Sambesi .......... 616",
+  undef,
+  "\x0707:00  mein ausland                    ",
+  "\x07       Im Luxuszug durch den S}den     ",
+  "\x07       Afrikas .................... 617",
+  undef,
+  "\x0607:15  Wasserwelten                    ",
+  "\x06       Loango - Kronjuwelen Afrikas 618",
+  "                                        ",
+  "\x07\x1D\x04307 <-        -> Sa., 23.01.21 - 309 ",
+  "                                        ",
+  "                                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x309} = 11;
+$PgSub{0x309} = 0;
+$PgLang{0x309} = 1;
+$PgTime{0x309} = 1611338546;
+$Pkg{0x309|(0x0000<<12)} =
+[
+  "        309\x06phoenix\x07Fr 22.01.21\x0619:02:15",
+  "\x07\x1D\x04Tages}bersicht                       ",
+  "\x06\x1D\x04Samstag, 23. Januar 2021             ",
+  "\x0608:00  Wasserwelten                    ",
+  "\x06       Kinabatangan - Der Garten       ",
+  "\x06       Eden Borneos ............... 650",
+  undef,
+  "\x0708:45  Wasserwelten                    ",
+  "\x07       Pacaya - Samiria -              ",
+  "\x07       Spiegelbilder der Natur .... 651",
+  undef,
+  "\x0609:30  Geisterfluss und Lebensader     ",
+  "\x06       Unterwegs auf Perus Amazonas 652",
+  "                                        ",
+  "\x0710:00  phoenix history                 ",
+  "\x07       BLACK LIVES MATTER              ",
+  "\x07        ........................... 653",
+  "                                        ",
+  "\x0613:00  phoenix plus                    ",
+  "\x06       Trumps letztes Gefecht ..... 370",
+  "                                        ",
+  "                                        ",
+  undef,
+  "\x07\x1D\x04                              -> 310 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
