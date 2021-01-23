@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20080113163821 +0000">
 <channel id="3.br-online.de">
 	<display-name>BAYERN</display-name>
 </channel>

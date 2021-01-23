@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20100322140230 +0000">
 <channel id="ProSieben">
 	<display-name>ProSieben</display-name>
 </channel>

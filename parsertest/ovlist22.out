@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20110103123059 +0000">
 <channel id="MDR">
 	<display-name>MDR</display-name>
 </channel>

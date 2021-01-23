@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20100322143738 +0000">
 <channel id="rtl2.de">
 	<display-name>RTL II</display-name>
 </channel>

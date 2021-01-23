@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20110428155546 +0000">
 <channel id="Bayern">
 	<display-name>Bayern</display-name>
 </channel>

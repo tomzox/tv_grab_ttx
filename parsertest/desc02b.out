@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20100326211150 +0000">
 <channel id="Tele 5">
 	<display-name>Tele 5</display-name>
 </channel>

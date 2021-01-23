@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20210116204000 +0000">
 <channel id="3sat">
 	<display-name>3sat</display-name>
 </channel>

@@ -356,11 +356,13 @@ int main( int argc, char *argv[] )
 
    if (opt_dump == 1) {
       // debug only: dump teletext pages into file (text only)
-      DumpTextPages(&ttx_db, opt_outfile);
+      if ( !DumpTextPages(&ttx_db, opt_outfile) )
+         result = 1;
    }
    else if (opt_dump == 2) {
       // dump teletext pages into file, including all control chars
-      DumpRawTeletext(&ttx_db, opt_outfile, opt_tv_start, opt_tv_end);
+      if ( !DumpRawTeletext(&ttx_db, opt_outfile, opt_tv_start, opt_tv_end) )
+         result = 1;
    }
    else if (opt_dump == 3) {
       // dump each VBI packet: already done while capturing
@@ -399,9 +401,10 @@ int main( int argc, char *argv[] )
             xmltv.ImportXmltvFile(opt_mergefile);
          }
 
-         xmltv.ExportXmltv(NewSlots, opt_outfile,
-                           opt_verify ? 0 : version,
-                           opt_verify ? 0 : home_url);
+         if ( !xmltv.ExportXmltv(NewSlots, opt_outfile,
+                                 opt_verify ? 0 : version,
+                                 opt_verify ? 0 : home_url) )
+            result = 1;
       }
       else {
          // return error code to signal abormal termination

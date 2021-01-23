@@ -27,8 +27,8 @@ public:
    XMLTV(TTX_DB * db)
       : mp_db(db)
       , m_expire_min(-1) {}
-   void ImportXmltvFile(const char * fname);
-   void ExportXmltv(list<TV_SLOT>& NewSlots, const char * p_file_name,
+   bool ImportXmltvFile(const char * fname);
+   bool ExportXmltv(list<TV_SLOT>& NewSlots, const char * p_file_name,
                     const char * p_my_ver, const char * p_my_url);
    void SetChannelName(const char * user_chname, const char * user_chid);
    void SetExpireTime(int expire_min);

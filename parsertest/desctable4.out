@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20081003112422 +0000">
 <channel id="vox.de">
 	<display-name>VOX</display-name>
 </channel>

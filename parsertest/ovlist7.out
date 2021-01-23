@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE tv SYSTEM "xmltv.dtd">
-<tv>
+<tv date="20100320190639 +0000">
 <channel id="ard.de">
 	<display-name>ARD</display-name>
 </channel>
