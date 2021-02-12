@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+<tv date="20210212213553 +0000">
+<channel id="TELEVIDEO Ve 12 Feb">
+	<display-name>TELEVIDEO Ve 12 Feb</display-name>
+</channel>
+
+<programme start="20210212050000 +0000" stop="20210212054000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Rainews24</title>
+</programme>
+
+<programme start="20210212054000 +0000" stop="20210212054500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Previsioni Sulla Viabilità Cciss</title>
+	<sub-title>Previsioni Sulla Viabilità Cciss Viaggiare Informati</sub-title>
+</programme>
+
+<programme start="20210212054500 +0000" stop="20210212060000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Unomattina</title>
+</programme>
+
+<programme start="20210212060000 +0000" stop="20210212061000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Tg 1</title>
+</programme>
+
+<programme start="20210212061000 +0000" stop="20210212061200 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Che Tempo Fa</title>
+</programme>
+
+<programme start="20210212061200 +0000" stop="20210212063000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Unomattina</title>
+</programme>
+
+<programme start="20210212063000 +0000" stop="20210212063300 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Tg 1 L.I.S.</title>
+</programme>
+
+<programme start="20210212063300 +0000" stop="20210212065000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Unomattina</title>
+</programme>
+
+<programme start="20210212065000 +0000" stop="20210212065200 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Che Tempo Fa</title>
+</programme>
+
+<programme start="20210212065200 +0000" stop="20210212070000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Unomattina</title>
+</programme>
+
+<programme start="20210212070000 +0000" stop="20210212072500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Tg 1</title>
+</programme>
+
+<programme start="20210212072500 +0000" stop="20210212072700 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Che Tempo Fa</title>
+</programme>
+
+<programme start="20210212072700 +0000" stop="20210212080000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0001 ACQTS:1613165743 -->
+	<title>Unomattina</title>
+</programme>
+
+<programme start="20210212080000 +0000" stop="20210212080700 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Tg 1</title>
+</programme>
+
+<programme start="20210212080700 +0000" stop="20210212080900 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Che Tempo Fa</title>
+</programme>
+
+<programme start="20210212080900 +0000" stop="20210212083000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Unomattina</title>
+</programme>
+
+<programme start="20210212083000 +0000" stop="20210212083500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Tg1 Flash</title>
+</programme>
+
+<programme start="20210212083500 +0000" stop="20210212083800 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Parlamento Telegiornale</title>
+</programme>
+
+<programme start="20210212083800 +0000" stop="20210212085000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Unomattina</title>
+</programme>
+
+<programme start="20210212085000 +0000" stop="20210212085500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Tg 1</title>
+</programme>
+
+<programme start="20210212085500 +0000" stop="20210212105500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Rai 1 Presenta Storie Italiane</title>
+</programme>
+
+<programme start="20210212105500 +0000" stop="20210212123000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>E' Sempre Mezzogiorno</title>
+</programme>
+
+<programme start="20210212123000 +0000" stop="20210212130000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Telegiornale</title>
+</programme>
+
+<programme start="20210212130000 +0000" stop="20210212145500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Oggi è Un Altro Giorno</title>
+</programme>
+
+<programme start="20210212145500 +0000" stop="20210212154500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Il Paradiso Delle Signore</title>
+	<sub-title>Il Paradiso Delle Signore 5-Daily Stagione 3</sub-title>
+</programme>
+
+<programme start="20210212154500 +0000" stop="20210212155500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0002 ACQTS:1613165765 -->
+	<title>Tg 1</title>
+</programme>
+
+<programme start="20210212155500 +0000" stop="20210212160000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Tg1 Economia</title>
+</programme>
+
+<programme start="20210212160000 +0000" stop="20210212160200 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Che Tempo Fa</title>
+</programme>
+
+<programme start="20210212160200 +0000" stop="20210212160500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Previsioni Sulla Viabilità Cciss</title>
+	<sub-title>Previsioni Sulla Viabilità Cciss Viaggiare Informati</sub-title>
+</programme>
+
+<programme start="20210212160500 +0000" stop="20210212182500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>In Diretta Dallo Studio 3 Di Via</title>
+	<sub-title>In Diretta Dallo Studio 3 Di Via Teulada Rai 1 Presenta La Vita</sub-title>
+</programme>
+
+<programme start="20210212182500 +0000" stop="20210212190000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Tg1 Speciale: Draghi Al</title>
+	<sub-title>Tg1 Speciale: Draghi Al Quirinale</sub-title>
+</programme>
+
+<programme start="20210212190000 +0000" stop="20210212193000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Telegiornale</title>
+</programme>
+
+<programme start="20210212193000 +0000" stop="20210212203000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Tg1 Speciale: Draghi Al</title>
+	<sub-title>Tg1 Speciale: Draghi Al Quirinale</sub-title>
+</programme>
+
+<programme start="20210212203000 +0000" stop="20210212230000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Il Cantante Mascherato</title>
+</programme>
+
+<programme start="20210212230000 +0000" stop="20210212230500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Tg1 60 Secondi</title>
+</programme>
+
+<programme start="20210212230500 +0000" stop="20210213001000 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0003 ACQTS:1613165698 -->
+	<title>Tv7</title>
+</programme>
+
+<programme start="20210213001000 +0000" stop="20210213003400 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0004 ACQTS:1613165721 -->
+	<title>Rainews24</title>
+</programme>
+
+<programme start="20210213003400 +0000" stop="20210213004500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0004 ACQTS:1613165721 -->
+	<title>Che Tempo Fa</title>
+</programme>
+
+<programme start="20210213004500 +0000" stop="20210213011500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0004 ACQTS:1613165721 -->
+	<title>Sottovoce</title>
+</programme>
+
+<programme start="20210213011500 +0000" stop="20210213021500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0004 ACQTS:1613165721 -->
+	<title>Cinematografo</title>
+</programme>
+
+<programme start="20210213021500 +0000" channel="TELEVIDEO Ve 12 Feb">
+	<!-- TTX 302.0004 ACQTS:1613165721 -->
+	<title>Rainews24</title>
+</programme>
+</tv>

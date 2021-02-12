@@ -1,0 +1,187 @@
+#!tv_grab_ttx -verify
+$VbiCaptureTime = 1613165742;
+$PgCnt{0x301} = 6;
+$PgSub{0x301} = 0;
+$PgLang{0x301} = 3;
+$PgTime{0x301} = 1613165753;
+$Pkg{0x301|(0x0000<<12)} =
+[
+  "        301 TELEVIDEO Ve 12 Feb 22:35:47",
+  "\x17      x|| |4h4|4||t x||0 |||4|4h4      ",
+  "\x17      \x7Fux4\x7Fuz5\x7F5\x7Fw{5\x7Fw{5 #\x7F7!kuz!      ",
+  "\x17      +//!+//!/\%///!/\%*\%  /\%  /\%       ",
+  "\x14///////////\x0D\x06RAI 1\x14##\x01RAI 2\x14##\x02RAI 3\x14##",
+  "                                        ",
+  "  \x03TV OGGI\x07 \x06\x1D\x00302\x01 \x1C\x01\x1D\x07503 \x02\x1C\x02\x1D\x00504  \x1C ",
+  "  \x03TV DOMANI\x06\x1D\x00505\x01 \x1C\x01\x1D\x07506 \x02\x1C\x02\x1D\x00507  \x1C ",
+  "\x14|||||||||||||||||||||||||||||||||||||||",
+  "\x04\x1D\x07Canale 5     \x02508 \x07La 7         \x02511 ",
+  "\x04\x1D\x07Rete 4       \x02509 \x07TV8          \x02512 ",
+  "\x04\x1D\x07Italia 1     \x02510 \x07Nove         \x02513 ",
+  "\x14///////////////////////////////////////",
+  "\x03\x1D\x00Film oggi    \x01514 \x00Prima serata \x01515 ",
+  "\x03\x1D\x00Criptati per l'estero       \x00   \x01517 ",
+  "\x16|||||||||||||||||||||||||||||||||||||||",
+  "\x06\x1D\x00Rai Sport 1  \x04518 \x00Rai Sport 2  \x04519 ",
+  "\x06\x1D\x00Rai Movie    \x04520 \x00Rai Premium  \x04521 ",
+  "\x06\x1D\x00Rai Yoyo     \x04522 \x00Rai 4        \x04523 ",
+  "\x06\x1D\x00Rai Gulp     \x04524 \x00Rai 5        \x04525 ",
+  "\x06\x1D\x00Rai Storia   \x04526 \x00Rai Scuola   \x04527 ",
+  "\x07 \x06Magazine TV  \x03481 \x06Radio\x14       \x03535 ",
+  "\x07 \x06Auditel      \x03530 \x06                  ",
+  "\x07\x1D\x00AUDIODESCRIZIONI\x01pagine 755-783-784  ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x302} = 2;
+$PgSub{0x302} = 4;
+$PgLang{0x302} = 3;
+$PgTime{0x302} = 1613165743;
+$Pkg{0x302|(0x0001<<12)} =
+[
+  "        302 TELEVIDEO Ve 12 Feb 22:35:37",
+  "\x04\x1D\x17        \x17\x07\x1D      \x1C\x04\x1D\x02515\x07Prima       ",
+  "\x04\x1D\x17|||0    | \x7F#k\x7F\x7F\x7F\x7F\x1C\x04\x1D    \x07serata      ",
+  "\x04\x1D\x17\x7Fp~\%~?~5| \x7F5j\x7F\x7F\x7F\x7F\x1C\x04\x1D\x02770\x07Sottotitoli ",
+  "\x04\x1D\x17\x7F+}0\x7Ft~5\x7F \x7F\%*\x7F\x7F\x7F\x7F\x1C  ,,,,,,,,,,,,,,,, ",
+  "\x04\x1D\x17# \"!\"#\"!# \x7F||\x7F\x7F\x7F\x7F\x1C\x01  12 Febbraio     ",
+  "\x14//////////\x1E\x17///////                    ",
+  "\x0206:00\x07Rainews24                        ",
+  "\x0206:40\x07Previsioni Sulla Viabilit{ Cciss ",
+  "      \x07Viaggiare Informati              ",
+  "\x0206:45\x07Unomattina                       ",
+  "\x0207:00\x07Tg 1                             ",
+  "\x0207:10\x07Che Tempo Fa                     ",
+  "\x0207:12\x07Unomattina                       ",
+  "\x0207:30\x07Tg 1 L.I.S.                      ",
+  "\x0207:33\x07Unomattina                       ",
+  "\x0207:50\x07Che Tempo Fa                     ",
+  "\x0207:52\x07Unomattina                       ",
+  "\x0208:00\x07Tg 1                             ",
+  "\x0208:25\x07Che Tempo Fa                     ",
+  "\x0208:27\x07Unomattina                       ",
+  "\x02\x1D\x01*\x00adatto ad un pubblico adulto\x07\x08 1/4 ",
+  "\x14 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  "\x01\x1D\x07RATABASSOTTA DI IBL BANCA\x03PAGINA 802 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x302} = 2;
+$PgSub{0x302} = 4;
+$PgLang{0x302} = 3;
+$PgTime{0x302} = 1613165765;
+$Pkg{0x302|(0x0002<<12)} =
+[
+  "        302 TELEVIDEO Ve 12 Feb 22:35:59",
+  "\x04\x1D\x17        \x17\x07\x1D      \x1C\x04\x1D\x02515\x07Prima       ",
+  "\x04\x1D\x17|||0    | \x7F#k\x7F\x7F\x7F\x7F\x1C\x04\x1D    \x07serata      ",
+  "\x04\x1D\x17\x7Fp~\%~?~5| \x7F5j\x7F\x7F\x7F\x7F\x1C\x04\x1D\x02770\x07Sottotitoli ",
+  "\x04\x1D\x17\x7F+}0\x7Ft~5\x7F \x7F\%*\x7F\x7F\x7F\x7F\x1C  ,,,,,,,,,,,,,,,, ",
+  "\x04\x1D\x17# \"!\"#\"!# \x7F||\x7F\x7F\x7F\x7F\x1C\x01  12 Febbraio     ",
+  "\x14//////////\x1E\x17///////                    ",
+  "\x0209:00\x07Tg 1                             ",
+  "\x0209:07\x07Che Tempo Fa                     ",
+  "\x0209:09\x07Unomattina                       ",
+  "\x0209:30\x07Tg1 Flash                        ",
+  "\x0209:35\x07Parlamento Telegiornale          ",
+  "\x0209:38\x07Unomattina                       ",
+  "\x0209:50\x07Tg 1                             ",
+  "\x0209:55\x07Rai 1 Presenta Storie Italiane   ",
+  "\x0211:55\x07E' Sempre Mezzogiorno            ",
+  "\x0213:30\x07Telegiornale                     ",
+  "\x0214:00\x07Oggi } Un Altro Giorno           ",
+  "\x0215:55\x07Il Paradiso Delle Signore        ",
+  "      \x075-Daily Stagione 3               ",
+  "\x0216:45\x07Tg 1                             ",
+  "\x02\x1D\x01*\x00adatto ad un pubblico adulto\x07\x08 2/4 ",
+  "\x14 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  "\x01\x1D\x07RATABASSOTTA DI IBL BANCA\x03PAGINA 802 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x302} = 1;
+$PgSub{0x302} = 4;
+$PgLang{0x302} = 3;
+$PgTime{0x302} = 1613165698;
+$Pkg{0x302|(0x0003<<12)} =
+[
+  "        302 TELEVIDEO Ve 12 Feb 22:34:52",
+  "\x04\x1D\x17        \x17\x07\x1D      \x1C\x04\x1D\x02515\x07Prima       ",
+  "\x04\x1D\x17|||0    | \x7F#k\x7F\x7F\x7F\x7F\x1C\x04\x1D    \x07serata      ",
+  "\x04\x1D\x17\x7Fp~\%~?~5| \x7F5j\x7F\x7F\x7F\x7F\x1C\x04\x1D\x02770\x07Sottotitoli ",
+  "\x04\x1D\x17\x7F+}0\x7Ft~5\x7F \x7F\%*\x7F\x7F\x7F\x7F\x1C  ,,,,,,,,,,,,,,,, ",
+  "\x04\x1D\x17# \"!\"#\"!# \x7F||\x7F\x7F\x7F\x7F\x1C\x01  12 Febbraio     ",
+  "\x14//////////\x1E\x17///////                    ",
+  "\x0216:55\x07Tg1 Economia                     ",
+  "\x0217:00\x07Che Tempo Fa                     ",
+  "\x0217:02\x07Previsioni Sulla Viabilit{ Cciss ",
+  "      \x07Viaggiare Informati              ",
+  "\x0217:05\x07In Diretta Dallo Studio 3 Di Via ",
+  "      \x07Teulada Rai 1 Presenta La Vita   ",
+  "\x0219:25\x07Tg1 Speciale: Draghi Al          ",
+  "      \x07Quirinale                        ",
+  "\x0220:00\x07Telegiornale                     ",
+  "\x0220:30\x07Tg1 Speciale: Draghi Al          ",
+  "      \x07Quirinale                        ",
+  "\x0221:30\x07Il Cantante Mascherato           ",
+  "\x0200:00\x07Tg1 60 Secondi                   ",
+  "\x0200:05\x07Tv7                              ",
+  "\x02\x1D\x01*\x00adatto ad un pubblico adulto\x07\x08 3/4 ",
+  "\x14 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  "\x01\x1D\x07RATABASSOTTA DI IBL BANCA\x03PAGINA 802 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
+$PgCnt{0x302} = 1;
+$PgSub{0x302} = 4;
+$PgLang{0x302} = 3;
+$PgTime{0x302} = 1613165721;
+$Pkg{0x302|(0x0004<<12)} =
+[
+  "        302 TELEVIDEO Ve 12 Feb 22:35:15",
+  "\x04\x1D\x17        \x17\x07\x1D      \x1C\x04\x1D\x02515\x07Prima       ",
+  "\x04\x1D\x17|||0    | \x7F#k\x7F\x7F\x7F\x7F\x1C\x04\x1D    \x07serata      ",
+  "\x04\x1D\x17\x7Fp~\%~?~5| \x7F5j\x7F\x7F\x7F\x7F\x1C\x04\x1D\x02770\x07Sottotitoli ",
+  "\x04\x1D\x17\x7F+}0\x7Ft~5\x7F \x7F\%*\x7F\x7F\x7F\x7F\x1C  ,,,,,,,,,,,,,,,, ",
+  "\x04\x1D\x17# \"!\"#\"!# \x7F||\x7F\x7F\x7F\x7F\x1C\x01  12 Febbraio     ",
+  "\x14//////////\x1E\x17///////                    ",
+  "\x0201:10\x07Rainews24                        ",
+  "\x0201:34\x07Che Tempo Fa                     ",
+  "\x0201:45\x07Sottovoce                        ",
+  "\x0202:15\x07Cinematografo                    ",
+  "\x0203:15\x07Rainews24                        ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  "\x02\x1D\x01*\x00adatto ad un pubblico adulto\x07\x08 4/4 ",
+  "\x14 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, ",
+  "\x01\x1D\x07RATABASSOTTA DI IBL BANCA\x03PAGINA 802 ",
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+  undef,
+];
