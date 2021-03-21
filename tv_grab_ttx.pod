@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright 2006-2011, 2020 by T. Zoerner (tomzo at users.sf.net)
+#  Copyright 2006-2011, 2020-2021 by T. Zoerner (tomzo at users.sf.net)
 #
 # ---------------------------------------------------------------------------
 
@@ -390,7 +390,7 @@ used for capturing and decoding teletext.
 
 =head1 COPYRIGHT
 
-Copyright 2006-2011, 2020 T. Zoerner.
+Copyright 2006-2011, 2020-2021 T. Zoerner.
 
 This is free software. You may redistribute copies of it under the terms
 of the GNU General Public License version 3 or later

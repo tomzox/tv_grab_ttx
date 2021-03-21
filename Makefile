@@ -75,10 +75,15 @@ tv_grab_ttx.1: tv_grab_ttx.pod
 tune_dvb: util/tune_dvb.c util/scan_pat_pmt.c util/scan_descriptors.h
 	gcc -Wall -O -g $(LDFLAGS) -o $@ util/tune_dvb.c util/scan_pat_pmt.c $(LIBS)
 
+.PHONY: ctags
+ctags:
+	ctags -R src
+
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f tv_grab_ttx tune_dvb tv_grab_ttx.1 core core.* vgcore.*
+	rm -f tv_grab_ttx tune_dvb tv_grab_ttx.1 tv_grab_ttx.exe
+	rm -f tags core core.* vgcore.*
 	rm -rf deb
 
 # include automatically generated dependency list

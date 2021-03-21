@@ -1,3 +1,20 @@
+libxmltv-ttx (2.3) unstable; urgency=medium
+
+  * Filter overlapping TV programmes from XMLTV output.
+  * Filter TV programmes too far in the future (likely result of misdetection)
+  * Fixed a bug that lead to gaps in TV schedule output for TV programmes
+    after midnight.
+  * Added the teletext page number of the teletext overview page it originates
+    from as comment for each <programme> element in XMLTV output.
+  * Added a "date" attribute to the <tv> tag, specifying time of acquisition.
+  * Added translation for Italian month & weekday names.
+  * Extended the time_dvb tool to support "mplayer" channels.conf format
+    and tuning of DVB-T and DVB-S channels.
+  * Added auto-detection for the teletext PID to the tune_dvb tool.
+  * Source code was adapted for compiling with gcc version 9.
+
+ -- T. Zoerner <tomzo@users.sourceforge.net>  Sun, 21 Mar 2021 10:23:29 +0200
+
 libxmltv-ttx (2.2) unstable; urgency=medium
 
   * Adapted internal C interface used by nxtvepg branch "devel_3_0_0" for

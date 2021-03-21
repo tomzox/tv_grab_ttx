@@ -33,15 +33,18 @@ because almost every network formats tables, dates, times and descriptions
 slightly differently, so that the parser will have trouble locating the EPG
 data among all the advertisements and other content in teletext.
 
-# Latest news: December/2020: Release of version 2.2
+# Latest news: March/2021: Release of version 2.3
 
 Development was resumed with release 2.0 after a 9 year gap. The first release
 mainly focused on enhancing working with digital TV capture cards (e.g. by
 adapting the `capall.pl` example automation script). Also tools have been
 updated (e.g. removed the need for the Boost regex library by requiring C++11)
 and the parser was slightly enhanced and adapted to changes in teletext content
-by networks. Subsequent releases provided further enhancements and fixes in
-parser and tools, as well as interface adaption for integration in nxtvepg.
+by networks.
+
+Subsequent releases provided further enhancements and fixes in teletext page
+parser and tools (e.g. DVB channel tuning), as well as interface adaption for
+integration in nxtvepg. See file "changelog" for details.
 
 # Installation
 
@@ -58,8 +61,8 @@ another directory which contains bin/ and man/, where to install the executable
 and manual page respectively.)
 
 For use with nxtvepg: The grabber is actually compiled into the nxtvepg
-executable: nxtvepg-2.9.0 (branch `devel_3_0_0`) includes the current latest
-grabber release 2.2. See
+executable: Both nxtvepg release 2.9.0 and 3.0.0 include the current latest
+grabber release 2.3. See
 [nxtvepg grabber documentation](http://nxtvepg.sourceforge.net/ttx_grab.html).
 
 # Dependencies
